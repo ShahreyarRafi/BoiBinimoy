@@ -1,1 +1,0 @@
-const BoiBinimoy = 'Boi Binimoy By Hexa Developers'
