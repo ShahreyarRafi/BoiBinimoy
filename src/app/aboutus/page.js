@@ -1,7 +1,7 @@
 "use client";
 import { Lato } from "next/font/google";
-import AboutBanner from "../components/AboutBanner";
 import ContactUs from "@/Components/AboutUs/ContactUs";
+import AboutBanner from "@/Components/AboutUs/AboutBanner";
 
 const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
@@ -14,7 +14,7 @@ const about = () => {
   return (
     <div className={lato.className}>
       <div className="max-w-7xl mx-auto">
-        <AboutBanner />
+        <AboutBanner/>
         <ContactUs/>
       </div>
     </div>
