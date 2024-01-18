@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+import Navbar from '@/components/shared/Navbar';
+import Buy from '@/components/ui/Buy';
+import Footer from '@/components/ui/Footer';
+import Popular from '@/components/ui/Popular';
+import React from 'react';
+
+const HomePage = () => {
+  return (
+    <div>
+      <Navbar></Navbar>
+      <Popular></Popular>
+      <Buy></Buy>
+      <Footer></Footer>
+    </div>
+  );
+};
+
+export default HomePage;
+=======
 import Image from 'next/image'
 
 export default function Home() {
@@ -111,3 +131,4 @@ export default function Home() {
     </main>
   )
 }
+>>>>>>> 87f6159f830c0cccd1644332b7b9929d72b7e806
