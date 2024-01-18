@@ -26,16 +26,19 @@ const SocialLogin = () => {
                     }, 1000);
                 }
             })
-            
+
     }
 
     return (
         <>
-            <div className="divider text-center  font-semibold  ">Continue with</div>
+            <div className="divider text-center font-semibold mb-3">
+              Or Continue With
+            </div>
             <div className=" flex-col flex items-center justify-center ">
                 <button
                     onClick={() => handleSocialLogin(googleLogin)}
-                    className=" badge badge-outline w-full px-4 py-4 mt-2 pb-4  flex items-center justify-center font-bold gap-1"><span className=" text-xl"><FcGoogle></FcGoogle></span ><span className='text-fuchsia-600 font-semibold '>Login With Google</span> </button>
+                    className=" badge badge-outline w-full flex items-center justify-center font-bold gap-1"><span className=" text-xl"><FcGoogle></FcGoogle></span ><span className='text-fuchsia-600 font-semibold '>Login With Google</span>
+                </button>
             </div>
             <ToastContainer></ToastContainer>
         </>
