@@ -4,6 +4,7 @@ import ContactUs from "@/Components/AboutUs/ContactUs";
 import AboutBanner from "@/Components/AboutUs/AboutBanner";
 import Banefits from "@/Components/Banefits";
 import FAQs from "@/Components/FAQs";
+import FoundersQuotes from "@/Components/FoundersQuotes";
 
 const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
@@ -18,6 +19,7 @@ const about = () => {
       <div className="max-w-7xl mx-auto">
         <AboutBanner/>
         <Banefits/>
+        <FoundersQuotes/>
         <FAQs/>
         <ContactUs/>
       </div>
