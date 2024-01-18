@@ -21,6 +21,8 @@ const lato = Lato({
 });
 
 const signup = () => {
+
+  
   return (
     <div className={lato.className}>
       <div className="max-w-3xl mx-auto my-16 rounded-lg">
