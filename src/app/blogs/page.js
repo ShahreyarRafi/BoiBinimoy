@@ -17,37 +17,37 @@ const BlogPage = () => {
         id:1,
         image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
         title: " Lyft launching cross-platform service this week",
-        date: "december 18, 2023"
+        date: "december 18, 2024"
     },
     {
         id:2,
         image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
         title: " Lyft launching cross-platform service this week",
-        date: "december 18, 2023"
+        date: "december 18, 2024"
     },
     {
         id:3,
         image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
         title: " Lyft launching cross-platform service this week",
-        date: "december 18, 2023"
+        date: "december 18, 2024"
     },
     {
         id:4,
         image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
         title: " Lyft launching cross-platform service this week",
-        date: "december 18, 2023"
+        date: "december 18, 2024"
     },
     {
         id:5,
         image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
         title: " Lyft launching cross-platform service this week",
-        date: "december 18, 2023"
+        date: "december 18, 2024"
     },
     {
         id:6,
         image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
         title: " Lyft launching cross-platform service this week",
-        date: "december 18, 2023"
+        date: "december 18, 2024"
     },
  ];
 
