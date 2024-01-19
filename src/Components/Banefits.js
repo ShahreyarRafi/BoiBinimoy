@@ -1,3 +1,5 @@
+"use client"
+
 import { Typography } from "@material-tailwind/react";
 import React from "react";
 import { Lora } from "next/font/google";
@@ -15,7 +17,7 @@ const lora = Lora({
 
 const Benefits = () => {
   return (
-    <div className="max-w-3xl mx-auto my-12">
+    <div className="max-w-7xl mx-auto my-12 px-5 md:px-10">
       <div>
         <div className={lora.className}>
           <Typography className="mb-2 text-2xl md:text-3xl lg:text-4xl text-center font-bold">
@@ -28,8 +30,8 @@ const Benefits = () => {
         </Typography>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto gap-3">
-        <div className="p-20 rounded-xl shadow-xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="p-10 md:p-20 rounded-xl shadow-xl">
           <div className="mb-2">
             <GiCardExchange className="w-12 h-12" />
           </div>
@@ -43,7 +45,7 @@ const Benefits = () => {
           </div>
         </div>
 
-        <div className="p-20 rounded-xl  shadow-xl">
+        <div className="p-10 md:p-20 rounded-xl  shadow-xl">
           <div className="mb-2">
             <RiShoppingBag3Fill className="w-12 h-12" />
           </div>
@@ -57,7 +59,7 @@ const Benefits = () => {
           </div>
         </div>
 
-        <div className="p-20 rounded-xl  shadow-xl">
+        <div className="p-10 md:p-20 rounded-xl  shadow-xl">
           <div className="mb-2">
             <FaBangladeshiTakaSign className="w-12 h-12" />
           </div>
@@ -71,7 +73,7 @@ const Benefits = () => {
           </div>
         </div>
 
-        <div className="p-20 rounded-xl  shadow-xl">
+        <div className="p-10 md:p-20 rounded-xl  shadow-xl">
           <div className="mb-2">
             <FaMagnifyingGlassChart className="w-12 h-12" />
           </div>

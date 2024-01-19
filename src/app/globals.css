@@ -1,5 +1,6 @@
 @tailwind base;
 @tailwind components;
+<<<<<<< HEAD
 @tailwind utilities;
 
 
@@ -23,3 +24,6 @@ body {
       transparent,
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
+=======
+@tailwind utilities;
+>>>>>>> 8752d2ac7017c1e6d46240f38857b3fb8f947c83
