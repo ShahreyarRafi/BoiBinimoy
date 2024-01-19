@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 
 const Popular = () => {
 
@@ -15,7 +15,7 @@ const Popular = () => {
             <div className='flex justify-between items-center gap-10 mb-5'>
                 <h1 className='text-3xl font-semibold'>Tranding Now</h1>
                 <hr className='hidden md:block border-[1px] border-gray-200 md:w-[250px] lg:w-[850px]'></hr>
-                <button className='bg-[#f65d4e] text-white py-2 px-4 rounded-full'>View all &gt;</button>
+                <button className='bg-[#f65d4e] text-white py-2 px-4 rounded-full'>View all <IoIosArrowForward className="inline"></IoIosArrowForward></button>
             </div>
             {/* Card */}
             <div className='flex'>

@@ -77,9 +77,9 @@ const Navbar = () => {
                             </div>
                         </div>
                         {/* Search */}
-                        <div className="flex ml-4 md:hidden">
+                        <div className="flex ml-3 md:hidden">
                             <input type="text" placeholder="Search products..." className="bg-base-300 text-black rounded-l-full rounded-r-full pl-4 py-2 w-[200px]" />
-                            <button className="bg-[#f65d4e] rounded-full relative right-8"><IoSearch className="text-white m-3 w-8"></IoSearch></button>
+                            <button className="bg-[#f65d4e] rounded-full relative right-10"><IoSearch className="text-white m-3 w-8"></IoSearch></button>
                         </div>
                     </div>
                     <div className="navbar-center hidden md:flex">
