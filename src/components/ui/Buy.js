@@ -13,10 +13,10 @@ const Buy = ({ title, author, rating, price }) => {
             </div>
             {/* Card */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
-                <BuyCard title={'Goodboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></BuyCard>
-                <BuyCard title={'Goodboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></BuyCard>
-                <BuyCard title={'Goodboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></BuyCard>
-                <BuyCard title={'Goodboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></BuyCard>
+                <BuyCard source={'https://i.ibb.co/bFj8wxn/Untitled-design-7.png'} title={'Goodboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></BuyCard>
+                <BuyCard source={'https://i.ibb.co/GHHKS1C/Untitled-design-5.png'} title={'Goodboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></BuyCard>
+                <BuyCard source={'https://i.ibb.co/f9HSt0Y/Untitled-design-6.png'} title={'Goodboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></BuyCard>
+                <BuyCard source={'https://i.ibb.co/mSVwnsJ/Untitled-design.png'} title={'Goodboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></BuyCard>
             </div>
         </div >
     );

@@ -26,10 +26,10 @@ const Popular = () => {
                         slidesPerView={2}
                         pagination={{ clickable: true }}
                     >
-                        <SwiperSlide><Card title={'Goodboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></Card></SwiperSlide>
-                        <SwiperSlide><Card title={'Badboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></Card></SwiperSlide>
-                        <SwiperSlide><Card title={'Richboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></Card></SwiperSlide>
-                        <SwiperSlide><Card title={'Poorboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></Card></SwiperSlide>
+                        <SwiperSlide><Card source={'https://i.ibb.co/F3sHBfn/Untitled-design-4.png'} title={'Goodboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></Card></SwiperSlide>
+                        <SwiperSlide><Card source={'https://i.ibb.co/qnpgW7g/Untitled-design-1.png'} title={'Badboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></Card></SwiperSlide>
+                        <SwiperSlide><Card source={'https://i.ibb.co/58N10pW/Untitled-design-2.png'} title={'Richboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></Card></SwiperSlide>
+                        <SwiperSlide><Card source={'https://i.ibb.co/cxzwdnY/Untitled-design-3.png'} title={'Poorboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></Card></SwiperSlide>
                     </Swiper>
                 </div>
 
