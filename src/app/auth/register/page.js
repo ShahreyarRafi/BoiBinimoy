@@ -13,6 +13,8 @@ import { AuthContext } from '@/AuthProvider/AuthProvider';
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
 import SocialLogin from "../socialLogin/page";
+import Footer from "@/components/ui/Footer";
+import Navbar from "@/components/shared/Navbar";
 
 
 
@@ -77,6 +79,7 @@ const Register = () => {
 
     return (
         <div className={lato.className}>
+            <Navbar></Navbar>
             <div className="min-h-screen flex flex-col justify-center items-center">
                 <div className="max-w-5xl mx-auto my-16 rounded-lg">
                     <div className="flex justify-between items-center rounded-lg gap-2 h-[700px] bg-slate-50 shadow-xl">
@@ -162,19 +165,6 @@ const Register = () => {
                             </form>
 
 
-                            {/* Todo  */}
-
-                            {/* <div className="flex justify-center">
-                                <span className="text-xs">
-                                    Already have an account? Please{" "}
-                                    <Link href="/auth/login" className="font-bold hover:underline">
-                                        Sign In
-                                    </Link>
-                                </span>
-                            </div> */}
-
-
-
                             {/* Todo   socila login components  */}
 
                             <div className="mt-5">
@@ -196,6 +186,7 @@ const Register = () => {
                 </div>
                 <ToastContainer></ToastContainer>
             </div>
+            <Footer></Footer>
         </div>
     );
 };
