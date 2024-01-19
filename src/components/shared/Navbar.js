@@ -62,7 +62,19 @@ const Navbar = () => {
                         <div className="flex items-center gap-2 bg-[#f65d4e] text-white p-2 w-[200px] rounded-l-full rounded-r-full">
                             <p><CgMenuGridO className="text-2xl"></CgMenuGridO></p>
                             <p className="text-sm">Category</p>
-                            <p className="pl-10"><IoIosArrowDown></IoIosArrowDown></p>
+                            <p className="pl-10"></p>
+                            <div className="dropdown">
+                                <div tabIndex={0} role="button" className="">
+                                    <IoIosArrowDown></IoIosArrowDown>
+                                </div>
+                                <ul tabIndex={0} className="menu menu-sm dropdown-content text-black mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li><a>Category-1</a></li>
+                                    <li><a>Category-2</a></li>
+                                    <li><a>Category-3</a></li>
+                                    <li><a>Category-4</a></li>
+                                    <li><a>Category-5</a></li>
+                                </ul>
+                            </div>
                         </div>
                         {/* Search */}
                         <div className="flex ml-4 md:hidden">
