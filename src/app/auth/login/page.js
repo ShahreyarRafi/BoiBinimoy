@@ -1,9 +1,5 @@
 "use client"
 
-
-
-
-
 import { Checkbox } from "@material-tailwind/react";
 import Image from "next/image";
 import { Lora } from "next/font/google";
@@ -11,8 +7,6 @@ import { Lato } from "next/font/google";
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 // import { IoLogoGoogle } from "react-icons/io5";
 // import { FaGithub, FaFacebook } from "react-icons/fa";
-
-
 
 import { useContext, useState } from "react";
 // import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
@@ -23,6 +17,8 @@ import { AuthContext } from "@/AuthProvider/AuthProvider";
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
 import SocialLogin from "../socialLogin/page";
+import Navbar from "@/components/shared/Navbar";
+import Footer from "@/components/ui/Footer";
 // import Link from "next/link";
 
 
@@ -85,9 +81,9 @@ const LoginPage = () => {
 
   }
 
-
   return (
     <div className={lato.className}>
+      <Navbar></Navbar>
       <div className="min-h-screen flex flex-col justify-center items-center" >
         <div className="max-w-5xl mx-auto my-16 rounded-lg">
           <div className="flex justify-between items-center rounded-lg gap-2 h-[700px] bg-slate-50 shadow-xl">
@@ -98,8 +94,7 @@ const LoginPage = () => {
                 </h2>
               </div>
 
-
-              <div className="flex gap-1 p-[0.20rem] rounded-lg  w-[24rem] mx-auto">
+              <div className="flex gap-1 bg-[#f1f0f3] p-[0.20rem] rounded-lg w-[24rem] mx-auto">
                 <button
                   onClick={() => {
                     setActivePage('login');
@@ -115,13 +110,13 @@ const LoginPage = () => {
                     setActivePage('register');
                     router.push('/auth/register');
                   }}
-                  className={`w-full px-3 py-2 rounded-lg focus:outline-none font-bold text-center ${activePage === 'register' ? 'bg-orange-500 text-white' : 'text-gray-700'
+                  className={`w-full px-3 py-2  rounded-lg focus:outline-none font-bold text-center ${activePage === 'register' ? 'bg-orange-500 text-white' : 'text-gray-700'
                     }`}
                 >
                   Register
                 </button>
               </div>
-
+              
               <form onSubmit={handleLoginUser} className="mt-8 mb-2  w-[24rem] mx-auto">
                 <div className="mb-1 flex flex-col gap-6">
                   <input
@@ -163,30 +158,9 @@ const LoginPage = () => {
                 </button>
               </form>
 
-              {/* <div className="flex justify-center">
-                <span className="text-xs">
-                  Have no account? Please{" "}
-                  <Link href="/auth/register" className="font-bold hover:underline">
-                    Sign Up
-                  </Link>
-                </span>
-              </div> */}
-
               <div className="mt-5">
                 <SocialLogin></SocialLogin>
               </div>
-
-              {/* <div className="flex justify-center items-center gap-3 my-4">
-              <span className="border-2 border-black rounded-full p-1">
-                <IoLogoGoogle className="w-7 h-7" />
-              </span>
-              <span className="border-2 border-black rounded-full p-1">
-                <FaGithub className="w-7 h-7" />
-              </span>
-              <span className="border-2 border-black rounded-full p-1">
-                <FaFacebook className="w-7 h-7" />
-              </span>
-            </div> */}
             </div>
             <div>
               <Image
@@ -201,50 +175,8 @@ const LoginPage = () => {
         </div>
         <ToastContainer></ToastContainer>
       </div>
+      <Footer></Footer>
     </div>
-
-    // <div className=" relative md:w-[28rem] mx-auto p-2  rounded-lg shadow-2xl mt-1 h-full  ">
-    //     <h1 className="text-3xl text-center text-pink-600 font-bold  mt-4 "> Login Now  </h1>
-    //     <form onSubmit={handleLoginUser}>
-
-    //         <div className="mb-4  ">
-    //             <label className="block  text-md font-semibold mb-2 " htmlFor=""> Your Email </label>
-    //             <input className=" w-full px-4 py-2 text-white border rounded-lg bg-gray-800 focus:outline-none focus:border-blue-500 " type="text" placeholder="Your Email" name="email" required />
-    //         </div>
-
-    //         <div className="mb-4 ">
-    //             <label className="block  text-md font-semibold mb-2 " htmlFor=""> Password </label>
-    //             <input className=" w-full px-4 py-2 text-white border rounded-lg bg-gray-800 focus:outline-none focus:border-blue-500 "
-    //                 type={showPassword ? "text" : "password"}
-    //                 placeholder="Password" name="password" required />
-    //             <span onClick={() => setShowPassWord(!showPassword)} className="absolute left-96 mt-3  text-green-700 ">
-    //                 {
-    //                     showPassword ? <AiFillEye className='text-xl text-white'></AiFillEye> : <AiFillEyeInvisible className='text-xl text-white '></AiFillEyeInvisible>
-    //                 }
-
-    //             </span>
-    //         </div>
-    //         <label className="label ">
-    //             <a href="#" className="label-text-alt link link-hover text-base ">Forgot password?</a>
-    //         </label>
-
-    //         <div className=" w-32 py-1.5 rounded-md justify-center mx-auto text-center bg-fuchsia-600 hover:bg-fuchsia-800 ">
-    //             <button type="submit" className=" w-28 font-bold "> Login Now  </button>
-    //         </div>
-    //         <div className=' flex justify-between items-center  mt-6 px-6 '>
-    //             <label className="label">
-    //                 <h1 className="label-text-alt link link-hover text-[16px] text-pink-600 ">Please Your  </h1>
-    //             </label>
-    //             <Link href='/auth/register' className="label-text-alt link link-hover text-[16px] text-pink-600">
-    //                 Create A Account
-    //             </Link>
-
-    //         </div>
-    //     </form>
-    //     <SocialLogin></SocialLogin>
-    //     <ToastContainer></ToastContainer>
-    // </div>
-
   )
 };
 

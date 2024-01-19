@@ -1,21 +1,20 @@
-"use client"
 
 import Image from "next/image";
 import { IoSearch } from "react-icons/io5";
-import { FaRegUser } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { BsBasket3 } from "react-icons/bs";
 import { CgMenuGridO } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import { FiPhoneCall } from "react-icons/fi";
+import Link from "next/link";
 
 const Navbar = () => {
 
     const links = <>
-        <li><a>Home</a></li>
-        <li><a>About</a></li>
-        <li><a>Contact</a></li>
-        <li><a>Blog</a></li>
+        <li><Link href='/'>Home</Link></li>
+        <li><Link href='/aboutus'>About</Link></li>
+        {/* <li><a>Contact</a></li> */}
+        {/* <li><a>Blog</a></li> */}
     </>
 
     return (
@@ -46,13 +45,14 @@ const Navbar = () => {
                         <input type="text" placeholder="Search products..." className="bg-base-300 text-black rounded-l-full rounded-r-full pl-4 py-2 w-[200px] md:w-[250px] lg:w-[400px]" />
                         <button className="bg-[#f65d4e] rounded-full relative right-8"><IoSearch className="text-white m-3 w-8"></IoSearch></button>
                     </div>
+
                     <div className="navbar-end flex gap-3 md:gap-6">
-                        <button><FaRegUser className="text-lg"></FaRegUser></button>
                         <button><FaRegHeart className="text-lg"></FaRegHeart></button>
                         <button><BsBasket3 className="text-lg"></BsBasket3></button>
+                        <Link href='/auth/login' className="bg-[#f65d4e] text-white btn btn-sm">Login</Link>
                     </div>
                 </div>
-                <hr />
+                <hr/>
                 {/* Second Position*/}
                 <div className="navbar bg-base-100">
                     <div className="navbar-start">
@@ -60,12 +60,24 @@ const Navbar = () => {
                         <div className="flex items-center gap-2 bg-[#f65d4e] text-white p-2 w-[200px] rounded-l-full rounded-r-full">
                             <p><CgMenuGridO className="text-2xl"></CgMenuGridO></p>
                             <p className="text-sm">Category</p>
-                            <p className="pl-10"><IoIosArrowDown></IoIosArrowDown></p>
+                            <p className="pl-10"></p>
+                            <div className="dropdown">
+                                <div tabIndex={0} role="button" className="">
+                                    <IoIosArrowDown></IoIosArrowDown>
+                                </div>
+                                <ul tabIndex={0} className="menu menu-sm dropdown-content text-black mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li><a>Category-1</a></li>
+                                    <li><a>Category-2</a></li>
+                                    <li><a>Category-3</a></li>
+                                    <li><a>Category-4</a></li>
+                                    <li><a>Category-5</a></li>
+                                </ul>
+                            </div>
                         </div>
                         {/* Search */}
-                        <div className="flex ml-4 md:hidden">
+                        <div className="flex ml-3 md:hidden">
                             <input type="text" placeholder="Search products..." className="bg-base-300 text-black rounded-l-full rounded-r-full pl-4 py-2 w-[200px]" />
-                            <button className="bg-[#f65d4e] rounded-full relative right-8"><IoSearch className="text-white m-3 w-8"></IoSearch></button>
+                            <button className="bg-[#f65d4e] rounded-full relative right-10"><IoSearch className="text-white m-3 w-8"></IoSearch></button>
                         </div>
                     </div>
                     <div className="navbar-center hidden md:flex">

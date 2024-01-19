@@ -1,3 +1,4 @@
+"use client"
 import {
     Timeline,
     TimelineItem,
@@ -77,7 +78,7 @@ import {
                     color="gray"
                     className="font-normal"
                   >
-                    Our journey wasn't always smooth sailing. From late nights
+                    Our journey wasn&apos;t always smooth sailing. From late nights
                     spent coding to heated debates about features, we navigated
                     uncharted territories, fueled by our shared passion for
                     stories and the desire to democratize access to them.
@@ -102,8 +103,8 @@ import {
                     color="gray"
                     className="font-normal"
                   >
-                    Today, Boi Binimoy stands as a testament to that passion. It's
-                    not just a platform - it's a space where books find new homes,
+                    Today, Boi Binimoy stands as a testament to that passion. It&apos;s
+                    not just a platform - it&apos;s a space where books find new homes,
                     stories unfold, and connections blossom. Every exchange, every
                     review, every book read on our platform whispers our story,
                     the story of how a dream of sharing sparked a revolution in

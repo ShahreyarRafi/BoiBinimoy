@@ -1,3 +1,6 @@
+"use client"
+
+
 import {
     Card,
     CardHeader,
@@ -53,8 +56,8 @@ import {
                 color="white"
                 className="mb-6 font-medium leading-[1.5]"
               >
-                "It all started with a shared love for books and a desire to build
-                a community where stories could travel freely"
+                It all started with a shared love for books and a desire to build
+                a community where stories could travel freely
               </Typography>
               <Typography variant="h5" className="mb-4 text-gray-400">
                 Atik Sharia
@@ -188,8 +191,8 @@ import {
                 color="white"
                 className="mb-6 font-medium leading-[1.5]"
               >
-                "We believe that everyone deserves access to books, regardless of
-                location or resources"
+                We believe that everyone deserves access to books, regardless of
+                location or resources
               </Typography>
               <Typography variant="h5" className="mb-4 text-gray-400">
                 Md Parvej
@@ -323,8 +326,8 @@ import {
                 color="white"
                 className="mb-6 font-medium leading-[1.5]"
               >
-                "Boi Binimoy is more than just a platform; it's a vibrant
-                community where bookworms connect and share their passions"
+                Boi Binimoy is more than just a platform; it&apos;s a vibrant
+                community where bookworms connect and share their passions
               </Typography>
               <Typography variant="h5" className="mb-4 text-gray-400">
                 Fousal Ahmed
@@ -458,8 +461,8 @@ import {
                 color="white"
                 className="mb-6 font-medium leading-[1.5]"
               >
-                "We dream of a world where Boi Binimoy becomes the go-to platform
-                for book lovers to discover, exchange, and cherish stories"
+                We dream of a world where Boi Binimoy becomes the go-to platform
+                for book lovers to discover, exchange, and cherish stories
               </Typography>
               <Typography variant="h5" className="mb-4 text-gray-400">
                 Shahareyar Rafi
@@ -593,9 +596,9 @@ import {
                 color="white"
                 className="mb-6 font-medium leading-[1.5]"
               >
-                "From dusty attics to vibrant online shelves, this journey has
+                From dusty attics to vibrant online shelves, this journey has
                 been a roller coaster of emotions, but seeing book lovers connect
-                makes"
+                makes
               </Typography>
               <Typography variant="h5" className="mb-4 text-gray-400">
                 Taiatul Islam
@@ -729,8 +732,8 @@ import {
                 color="white"
                 className="mb-6 font-medium leading-[1.5]"
               >
-                "We started Boi Binimoy because we saw a world where reading
-                shouldn't be limited by financial means or geographical borders."
+                We started Boi Binimoy because we saw a world where reading
+                shouldn&apos;t be limited by financial means or geographical borders.
               </Typography>
               <Typography variant="h5" className="mb-4 text-gray-400">
                 Muahmmad Minhajul Alam
