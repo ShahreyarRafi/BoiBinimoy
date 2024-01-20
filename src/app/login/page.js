@@ -1,10 +1,19 @@
-"use client";
+"use client"
+
 import { Checkbox } from "@material-tailwind/react";
 import Image from "next/image";
 import { Lora } from "next/font/google";
 import { Lato } from "next/font/google";
-import { IoLogoGoogle } from "react-icons/io5";
-import { FaGithub, FaFacebook } from "react-icons/fa";
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { useContext, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from "@/components/ui/Auth/AuthProvider/AuthProvider";
+import { useRouter } from 'next/navigation';
+import SocialLogin from "../../components/ui/Auth/socialLogin/page";
+import Footer from "@/components/ui/Home/Footer";
+import Navbar from "@/Components/shared/Navbar";
+
 
 const lora = Lora({
   weight: ["400", "500", "600", "700"],
@@ -20,85 +29,139 @@ const lato = Lato({
   display: "swap",
 });
 
-const signup = () => {
 
-  
+
+const LoginPage = () => {
+
+  const { signin } = useContext(AuthContext);
+  const [activePage, setActivePage] = useState('login');
+  const [showPassword, setShowPassWord] = useState(false)
+  const router = useRouter()
+
+  const handleLoginUser = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+
+
+    //  User Login
+    signin(email, password)
+      .then(res => {
+        console.log(res);
+        if (res.user) {
+          toast.success('User logged in successfully');
+          setTimeout(() => {
+            router("/")
+          }, 1000);
+        }
+      }).catch(error => {
+        console.error(error);
+        toast.error('Cheack your Email or password', error);
+      })
+
+  }
+
   return (
     <div className={lato.className}>
-      <div className="max-w-3xl mx-auto my-16 rounded-lg">
-        <div className="flex justify-between items-center rounded-lg gap-2 shadow-xl">
-          <div>
-            <Image
-              width={500}
-              height={500}
-              alt="image"
-              className="flex-1 h-[500px] w-full object-cover rounded-l-lg hidden md:block"
-              src="https://images.unsplash.com/photo-1552960562-daf630e9278b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-            />
-          </div>
-          <div className="flex-1 px-8">
-            <div className={lora.className}>
-              <h2 className="mb-2 text-2xl md:text-3xl lg:text-4xl text-center font-bold">
-                Sign In
-              </h2>
-            </div>
-
-            <form className="mt-8 mb-2">
-              <div className="mb-1 flex flex-col gap-6">
-                <input
-                  placeholder="Email"
-                  name="email"
-                  type="email"
-                  className="w-full h-12 pl-2 pr-8 border-2 border-gray-300 rounded-lg focus:outline-none bg-transparent"
-                />
-                <input
-                  placeholder="Password"
-                  name="Password"
-                  type="password"
-                  className="w-full h-12 pl-2 pr-8 border-2 border-gray-300 rounded-lg focus:outline-none bg-transparent"
-                />
+      <Navbar />
+      <div className="min-h-screen flex flex-col justify-center items-center" >
+        <div className="max-w-5xl mx-auto my-16 rounded-lg">
+          <div className="flex justify-between items-center rounded-lg gap-2 h-[700px] bg-slate-50 shadow-xl">
+            <div className="flex-1 h-[500px] w-[800px]">
+              <div className={lora.className}>
+                <h2 className="mb-10 text-2xl md:text-3xl lg:text-4xl text-center font-bold">
+                  Sign In
+                </h2>
               </div>
 
-              <span className="flex justify-center items-center text-sm my-3">
-                <Checkbox /> I agree the{" "}
-                <span className="font-bold hover:underline">
-                  Terms and Conditions
+              <div className="flex gap-1 p-[0.20rem] rounded-lg  w-[24rem] mx-auto">
+                <button
+                  onClick={() => {
+                    setActivePage('login');
+                    router.push('/login');
+                  }}
+                  className={`w-full px-3 py-2 rounded-lg focus:outline-none font-bold text-center ${activePage === 'login' ? 'bg-orange-500 text-white' : 'text-gray-700'
+                    }`}
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => {
+                    setActivePage('register');
+                    router.push('/register');
+                  }}
+                  className={`w-full px-3 py-2 rounded-lg focus:outline-none font-bold text-center ${activePage === 'register' ? 'bg-orange-500 text-white' : 'text-gray-700'
+                    }`}
+                >
+                  Register
+                </button>
+              </div>
+
+              <form onSubmit={handleLoginUser} className="mt-8 mb-2  w-[24rem] mx-auto">
+                <div className="mb-1 flex flex-col gap-6">
+                  <input
+                    placeholder="Email"
+                    name="email"
+                    type="email"
+                    className="w-full h-12 pl-2 pr-8 border-2 border-gray-300 rounded-lg focus:outline-none bg-transparent"
+                  />
+                  <div className="relative">
+                    <input
+                      placeholder="Password"
+                      name="password"
+                      required
+                      type={showPassword ? "text" : "password"}
+                      className=" w-full h-12 pl-2 pr-8 border-2 border-gray-300 rounded-lg focus:outline-none bg-transparent"
+                    />
+                    <span className="absolute right-5 top-3 cursor-pointer text-green-700 z-10" onClick={() => setShowPassWord(!showPassword)}>
+                      {showPassword ? (
+                        <AiFillEye className='text-xl text-gray-600' />
+                      ) : (
+                        <AiFillEyeInvisible className='text-xl text-gray-600' />
+                      )}
+                    </span>
+                  </div>
+                </div>
+
+                <span className="flex justify-start items-center text-sm my-3 -ml-3">
+                  <Checkbox /> I agree the{" "}
+                  <span className="font-bold hover:underline">
+                    Terms and Conditions
+                  </span>
                 </span>
-              </span>
 
-              <button
-                type="input"
-                className="w-full h-12 pl-2 pr-8 border-2 border-orange-500 rounded-lg focus:outline-none bg-orange-500 font-bold text-white"
-              >
-                Sign In
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  className="w-full py-2 border-2 border-orange-500 rounded-lg focus:outline-none bg-orange-500 font-bold text-white"
+                >
+                  Sign In
+                </button>
+              </form>
 
-            <div className="flex justify-center">
-              <span className="text-xs">
-                Have no account? Please{" "}
-                <a href="#" className="font-bold hover:underline">
-                  Sign Up
-                </a>
-              </span>
+              <div className="mt-5">
+                <SocialLogin></SocialLogin>
+              </div>
             </div>
-
-            <div className="flex justify-center items-center gap-3 my-4">
-              <span className="border-2 border-black rounded-full p-1">
-                <IoLogoGoogle className="w-7 h-7" />
-              </span>
-              <span className="border-2 border-black rounded-full p-1">
-                <FaGithub className="w-7 h-7" />
-              </span>
-              <span className="border-2 border-black rounded-full p-1">
-                <FaFacebook className="w-7 h-7" />
-              </span>
+            <div>
+              <Image
+                width={500}
+                height={500}
+                alt="image"
+                className="flex-1 h-[700px] w-full object-cover rounded-r-lg hidden md:block"
+                src="https://images.unsplash.com/photo-1552960562-daf630e9278b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              />
             </div>
           </div>
         </div>
+        <ToastContainer></ToastContainer>
       </div>
+      <Footer />
     </div>
-  );
+  )
 };
 
-export default signup;
+export default LoginPage;

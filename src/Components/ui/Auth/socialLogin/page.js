@@ -3,7 +3,7 @@
 import { FcGoogle } from 'react-icons/fc';
 import { ToastContainer, toast } from "react-toastify";
 import { useContext } from 'react';
-import { AuthContext } from '@/AuthProvider/AuthProvider';
+import { AuthContext } from '@/components/ui/Auth/AuthProvider/AuthProvider';
 import { useRouter } from 'next/navigation';
 
 const SocialLogin = () => {

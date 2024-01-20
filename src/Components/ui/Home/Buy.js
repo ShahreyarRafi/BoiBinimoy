@@ -1,4 +1,6 @@
-import BuyCard from "../shared/BuyCard";
+"use client"
+
+import BuyCard from "../../shared/BuyCard";
 import './Buy.css'
 import { IoIosArrowForward } from "react-icons/io";
 
