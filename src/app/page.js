@@ -1,25 +1,25 @@
-// "use client"
+"use client"
 
-import Benefits from '@/Components/Banefits';
-import FAQ from '@/Components/FAQs';
-import Navbar from "@/Components/shared/Navbar";
-import Banner from '@/Components/ui/Banner/Banner';
-import Buy from "@/Components/ui/Buy";
-import Exchange from "@/Components/ui/Exchange";
-import Footer from "@/Components/ui/Footer";
-import Popular from "@/Components/ui/Popular";
+import Benefits from '@/components/ui/Home/Banefits';
+import FAQ from '@/components/ui/Home/FAQs';
+import Buy from "@/components/ui/Home/Buy";
+import Exchange from "@/components/ui/Home/Exchange";
+import Footer from "@/components/ui/Home/Footer";
+import Popular from "@/components/ui/Home/Popular";
+import Navbar from '@/Components/shared/Navbar';
+import Banner from '@/components/ui/Home/Banner';
 
 const HomePage = () => {
   return (
     <div>
-      <Navbar></Navbar>
-      <Banner></Banner>
+      <Navbar />
+      <Banner/>
       <Exchange />
-      <Popular></Popular>
+      <Popular />
       <Buy></Buy>
-      <Benefits></Benefits>
+      <Benefits />
       <FAQ></FAQ>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };

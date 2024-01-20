@@ -1,4 +1,3 @@
-
 .zoom-in {
     animation: zoom-in 10s ease-in-out;
 }
@@ -44,8 +43,6 @@
         /* End with full opacity */
     }
 }
-
-
 
 .carousel-item {
     transition: background-color 1s ease-in-out;

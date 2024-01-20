@@ -3,7 +3,7 @@
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { auth } from "../../firebase.confic";
+import { auth } from "../../../../../firebase.confic";
 
 export const AuthContext = createContext(null)
 
@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
-    
+
 
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();

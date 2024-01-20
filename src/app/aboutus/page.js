@@ -1,12 +1,12 @@
 "use client";
 
 import { Lato } from "next/font/google";
-import ContactUs from "@/Components/AboutUs/ContactUs";
-import AboutBanner from "@/Components/AboutUs/AboutBanner";
-import FoundersQuotes from "@/Components/FoundersQuotes";
-import OurStory from "@/Components/OurStory";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/ui/Footer";
+import ContactUs from "@/components/ui/AboutUs/ContactUs";
+import AboutBanner from "@/components/ui/AboutUs/AboutBanner";
+import FoundersQuotes from "@/components/ui/AboutUs/FoundersQuotes";
+import OurStory from "@/components/ui/AboutUs/OurStory";
+import Footer from "@/components/ui/Home/Footer";
+import Navbar from "@/Components/shared/Navbar";
 
 const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
@@ -19,7 +19,7 @@ const about = () => {
   return (
     <div className={lato.className}>
       <div>
-        <Navbar></Navbar>
+        <Navbar />
         <AboutBanner />
         <OurStory />
         <FoundersQuotes />

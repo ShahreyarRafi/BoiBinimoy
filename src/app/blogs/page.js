@@ -9,9 +9,7 @@ import {
 import Image from "next/image";
 
 
-
 const BlogPage = () => {
-
  const blogs = [
     {
         id:1,

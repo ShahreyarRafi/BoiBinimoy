@@ -1,3 +1,4 @@
+"use client"
 
 import Image from "next/image";
 import { IoSearch } from "react-icons/io5";
@@ -12,14 +13,14 @@ const Navbar = () => {
 
     const links = <>
         <li><Link href='/'>Home</Link></li>
-        <li><Link href='/aboutus'>About</Link></li>
+        <li><Link href='/aboutUs'>About</Link></li>
         {/* <li><a>Contact</a></li> */}
         {/* <li><a>Blog</a></li> */}
     </>
 
     return (
-        <div className="bg-white w-full">
-            <div className="bg-base-100 mx-auto px-0 md:px-10 lg:px-7">
+        <div className="bg-base-100 px-0 md:px-10 lg:px-0">
+            <div className="max-w-7xl mx-auto">
                 {/* First position */}
                 <div className="navbar">
                     <div className="navbar-start md:mr-10">
@@ -32,27 +33,29 @@ const Navbar = () => {
                                 {links}
                             </ul>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <Image
-                                src="https://i.ibb.co/PxBs9dH/Boi-Binimoy-Transparent-Big.png" alt="card" priority width={500} height={500} style={{
-                                    width: '50px',
-                                    height: '100%',
-                                }} />
-                            <p className="text-base md:text-lg lg:text-xl font-bold">Boi Binimoy</p>
-                        </div>
+                        <Link href='/'>
+                            <div className="flex items-center gap-2">
+                                <Image
+                                    src="https://i.ibb.co/PxBs9dH/Boi-Binimoy-Transparent-Big.png" alt="card" priority width={500} height={500} style={{
+                                        width: '50px',
+                                        height: '100%',
+                                    }} />
+                                <p className="text-base md:text-lg lg:text-xl font-bold">Boi Binimoy</p>
+                            </div>
+                        </Link>
                     </div>
                     <div className="navbar-center hidden md:flex">
                         <input type="text" placeholder="Search products..." className="bg-base-300 text-black rounded-l-full rounded-r-full pl-4 py-2 w-[200px] md:w-[250px] lg:w-[400px]" />
-                        <button className="bg-[#f65d4e] rounded-full relative right-8"><IoSearch className="text-white m-3 w-8"></IoSearch></button>
+                        <button className="bg-[#f65d4e] rounded-full relative right-[55px]"><IoSearch className="text-white m-3 w-8"></IoSearch></button>
                     </div>
 
                     <div className="navbar-end flex gap-3 md:gap-6">
                         <button><FaRegHeart className="text-lg"></FaRegHeart></button>
                         <button><BsBasket3 className="text-lg"></BsBasket3></button>
-                        <Link href='/auth/login' className="bg-[#f65d4e] text-white btn btn-sm">Login</Link>
+                        <Link href='/login' className="bg-[#f65d4e] text-white btn btn-sm">Login</Link>
                     </div>
                 </div>
-                <hr/>
+                <hr />
                 {/* Second Position*/}
                 <div className="navbar bg-base-100">
                     <div className="navbar-start">

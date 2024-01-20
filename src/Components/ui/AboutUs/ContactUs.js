@@ -1,5 +1,5 @@
-// pages/ContactUs.js
 "use client";
+
 import React, { useRef } from "react";
 import {
   FaFacebook,
