@@ -20,7 +20,7 @@ const Navbar = () => {
 
     return (
         <div className="bg-base-100 px-0 md:px-10 lg:px-0">
-            <div className="max-w-7xl mx-auto">
+            <div className="container mx-auto">
                 {/* First position */}
                 <div className="navbar">
                     <div className="navbar-start md:mr-10">

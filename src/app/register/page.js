@@ -8,10 +8,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { useContext, useState } from "react";
-import { AuthContext } from '@/components/ui/Auth/AuthProvider/AuthProvider';
+import { AuthContext } from '@/Components/ui/Auth/AuthProvider/AuthProvider';
 import { useRouter } from 'next/navigation';
-import SocialLogin from "../../components/ui/Auth/socialLogin/page";
-import Footer from "@/components/ui/Home/Footer";
+import SocialLogin from "../../Components/ui/Auth/socialLogin/page";
+import Footer from "@/Components/ui/Home/Footer";
 import Navbar from "@/Components/shared/Navbar";
 
 
@@ -157,7 +157,7 @@ const Register = () => {
                                 </button>
                             </form>
 
-                            {/* Todo   socila login components  */}
+                            {/* Todo   socila login Components  */}
                             <div className="mt-5">
                                 <SocialLogin></SocialLogin>
                             </div>

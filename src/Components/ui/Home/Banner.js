@@ -61,9 +61,8 @@ const Banner = () => {
                         <div className="absolute flex justify-center transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <div className="flex flex-col items-center justify-center">
                                 <h2 className="xl:text-7xl md:text-5xl text-3xl tracking-tigh font-primary text-white text-center md:leading-[1.2] drop-shadow-lg shadow-black mb-8">
-                                    Share the <span className="text-[#f65d4e]">Magic</span> of Reading
+                                    Share the <span className="text-[#3f8757]">Magic</span> of Reading
                                 </h2>
-                                di
                                 <a href='#more' className='px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 text-white bg-[#f65d4e] bg-opacity-25 backdrop-blur-sm outline outline-2 outline-[#f65d4e] rounded-full hover:bg-[#f65d4e] hover:outline-0 hover:text-white'
                                     style={{ transition: 'background-color 400ms, color 400ms, outline 0s' }}>
                                     <div className=''>
