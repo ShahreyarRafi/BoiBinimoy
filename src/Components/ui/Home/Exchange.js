@@ -1,6 +1,6 @@
 "use client"
 
-import ExchangeCard from "../../shared/ExchangeCard";
+import ExchangeCard from "../shared/ExchangeCard";
 
 export default function Exchange() {
 

@@ -12,7 +12,7 @@ import { AuthContext } from '@/Components/ui/Auth/AuthProvider/AuthProvider';
 import { useRouter } from 'next/navigation';
 import SocialLogin from "../../Components/ui/Auth/socialLogin/page";
 import Footer from "@/Components/ui/Home/Footer";
-import Navbar from "@/Components/shared/Navbar";
+import Navbar from "@/Components/ui/shared/Navbar";
 
 
 const lora = Lora({
