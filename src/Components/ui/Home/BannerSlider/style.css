@@ -148,14 +148,13 @@ header a {
 /* arrows */
 .arrows {
     position: absolute;
-    top: 75%;
-    right: 52%;
+    bottom: 120px;
+    left: 50%;
     z-index: 100;
-    width: 300px;
-    max-width: 30%;
     display: flex;
     gap: 10px;
     align-items: center;
+    margin-left: -7rem;
 }
 
 .arrows button {

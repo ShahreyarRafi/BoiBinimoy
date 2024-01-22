@@ -82,7 +82,7 @@ const BannerSlider = () => {
             <div class="carousel">
                 <div class="list">
                     <div class="item">
-                        <Image src={image1} alt="alt"/>
+                        <Image src={image1} alt="alt" />
                         <div class="content">
                             <div class="author">LUNDEV</div>
                             <div class="title">DESIGN SLIDER</div>
@@ -97,7 +97,7 @@ const BannerSlider = () => {
                         </div>
                     </div>
                     <div class="item">
-                        <Image src={image2} alt="alt"/>
+                        <Image src={image2} alt="alt" />
                         <div class="content">
                             <div class="author">LUNDEV</div>
                             <div class="title">DESIGN SLIDER</div>
@@ -112,7 +112,7 @@ const BannerSlider = () => {
                         </div>
                     </div>
                     <div class="item">
-                        <Image src={image3} alt="alt"/>
+                        <Image src={image3} alt="alt" />
                         <div class="content">
                             <div class="author">LUNDEV</div>
                             <div class="title">DESIGN SLIDER</div>
@@ -127,7 +127,7 @@ const BannerSlider = () => {
                         </div>
                     </div>
                     <div class="item">
-                        <Image src={image4} alt="alt"/>
+                        <Image src={image4} alt="alt" />
                         <div class="content">
                             <div class="author">LUNDEV</div>
                             <div class="title">DESIGN SLIDER</div>
@@ -142,60 +142,61 @@ const BannerSlider = () => {
                         </div>
                     </div>
                 </div>
-                <div class="thumbnail">
-                    <div class="item">
-                        <Image src={image1} alt="alt"/>
-                        <div class="content">
-                            <div class="title">
-                                Name Slider
-                            </div>
-                            <div class="description">
-                                Description
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <Image src={image2} alt="alt"/>
-                        <div class="content">
-                            <div class="title">
-                                Name Slider
-                            </div>
-                            <div class="description">
-                                Description
+                <div className="">
+                    <div class="thumbnail">
+                        <div class="item">
+                            <Image src={image1} alt="alt" />
+                            <div class="content">
+                                <div class="title">
+                                    Name Slider
+                                </div>
+                                <div class="description">
+                                    Description
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <Image src={image3} alt="alt"/>
-                        <div class="content">
-                            <div class="title">
-                                Name Slider
-                            </div>
-                            <div class="description">
-                                Description
+                        <div class="item">
+                            <Image src={image2} alt="alt" />
+                            <div class="content">
+                                <div class="title">
+                                    Name Slider
+                                </div>
+                                <div class="description">
+                                    Description
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <Image src={image4} alt="alt"/>
-                        <div class="content">
-                            <div class="title">
-                                Name Slider
+                        <div class="item">
+                            <Image src={image3} alt="alt" />
+                            <div class="content">
+                                <div class="title">
+                                    Name Slider
+                                </div>
+                                <div class="description">
+                                    Description
+                                </div>
                             </div>
-                            <div class="description">
-                                Description
+                        </div>
+                        <div class="item">
+                            <Image src={image4} alt="alt" />
+                            <div class="content">
+                                <div class="title">
+                                    Name Slider
+                                </div>
+                                <div class="description">
+                                    Description
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="arrows">
-                    <button id="prev" className='flex items-center justify-center'>
+                    <button id="prev" className='flex items-center justify-center shadow-md'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12 15.75 4.5" />
                         </svg>
                     </button>
-                    <button id="next" className='flex items-center justify-center'>
+                    <button id="next" className='flex items-center justify-center shadow-md'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                         </svg>
