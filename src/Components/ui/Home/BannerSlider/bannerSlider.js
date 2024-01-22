@@ -82,7 +82,7 @@ const BannerSlider = () => {
             <div class="carousel">
                 <div class="list">
                     <div class="item">
-                        <Image src={image1} alt="alt" width={1000} height={500} />
+                        <Image src={image1} alt="alt" />
                         <div class="content">
                             <div class="author">LUNDEV</div>
                             <div class="title">DESIGN SLIDER</div>
@@ -97,7 +97,7 @@ const BannerSlider = () => {
                         </div>
                     </div>
                     <div class="item">
-                        <Image src={image2} alt="alt" width={1000} height={500} />
+                        <Image src={image2} alt="alt"/>
                         <div class="content">
                             <div class="author">LUNDEV</div>
                             <div class="title">DESIGN SLIDER</div>
@@ -112,7 +112,7 @@ const BannerSlider = () => {
                         </div>
                     </div>
                     <div class="item">
-                        <Image src={image3} alt="alt" width={1000} height={500} />
+                        <Image src={image3} alt="alt"/>
                         <div class="content">
                             <div class="author">LUNDEV</div>
                             <div class="title">DESIGN SLIDER</div>
@@ -127,7 +127,7 @@ const BannerSlider = () => {
                         </div>
                     </div>
                     <div class="item">
-                        <Image src={image4} alt="alt" width={1000} height={500} />
+                        <Image src={image4} alt="alt"/>
                         <div class="content">
                             <div class="author">LUNDEV</div>
                             <div class="title">DESIGN SLIDER</div>
@@ -144,7 +144,7 @@ const BannerSlider = () => {
                 </div>
                 <div class="thumbnail">
                     <div class="item">
-                        <Image src={image1} alt="alt" width={1000} height={500} />
+                        <Image src={image1} alt="alt"/>
                         <div class="content">
                             <div class="title">
                                 Name Slider
@@ -155,7 +155,7 @@ const BannerSlider = () => {
                         </div>
                     </div>
                     <div class="item">
-                        <Image src={image2} alt="alt" width={1000} height={500} />
+                        <Image src={image2} alt="alt"/>
                         <div class="content">
                             <div class="title">
                                 Name Slider
@@ -166,7 +166,7 @@ const BannerSlider = () => {
                         </div>
                     </div>
                     <div class="item">
-                        <Image src={image3} alt="alt" width={1000} height={500} />
+                        <Image src={image3} alt="alt"/>
                         <div class="content">
                             <div class="title">
                                 Name Slider
@@ -177,7 +177,7 @@ const BannerSlider = () => {
                         </div>
                     </div>
                     <div class="item">
-                        <Image src={image4} alt="alt" width={1000} height={500} />
+                        <Image src={image4} alt="alt"/>
                         <div class="content">
                             <div class="title">
                                 Name Slider
