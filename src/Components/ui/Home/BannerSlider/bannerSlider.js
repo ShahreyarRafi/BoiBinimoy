@@ -2,6 +2,13 @@
 import { useEffect, useState } from 'react';
 import './style.css';
 import Image from 'next/image';
+import book1 from './image/book1.png'
+import book2 from './image/book2.png'
+import book3 from './image/book3.png'
+import book4 from './image/book4.png'
+import book5 from './image/book5.png'
+import book6 from './image/book6.png'
+
 import image1 from './image/img1.jpg'
 import image2 from './image/img2.jpg'
 import image3 from './image/img3.jpg'
@@ -34,7 +41,7 @@ const BannerSlider = () => {
         thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
 
         let timeRunning = 3000;
-        let timeAutoNext = 10000;
+        let timeAutoNext = 15000;
 
         nextDom.onclick = function () {
             showSlider('next');
@@ -145,7 +152,7 @@ const BannerSlider = () => {
                 <div className="">
                     <div class="thumbnail">
                         <div class="item">
-                            <Image src={image1} alt="alt" />
+                            <Image src={book1} alt="alt" />
                             <div class="content">
                                 <div class="title">
                                     Name Slider
@@ -156,7 +163,7 @@ const BannerSlider = () => {
                             </div>
                         </div>
                         <div class="item">
-                            <Image src={image2} alt="alt" />
+                            <Image src={book2} alt="alt" />
                             <div class="content">
                                 <div class="title">
                                     Name Slider
@@ -167,7 +174,7 @@ const BannerSlider = () => {
                             </div>
                         </div>
                         <div class="item">
-                            <Image src={image3} alt="alt" />
+                            <Image src={book3} alt="alt" />
                             <div class="content">
                                 <div class="title">
                                     Name Slider
@@ -178,7 +185,29 @@ const BannerSlider = () => {
                             </div>
                         </div>
                         <div class="item">
-                            <Image src={image4} alt="alt" />
+                            <Image src={book4} alt="alt" />
+                            <div class="content">
+                                <div class="title">
+                                    Name Slider
+                                </div>
+                                <div class="description">
+                                    Description
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <Image src={book5} alt="alt" />
+                            <div class="content">
+                                <div class="title">
+                                    Name Slider
+                                </div>
+                                <div class="description">
+                                    Description
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <Image src={book6} alt="alt" />
                             <div class="content">
                                 <div class="title">
                                     Name Slider
@@ -191,7 +220,7 @@ const BannerSlider = () => {
                     </div>
                 </div>
                 <div class="arrows">
-                    <button id="prev" className='flex items-center justify-center shadow-md'>
+                    <button id="prev" className='flex items-center justify-center shadow-md '>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12 15.75 4.5" />
                         </svg>

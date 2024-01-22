@@ -161,10 +161,10 @@ header a {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #eee4;
+    background-color: rgba(53, 52, 52, 0.267);
     border: none;
     color: #fff;
-    font-family: monospace;
+    backdrop-filter: blur(12px);
     font-weight: bold;
     transition: .5s;
 }
@@ -189,7 +189,7 @@ header a {
     transform: translateY(50px);
     filter: blur(20px);
     opacity: 0;
-    animation: showContent .5s 1s linear 1 forwards;
+    animation: showContent 0.80s 1s linear 1 forwards;
 }
 
 @keyframes showContent {
@@ -224,7 +224,7 @@ header a {
     bottom: 50px;
     left: 50%;
     border-radius: 30px;
-    animation: showImage .5s linear 1 forwards;
+    animation: showImage 0.50s linear 1 forwards;
 }
 
 @keyframes showImage {
