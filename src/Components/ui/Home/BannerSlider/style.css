@@ -26,18 +26,24 @@ header a {
 }
 
 /* carousel */
+.carousel-container {
+    overflow: hidden;
+}
+
 .carousel {
     height: 70vh;
-    width: 100vw;
+    width: 100%;
     overflow: hidden;
     position: relative;
+    
 }
 
 .carousel .list .item {
-    width: 100%;
+    width: 100vw;
     height: 70vh;
     position: absolute;
     inset: 0 0 0 0;
+    
 }
 
 .carousel .list .item img {
@@ -69,6 +75,7 @@ header a {
     font-size: 5em;
     font-weight: bold;
     line-height: 1.3em;
+  
 }
 
 .carousel .list .item .topic {

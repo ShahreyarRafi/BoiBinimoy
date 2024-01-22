@@ -78,11 +78,11 @@ const BannerSlider = () => {
 
 
     return (
-        <div>
+        <div className='carousel-container '>
             <div class="carousel">
                 <div class="list">
                     <div class="item">
-                        <Image src={image1} alt="alt" />
+                        <Image src={image1} alt="alt"/>
                         <div class="content">
                             <div class="author">LUNDEV</div>
                             <div class="title">DESIGN SLIDER</div>
