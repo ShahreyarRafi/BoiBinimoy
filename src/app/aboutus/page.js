@@ -6,7 +6,7 @@ import AboutBanner from "@/Components/ui/AboutUs/AboutBanner";
 import FoundersQuotes from "@/Components/ui/AboutUs/FoundersQuotes";
 import OurStory from "@/Components/ui/AboutUs/OurStory";
 import Footer from "@/Components/ui/Home/Footer";
-import Navbar from "@/Components/shared/Navbar";
+import Navbar from "@/Components/ui/shared/Navbar";
 
 const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
