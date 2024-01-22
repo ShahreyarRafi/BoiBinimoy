@@ -33,7 +33,7 @@ const BannerSlider = () => {
 
         thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
 
-        let timeRunning = 5000;
+        let timeRunning = 3000;
         let timeAutoNext = 10000;
 
         nextDom.onclick = function () {
