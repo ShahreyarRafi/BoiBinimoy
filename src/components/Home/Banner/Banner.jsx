@@ -1,9 +1,9 @@
 "use client"
 
-import Image from 'next/image';
-import { useCallback, useEffect, useState } from 'react';
-import images from '../Image';
+import React, { useState, useEffect, useCallback } from 'react';
 import './Banner.css';
+import images from './Image';
+import Image from 'next/image';
 
 const Banner = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
