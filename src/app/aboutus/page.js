@@ -18,14 +18,12 @@ const lato = Lato({
 const about = () => {
   return (
     <div className={lato.className}>
-      <div>
-        <Navbar />
-        <AboutBanner />
-        <OurStory />
-        <FoundersQuotes />
-        <ContactUs />
-        <Footer></Footer>
-      </div>
+      <Navbar />
+      <AboutBanner />
+      <OurStory />
+      <FoundersQuotes />
+      <ContactUs />
+      <Footer></Footer>
     </div>
   );
 };

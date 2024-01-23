@@ -13,14 +13,14 @@ const Navbar = () => {
 
     const links = <>
         <li><Link href='/'>Home</Link></li>
-        <li><Link href='/aboutUs'>About</Link></li>
+        <li><Link href='/aboutus'>About</Link></li>
         {/* <li><a>Contact</a></li> */}
         {/* <li><a>Blog</a></li> */}
     </>
 
     return (
         <div className="bg-base-100 px-0 md:px-10 lg:px-0">
-            <div className="container mx-auto">
+            <div className="max-w-7xl mx-auto">
                 {/* First position */}
                 <div className="navbar">
                     <div className="navbar-start md:mr-10">
@@ -53,6 +53,22 @@ const Navbar = () => {
                         <button><FaRegHeart className="text-lg"></FaRegHeart></button>
                         <button><BsBasket3 className="text-lg"></BsBasket3></button>
                         <Link href='/login' className="bg-[#f65d4e] text-white btn btn-sm">Login</Link>
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <Image
+                                        src="https://i.ibb.co/sH9rW6p/Apon-02.jpg" alt="card" priority width={500} height={500} style={{
+                                            width: '50px',
+                                            height: '50px',
+                                        }} />
+                                </div>
+                            </div>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                <li><a>Profile</a></li>
+                                <li><a>Settings</a></li>
+                                <li><a>Logout</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <hr />
@@ -99,7 +115,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
