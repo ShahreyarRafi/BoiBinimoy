@@ -1,9 +1,9 @@
 "use client"
 
+import { auth } from "@/utils/firebase.confic";
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { auth } from "../../../../../firebase.confic";
+import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext(null)
 

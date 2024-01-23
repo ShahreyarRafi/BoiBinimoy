@@ -1,28 +1,25 @@
 "use client"
 
-import Benefits from '@/Components/ui/Home/Banefits';
-import FAQ from '@/Components/ui/Home/FAQs';
-import Buy from "@/Components/ui/Home/Buy";
-import Exchange from "@/Components/ui/Home/Exchange";
-import Footer from "@/Components/ui/Home/Footer";
-import Popular from "@/Components/ui/Home/Popular";
-import Navbar from '@/Components/ui/shared/Navbar';
-import Banner from '@/Components/ui/Home/Banner';
-import BannerSlider from '@/Components/ui/Home/BannerSlider/bannerSlider';
+import BannerSlider from "@/Components/Home/BannerSlider/bannerSlider";
+import Benefits from "@/Components/Home/BenifitsSection/BanefitsSection";
+import Buy from "@/Components/Home/Buy/Buy";
+import Exchange from "@/Components/Home/Exchange/Exchange";
+import FAQ from "@/Components/Home/FAQs/FAQs";
+import Navbar from "@/components/Shared/Navbar";
+
 
 
 const HomePage = () => {
   return (
     <div className='bg-[#fffefe]'>
-      <Navbar />
+     
       {/* <Banner/> */}
-      <BannerSlider></BannerSlider>
+      <BannerSlider />
       <Exchange />
       {/* <Popular /> */}
       <Buy />
       <Benefits />
-      <FAQ></FAQ>
-      {/* <Footer /> */}
+      <FAQ />
     </div>
   );
 };
