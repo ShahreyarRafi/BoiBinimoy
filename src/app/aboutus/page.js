@@ -1,7 +1,7 @@
-import AboutBanner from "@/Components/AboutUs/AboutBanner/AboutBanner";
-import ContactUs from "@/Components/AboutUs/ContactUs/ContactUs";
-import FoundersQuotes from "@/Components/AboutUs/FoundersQuotes/FoundersQuotes";
-import OurStory from "@/Components/AboutUs/OurStories/OurStory";
+import AboutBanner from "@/components/AboutUs/AboutBanner/AboutBanner";
+import ContactUs from "@/components/AboutUs/ContactUs/ContactUs";
+import FoundersQuotes from "@/components/AboutUs/FoundersQuotes/FoundersQuotes";
+import OurStory from "@/components/AboutUs/OurStories/OurStory";
 import { Lato } from "next/font/google";
 
 const lato = Lato({

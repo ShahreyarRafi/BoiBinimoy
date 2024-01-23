@@ -17,17 +17,17 @@ import image6 from './image/img6.jpg'
 
 
 const BannerSlider = () => {
-    const [componentMounted, setComponentMounted] = useState(false);
+    const [componentsMounted, setComponentMounted] = useState(false);
 
     useEffect(() => {
         setComponentMounted(true);
     }, []);
 
     useEffect(() => {
-        if (componentMounted) {
+        if (componentsMounted) {
             initializeSlider();
         }
-    }, [componentMounted]);
+    }, [componentsMounted]);
 
     function initializeSlider() {
         let nextDom = document.getElementById('next');
