@@ -1,4 +1,6 @@
-import AuthProvider from '@/Components/ui/Auth/AuthProvider/AuthProvider'
+import Footer from '@/components/Shared/Footer'
+import Navbar from '@/components/Shared/Navbar'
+import AuthProvider from '@/providers/AuthProvider'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
@@ -14,7 +16,9 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme="light">
       <body className={inter.className}>
         <AuthProvider>
+          <Navbar />
           {children}
+          <Footer />
         </AuthProvider>
       </body>
     </html>

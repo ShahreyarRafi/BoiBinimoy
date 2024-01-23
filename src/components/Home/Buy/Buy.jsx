@@ -29,7 +29,7 @@
 
 "use client"
 
-import ExchangeCard from "../shared/ExchangeCard";
+import ExchangeCard from "../../Shared/ExchangeCard";
 
 export default function Buy() {
 
@@ -92,8 +92,8 @@ export default function Buy() {
         <>
             <div className="container mx-auto py-12">
                 <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl md:text-3xl font-bold">Buy Now</h2>
-                <hr className="border-t border-gray-200 flex-1 mx-4" />
+                    <h2 className="text-2xl md:text-3xl font-bold">Buy Now</h2>
+                    <hr className="border-t border-gray-200 flex-1 mx-4" />
                     <div className="flex items-center justify-end gap-3">
                         <button className="bg-[#F65D4E] px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
                             View All
