@@ -11,7 +11,7 @@ import { IoIosArrowForward } from "react-icons/io";
 const Popular = () => {
 
     return (
-        <div className='max-w-7xl mx-auto mt-16 px-0 md:px-10 lg:px-0'>
+        <div className='container mx-auto mt-16 px-0 md:px-10 lg:px-0'>
             {/* Section Heading */}
             <div className='flex justify-between items-center gap-10 mb-5'>
                 <h1 className='text-3xl font-semibold'>Tranding Now</h1>
@@ -24,7 +24,7 @@ const Popular = () => {
                     <Swiper
                         modules={[Pagination]}
                         spaceBetween={0}
-                        slidesPerView={2}
+                        slidesPerView={3}
                         pagination={{ clickable: true }}
                     >
                         <SwiperSlide><Card source={'https://i.ibb.co/F3sHBfn/Untitled-design-4.png'} title={'Goodboy'} author={'Karla Newman'} rating={'5'} price={'95.91'}></Card></SwiperSlide>
