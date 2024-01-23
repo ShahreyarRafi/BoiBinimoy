@@ -1,10 +1,12 @@
 "use client"
 
+
+
+import { AuthContext } from '@/providers/AuthProvider';
+import { useRouter } from 'next/navigation';
+import { useContext } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { ToastContainer, toast } from "react-toastify";
-import { useContext } from 'react';
-import { AuthContext } from '@/Components/ui/Auth/AuthProvider/AuthProvider';
-import { useRouter } from 'next/navigation';
 
 const SocialLogin = () => {
 

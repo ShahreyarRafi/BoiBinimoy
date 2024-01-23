@@ -1,7 +1,6 @@
 "use client"
 
 import Image from 'next/image';
-import React from 'react';
 import { FaFacebook, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 

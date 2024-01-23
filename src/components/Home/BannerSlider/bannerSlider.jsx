@@ -13,6 +13,7 @@ import image1 from './image/img1.jpg'
 import image2 from './image/img2.jpg'
 import image3 from './image/img3.jpg'
 import image4 from './image/img4.jpg'
+import image6 from './image/img6.jpg'
 
 
 const BannerSlider = () => {
@@ -135,6 +136,36 @@ const BannerSlider = () => {
                     </div>
                     <div class="item">
                         <Image src={image4} alt="alt" />
+                        <div class="content">
+                            <div class="author">LUNDEV</div>
+                            <div class="title">DESIGN SLIDER</div>
+                            <div class="topic">ANIMAL</div>
+                            <div class="des">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
+                            </div>
+                            <div class="buttons">
+                                <button>SEE MORE</button>
+                                <button>SUBSCRIBE</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <Image src={image4} alt="alt" />
+                        <div class="content">
+                            <div class="author">LUNDEV</div>
+                            <div class="title">DESIGN SLIDER</div>
+                            <div class="topic">ANIMAL</div>
+                            <div class="des">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
+                            </div>
+                            <div class="buttons">
+                                <button>SEE MORE</button>
+                                <button>SUBSCRIBE</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <Image src={image6} alt="alt" />
                         <div class="content">
                             <div class="author">LUNDEV</div>
                             <div class="title">DESIGN SLIDER</div>
