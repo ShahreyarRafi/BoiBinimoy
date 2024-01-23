@@ -14,9 +14,10 @@ import BannerSlider from '@/Components/ui/Home/BannerSlider/bannerSlider';
 const HomePage = () => {
   return (
     <div className='bg-[#fffefe]'>
-      <Navbar />
+      
       {/* <Banner/> */}
       <BannerSlider></BannerSlider>
+      <Navbar />
       <Exchange />
       {/* <Popular /> */}
       <Buy />
