@@ -1,12 +1,12 @@
 "use client"
 
 import Image from "next/image";
-import Card from "../shared/Card";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { IoIosArrowForward } from "react-icons/io";
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { IoIosArrowForward } from "react-icons/io";
+import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import Card from "../../Shared/Card";
 
 const Popular = () => {
 

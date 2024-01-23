@@ -1,13 +1,13 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import ExchangeCard from "../shared/ExchangeCard";
+import ExchangeCard from "../../Shared/ExchangeCard";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation } from 'swiper';
-import '../shared/spinner.css'
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import SwiperCore from 'swiper/core';
+import { Navigation } from 'swiper/modules';
+import '../../Shared/spinner.css'
+import 'swiper/css/bundle';
+
 
 SwiperCore.use([Navigation]);
 

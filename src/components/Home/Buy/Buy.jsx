@@ -1,13 +1,12 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import ExchangeCard from "../shared/ExchangeCard";
+import ExchangeCard from "../../Shared/ExchangeCard";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation } from 'swiper';
-import '../shared/spinner.css'
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import SwiperCore from 'swiper/core';
+import { Navigation } from 'swiper/modules';
+import '../../Shared/spinner.css'
+import 'swiper/css/bundle';
 
 SwiperCore.use([Navigation]);
 
@@ -141,6 +140,7 @@ export default function Exchange() {
                 </div>
             </div>
             <Swiper
+                direction="horizontal"
                 slidesPerView={6}
                 spaceBetween={20}
                 onSwiper={handleSwiperInit}
@@ -149,24 +149,23 @@ export default function Exchange() {
                 {swiperInitialized ? (
                     exchangeBooks.map(item => (
                         <SwiperSlide key={item.id}>
-                            <ExchangeCard item={item}/>
+                            <ExchangeCard item={item} />
                         </SwiperSlide>
                     ))
                 ) : (
-                    <SwiperSlide>
-                        <div className="w-full flex justify-center items-center">
-                            <div class="book">
-                                <div class="book__pg-shadow"></div>
-                                <div class="book__pg"></div>
-                                <div class="book__pg book__pg--2"></div>
-                                <div class="book__pg book__pg--3"></div>
-                                <div class="book__pg book__pg--4"></div>
-                                <div class="book__pg book__pg--5"></div>
-                            </div>
+                    <div className="w-full flex justify-center items-center">
+                        <div class="book">
+                            <div class="book__pg-shadow"></div>
+                            <div class="book__pg"></div>
+                            <div class="book__pg book__pg--2"></div>
+                            <div class="book__pg book__pg--3"></div>
+                            <div class="book__pg book__pg--4"></div>
+                            <div class="book__pg book__pg--5"></div>
                         </div>
-                    </SwiperSlide>
+                    </div>
                 )}
             </Swiper>
+
         </div>
     );
 }
