@@ -68,9 +68,9 @@ const LoginPage = () => {
   return (
     <div className={lato.className}>
       <Navbar />
-      <div className="min-h-screen flex flex-col justify-center items-center" >
-        <div className="max-w-5xl mx-auto my-16 rounded-lg">
-          <div className="flex justify-between items-center rounded-lg gap-2 h-[700px] bg-slate-50 shadow-xl">
+      <div className="" >
+        <div className="w-full lg:max-w-5xl mx-auto my-16 rounded-lg">
+          <div className="flex justify-between items-center rounded-lg gap-2 lg:h-[700px] bg-slate-50 shadow-xl">
             <div className="flex-1 h-[500px] w-[800px]">
               <div className={lora.className}>
                 <h2 className="mb-10 text-2xl md:text-3xl lg:text-4xl text-center font-bold">
