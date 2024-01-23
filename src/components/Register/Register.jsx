@@ -158,7 +158,7 @@ const Register = () => {
                                 </button>
                             </form>
 
-                            {/* Todo   socila login Components  */}
+                            {/* Todo   socila login components  */}
                             <div className="mt-5">
                                 <SocialLogin></SocialLogin>
                             </div>

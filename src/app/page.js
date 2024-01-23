@@ -1,13 +1,13 @@
 "use client"
 
-import Benefits from '@/Components/Home/BenifitsSection/BanefitsSection';
-import FAQ from '@/Components/Home/FAQs/FAQs';
-import Buy from "@/Components/Home/Buy/Buy";
-import Exchange from "@/Components/Home/Exchange/Exchange";
+import Benefits from '@/components/Home/BenifitsSection/BanefitsSection';
+import FAQ from '@/components/Home/FAQs/FAQs';
+import Buy from "@/components/Home/Buy/Buy";
+import Exchange from "@/components/Home/Exchange/Exchange";
 ;
-import Navbar from '@/Components/Shared/Navbar';
+import Navbar from '@/components/Shared/Navbar';
 
-import BannerSlider from '@/Components/Home/BannerSlider/BannerSlider';
+import BannerSlider from '@/components/Home/BannerSlider/BannerSlider';
 
 
 const HomePage = () => {
