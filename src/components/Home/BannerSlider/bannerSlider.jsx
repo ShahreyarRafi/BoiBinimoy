@@ -64,17 +64,17 @@ const BannerSlider = () => {
             if (type === 'next') {
                 SliderDom.appendChild(SliderItemsDom[0]);
                 thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
-                carouselDom.classList.add('next');
+                carouselDom.classNameList.add('next');
             } else {
                 SliderDom.prepend(SliderItemsDom[SliderItemsDom.length - 1]);
                 thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
-                carouselDom.classList.add('prev');
+                carouselDom.classNameList.add('prev');
             }
 
             clearTimeout(runTimeOut);
             runTimeOut = setTimeout(() => {
-                carouselDom.classList.remove('next');
-                carouselDom.classList.remove('prev');
+                carouselDom.classNameList.remove('next');
+                carouselDom.classNameList.remove('prev');
             }, timeRunning);
 
             clearTimeout(runNextAuto);
@@ -87,182 +87,182 @@ const BannerSlider = () => {
 
     return (
         <div className='carousel-container '>
-            <div class="carousel">
-                <div class="list">
-                    <div class="item">
+            <div className="carousel">
+                <div className="list">
+                    <div className="item">
                         <Image src={image1} alt="alt" />
-                        <div class="content">
-                            <div class="author">LUNDEV</div>
-                            <div class="title">DESIGN SLIDER</div>
-                            <div class="topic">ANIMAL</div>
-                            <div class="des">
+                        <div className="content">
+                            <div className="author">LUNDEV</div>
+                            <div className="title">DESIGN SLIDER</div>
+                            <div className="topic">ANIMAL</div>
+                            <div className="des">
                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
                             </div>
-                            <div class="buttons">
+                            <div className="buttons">
                                 <button>SEE MORE</button>
                                 <button>SUBSCRIBE</button>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
+                    <div className="item">
                         <Image src={image2} alt="alt" />
-                        <div class="content">
-                            <div class="author">LUNDEV</div>
-                            <div class="title">DESIGN SLIDER</div>
-                            <div class="topic">ANIMAL</div>
-                            <div class="des">
+                        <div className="content">
+                            <div className="author">LUNDEV</div>
+                            <div className="title">DESIGN SLIDER</div>
+                            <div className="topic">ANIMAL</div>
+                            <div className="des">
                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
                             </div>
-                            <div class="buttons">
+                            <div className="buttons">
                                 <button>SEE MORE</button>
                                 <button>SUBSCRIBE</button>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
+                    <div className="item">
                         <Image src={image3} alt="alt" />
-                        <div class="content">
-                            <div class="author">LUNDEV</div>
-                            <div class="title">DESIGN SLIDER</div>
-                            <div class="topic">ANIMAL</div>
-                            <div class="des">
+                        <div className="content">
+                            <div className="author">LUNDEV</div>
+                            <div className="title">DESIGN SLIDER</div>
+                            <div className="topic">ANIMAL</div>
+                            <div className="des">
                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
                             </div>
-                            <div class="buttons">
+                            <div className="buttons">
                                 <button>SEE MORE</button>
                                 <button>SUBSCRIBE</button>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
+                    <div className="item">
                         <Image src={image4} alt="alt" />
-                        <div class="content">
-                            <div class="author">LUNDEV</div>
-                            <div class="title">DESIGN SLIDER</div>
-                            <div class="topic">ANIMAL</div>
-                            <div class="des">
+                        <div className="content">
+                            <div className="author">LUNDEV</div>
+                            <div className="title">DESIGN SLIDER</div>
+                            <div className="topic">ANIMAL</div>
+                            <div className="des">
                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
                             </div>
-                            <div class="buttons">
+                            <div className="buttons">
                                 <button>SEE MORE</button>
                                 <button>SUBSCRIBE</button>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
+                    <div className="item">
                         <Image src={image4} alt="alt" />
-                        <div class="content">
-                            <div class="author">LUNDEV</div>
-                            <div class="title">DESIGN SLIDER</div>
-                            <div class="topic">ANIMAL</div>
-                            <div class="des">
+                        <div className="content">
+                            <div className="author">LUNDEV</div>
+                            <div className="title">DESIGN SLIDER</div>
+                            <div className="topic">ANIMAL</div>
+                            <div className="des">
                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
                             </div>
-                            <div class="buttons">
+                            <div className="buttons">
                                 <button>SEE MORE</button>
                                 <button>SUBSCRIBE</button>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
+                    <div className="item">
                         <Image src={image6} alt="alt" />
-                        <div class="content">
-                            <div class="author">LUNDEV</div>
-                            <div class="title">DESIGN SLIDER</div>
-                            <div class="topic">ANIMAL</div>
-                            <div class="des">
+                        <div className="content">
+                            <div className="author">LUNDEV</div>
+                            <div className="title">DESIGN SLIDER</div>
+                            <div className="topic">ANIMAL</div>
+                            <div className="des">
                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
                             </div>
-                            <div class="buttons">
+                            <div className="buttons">
                                 <button>SEE MORE</button>
                                 <button>SUBSCRIBE</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="">
-                    <div class="thumbnail">
-                        <div class="item">
+                <div>
+                    <div className="thumbnail">
+                        <div className="item">
                             <Image src={book1} alt="alt" />
-                            <div class="content">
-                                <div class="title">
+                            <div className="content">
+                                <div className="title">
                                     Name Slider
                                 </div>
-                                <div class="description">
+                                <div className="description">
                                     Description
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                        <div className="item">
                             <Image src={book2} alt="alt" />
-                            <div class="content">
-                                <div class="title">
+                            <div className="content">
+                                <div className="title">
                                     Name Slider
                                 </div>
-                                <div class="description">
+                                <div className="description">
                                     Description
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                        <div className="item">
                             <Image src={book3} alt="alt" />
-                            <div class="content">
-                                <div class="title">
+                            <div className="content">
+                                <div className="title">
                                     Name Slider
                                 </div>
-                                <div class="description">
+                                <div className="description">
                                     Description
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                        <div className="item">
                             <Image src={book4} alt="alt" />
-                            <div class="content">
-                                <div class="title">
+                            <div className="content">
+                                <div className="title">
                                     Name Slider
                                 </div>
-                                <div class="description">
+                                <div className="description">
                                     Description
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                        <div className="item">
                             <Image src={book5} alt="alt" />
-                            <div class="content">
-                                <div class="title">
+                            <div className="content">
+                                <div className="title">
                                     Name Slider
                                 </div>
-                                <div class="description">
+                                <div className="description">
                                     Description
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                        <div className="item">
                             <Image src={book6} alt="alt" />
-                            <div class="content">
-                                <div class="title">
+                            <div className="content">
+                                <div className="title">
                                     Name Slider
                                 </div>
-                                <div class="description">
+                                <div className="description">
                                     Description
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="arrows">
+                <div className="arrows">
                     <button id="prev" className='flex items-center justify-center shadow-md '>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12 15.75 4.5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12 15.75 4.5" />
                         </svg>
                     </button>
                     <button id="next" className='flex items-center justify-center shadow-md'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                         </svg>
                     </button>
                 </div>
-                <div class="time"></div>
+                <div className="time"></div>
             </div>
         </div>
     );

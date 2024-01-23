@@ -128,14 +128,14 @@ export default function Exchange() {
                     </button>
                     {/* Previous Button */}
                     <button className="bg-[#F65D4E] p-2 rounded-full text-white flex items-center gap-1" onClick={handlePrevButtonClick}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12 15.75 4.5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12 15.75 4.5" />
                         </svg>
                     </button>
                     {/* Next Button */}
                     <button className="bg-[#F65D4E] p-2 rounded-full text-white flex items-center gap-1" onClick={handleNextButtonClick}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                         </svg>
                     </button>
                 </div>
@@ -153,18 +153,16 @@ export default function Exchange() {
                         </SwiperSlide>
                     ))
                 ) : (
-                    <SwiperSlide>
-                        <div className="w-full flex justify-center items-center">
-                            <div class="book">
-                                <div class="book__pg-shadow"></div>
-                                <div class="book__pg"></div>
-                                <div class="book__pg book__pg--2"></div>
-                                <div class="book__pg book__pg--3"></div>
-                                <div class="book__pg book__pg--4"></div>
-                                <div class="book__pg book__pg--5"></div>
-                            </div>
+                    <div className="w-full flex justify-center items-center">
+                        <div className="book">
+                            <div className="book__pg-shadow"></div>
+                            <div className="book__pg"></div>
+                            <div className="book__pg book__pg--2"></div>
+                            <div className="book__pg book__pg--3"></div>
+                            <div className="book__pg book__pg--4"></div>
+                            <div className="book__pg book__pg--5"></div>
                         </div>
-                    </SwiperSlide>
+                    </div>
                 )}
             </Swiper>
         </div>
