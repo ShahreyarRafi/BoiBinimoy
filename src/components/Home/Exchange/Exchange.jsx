@@ -5,7 +5,7 @@ import ExchangeCard from "../../Shared/ExchangeCard";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper/core';
 import { Navigation } from 'swiper/modules';
-import '../../Shared/spinner.css'
+import '../../Styles/spinner.css'
 import 'swiper/css/bundle';
 
 
