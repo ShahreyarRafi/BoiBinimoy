@@ -1,26 +1,31 @@
-import Footer from '@/components/Shared/Footer'
-import Navbar from '@/components/Shared/Navbar'
-import AuthProvider from '@/providers/AuthProvider'
-import { Inter } from 'next/font/google'
-import './globals.css'
+import Footer from "@/components/Shared/Footer";
+import Navbar from "@/components/Shared/Navbar";
+import AuthProvider from "@/providers/AuthProvider";
+import { Lora } from "next/font/google";
+import "./globals.css";
 
-const inter = Inter({ subsets: ['latin'] })
+const lora = Lora({
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata = {
-  title: 'Boi Binimoy',
-  description: 'A book exchange and buy-sell platform',
-}
+  title: "Boi Binimoy",
+  description: "A book exchange and buy-sell platform",
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
-      <body className={inter.className}>
+      <body className={lora.className}>
         <AuthProvider>
-          <Navbar />
+          {/* <Navbar /> */}
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </AuthProvider>
       </body>
     </html>
-  )
+  );
 }
