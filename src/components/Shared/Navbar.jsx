@@ -53,22 +53,6 @@ const Navbar = () => {
                         <button><FaRegHeart className="text-lg"></FaRegHeart></button>
                         <button><BsBasket3 className="text-lg"></BsBasket3></button>
                         <Link href='/login' className="bg-[#f65d4e] text-white btn btn-sm">Login</Link>
-                        <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <Image
-                                        src="https://i.ibb.co/sH9rW6p/Apon-02.jpg" alt="card" priority width={500} height={500} style={{
-                                            width: '50px',
-                                            height: '50px',
-                                        }} />
-                                </div>
-                            </div>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><a>Profile</a></li>
-                                <li><a>Settings</a></li>
-                                <li><a>Logout</a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
                 <hr />
@@ -85,11 +69,11 @@ const Navbar = () => {
                                     <IoIosArrowDown></IoIosArrowDown>
                                 </div>
                                 <ul tabIndex={0} className="menu menu-sm dropdown-content text-black mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li><a>Category-1</a></li>
-                                    <li><a>Category-2</a></li>
-                                    <li><a>Category-3</a></li>
-                                    <li><a>Category-4</a></li>
-                                    <li><a>Category-5</a></li>
+                                    <li><a>Science Fiction</a></li>
+                                    <li><a>Mystery/Thriller</a></li>
+                                    <li><a>Adventure</a></li>
+                                    <li><a>CPhilosophy</a></li>
+                                    <li><a>Detective</a></li>
                                 </ul>
                             </div>
                         </div>
