@@ -10,6 +10,7 @@ body {
     font-family: monospace;
     color: white;
     overflow: hidden;
+    z-index: 1000;
 }
 
 h1 {

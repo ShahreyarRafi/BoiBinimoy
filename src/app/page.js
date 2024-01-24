@@ -12,7 +12,7 @@ const HomePage = () => {
   return (
     <div className='bg-[#fffefe]'>
       <BannerSlider></BannerSlider>
-      {/* <Navbar /> */}
+      <Navbar />
       <Exchange />
       {/* <Popular /> */}
       <Buy />
