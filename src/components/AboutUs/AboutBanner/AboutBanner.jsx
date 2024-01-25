@@ -21,7 +21,7 @@ const lora = Lora({
 
 const AboutBanner = () => {
   return (
-    <div className="rounded-3xl max-w-7xl mx-auto my-3">
+    <div className="rounded-3xl max-w-7xl mx-auto mb-3">
       <div className="relative h-full w-full">
         <Image
           width={500}
