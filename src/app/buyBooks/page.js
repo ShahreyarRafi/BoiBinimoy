@@ -1,10 +1,10 @@
-import AddBook from '@/components/AddBook/AddBook';
+import AllBooks from '@/components/BuyAllBooks/BuyAllBooks';
 import React from 'react';
 
 const page = () => {
     return (
         <>
-            <AddBook></AddBook>
+            <AllBooks></AllBooks>
         </>
     );
 };

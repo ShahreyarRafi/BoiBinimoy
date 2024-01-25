@@ -9,8 +9,9 @@ import Footer from "@/components/Shared/Footer";
 
 const HomePage = () => {
   return (
-    <div className="bg-orange-50">
-      <BannerSlider />
+    <div className="bg-[#fffefe]">
+      {/* <Banner/> */}
+      <BannerSlider></BannerSlider>
       <Navbar />
       <Exchange />
       {/* <Popular /> */}

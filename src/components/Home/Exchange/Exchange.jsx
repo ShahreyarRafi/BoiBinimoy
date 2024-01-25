@@ -5,7 +5,7 @@ import ExchangeCard from "../../Shared/ExchangeCard";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper/core';
 import { Navigation } from 'swiper/modules';
-import '../../Shared/spinner.css'
+import '../../Styles/spinner.css'
 import 'swiper/css/bundle';
 
 
@@ -19,72 +19,72 @@ export default function Exchange() {
     const exchangeBooks = [
         {
             "id": 1,
-            "image": "https://i.ibb.co/fNhJX8L/Untitled-design-8.png",
+            "cover_image": "https://i.ibb.co/fNhJX8L/Untitled-design-8.png",
             "title": "The Great Gatsby",
-            "author": "F. Scott Fitzgerald",
+            "writer": "F. Scott Fitzgerald",
             "genre": "Classic",
             "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
         },
         {
             "id": 2,
-            "image": "https://i.ibb.co/wyJk0Df/Untitled-design-11.png",
+            "cover_image": "https://i.ibb.co/wyJk0Df/Untitled-design-11.png",
             "title": "The Great Gatsby",
-            "author": "F. Scott Fitzgerald",
+            "writer": "F. Scott Fitzgerald",
             "genre": "Classic",
             "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
         },
         {
             "id": 3,
-            "image": "https://i.ibb.co/NVwBhZJ/Untitled-design-10.png",
+            "cover_image": "https://i.ibb.co/NVwBhZJ/Untitled-design-10.png",
             "title": "The Great Gatsby",
-            "author": "F. Scott Fitzgerald",
+            "writer": "F. Scott Fitzgerald",
             "genre": "Classic",
             "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
         },
         {
             "id": 4,
-            "image": "https://i.ibb.co/d52WsrH/Untitled-design-9.png",
+            "cover_image": "https://i.ibb.co/d52WsrH/Untitled-design-9.png",
             "title": "The Great Gatsby",
-            "author": "F. Scott Fitzgerald",
+            "writer": "F. Scott Fitzgerald",
             "genre": "Classic",
             "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
         },
         {
             "id": 5,
-            "image": "https://i.ibb.co/HzPW8vW/Untitled-design-13.png",
+            "cover_image": "https://i.ibb.co/HzPW8vW/Untitled-design-13.png",
             "title": "The Great Gatsby",
-            "author": "F. Scott Fitzgerald",
+            "writer": "F. Scott Fitzgerald",
             "genre": "Classic",
             "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
         },
         {
             "id": 6,
-            "image": "https://i.ibb.co/vdcSqxv/Untitled-design-12.png",
+            "cover_image": "https://i.ibb.co/vdcSqxv/Untitled-design-12.png",
             "title": "The Great Gatsby",
-            "author": "F. Scott Fitzgerald",
+            "writer": "F. Scott Fitzgerald",
             "genre": "Classic",
             "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
         }, {
             "id": 7,
-            "image": "https://i.ibb.co/fNhJX8L/Untitled-design-8.png",
+            "cover_image": "https://i.ibb.co/fNhJX8L/Untitled-design-8.png",
             "title": "The Great Gatsby",
-            "author": "F. Scott Fitzgerald",
+            "writer": "F. Scott Fitzgerald",
             "genre": "Classic",
             "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
         },
         {
             "id": 8,
-            "image": "https://i.ibb.co/wyJk0Df/Untitled-design-11.png",
+            "cover_image": "https://i.ibb.co/wyJk0Df/Untitled-design-11.png",
             "title": "The Great Gatsby",
-            "author": "F. Scott Fitzgerald",
+            "writer": "F. Scott Fitzgerald",
             "genre": "Classic",
             "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
         },
         {
             "id": 9,
-            "image": "https://i.ibb.co/NVwBhZJ/Untitled-design-10.png",
+            "cover_image": "https://i.ibb.co/NVwBhZJ/Untitled-design-10.png",
             "title": "The Great Gatsby",
-            "author": "F. Scott Fitzgerald",
+            "writer": "F. Scott Fitzgerald",
             "genre": "Classic",
             "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
         }
