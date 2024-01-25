@@ -85,7 +85,7 @@ const AuthProvider = ({ children }) => {
             unSubcribe()
 
         }
-    }, []);
+    }, [axiosPublic]);
 
     // console.log(user);
 
