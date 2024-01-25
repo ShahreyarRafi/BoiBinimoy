@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react';
-import './style.css';
+import './BannerStyles.css';
 import Image from 'next/image';
 import book1 from './image/book1.png'
 import book2 from './image/book2.png'
@@ -64,17 +64,17 @@ const BannerSlider = () => {
             if (type === 'next') {
                 SliderDom.appendChild(SliderItemsDom[0]);
                 thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
-                carouselDom.classNameList.add('next');
+                carouselDom.classList.add('next');
             } else {
                 SliderDom.prepend(SliderItemsDom[SliderItemsDom.length - 1]);
                 thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
-                carouselDom.classNameList.add('prev');
+                carouselDom.classList.add('prev');
             }
 
             clearTimeout(runTimeOut);
             runTimeOut = setTimeout(() => {
-                carouselDom.classNameList.remove('next');
-                carouselDom.classNameList.remove('prev');
+                carouselDom.classList.remove('next');
+                carouselDom.classList.remove('prev');
             }, timeRunning);
 
             clearTimeout(runNextAuto);

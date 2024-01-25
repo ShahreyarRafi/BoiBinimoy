@@ -13,14 +13,14 @@ const Navbar = () => {
 
     const links = <>
         <li><Link href='/'>Home</Link></li>
-        <li><Link href='/aboutUs'>About</Link></li>
+        <li><Link href='/aboutus'>About</Link></li>
         {/* <li><a>Contact</a></li> */}
         {/* <li><a>Blog</a></li> */}
     </>
 
     return (
         <div className="bg-base-100 px-0 md:px-10 lg:px-0">
-            <div className="container mx-auto">
+            <div className="max-w-7xl mx-auto">
                 {/* First position */}
                 <div className="navbar">
                     <div className="navbar-start md:mr-10">
@@ -69,11 +69,11 @@ const Navbar = () => {
                                     <IoIosArrowDown></IoIosArrowDown>
                                 </div>
                                 <ul tabIndex={0} className="menu menu-sm dropdown-content text-black mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li><a>Category-1</a></li>
-                                    <li><a>Category-2</a></li>
-                                    <li><a>Category-3</a></li>
-                                    <li><a>Category-4</a></li>
-                                    <li><a>Category-5</a></li>
+                                    <li><a>Science Fiction</a></li>
+                                    <li><a>Mystery/Thriller</a></li>
+                                    <li><a>Adventure</a></li>
+                                    <li><a>CPhilosophy</a></li>
+                                    <li><a>Detective</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -99,7 +99,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
