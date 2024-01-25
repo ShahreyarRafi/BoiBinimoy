@@ -2,18 +2,14 @@ import AboutBanner from "@/components/AboutUs/AboutBanner/AboutBanner";
 import ContactUs from "@/components/AboutUs/ContactUs/ContactUs";
 import FoundersQuotes from "@/components/AboutUs/FoundersQuotes/FoundersQuotes";
 import OurStory from "@/components/AboutUs/OurStories/OurStory";
-import { Lato } from "next/font/google";
-
-const lato = Lato({
-  weight: ["100", "300", "400", "700", "900"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const AboutUsPage = () => {
   return (
+<<<<<<< HEAD
+    <div className="bg-orange-50">
+=======
     <div className={lato.className}>
+>>>>>>> e9c71aad4635cc92c9defc8a14f5025de85b6c88
       <AboutBanner />
       <OurStory />
       <FoundersQuotes />

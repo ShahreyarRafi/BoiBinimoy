@@ -4,7 +4,7 @@ import React from "react";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
 
-const AddBook = () => {
+const UpdateBook = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,7 +20,9 @@ const AddBook = () => {
     <div className="bg-orange-50 text-gray-500 min-h-screen">
       <div className="max-w-5xl mx-auto px-3 md:px-5 lg:px-0 py-10">
         <div className="border-2 border-gray-300 rounded-lg px-3">
-          <h1 className="text-lg  font-bold py-2">Add Book</h1>
+          <h1 className="text-lg  font-bold py-2">
+            Update "book name here" Book
+          </h1>
 
           <form onSubmit={handleSubmit}>
             {/* basic information div */}
@@ -391,48 +393,4 @@ const AddBook = () => {
   );
 };
 
-export default AddBook;
-
-// "use client"
-
-// import React from 'react';
-// import { useForm } from "react-hook-form"
-
-
-// const AddBook = () => {
-
-//     const axios = require('axios').default;
-
-//     const { register, handleSubmit } = useForm()
-//     const onSubmit = (data) => {
-//         const book = data;
-//         axios.post('https://boi-binimoy-server.vercel.app/api/v1/buyBooks', book)
-//             .then(response => {
-//                 // Handle the success response
-//                 console.log('Response:', response.data);
-//             })
-//             .catch(error => {
-//                 // Handle errors
-//                 console.error('Error:', error);
-//             });
-//     }
-
-
-
-//     return (
-//         <div className='max-w-md mx-auto'>
-//             <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3'>
-//                 <input {...register("title")} placeholder='Book Title' className='pl-2 border-black border-[1px]' />
-//                 <input {...register("writer")} placeholder='Book Writer' className='pl-2 border-black border-[1px]' />
-//                 <input {...register("language")} placeholder='Language' className='pl-2 border-black border-[1px]' />
-//                 <input {...register("pages")} placeholder='Pages' className='pl-2 border-black border-[1px]' />
-//                 <input {...register("price")} placeholder='Price' className='pl-2 border-black border-[1px]' />
-//                 <input {...register("year")} placeholder='Published Year' className='pl-2 border-black border-[1px]' type='month' />
-//                 <input {...register("__v")} placeholder='Book Version' className='pl-2 border-black border-[1px]' />
-//                 <input type="submit" className='bg-[#f65d4e] py-2 rounded-lg text-white' />
-//             </form>
-//         </div>
-//     );
-// };
-
-// export default AddBook;
+export default UpdateBook;
