@@ -14,12 +14,10 @@ const lato = Lato({
 const AboutUsPage = () => {
   return (
     <div className={lato.className}>
-      <div>
-        <AboutBanner />
-        <OurStory />
-        <FoundersQuotes />
-        <ContactUs />
-      </div>
+      <AboutBanner />
+      <OurStory />
+      <FoundersQuotes />
+      <ContactUs />
     </div>
   );
 };
