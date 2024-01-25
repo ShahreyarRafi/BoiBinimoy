@@ -103,6 +103,11 @@ const data = [
     }
 ]
 
+
+
+
+
+
 const BannerSlider = () => {
     const [componentsMounted, setComponentMounted] = useState(false);
 
@@ -148,16 +153,16 @@ const BannerSlider = () => {
             let SliderItemsDom = SliderDom.querySelectorAll('.carousel .list .item');
             let thumbnailItemsDom = document.querySelectorAll('.carousel .thumbnail .item');
 
-            if (type === 'next') {
+            if (type === 'next' && thumbnailItemsDom.length > 0) {
                 SliderDom.appendChild(SliderItemsDom[0]);
                 thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
                 carouselDom.classList.add('next');
-            } else {
+            } else if (thumbnailItemsDom.length > 0) {
                 SliderDom.prepend(SliderItemsDom[SliderItemsDom.length - 1]);
                 thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
                 carouselDom.classList.add('prev');
             }
-
+            
             clearTimeout(runTimeOut);
             runTimeOut = setTimeout(() => {
                 carouselDom.classList.remove('next');
