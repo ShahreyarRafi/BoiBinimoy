@@ -5,8 +5,8 @@ import useAuth from "../auth/useAuth";
 
 
 export const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
-    // baseURL: 'hhttps://boi-binimoy-server.vercel.app',
+    // baseURL: 'http://localhost:5000',
+    baseURL: 'hhttps://boi-binimoy-server.vercel.app',
     withCredentials: true
 });
 
