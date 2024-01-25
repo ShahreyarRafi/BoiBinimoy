@@ -1,5 +1,7 @@
 import Footer from '@/components/Shared/Footer'
 import Navbar from '@/components/Shared/Navbar'
+
+
 import AuthProvider from '@/providers/AuthProvider'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -13,10 +15,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="light">
+    <html lang="en" data-theme="light" class="dark">
       <body className={inter.className}>
         <AuthProvider>
-          {/* <Navbar /> */}
+          <Navbar />
+          
           {children}
           {/* <Footer /> */}
         </AuthProvider>
