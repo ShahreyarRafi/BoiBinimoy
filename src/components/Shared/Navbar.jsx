@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { IoSearch } from "react-icons/io5";
@@ -8,8 +8,10 @@ import { CgMenuGridO } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import { FiPhoneCall } from "react-icons/fi";
 import Link from "next/link";
+import useAuth from "@/Hooks/auth/useAuth";
 
 const Navbar = () => {
+  const { logOut } = useAuth();
 
     const links = <>
         <li><Link href='/'>Home</Link></li>
@@ -19,6 +21,7 @@ const Navbar = () => {
         {/* <li><a>Contact</a></li> */}
         {/* <li><a>Blog</a></li> */}
     </>
+
 
     return (
         <div className="bg-base-100 px-0 md:px-10 lg:px-0">
