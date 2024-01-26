@@ -4,6 +4,7 @@ import AuthProvider from "@/providers/AuthProvider";
 import { Lora } from "next/font/google";
 import "./globals.css";
 
+
 const lora = Lora({
   weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
@@ -18,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="light">
+    <html lang="en" data-theme="light" class="dark">
       <body className={lora.className}>
         <AuthProvider>
           {/* <Navbar /> */}

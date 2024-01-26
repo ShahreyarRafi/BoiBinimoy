@@ -27,14 +27,17 @@ const BuyAllBooks = () => {
     }, [fetchData])
 
     return (
-        <div className="container mx-auto py-12">
-            <h1 className='text-5xl font-bold text-center mb-10'>All Books</h1>
-            <div className='grid grid-cols-6 gap-5'>
-                {
-                    books?.map(book => <AllBooksCard key={book?._id} book={book}></AllBooksCard>)
-                }
+        <div className='bg-[#f0efe3] min-h-[100vh]'>
+            <div className="container py-12 mx-auto ">
+                <h1 className='text-5xl font-bold text-center mb-10'>All Books</h1>
+                <div className='grid grid-cols-6 gap-5'>
+                    {
+                        books?.map(book => <AllBooksCard key={book?._id} book={book}></AllBooksCard>)
+                    }
+                </div>
             </div>
         </div>
+
     );
 };
 

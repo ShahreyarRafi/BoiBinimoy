@@ -23,7 +23,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto sticky bg-orange-100/90 mb-2 py-3 px-5 top-0 right-0 z-10  backdrop-filter backdrop-blur-sm shadow-lg rounded-b-lg">
+    <div className="max-w-[1880px] w-full mx-auto sticky bg-[#fcfcf6] mb-2 py-3 px-5 top-0 right-0 z-10  backdrop-filter backdrop-blur-sm shadow-md rounded-b-lg">
       <nav className="flex justify-between items-center">
         {/* nav start */}
         <div className="navbar-start">
