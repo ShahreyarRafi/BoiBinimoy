@@ -16,6 +16,98 @@ import image4 from './image/img4.jpg'
 import image6 from './image/img6.jpg'
 
 
+const data = [
+    {
+        "cover_image": "https://i.ibb.co/n1zgRWn/book-cover-6-6.png",
+        "author": "LUNDEV",
+        "title": "DESIGN SLIDER",
+        "topic": "ANIMAL",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "buttons": [
+            { "label": "SEE MORE", "link": "/see-more-link" },
+            { "label": "SUBSCRIBE", "link": "/subscribe-link" }
+        ],
+        "thumbnail_img": "https://i.ibb.co/wry18Qy/book1.png",
+        "thumbnail_title": "Name Slider",
+        "thumbnail_description": "Description"
+    },
+    {
+        "cover_image": "https://i.ibb.co/L6y20Z5/book-cover-7-2.png",
+        "author": "LUNDEV",
+        "title": "DESIGN SLIDER",
+        "topic": "ANIMAL",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "buttons": [
+            { "label": "SEE MORE", "link": "/see-more-link" },
+            { "label": "SUBSCRIBE", "link": "/subscribe-link" }
+        ],
+        "thumbnail_img": "https://i.ibb.co/gg6zpVY/book2.png",
+        "thumbnail_title": "Name Slider",
+        "thumbnail_description": "Description"
+    },
+    {
+        "cover_image": "https://i.ibb.co/VtjcbTC/book-cover-7-3.png",
+        "author": "LUNDEV",
+        "title": "DESIGN SLIDER",
+        "topic": "ANIMAL",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "buttons": [
+            { "label": "SEE MORE", "link": "/see-more-link" },
+            { "label": "SUBSCRIBE", "link": "/subscribe-link" }
+        ],
+        "thumbnail_img": "https://i.ibb.co/X5w89Kh/book3.png",
+        "thumbnail_title": "Name Slider",
+        "thumbnail_description": "Description"
+    },
+    {
+        "cover_image": "https://i.ibb.co/pf9JZWy/book-cover-7-4.png",
+        "author": "LUNDEV",
+        "title": "DESIGN SLIDER",
+        "topic": "ANIMAL",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "buttons": [
+            { "label": "SEE MORE", "link": "/see-more-link" },
+            { "label": "SUBSCRIBE", "link": "/subscribe-link" }
+        ],
+        "thumbnail_img": "https://i.ibb.co/6sHJqkj/book4.png",
+        "thumbnail_title": "Name Slider",
+        "thumbnail_description": "Description"
+    },
+    {
+        "cover_image": "https://i.ibb.co/Tm26pfr/book-cover-7-8.png",
+        "author": "LUNDEV",
+        "title": "DESIGN SLIDER",
+        "topic": "ANIMAL",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "buttons": [
+            { "label": "SEE MORE", "link": "/see-more-link" },
+            { "label": "SUBSCRIBE", "link": "/subscribe-link" }
+        ],
+        "thumbnail_img": "https://i.ibb.co/frT6m8q/book5.png",
+        "thumbnail_title": "Name Slider",
+        "thumbnail_description": "Description"
+    },
+    {
+        "cover_image": "https://i.ibb.co/82HNKpB/book-cover-6-1.png",
+        "author": "LUNDEV",
+        "title": "DESIGN SLIDER",
+        "topic": "ANIMAL",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "buttons": [
+            { "label": "SEE MORE", "link": "/see-more-link" },
+            { "label": "SUBSCRIBE", "link": "/subscribe-link" }
+        ],
+        "thumbnail_img": "https://i.ibb.co/HT901q9/book6.png",
+        "thumbnail_title": "Name Slider",
+        "thumbnail_description": "Description"
+    }
+]
+
+
+
+
+
+
 const BannerSlider = () => {
     const [componentsMounted, setComponentMounted] = useState(false);
 
@@ -61,16 +153,16 @@ const BannerSlider = () => {
             let SliderItemsDom = SliderDom.querySelectorAll('.carousel .list .item');
             let thumbnailItemsDom = document.querySelectorAll('.carousel .thumbnail .item');
 
-            if (type === 'next') {
+            if (type === 'next' && thumbnailItemsDom.length > 0) {
                 SliderDom.appendChild(SliderItemsDom[0]);
                 thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
                 carouselDom.classList.add('next');
-            } else {
+            } else if (thumbnailItemsDom.length > 0) {
                 SliderDom.prepend(SliderItemsDom[SliderItemsDom.length - 1]);
                 thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
                 carouselDom.classList.add('prev');
             }
-
+            
             clearTimeout(runTimeOut);
             runTimeOut = setTimeout(() => {
                 carouselDom.classList.remove('next');
@@ -86,168 +178,37 @@ const BannerSlider = () => {
 
 
     return (
-        <div className='carousel-container '>
+        <div className='carousel-container banner-slider '>
             <div className="carousel">
                 <div className="list">
-                    <div className="item">
-                        <Image src={image1} alt="alt" />
-                        <div className="content">
-                            <div className="author">LUNDEV</div>
-                            <div className="title">DESIGN SLIDER</div>
-                            <div className="topic">ANIMAL</div>
-                            <div className="des">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
-                            </div>
-                            <div className="buttons">
-                                <button>SEE MORE</button>
-                                <button>SUBSCRIBE</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="item">
-                        <Image src={image2} alt="alt" />
-                        <div className="content">
-                            <div className="author">LUNDEV</div>
-                            <div className="title">DESIGN SLIDER</div>
-                            <div className="topic">ANIMAL</div>
-                            <div className="des">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
-                            </div>
-                            <div className="buttons">
-                                <button>SEE MORE</button>
-                                <button>SUBSCRIBE</button>
+                    {data.map((item, index) => (
+                        <div className="item" key={index}>
+                            <Image src={item.cover_image} height={800} width={2000} alt="alt" />
+                            <div className="content">
+                                <div className="author">{item.author}</div>
+                                <div className="title">{item.title}</div>
+                                <div className="topic">{item.topic}</div>
+                                <div className="des">{item.description}</div>
+                                <div className="buttons">
+                                    {item.buttons.map((button, buttonIndex) => (
+                                        <button key={buttonIndex} href={button.link}>{button.label}</button>
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="item">
-                        <Image src={image3} alt="alt" />
-                        <div className="content">
-                            <div className="author">LUNDEV</div>
-                            <div className="title">DESIGN SLIDER</div>
-                            <div className="topic">ANIMAL</div>
-                            <div className="des">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
-                            </div>
-                            <div className="buttons">
-                                <button>SEE MORE</button>
-                                <button>SUBSCRIBE</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="item">
-                        <Image src={image4} alt="alt" />
-                        <div className="content">
-                            <div className="author">LUNDEV</div>
-                            <div className="title">DESIGN SLIDER</div>
-                            <div className="topic">ANIMAL</div>
-                            <div className="des">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
-                            </div>
-                            <div className="buttons">
-                                <button>SEE MORE</button>
-                                <button>SUBSCRIBE</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="item">
-                        <Image src={image4} alt="alt" />
-                        <div className="content">
-                            <div className="author">LUNDEV</div>
-                            <div className="title">DESIGN SLIDER</div>
-                            <div className="topic">ANIMAL</div>
-                            <div className="des">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
-                            </div>
-                            <div className="buttons">
-                                <button>SEE MORE</button>
-                                <button>SUBSCRIBE</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="item">
-                        <Image src={image6} alt="alt" />
-                        <div className="content">
-                            <div className="author">LUNDEV</div>
-                            <div className="title">DESIGN SLIDER</div>
-                            <div className="topic">ANIMAL</div>
-                            <div className="des">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
-                            </div>
-                            <div className="buttons">
-                                <button>SEE MORE</button>
-                                <button>SUBSCRIBE</button>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
                 <div>
                     <div className="thumbnail">
-                        <div className="item">
-                            <Image src={book1} alt="alt" />
-                            <div className="content">
-                                <div className="title">
-                                    Name Slider
-                                </div>
-                                <div className="description">
-                                    Description
+                        {data.map((item, index) => (
+                            <div className="item" key={index}>
+                                <Image src={item.thumbnail_img} height={1500} width={1000} alt="alt" />
+                                <div className="content">
+                                    <div className="title">{item.thumbnail_title}</div>
+                                    <div className="description">{item.thumbnail_description}</div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="item">
-                            <Image src={book2} alt="alt" />
-                            <div className="content">
-                                <div className="title">
-                                    Name Slider
-                                </div>
-                                <div className="description">
-                                    Description
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <Image src={book3} alt="alt" />
-                            <div className="content">
-                                <div className="title">
-                                    Name Slider
-                                </div>
-                                <div className="description">
-                                    Description
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <Image src={book4} alt="alt" />
-                            <div className="content">
-                                <div className="title">
-                                    Name Slider
-                                </div>
-                                <div className="description">
-                                    Description
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <Image src={book5} alt="alt" />
-                            <div className="content">
-                                <div className="title">
-                                    Name Slider
-                                </div>
-                                <div className="description">
-                                    Description
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <Image src={book6} alt="alt" />
-                            <div className="content">
-                                <div className="title">
-                                    Name Slider
-                                </div>
-                                <div className="description">
-                                    Description
-                                </div>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
                 <div className="arrows">

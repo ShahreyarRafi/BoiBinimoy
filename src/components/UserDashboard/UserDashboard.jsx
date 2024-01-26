@@ -93,7 +93,7 @@ const UserDashboard = () => {
             <section id="sidebar">
                 <a href="#" class="brand">
                     <i class='bx bxs-smile'></i>
-                    <span class="text">Boi Binimoy</span>
+                    <span class="text">BoiBinimoy</span>
                 </a>
                 <ul class="side-menu top">
                     <li class="active">

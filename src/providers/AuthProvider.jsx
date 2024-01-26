@@ -1,5 +1,6 @@
 "use client"
 
+import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import { auth } from "@/utils/firebase.confic";
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import PropTypes from 'prop-types';
@@ -12,7 +13,7 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
-
+    const axiosPublic = useAxiosPublic();
 
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
@@ -70,12 +71,21 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubcribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
+            const userEmail =  {email: user?.email};
+            axiosPublic.post("/jwt", userEmail , {
+                withCredentials: true
+            }).then(res => {
+                console.log("totken data: ", res.data)
+            })
+
+            console.log("token: ",res.data)
+
         });
         return () => {
             unSubcribe()
 
         }
-    }, []);
+    }, [axiosPublic]);
 
     // console.log(user);
 

@@ -119,52 +119,55 @@ export default function Exchange() {
     return (
         <div className="container mx-auto py-12">
             <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl md:text-3xl font-bold">Exchange Now</h2>
-                <hr className="border-t border-gray-200 flex-1 mx-4" />
-                <div className="flex items-center justify-end gap-3">
+                <h2 className="text-2xl md:text-3xl font-bold text-nowrap">Exchange Now</h2>
+                <hr className="hr" />
+                <div className="flex items-center justify-end gap-3 text-nowrap">
                     {/* View All button */}
-                    <button className="bg-[#F65D4E] px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
+                    <button className="button-color px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
                         View All
                     </button>
                     {/* Previous Button */}
-                    <button className="bg-[#F65D4E] p-2 rounded-full text-white flex items-center gap-1" onClick={handlePrevButtonClick}>
+                    <button className="button-color p-2 rounded-full text-white flex items-center gap-1" onClick={handlePrevButtonClick}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12 15.75 4.5" />
                         </svg>
                     </button>
                     {/* Next Button */}
-                    <button className="bg-[#F65D4E] p-2 rounded-full text-white flex items-center gap-1" onClick={handleNextButtonClick}>
+                    <button className="button-color p-2 rounded-full text-white flex items-center gap-1" onClick={handleNextButtonClick}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                         </svg>
                     </button>
                 </div>
             </div>
-            <Swiper
-                slidesPerView={6}
-                spaceBetween={20}
-                onSwiper={handleSwiperInit}
-                controller={{ control: swiper => (window.swiper = swiper) }}
-            >
-                {swiperInitialized ? (
-                    exchangeBooks.map(item => (
-                        <SwiperSlide key={item.id}>
-                            <ExchangeCard item={item} />
-                        </SwiperSlide>
-                    ))
-                ) : (
-                    <div className="w-full flex justify-center items-center">
-                        <div className="book">
-                            <div className="book__pg-shadow"></div>
-                            <div className="book__pg"></div>
-                            <div className="book__pg book__pg--2"></div>
-                            <div className="book__pg book__pg--3"></div>
-                            <div className="book__pg book__pg--4"></div>
-                            <div className="book__pg book__pg--5"></div>
+            <div >
+                <Swiper
+                    slidesPerView={6}
+                    spaceBetween={20}
+                    onSwiper={handleSwiperInit}
+                    controller={{ control: swiper => (window.swiper = swiper) }}
+                >
+                    {swiperInitialized ? (
+                        exchangeBooks.map(item => (
+                            <SwiperSlide key={item.id}>
+                                <ExchangeCard item={item} />
+                            </SwiperSlide>
+                        ))
+                    ) : (
+                        <div className="w-full flex justify-center items-center">
+                            <div className="book">
+                                <div className="book__pg-shadow"></div>
+                                <div className="book__pg"></div>
+                                <div className="book__pg book__pg--2"></div>
+                                <div className="book__pg book__pg--3"></div>
+                                <div className="book__pg book__pg--4"></div>
+                                <div className="book__pg book__pg--5"></div>
+                            </div>
                         </div>
-                    </div>
-                )}
-            </Swiper>
+                    )}
+                </Swiper>
+            </div>
+
         </div>
     );
 }
