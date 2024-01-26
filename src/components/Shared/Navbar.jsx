@@ -1,108 +1,107 @@
-"use client"
-
-import Image from "next/image";
-import { IoSearch } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import { BsBasket3 } from "react-icons/bs";
-import { CgMenuGridO } from "react-icons/cg";
-import { IoIosArrowDown } from "react-icons/io";
-import { FiPhoneCall } from "react-icons/fi";
+import { IoMdMenu } from "react-icons/io";
+import { FiLogIn } from "react-icons/fi";
+import { IoSearch } from "react-icons/io5";
+import { LuMoonStar } from "react-icons/lu";
 import Link from "next/link";
+import React from "react";
 
 const Navbar = () => {
-
-    const links = <>
-        <li><Link href='/'>Home</Link></li>
-        <li><Link href='/aboutus'>About</Link></li>
-        <li><Link href='/blogs'>Blogs</Link></li>
-        <li><Link href='/dashboard'>Dashboard</Link></li>
-        {/* <li><a>Contact</a></li> */}
-        {/* <li><a>Blog</a></li> */}
+  const links = (
+    <>
+      <li>
+        <Link href="/">Home</Link>
+      </li>
+      <li>
+        <Link href="/aboutus">About</Link>
+      </li>
+      <li>
+        <Link href="">Category</Link>
+      </li>
     </>
+  );
 
-    return (
-        <div className="bg-base-100 px-0 md:px-10 lg:px-0">
-            <div className="max-w-7xl mx-auto">
-                {/* First position */}
-                <div className="navbar">
-                    <div className="navbar-start md:mr-10">
-                        <div className="dropdown">
-                            <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                            </div>
-                            {/* Mobile menu */}
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                {links}
-                            </ul>
-                        </div>
-                        <Link href='/'>
-                            <div className="flex items-center gap-2">
-                                <Image
-                                    src="https://i.ibb.co/PxBs9dH/Boi-Binimoy-Transparent-Big.png" alt="card" priority width={500} height={500} style={{
-                                        width: '50px',
-                                        height: '100%',
-                                    }} />
-                                <p className="text-base md:text-lg lg:text-xl font-bold">Boi Binimoy</p>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="navbar-center hidden md:flex">
-                        <input type="text" placeholder="Search products..." className="bg-base-300 text-black rounded-l-full rounded-r-full pl-4 py-2 w-[200px] md:w-[250px] lg:w-[400px]" />
-                        <button className="bg-[#f65d4e] rounded-full relative right-[55px]"><IoSearch className="text-white m-3 w-8"></IoSearch></button>
-                    </div>
+  return (
+    <div className="max-w-[1880px] w-full mx-auto sticky bg-[#fcfcf6] mb-2 py-3 px-5 top-0 right-0 z-10  backdrop-filter backdrop-blur-sm shadow-md rounded-b-lg">
+      <nav className="flex justify-between items-center">
+        {/* nav start */}
+        <div className="navbar-start">
+          {/* sm screen */}
+          <div className="flex items-center space-x-3 lg:hidden">
+            {/* menus */}
+            <div className="dropdown">
+              <div tabIndex={0} role="button">
+                <IoMdMenu className="text-xl"></IoMdMenu>
+              </div>
 
-                    <div className="navbar-end flex gap-3 md:gap-6">
-                        <button><FaRegHeart className="text-lg"></FaRegHeart></button>
-                        <button><BsBasket3 className="text-lg"></BsBasket3></button>
-                        <Link href='/login' className="bg-[#f65d4e] text-white btn btn-sm">Login</Link>
-                    </div>
-                </div>
-                <hr />
-                {/* Second Position*/}
-                <div className="navbar bg-base-100">
-                    <div className="navbar-start">
-                        {/* Category */}
-                        <div className="flex items-center gap-2 bg-[#f65d4e] text-white p-2 w-[200px] rounded-l-full rounded-r-full">
-                            <p><CgMenuGridO className="text-2xl"></CgMenuGridO></p>
-                            <p className="text-sm">Category</p>
-                            <p className="pl-10"></p>
-                            <div className="dropdown">
-                                <div tabIndex={0} role="button" className="">
-                                    <IoIosArrowDown></IoIosArrowDown>
-                                </div>
-                                <ul tabIndex={0} className="menu menu-sm dropdown-content text-black mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li><a>Science Fiction</a></li>
-                                    <li><a>Mystery/Thriller</a></li>
-                                    <li><a>Adventure</a></li>
-                                    <li><a>CPhilosophy</a></li>
-                                    <li><a>Detective</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        {/* Search */}
-                        <div className="flex ml-3 md:hidden">
-                            <input type="text" placeholder="Search products..." className="bg-base-300 text-black rounded-l-full rounded-r-full pl-4 py-2 w-[200px]" />
-                            <button className="bg-[#f65d4e] rounded-full relative right-10"><IoSearch className="text-white m-3 w-8"></IoSearch></button>
-                        </div>
-                    </div>
-                    <div className="navbar-center hidden md:flex">
-                        <ul className="menu menu-horizontal px-1">
-                            {links}
-                        </ul>
-                    </div>
-                    <div className="navbar-end hidden md:flex">
-                        <div className="flex items-center gap-2">
-                            <p className="bg-gray-200 rounded-full p-2"><FiPhoneCall></FiPhoneCall></p>
-                            <div>
-                                <p className="text-[#f65d4e] text-md font-bold">+84-1800-4635</p>
-                                <p className="text-xs text-gray-400">24/7 Support Center</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg bg-base-100 rounded-box w-52"
+              >
+                {links}
+              </ul>
             </div>
-        </div >
-    );
+
+            {/* logo */}
+            <div>
+              <Link href="/">
+                <div className="text-orange-500 text-xl font-bold">
+                  <span className="font-extrabold">
+                    Boi
+                    <span className="text-orange-600 font-extralight">
+                      Binimoy
+                    </span>
+                  </span>
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          {/* md+lg screen */}
+          <div className="hidden lg:flex items-center space-x-5">
+            {/* logo */}
+            <div>
+              <Link href="/">
+                <div className="text-orange-500 text-2xl font-bold">
+                  <span className="font-extrabold">
+                    Boi
+                    <span className="text-orange-600 font-extralight">
+                      Binimoy
+                    </span>
+                  </span>
+                </div>
+              </Link>
+            </div>
+
+            {/* menus */}
+            <div>
+              <ul className="menu menu-horizontal px-1 mr-8">{links}</ul>
+            </div>
+          </div>
+        </div>
+
+        {/* nav end */}
+        <div className="navbar-end flex items-center gap-3 md:gap-6">
+          <button className="hidden lg:block">
+            <IoSearch className="text-lg hover:text-orange-500"></IoSearch>
+          </button>
+          <button>
+            <FaRegHeart className="text-lg hover:text-orange-500"></FaRegHeart>
+          </button>
+          <button>
+            <BsBasket3 className="text-lg  hover:text-orange-500"></BsBasket3>
+          </button>
+          <button>
+            <LuMoonStar className="text-xl  hover:text-orange-500"></LuMoonStar>
+          </button>
+          <button>
+            <FiLogIn className="text-xl  hover:text-orange-500"></FiLogIn>
+          </button>
+        </div>
+      </nav>
+    </div>
+  );
 };
 
 export default Navbar;

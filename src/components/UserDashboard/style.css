@@ -21,7 +21,7 @@ li {
 	--lato: 'Lato', sans-serif;
 
 	--light: #F9F9F9;
-	--blue: #3C91E6;
+	--blue: linear-gradient(45deg,#f28b8e, #e26064 35%);
 	--light-blue: #CFE8FF;
 	--grey: #eee;
 	--dark-grey: #AAAAAA;
@@ -79,7 +79,7 @@ body {
 	height: 56px;
 	display: flex;
 	align-items: center;
-	color: var(--blue);
+	color: #e26064;
 	position: sticky;
 	top: 0;
 	left: 0;
@@ -148,7 +148,7 @@ body {
 }
 
 #sidebar .side-menu.top li.active a {
-	color: var(--blue);
+	color: #e26064;
 }
 
 #sidebar.hide .side-menu li a {
@@ -159,7 +159,7 @@ body {
 	color: var(--red);
 }
 #sidebar .side-menu.top li a:hover {
-	color: var(--blue);
+	color: #e26064;
 }
 #sidebar .side-menu li a .bx {
 	min-width: calc(60px  - ((4px + 6px) * 2));

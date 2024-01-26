@@ -52,8 +52,8 @@ const TestNav = () => {
     }, [theme]);
 
     return (
-        <nav className="relative flex flex-wrap items-center justify-between  font-primary bg-slate-100 dark:bg-black duration-300">
-            <div className="w-full px-1 md:px-7 mx-auto flex flex-wrap items-center justify-between">
+        <nav className="relative px-5 flex flex-wrap items-center justify-between py-4 font-primary bg-slate-100 dark:bg-black duration-300 ">
+            <div className="w-full mx-auto flex flex-wrap items-center justify-between">
                 <div className="w-full relative flex items-center justify-between lg:w-auto lg:static lg:block lg:justify-start">
                     <div className='flex items-center gap-4 mr-5'>
                         <a
@@ -93,8 +93,8 @@ const TestNav = () => {
                             </button>
                         </div>
 
-                        <div className='bg-red-700'>
-                            <ul className=" flex lg:items-center justify-center items-end flex-col lg:flex-row list-none lg:ml-auto gap-3 xl:gap-5">
+                        <div >
+                            <ul className="flex lg:items-center justify-center items-end flex-col lg:flex-row list-none lg:ml-auto gap-3 xl:gap-5">
 
                                 {!user && (
                                     <li>
@@ -109,8 +109,6 @@ const TestNav = () => {
                                         </ul>
                                     </li>
                                 )}
-
-
 
                                 <li className='flex items-center gap-3 lg:gap-6'>
                                     {user && (
@@ -229,13 +227,13 @@ const TestNav = () => {
                 }
                 id="example-navbar-danger"
             >
-                <div className="w-full py-3 px-1 md:px-4 mx-auto flex flex-wrap items-center justify-between">
+                <div className="w-full mt-3 mx-auto flex flex-wrap items-center justify-between">
                     <div className="lg:flex flex-grow items-center">
                         <div className='w-full flex justify-between items-center mt-5 lg:mt-0 mb-2 lg:mb-0'>
                             <div>
                                 <ul className=" flex flex-col lg:flex-row list-none lg:ml-auto gap-3 xl:gap-5">
-                                    <li className="nav-item pl-1 xl:pl-3 py-2 flex items-center text-sm  uppercase font-semibold text-black dark:text-white duration-300 hover:opacity-75">
-                                        <p className='bg-'> Category </p>
+                                    <li className="nav-item py-2 flex items-center text-sm  uppercase font-semibold text-black dark:text-white duration-300 hover:opacity-75">
+                                        <p className=''> Category </p>
                                     </li>
                                 </ul>
                             </div>
@@ -264,8 +262,7 @@ const TestNav = () => {
                             </div>
 
                             <div >
-                                <ul className=" flex lg:items-center justify-center items-end flex-col lg:flex-row list-none lg:ml-auto gap-3 xl:gap-5">
-
+                                <ul className="flex lg:items-center justify-center items-end flex-col lg:flex-row list-none lg:ml-auto ">
                                     <div className="hidden md:block">
                                         <div className="flex items-center gap-2">
                                             <p className="bg-gray-200 rounded-full p-2"><FiPhoneCall></FiPhoneCall></p>

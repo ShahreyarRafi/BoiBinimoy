@@ -18,7 +18,7 @@ import image6 from './image/img6.jpg'
 
 const data = [
     {
-        "cover_image": "https://i.ibb.co/Y8Vk1y2/img1.jpg",
+        "cover_image": "https://i.ibb.co/n1zgRWn/book-cover-6-6.png",
         "author": "LUNDEV",
         "title": "DESIGN SLIDER",
         "topic": "ANIMAL",
@@ -32,7 +32,7 @@ const data = [
         "thumbnail_description": "Description"
     },
     {
-        "cover_image": "https://i.ibb.co/bmGB3cv/img2.jpg",
+        "cover_image": "https://i.ibb.co/L6y20Z5/book-cover-7-2.png",
         "author": "LUNDEV",
         "title": "DESIGN SLIDER",
         "topic": "ANIMAL",
@@ -46,7 +46,7 @@ const data = [
         "thumbnail_description": "Description"
     },
     {
-        "cover_image": "https://i.ibb.co/wQvdS6m/img3.jpg",
+        "cover_image": "https://i.ibb.co/VtjcbTC/book-cover-7-3.png",
         "author": "LUNDEV",
         "title": "DESIGN SLIDER",
         "topic": "ANIMAL",
@@ -60,7 +60,7 @@ const data = [
         "thumbnail_description": "Description"
     },
     {
-        "cover_image": "https://i.ibb.co/4FDvHKd/img4.jpg",
+        "cover_image": "https://i.ibb.co/pf9JZWy/book-cover-7-4.png",
         "author": "LUNDEV",
         "title": "DESIGN SLIDER",
         "topic": "ANIMAL",
@@ -74,7 +74,7 @@ const data = [
         "thumbnail_description": "Description"
     },
     {
-        "cover_image": "https://i.ibb.co/TWTmyM0/img6.jpg",
+        "cover_image": "https://i.ibb.co/Tm26pfr/book-cover-7-8.png",
         "author": "LUNDEV",
         "title": "DESIGN SLIDER",
         "topic": "ANIMAL",
@@ -88,7 +88,7 @@ const data = [
         "thumbnail_description": "Description"
     },
     {
-        "cover_image": "https://i.ibb.co/TWTmyM0/img6.jpg",
+        "cover_image": "https://i.ibb.co/82HNKpB/book-cover-6-1.png",
         "author": "LUNDEV",
         "title": "DESIGN SLIDER",
         "topic": "ANIMAL",
@@ -178,12 +178,12 @@ const BannerSlider = () => {
 
 
     return (
-        <div className='carousel-container '>
+        <div className='carousel-container banner-slider '>
             <div className="carousel">
                 <div className="list">
                     {data.map((item, index) => (
                         <div className="item" key={index}>
-                            <Image src={item.cover_image} height={5000} width={5000} alt="alt" />
+                            <Image src={item.cover_image} height={800} width={2000} alt="alt" />
                             <div className="content">
                                 <div className="author">{item.author}</div>
                                 <div className="title">{item.title}</div>

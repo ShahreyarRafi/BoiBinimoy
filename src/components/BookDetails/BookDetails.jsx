@@ -26,26 +26,52 @@ const BookDetails = () => {
         }
 
         return () => { };
-    }, [fetchData])
+    }, [fetchData, param.buyId])
 
     console.log(book);
 
     return (
-        <div>
-            <div className="container mx-auto py-12">
+        <div className='w-full'>
+            <div className="container mx-auto py-12 w-full">
                 <h1 className='text-4xl text-center mb-10'>Book Details</h1>
-                <div className='grid grid-cols-2 gap-5'>
-                    <Image src={book?.cover_image} alt="book" width={500} height={500} priority />
-                    <div className="space-y-1 mt-3">
-                        <h2 className="text-md font-bold text-[#f64d4e]">Book Title: {book?.title}</h2>
-                        <p className="text-gray-600">Book Writer: {book?.writer}</p>
-                        <p className="text-gray-600">Book Language: {book?.language}</p>
-                        <p className="text-gray-600">Book Pages: {book?.pages}</p>
-                        <p className="text-gray-600">Published Year: {book?.published_year}</p>
-                        <p className="text-gray-600">Book Publisher: {book?.publisher}</p>
-                        <p className="text-gray-600">Book Price: {book?.price}</p>
-                        <p className="text-gray-600">Book Edition: {book?.edition}</p>
-                        <p className="text-gray-600">Description: {book?.description}</p>
+                <div className='flex justify-center gap-20 mx-auto'>
+                    <Image src={book?.cover_image} alt="book" width={500} height={500} priority className='h-[70svh] w-auto'/>
+                    <div className="space-y-1 mt-3 text-lg">
+                        <h2 className="text-md border-b border-gray-300">
+                            <span className="font-bold text-[#f64d4e] ">Book Title:</span> {book?.title}
+                        </h2>
+                        <p className="text-gray-600 border-b border-gray-300">
+                            <span className="font-bold">Book Writer:</span> {book?.writer}
+                        </p>
+                        <p className="text-gray-600 border-b border-gray-300">
+                            <span className="font-bold">Book Language:</span> {book?.language}
+                        </p>
+                        <p className="text-gray-600 border-b border-gray-300">
+                            <span className="font-bold">Book Pages:</span> {book?.pages}
+                        </p>
+                        <p className="text-gray-600 border-b border-gray-300">
+                            <span className="font-bold">Published Year:</span> {book?.published_year}
+                        </p>
+                        <p className="text-gray-600 border-b border-gray-300">
+                            <span className="font-bold">Book Publisher:</span> {book?.publisher}
+                        </p>
+                        <p className="text-gray-600 border-b border-gray-300">
+                            <span className="font-bold">Book Price:</span> {book?.price}
+                        </p>
+                        <p className="text-gray-600 border-b border-gray-300">
+                            <span className="font-bold">Book Edition:</span> {book?.edition}
+                        </p>
+                        <p className="text-gray-600">
+                            <span className="font-bold">Description:</span> {book?.description}
+                        </p>
+                        <div className='flex gap-3 pt-10'>
+                            <button className="button-color px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
+                                Buy Now
+                            </button>
+                            <button className="button-color px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
+                                Add To Cart
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
