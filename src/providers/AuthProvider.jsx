@@ -78,6 +78,7 @@ const AuthProvider = ({ children }) => {
                 console.log("totken data: ", res.data)
             })
 
+            console.log("token: ",res.data)
 
         });
         return () => {

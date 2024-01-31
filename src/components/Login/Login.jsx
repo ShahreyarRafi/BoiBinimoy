@@ -1,19 +1,15 @@
-"use client"
-
+"use client";
 
 import { AuthContext } from "@/providers/AuthProvider";
 import { Checkbox } from "@material-tailwind/react";
 import { Lato, Lora } from "next/font/google";
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import Footer from "../Shared/Footer";
-import Navbar from "../Shared/Navbar";
+import "react-toastify/dist/ReactToastify.css";
 import SocialLogin from "./SocialLogin/SocialLogin";
-
 
 const lora = Lora({
   weight: ["400", "500", "600", "700"],
@@ -29,14 +25,11 @@ const lato = Lato({
   display: "swap",
 });
 
-
-
 const Login = () => {
-
   const { signin } = useContext(AuthContext);
-  const [activePage, setActivePage] = useState('login');
-  const [showPassword, setShowPassWord] = useState(false)
-  const router = useRouter()
+  const [activePage, setActivePage] = useState("login");
+  const [showPassword, setShowPassWord] = useState(false);
+  const router = useRouter();
 
   const handleLoginUser = (e) => {
     e.preventDefault();
@@ -46,28 +39,26 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
 
-
-
     //  User Login
     signin(email, password)
-      .then(res => {
+      .then((res) => {
         console.log(res);
         if (res.user) {
-          toast.success('User logged in successfully');
+          toast.success("User logged in successfully");
           setTimeout(() => {
-            router("/")
+            router("/");
           }, 1000);
         }
-      }).catch(error => {
-        console.error(error);
-        toast.error('Cheack your Email or password', error);
       })
-
-  }
+      .catch((error) => {
+        console.error(error);
+        toast.error("Cheack your Email or password", error);
+      });
+  };
 
   return (
     <div className={lato.className}>
-      <div className="min-h-screen flex flex-col justify-center items-center" >
+      <div className="min-h-screen flex flex-col justify-center items-center">
         <div className="max-w-5xl mx-auto my-16 rounded-lg">
           <div className="flex justify-between items-center rounded-lg gap-2 h-[700px] bg-slate-50 shadow-xl">
             <div className="flex-1 h-[500px] w-[800px]">
@@ -80,27 +71,36 @@ const Login = () => {
               <div className="flex gap-1 p-[0.20rem] rounded-lg  w-[24rem] mx-auto">
                 <button
                   onClick={() => {
-                    setActivePage('login');
-                    router.push('/login');
+                    setActivePage("login");
+                    router.push("/login");
                   }}
-                  className={`w-full px-3 py-2 rounded-lg focus:outline-none font-bold text-center ${activePage === 'login' ? 'bg-orange-500 text-white' : 'text-gray-700'
-                    }`}
+                  className={`w-full px-3 py-2 rounded-lg focus:outline-none font-bold text-center ${
+                    activePage === "login"
+                      ? "bg-orange-500 text-white"
+                      : "text-gray-700"
+                  }`}
                 >
                   Login
                 </button>
                 <button
                   onClick={() => {
-                    setActivePage('register');
-                    router.push('/register');
+                    setActivePage("register");
+                    router.push("/register");
                   }}
-                  className={`w-full px-3 py-2 rounded-lg focus:outline-none font-bold text-center ${activePage === 'register' ? 'bg-orange-500 text-white' : 'text-gray-700'
-                    }`}
+                  className={`w-full px-3 py-2 rounded-lg focus:outline-none font-bold text-center ${
+                    activePage === "register"
+                      ? "bg-orange-500 text-white"
+                      : "text-gray-700"
+                  }`}
                 >
                   Register
                 </button>
               </div>
 
-              <form onSubmit={handleLoginUser} className="mt-8 mb-2  w-[24rem] mx-auto">
+              <form
+                onSubmit={handleLoginUser}
+                className="mt-8 mb-2  w-[24rem] mx-auto"
+              >
                 <div className="mb-1 flex flex-col gap-6">
                   <input
                     placeholder="Email"
@@ -116,11 +116,14 @@ const Login = () => {
                       type={showPassword ? "text" : "password"}
                       className=" w-full h-12 pl-2 pr-8 border-2 border-gray-300 rounded-lg focus:outline-none bg-transparent"
                     />
-                    <span className="absolute right-5 top-3 cursor-pointer text-green-700 z-10" onClick={() => setShowPassWord(!showPassword)}>
+                    <span
+                      className="absolute right-5 top-3 cursor-pointer text-green-700 z-10"
+                      onClick={() => setShowPassWord(!showPassword)}
+                    >
                       {showPassword ? (
-                        <AiFillEye className='text-xl text-gray-600' />
+                        <AiFillEye className="text-xl text-gray-600" />
                       ) : (
-                        <AiFillEyeInvisible className='text-xl text-gray-600' />
+                        <AiFillEyeInvisible className="text-xl text-gray-600" />
                       )}
                     </span>
                   </div>
@@ -159,7 +162,7 @@ const Login = () => {
         <ToastContainer></ToastContainer>
       </div>
     </div>
-  )
+  );
 };
 
 export default Login;
