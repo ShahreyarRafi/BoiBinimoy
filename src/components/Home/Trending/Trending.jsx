@@ -11,7 +11,7 @@ import 'swiper/css/bundle';
 
 SwiperCore.use([Navigation]);
 
-export default function Exchange() {
+export default function Trending() {
 
     const [swiperInitialized, setSwiperInitialized] = useState(false);
     const [swiper, setSwiper] = useState(null);
@@ -119,7 +119,7 @@ export default function Exchange() {
     return (
         <div className="container mx-auto py-12">
             <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl md:text-3xl font-bold text-nowrap">Exchange Now</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-nowrap">Trending Now</h2>
                 <hr className="hr" />
                 <div className="flex items-center justify-end gap-3 text-nowrap">
                     {/* View All button */}
