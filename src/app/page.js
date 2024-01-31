@@ -8,6 +8,7 @@ import Navbar from "@/components/Shared/Navbar";
 import BannerSlider from "@/components/Home/BannerSlider/BannerSlider";
 import Footer from "@/components/Shared/Footer";
 
+
 const HomePage = () => {
   return (
     <div className="bg-[#f0efe3]">
