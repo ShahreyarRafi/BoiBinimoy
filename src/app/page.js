@@ -9,6 +9,7 @@ import BannerSlider from "@/components/Home/BannerSlider/BannerSlider";
 import Footer from "@/components/Shared/Footer";
 import TestNav from "@/components/Shared/TestNav";
 
+
 const HomePage = () => {
   return (
     <div className="bg-[#f0efe3]">
