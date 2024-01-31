@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 SwiperCore.use([Navigation]);
 
-export default function Exchange() {
+export default function Buy() {
 
     const [swiperInitialized, setSwiperInitialized] = useState(false);
     const [swiper, setSwiper] = useState(null);
