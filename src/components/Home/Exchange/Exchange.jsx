@@ -140,34 +140,36 @@ export default function Exchange() {
                     </button>
                 </div>
             </div>
-            <div >
-                <Swiper
-                    slidesPerView={6}
-                    spaceBetween={20}
-                    onSwiper={handleSwiperInit}
-                    controller={{ control: swiper => (window.swiper = swiper) }}
-                >
-                    {swiperInitialized ? (
-                        exchangeBooks.map(item => (
-                            <SwiperSlide key={item.id}>
-                                <ExchangeCard item={item} />
-                            </SwiperSlide>
-                        ))
-                    ) : (
-                        <div className="w-full flex justify-center items-center">
-                            <div className="book">
-                                <div className="book__pg-shadow"></div>
-                                <div className="book__pg"></div>
-                                <div className="book__pg book__pg--2"></div>
-                                <div className="book__pg book__pg--3"></div>
-                                <div className="book__pg book__pg--4"></div>
-                                <div className="book__pg book__pg--5"></div>
-                            </div>
+            <Swiper
+                spaceBetween={20}
+                onSwiper={handleSwiperInit}
+                controller={{ control: swiper => (window.swiper = swiper) }}
+                slidesPerView={2}
+                breakpoints={{
+                    768: { slidesPerView: 3 },
+                    1024: { slidesPerView: 5 },
+                    1200: { slidesPerView: 6 },
+                }}
+            >
+                {swiperInitialized ? (
+                    exchangeBooks.map(item => (
+                        <SwiperSlide key={item.id}>
+                            <ExchangeCard item={item} />
+                        </SwiperSlide>
+                    ))
+                ) : (
+                    <div className="w-full flex justify-center items-center">
+                        <div className="book">
+                            <div className="book__pg-shadow"></div>
+                            <div className="book__pg"></div>
+                            <div className="book__pg book__pg--2"></div>
+                            <div className="book__pg book__pg--3"></div>
+                            <div className="book__pg book__pg--4"></div>
+                            <div className="book__pg book__pg--5"></div>
                         </div>
-                    )}
-                </Swiper>
-            </div>
-
+                    </div>
+                )}
+            </Swiper>
         </div>
     );
 }
