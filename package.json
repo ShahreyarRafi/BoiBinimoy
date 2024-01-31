@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-spring/core": "^9.7.3",
+    "@react-spring/shared": "^9.7.3",
+    "@react-spring/web": "^9.7.3",
     "@tanstack/react-query": "^5.17.19",
     "axios": "^1.6.5",
     "boxicons": "^2.1.4",
