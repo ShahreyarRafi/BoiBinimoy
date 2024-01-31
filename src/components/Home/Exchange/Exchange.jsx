@@ -11,7 +11,7 @@ import 'swiper/css/bundle';
 
 SwiperCore.use([Navigation]);
 
-export default function Trending() {
+export default function Exchange() {
 
     const [swiperInitialized, setSwiperInitialized] = useState(false);
     const [swiper, setSwiper] = useState(null);
