@@ -5,16 +5,63 @@ import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
 
 const AddBook = () => {
+
+  const axios = require('axios').default;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+    const bookType = form.bookType.value;
+    const bookCondition = form.bookCondition.value;
+    const whatYouWant = form.whatYouWant.value;
+    const bookCategory = form.bookCategory.value;
     const title = form.title.value;
-    const currentDate = new Date().toISOString();
+    const writer = form.writer.value;
+    const language = form.language.value;
+    const pages = form.pages.value;
+    const publisher = form.publisher.value;
+    const publicationYear = form.publicationYear.value;
+    const edition = form.edition.value;
+    const price = form.price.value;
+    const owner = form.owner.value;
+    const location = form.location.value;
+    const stockLimit = form.stockLimit.value;
+    const tags = form.tags.value;
+    const awards = form.awards.value;
+    const description = form.description.value;
+
+
+    // const newBook
     const newBook = {
+      bookType,
+      bookCondition,
+      whatYouWant,
+      bookCategory,
       title,
-      uploadTime: currentDate,
+      writer,
+      language,
+      pages,
+      publisher,
+      publicationYear,
+      edition,
+      price,
+      owner,
+      location,
+      stockLimit,
+      tags,
+      awards,
+      description
     };
-    console.log(newBook);
+
+    axios.post('https://boi-binimoy-server.vercel.app/api/v1/buyBooks', newBook)
+      .then(response => {
+        // Handle the success response
+        console.log('Response:', response.data);
+      })
+      .catch(error => {
+        // Handle errors
+        console.error('Error:', error);
+      });
   };
   return (
     <div className="bg-orange-50 text-gray-500 min-h-screen">
@@ -29,29 +76,27 @@ const AddBook = () => {
               <h3 className="text-sm font-light py-2">Basic Information:</h3>
               {/* information */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                {/* product type */}
+                {/* product type name:bookType*/}
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                   name="bookType"
-                  id=""
                 >
                   <option selected value="">
                     Book type
                   </option>
-                  <option value="nwePhysicalBook">Nwe Physical Book</option>
+                  <option value="newPhysicalBook">New Physical Book</option>
                   <option value="oldPhysicalBook">Old Physical Book</option>
                   <option value="pdfFormatBook">PDF Format Book</option>
                   <option value="audioFormatBook">Audio Format Book</option>
                 </select>
 
-                {/* product conditions */}
+                {/* product conditions name:bookCondition*/}
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                   name="bookCondition"
-                  id=""
                 >
                   <option selected value="">
-                    Book Conditon
+                    Book Condition
                   </option>
                   <option value="good">Good</option>
                   <option value="veryGood">Very Good</option>
@@ -60,11 +105,10 @@ const AddBook = () => {
                   <option value="veryBad">Very Bad</option>
                 </select>
 
-                {/* what you wants */}
+                {/* what you wants name:whatYouWant*/}
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                   name="whatYouWant"
-                  id=""
                 >
                   <option selected value="">
                     What you want?
@@ -74,11 +118,10 @@ const AddBook = () => {
                   <option value="exchangeOrSale">Exchange or Sale</option>
                 </select>
 
-                {/* book categorys */}
+                {/* book category name:bookCategory*/}
                 <select
                   className="h-10 w-full text-xs px-2 bg-transparent border rounded-lg focus:outline-none"
                   name="bookCategory"
-                  id=""
                 >
                   <option selected value="">
                     Book Category
@@ -116,7 +159,7 @@ const AddBook = () => {
                 <h3 className="text-sm font-light py-2">Book Information:</h3>
                 {/* information */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-                  {/* book title  */}
+                  {/* book title  name:title*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="title"
@@ -125,16 +168,16 @@ const AddBook = () => {
                     required
                   />
 
-                  {/* book auhtor  */}
+                  {/* book author  name:writer*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="writer"
-                    placeholder="Book Auhtor"
+                    placeholder="Book Author"
                     type="text"
                     required
                   />
 
-                  {/* book language  */}
+                  {/* book language  name:language*/}
                   <select
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="language"
@@ -142,12 +185,12 @@ const AddBook = () => {
                     <option selected value="">
                       Book Language
                     </option>
-                    <option value="english">Snglish</option>
+                    <option value="english">English</option>
                     <option value="bangla">Bangla</option>
                     <option value="arabic">Arabic</option>
                   </select>
 
-                  {/* book page count  */}
+                  {/* book page count  name:pages*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="pages"
@@ -156,7 +199,7 @@ const AddBook = () => {
                     required
                   />
 
-                  {/* book publisher */}
+                  {/* book publisher name:publisher*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="publisher"
@@ -165,16 +208,16 @@ const AddBook = () => {
                     required
                   />
 
-                  {/* book publication year */}
+                  {/* book publication year name:publicationYear*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                    name="publication_year"
+                    name="publicationYear"
                     placeholder="Book Publication Year"
                     type="number"
                     required
                   />
 
-                  {/* book edition */}
+                  {/* book edition name:edition*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="edition"
@@ -183,7 +226,7 @@ const AddBook = () => {
                     required
                   />
 
-                  {/* book price */}
+                  {/* book price name:price*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="price"
@@ -287,7 +330,7 @@ const AddBook = () => {
 
                 {/* information div */}
                 <div className="grid grid-cols-1 gap-3">
-                  {/* owner name */}
+                  {/* owner name name:owner*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="owner"
@@ -296,7 +339,7 @@ const AddBook = () => {
                     required
                   />
 
-                  {/* owner location */}
+                  {/* owner location name:location*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="location"
@@ -314,10 +357,10 @@ const AddBook = () => {
 
                 {/* information */}
                 <div className="grid grid-cols-1 gap-3">
-                  {/* book Stock Limit */}
+                  {/* book Stock Limit name:stockLimit*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                    name="stock_limit"
+                    name="stockLimit"
                     placeholder="Book Stock"
                     type="number"
                     required
@@ -334,7 +377,7 @@ const AddBook = () => {
 
                 {/* information */}
                 <div className="grid grid-cols-1 gap-3">
-                  {/* book Tags */}
+                  {/* book Tags name:tags*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="tags"
@@ -342,7 +385,7 @@ const AddBook = () => {
                     type="text"
                   />
 
-                  {/* book awards */}
+                  {/* book awards name:awards*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="awards"
@@ -353,12 +396,11 @@ const AddBook = () => {
               </div>
             </div>
 
-            {/* book description div */}
+            {/* book description div name:description*/}
             <div className="my-3">
               <textarea
                 className="w-full p-2 text-xs bg-transparent border-2 border-gray-300 rounded-lg focus:outline-none"
                 name="description"
-                id=""
                 placeholder="Book Description"
                 cols="30"
                 rows="10"
@@ -368,10 +410,10 @@ const AddBook = () => {
 
             {/* go to home and submit buttons */}
             <div className="flex justify-center md:justify-end text-xs items-center mb-4 gap-3">
-              <Link href="/">
+              <Link href="/dashboard">
                 <button className="px-3 py-2 border-2 border-gray-300 rounded-lg uppercase">
                   <span className="flex items-center gap-1">
-                    <SlArrowLeft /> <span>Go to home.</span>
+                    <SlArrowLeft /> <span>Go to Dashboard</span>
                   </span>
                 </button>
               </Link>
@@ -392,47 +434,3 @@ const AddBook = () => {
 };
 
 export default AddBook;
-
-// "use client"
-
-// import React from 'react';
-// import { useForm } from "react-hook-form"
-
-
-// const AddBook = () => {
-
-//     const axios = require('axios').default;
-
-//     const { register, handleSubmit } = useForm()
-//     const onSubmit = (data) => {
-//         const book = data;
-//         axios.post('https://boi-binimoy-server.vercel.app/api/v1/buyBooks', book)
-//             .then(response => {
-//                 // Handle the success response
-//                 console.log('Response:', response.data);
-//             })
-//             .catch(error => {
-//                 // Handle errors
-//                 console.error('Error:', error);
-//             });
-//     }
-
-
-
-//     return (
-//         <div className='max-w-md mx-auto'>
-//             <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3'>
-//                 <input {...register("title")} placeholder='Book Title' className='pl-2 border-black border-[1px]' />
-//                 <input {...register("writer")} placeholder='Book Writer' className='pl-2 border-black border-[1px]' />
-//                 <input {...register("language")} placeholder='Language' className='pl-2 border-black border-[1px]' />
-//                 <input {...register("pages")} placeholder='Pages' className='pl-2 border-black border-[1px]' />
-//                 <input {...register("price")} placeholder='Price' className='pl-2 border-black border-[1px]' />
-//                 <input {...register("year")} placeholder='Published Year' className='pl-2 border-black border-[1px]' type='month' />
-//                 <input {...register("__v")} placeholder='Book Version' className='pl-2 border-black border-[1px]' />
-//                 <input type="submit" className='bg-[#f65d4e] py-2 rounded-lg text-white' />
-//             </form>
-//         </div>
-//     );
-// };
-
-// export default AddBook;

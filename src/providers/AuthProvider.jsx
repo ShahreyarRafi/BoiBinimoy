@@ -19,7 +19,6 @@ const AuthProvider = ({ children }) => {
     const githubProvider = new GithubAuthProvider();
 
     // google login  
-
     const googleLogin = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
@@ -36,14 +35,12 @@ const AuthProvider = ({ children }) => {
     const handleUpdateProfile = (name, photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
-
         })
     }
 
 
 
     //   create User 
-
     const createUser = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
@@ -52,17 +49,14 @@ const AuthProvider = ({ children }) => {
 
 
     //   loging  Account 
-
     const signin = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     //   logOut account 
-
     const logOut = () => {
         return signOut(auth);
-
     }
 
 
@@ -71,14 +65,14 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubcribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
-            const userEmail =  {email: user?.email};
-            axiosPublic.post("/jwt", userEmail , {
+            const userEmail = { email: user?.email };
+            axiosPublic.post("/jwt", userEmail, {
                 withCredentials: true
             }).then(res => {
                 console.log("totken data: ", res.data)
             })
 
-            console.log("token: ",res.data)
+            // console.log("token: ",res.data)
 
         });
         return () => {
@@ -115,5 +109,3 @@ AuthProvider.propTypes = {
 
 
 export default AuthProvider;
-
-
