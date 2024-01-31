@@ -22,7 +22,7 @@ const lora = Lora({
 
 const OurStory = () => {
   return (
-    <div className="max-w-6xl mx-auto my-12">
+    <div className="max-w-6xl mx-auto mt-10 mb-28">
       <Timeline>
         <div className={lora.className}>
           <Typography className="mb-2 text-2xl md:text-3xl lg:text-4xl text-center font-bold">
