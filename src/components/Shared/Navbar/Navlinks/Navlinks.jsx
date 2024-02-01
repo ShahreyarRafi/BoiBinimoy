@@ -11,7 +11,7 @@ const Navlinks = () => {
         <li>All Books</li>
       </Link>
       <Link href="/blogs">
-        <li>Bologs</li>
+        <li>Blogs</li>
       </Link>
       <Link href="/aboutus">
         <li>About</li>
@@ -22,8 +22,8 @@ const Navlinks = () => {
       <Link href="/category">
         <li>Category</li>
       </Link>
-      <Link href="/addBook">
-        <li>Add Book</li>
+      <Link href="/dashboard">
+        <li>Dashboard</li>
       </Link>
       <Link href="/register">
         <li>Register</li>

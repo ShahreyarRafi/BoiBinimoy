@@ -1,11 +1,13 @@
-import AddBook from '@/components/AddBook/AddBook';
-import React from 'react';
+"use client"
 
-const page = () => {
+import AddBook from '@/components/AddBook/AddBook';
+
+const page = ({ params }) => {
+    console.log(params);
     return (
-        <>
+        <div className="">
             <AddBook></AddBook>
-        </>
+        </div>
     );
 };
 

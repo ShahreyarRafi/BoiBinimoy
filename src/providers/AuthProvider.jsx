@@ -1,7 +1,7 @@
 "use client"
 
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
-import { auth } from "@/utils/firebase.confic";
+import { auth } from "@/utils/firebase.config";
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import PropTypes from 'prop-types';
 import { createContext, useEffect, useState } from "react";

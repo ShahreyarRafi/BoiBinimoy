@@ -35,10 +35,10 @@ const BookDetails = () => {
             <div className="container mx-auto py-12 w-full">
                 <h1 className='text-4xl text-center mb-10'>Book Details</h1>
                 <div className='flex justify-center gap-20 mx-auto'>
-                    <Image src={book?.cover_image} alt="book" width={500} height={500} priority className='h-[70svh] w-auto'/>
+                    <Image src={book?.cover_image} alt="book" width={500} height={500} priority className='h-[70svh] w-auto' />
                     <div className="space-y-1 mt-3 text-lg">
                         <h2 className="text-md border-b border-gray-300">
-                            <span className="font-bold text-[#f64d4e] ">Book Title:</span> {book?.title}
+                            <span className="font-bold text-[#fcba75] ">Book Title:</span> {book?.title}
                         </h2>
                         <p className="text-gray-600 border-b border-gray-300">
                             <span className="font-bold">Book Writer:</span> {book?.writer}
@@ -65,10 +65,10 @@ const BookDetails = () => {
                             <span className="font-bold">Description:</span> {book?.description}
                         </p>
                         <div className='flex gap-3 pt-10'>
-                            <button className="button-color px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
+                            <button className="bg-[#fcba75] px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
                                 Buy Now
                             </button>
-                            <button className="button-color px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
+                            <button className="bg-[#fcba75] px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
                                 Add To Cart
                             </button>
                         </div>

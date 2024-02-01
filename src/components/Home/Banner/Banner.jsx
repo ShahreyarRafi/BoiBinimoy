@@ -65,7 +65,7 @@ const Banner = () => {
                                 </h2>
                                 <a href='#more' className='px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 text-white bg-[#f65d4e] bg-opacity-25 backdrop-blur-sm outline outline-2 outline-[#f65d4e] rounded-full hover:bg-[#f65d4e] hover:outline-0 hover:text-white'
                                     style={{ transition: 'background-color 400ms, color 400ms, outline 0s' }}>
-                                    <div className=''>
+                                    <div>
                                         <div className='md:text-lg'>Explore Now</div>
                                     </div>
                                 </a>

@@ -3,7 +3,7 @@ import React from "react";
 import icon from "@/assets/ScienceFiction.png";
 
 const Category = () => {
-  const categorys = [
+  const categories = [
     {
       title: "Science Fiction",
       image: "image.png",
@@ -76,7 +76,7 @@ const Category = () => {
         Find books by Category
       </h4>
       <div className="grid grid-cols-8 gap-3">
-        {categorys.map((categoty, key) => (
+        {categories.map((categoty, key) => (
           <div
             key={key}
             className="text-center flex flex-col justify-center items-center space-y-1 py-2 cursor-pointer"

@@ -1,20 +1,8 @@
 "use client"
+
 import { useEffect, useState } from 'react';
 import './BannerStyles.css';
 import Image from 'next/image';
-import book1 from './image/book1.png'
-import book2 from './image/book2.png'
-import book3 from './image/book3.png'
-import book4 from './image/book4.png'
-import book5 from './image/book5.png'
-import book6 from './image/book6.png'
-
-import image1 from './image/img1.jpg'
-import image2 from './image/img2.jpg'
-import image3 from './image/img3.jpg'
-import image4 from './image/img4.jpg'
-import image6 from './image/img6.jpg'
-
 
 const data = [
     {
@@ -160,7 +148,7 @@ const BannerSlider = () => {
                 thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
                 carouselDom.classList.add('prev');
             }
-            
+
             clearTimeout(runTimeOut);
             runTimeOut = setTimeout(() => {
                 carouselDom.classList.remove('next');

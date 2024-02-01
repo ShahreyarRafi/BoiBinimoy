@@ -154,7 +154,7 @@ export default function Exchange() {
                 controller={{ control: swiper => (window.swiper = swiper) }}
                 slidesPerView={2}
                 breakpoints={{
-                    768: { slidesPerView: 3 },
+                    768: { slidesPerView: 4 },
                     1024: { slidesPerView: 5 },
                     1200: { slidesPerView: 6 },
                 }}
