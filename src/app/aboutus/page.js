@@ -1,7 +1,8 @@
+import Navbar from "@/components/Shared/Navbar/Navbar";
 import AboutBanner from "@/components/AboutUs/AboutBanner/AboutBanner";
 import OurStory from "@/components/AboutUs/OurStories/OurStory";
 import Footer from "@/components/Shared/Footer";
-import Navbar from "@/components/Shared/Navbar/Navbar";
+import Teams from "@/components/AboutUs/Teams/Teams";
 
 const AboutUsPage = () => {
   return (
@@ -9,6 +10,7 @@ const AboutUsPage = () => {
       <Navbar />
       <AboutBanner />
       <OurStory />
+      <Teams />
       <Footer />
     </div>
   );
