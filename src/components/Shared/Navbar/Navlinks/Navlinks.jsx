@@ -25,8 +25,8 @@ const Navlinks = () => {
       <Link href="/addBook">
         <li>Add Book</li>
       </Link>
-      <Link href="/register">
-        <li>Register</li>
+      <Link href="/joinUs">
+        <li>Join</li>
       </Link>
     </>
   );
