@@ -10,6 +10,7 @@ const nextConfig = {
       "ds.rokomari.store",
       "www.flaticon.com",
       "img.icons8.com",
+      "images.pexels.com",
     ],
   },
 };

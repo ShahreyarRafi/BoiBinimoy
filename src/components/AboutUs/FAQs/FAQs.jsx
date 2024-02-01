@@ -1,20 +1,11 @@
-"use client"
+"use client";
 
 import React from "react";
 import {
   Accordion,
   AccordionHeader,
   AccordionBody,
-  Typography,
 } from "@material-tailwind/react";
-import { Lora } from "next/font/google";
-
-const lora = Lora({
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const FAQ = () => {
   const [open, setOpen] = React.useState(1);
@@ -22,16 +13,15 @@ const FAQ = () => {
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
   return (
-    <div className="max-w-7xl mx-auto my-12 px-5 md:px-10">
-      <div className={lora.className}>
-        <Typography className="mb-2 text-2xl md:text-3xl lg:text-4xl text-center font-bold">
+    <div className="max-w-5xl mx-auto my-12 px-5 md:px-10">
+      <div className="mx-auto mb-10 lg:max-w-xl sm:text-center">
+        <h2 className="mb-2 text-2xl md:text-3xl lg:text-4xl text-center font-bold">
           Frequently Asked Questions
-        </Typography>
+        </h2>
+        <p className="mb-5 opacity-80 text-xl font-light text-center">
+          Find answers to your questions
+        </p>
       </div>
-
-      <Typography className="mb-5 opacity-80 text-xl font-light text-center">
-        Find answers to your questions
-      </Typography>
 
       <div className="space-y-2">
         <Accordion
@@ -40,8 +30,9 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(1)}
-            className={`border-b-0 transition-colors ${open === 1 ? "text-blue-500 hover:!text-blue-700" : ""
-              }`}
+            className={`border-b-0 transition-colors ${
+              open === 1 ? "text-blue-500 hover:!text-blue-700" : ""
+            }`}
           >
             What is Boi Binimoy?
           </AccordionHeader>
@@ -59,8 +50,9 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(2)}
-            className={`border-b-0 transition-colors ${open === 2 ? "text-blue-500 hover:!text-blue-700" : ""
-              }`}
+            className={`border-b-0 transition-colors ${
+              open === 2 ? "text-blue-500 hover:!text-blue-700" : ""
+            }`}
           >
             How do I exchange books on Boi Binimoy?
           </AccordionHeader>
@@ -72,12 +64,12 @@ const FAQ = () => {
                 condition, and description.
               </li>
               <li>
-                2. Browse listings: Search for books you&apos;d like to exchange by
-                category, genre, title, or author.
+                2. Browse listings: Search for books you&apos;d like to exchange
+                by category, genre, title, or author.
               </li>
               <li>
-                3. Send a request: Connect with the owner of the book you&apos;re
-                interested in and propose an exchange.
+                3. Send a request: Connect with the owner of the book
+                you&apos;re interested in and propose an exchange.
               </li>
               <li>
                 4. Agree and exchange: Once both parties agree, arrange shipping
@@ -93,8 +85,9 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(3)}
-            className={`border-b-0 transition-colors ${open === 3 ? "text-blue-500 hover:!text-blue-700" : ""
-              }`}
+            className={`border-b-0 transition-colors ${
+              open === 3 ? "text-blue-500 hover:!text-blue-700" : ""
+            }`}
           >
             Can I buy or sell books on Boi Binimoy?
           </AccordionHeader>
@@ -123,8 +116,9 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(4)}
-            className={`border-b-0 transition-colors ${open === 4 ? "text-blue-500 hover:!text-blue-700" : ""
-              }`}
+            className={`border-b-0 transition-colors ${
+              open === 4 ? "text-blue-500 hover:!text-blue-700" : ""
+            }`}
           >
             What types of books can I find on Boi Binimoy?
           </AccordionHeader>
@@ -151,8 +145,9 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(5)}
-            className={`border-b-0 transition-colors ${open === 5 ? "text-blue-500 hover:!text-blue-700" : ""
-              }`}
+            className={`border-b-0 transition-colors ${
+              open === 5 ? "text-blue-500 hover:!text-blue-700" : ""
+            }`}
           >
             How do I know if a book is in good condition?
           </AccordionHeader>
@@ -169,8 +164,9 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(6)}
-            className={`border-b-0 transition-colors ${open === 6 ? "text-blue-500 hover:!text-blue-700" : ""
-              }`}
+            className={`border-b-0 transition-colors ${
+              open === 6 ? "text-blue-500 hover:!text-blue-700" : ""
+            }`}
           >
             Is it safe to exchange or buy books on Boi Binimoy?
           </AccordionHeader>
@@ -196,8 +192,9 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(7)}
-            className={`border-b-0 transition-colors ${open === 7 ? "text-blue-500 hover:!text-blue-700" : ""
-              }`}
+            className={`border-b-0 transition-colors ${
+              open === 7 ? "text-blue-500 hover:!text-blue-700" : ""
+            }`}
           >
             What if I have a problem with my book or transaction?
           </AccordionHeader>
@@ -214,8 +211,9 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(8)}
-            className={`border-b-0 transition-colors ${open === 8 ? "text-blue-500 hover:!text-blue-700" : ""
-              }`}
+            className={`border-b-0 transition-colors ${
+              open === 8 ? "text-blue-500 hover:!text-blue-700" : ""
+            }`}
           >
             How can I stay updated on Boi Binimoy news and promotions?
           </AccordionHeader>

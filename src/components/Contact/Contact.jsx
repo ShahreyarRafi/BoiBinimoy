@@ -1,3 +1,4 @@
+
 "use client"
 import Image from "next/image";
 import { useRef } from "react";
@@ -36,7 +37,7 @@ const Contact = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen my-auto mt-20">
       <div class="flex justify-center items-center bg-orange-50">
         <div class="container mx-auto my-4 px-4 lg:px-20">
           <div class="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
