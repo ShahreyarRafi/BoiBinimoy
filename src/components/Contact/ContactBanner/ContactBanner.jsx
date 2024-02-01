@@ -2,7 +2,7 @@ import React from "react";
 
 const ContactBanner = () => {
   return (
-    <div className="relative bg-orange-300">
+    <div className="relative bg-[#016961]">
       {/* bottom curve */}
       <div className="absolute inset-x-0 bottom-0 ">
         <svg

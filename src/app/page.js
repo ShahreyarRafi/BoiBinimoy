@@ -12,7 +12,7 @@ import Stats from "@/components/Home/Stats/Stats";
 
 const HomePage = () => {
   return (
-    <div className="bg-orange-50">
+    <div className="bg-teal-50">
       <div className="parallax">
         <BannerSlider />
       </div>
