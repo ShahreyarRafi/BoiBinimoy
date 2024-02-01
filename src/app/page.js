@@ -1,6 +1,6 @@
 "use client";
 
-import BannerSlider from "@/components/Home/BannerSlider/BannerSlider";
+import BannerSlider from "../components/Home/BannerNew/BannerNew"
 import Footer from "@/components/Shared/Footer";
 import TestExchange from "@/components/Exchange/Exchange";
 import Navbar from "@/components/Shared/Navbar/Navbar";
