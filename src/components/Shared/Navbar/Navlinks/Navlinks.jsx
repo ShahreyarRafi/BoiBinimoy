@@ -19,8 +19,8 @@ const Navlinks = () => {
       <Link href="/contact">
         <li>Contact</li>
       </Link>
-      <Link href="/category">
-        <li>Category</li>
+      <Link href="/dashboard">
+        <li>Dashboard</li>
       </Link>
       <Link href="/addBook">
         <li>Add Book</li>
