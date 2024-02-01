@@ -119,7 +119,7 @@ export default function Buy() {
 
 
     return (
-        <div className="container mx-auto py-12">
+        <div className="container mt-12 mx-auto">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl md:text-3xl font-bold text-nowrap">Buy Now</h2>
                 <hr className="hr" />
@@ -144,7 +144,7 @@ export default function Buy() {
             </div>
             <Swiper
                 direction="horizontal"
-                spaceBetween={20}
+                spaceBetween={13}
                 onSwiper={handleSwiperInit}
                 controller={{ control: swiper => (window.swiper = swiper) }}
                 slidesPerView={2} // Set a default value
