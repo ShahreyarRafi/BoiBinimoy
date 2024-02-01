@@ -15,7 +15,7 @@ const Blog = () => {
               height={500}
               alt=""
             />
-            <span class="text-orange-300 text-sm hidden md:block mt-4">
+            <span class="text-[#016961] text-sm hidden md:block mt-4">
               Technology
             </span>
             <h1 class="text-black text-4xl font-bold mt-2 mb-2 leading-tight">
