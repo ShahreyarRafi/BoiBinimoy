@@ -105,7 +105,7 @@ const data = [
 
 
 
-const BannerSlider = () => {
+export default function BannerSlider () {
     const [componentsMounted, setComponentMounted] = useState(false);
 
     useEffect(() => {
@@ -225,5 +225,3 @@ const BannerSlider = () => {
         </div>
     );
 };
-
-export default BannerSlider;
