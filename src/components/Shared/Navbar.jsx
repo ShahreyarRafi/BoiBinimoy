@@ -102,8 +102,8 @@ const Navbar = () => {
 
 
 
-            {/* <FiLogIn className="text-xl  hover:text-orange-500"></FiLogIn> */}
-            <h1> helw </h1>
+            <FiLogIn className="text-xl  hover:text-orange-500"></FiLogIn>
+          
 
 
           </button>
