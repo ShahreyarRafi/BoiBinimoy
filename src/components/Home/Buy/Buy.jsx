@@ -11,7 +11,8 @@ import Link from 'next/link';
 
 SwiperCore.use([Navigation]);
 
-export default function Exchange() {
+
+export default function Buy() {
 
     const [swiperInitialized, setSwiperInitialized] = useState(false);
     const [swiper, setSwiper] = useState(null);
@@ -116,6 +117,7 @@ export default function Exchange() {
     }, [swiper]);
 
 
+
     return (
         <div className="container mx-auto py-12">
             <div className="flex justify-between items-center mb-4">
@@ -142,10 +144,15 @@ export default function Exchange() {
             </div>
             <Swiper
                 direction="horizontal"
-                slidesPerView={6}
                 spaceBetween={20}
                 onSwiper={handleSwiperInit}
                 controller={{ control: swiper => (window.swiper = swiper) }}
+                slidesPerView={2} // Set a default value
+                breakpoints={{
+                    768: { slidesPerView: 3 },
+                    1024: { slidesPerView: 5 },
+                    1200: { slidesPerView: 6 },
+                }}
             >
                 {swiperInitialized ? (
                     exchangeBooks.map(item => (
@@ -166,7 +173,6 @@ export default function Exchange() {
                     </div>
                 )}
             </Swiper>
-
         </div>
     );
 }

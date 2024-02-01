@@ -4,7 +4,7 @@ import OurStory from "@/components/AboutUs/OurStories/OurStory";
 import Footer from "@/components/Shared/Footer";
 import Teams from "@/components/AboutUs/Teams/Teams";
 
-const AboutUsPage = () => {
+const page= () => {
   return (
     <div className="bg-orange-50">
       <Navbar />
@@ -16,4 +16,4 @@ const AboutUsPage = () => {
   );
 };
 
-export default AboutUsPage;
+export default page;

@@ -114,7 +114,7 @@ const TestExchange = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto my-20 px-5 py-10 rounded-lg">
+    <div className="container mx-auto my-20 px-5 py-10 rounded-lg">
       <div className="grid grid-cols-1 md:grid-cols-8 gap-3">
         <div className="col-span-2">
           <div class="rounded-lg bg-orange-300 w-full h-full"></div>
@@ -141,7 +141,7 @@ const TestExchange = () => {
                 </span>
               </div>
 
-                <div className="absolute bottom-0 w-full bg-gradient-to-t from-black via-black/65 to-transparent rounded-b-lg">
+                <div className="absolute bottom-0 w-full bg-gradient-to-t from-black/80 via-black/45 to-transparent rounded-b-lg">
                   <div class="px-5 py-5">
                     {/* Book Title & Auther Name */}
                     <div className="">

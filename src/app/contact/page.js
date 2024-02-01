@@ -4,7 +4,7 @@ import Footer from "@/components/Shared/Footer";
 import Navbar from "@/components/Shared/Navbar/Navbar";
 import React from "react";
 
-const contact = () => {
+const page = () => {
   return (
     <div className="bg-orange-50">
       <Navbar />
@@ -15,4 +15,4 @@ const contact = () => {
   );
 };
 
-export default contact;
+export default page;
