@@ -14,7 +14,6 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
     const axiosPublic = useAxiosPublic();
-
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
@@ -50,6 +49,7 @@ const AuthProvider = ({ children }) => {
 
     //   loging  Account 
     const signin = (email, password) => {
+
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }

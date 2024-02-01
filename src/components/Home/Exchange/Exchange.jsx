@@ -5,7 +5,7 @@ import ExchangeCard from "../../Shared/ExchangeCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper/core";
 import { Navigation } from "swiper/modules";
-import "../../Styles/spinner.css";
+import "./Spinner.css";
 import "swiper/css/bundle";
 
 SwiperCore.use([Navigation]);
@@ -125,23 +125,23 @@ export default function Exchange() {
 
 
     return (
-        <div className="container mx-auto py-12">
+        <div className="container mt-16 mx-auto px-5">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl md:text-3xl font-bold text-nowrap">Trending Now</h2>
                 <hr className="hr" />
                 <div className="flex items-center justify-end gap-3 text-nowrap">
                     {/* View All button */}
-                    <button className="button-color px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
+                    <button className="button-color px-4 py-2 rounded-full text-base text-orange-50 flex items-center gap-1">
                         View All
                     </button>
                     {/* Previous Button */}
-                    <button className="button-color p-2 rounded-full text-white flex items-center gap-1" onClick={handlePrevButtonClick}>
+                    <button className="button-color p-2 rounded-full text-orange-50 flex items-center gap-1" onClick={handlePrevButtonClick}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12 15.75 4.5" />
                         </svg>
                     </button>
                     {/* Next Button */}
-                    <button className="button-color p-2 rounded-full text-white flex items-center gap-1" onClick={handleNextButtonClick}>
+                    <button className="button-color p-2 rounded-full text-orange-50 flex items-center gap-1" onClick={handleNextButtonClick}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                         </svg>
@@ -149,7 +149,7 @@ export default function Exchange() {
                 </div>
             </div>
             <Swiper
-                spaceBetween={20}
+                spaceBetween={13}
                 onSwiper={handleSwiperInit}
                 controller={{ control: swiper => (window.swiper = swiper) }}
                 slidesPerView={2}

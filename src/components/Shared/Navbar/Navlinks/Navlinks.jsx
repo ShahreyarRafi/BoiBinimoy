@@ -4,36 +4,39 @@ import React from "react";
 const Navlinks = () => {
   const navlinks = (
     <>
-      <Link href="/">
+      <Link className=" py-2 px-3 font-bold" href="/">
         <li>Home</li>
       </Link>
-      <Link href="/buyBooks">
+      <Link className=" py-2 px-3 font-bold" href="/buyBooks">
         <li>All Books</li>
       </Link>
-      <Link href="/blogs">
+      <Link className=" py-2 px-3 font-bold" href="/blogs">
         <li>Bologs</li>
       </Link>
-      <Link href="/aboutus">
+      <Link className=" py-2 px-3 font-bold" href="/aboutus">
         <li>About</li>
       </Link>
-      <Link href="/contact">
+      <Link className=" py-2 px-3 font-bold" href="/contact">
         <li>Contact</li>
       </Link>
-      <Link href="/category">
-        <li>Category</li>
+      <Link className=" py-2 px-3 font-bold" href="/dashboard">
+        <li>Dashboard</li>
       </Link>
-      <Link href="/addBook">
+      <Link className=" py-2 px-3 font-bold" href="/addBook">
         <li>Add Book</li>
       </Link>
-      <Link href="/register">
-        <li>Register</li>
+      <Link
+        className="border-2 border-white rounded-full py-2 px-3 font-bold"
+        href="/joinUs"
+      >
+        <li>Join Now</li>
       </Link>
     </>
   );
   return (
-    <>
+    <div>
       <ul className="flex justify-around text-xs uppercase py-1">{navlinks}</ul>
-    </>
+    </div>
   );
 };
 
