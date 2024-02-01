@@ -19,8 +19,8 @@ const Navlinks = () => {
       <Link className=" py-2 px-3 font-bold" href="/contact">
         <li>Contact</li>
       </Link>
-      <Link className=" py-2 px-3 font-bold" href="/category">
-        <li>Category</li>
+      <Link className=" py-2 px-3 font-bold" href="/dashboard">
+        <li>Dashboard</li>
       </Link>
       <Link className=" py-2 px-3 font-bold" href="/addBook">
         <li>Add Book</li>
@@ -34,9 +34,9 @@ const Navlinks = () => {
     </>
   );
   return (
-    <>
+    <div>
       <ul className="flex justify-around text-xs uppercase py-1">{navlinks}</ul>
-    </>
+    </div>
   );
 };
 
