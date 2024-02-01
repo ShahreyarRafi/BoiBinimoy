@@ -129,7 +129,9 @@ const TestExchange = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-8 gap-3">
         <div className="col-span-2">
-          <div class="rounded-lg bg-orange-300 w-full h-full"></div>
+          <div class="rounded-lg w-full h-full">
+            <Image className="rounded-lg object-cover w-full h-full" src="https://i.ibb.co/X5w89Kh/book3.png" alt="alt" width={1000} height={1000} />
+          </div>
         </div>
 
         <div className="col-span-6">
