@@ -114,7 +114,7 @@ const TestExchange = () => {
   ];
 
   return (
-    <div className="container mx-auto pt-5 rounded-lg">
+    <div className="container mx-auto pt-5 rounded-lg px-5">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl md:text-3xl font-bold text-nowrap">Exchange Now</h2>
         <hr className="hr" />
