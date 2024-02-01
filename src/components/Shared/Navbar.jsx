@@ -99,7 +99,13 @@ const Navbar = () => {
             <LuMoonStar className="text-xl  hover:text-orange-500"></LuMoonStar>
           </button>
           <button>
-            <FiLogIn className="text-xl  hover:text-orange-500"></FiLogIn>
+
+
+
+            {/* <FiLogIn className="text-xl  hover:text-orange-500"></FiLogIn> */}
+            <h1> helw </h1>
+
+
           </button>
         </div>
       </nav>
