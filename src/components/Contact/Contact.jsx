@@ -1,8 +1,42 @@
-import React from "react";
+"use client"
+
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
+
 
 const Contact = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    console.log(form.current)
+    emailjs
+      .sendForm(
+        "service_uzkvpvg",
+        "template_a5m3vbr",
+        form.current,
+        "I54EHbb6_LwYWwU4e"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          form.current.reset();
+          Swal.fire({
+            icon: "success",
+            title: "Message Sent",
+            text: "Your message has been sent successfully!",
+          });
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
   return (
-    <div>
+    <div className="min-h-screen my-auto mt-20">
       <div className="flex justify-center items-center bg-orange-50">
         <div className="container mx-auto my-4 px-4 lg:px-20">
           <div className="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
@@ -12,13 +46,15 @@ const Contact = () => {
               </h1>
             </div>
 
-            <form>
+            <form ref={form} onSubmit={sendEmail}>
               {/* input fild */}
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
                 <input
                   className="w-full mt-2 p-3 rounded-lg focus:outline-none"
                   type="text"
+                  name="from_name"
                   placeholder="First Name*"
+                  required
                 />
                 <input
                   className="w-full mt-2 p-3 rounded-lg focus:outline-none"
@@ -28,6 +64,7 @@ const Contact = () => {
                 <input
                   className="w-full mt-2 p-3 rounded-lg focus:outline-none"
                   type="email"
+                  name="user_email"
                   placeholder="Email*"
                 />
                 <input
@@ -41,6 +78,8 @@ const Contact = () => {
               <div className="my-4">
                 <textarea
                   placeholder="Message*"
+                  name="message"
+                  required
                   className="w-full h-32  mt-2 p-3 rounded-lg focus:outline-none"
                 ></textarea>
               </div>

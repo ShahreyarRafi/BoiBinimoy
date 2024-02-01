@@ -139,7 +139,6 @@ const BannerSlider = () => {
             let thumbnailItemsDom = document.querySelectorAll('.carousel .thumbnail .item');
 
             if (type === 'next' && thumbnailItemsDom.length > 0) {
-                console.log('next');
                 SliderDom.appendChild(SliderItemsDom[0]);
                 thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
                 carouselDom.classList.add('next');
