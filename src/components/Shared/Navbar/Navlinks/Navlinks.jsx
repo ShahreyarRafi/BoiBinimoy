@@ -34,9 +34,9 @@ const Navlinks = () => {
     </>
   );
   return (
-    <>
+    <div>
       <ul className="flex justify-around text-xs uppercase py-1">{navlinks}</ul>
-    </>
+    </div>
   );
 };
 
