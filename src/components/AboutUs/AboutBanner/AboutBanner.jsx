@@ -1,98 +1,26 @@
-"use client";
-
-import {
-  Typography,
-  Button,
-  Popover,
-  PopoverHandler,
-  PopoverContent,
-  Input,
-} from "@material-tailwind/react";
-import Image from "next/image";
-import { Lora } from "next/font/google";
-import { MdOutlineArrowOutward } from "react-icons/md";
-
-const lora = Lora({
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-});
+import React from "react";
 
 const AboutBanner = () => {
   return (
-    <div className="rounded-3xl max-w-7xl mx-auto mb-3">
-      <div className="relative h-full w-full">
-        <Image
-          width={500}
-          height={500}
-          src="https://i.postimg.cc/MTy0xy3H/bookshelf-arranged-in-rainbow-pattern-jpg-optimal.jpg"
-          alt="image 1"
-          className="h-96 w-full object-cover rounded-xl"
-        />
-        <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/55 rounded-xl">
-          <div className="w-3/4 text-center md:w-2/4">
-            <div className={lora.className}>
-              <Typography
-                variant="h1"
-                color="white"
-                className="mb-4 text-4xl md:text-5xl lg:text-6xl"
-              >
-                About Us
-              </Typography>
-            </div>
-            <Typography
-              variant="lead"
-              color="white"
-              className="mb-12 opacity-80 text-2xl font-light"
-            >
-              Exchange, buy, sell, and rediscover the magic of books
-            </Typography>
+    <div className="relative bg-orange-300">
+      {/* bottom curve */}
+      <div className="absolute inset-x-0 bottom-0 ">
+        <svg
+          viewBox="0 0 224 12"
+          fill="currentColor"
+          className="w-full -mb-1 text-orange-50"
+          preserveAspectRatio="none"
+        >
+          <path d="M0,0 C48.8902582,6.27314026 86.2235915,9.40971039 112,9.40971039 C137.776408,9.40971039 175.109742,6.27314026 224,0 L224,12.0441132 L0,12.0441132 L0,0 Z" />
+        </svg>
+      </div>
 
-            <div className="flex justify-center gap-2">
-              <Popover placement="bottom">
-                <PopoverHandler>
-                  <Button className="bg-orange-500 py-1 px-3 text-black border-2 border-orange-500">
-                    Subscribe
-                  </Button>
-                </PopoverHandler>
-
-                <PopoverContent className="w-96 p-8">
-                  <div className={lora.className}>
-                    <Typography variant="h4" color="blue-gray" className="mb-6">
-                      Newsletter Subscription
-                    </Typography>
-                  </div>
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="mb-1 font-bold"
-                  >
-                    Your Email
-                  </Typography>
-                  <div className="flex gap-2">
-                    <Input
-                      size="lg"
-                      placeholder="name@mail.com"
-                      className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-                      labelProps={{
-                        className: "before:content-none after:content-none",
-                      }}
-                    />
-                    <Button className="bg-orange-500 py-1 px-3 text-black border-2 font-normal border-orange-500">
-                      Subscribe
-                    </Button>
-                  </div>
-                </PopoverContent>
-              </Popover>
-
-              <Button className=" py-2 px-3 text-white border-2 border-orange-500">
-                <span className="flex justify-between items-center gap-2">
-                  Explore <MdOutlineArrowOutward />
-                </span>
-              </Button>
-            </div>
-          </div>
+      {/* Information section */}
+      <div className="text-center px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
+          <h2 className="mb-6 text-3xl font-bold text-white sm:text-5xl">
+            About Us
+          </h2>
         </div>
       </div>
     </div>

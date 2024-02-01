@@ -91,7 +91,7 @@ const UserDashboard = () => {
         <>
             {/*  SIDEBAR */}
             <section id="sidebar">
-                <a href="#" class="brand">
+                <a href="/" class="brand">
                     <i class='bx bxs-smile'></i>
                     <span class="text">BoiBinimoy</span>
                 </a>
@@ -100,6 +100,12 @@ const UserDashboard = () => {
                         <a href="#">
                             <i class='bx bxs-dashboard' ></i>
                             <span class="text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/addBook">
+                            <i class='bx bxs-book-add' ></i>
+                            <span class="text">Add Book</span>
                         </a>
                     </li>
                     <li>

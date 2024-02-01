@@ -19,13 +19,13 @@ import image6 from './image/img6.jpg'
 const data = [
     {
         "cover_image": "https://i.ibb.co/n1zgRWn/book-cover-6-6.png",
-        "author": "LUNDEV",
-        "title": "DESIGN SLIDER",
-        "topic": "ANIMAL",
+        "author": "Boi Binimoy",
+        "title": "BUY NOW",
+        "topic": "30% Flat Off",
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "SUBSCRIBE", "link": "/subscribe-link" }
+            { "label": "Buy Now", "link": "/Buy Now-link" }
         ],
         "thumbnail_img": "https://i.ibb.co/wry18Qy/book1.png",
         "thumbnail_title": "Name Slider",
@@ -33,13 +33,13 @@ const data = [
     },
     {
         "cover_image": "https://i.ibb.co/L6y20Z5/book-cover-7-2.png",
-        "author": "LUNDEV",
-        "title": "DESIGN SLIDER",
-        "topic": "ANIMAL",
+        "author": "Boi Binimoy",
+        "title": "BUY NOW",
+        "topic": "30% Flat Off",
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "SUBSCRIBE", "link": "/subscribe-link" }
+            { "label": "Buy Now", "link": "/Buy Now-link" }
         ],
         "thumbnail_img": "https://i.ibb.co/gg6zpVY/book2.png",
         "thumbnail_title": "Name Slider",
@@ -47,13 +47,13 @@ const data = [
     },
     {
         "cover_image": "https://i.ibb.co/VtjcbTC/book-cover-7-3.png",
-        "author": "LUNDEV",
-        "title": "DESIGN SLIDER",
-        "topic": "ANIMAL",
+        "author": "Boi Binimoy",
+        "title": "BUY NOW",
+        "topic": "30% Flat Off",
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "SUBSCRIBE", "link": "/subscribe-link" }
+            { "label": "Buy Now", "link": "/Buy Now-link" }
         ],
         "thumbnail_img": "https://i.ibb.co/X5w89Kh/book3.png",
         "thumbnail_title": "Name Slider",
@@ -61,13 +61,13 @@ const data = [
     },
     {
         "cover_image": "https://i.ibb.co/pf9JZWy/book-cover-7-4.png",
-        "author": "LUNDEV",
-        "title": "DESIGN SLIDER",
-        "topic": "ANIMAL",
+        "author": "Boi Binimoy",
+        "title": "BUY NOW",
+        "topic": "30% Flat Off",
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "SUBSCRIBE", "link": "/subscribe-link" }
+            { "label": "Buy Now", "link": "/Buy Now-link" }
         ],
         "thumbnail_img": "https://i.ibb.co/6sHJqkj/book4.png",
         "thumbnail_title": "Name Slider",
@@ -75,13 +75,13 @@ const data = [
     },
     {
         "cover_image": "https://i.ibb.co/Tm26pfr/book-cover-7-8.png",
-        "author": "LUNDEV",
-        "title": "DESIGN SLIDER",
-        "topic": "ANIMAL",
+        "author": "Boi Binimoy",
+        "title": "BUY NOW",
+        "topic": "30% Flat Off",
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "SUBSCRIBE", "link": "/subscribe-link" }
+            { "label": "Buy Now", "link": "/Buy Now-link" }
         ],
         "thumbnail_img": "https://i.ibb.co/frT6m8q/book5.png",
         "thumbnail_title": "Name Slider",
@@ -89,22 +89,19 @@ const data = [
     },
     {
         "cover_image": "https://i.ibb.co/82HNKpB/book-cover-6-1.png",
-        "author": "LUNDEV",
-        "title": "DESIGN SLIDER",
-        "topic": "ANIMAL",
+        "author": "Boi Binimoy",
+        "title": "BUY NOW",
+        "topic": "30% Flat Off",
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "SUBSCRIBE", "link": "/subscribe-link" }
+            { "label": "Buy Now", "link": "/Buy Now-link" }
         ],
         "thumbnail_img": "https://i.ibb.co/HT901q9/book6.png",
         "thumbnail_title": "Name Slider",
         "thumbnail_description": "Description"
     }
 ]
-
-
-
 
 
 
