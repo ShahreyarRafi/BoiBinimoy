@@ -105,9 +105,6 @@ const data = [
 
 
 
-
-
-
 const BannerSlider = () => {
     const [componentsMounted, setComponentMounted] = useState(false);
 
