@@ -44,11 +44,10 @@ const Profile = () => {
           <div className="flex justify-between items-center py-3">
             <div>
               {currentUser.map(userData => <div key={userData._id}>
-                {/* <h6 className="text-lg font-bold">Wellcome, {userData.name} !</h6> */}
+                <h6 className="text-lg font-bold">Wellcome, {userData.name} !</h6>
                 
-
               </div>)}
-              <h6 className="text-lg font-bold">Wellcome, Muhammad Minhajul Alam </h6>
+              {/* <h6 className="text-lg font-bold">Wellcome, Muhammad Minhajul Alam </h6> */}
 
             </div>
             <div>
