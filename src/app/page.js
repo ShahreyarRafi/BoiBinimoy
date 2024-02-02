@@ -1,5 +1,3 @@
-"use client";
-
 import BannerSlider from "../components/Home/BannerNew/BannerNew";
 import Footer from "@/components/Shared/Footer";
 import TestExchange from "@/components/Exchange/Exchange";
