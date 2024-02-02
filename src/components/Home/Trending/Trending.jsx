@@ -131,17 +131,17 @@ export default function Trending() {
                 <hr className="hr" />
                 <div className="flex items-center justify-end gap-3 text-nowrap">
                     {/* View All button */}
-                    <button className="bg-[#016961] text-white px-4 py-2 rounded-full text-base flex items-center gap-1">
+                    <button className="button-color px-4 py-2 rounded-full text-base text-teal-50 flex items-center gap-1">
                         View All
                     </button>
                     {/* Previous Button */}
-                    <button className="bg-[#016961] text-white p-2 rounded-full flex items-center gap-1" onClick={handlePrevButtonClick}>
+                    <button className="button-color p-2 rounded-full text-teal-50 flex items-center gap-1" onClick={handlePrevButtonClick}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12 15.75 4.5" />
                         </svg>
                     </button>
                     {/* Next Button */}
-                    <button className="bg-[#016961] text-white p-2 rounded-full flex items-center gap-1" onClick={handleNextButtonClick}>
+                    <button className="button-color p-2 rounded-full text-teal-50 flex items-center gap-1" onClick={handleNextButtonClick}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                         </svg>
