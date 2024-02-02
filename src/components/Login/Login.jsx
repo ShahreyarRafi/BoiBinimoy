@@ -76,7 +76,7 @@ const Login = () => {
                   }}
                   className={`w-full px-3 py-2 rounded-lg focus:outline-none font-bold text-center ${
                     activePage === "login"
-                      ? "bg-orange-500 text-white"
+                      ? "bg-teal-500 text-white"
                       : "text-gray-700"
                   }`}
                 >
@@ -89,7 +89,7 @@ const Login = () => {
                   }}
                   className={`w-full px-3 py-2 rounded-lg focus:outline-none font-bold text-center ${
                     activePage === "register"
-                      ? "bg-orange-500 text-white"
+                      ? "bg-teal-500 text-white"
                       : "text-gray-700"
                   }`}
                 >
@@ -138,7 +138,7 @@ const Login = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-2 border-2 border-orange-500 rounded-lg focus:outline-none bg-orange-500 font-bold text-white"
+                  className="w-full py-2 border-2 border-teal-500 rounded-lg focus:outline-none bg-teal-500 font-bold text-white"
                 >
                   Sign In
                 </button>

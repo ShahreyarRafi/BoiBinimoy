@@ -64,7 +64,7 @@ const AddBook = () => {
       });
   };
   return (
-    <div className="bg-orange-50 text-gray-500 min-h-screen">
+    <div className="bg-teal-50 text-gray-500 min-h-screen">
       <div className="max-w-5xl mx-auto px-3 md:px-5 lg:px-0 py-10">
         <div className="border-2 border-gray-300 rounded-lg px-3">
           <h1 className="text-lg  font-bold py-2">Add Book</h1>

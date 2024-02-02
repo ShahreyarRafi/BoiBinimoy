@@ -38,7 +38,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen my-auto mt-20">
-      <div class="flex justify-center items-center bg-orange-50">
+      <div class="flex justify-center items-center bg-teal-50">
         <div class="container mx-auto my-4 px-4 lg:px-20">
           <div class="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
             <div class="flex">
@@ -87,7 +87,7 @@ const Contact = () => {
               <div class="my-2 w-1/2 lg:w-1/4">
                 <button
                   type="submit"
-                  class="uppercase text-sm font-bold tracking-wide bg-orange-300 text-white p-3 rounded-lg w-full 
+                  class="uppercase text-sm font-bold tracking-wide bg-[#016961] text-white p-3 rounded-lg w-full 
                       focus:outline-none"
                 >
                   Send Message
@@ -96,7 +96,7 @@ const Contact = () => {
             </form>
           </div>
 
-          <div class="w-full lg:-mt-96 lg:w-2/6 px-8 py-12 ml-auto bg-orange-300 rounded-2xl">
+          <div class="w-full lg:-mt-96 lg:w-2/6 px-8 py-12 ml-auto bg-[#016961] rounded-2xl">
             <div class="flex flex-col text-white">
               <h1 class="font-bold uppercase text-4xl my-4">
                 Drop in our office
