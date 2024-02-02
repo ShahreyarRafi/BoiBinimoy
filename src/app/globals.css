@@ -28,5 +28,32 @@
 }
 
 .button-color {
-  background: linear-gradient(45deg,#ffd5b3, #fdba74 35%);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #016961, #016961 35%);
+}
+
+.button-color:hover {
+  background: linear-gradient(0deg, #3d9b8e, #028d7a 40%);
+}
+
+.button-color:active::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  width: 10px; /* Adjust the starting size of the ripple */
+  height: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple-animation 0.6s ease-out;
+}
+
+@keyframes ripple-animation {
+  to {
+    width: 200px; /* Adjust the ending size of the ripple */
+    height: 200px;
+    opacity: 0;
+  }
 }
