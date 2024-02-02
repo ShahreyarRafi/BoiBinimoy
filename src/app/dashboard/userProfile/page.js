@@ -1,10 +1,9 @@
-import UserProfile from '@/components/UserDashboard/UserProfile/UserProfile';
-import React from 'react';
+import Profile from '@/components/UserDashboard/Profile/Profile';
 
 const page = () => {
     return (
         <div>
-            <UserProfile></UserProfile>
+            <Profile></Profile>
         </div>
     );
 };

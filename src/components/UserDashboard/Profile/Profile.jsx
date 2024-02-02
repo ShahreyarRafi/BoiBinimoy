@@ -1,10 +1,31 @@
+"use client"
+
+import useAllUser from "@/Hooks/api/useAllUser";
+import { AuthContext } from "@/providers/AuthProvider";
 import Image from "next/image";
+import { useContext } from "react";
 import { CiEdit } from "react-icons/ci";
 
 const Profile = () => {
+
+  const { user } = useContext(AuthContext)
+  console.log(user?.email);
+
+
+  // All user data 
+  const [allUser] = useAllUser()
+  console.log(allUser);
+
+
+  // specific user 
+  const currentUser = allUser.filter(data => data?.email === user?.email)
+  console.log(currentUser);
+
+
+
   return (
     <div className="max-w-5xl mx-auto rounded-lg my-20 bg-orange-50 shadow-lg">
-      <div className="relative bg-orange-300 rounded-t-lg">
+      <div className="relative bg-[#016961] rounded-t-lg">
         {/* bottom curve */}
         <div className="absolute inset-x-0 bottom-0 ">
           <svg
@@ -22,7 +43,13 @@ const Profile = () => {
           {/* wellcome and edit btton */}
           <div className="flex justify-between items-center py-3">
             <div>
-              <h6 className="text-lg font-bold">Wellcome, Minhajul!</h6>
+              {currentUser.map(userData => <div key={userData._id}>
+                {/* <h6 className="text-lg font-bold">Wellcome, {userData.name} !</h6> */}
+                
+
+              </div>)}
+              <h6 className="text-lg font-bold">Wellcome, Muhammad Minhajul Alam </h6>
+
             </div>
             <div>
               <button className="text-xl md:text-2xl">

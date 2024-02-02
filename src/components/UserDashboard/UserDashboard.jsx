@@ -151,6 +151,12 @@ const UserDashboard = () => {
                         </a>
                     </li>
                     <li>
+                        <a href="/dashboard/users">
+                            <i class='bx bxs-group' ></i>
+                            <span class="text">Users</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="/dashboard/userProfile">
                             <i class='bx bxs-group' ></i>
                             <span class="text">Profile</span>
