@@ -86,7 +86,7 @@ header a {
 }
 
 .carousel .list .item .topic {
-  color: #fdba74;
+  color: #11a180;
 }
 
 .carousel .list .item .buttons {
@@ -99,7 +99,7 @@ header a {
 
 .carousel .list .item .buttons button {
   border: none;
-  background-color: #fdba74;
+  background-color: #11a180;
   letter-spacing: 3px;
   font-family: Poppins;
   font-weight: 500;
@@ -107,7 +107,7 @@ header a {
 
 .carousel .list .item .buttons button:nth-child(2) {
   background-color: transparent;
-  border: 1px solid #fdba74;
+  border: 1px solid #11a180;
   color: #eee;
 }
 

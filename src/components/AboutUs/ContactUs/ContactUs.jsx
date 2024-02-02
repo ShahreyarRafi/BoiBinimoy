@@ -77,7 +77,7 @@ const ContactUs = () => {
                   placeholder="Enter your name"
                   name="user_name"
                   required
-                  className="border border-gray-300 px-3 py-2 w-full rounded-md focus:outline-none focus:border-orange-500 bg-white"
+                  className="border border-gray-300 px-3 py-2 w-full rounded-md focus:outline-none focus:border-teal-500 bg-white"
                 />
               </div>
 
@@ -90,7 +90,7 @@ const ContactUs = () => {
                   name="user_email"
                   required
                   className={
-                    "border border-gray-300 px-3 py-2 w-full rounded-md focus:outline-none focus:border-orange-500 bg-white"
+                    "border border-gray-300 px-3 py-2 w-full rounded-md focus:outline-none focus:border-teal-500 bg-white"
                   }
                 />
               </div>
@@ -102,7 +102,7 @@ const ContactUs = () => {
                   placeholder="Enter subject"
                   name="subject"
                   className={
-                    "border border-gray-300 px-3 py-2 w-full rounded-md focus:outline-none focus:border-orange-500 bg-white"
+                    "border border-gray-300 px-3 py-2 w-full rounded-md focus:outline-none focus:border-teal-500 bg-white"
                   }
                 />
               </div>
@@ -115,7 +115,7 @@ const ContactUs = () => {
                   name="message"
                   required
                   className={
-                    "border border-gray-300 px-3 py-2 w-full rounded-md focus:outline-none focus:border-orange-500 bg-white"
+                    "border border-gray-300 px-3 py-2 w-full rounded-md focus:outline-none focus:border-teal-500 bg-white"
                   }
                 />
               </div>
@@ -124,7 +124,7 @@ const ContactUs = () => {
                 <input
                   type="submit"
                   className={
-                    "px-4 py-2 rounded-md bg-orange-500 hover:bg-orange-600 transition duration-300 text-white "
+                    "px-4 py-2 rounded-md bg-teal-500 hover:bg-orange-600 transition duration-300 text-white "
                   }
                   value="Send Message"
                 />

@@ -3,14 +3,14 @@ import { CiEdit } from "react-icons/ci";
 
 const Profile = () => {
   return (
-    <div className="max-w-5xl mx-auto rounded-lg my-20 bg-orange-50 shadow-lg">
-      <div className="relative bg-orange-300 rounded-t-lg">
+    <div className="max-w-5xl mx-auto rounded-lg my-20 bg-teal-50 shadow-lg">
+      <div className="relative bg-[#016961] rounded-t-lg">
         {/* bottom curve */}
         <div className="absolute inset-x-0 bottom-0 ">
           <svg
             viewBox="0 0 224 12"
             fill="currentColor"
-            className="w-full -mb-1 text-orange-50"
+            className="w-full -mb-1 text-teal-50"
             preserveAspectRatio="none"
           >
             <path d="M0,0 C48.8902582,6.27314026 86.2235915,9.40971039 112,9.40971039 C137.776408,9.40971039 175.109742,6.27314026 224,0 L224,12.0441132 L0,12.0441132 L0,0 Z" />
@@ -66,24 +66,24 @@ const Profile = () => {
           <div>
             {/* user name */}
             <div className="py-3">
-              <p className="text-orange-300 text-xs font-bold">Full Name</p>
+              <p className="text-[#016961] text-xs font-bold">Full Name</p>
               <p className="text-lg">Muhammad Minhajul Alam</p>
             </div>
 
             {/* user dob */}
             <div className="py-3">
-              <p className="text-orange-300 text-xs font-bold">Dath Of Birth</p>
+              <p className="text-[#016961] text-xs font-bold">Dath Of Birth</p>
               <p className="text-lg">27 june, 2001</p>
             </div>
 
             {/* user gander */}
             <div className="py-3">
-              <p className="text-orange-300 text-xs font-bold">Gender</p>
+              <p className="text-[#016961] text-xs font-bold">Gender</p>
               <p className="text-lg">Male</p>
             </div>
             {/* user Profession */}
             <div className="py-3">
-              <p className="text-orange-300 text-xs font-bold">Profession</p>
+              <p className="text-[#016961] text-xs font-bold">Profession</p>
               <p className="text-lg">Student</p>
             </div>
           </div>
@@ -97,24 +97,24 @@ const Profile = () => {
           <div>
             {/* user City */}
             <div className="py-3">
-              <p className="text-orange-300 text-xs font-bold">City</p>
+              <p className="text-[#016961] text-xs font-bold">City</p>
               <p className="text-lg">Dhaka</p>
             </div>
 
             {/* user Street */}
             <div className="py-3">
-              <p className="text-orange-300 text-xs font-bold">Street</p>
+              <p className="text-[#016961] text-xs font-bold">Street</p>
               <p className="text-lg">Notun bazar</p>
             </div>
 
             {/* user Country */}
             <div className="py-3">
-              <p className="text-orange-300 text-xs font-bold">Country</p>
+              <p className="text-[#016961] text-xs font-bold">Country</p>
               <p className="text-lg">Bangladesh</p>
             </div>
             {/* user Address */}
             <div className="py-3">
-              <p className="text-orange-300 text-xs font-bold">Address</p>
+              <p className="text-[#016961] text-xs font-bold">Address</p>
               <p className="text-lg">Notun bazar, pani sottor</p>
             </div>
           </div>
