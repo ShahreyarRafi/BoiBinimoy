@@ -1,18 +1,18 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { FaChevronRight } from "react-icons/fa6";
+import { FaChevronRight } from "react-icons/fa";
 
 const AllBooks = ({ book }) => {
   return (
     <>
-      <div className="bg-[#fcfcf6] rounded-lg shadow-lg">
+      <div className="bg-[#fcfcf6] rounded-lg shadow-lg hover:shadow-xl transform-gpu duration-500">
         <Image
           src={book?.cover_image}
           alt="book"
           height={1500}
           width={1000}
-          className="w-full h-80 object-cover rounded-md"
+          className="w-full h-[240px] sm:[290px] object-cover rounded-md"
         />
         <div className="flex justify-between items-center py-3 px-2">
           <div>
