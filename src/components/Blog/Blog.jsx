@@ -235,7 +235,7 @@ const Blog = () => {
               <button class="px-4 py-2 rounded-r bg-gray-400 hover:bg-gray-500 transition-colors text-white">
                 Subscribe
               </button>
-              <p class="text-black opacity-50 text-sm mt-1">
+              <p class="text-white opacity-50 text-sm mt-1">
                 No spam. We promise
               </p>
             </form>

@@ -1,9 +1,9 @@
-import UserDashboard from "@/components/UserDashboard/UserDashboard";
+"use client"
 
 const page = () => {
     return (
         <div>
-            <UserDashboard></UserDashboard>
+            <h1 className="flex justify-center items-center">All the content place here.</h1>
         </div>
     );
 };

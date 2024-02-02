@@ -24,13 +24,13 @@ const BuyAllBooks = () => {
       fetchData();
     }
 
-    return () => {};
+    return () => { };
   }, [fetchData]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen max-w-6xl mx-auto px-3">
       <div className="container py-12 mx-auto ">
-        <div className="grid grid-cols-6 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
           {books?.map((book) => (
             <AllBooksCard key={book?._id} book={book}></AllBooksCard>
           ))}

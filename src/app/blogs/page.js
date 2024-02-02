@@ -1,3 +1,5 @@
+"use client"
+
 import Blog from "@/components/Blog/Blog";
 import BlogBanner from "@/components/Blog/BlogBanner/BlogBanner";
 import Footer from "@/components/Shared/Footer";

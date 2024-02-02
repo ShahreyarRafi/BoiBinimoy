@@ -7,7 +7,7 @@ import { AuthContext } from "@/providers/AuthProvider";
 
 const useOneUser = () => {
     const axiosSecure = useAxiosSecure()
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     console.log(user?.email);
 
     const { data: currentUser = [] } = useQuery({

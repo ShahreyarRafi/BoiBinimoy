@@ -19,7 +19,7 @@ const BuyCard = ({ source, title, author, rating, price }) => {
                 </div>
             </div>
             <div className='mt-3'>
-                <h2 className="text-xl font-semibold">{title}</h2>
+                <h2 className="text-xl text-[#016961] font-semibold">{title}</h2>
                 <div className="rating rating-sm my-3">
                     <input className="mask mask-star-2 bg-teal-500" readOnly />
                     <input className="mask mask-star-2 bg-teal-500" readOnly />
