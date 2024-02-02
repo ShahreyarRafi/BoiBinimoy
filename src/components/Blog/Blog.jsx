@@ -15,7 +15,7 @@ const Blog = () => {
               height={500}
               alt=""
             />
-            <span class="text-orange-300 text-sm hidden md:block mt-4">
+            <span class="text-[#016961] text-sm hidden md:block mt-4">
               Technology
             </span>
             <h1 class="text-black text-4xl font-bold mt-2 mb-2 leading-tight">
@@ -31,7 +31,7 @@ const Blog = () => {
             </p>
             <a
               href="#"
-              class="inline-block px-6 py-3 mt-2 rounded-md bg-orange-300 hover:bg-orange-400 text-white"
+              class="inline-block px-6 py-3 mt-2 rounded-md bg-[#016961] hover:bg-orange-400 text-white"
             >
               Read more
             </a>
@@ -48,7 +48,7 @@ const Blog = () => {
                 alt=""
               />
               <div class="px-4 pt-2">
-                <span class="text-orange-300 text-sm hidden md:block">
+                <span class="text-[#016961] text-sm hidden md:block">
                   Gadgets
                 </span>
                 <div class="md:mt-0 text-blackfont-semibold text-xl mb-2">
@@ -72,7 +72,7 @@ const Blog = () => {
                 alt=""
               />
               <div class="px-4 pt-2">
-                <span class="text-orange-300 text-sm hidden md:block">
+                <span class="text-[#016961] text-sm hidden md:block">
                   Bitcoin
                 </span>
                 <div class="md:mt-0 text-black font-semibold text-xl mb-2">
@@ -95,7 +95,7 @@ const Blog = () => {
                 alt=""
               />
               <div class="px-4 pt-2">
-                <span class="text-orange-300 text-sm hidden md:block">
+                <span class="text-[#016961] text-sm hidden md:block">
                   Insights
                 </span>
                 <div class="md:mt-0 text-black font-semibold text-xl mb-2">
@@ -118,7 +118,7 @@ const Blog = () => {
                 alt=""
               />
               <div class="px-4 pt-2">
-                <span class="text-orange-300 text-sm hidden md:block">
+                <span class="text-[#016961] text-sm hidden md:block">
                   Cryptocurrency
                 </span>
                 <div class="md:mt-0 text-black font-semibold text-xl mb-2">
@@ -137,7 +137,7 @@ const Blog = () => {
         {/* Latest blog */}
         <div class="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
           <h2 class="font-bold text-xl md:text-3xl">Latest blog</h2>
-          <a class="bg-orange-300 hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer">
+          <a class="bg-[#016961] hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer">
             View all
           </a>
         </div>
@@ -212,7 +212,7 @@ const Blog = () => {
         </div>
 
         {/* newslater subscription */}
-        <div class="rounded flex md:shadow my-12 bg-orange-300 ">
+        <div class="rounded flex md:shadow my-12 bg-[#016961] ">
           <Image
             src="https://images.unsplash.com/photo-1579275542618-a1dfed5f54ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
             class="w-0 md:w-1/4 object-cover rounded-l"
@@ -245,7 +245,7 @@ const Blog = () => {
         {/* popular blog */}
         <div class="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
           <h2 class="font-bold text-xl md:text-3xl">Popular blogs</h2>
-          <a class="bg-orange-300 hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer">
+          <a class="bg-[#016961] hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer">
             View all
           </a>
         </div>

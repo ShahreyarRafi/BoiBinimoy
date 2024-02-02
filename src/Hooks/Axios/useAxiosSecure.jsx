@@ -1,18 +1,23 @@
+"use client"
+
 import axios from "axios";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 
 
+import { useRouter } from "next/navigation";
+
 export const axiosSecure = axios.create({
     // baseURL: 'http://localhost:5000',
-    baseURL: 'hhttps://boi-binimoy-server.vercel.app',
+    baseURL: "https://boi-binimoy-server.vercel.app",
     withCredentials: true
 });
 
 const useAxiosSecure = () => {
     const { logOut } = useAuth();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+    const navigate = useRouter();
     useEffect(() => {
         axiosSecure.interceptors.response.use(res => {
             return res;
@@ -22,7 +27,7 @@ const useAxiosSecure = () => {
                 console.log('logout the user')
                 logOut()
                     .then(() => {
-                        navigate('/login')
+                        navigate.push('/login')
                     })
                     .catch(error => console.log(error))
             }
