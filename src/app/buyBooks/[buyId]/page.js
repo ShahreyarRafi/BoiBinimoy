@@ -1,3 +1,5 @@
+"use client"
+
 import BookDetails from '@/components/BookDetails/BookDetails';
 import React from 'react';
 

@@ -14,17 +14,17 @@ const Profile = () => {
 
   // All user data 
   const [allUser] = useAllUser()
-  console.log(allUser);
+  // console.log(allUser);
 
 
   // specific user 
   const currentUser = allUser.filter(data => data?.email === user?.email)
-  console.log(currentUser);
+  // console.log(currentUser);
 
 
 
   return (
-    <div className="max-w-5xl mx-auto rounded-lg my-20 bg-teal-50 shadow-lg">
+    <div className="max-w-5xl mx-auto rounded-lg mb-10 bg-teal-50 shadow-lg">
       <div className="relative bg-[#016961] rounded-t-lg">
         {/* bottom curve */}
         <div className="absolute inset-x-0 bottom-0 ">
@@ -45,7 +45,7 @@ const Profile = () => {
             <div>
               {currentUser.map(userData => <div key={userData._id}>
                 <h6 className="text-lg font-bold">Wellcome, {userData.name} !</h6>
-                
+
               </div>)}
               {/* <h6 className="text-lg font-bold">Wellcome, Muhammad Minhajul Alam </h6> */}
 

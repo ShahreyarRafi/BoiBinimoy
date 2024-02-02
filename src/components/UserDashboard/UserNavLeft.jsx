@@ -105,9 +105,15 @@ const UserNavLeft = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link href="#">
-                            <i className='bx bxs-shopping-bag-alt' ></i>
-                            <span className="text">My Store</span>
+                        <Link href="/dashboard/profile">
+                            <i className='bx bxs-group' ></i>
+                            <span className="text">Profile</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/dashboard/users">
+                            <i className='bx bxs-group' ></i>
+                            <span className="text">Users</span>
                         </Link>
                     </li>
                     <li>
@@ -120,12 +126,6 @@ const UserNavLeft = () => {
                         <Link href="#">
                             <i className='bx bxs-message-dots' ></i>
                             <span className="text">Message</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/dashboard/profile">
-                            <i className='bx bxs-group' ></i>
-                            <span className="text">Profile</span>
                         </Link>
                     </li>
                 </ul>

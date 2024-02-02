@@ -5,7 +5,7 @@ import { FaCartPlus, FaExchangeAlt } from "react-icons/fa";
 
 
 export default function ExchangeCard({ item }) {
-  console.log(item);
+  // console.log(item);
   return (
     <div className="l-container">
       <div className="b-game-card">
