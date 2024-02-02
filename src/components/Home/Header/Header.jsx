@@ -8,8 +8,19 @@ import './header.css'
 const Header = () => {
   const [currentQuote, setCurrentQuote] = useState({ text: '', author: '' });
   const [isLoading, setIsLoading] = useState(true);
+  const [componentsMounted, setComponentMounted] = useState(false);
 
   useEffect(() => {
+      setComponentMounted(true);
+  }, []);
+
+  useEffect(() => {
+      if (componentsMounted) {
+          initialize();
+      }
+  }, [componentsMounted]);
+
+  function initialize() {
     const fetchRandomQuote = async () => {
       try {
         setIsLoading(true);
@@ -31,7 +42,8 @@ const Header = () => {
 
     // Cleanup the interval on component unmount
     return () => clearInterval(intervalId);
-  }, []);
+  }
+
 
   return (
     <div>
