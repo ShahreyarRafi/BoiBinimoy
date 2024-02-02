@@ -11,7 +11,7 @@ const UserCard = ({ user }) => {
                 height: '120px',
             }} className='rounded-full p-1 mx-auto' />
             <div className="flex flex-col pl-2">
-                <h2 className="text-lg text-black font-semibold">{user?.name}</h2>
+                <h2 className="text-lg text-gray-600 font-semibold">{user?.name}</h2>
                 <p className='text-xs text-gray-500'>{user?.email}</p>
             </div>
         </div>

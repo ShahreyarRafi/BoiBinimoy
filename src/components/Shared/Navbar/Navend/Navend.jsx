@@ -13,11 +13,6 @@ const Navend = () => {
   const { user, logOut } = useContext(AuthContext);
   const [active, setActive] = useState(false)
 
-
-
-
-
-
   return (
     <div className="flex items-center gap-2">
       <MdFavoriteBorder />

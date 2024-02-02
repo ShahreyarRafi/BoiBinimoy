@@ -6,8 +6,8 @@ import Search from "./Search/Search";
 const Navbar = () => {
   return (
     <nav className="bg-[#016961] text-white sticky top-0 right-0 z-50">
-      {/* nav for md and lg sereen */}
-      <div className="max-w-7xl mx-auto py-3 h-28 hidden md:block">
+      {/* nav for md and lg screen */}
+      <div className="max-w-7xl mx-auto h-28 hidden md:block">
         {/* upper side nav */}
         <div className="flex justify-between items-center py-2 px-5">
           {/* logo */}
