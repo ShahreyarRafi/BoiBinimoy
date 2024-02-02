@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './style.css'
+import Link from 'next/link'
 
 const UserNavLeft = () => {
 
@@ -14,8 +15,6 @@ const UserNavLeft = () => {
             initializeDashboard();
         }
     }, [componentsMounted]);
-
-    // console.log(componentsMounted);
 
 
     function initializeDashboard() {
@@ -32,6 +31,7 @@ const UserNavLeft = () => {
                 });
                 li.classList.add('active');
             });
+            console.log(li);
         });
 
         // TOGGLE SIDEBAR
@@ -83,10 +83,6 @@ const UserNavLeft = () => {
         });
     }
 
-    const handleClick = (route) => {
-        console.log(route);
-    }
-
     return (
         <>
             {/*  SIDEBAR */}
@@ -103,48 +99,48 @@ const UserNavLeft = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link href="/dashboard/addbook">
                             <i className='bx bxs-book-add' ></i>
                             <span className="text">Add Book</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link href="#">
                             <i className='bx bxs-shopping-bag-alt' ></i>
                             <span className="text">My Store</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link href="#">
                             <i className='bx bxs-doughnut-chart' ></i>
                             <span className="text">Analytics</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link href="#">
                             <i className='bx bxs-message-dots' ></i>
                             <span className="text">Message</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link href="#">
                             <i className='bx bxs-group' ></i>
                             <span className="text">Team</span>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
                 <ul className="side-menu">
                     <li>
-                        <a href="#">
+                        <Link href="#">
                             <i className='bx bxs-cog' ></i>
                             <span className="text">Settings</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#" className="logout">
+                        <Link href="#" className="logout">
                             <i className='bx bxs-log-out-circle' ></i>
                             <span className="text">Logout</span>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </section>

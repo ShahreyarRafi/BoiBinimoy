@@ -18,7 +18,7 @@ const AllBooks = ({ book }) => {
 
         <div className="absolute top-0 right-0">
           <span class="text-xs font-light mr-2 px-2.5 py-0.5 rounded bg-blue-200 text-blue-800 ml-3">
-            seal
+            sale
           </span>
         </div>
 
@@ -36,8 +36,8 @@ const AllBooks = ({ book }) => {
                 <MdFavoriteBorder />
               </span>
             </div>
-            {/* Book Title & Auther Name */}
-            <div className="">
+            {/* Book Title & Author Name */}
+            <div>
               {/* Book Title */}
               <h3 class="text-white font-semibold text-sm md:text-base">
                 {book?.title}

@@ -129,7 +129,7 @@ const TestExchange = () => {
 
                 <div className="absolute top-0 right-0">
                   <span className="text-xs font-light mr-2 px-2.5 py-0.5 rounded bg-blue-200 text-blue-800 ml-3">
-                    seal
+                    sale
                   </span>
                 </div>
 

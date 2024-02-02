@@ -2,10 +2,12 @@
 
 import AddBook from '@/components/AddBook/AddBook';
 
-const page = ({ params }) => {
-    console.log(params);
+const page = () => {
+
+    const path = 'addbook';
+
     return (
-        <div className="">
+        <div>
             <AddBook></AddBook>
         </div>
     );
