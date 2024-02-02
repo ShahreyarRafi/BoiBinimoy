@@ -11,13 +11,13 @@ const Header = () => {
   const [componentsMounted, setComponentMounted] = useState(false);
 
   useEffect(() => {
-      setComponentMounted(true);
+    setComponentMounted(true);
   }, []);
 
   useEffect(() => {
-      if (componentsMounted) {
-          initialize();
-      }
+    if (componentsMounted) {
+      initialize();
+    }
   }, [componentsMounted]);
 
   function initialize() {

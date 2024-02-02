@@ -11,7 +11,7 @@ const Navlinks = () => {
         <li>All Books</li>
       </Link>
       <Link className=" py-2 px-3" href="/blogs">
-        <li>Bologs</li>
+        <li>Blogs</li>
       </Link>
       <Link className=" py-2 px-3" href="/aboutus">
         <li>About</li>

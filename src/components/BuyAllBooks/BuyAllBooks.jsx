@@ -24,7 +24,7 @@ const BuyAllBooks = () => {
       fetchData();
     }
 
-    return () => {};
+    return () => { };
   }, [fetchData]);
 
   return (

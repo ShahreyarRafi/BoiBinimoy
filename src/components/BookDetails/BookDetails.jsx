@@ -27,7 +27,7 @@ const BookDetails = () => {
       fetchData();
     }
 
-    return () => {};
+    return () => { };
   }, [fetchData, param.buyId]);
 
   console.log(book);

@@ -1,3 +1,5 @@
+"use client"
+
 import Contact from "@/components/Contact/Contact";
 import ContactBanner from "@/components/Contact/ContactBanner/ContactBanner";
 import Footer from "@/components/Shared/Footer";

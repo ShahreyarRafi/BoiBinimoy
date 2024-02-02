@@ -15,7 +15,7 @@ const Search = () => {
             <input
               type="text"
               placeholder="Search"
-              className="w-full h-8 bg-gray-100 rounded-l-md focus:outline-none text-black font-extralight px-3"
+              className="w-full h-8 bg-gray-100 rounded-l-md focus:outline-none text-black font-light px-3"
             />
           </span>
         </span>

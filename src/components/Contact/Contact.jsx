@@ -1,4 +1,5 @@
 "use client";
+
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
@@ -9,7 +10,7 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    console.log(form.current);
+    // console.log(form.current);
     emailjs
       .sendForm(
         "service_uzkvpvg",
@@ -46,39 +47,39 @@ const Contact = () => {
 
             <form ref={form} onSubmit={sendEmail}>
               {/* input fild */}
-              <div class="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
                 <input
-                  class="w-full mt-2 p-3 rounded-lg focus:outline-none"
+                  className="w-full mt-2 p-3 rounded-lg focus:outline-none"
                   type="text"
                   name="from_name"
                   placeholder="First Name*"
                   required
                 />
                 <input
-                  class="w-full mt-2 p-3 rounded-lg focus:outline-none"
+                  className="w-full mt-2 p-3 rounded-lg focus:outline-none"
                   type="text"
                   placeholder="Last Name*"
                 />
                 <input
-                  class="w-full mt-2 p-3 rounded-lg focus:outline-none"
+                  className="w-full mt-2 p-3 rounded-lg focus:outline-none"
                   type="email"
                   name="user_email"
                   placeholder="Email*"
                 />
                 <input
-                  class="w-full mt-2 p-3 rounded-lg focus:outline-none"
+                  className="w-full mt-2 p-3 rounded-lg focus:outline-none"
                   type="text"
                   placeholder="Subjuct*"
                 />
               </div>
 
               {/* text area */}
-              <div class="my-4">
+              <div className="my-4">
                 <textarea
                   placeholder="Message*"
                   name="message"
                   required
-                  class="w-full h-32  mt-2 p-3 rounded-lg focus:outline-none"
+                  className="w-full h-32  mt-2 p-3 rounded-lg focus:outline-none"
                 ></textarea>
               </div>
 
