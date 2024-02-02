@@ -3,10 +3,6 @@
 import { useEffect, useState } from 'react';
 import './BannerStyles.css';
 import Image from 'next/image';
-<<<<<<< HEAD:src/components/Home/BannerSlider/bannerSlider.jsx
-=======
-
->>>>>>> 72588844576a04bcadb474bd6aa500434504c234:src/components/Home/BannerNew/BannerNew.jsx
 
 const data = [
     {
@@ -97,7 +93,7 @@ const data = [
 
 
 
-export default function BannerNew () {
+export default function BannerNew() {
     const [componentsMounted, setComponentMounted] = useState(false);
 
     useEffect(() => {

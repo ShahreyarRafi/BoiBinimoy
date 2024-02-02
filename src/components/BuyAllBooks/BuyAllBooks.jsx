@@ -29,7 +29,7 @@ const BuyAllBooks = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="container py-12 mx-auto ">
+      <div className="container p-12 mx-auto ">
         <div className="grid grid-cols-6 gap-5">
           {books?.map((book) => (
             <AllBooksCard key={book?._id} book={book}></AllBooksCard>

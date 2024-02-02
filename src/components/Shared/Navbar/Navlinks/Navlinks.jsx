@@ -4,39 +4,26 @@ import React from "react";
 const Navlinks = () => {
   const navlinks = (
     <>
-      <Link className=" py-2 px-3 font-bold" href="/">
+      <Link className=" py-2 px-3 font-semibold" href="/">
         <li>Home</li>
       </Link>
-      <Link className=" py-2 px-3 font-bold" href="/buyBooks">
+      <Link className=" py-2 px-3 font-semibold" href="/buyBooks">
         <li>All Books</li>
       </Link>
-<<<<<<< HEAD
-      <Link href="/blogs">
+      <Link className=" py-2 px-3 font-semibold" href="/blogs">
         <li>Blogs</li>
-=======
-      <Link className=" py-2 px-3 font-bold" href="/blogs">
-        <li>Bologs</li>
->>>>>>> 72588844576a04bcadb474bd6aa500434504c234
       </Link>
-      <Link className=" py-2 px-3 font-bold" href="/aboutus">
+      <Link className=" py-2 px-3 font-semibold" href="/aboutus">
         <li>About</li>
       </Link>
-      <Link className=" py-2 px-3 font-bold" href="/contact">
+      <Link className=" py-2 px-3 font-semibold" href="/contact">
         <li>Contact</li>
       </Link>
-      <Link className=" py-2 px-3 font-bold" href="/dashboard">
+      <Link className=" py-2 px-3 font-semibold" href="/dashboard">
         <li>Dashboard</li>
-      </Link>
-<<<<<<< HEAD
-      <Link href="/dashboard">
-        <li>Dashboard</li>
-=======
-      <Link className=" py-2 px-3 font-bold" href="/addBook">
-        <li>Add Book</li>
->>>>>>> 72588844576a04bcadb474bd6aa500434504c234
       </Link>
       <Link
-        className="border-2 border-white rounded-full py-2 px-3 font-bold"
+        className="border-2 border-white rounded-full py-2 px-3 font-semibold"
         href="/joinUs"
       >
         <li>Join Now</li>

@@ -5,9 +5,8 @@ import Footer from "@/components/Shared/Footer";
 import TestExchange from "@/components/Exchange/Exchange";
 import Navbar from "@/components/Shared/Navbar/Navbar";
 import Header from "@/components/Home/Header/Header";
-import Category from "@/components/Home/Category/Category";
 import Buy from "@/components/Home/Buy/Buy";
-import Exchange from "@/components/Home/Exchange/Exchange";
+import Exchange from "@/components/Home/Trending/Trending";
 import Stats from "@/components/Home/Stats/Stats";
 
 const HomePage = () => {

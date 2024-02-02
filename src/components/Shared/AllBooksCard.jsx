@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { MdFavoriteBorder } from "react-icons/md";
 
 const AllBooks = ({ book }) => {
@@ -13,11 +12,11 @@ const AllBooks = ({ book }) => {
           width={500}
           height={500}
           alt=""
-          className="object-cover rounded-lg"
+          className="rounded-lg h-full"
         />
 
         <div className="absolute top-0 right-0">
-          <span class="text-xs font-light mr-2 px-2.5 py-0.5 rounded bg-blue-200 text-blue-800 ml-3">
+          <span class="text-xs mr-2 px-2.5 py-0.5 rounded bg-green-200 text-green-800 ml-3">
             sale
           </span>
         </div>
@@ -42,7 +41,7 @@ const AllBooks = ({ book }) => {
               <h3 class="text-white font-semibold text-sm md:text-base">
                 {book?.title}
               </h3>
-              {/* Auther Name */}
+              {/* Author Name */}
               <p className="text-white text-xs font-extralight hidden md:flex">
                 by {book?.writer}
               </p>

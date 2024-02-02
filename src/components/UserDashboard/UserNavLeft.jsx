@@ -123,9 +123,9 @@ const UserNavLeft = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link href="#">
+                        <Link href="/dashboard/profile">
                             <i className='bx bxs-group' ></i>
-                            <span className="text">Team</span>
+                            <span className="text">Profile</span>
                         </Link>
                     </li>
                 </ul>

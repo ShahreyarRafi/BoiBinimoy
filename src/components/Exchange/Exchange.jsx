@@ -98,13 +98,13 @@ const TestExchange = () => {
   return (
     <div className="container mx-auto pt-5 rounded-lg px-5">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-nowrap">
+        <h2 className="text-2xl text-[#016961] md:text-3xl font-bold text-nowrap">
           Exchange Now
         </h2>
         <hr className="hr" />
         <div className="flex items-center justify-end gap-3 text-nowrap">
           {/* View All button */}
-          <button className="button-color px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
+          <button className="bg-[#016961] px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
             View All
           </button>
         </div>
@@ -132,7 +132,7 @@ const TestExchange = () => {
                 />
 
                 <div className="absolute top-0 right-0">
-                  <span class="text-xs font-light mr-2 px-2.5 py-0.5 rounded bg-green-200 text-green-800 ml-3">
+                  <span class="text-xs mr-2 px-2.5 py-0.5 rounded bg-green-200 text-green-800 ml-3">
                     Exchange
                   </span>
                 </div>
