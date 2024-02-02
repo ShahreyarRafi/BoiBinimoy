@@ -19,7 +19,7 @@ const Search = () => {
             />
           </span>
         </span>
-        <button type="submit" className="bg-gray-400 px-3 rounded-r-md">
+        <button type="submit" className="bg-gray-400 px-1 sm:px-3 rounded-r-md">
           <IoSearchSharp />
         </button>
       </form>
