@@ -11,6 +11,7 @@ const nextConfig = {
       "www.flaticon.com",
       "img.icons8.com",
       "images.pexels.com",
+      "lh3.googleusercontent.com",
     ],
   },
 };

@@ -5,7 +5,7 @@ import Navbar from "@/components/Shared/Navbar/Navbar";
 
 export default function BlogPage() {
   return (
-    <div className="bg-[#eee5db]">
+    <div className="bg-teal-50">
       <Navbar />
       <BlogBanner />
       <Blog />
