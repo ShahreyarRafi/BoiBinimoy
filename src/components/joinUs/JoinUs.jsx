@@ -35,11 +35,11 @@ const JoinUs = () => {
         const container = document.querySelector(".container");
 
         sign_up_btn.addEventListener("click", () => {
-            container.classNameList.add("sign-up-mode");
+            container.classList.add("sign-up-mode");
         });
 
         sign_in_btn.addEventListener("click", () => {
-            container.classNameList.remove("sign-up-mode");
+            container.classList.remove("sign-up-mode");
         });
     }
 

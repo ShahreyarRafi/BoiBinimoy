@@ -96,9 +96,11 @@ const TestExchange = () => {
   ];
 
   return (
-    <div className="container mx-auto pt-5 rounded-lg">
+    <div className="container mx-auto pt-5 rounded-lg px-5">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-nowrap">Exchange Now</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-nowrap">
+          Exchange Now
+        </h2>
         <hr className="hr" />
         <div className="flex items-center justify-end gap-3 text-nowrap">
           {/* View All button */}
@@ -109,7 +111,9 @@ const TestExchange = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-8 gap-3">
         <div className="col-span-2">
-          <div className="rounded-lg bg-orange-300 w-full h-full"></div>
+          <div class="rounded-lg w-full h-full">
+            <Image className="rounded-lg object-cover w-full h-full" src="https://i.ibb.co/X5w89Kh/book3.png" alt="alt" width={1000} height={1000} />
+          </div>
         </div>
 
         <div className="col-span-6">
@@ -128,8 +132,8 @@ const TestExchange = () => {
                 />
 
                 <div className="absolute top-0 right-0">
-                  <span className="text-xs font-light mr-2 px-2.5 py-0.5 rounded bg-blue-200 text-blue-800 ml-3">
-                    sale
+                  <span class="text-xs font-light mr-2 px-2.5 py-0.5 rounded bg-green-200 text-green-800 ml-3">
+                    Exchange
                   </span>
                 </div>
 

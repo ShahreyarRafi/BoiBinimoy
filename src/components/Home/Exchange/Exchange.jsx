@@ -5,7 +5,7 @@ import ExchangeCard from "../../Shared/ExchangeCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper/core";
 import { Navigation } from "swiper/modules";
-import "../../Styles/spinner.css";
+import "./Spinner.css";
 import "swiper/css/bundle";
 
 SwiperCore.use([Navigation]);
@@ -125,7 +125,7 @@ export default function Exchange() {
 
 
     return (
-        <div className="container mt-16 mx-auto">
+        <div className="container mt-16 mx-auto px-5">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl md:text-3xl font-bold text-nowrap">Trending Now</h2>
                 <hr className="hr" />
