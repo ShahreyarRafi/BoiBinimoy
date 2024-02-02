@@ -64,13 +64,15 @@ const Header = () => {
         <div className="text-center px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
             {isLoading ? (
-              <p className="mb-6 text-3xl font-bold text-white sm:text-4xl">Loading...</p>
+              <>
+                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+              </>
             ) : (
               <>
                 <h2 className="mb-6 text-3xl font-bold text-white sm:text-4xl">
                   {currentQuote.text}
                 </h2>
-                <p className="max-w-md mb-10 text-xs text-gray-100 sm:text-sm sm:mx-auto md:mb-16">
+                <p className="max-w-md mb-10 text-sm text-gray-100 sm:text-sm sm:mx-auto md:mb-16">
                   <span>-</span> {currentQuote.author}
                 </p>
               </>
