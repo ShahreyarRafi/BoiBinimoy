@@ -1,5 +1,3 @@
-
-
 import Navbar from "@/components/Shared/Navbar/Navbar";
 import AboutBanner from "@/components/AboutUs/AboutBanner/AboutBanner";
 import OurStory from "@/components/AboutUs/OurStories/OurStory";

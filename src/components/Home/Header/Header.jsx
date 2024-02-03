@@ -2,6 +2,7 @@
 "use client"
 
 import { useState, useEffect } from 'react';
+import './header.css'
 // bg-[#ffb386]
 
 const Header = () => {
