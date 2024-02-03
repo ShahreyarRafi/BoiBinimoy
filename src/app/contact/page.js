@@ -1,3 +1,5 @@
+"use client"
+
 import Contact from "@/components/Contact/Contact";
 import ContactBanner from "@/components/Contact/ContactBanner/ContactBanner";
 import Footer from "@/components/Shared/Footer";
@@ -6,7 +8,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="bg-orange-50">
+    <div className="bg-teal-50">
       <Navbar />
       <ContactBanner />
       <Contact />

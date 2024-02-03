@@ -10,7 +10,7 @@ const OurStory = () => {
         </p>
       </div>
 
-      <section class="max-w-5xl mx-auto py-10">
+      <section class="max-w-5xl mx-auto px-2">
         <div>
           <div class="flex flex-row">
             <div class="hidden md:flex flex-col items-center">

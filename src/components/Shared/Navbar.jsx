@@ -49,7 +49,7 @@ const Navbar = () => {
             {/* logo */}
             <div>
               <Link href="/">
-                <div className="text-orange-500 text-xl font-bold">
+                <div className="text-teal-500 text-xl font-bold">
                   <span className="font-extrabold">
                     Boi
                     <span className="text-orange-600 font-extralight">
@@ -66,7 +66,7 @@ const Navbar = () => {
             {/* logo */}
             <div>
               <Link href="/">
-                <div className="text-orange-500 text-2xl font-bold">
+                <div className="text-teal-500 text-2xl font-bold">
                   <span className="font-extrabold">
                     Boi
                     <span className="text-orange-600 font-extralight">
@@ -87,19 +87,19 @@ const Navbar = () => {
         {/* nav end */}
         <div className="navbar-end flex items-center gap-3 md:gap-6">
           <button className="hidden lg:block">
-            <IoSearch className="text-lg hover:text-orange-500"></IoSearch>
+            <IoSearch className="text-lg hover:text-teal-500"></IoSearch>
           </button>
           <button>
-            <FaRegHeart className="text-lg hover:text-orange-500"></FaRegHeart>
+            <FaRegHeart className="text-lg hover:text-teal-500"></FaRegHeart>
           </button>
           <button>
-            <BsBasket3 className="text-lg  hover:text-orange-500"></BsBasket3>
+            <BsBasket3 className="text-lg  hover:text-teal-500"></BsBasket3>
           </button>
           <button>
-            <LuMoonStar className="text-xl  hover:text-orange-500"></LuMoonStar>
+            <LuMoonStar className="text-xl  hover:text-teal-500"></LuMoonStar>
           </button>
           <button>
-            <FiLogIn className="text-xl  hover:text-orange-500"></FiLogIn>
+            <FiLogIn className="text-xl  hover:text-teal-500"></FiLogIn>
           </button>
         </div>
       </nav>

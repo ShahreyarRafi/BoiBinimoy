@@ -1,11 +1,15 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import placeholder from './img/people.png'
 import './style.css'
+import { AuthContext } from '@/providers/AuthProvider';
 
 const UserDashboard = () => {
+
+
+    const { user } = useContext(AuthContext)
 
     const [componentsMounted, setComponentMounted] = useState(false);
 
@@ -95,6 +99,20 @@ const UserDashboard = () => {
                     <i class='bx bxs-smile'></i>
                     <span class="text">BoiBinimoy</span>
                 </a>
+
+                <div className='text-center '>
+                    <li class="active">
+                        <Image src={user?.photoURL} alt="user"
+                            priority width={100} height={100} style={{
+                                width: '50px',
+                                height: '50px',
+                            }}
+                            className=" rounded-full" />
+
+                    </li>
+
+                </div>
+
                 <ul class="side-menu top">
                     <li class="active">
                         <a href="#">
@@ -130,6 +148,18 @@ const UserDashboard = () => {
                         <a href="#">
                             <i class='bx bxs-group' ></i>
                             <span class="text">Team</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/users">
+                            <i class='bx bxs-group' ></i>
+                            <span class="text">Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/userProfile">
+                            <i class='bx bxs-group' ></i>
+                            <span class="text">Profile</span>
                         </a>
                     </li>
                 </ul>

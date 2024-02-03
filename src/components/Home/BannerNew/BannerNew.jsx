@@ -1,8 +1,8 @@
 "use client"
+
 import { useEffect, useState } from 'react';
 import './BannerStyles.css';
 import Image from 'next/image';
-
 
 const data = [
     {
@@ -93,7 +93,7 @@ const data = [
 
 
 
-export default function BannerNew () {
+export default function BannerNew() {
     const [componentsMounted, setComponentMounted] = useState(false);
 
     useEffect(() => {
@@ -147,7 +147,7 @@ export default function BannerNew () {
                 thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
                 carouselDom.classList.add('prev');
             }
-            
+
             clearTimeout(runTimeOut);
             runTimeOut = setTimeout(() => {
                 carouselDom.classList.remove('next');
