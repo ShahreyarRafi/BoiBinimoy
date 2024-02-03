@@ -7,10 +7,9 @@ import { FaCartPlus, FaExchangeAlt } from "react-icons/fa";
 // bg-[#f2fdf9]
 
 export default function ExchangeCard({ item }) {
-  console.log(item);
   return (
     <div className="l-container md:p-1 ">
-      <div className="b-game-card">
+      <div className="b-game-card ">
         <div
           className="b-game-card__cover book-cover-effect"
           style={{ backgroundImage: `url(${item.cover_image})` }}
@@ -28,9 +27,9 @@ export default function ExchangeCard({ item }) {
           </span>
         </div>
       </div>
+
+
       <div className="px-1">
-
-
         <div className="space-y-1 mt-2.5 pb-1">
           <h2 className="text-lg font-bold text-[#016961] line-clamp-1">
             {item.title}

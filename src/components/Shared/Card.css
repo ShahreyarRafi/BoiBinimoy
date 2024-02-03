@@ -11,7 +11,6 @@ Settings:root {
 /* Basic reset */
 
 @media screen and (max-width: 760px) {}
-
 .b-game-card {
   position: relative;
   z-index: 1;
@@ -27,7 +26,7 @@ Settings:root {
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: hidden; /* Remove duplicate property */
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
   background-size: cover;
   perspective-origin: 50% 50%;
@@ -35,9 +34,8 @@ Settings:root {
   transform-origin: top center;
   will-change: transform;
   transform: skewX(.001deg);
-  transition: transform .35s ease-in-out;
+  transition: transform .35s ease-in-out, transform-origin .35s ease-in-out; /* Added transition for transform-origin */
   border-radius: 5px;
-  overflow: hidden;
 }
 
 .b-game-card__cover::after {
@@ -55,9 +53,9 @@ Settings:root {
   transition: transform .65s cubic-bezier(0.18, 0.9, 0.58, 1);
 }
 
-
 .b-game-card:hover .b-game-card__cover {
-  transform: scale(1.05) translateY(-16px);
+  transform: scale(1.05) translateY(0);
+  transform-origin: bottom center;
 }
 
 .b-game-card:hover .b-game-card__cover::after {
