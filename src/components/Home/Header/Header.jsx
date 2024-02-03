@@ -1,9 +1,7 @@
-import React from "react";
-
 // bg-[#ffb386]
 
-
 const Header = () => {
+
   return (
     <div>
       <div className="relative bg-[#016961]">
