@@ -125,7 +125,7 @@ export default function Trending() {
 
 
     return (
-        <div className="container mt-16 mx-auto px-5">
+        <div className="container mt-20 mx-auto px-5">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl text-[#016961] md:text-3xl font-bold text-nowrap">Trending Now</h2>
                 <hr className="hr" />

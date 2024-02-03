@@ -1,4 +1,4 @@
-/* Settings */
+Settings
 :root {
     --c_0: #000000;
     --c_1: #353540;
@@ -37,7 +37,7 @@
     will-change: transform;
     transform: skewX(.001deg);
     transition: transform .35s ease-in-out;
-    border-radius: 3px;
+    border-radius: 5px;
     overflow: hidden;
 }
 
@@ -117,15 +117,6 @@
 /* -------------------------------------- */
 
 
-
-
-
-
-
-  
-
-  
-
   /* Book Cover Effect */
   .book-cover-effect::before {
     content: "";
@@ -146,3 +137,105 @@
     );
   }
   
+
+
+/* ----------------price tags---------------- */
+
+/* Variables */
+:root {
+    --price-tag-background: #f05438;
+    --price-tag-color: #fff;
+    --price-tag-height: 30px;
+    --price-tag-corner: 4px;
+    --price-tag-dot-radius: 6px;
+    --price-tag-dot-background: #fff;
+  }
+  
+  /* Styles */
+  .price-tag {
+    position: absolute;
+    top: 2%;
+    right: 3%;
+    display: inline-flex;
+    flex-direction: column;
+    height: var(--price-tag-height);
+    margin-left: calc(var(--price-tag-height) / 2);
+    padding: 0 5px 0 10px;
+    color: var(--price-tag-color);
+    border-radius: 0 var(--price-tag-corner) var(--price-tag-corner) 0;
+    background-color: var(--price-tag-background);
+    line-height: 1;
+    justify-content: center;
+    box-shadow: 0 1px 5px #252424; 
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  */
+  }
+  
+  .price-tag::before,
+  .price-tag::after {
+    position: absolute;
+    content: '';
+  }
+  
+  .price-tag::before {
+    --price-tag-side: calc(var(--price-tag-height) / 1.428);
+  
+    left: calc(-1 * var(--price-tag-side) / 2);
+    width: var(--price-tag-side);
+    height: var(--price-tag-side);
+    transform: rotate(45deg);
+    border-radius: 0 0 0 var(--price-tag-corner);
+    background-color: var(--price-tag-background);
+  }
+  
+  .price-tag::after {
+    z-index: 1;
+    top: 40%;
+    left: calc(-1 * var(--price-tag-height) / 5);
+    width: var(--price-tag-dot-radius);
+    height: var(--price-tag-dot-radius);
+    transform: translate(-50%, -50%) translateX(var(--price-tag-height) / 2);
+    border-radius: var(--price-tag-dot-radius) / 100%;
+    background-color: var(--price-tag-dot-background);
+  }
+  
+  .price-tag__main {
+    font-size: 1.15em;
+    font-weight: bold;
+  }
+  
+  .price-tag__main ~ * {
+    opacity: 0.85;
+  }
+  
+  .price-tag span {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .price-tag--two-lines {
+    --price-tag-side: calc(var(--price-tag-height) / 1.428 * 2);
+    margin-left: var(--price-tag-height);
+    height: calc(var(--price-tag-height) * 2);
+  
+    .price-tag::before {
+      left: calc(-1 * var(--price-tag-side) / 2);
+      width: var(--price-tag-side);
+      height: var(--price-tag-side);
+    }
+  
+    .price-tag::after {
+      transform: translate(-50%, -50%) translateX(var(--price-tag-height) / 2) scale(2);
+    }
+  }
+  
+  .price-tag--one-line {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .price-tag--one-line span:not(:first-child)::before {
+    content: ', ';
+  }
+  
+
+
