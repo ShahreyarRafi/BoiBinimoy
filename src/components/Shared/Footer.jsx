@@ -23,7 +23,7 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="relative mt-16 bg-[#016961]">
+    <div className="relative mt-28 bg-[#016961]">
       <svg
         className="absolute top-0 w-full h-6 -mt-5 sm:-mt-10 sm:h-16 text-[#016961]"
         preserveAspectRatio="none"
