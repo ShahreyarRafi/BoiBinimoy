@@ -111,3 +111,38 @@
 .card__action:hover {
     transform: translateX(-10px); /* Add a small leftward translation on hover */
 }
+
+
+
+/* -------------------------------------- */
+
+
+
+
+
+
+
+  
+
+  
+
+  /* Book Cover Effect */
+  .book-cover-effect::before {
+    content: "";
+    position: absolute;
+    inset: 0px;
+    border-radius: 3px;
+    pointer-events: none;
+    filter: contrast(310%) brightness(100%);
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px inset;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.118) 0.65%,
+      rgba(255, 255, 255, 0.2) 1.53%,
+      rgba(255, 255, 255, 0.1) 2.38%,
+      rgba(0, 0, 0, 0.05) 3.26%,
+      rgba(255, 255, 255, 0.14) 5.68%,
+      rgba(244, 244, 244, 0) 6.96%
+    );
+  }
+  
