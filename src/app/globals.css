@@ -1,3 +1,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.parallax {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -100;
+  transform: translateZ(0);
+}
+
+.curvy-nav {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 80% 100%, 50% 96%, 20% 100%, 0 90%);
+}
+
+/* styles.css */
+
+.hr {
+  width: 100%;
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #dcdcc6;
+  box-sizing: border-box;
+  margin: 0px 25px;
+}
+
+.button-color {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #016961, #016961 35%);
+}
+
+.button-color:hover {
+  background: linear-gradient(0deg, #3d9b8e, #028d7a 40%);
+}
+
+.button-color:active::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  width: 10px; /* Adjust the starting size of the ripple */
+  height: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple-animation 0.6s ease-out;
+}
+
+@keyframes ripple-animation {
+  to {
+    width: 200px; /* Adjust the ending size of the ripple */
+    height: 200px;
+    opacity: 0;
+  }
+}

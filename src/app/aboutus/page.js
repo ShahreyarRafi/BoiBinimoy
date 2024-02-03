@@ -1,33 +1,19 @@
-"use client";
+import Navbar from "@/components/Shared/Navbar/Navbar";
+import AboutBanner from "@/components/AboutUs/AboutBanner/AboutBanner";
+import OurStory from "@/components/AboutUs/OurStories/OurStory";
+import Footer from "@/components/Shared/Footer";
+import Teams from "@/components/AboutUs/Teams/Teams";
 
-import { Lato } from "next/font/google";
-import ContactUs from "@/Components/AboutUs/ContactUs";
-import AboutBanner from "@/Components/AboutUs/AboutBanner";
-import FoundersQuotes from "@/Components/FoundersQuotes";
-import OurStory from "@/Components/OurStory";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/ui/Footer";
-
-const lato = Lato({
-  weight: ["100", "300", "400", "700", "900"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const about = () => {
+const page = () => {
   return (
-    <div className={lato.className}>
-      <div>
-        <Navbar></Navbar>
-        <AboutBanner />
-        <OurStory />
-        <FoundersQuotes />
-        <ContactUs />
-        <Footer></Footer>
-      </div>
+    <div className="bg-teal-50">
+      <Navbar />
+      <AboutBanner />
+      <OurStory />
+      <Teams />
+      <Footer />
     </div>
   );
 };
 
-export default about;
+export default page;

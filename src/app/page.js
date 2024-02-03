@@ -1,26 +1,30 @@
-// "use client"
 
-import Benefits from '@/Components/Banefits';
-import FAQ from '@/Components/FAQs';
-import Navbar from "@/Components/shared/Navbar";
-import Buy from "@/Components/ui/Buy";
-import Exchange from "@/Components/ui/Exchange";
-import Footer from "@/Components/ui/Footer";
-import Popular from "@/Components/ui/Popular";
+import BannerSlider from "../components/Home/BannerNew/BannerNew";
+import Footer from "@/components/Shared/Footer";
+import TestExchange from "@/components/Exchange/Exchange";
+import Navbar from "@/components/Shared/Navbar/Navbar";
+import Header from "@/components/Home/Header/Header";
+import Buy from "@/components/Home/Buy/Buy";
+import Exchange from "@/components/Home/Trending/Trending";
+import Stats from "@/components/Home/Stats/Stats";
 
 const HomePage = () => {
   return (
-    <div>
-      <Navbar></Navbar>
-      <Exchange />
-      <Popular></Popular>
-      <Buy></Buy>
-      <Benefits></Benefits>
-      <FAQ></FAQ>
-      <Footer></Footer>
+    <div className="bg-teal-50">
+      <div className="parallax">
+        <BannerSlider />
+      </div>
+      <div className="mt-[100vh]">
+        <Navbar />
+        <Header />
+        <Stats />
+        <TestExchange />
+        <Exchange />
+        <Buy />
+        <Footer />
+      </div>
     </div>
   );
 };
 
 export default HomePage;
-
