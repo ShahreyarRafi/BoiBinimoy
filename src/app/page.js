@@ -10,10 +10,10 @@ import Stats from "@/components/Home/Stats/Stats";
 const HomePage = () => {
   return (
     <div className="bg-teal-50">
-      <div className="parallax">
+      <div className="parallax hidden md:block">
         <BannerSlider />
       </div>
-      <div className="mt-[100vh]">
+      <div className="md:mt-[100vh]">
         <Navbar />
         <Header />
         <Stats />
