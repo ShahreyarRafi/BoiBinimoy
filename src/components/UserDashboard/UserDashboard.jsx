@@ -95,13 +95,13 @@ const UserDashboard = () => {
         <>
             {/*  SIDEBAR */}
             <section id="sidebar">
-                <a href="/" class="brand">
-                    <i class='bx bxs-smile'></i>
-                    <span class="text">BoiBinimoy</span>
+                <a href="/" className="brand">
+                    <i className='bx bxs-smile'></i>
+                    <span className="text">BoiBinimoy</span>
                 </a>
 
                 <div className='text-center '>
-                    <li class="active">
+                    <li className="active">
                         <Image src={user?.photoURL} alt="user"
                             priority width={100} height={100} style={{
                                 width: '50px',
@@ -113,67 +113,67 @@ const UserDashboard = () => {
 
                 </div>
 
-                <ul class="side-menu top">
-                    <li class="active">
+                <ul className="side-menu top">
+                    <li className="active">
                         <a href="#">
-                            <i class='bx bxs-dashboard' ></i>
-                            <span class="text">Dashboard</span>
+                            <i className='bx bxs-dashboard' ></i>
+                            <span className="text">Dashboard</span>
                         </a>
                     </li>
                     <li>
                         <a href="/addBook">
-                            <i class='bx bxs-book-add' ></i>
-                            <span class="text">Add Book</span>
+                            <i className='bx bxs-book-add' ></i>
+                            <span className="text">Add Book</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class='bx bxs-shopping-bag-alt' ></i>
-                            <span class="text">My Store</span>
+                            <i className='bx bxs-shopping-bag-alt' ></i>
+                            <span className="text">My Store</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class='bx bxs-doughnut-chart' ></i>
-                            <span class="text">Analytics</span>
+                            <i className='bx bxs-doughnut-chart' ></i>
+                            <span className="text">Analytics</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class='bx bxs-message-dots' ></i>
-                            <span class="text">Message</span>
+                            <i className='bx bxs-message-dots' ></i>
+                            <span className="text">Message</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class='bx bxs-group' ></i>
-                            <span class="text">Team</span>
+                            <i className='bx bxs-group' ></i>
+                            <span className="text">Team</span>
                         </a>
                     </li>
                     <li>
                         <a href="/dashboard/users">
-                            <i class='bx bxs-group' ></i>
-                            <span class="text">Users</span>
+                            <i className='bx bxs-group' ></i>
+                            <span className="text">Users</span>
                         </a>
                     </li>
                     <li>
                         <a href="/dashboard/userProfile">
-                            <i class='bx bxs-group' ></i>
-                            <span class="text">Profile</span>
+                            <i className='bx bxs-group' ></i>
+                            <span className="text">Profile</span>
                         </a>
                     </li>
                 </ul>
-                <ul class="side-menu">
+                <ul className="side-menu">
                     <li>
                         <a href="#">
-                            <i class='bx bxs-cog' ></i>
-                            <span class="text">Settings</span>
+                            <i className='bx bxs-cog' ></i>
+                            <span className="text">Settings</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="logout">
-                            <i class='bx bxs-log-out-circle' ></i>
-                            <span class="text">Logout</span>
+                        <a href="#" className="logout">
+                            <i className='bx bxs-log-out-circle' ></i>
+                            <span className="text">Logout</span>
                         </a>
                     </li>
                 </ul>
@@ -186,44 +186,44 @@ const UserDashboard = () => {
             <section id="content">
                 {/*  NAVBAR */}
                 <nav>
-                    <i class='bx bx-menu'></i>
-                    <a href="#" class="nav-link">Categories</a>
+                    <i className='bx bx-menu'></i>
+                    <a href="#" className="nav-link">Categories</a>
                     <form action="#">
-                        <div class="form-input">
+                        <div className="form-input">
                             <input type="search" placeholder="Search..." />
-                            <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+                            <button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
                         </div>
                     </form>
                     <input type="checkbox" id="switch-mode" hidden />
-                    <label for="switch-mode" class="switch-mode"></label>
-                    <a href="#" class="notification">
-                        <i class='bx bxs-bell' ></i>
-                        <span class="num">8</span>
+                    <label for="switch-mode" className="switch-mode"></label>
+                    <a href="#" className="notification">
+                        <i className='bx bxs-bell' ></i>
+                        <span className="num">8</span>
                     </a>
-                    <a href="#" class="profile">
+                    <a href="#" className="profile">
                         <Image src={placeholder} alt='' />
                     </a>
                 </nav>
                 {/*  NAVBAR */}
 
                 {/*  MAIN */}
-                <main class='min-h-[100svh]'>
-                    <div class="head-title">
-                        <div class="left">
+                <main className='min-h-[100svh]'>
+                    <div className="head-title">
+                        <div className="left">
                             <h1>Dashboard</h1>
-                            <ul class="breadcrumb">
+                            <ul className="breadcrumb">
                                 <li>
                                     <a href="#">Dashboard</a>
                                 </li>
-                                <li><i class='bx bx-chevron-right' ></i></li>
+                                <li><i className='bx bx-chevron-right' ></i></li>
                                 <li>
-                                    <a class="active" href="#">Home</a>
+                                    <a className="active" href="#">Home</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="w-full h-[75svh] flex items-center justify-center">
-                        <h1 class="text-xl font-medium">Additional dashboard items will appear here</h1>
+                    <div className="w-full h-[75svh] flex items-center justify-center">
+                        <h1 className="text-xl font-medium">Additional dashboard items will appear here</h1>
                     </div>
                 </main>
                 {/* MAIN */}

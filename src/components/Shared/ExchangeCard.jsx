@@ -5,6 +5,7 @@ import "./Card.css";
 import { FaCartPlus, FaExchangeAlt } from "react-icons/fa";
 
 // bg-[#f2fdf9]
+// text-[#2f8880]
 
 export default function ExchangeCard({ item }) {
   return (
@@ -22,12 +23,11 @@ export default function ExchangeCard({ item }) {
               <FaCartPlus />
             </button>
           </div>
-          <span class="price-tag">
+          <span className="price-tag">
             <span className="text-lg">$29.99</span>
           </span>
         </div>
       </div>
-
 
       <div className="px-1">
         <div className="space-y-1 mt-2.5 pb-1">
