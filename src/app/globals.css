@@ -51,17 +51,10 @@
 
 .button-color:hover,
 .button-color:focus-visible {
-  background:  #409489;
+  background:  #408a84;
 }
 
-.button-color > span {
-  position: absolute;
-  z-index: -1;
-  width: 33.333%;
-  height: 100%;
-  background: transparent;
-  opacity: 0.5;
-}
+
 
 .button-color > :first-child {
   left: 0;

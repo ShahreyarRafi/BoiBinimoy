@@ -8,6 +8,7 @@ import { Navigation } from 'swiper/modules';
 import './Spinner.css'
 import 'swiper/css/bundle';
 import Link from 'next/link';
+import { FiArrowUpRight } from 'react-icons/fi';
 
 SwiperCore.use([Navigation]);
 
@@ -126,7 +127,7 @@ export default function Buy() {
                 <div className="flex items-center justify-end gap-3 text-nowrap">
                     {/* View All button */}
                     <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-teal-50 flex items-center gap-1">
-                        View All
+                        View All <span className="text-xl"><FiArrowUpRight /></span>
                     </button>
                     {/* Previous Button */}
                     <button className="button-color p-1.5 md:p-2 rounded-full text-teal-50 flex items-center gap-1" onClick={handlePrevButtonClick}>
