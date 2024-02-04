@@ -101,6 +101,8 @@ const TestExchange = () => {
     }
   ];
 
+ const transparentBanner = "https://i.ibb.co/GPmg3HB/Swap-Books-t.png"
+
   return (
     <div className="container mx-auto pt-5 rounded-lg px-5">
       <div className="flex justify-between items-center mb-4">
@@ -119,8 +121,8 @@ const TestExchange = () => {
         <div className="col-span-2 hidden lg:block pt-[20px]">
           <div className="rounded-lg object-cover w-full h-full">
             <Image
-              className="rounded-lg object-cover md:w-full h-full"
-              src="https://i.ibb.co/ynN8PvN/Swap-Books.png"
+              className="rounded-lg object-cover md:w-full h-full border border-dashed border-[#016961]"
+              src={transparentBanner}
               alt="alt"
               width={1200}
               height={3000}
