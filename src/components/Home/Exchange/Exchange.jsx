@@ -1,6 +1,11 @@
 import Image from "next/image";
 import React from "react";
 import ExchangeCard from "../../Shared/ExchangeCard";
+import { FiArrowUpRight } from "react-icons/fi";
+
+
+
+
 
 const TestExchange = () => {
   const exchangeBooks = [
@@ -105,8 +110,8 @@ const TestExchange = () => {
         <hr className="hr" />
         <div className="flex items-center justify-end gap-3 text-nowrap">
           {/* View All button */}
-          <button className="bg-[#016961] px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
-            View All
+          <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-teal-50 flex items-center gap-1">
+            View All <span className="text-xl"><FiArrowUpRight /></span>
           </button>
         </div>
       </div>
@@ -115,7 +120,7 @@ const TestExchange = () => {
           <div className="rounded-lg object-cover w-full h-full">
             <Image
               className="rounded-lg object-cover md:w-full h-full"
-              src="https://i.ibb.co/JqCBBrY/Book-Exchange-1.png"
+              src="https://i.ibb.co/ynN8PvN/Swap-Books.png"
               alt="alt"
               width={1200}
               height={3000}
