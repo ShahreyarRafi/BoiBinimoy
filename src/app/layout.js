@@ -17,7 +17,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="light" class="dark">
+    <html lang="en" data-theme="light" className="dark">
       <body className={sourceSerif.className}>
         <TranstackProvider>
           <AuthProvider>

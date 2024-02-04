@@ -198,11 +198,11 @@ const BookDetails = () => {
         {/* Relatad section */}
         <div className="w-full border-2 rounded-lg overflow-auto p-5 my-5">
           <h2 className="text-3xl font-light pb-3">Relatad</h2>
-          <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
             {exchangeBooks?.map((exchangeBook) => (
               <div
                 key={exchangeBook.id}
-                class="relative rounded-lg hover:drop-shadow-xl  transition-shadow"
+                className="relative rounded-lg hover:drop-shadow-xl  transition-shadow"
               >
                 <Image
                   src={exchangeBook.cover_image}
@@ -213,17 +213,17 @@ const BookDetails = () => {
                 />
 
                 <div className="absolute top-0 right-0">
-                  <span class="text-xs font-light mr-2 px-2.5 py-0.5 rounded bg-green-200 text-green-800 ml-3">
+                  <span className="text-xs font-light mr-2 px-2.5 py-0.5 rounded bg-green-200 text-green-800 ml-3">
                     Exchange
                   </span>
                 </div>
 
                 <div className="absolute bottom-0 w-full bg-gradient-to-t from-black/80 via-black/45 to-transparent rounded-b-lg">
-                  <div class="px-5 py-5">
+                  <div className="px-5 py-5">
                     {/* Book Title & Auther Name */}
                     <div className="">
                       {/* Book Title */}
-                      <h3 class="text-white font-semibold text-sm md:text-base">
+                      <h3 className="text-white font-semibold text-sm md:text-base">
                         {exchangeBook.title}
                       </h3>
                       {/* Auther Name */}

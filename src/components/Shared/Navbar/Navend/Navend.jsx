@@ -19,7 +19,7 @@ const Navend = () => {
         {user?.email ? (
           <div className="dropdown dropdown-end ">
             <label tabIndex={0} className="cursor-pointer">
-              <div className="">
+              <div>
                 <div className="w-10 rounded-full">
                   {/* <Image className="w-9 rounded-full " src={user?.photoURL} alt="User" /> */}
 

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import ExchangeCard from "../../Shared/ExchangeCard";
+import BookCard from "../../Shared/BookCard";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper/core';
 import { Navigation } from 'swiper/modules';
@@ -157,7 +157,7 @@ export default function Buy() {
                 {swiperInitialized ? (
                     exchangeBooks.map(item => (
                         <SwiperSlide key={item.id}>
-                            <ExchangeCard item={item} />
+                            <BookCard item={item} />
                         </SwiperSlide>
                     ))
                 ) : (
