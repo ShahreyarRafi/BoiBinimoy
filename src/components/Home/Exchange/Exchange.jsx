@@ -1,6 +1,11 @@
 import Image from "next/image";
 import React from "react";
 import ExchangeCard from "../../Shared/ExchangeCard";
+import { FiArrowUpRight } from "react-icons/fi";
+
+
+
+
 
 const TestExchange = () => {
   const exchangeBooks = [
@@ -96,6 +101,8 @@ const TestExchange = () => {
     }
   ];
 
+ const transparentBanner = "https://i.ibb.co/GPmg3HB/Swap-Books-t.png"
+
   return (
     <div className="container mx-auto pt-5 rounded-lg px-5">
       <div className="flex justify-between items-center mb-4">
@@ -105,8 +112,8 @@ const TestExchange = () => {
         <hr className="hr" />
         <div className="flex items-center justify-end gap-3 text-nowrap">
           {/* View All button */}
-          <button className="bg-[#016961] px-4 py-2 rounded-full text-base text-white flex items-center gap-1">
-            View All
+          <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-teal-50 flex items-center gap-1">
+            View All <span className="text-xl"><FiArrowUpRight /></span>
           </button>
         </div>
       </div>
@@ -114,8 +121,8 @@ const TestExchange = () => {
         <div className="col-span-2 hidden lg:block pt-[20px]">
           <div className="rounded-lg object-cover w-full h-full">
             <Image
-              className="rounded-lg object-cover md:w-full h-full"
-              src="https://i.ibb.co/JqCBBrY/Book-Exchange-1.png"
+              className="rounded-lg object-cover md:w-full h-full border border-dashed border-[#016961]"
+              src={transparentBanner}
               alt="alt"
               width={1200}
               height={3000}
