@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import ExchangeCard from "../../Shared/ExchangeCard";
 
 const TestExchange = () => {
   const exchangeBooks = [
@@ -109,56 +110,23 @@ const TestExchange = () => {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-8 gap-3">
-        <div className="col-span-2 hidden md:block">
+      <div className="grid grid-cols-1 md:grid-cols-8 gap-4">
+        <div className="col-span-2 hidden lg:block pt-[20px]">
           <div className="rounded-lg object-cover w-full h-full">
             <Image
               className="rounded-lg object-cover md:w-full h-full"
-              src="https://i.ibb.co/NVwBhZJ/Untitled-design-10.png"
+              src="https://i.ibb.co/JqCBBrY/Book-Exchange-1.png"
               alt="alt"
-              width={1000}
-              height={1000}
+              width={1200}
+              height={3000}
             />
           </div>
         </div>
 
-        <div className="col-span-6">
+        <div className="col-span-full lg:col-span-6">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {exchangeBooks?.map((exchangeBook) => (
-              <div
-                key={exchangeBook.id}
-                className="relative rounded-lg hover:drop-shadow-xl  transition-shadow"
-              >
-                <Image
-                  src={exchangeBook.cover_image}
-                  width={500}
-                  height={500}
-                  alt=""
-                  className="object-cover rounded-lg"
-                />
-
-                <div className="absolute top-0 right-0">
-                  <span className="text-xs mr-2 px-2.5 py-0.5 rounded bg-green-200 text-green-800 ml-3">
-                    Exchange
-                  </span>
-                </div>
-
-                <div className="absolute bottom-0 w-full bg-gradient-to-t from-black/80 via-black/45 to-transparent rounded-b-lg">
-                  <div className="px-5 py-5">
-                    {/* Book Title & Author Name */}
-                    <div>
-                      {/* Book Title */}
-                      <h3 className="text-white font-semibold text-sm md:text-base">
-                        {exchangeBook.title}
-                      </h3>
-                      {/* Author Name */}
-                      <p className="text-white text-xs font-extralight hidden md:flex">
-                        by {exchangeBook.writer}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            {exchangeBooks.map(item => (
+              <ExchangeCard key={item.id} item={item} />
             ))}
           </div>
         </div>
