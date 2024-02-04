@@ -119,7 +119,7 @@ export default function Buy() {
 
 
     return (
-        <div className="container mt-12 md:mt-14 mx-auto px-5">
+        <div className="container mt-1 md:mt-14 mx-auto px-5">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl md:text-3xl text-[#016961] font-bold text-nowrap">Buy Now</h2>
                 <hr className="hr " />

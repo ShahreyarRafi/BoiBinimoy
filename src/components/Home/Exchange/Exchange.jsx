@@ -111,7 +111,7 @@ const TestExchange = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-8 gap-3">
         <div className="col-span-2 hidden md:block">
-          <div class="rounded-lg object-cover w-full h-full">
+          <div className="rounded-lg object-cover w-full h-full">
             <Image
               className="rounded-lg object-cover md:w-full h-full"
               src="https://i.ibb.co/NVwBhZJ/Untitled-design-10.png"
@@ -138,7 +138,7 @@ const TestExchange = () => {
                 />
 
                 <div className="absolute top-0 right-0">
-                  <span class="text-xs mr-2 px-2.5 py-0.5 rounded bg-green-200 text-green-800 ml-3">
+                  <span className="text-xs mr-2 px-2.5 py-0.5 rounded bg-green-200 text-green-800 ml-3">
                     Exchange
                   </span>
                 </div>

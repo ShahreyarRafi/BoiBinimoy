@@ -65,7 +65,7 @@ const Header = () => {
           <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
             {isLoading ? (
               <>
-                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
               </>
             ) : (
               <>

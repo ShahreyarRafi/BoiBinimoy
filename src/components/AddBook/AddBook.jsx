@@ -250,7 +250,7 @@ const AddBook = () => {
                 >
                   <label
                     for="imageFile"
-                    class="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                    className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
                   >
                     <BsUpload /> <span> Upload Here</span>
                   </label>
@@ -271,7 +271,7 @@ const AddBook = () => {
                   >
                     <label
                       for="imageFile"
-                      class="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                      className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
                     >
                       <BsUpload />
                     </label>
@@ -289,7 +289,7 @@ const AddBook = () => {
                   >
                     <label
                       for="imageFile"
-                      class="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                      className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
                     >
                       <BsUpload />
                     </label>
@@ -307,7 +307,7 @@ const AddBook = () => {
                   >
                     <label
                       for="imageFile"
-                      class="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                      className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
                     >
                       <BsUpload />
                     </label>
