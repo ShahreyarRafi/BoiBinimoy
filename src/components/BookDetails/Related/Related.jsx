@@ -1,18 +1,8 @@
 "use client";
-
-
-
-import React, { useEffect, useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-
-
+import './Spinner.css'
 import "swiper/css/bundle";
-
-// import required modules
-import { Pagination, Navigation } from "swiper/modules";
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import RelatedCard from "./RelatedCard";
 import { FiArrowUpRight } from "react-icons/fi";
 
