@@ -105,6 +105,12 @@ const UserNavLeft = () => {
                         </Link>
                     </li>
                     <li>
+                        <Link href="/dashboard/addBlog">
+                            <i className='bx bxs-book-add' ></i>
+                            <span className="text">Add Blog</span>
+                        </Link>
+                    </li>
+                    <li>
                         <Link href="/dashboard/profile">
                             <i className='bx bxs-group' ></i>
                             <span className="text">Profile</span>
@@ -117,9 +123,9 @@ const UserNavLeft = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link href="#">
+                        <Link href="/dashboard/exchangeAdd">
                             <i className='bx bxs-doughnut-chart' ></i>
-                            <span className="text">Analytics</span>
+                            <span className="text">Exchange Form</span>
                         </Link>
                     </li>
                     <li>

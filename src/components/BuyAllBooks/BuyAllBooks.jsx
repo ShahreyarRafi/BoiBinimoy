@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import AllBooksCard from "../Shared/AllBooksCard";
 import BookCard from "../Shared/ExchangeCard";
 
 const BuyAllBooks = () => {
