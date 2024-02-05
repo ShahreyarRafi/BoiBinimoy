@@ -185,7 +185,7 @@ const UserDashboard = () => {
             {/*  CONTENT */}
             <section id="content">
                 {/*  NAVBAR */}
-                <nav>
+                <nav >
                     <i className='bx bx-menu'></i>
                     <a href="#" className="nav-link">Categories</a>
                     <form action="#">
@@ -221,9 +221,6 @@ const UserDashboard = () => {
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div className="w-full h-[75svh] flex items-center justify-center">
-                        <h1 className="text-xl font-medium">Additional dashboard items will appear here</h1>
                     </div>
                 </main>
                 {/* MAIN */}
