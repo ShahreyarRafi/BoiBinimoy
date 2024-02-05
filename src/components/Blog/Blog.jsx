@@ -211,7 +211,7 @@ const Blog = () => {
           </div>
         </div>
 
-        {/* newslater subscription */}
+        {/* news later subscription */}
         <div className="rounded flex md:shadow my-12 bg-[#016961] ">
           <Image
             src="https://images.unsplash.com/photo-1579275542618-a1dfed5f54ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
