@@ -72,7 +72,7 @@ const Related = () => {
           onSwiper={setSwiperRef}
           slidesPerView={2}
           centeredSlides={false} 
-          spaceBetween={0}
+          spaceBetween={1}
           navigation={true}
           modules={[Pagination, Navigation]}
           className="mySwiper"
@@ -81,7 +81,7 @@ const Related = () => {
             <SwiperSlide key={cardInfo.id}>
               <div
                 style={{ backgroundColor: `${cardInfo.color}` }}
-                className="relative flex justify-center p-5 rounded-lg w-[550px] mb-24"
+                className="relative flex justify-center p-5 rounded-lg w-full mb-24"
               >
                 {/* Book Image */}
                 <div className="flex-shrink-0 w-44">
