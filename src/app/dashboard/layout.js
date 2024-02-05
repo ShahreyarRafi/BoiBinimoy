@@ -30,7 +30,9 @@ const layout = ({ children, path }) => {
                     </div>
                 </main>
                 {/* MAIN */}
-                {children}
+                <div className='min-h-[90vh] '>
+                    {children}
+                </div>
             </div>
         </div>
     );
