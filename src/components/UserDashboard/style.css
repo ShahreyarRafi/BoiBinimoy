@@ -21,11 +21,11 @@ li {
 	--lato: 'Lato', sans-serif;
 
 	--light: #F9F9F9;
-	--blue: linear-gradient(45deg, #f28b8e, #e26064 35%);
+	--blue: #016961;
 	--light-blue: #CFE8FF;
 	--grey: #eee;
 	--dark-grey: #AAAAAA;
-	--dark: #342E37;
+	--dark: #016961;
 	--red: #DB504A;
 	--yellow: #FFCE26;
 	--light-yellow: #FFF2C6;
@@ -82,7 +82,7 @@ body {
 	height: 56px;
 	display: flex;
 	align-items: center;
-	color: #e26064;
+	color: #016961;
 	position: sticky;
 	top: 0;
 	left: 0;
@@ -154,7 +154,7 @@ body {
 }
 
 #sidebar .side-menu.top li.active a {
-	color: #e26064;
+	color: #2fa096;
 }
 
 #sidebar.hide .side-menu li a {
@@ -207,9 +207,6 @@ body {
 	align-items: center;
 	grid-gap: 24px;
 	font-family: var(--lato);
-	position: sticky;
-	top: 0;
-	left: 0;
 	z-index: 1000;
 }
 
@@ -222,6 +219,7 @@ body {
 	left: 0;
 	border-radius: 50%;
 	box-shadow: -20px -20px 0 var(--light);
+
 }
 
 #content nav a {
@@ -339,9 +337,6 @@ body {
 /* NAVBAR */
 
 
-
-
-
 /* MAIN */
 #content main {
 	width: 100%;
@@ -407,6 +402,7 @@ body {
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	grid-gap: 24px;
 	margin-top: 36px;
+
 }
 
 #content main .box-info li {
