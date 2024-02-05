@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AllBooksCard from "../Shared/AllBooksCard";
+import BookCard from "../Shared/ExchangeCard";
 
 const BuyAllBooks = () => {
   const [books, setBooks] = useState([]);
@@ -28,11 +29,11 @@ const BuyAllBooks = () => {
   }, [fetchData]);
 
   return (
-    <div className="min-h-screen max-w-6xl mx-auto px-3">
-      <div className="container py-12 mx-auto ">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+    <div className="min-h-screen container mx-auto px-3">
+      <div className="py-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
           {books?.map((book) => (
-            <AllBooksCard key={book?._id} book={book}></AllBooksCard>
+            <BookCard key={book?._id} item={book}></BookCard>
           ))}
         </div>
       </div>
