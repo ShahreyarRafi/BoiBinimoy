@@ -3,7 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa";
 
-const AllBooks = ({ book }) => {
+const AllBooks = ({ book}) => {
+
+
+
   return (
     <>
       <div className="bg-[#fcfcf6] rounded-lg shadow-lg hover:shadow-xl transform-gpu duration-500">
