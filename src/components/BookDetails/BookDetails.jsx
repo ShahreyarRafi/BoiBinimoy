@@ -5,6 +5,7 @@ import axios from "axios";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
+import Related from "./Related/Related";
 
 const BookDetails = () => {
   const [book, setBook] = useState([]);
@@ -196,50 +197,10 @@ const BookDetails = () => {
         </div>
 
         {/* Relatad section */}
-        <div className="w-full border-2 rounded-lg overflow-auto p-5 my-5">
-          <h2 className="text-3xl font-light pb-3">Relatad</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
-            {exchangeBooks?.map((exchangeBook) => (
-              <div
-                key={exchangeBook.id}
-                className="relative rounded-lg hover:drop-shadow-xl  transition-shadow"
-              >
-                <Image
-                  src={exchangeBook.cover_image}
-                  width={500}
-                  height={500}
-                  alt=""
-                  className="object-cover rounded-lg"
-                />
-
-                <div className="absolute top-0 right-0">
-                  <span className="text-xs font-light mr-2 px-2.5 py-0.5 rounded bg-green-200 text-green-800 ml-3">
-                    Exchange
-                  </span>
-                </div>
-
-                <div className="absolute bottom-0 w-full bg-gradient-to-t from-black/80 via-black/45 to-transparent rounded-b-lg">
-                  <div className="px-5 py-5">
-                    {/* Book Title & Auther Name */}
-                    <div className="">
-                      {/* Book Title */}
-                      <h3 className="text-white font-semibold text-sm md:text-base">
-                        {exchangeBook.title}
-                      </h3>
-                      {/* Auther Name */}
-                      <p className="text-white text-xs font-extralight hidden md:flex">
-                        by {exchangeBook.writer}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Related />
 
         {/* review section */}
-        <div className="w-full  p-8 border-2 rounded-lg">
+        <div className="w-full p-8 border-2 rounded-lg">
           <div className="max-w-5xl mx-auto">
             {/* send review */}
             <form className="flex items-center gap-3 pb-5">
@@ -309,38 +270,3 @@ const BookDetails = () => {
 };
 
 export default BookDetails;
-
-{
-  /* 
-            <h2 className="text-md border-b border-gray-300">
-              <span className="font-bold text-[#f64d4e] ">Book Title:</span>{" "}
-              {book?.title}
-            </h2>
-            <p className="text-gray-600 border-b border-gray-300">
-              <span className="font-bold">Book Writer:</span> {book?.writer}
-            </p>
-            <p className="text-gray-600 border-b border-gray-300">
-              <span className="font-bold">Book Language:</span> {book?.language}
-            </p>
-            <p className="text-gray-600 border-b border-gray-300">
-              <span className="font-bold">Book Pages:</span> {book?.pages}
-            </p>
-            <p className="text-gray-600 border-b border-gray-300">
-              <span className="font-bold">Published Year:</span>{" "}
-              {book?.published_year}
-            </p>
-            <p className="text-gray-600 border-b border-gray-300">
-              <span className="font-bold">Book Publisher:</span>{" "}
-              {book?.publisher}
-            </p>
-            <p className="text-gray-600 border-b border-gray-300">
-              <span className="font-bold">Book Price:</span> {book?.price}
-            </p>
-            <p className="text-gray-600 border-b border-gray-300">
-              <span className="font-bold">Book Edition:</span> {book?.edition}
-            </p>
-            <p className="text-gray-600">
-              <span className="font-bold">Description:</span>{" "}
-              {book?.description}
-            </p> */
-}

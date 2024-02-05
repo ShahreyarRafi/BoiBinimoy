@@ -12,6 +12,8 @@ const nextConfig = {
       "img.icons8.com",
       "images.pexels.com",
       "lh3.googleusercontent.com",
+      "images-na.ssl-images-amazon.com",
+      "images-na.ssl-images-amazon.com"
     ],
   },
 };
