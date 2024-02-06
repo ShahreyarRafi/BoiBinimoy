@@ -1,4 +1,4 @@
-"use client"
+
 
 import AllBooksBanner from "@/components/BuyAllBooks/AllBooksBanner/AllBooksBanner";
 import AllBooks from "@/components/BuyAllBooks/BuyAllBooks";
