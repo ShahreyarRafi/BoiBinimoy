@@ -63,6 +63,7 @@ const AddBook = () => {
         console.error('Error:', error);
       });
   };
+
   return (
     <div className="bg-teal-50 text-gray-500 min-h-screen">
       <div className="max-w-5xl mx-auto px-3 md:px-5 lg:px-0 py-10">

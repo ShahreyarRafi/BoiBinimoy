@@ -141,7 +141,6 @@ const UserNavLeft = () => {
           </>
         ) : (
           <>
-            {" "}
             <ul className="side-menu top">
               <li className="active">
                 <a href="/dashboard">
