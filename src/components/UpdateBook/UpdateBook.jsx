@@ -1,8 +1,7 @@
 "use client";
 import Link from "next/link";
-import React from "react";
-import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 const UpdateBook = () => {
   const handleSubmit = (e) => {
@@ -16,6 +15,7 @@ const UpdateBook = () => {
     };
     console.log(newBook);
   };
+
   return (
     <div className="bg-teal-50 text-gray-500 min-h-screen">
       <div className="max-w-5xl mx-auto px-3 md:px-5 lg:px-0 py-10">

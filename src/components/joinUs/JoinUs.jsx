@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
 import Swal from 'sweetalert2';
 
+
 const JoinUs = () => {
     const { register, handleSubmit, reset } = useForm();
     const { createUser, signin, googleLogin } = useAuth();
@@ -199,3 +200,4 @@ const JoinUs = () => {
 };
 
 export default JoinUs;
+
