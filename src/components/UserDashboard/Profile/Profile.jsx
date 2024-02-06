@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import useAllUser from "@/Hooks/api/useAllUser";
 import { AuthContext } from "@/providers/AuthProvider";
@@ -7,21 +7,16 @@ import { useContext } from "react";
 import { CiEdit } from "react-icons/ci";
 
 const Profile = () => {
-
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   console.log(user?.email);
 
-
-  // All user data 
-  const [allUser] = useAllUser()
+  // All user data
+  const [allUser] = useAllUser();
   // console.log(allUser);
 
-
-  // specific user 
-  const currentUser = allUser.filter(data => data?.email === user?.email)
+  // specific user
+  const currentUser = allUser.filter((data) => data?.email === user?.email);
   // console.log(currentUser);
-
-
 
   return (
     <div className="max-w-5xl mx-auto rounded-lg mb-10 bg-teal-50 shadow-lg">
@@ -43,12 +38,13 @@ const Profile = () => {
           {/* wellcome and edit btton */}
           <div className="flex justify-between items-center py-3">
             <div>
-              {currentUser.map(userData => <div key={userData._id}>
-                <h6 className="text-lg font-bold">Wellcome, {userData.name} !</h6>
-
-              </div>)}
-              {/* <h6 className="text-lg font-bold">Wellcome, Muhammad Minhajul Alam </h6> */}
-
+              {currentUser.map((userData) => (
+                <div key={userData._id}>
+                  <h6 className="text-lg font-bold">
+                    Wellcome, {userData.name} !
+                  </h6>
+                </div>
+              ))}
             </div>
             <div>
               <button className="text-xl md:text-2xl">
@@ -72,8 +68,8 @@ const Profile = () => {
               <h2 className="text-3xl md:text-4xl lg:text-5xl">
                 Minhajul Alam
               </h2>
-              <p className="font-sans text-xs md:text-sm font-light text-gray-100 py-1">
-                Exchange 30k | Sell 15k | Post 34k
+              <p className="font-sans text-xs md:text-sm font-normal text-gray-100 pt-2 pb-1">
+                30k Exchange | 15k Sell | 34k Post
               </p>
               <p className="max-w-sm font-light">
                 minhajulalam.muhammad@gmail.com
@@ -85,7 +81,7 @@ const Profile = () => {
       </div>
 
       {/* personal information and contact Address */}
-      <div className="flex flex-col md:flex-row justify-center items-center gap-20 py-10">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-10 py-10">
         {/* personal information */}
         <div className="text-center md:text-start">
           <h3 className="text-2xl font-bold pb-2">Personal Info</h3>
