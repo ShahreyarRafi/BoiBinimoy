@@ -8,7 +8,6 @@ import { AuthContext } from "@/providers/AuthProvider";
 
 const UserDashboard = () => {
   const { user } = useContext(AuthContext);
-
   const [componentsMounted, setComponentMounted] = useState(false);
 
   useEffect(() => {
@@ -144,7 +143,7 @@ const UserDashboard = () => {
             </a>
           </li>
           <li>
-            <a href="/dashboard/message">
+            <a href="#">
               <i className="bx bxs-message-dots"></i>
               <span className="text">Message</span>
             </a>
@@ -232,6 +231,11 @@ const UserDashboard = () => {
                 </li>
               </ul>
             </div>
+          </div>
+          <div className="w-full h-[75svh] flex items-center justify-center">
+            <h1 className="text-xl font-medium">
+              Additional dashboard items will appear here
+            </h1>
           </div>
         </main>
         {/* MAIN */}

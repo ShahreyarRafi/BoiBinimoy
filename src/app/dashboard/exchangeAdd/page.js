@@ -1,12 +1,10 @@
-
-
-import BookDetails from '@/components/BookDetails/BookDetails';
+import ExchangeAdd from '@/components/ExchangeAdd/ExchangeAdd';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <BookDetails></BookDetails>
+            <ExchangeAdd></ExchangeAdd>
         </div>
     );
 };

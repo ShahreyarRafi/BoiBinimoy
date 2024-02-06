@@ -16,6 +16,7 @@
     "axios": "^1.6.5",
     "boxicons": "^2.1.4",
     "next": "14.0.4",
+    "next-nprogress-bar": "^2.1.2",
     "package-name": "^0.1.0",
     "quotable": "^1.1.0",
     "react": "^18",

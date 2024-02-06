@@ -1,3 +1,4 @@
+"use client";
 import AuthProvider from "@/providers/AuthProvider";
 import { Source_Serif_4 } from "next/font/google";
 import "./globals.css";
@@ -10,10 +11,6 @@ const sourceSerif = Source_Serif_4({
   display: "swap",
 });
 
-export const metadata = {
-  title: "Boi Binimoy",
-  description: "A book exchange and buy-sell platform",
-};
 
 export default function RootLayout({ children }) {
   return (

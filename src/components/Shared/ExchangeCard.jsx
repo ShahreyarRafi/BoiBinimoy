@@ -1,6 +1,5 @@
 "use client"
 
-import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import "./Card.css";
 import { FaCartPlus, FaExchangeAlt } from "react-icons/fa";
 
@@ -23,9 +22,6 @@ export default function ExchangeCard({ item }) {
               <FaCartPlus />
             </button>
           </div>
-          {/* <span className="price-tag">
-            <span className="text-lg">$29.99</span>
-          </span> */}
         </div>
       </div>
 
