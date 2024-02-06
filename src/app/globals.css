@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.active-link {
+  text-decoration: underline;
+}
+
+
+
 .parallax {
   position: fixed;
   top: 0;

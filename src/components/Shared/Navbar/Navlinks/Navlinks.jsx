@@ -1,28 +1,47 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const Navlinks = () => {
+  const currentPath = usePathname();
+
   const navlinks = (
-    <>
-      <Link className=" py-2 px-3" href="/">
+    <div className="flex items-center justify-around gap-10">
+      <Link className={currentPath === "/" && "active-link"} href="/">
         <li>Home</li>
       </Link>
-      <Link className=" py-2 px-3" href="/buyBooks">
+      <Link
+        cclassName={currentPath === "/buyBooks" && "active-link"}
+        href="/buyBooks"
+      >
         <li>All Books</li>
       </Link>
-      <Link className=" py-2 px-3" href="/blogs">
+      <Link className={currentPath === "/blogs" && "active-link"} href="/blogs">
         <li>Blogs</li>
       </Link>
-      <Link className=" py-2 px-3" href="/aboutus">
+      <Link
+        className={currentPath === "/aboutus" && "active-link"}
+        href="/aboutus"
+      >
         <li>About</li>
       </Link>
-      <Link className=" py-2 px-3" href="/contact">
+      <Link
+        className={currentPath === "/contact" && "active-link"}
+        href="/contact"
+      >
         <li>Contact</li>
       </Link>
-      <Link className=" py-2 px-3" href="/dashboard">
+      <Link
+        className={` ${currentPath === "/dashboard" && "active-link"}`}
+        href="/dashboard"
+      >
         <li>Dashboard</li>
       </Link>
-      <Link className=" py-2 px-3" href="/addBook">
+      <Link
+        className={currentPath === "/addBook" && "active-link"}
+        href="/addBook"
+      >
         <li>Add Book</li>
       </Link>
       <Link
@@ -31,7 +50,7 @@ const Navlinks = () => {
       >
         <li>Join Now</li>
       </Link>
-    </>
+    </div>
   );
   return (
     <div>
