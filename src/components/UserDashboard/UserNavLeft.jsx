@@ -8,8 +8,6 @@ const UserNavLeft = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin();
 
-  // dashboard 
-
   const [componentsMounted, setComponentMounted] = useState(false);
 
   useEffect(() => {
