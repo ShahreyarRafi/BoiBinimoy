@@ -5,100 +5,9 @@ import ExchangeCard from "../../Shared/ExchangeCard";
 import { FiArrowUpRight } from "react-icons/fi";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Link from 'next/link'
 
 const TestExchange = () => {
-  // const exchangeBooks = [
-  //   {
-  //     id: 1,
-  //     cover_image: "https://i.ibb.co/fNhJX8L/Untitled-design-8.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 2,
-  //     cover_image: "https://i.ibb.co/wyJk0Df/Untitled-design-11.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 3,
-  //     cover_image: "https://i.ibb.co/NVwBhZJ/Untitled-design-10.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 4,
-  //     cover_image: "https://i.ibb.co/d52WsrH/Untitled-design-9.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 5,
-  //     cover_image: "https://i.ibb.co/HzPW8vW/Untitled-design-13.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 6,
-  //     cover_image: "https://i.ibb.co/vdcSqxv/Untitled-design-12.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 7,
-  //     cover_image: "https://i.ibb.co/fNhJX8L/Untitled-design-8.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 8,
-  //     cover_image: "https://i.ibb.co/wyJk0Df/Untitled-design-11.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 9,
-  //     cover_image: "https://i.ibb.co/NVwBhZJ/Untitled-design-10.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 10,
-  //     cover_image: "https://i.ibb.co/HzPW8vW/Untitled-design-13.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   }
-  // ];
 
   const [exchangeBooks, setExchangeBooks] = useState([]);
   const [fetchData, setFetchData] = useState(true);
@@ -111,7 +20,7 @@ const TestExchange = () => {
             "https://boi-binimoy-server.vercel.app/api/v1/exchangableBooks"
           );
           setExchangeBooks(response.data);
-          console.log(response.data);
+          // console.log(response.data);
         } catch (error) {
           console.error("Error:", error);
         }
@@ -134,9 +43,9 @@ const TestExchange = () => {
         <hr className="hr" />
         <div className="flex items-center justify-end gap-3 text-nowrap">
           {/* View All button */}
-          <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-teal-50 flex items-center gap-1">
+          <Link href='/exchangeAllBooks' className="button-color px-4 py-2 rounded-full text-sm md:text-base text-teal-50 flex items-center gap-1">
             View All <span className="text-xl"><FiArrowUpRight /></span>
-          </button>
+          </Link>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-8 gap-4">

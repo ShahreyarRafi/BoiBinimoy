@@ -34,7 +34,7 @@ const UserNavLeft = () => {
         });
         li.classList.add("active");
       });
-      console.log(li);
+      // console.log(li);
     });
 
     // TOGGLE SIDEBAR

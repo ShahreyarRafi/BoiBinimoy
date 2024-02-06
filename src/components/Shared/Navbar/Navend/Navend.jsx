@@ -15,16 +15,16 @@ const Navend = () => {
     <div className="flex items-center gap-2">
       <MdFavoriteBorder />
       <MdOutlineShoppingCart />
+
       <div className="navbar-end">
         {user?.email ? (
           <div className="dropdown dropdown-end ">
             <label tabIndex={0} className="cursor-pointer">
               <div>
                 <div className="w-10 rounded-full">
-                  {/* <Image className="w-9 rounded-full " src={user?.photoURL} alt="User" /> */}
 
                   <Image
-                    src={user.photoURL}
+                    src={user?.photoURL}
                     alt="user"
                     onClick={() => setActive(!active)}
                     priority
@@ -39,33 +39,24 @@ const Navend = () => {
                 </div>
               </div>
             </label>
-
-            {active && (
-              <div
-                tabIndex={0}
-                className="dropdown-content z-[1] menu p-2 shadow  rounded-box w-52"
+            <div
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow  rounded-box w-52"
+            >
+              <Link href="/dashboard" className="px-4 py-2 hover:bg-base-300 rounded-lg">
+                Dashboard
+              </Link>
+              <button
+                onClick={logOut}
+                className="cursor-pointer text-red-500 px-4 py-2 hover:bg-base-300 rounded-lg"
               >
-                <Link href="dashboard">
-                  <button className="px-4 py-2 hover:bg-base-300 rounded-lg">
-                    {" "}
-                    Dashboard{" "}
-                  </button>
-                </Link>
-                <div
-                  onClick={logOut}
-                  className="cursor-pointer text-red-500 px-4 py-2 hover:bg-base-300 rounded-lg"
-                >
-                  Logout
-                </div>
-              </div>
-            )}
-          </div>
-        ) : (
+                Logout
+              </button>
+            </div>
+          </div>) : (
           <Link
             href="/login"
-            className={({ isActive }) =>
-              isActive ? "btn btn-neutral btn-sm " : ""
-            }
+            className="btn  btn-sm"
           >
             <LuUser2 />
           </Link>

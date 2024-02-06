@@ -3,9 +3,7 @@
 import UserNavLeft from '@/components/UserDashboard/UserNavLeft';
 import UserNavTop from '@/components/UserDashboard/UserNavTop';
 
-const layout = ({ children, path }) => {
-
-    console.log(path);
+const layout = ({ children }) => {
 
     return (
         <div>
