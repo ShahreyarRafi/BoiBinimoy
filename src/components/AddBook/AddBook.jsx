@@ -154,7 +154,7 @@ const AddBook = () => {
             </div>
 
             {/* book information and image div */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-3 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-2 md:space-y-0 my-3 md:gap-3">
               {/* book information div */}
               <div className="border-2 col-span-2 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
                 {/* title */}
@@ -240,7 +240,7 @@ const AddBook = () => {
               </div>
 
               {/* image div */}
-              <div className="border-2 col-span-1 md:col-span-2 lg:col-span-1 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
+              <div className="border-2 md:col-span-2 lg:col-span-1 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
                 {/* title */}
                 <h3 className="py-2">Uploade book cover Image:</h3>
                 {/* iamge */}
@@ -408,23 +408,14 @@ const AddBook = () => {
               ></textarea>
             </div>
 
-            {/* go to home and submit buttons */}
-            <div className="flex justify-end md:justify-end text-xs lg:text-base items-center mb-4 gap-3">
-              {/* Go to Dashboard button */}
-              {/* <Link href="/dashboard">
-                <button className="px-3 py-2 border-2 border-[#016961] rounded-lg uppercase">
-                  <span className="flex items-center gap-1">
-                    <SlArrowLeft /> <span>Dashboard</span>
-                  </span>
-                </button>
-              </Link> */}
-
+            {/* button section */}
+            <div className="flex justify-end md:justify-end items-center mb-4 gap-3">
               {/* Publish button */}
               <button
                 type="submit"
                 className="px-3 py-2 border-2 border-[#016961] rounded-lg uppercase"
               >
-                <span className="flex items-center gap-1">
+                <span className="flex items-center gap-1 text-xs lg:text-sm xl:text-base">
                   <span>Publish</span> <SlArrowRight />
                 </span>
               </button>
