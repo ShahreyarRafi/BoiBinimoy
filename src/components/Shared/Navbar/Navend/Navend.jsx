@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const Navend = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [active, setActive] = useState(false);
+  // const [active, setActive] = useState(false);
 
   // console.log(user.email);
 
@@ -52,7 +52,7 @@ const Navend = () => {
                 onClick={logOut}
                 className="cursor-pointer text-red-500 px-4 py-2 hover:bg-base-300 rounded-lg"
               >
-                Logout
+                Logout 
               </button>
             </div>
           </div>) : (
