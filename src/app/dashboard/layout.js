@@ -12,7 +12,7 @@ const layout = ({ children }) => {
             <div id='content'>
                 {/*  MAIN */}
                 <main className=''>
-                    <div className="head-title">
+                    {/* <div className="head-title">
                         <div className="left">
                             <h1>Dashboard</h1>
                             <ul className="breadcrumb">
@@ -25,7 +25,7 @@ const layout = ({ children }) => {
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> */}
                 </main>
                 {/* MAIN */}
                 <div className='min-h-[90vh] '>
