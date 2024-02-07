@@ -83,7 +83,7 @@ const AddBook = () => {
                   className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
                   name="bookType"
                 >
-                  <option selected value="">
+                  <option selected value="bookType">
                     Book type
                   </option>
                   <option value="newPhysicalBook">New Physical Book</option>
@@ -97,7 +97,7 @@ const AddBook = () => {
                   className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
                   name="bookCondition"
                 >
-                  <option selected value="">
+                  <option selected value="bookCondition">
                     Book Condition
                   </option>
                   <option value="good">Good</option>
@@ -112,7 +112,7 @@ const AddBook = () => {
                   className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
                   name="whatYouWant"
                 >
-                  <option selected value="">
+                  <option selected value="want">
                     What you want?
                   </option>
                   <option value="exchange">Exchange</option>
@@ -125,7 +125,7 @@ const AddBook = () => {
                   className="h-10 w-full text-xs lg:text-sm text-gray-400 px-2 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
                   name="bookCategory"
                 >
-                  <option selected value="">
+                  <option selected value="category">
                     Book Category
                   </option>
                   <option value="self-help">Self-Help</option>

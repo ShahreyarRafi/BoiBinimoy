@@ -12,7 +12,7 @@ const Navlinks = () => {
         <li>Home</li>
       </Link>
       <Link
-        cclassName={currentPath === "/buyBooks" && "active-link"}
+        className={currentPath === "/buyBooks" && "active-link"}
         href="/buyBooks"
       >
         <li>All Books</li>
