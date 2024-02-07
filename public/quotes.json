@@ -33,7 +33,7 @@
     "address_line": "optional",
     "zip_code": "1000"
   }
-},
+}
 
 {
   "name": "user",
