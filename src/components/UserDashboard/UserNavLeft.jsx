@@ -173,7 +173,7 @@ const UserNavLeft = () => {
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="/dashboard/message">
                   <i className="bx bxs-message-dots"></i>
                   <span className="text">Message</span>
                 </Link>
