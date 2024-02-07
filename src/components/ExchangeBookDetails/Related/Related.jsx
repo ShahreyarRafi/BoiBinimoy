@@ -1,5 +1,5 @@
 "use client";
-import "./Spinner.css";
+// import "./Spinner.css";
 import "swiper/css/bundle";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
