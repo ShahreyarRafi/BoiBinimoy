@@ -1,11 +1,10 @@
-"use client"
-// import { usePathname } from 'next/navigation';
+
 import './404page.css'
 
 
 
 const notFoundPage = () => {
-    // let currentPathName = usePathname()
+
     return (
         <>
             <nav className="shelf">
