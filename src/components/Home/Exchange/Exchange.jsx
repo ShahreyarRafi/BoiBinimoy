@@ -1,127 +1,29 @@
 "use client"
 
+import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import Link from "next/link";
 import ExchangeCard from "../../Shared/ExchangeCard";
 import { FiArrowUpRight } from "react-icons/fi";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+
 
 const TestExchange = () => {
-  // const exchangeBooks = [
-  //   {
-  //     id: 1,
-  //     cover_image: "https://i.ibb.co/fNhJX8L/Untitled-design-8.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 2,
-  //     cover_image: "https://i.ibb.co/wyJk0Df/Untitled-design-11.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 3,
-  //     cover_image: "https://i.ibb.co/NVwBhZJ/Untitled-design-10.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 4,
-  //     cover_image: "https://i.ibb.co/d52WsrH/Untitled-design-9.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 5,
-  //     cover_image: "https://i.ibb.co/HzPW8vW/Untitled-design-13.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 6,
-  //     cover_image: "https://i.ibb.co/vdcSqxv/Untitled-design-12.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 7,
-  //     cover_image: "https://i.ibb.co/fNhJX8L/Untitled-design-8.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 8,
-  //     cover_image: "https://i.ibb.co/wyJk0Df/Untitled-design-11.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 9,
-  //     cover_image: "https://i.ibb.co/NVwBhZJ/Untitled-design-10.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   },
-  //   {
-  //     id: 10,
-  //     cover_image: "https://i.ibb.co/HzPW8vW/Untitled-design-13.png",
-  //     title: "The Great Gatsby",
-  //     writer: "F. Scott Fitzgerald",
-  //     genre: "Classic",
-  //     description:
-  //       "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-  //   }
-  // ];
 
-  const [exchangeBooks, setExchangeBooks] = useState([]);
-  const [fetchData, setFetchData] = useState(true);
 
-  useEffect(() => {
-    if (fetchData) {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            "https://boi-binimoy-server.vercel.app/api/v1/exchangableBooks"
-          );
-          setExchangeBooks(response.data);
-          console.log(response.data);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      };
+  
 
-      fetchData();
-    }
+  const axiosPublic = useAxiosPublic();
 
-    return () => { };
-  }, [fetchData]);
+  const { data: books = [], isLoading } = useQuery({
+    queryKey: ['books'],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/api/v1/exchange-books`);
+      return res.data;
+    },
+  });
+
+
 
   const transparentBanner = "https://i.ibb.co/GPmg3HB/Swap-Books-t.png"
 
@@ -154,7 +56,7 @@ const TestExchange = () => {
 
         <div className="col-span-full lg:col-span-6">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {exchangeBooks.map(item => (
+            {books.map(item => (
               <ExchangeCard key={item._id} item={item} />
             ))}
           </div>
