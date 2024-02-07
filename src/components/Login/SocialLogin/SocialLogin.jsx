@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const SocialLogin = () => {
   const { googleLogin } = useContext(AuthContext);
@@ -17,14 +18,31 @@ const SocialLogin = () => {
       if (res.user) {
         toast.success("User logged in successfully", {
           position: "top-center",
-        })} ;
+        })
+      };
 
-        setTimeout(() => {
-          router.push("/");
-        }, 1000
-      );
-  });
-};
+      const userInfo = {
+        email: res.user?.email,
+        name: res.user?.displayName,
+      }
+
+      axiosPublic.post("/users", userInfo)
+        .then(res => {
+          console.log(res.data);
+
+          
+            router.push("/");
+          
+
+        })
+
+
+    }).catch(error => {
+      Swal.fire(error);
+
+
+    });
+  };
 
   return (
     <>

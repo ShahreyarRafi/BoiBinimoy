@@ -160,12 +160,14 @@ const UserDashboard = () => {
               <span className="text">Users</span>
             </a>
           </li>
+
           <li>
             <a href="/dashboard/userProfile">
               <i className="bx bxs-group"></i>
               <span className="text">Profile</span>
             </a>
           </li>
+
         </ul>
         <ul className="side-menu">
           <li>
