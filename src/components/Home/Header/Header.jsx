@@ -62,7 +62,7 @@ const Header = () => {
 
         {/* Information section */}
         <div className="text-center px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-          <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
+          <div className="relative max-w-2xl sm:mx-auto sm:max-w-3xl md:max-w-4xl sm:text-center">
             {isLoading ? (
               <>
                 <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>

@@ -5,6 +5,7 @@ import { AuthContext } from "@/providers/AuthProvider";
 import Image from "next/image";
 import { useContext } from "react";
 import { CiEdit } from "react-icons/ci";
+import { IoMdAdd } from "react-icons/io";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const Profile = () => {
   // console.log(currentUser);
 
   return (
-    <div className="max-w-5xl mx-auto rounded-lg mb-10 bg-teal-50 shadow-lg">
+    <div className="max-w-6xl mx-auto rounded-lg pb-5 mb-10 bg-teal-50 shadow-lg">
       <div className="relative bg-[#016961] rounded-t-lg">
         {/* bottom curve */}
         <div className="absolute inset-x-0 bottom-0 ">
@@ -38,17 +39,18 @@ const Profile = () => {
           {/* wellcome and edit btton */}
           <div className="flex justify-between items-center py-3">
             <div>
-              {currentUser.map((userData) => (
+              {/* {currentUser.map((userData) => (
                 <div key={userData._id}>
                   <h6 className="text-lg font-bold">
                     Wellcome, {userData.name} !
                   </h6>
                 </div>
-              ))}
+              ))} */}
+              <h6 className="text-lg font-bold">Wellcome, User frist name!</h6>
             </div>
             <div>
               <button className="text-xl md:text-2xl">
-                <CiEdit />
+                <IoMdAdd />
               </button>
             </div>
           </div>
@@ -65,15 +67,11 @@ const Profile = () => {
             />
             {/* profile information */}
             <div className="text-center md:text-start">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl">
-                Minhajul Alam
-              </h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl">User Name</h2>
               <p className="font-sans text-xs md:text-sm font-normal text-gray-100 pt-2 pb-1">
                 30k Exchange | 15k Sell | 34k Post
               </p>
-              <p className="max-w-sm font-light">
-                minhajulalam.muhammad@gmail.com
-              </p>
+              <p className="max-w-sm font-light">user.name@gmail.com</p>
               <p className="max-w-sm font-light">01800-000000</p>
             </div>
           </div>
@@ -81,63 +79,110 @@ const Profile = () => {
       </div>
 
       {/* personal information and contact Address */}
-      <div className="flex flex-col md:flex-row justify-center items-center gap-10 py-10">
+      <div className="max-w-4xl mx-auto space-y-5 mt-3 px-5 py-3 text-[#016961]">
         {/* personal information */}
-        <div className="text-center md:text-start">
-          <h3 className="text-2xl font-bold pb-2">Personal Info</h3>
-          <div>
+        <div className="w-full border-2 rounded-lg p-3">
+          <div className="flex justify-between items-center">
+            <h3 className="text-2xl font-bold pb-2 text-[#016961]">
+              Personal Info
+            </h3>
+            <button className="text-xl md:text-2xl">
+              <CiEdit />
+            </button>
+          </div>
+          <div className="space-y-5 mt-3">
             {/* user name */}
-            <div className="py-3">
-              <p className="text-[#016961] text-xs font-bold">Full Name</p>
-              <p className="text-lg">Muhammad Minhajul Alam</p>
+            <div className="relative py-3 px-5 border-2 w-full rounded-md">
+              <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
+                Full Name
+              </p>
+              <p className="text-lg">User name</p>
+            </div>
+
+            {/* user Email */}
+            <div className="relative py-3 px-5 border-2 w-full rounded-md">
+              <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
+                Email
+              </p>
+              <p className="text-lg">user.name@gmail.com</p>
+            </div>
+
+            {/* user Email */}
+            <div className="relative py-3 px-5 border-2 w-full rounded-md">
+              <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
+                Phone
+              </p>
+              <p className="text-lg">01800-000000</p>
             </div>
 
             {/* user dob */}
-            <div className="py-3">
-              <p className="text-[#016961] text-xs font-bold">Dath Of Birth</p>
-              <p className="text-lg">27 june, 2001</p>
+            <div className="relative py-3 px-5 border-2 w-full rounded-md">
+              <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
+                Dath Of Birth
+              </p>
+              <p className="text-lg">Not set yet</p>
             </div>
 
             {/* user gander */}
-            <div className="py-3">
-              <p className="text-[#016961] text-xs font-bold">Gender</p>
-              <p className="text-lg">Male</p>
+            <div className="relative py-3 px-5 border-2 w-full rounded-md">
+              <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
+                Gender
+              </p>
+              <p className="text-lg">Not set yet</p>
             </div>
+
             {/* user Profession */}
-            <div className="py-3">
-              <p className="text-[#016961] text-xs font-bold">Profession</p>
-              <p className="text-lg">Student</p>
+            <div className="relative py-3 px-5 border-2 w-full rounded-md">
+              <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
+                Profession
+              </p>
+              <p className="text-lg">Not set yet</p>
             </div>
           </div>
         </div>
 
-        <hr className="w-[1px] h-40 bg-black hidden md:block" />
-
         {/* Address information */}
-        <div className="text-center md:text-start">
-          <h3 className="text-2xl font-bold pb-2">Address Info</h3>
-          <div>
+        <div className="w-full border-2 rounded-lg p-3 text-[#016961]">
+          <div className="flex justify-between items-center">
+            <h3 className="text-2xl font-bold pb-2 text-[#016961]">
+              Address Info
+            </h3>
+            <button className="text-xl md:text-2xl">
+              <CiEdit />
+            </button>
+          </div>
+
+          <div className="space-y-5 mt-3">
             {/* user City */}
-            <div className="py-3">
-              <p className="text-[#016961] text-xs font-bold">City</p>
-              <p className="text-lg">Dhaka</p>
+            <div className="relative py-3 px-5 border-2 w-full rounded-md">
+              <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
+                City
+              </p>
+              <p className="text-lg">Not set yet</p>
             </div>
 
             {/* user Street */}
-            <div className="py-3">
-              <p className="text-[#016961] text-xs font-bold">Street</p>
-              <p className="text-lg">Notun bazar</p>
+            <div className="relative py-3 px-5 border-2 w-full rounded-md">
+              <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded  text-xs text-[#016961]  px-2">
+                Street
+              </p>
+              <p className="text-lg">Not set yet</p>
             </div>
 
             {/* user Country */}
-            <div className="py-3">
-              <p className="text-[#016961] text-xs font-bold">Country</p>
-              <p className="text-lg">Bangladesh</p>
+            <div className="relative py-3 px-5 border-2 w-full rounded-md">
+              <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded  text-xs text-[#016961]  px-2">
+                Country
+              </p>
+              <p className="text-lg">Not set yet</p>
             </div>
+
             {/* user Address */}
-            <div className="py-3">
-              <p className="text-[#016961] text-xs font-bold">Address</p>
-              <p className="text-lg">Notun bazar, pani sottor</p>
+            <div className="relative py-3 px-5 border-2 w-full rounded-md">
+              <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded  text-xs text-[#016961]  px-2">
+                Address
+              </p>
+              <p className="text-lg">Not set yet</p>
             </div>
           </div>
         </div>
