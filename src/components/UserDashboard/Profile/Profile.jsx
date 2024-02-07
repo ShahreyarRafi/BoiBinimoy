@@ -9,21 +9,16 @@ import { CiEdit } from "react-icons/ci";
 import { IoMdAdd } from "react-icons/io";
 
 const Profile = () => {
-
-
   const { user } = useContext(AuthContext);
   // console.log(user?.email);
 
-  const [currentUser] = useOneUser()
+  const [currentUser] = useOneUser();
 
   console.log(currentUser);
 
-
-
   return (
     <section>
-
-      <div className="rounded-lg h-full pb-5 mb-10 bg-teal-50 shadow-lg">
+      <div className="rounded-lg h-full pb-5 mb-10 bg-teal-50">
         <div className="relative bg-[#016961] rounded-t-lg">
           {/* bottom curve */}
           <div className="absolute inset-x-0 bottom-0 ">
@@ -41,12 +36,13 @@ const Profile = () => {
           <div className="text-white px-4 lg:px-8 pb-20">
             {/* wellcome and edit btton */}
             <div className="flex justify-between items-center py-3">
-
               <div>
-
                 <h6 className="text-lg font-bold">
                   {currentUser.name ? (
-                    <>Welcome, to <span className="text-xl">{currentUser.name}</span></>
+                    <>
+                      Welcome, to{" "}
+                      <span className="text-xl">{currentUser.name}</span>
+                    </>
                   ) : (
                     <></>
                   )}
@@ -71,7 +67,10 @@ const Profile = () => {
               />
               {/* profile information */}
               <div className="text-center md:text-start">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl"> {currentUser.name}</h2>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl">
+                  {" "}
+                  {currentUser.name}
+                </h2>
                 <p className="font-sans text-xs md:text-sm font-normal text-gray-100 pt-2 pb-1">
                   30k Exchange | 15k Sell | 34k Post
                 </p>
@@ -90,9 +89,12 @@ const Profile = () => {
               <h3 className="text-2xl font-bold pb-2 text-[#016961]">
                 Personal Information
               </h3>
-              <Link href="/dashboard/parsonalInfo"> <button className="text-xl md:text-2xl">
-                <CiEdit />
-              </button></Link>
+              <Link href="/dashboard/parsonalInfo">
+                {" "}
+                <button className="text-xl md:text-2xl">
+                  <CiEdit />
+                </button>
+              </Link>
             </div>
             <div className="space-y-5 mt-3">
               {/* user name */}
@@ -102,9 +104,12 @@ const Profile = () => {
                 </p>
                 <h6 className="text-lg font-bold">
                   {currentUser.name ? (
-                    <> <span className="text-lg">{currentUser.name}</span></>
+                    <>
+                      {" "}
+                      <span className="text-lg">{currentUser.name}</span>
+                    </>
                   ) : (
-                    <> User Name  </>
+                    <> User Name </>
                   )}
                 </h6>
               </div>
@@ -117,7 +122,10 @@ const Profile = () => {
 
                 <h6 className="text-lg font-bold">
                   {currentUser?.email ? (
-                    <> <span className="text-lg">{currentUser?.email}</span></>
+                    <>
+                      {" "}
+                      <span className="text-lg">{currentUser?.email}</span>
+                    </>
                   ) : (
                     <> example@gmail.com </>
                   )}
@@ -164,9 +172,11 @@ const Profile = () => {
               <h3 className="text-2xl font-bold pb-2 text-[#016961]">
                 Address Info
               </h3>
-              <Link href="/dashboard/parsonalInfo"> <button className="text-xl md:text-2xl">
-                <CiEdit />
-              </button>
+              <Link href="/dashboard/parsonalInfo">
+                {" "}
+                <button className="text-xl md:text-2xl">
+                  <CiEdit />
+                </button>
               </Link>
             </div>
 
