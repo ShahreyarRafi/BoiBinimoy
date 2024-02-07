@@ -6,14 +6,13 @@ import Image from "next/image";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import Swal from 'sweetalert2';
-
-
+import userPicPlaceHolder from '@/assets/userPicPlaceHolder.png'
 
 const Users = () => {
     const [allUser, refetch] = useAllUser();
     const [data, setData] = useState({});
     const axiosSecure = useAxiosSecure();
-    
+
     const hendleUserRole = (id, role) => {
         axiosSecure.patch(`/api/v1/users/${id}`, { [role]: true })
             .then(res => {
@@ -46,7 +45,7 @@ const Users = () => {
                 document.getElementById('role_modal').close();
             });
     };
-    
+
     const removeUserRole = (id, role) => {
         axiosSecure.patch(`/api/v1/users/${id}`, { [role]: false })
             .then(res => {
@@ -79,28 +78,70 @@ const Users = () => {
                 document.getElementById('role_modal').close();
             });
     };
-    
+
+    {/* <div key={user._id}>
+                            <div className="flex flex-col rounded-lg border-2 border-black py-5">
+                                <Image src={user.photoURL} alt="profile" priority width={500} height={500} style={{
+                                    width: '120px',
+                                    height: '120px',
+                                }} className='rounded-full p-1 mx-auto' />
+                                <div className="flex flex-col pl-2">
+                                    <h2 className="text-lg text-gray-600 font-semibold">{user?.name}</h2>
+                                    <p className='text-xs text-gray-500'>{user?.email}</p>
+                                    <button className="" onClick={() => {
+                                        setData(user);
+                                        document.getElementById('role_modal').showModal();
+                                    }}> Role Update </button>
+                                </div>
+                            </div>
+                        </div> */}
+
     return (
         <>
-            <div className="grid grid-cols-5 gap-5 p-10">
-                {allUser.map(user => (
-                    <div key={user._id}>
-                        <div className="flex flex-col rounded-lg border-2 border-black py-5">
-                            <Image src={user.photoURL} alt="profile" priority width={500} height={500} style={{
-                                width: '120px',
-                                height: '120px',
-                            }} className='rounded-full p-1 mx-auto' />
-                            <div className="flex flex-col pl-2">
-                                <h2 className="text-lg text-gray-600 font-semibold">{user?.name}</h2>
-                                <p className='text-xs text-gray-500'>{user?.email}</p>
-                                <button className="" onClick={() => {
-                                    setData(user);
-                                    document.getElementById('role_modal').showModal();
-                                }}> Role Update </button>
+            <div className="grid grid-cols-1 gap-5">
+                <div className="flex items-center justify-center">
+                    <div className="container duration-300">
+                        <div className="w-full rounded-2xl overflow-hidden lg:shadow-lg my-5 duration-300">
+                            <div className="hidden lg:block bg-[#016961] duration-300 text-white ">
+                                <div className="flex items-center justify-between font-semibold border border-gray-100 px-10 py-5">
+                                    <h5 className="w-[40px] lg:mr-10"></h5>
+                                    <h5 className="w-full lg:mr-10">User</h5>
+                                    <h5 className="w-full lg:mr-10">Email</h5>
+                                    <h5 className="w-full lg:mr-10">Register Date</h5>
+                                    <h5 className="w-full lg:mr-10">Roles</h5>
+                                    <h5 className="w-full lg:mr-10">View Profile</h5>
+                                </div>
+                            </div>
+                            <div className="flex-1 sm:flex-none grid grid-cols-1 gap-5 lg:gap-0">
+                                {allUser.map(user => (
+                                    <div key={user._id} className="bg-white rounded-3xl lg:rounded-none shadow-sm hover:bg-[#19a49113] lg:shadow-inherit border border-gray-100">
+                                        <div className="flex flex-col lg:flex-row items-center justify-start lg:justify-between gap-1  rounded-3xl lg:rounded-none px-6 lg:px-10 py-5 mx-auto duration-300">
+                                            <div className="min-w-[40px] mr-2">
+                                                {user.photoURL ? (
+                                                    <Image src={user.photoURL} alt="profile" priority width={500} height={500} className='rounded-full p-1 mx-auto size-32 lg:size-10' />
+                                                ) : (
+                                                    <Image src={userPicPlaceHolder} alt="profile" priority width={500} height={500} className='rounded-full p-1 mx-auto size-32 lg:size-10' />
+                                                )}
+                                            </div>
+                                            <h5 className="w-full lg:mr-10 text-lg font-semibold text-center lg:text-start line-clamp-1 truncate">{user?.name}</h5>
+                                            <h5 className="w-full lg:mr-10 text-center lg:text-start">{user?.email}</h5>
+                                            <h5 className="w-full lg:mr-10 text-center lg:text-start">{user?.reg_date}</h5>
+                                            <div className="w-full lg:mr-10 flex gap-1.5 text-sm text-black justify-center lg:justify-start">
+                                                {user?.isModerator && <p className="py-0.5 px-2 bg-orange-400 rounded-full my-1.5">Moderator</p>}
+                                                {user?.isPublisher && <p className="py-0.5 px-2 bg-sky-500 rounded-full my-1.5">Publisher</p>}
+                                                {user?.isSeller && <p className="py-0.5 px-2 bg-teal-500 rounded-full my-1.5">Seller</p>}
+                                            </div>
+                                            <button className="w-full bg-[#016961] py-2 rounded-full lg:bg-transparent lg:mr-10 mt-2 lg:mt-auto text-center lg:text-start text-white lg:text-black" onClick={() => {
+                                                setData(user);
+                                                document.getElementById('role_modal').showModal();
+                                            }}> Role Update </button>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
-                ))}
+                </div>
             </div>
 
             <dialog id="role_modal" className="modal">
