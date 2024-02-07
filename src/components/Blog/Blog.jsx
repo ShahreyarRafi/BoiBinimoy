@@ -11,6 +11,7 @@ const Blog = () => {
             <Image
               src="https://images.unsplash.com/photo-1427751840561-9852520f8ce8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
               className="rounded-md object-cover w-full h-64"
+              priority
               width={500}
               height={500}
               alt=""

@@ -1,7 +1,6 @@
 "use client";
-import Link from "next/link";
-import React from "react";
-import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
+
+import { SlArrowRight } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
 
 const AddBook = () => {
@@ -51,8 +50,7 @@ const AddBook = () => {
       description,
     };
 
-    axios
-      .post("https://boi-binimoy-server.vercel.app/api/v1/buyBooks", newBook)
+    axios.post("https://boi-binimoy-server.vercel.app/api/v1/buyBooks", newBook)
       .then((response) => {
         // Handle the success response
         console.log("Response:", response.data);

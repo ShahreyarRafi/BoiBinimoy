@@ -5,6 +5,7 @@ import Search from "./Search/Search";
 import { CiMenuKebab } from "react-icons/ci";
 
 const Navbar = () => {
+
   return (
     <nav className="bg-[#016961] text-white sticky top-0 right-0 z-50 py-5">
       {/* nav for md and lg screen */}

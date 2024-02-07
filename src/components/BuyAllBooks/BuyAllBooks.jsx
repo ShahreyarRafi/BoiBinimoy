@@ -1,31 +1,28 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import BookCard from "../Shared/BookCard";
 
 const BuyAllBooks = () => {
+
+  const axios = require('axios').default;
   const [books, setBooks] = useState([]);
-  const [fetchData, setFetchData] = useState(true);
 
   useEffect(() => {
-    if (fetchData) {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            "https://boi-binimoy-server.vercel.app/api/v1/buyBooks"
-          );
-          setBooks(response.data);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      };
-
-      fetchData();
-    }
-
-    return () => { };
-  }, [fetchData]);
+    axios.get('https://boi-binimoy-server.vercel.app/api/v1/buy-books')
+      .then(function (response) {
+        // handle success
+        console.log(response);
+        setBooks(response.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  }, [])
 
   return (
     <div className="min-h-screen container mx-auto px-3">

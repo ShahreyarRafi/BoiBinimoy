@@ -9,33 +9,27 @@ import Related from "./Related/Related";
 
 const BookDetails = () => {
   const [book, setBook] = useState([]);
-  const [fetchData, setFetchData] = useState(true);
   const param = useParams();
 
   useEffect(() => {
-    if (fetchData) {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            `https://boi-binimoy-server.vercel.app/api/v1/buyBooks/${param.buyId}`
-          );
-          setBook(response.data);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      };
-
-      fetchData();
-    }
-
-    return () => { };
-  }, [fetchData, param.buyId]);
-
-  console.log(book);
+    axios.get(`https://boi-binimoy-server.vercel.app/api/v1/buy-books/${param?.buyId}`)
+      .then(function (response) {
+        // handle success
+        console.log(response);
+        setBook(response.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  }, [param?.buyId])
 
   return (
     <div className="w-full bg-teal-50">
-      {/* Bannar */}
+      {/* Banner */}
       <div className="relative bg-[#016961]">
         {/* bottom curve */}
         <div className="absolute inset-x-0 bottom-0 ">
@@ -139,7 +133,7 @@ const BookDetails = () => {
           </div>
         </div>
 
-        {/* Relatad section */}
+        {/* Related section */}
         <Related />
 
         {/* review section */}
@@ -151,7 +145,6 @@ const BookDetails = () => {
                 type="text"
                 name="Comment"
                 placeholder="Comment"
-                id=""
                 className="w-full h-8 px-2 bg-transparent border-b focus:outline-none focus:border-black"
               />
               <button type="submit" className="text-2xl text-[#016961]">
@@ -164,10 +157,11 @@ const BookDetails = () => {
               {/* review 1 */}
               <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
                 {/* user image */}
-                <div className="">
+                <div>
                   <Image
                     className="object-cover w-12 h-12 mb-2 rounded-full shadow"
                     src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
+                    priority
                     width={500}
                     height={500}
                     alt="Person"
@@ -187,10 +181,11 @@ const BookDetails = () => {
               {/* review 2 */}
               <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
                 {/* user image */}
-                <div className="">
+                <div>
                   <Image
                     className="object-cover w-12 h-12 mb-2 rounded-full shadow"
                     src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
+                    priority
                     width={500}
                     height={500}
                     alt="Person"
