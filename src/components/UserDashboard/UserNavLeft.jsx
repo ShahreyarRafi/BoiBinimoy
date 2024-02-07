@@ -113,12 +113,17 @@ const UserNavLeft = () => {
                   <span className="text">Add Book</span>
                 </Link>
               </li>
-              <li>
+
+
+              
+              {/* <li>
                 <Link href="/dashboard/profile">
                   <i className="bx bxs-group"></i>
                   <span className="text">Profile</span>
                 </Link>
-              </li>
+              </li> */}
+
+
               <li>
                 <Link href="/dashboard/users">
                   <i className="bx bxs-group"></i>
