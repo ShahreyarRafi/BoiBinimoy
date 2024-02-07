@@ -20,7 +20,7 @@ const Profile = () => {
   // console.log(currentUser);
 
   return (
-    <div className="max-w-6xl mx-auto rounded-lg pb-5 mb-10 bg-teal-50 shadow-lg">
+    <div className="rounded-lg h-full pb-5 mb-10 bg-teal-50 shadow-lg">
       <div className="relative bg-[#016961] rounded-t-lg">
         {/* bottom curve */}
         <div className="absolute inset-x-0 bottom-0 ">
