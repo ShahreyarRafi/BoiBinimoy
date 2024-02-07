@@ -14,7 +14,7 @@ const notFoundPage = () => {
                 <a className="book contact">Contact</a>
                 <a className="book faq">F.A.Q.</a>
 
-                <span className="book not-found">{currentPathName}</span>
+                <span className="book not-found"></span>
 
                 <span className="door left"></span>
                 <span className="door right"></span>
