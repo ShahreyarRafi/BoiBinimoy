@@ -20,6 +20,8 @@ const JoinUs = () => {
     const axiosPublic = useAxiosPublic();
     const [componentsMounted, setComponentMounted] = useState(false);
 
+    const isUser = true
+
     useEffect(() => {
         setComponentMounted(true);
     }, []);
@@ -50,7 +52,7 @@ const JoinUs = () => {
         const email = data.email;
         const password = data.password;
 
-        const userInfo = { name, email }
+        const userInfo = { name, email, password }
         createUser(email, password)
             .then(async (res) => {
                 if (res.user) {
