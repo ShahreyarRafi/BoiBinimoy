@@ -1,9 +1,10 @@
+import NotFound from '@/components/NotFound/NotFound';
 import React from 'react';
 
 const notFoundPage = () => {
     return (
         <div>
-            notFoundPage
+            <NotFound />
         </div>
     );
 };
