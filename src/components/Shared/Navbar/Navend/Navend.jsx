@@ -11,7 +11,7 @@ const Navend = () => {
   const { user, logOut } = useContext(AuthContext);
   const [active, setActive] = useState(false);
 
-  console.log(user.email);
+  // console.log(user.email);
 
   return (
     <div className="flex items-center gap-2">
