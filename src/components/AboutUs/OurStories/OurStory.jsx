@@ -1,4 +1,7 @@
+'use client'
+
 const OurStory = () => {
+
   return (
     <div className="max-w-5xl mx-auto my-8">
       <div className="mx-auto mb-10 lg:max-w-xl sm:text-center">

@@ -81,11 +81,10 @@ const Register = () => {
                     setActivePage("login");
                     router.push("/login");
                   }}
-                  className={`w-full px-3 py-2 rounded-lg focus:outline-none font-bold text-center ${
-                    activePage === "login"
+                  className={`w-full px-3 py-2 rounded-lg focus:outline-none font-bold text-center ${activePage === "login"
                       ? "bg-teal-500 text-white"
                       : "text-gray-700"
-                  }`}
+                    }`}
                 >
                   Login
                 </button>
@@ -94,11 +93,10 @@ const Register = () => {
                     setActivePage("register");
                     router.push("/register");
                   }}
-                  className={`w-full px-3 py-2  rounded-lg focus:outline-none font-bold text-center ${
-                    activePage === "register"
+                  className={`w-full px-3 py-2  rounded-lg focus:outline-none font-bold text-center ${activePage === "register"
                       ? "bg-teal-500 text-white"
                       : "text-gray-700"
-                  }`}
+                    }`}
                 >
                   Register
                 </button>
@@ -158,7 +156,7 @@ const Register = () => {
                 </button>
               </form>
 
-              {/* Todo   socila login components  */}
+              {/* Todo   social login components  */}
               <div className="mt-5">
                 <SocialLogin></SocialLogin>
               </div>

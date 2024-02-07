@@ -126,9 +126,11 @@ export default function Buy() {
                 <hr className="hr " />
                 <div className="flex items-center justify-end gap-3 text-nowrap">
                     {/* View All button */}
-                    <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-teal-50 flex items-center gap-1">
-                        View All <span className="text-xl"><FiArrowUpRight /></span>
-                    </button>
+                    <Link href={`/buyBooks`}>
+                        <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-teal-50 flex items-center gap-1">
+                            View All <span className="text-xl"><FiArrowUpRight /></span>
+                        </button>
+                    </Link>
                     {/* Previous Button */}
                     <button className="button-color p-1.5 md:p-2 rounded-full text-teal-50 flex items-center gap-1" onClick={handlePrevButtonClick}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
