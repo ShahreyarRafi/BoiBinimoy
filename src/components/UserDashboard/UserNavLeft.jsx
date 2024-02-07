@@ -5,7 +5,8 @@ import useAdmin from "@/Hooks/useAdmin";
 import { AuthContext } from "@/providers/AuthProvider";
 
 const UserNavLeft = () => {
-  const { user } = useContext(AuthContext);
+  const { user , logOut } = useContext(AuthContext);
+  
   const [isAdmin] = useAdmin();
 
   const [componentsMounted, setComponentMounted] = useState(false);
@@ -115,7 +116,7 @@ const UserNavLeft = () => {
               </li>
 
 
-              
+
               {/* <li>
                 <Link href="/dashboard/profile">
                   <i className="bx bxs-group"></i>
@@ -197,7 +198,7 @@ const UserNavLeft = () => {
           <li>
             <Link href="#" className="logout">
               <i className="bx bxs-log-out-circle"></i>
-              <span className="text">Logout</span>
+              <button onClick={logOut}> <span className="text">Logout</span> </button>
             </Link>
           </li>
         </ul>
