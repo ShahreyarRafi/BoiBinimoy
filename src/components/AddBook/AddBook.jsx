@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 // const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=7365e777963cf7664292cb83647a9d98`;
 
-
+// merged
 const AddBook = () => {
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
