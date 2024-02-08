@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import BookCard from "../Shared/BookCard";
+import PageLoading from "../Shared/loadingPageBook/PageLoading";
 
 const BuyAllBooks = () => {
   const axiosPublic = useAxiosPublic();
@@ -14,6 +15,11 @@ const BuyAllBooks = () => {
       return res.data;
     },
   });
+
+  if (isLoading) {
+    return <PageLoading />;
+  }
+
 
   return (
     <div className="min-h-screen container mx-auto px-3">

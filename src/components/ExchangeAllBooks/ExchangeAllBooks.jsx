@@ -1,29 +1,27 @@
 "use client";
-
-import { useEffect, useState } from "react";
-import axios from "axios";
+import PageLoading from "../Shared/loadingPageBook/PageLoading";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
 import ExchangeAllCards from "../Shared/ExchangeAllCards";
+
 
 const ExchangeAllBooks = () => {
 
-    const axios = require('axios').default;
-    const [books, setBooks] = useState([]);
+    const axiosPublic = useAxiosPublic();
 
-    useEffect(() => {
-        axios.get('https://boi-binimoy-server.vercel.app/api/v1/exchange-books')
-            .then(function (response) {
-                // handle success
-                console.log(response);
-                setBooks(response.data);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-            .finally(function () {
-                // always executed
-            });
-    }, [])
+    const { data: books = [], isLoading } = useQuery({
+      queryKey: ['books'],
+      queryFn: async () => {
+        const res = await axiosPublic.get(`/api/v1/exchange-books`);
+        return res.data;
+      },
+    });
+
+    if (isLoading) {
+        return (
+          <PageLoading />
+          )
+      }
 
     return (
         <div className="min-h-screen container mx-auto px-3">

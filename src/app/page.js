@@ -9,7 +9,7 @@ import Stats from "@/components/Home/Stats/Stats";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="bg-teal-50">
       <div className="parallax hidden md:block">
         <BannerSlider />
       </div>
