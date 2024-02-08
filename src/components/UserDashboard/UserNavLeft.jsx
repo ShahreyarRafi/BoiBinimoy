@@ -8,7 +8,7 @@ import axios from "axios";
 import Image from 'next/image';
 
 const UserNavLeft = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState([]);
   const [fetchData, setFetchData] = useState(true);
 
@@ -188,7 +188,7 @@ const UserNavLeft = () => {
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="/dashboard/message">
                   <i className="bx bxs-message-dots"></i>
                   <span className="text">Message</span>
                 </Link>
@@ -207,7 +207,7 @@ const UserNavLeft = () => {
           <li>
             <Link href="#" className="logout">
               <i className="bx bxs-log-out-circle"></i>
-              <span className="text">Logout</span>
+              <button onClick={logOut}> <span className="text">Logout</span> </button>
             </Link>
           </li>
         </ul>

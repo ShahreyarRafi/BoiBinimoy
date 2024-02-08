@@ -1,9 +1,9 @@
 "use client";
-import "./Spinner.css";
+// import "./Spinner.css";
 import "swiper/css/bundle";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import RelatedCard from "./RelatedCard";
+import RelatedCard from "../../Shared/RelatedCard";
 import { FiArrowUpRight } from "react-icons/fi";
 
 const Related = () => {

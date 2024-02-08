@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import { usePathname } from 'next/navigation';
-import './404page.css'
+import './404page.css';
 
-const notFoundPage = () => {
-    let currentPathName = usePathname()
+const NotFound = () => {
+    const currentPathName = usePathname();
     return (
         <>
             <nav className="shelf">
@@ -23,4 +23,4 @@ const notFoundPage = () => {
     );
 };
 
-export default notFoundPage;
+export default NotFound;
