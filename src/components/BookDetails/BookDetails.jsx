@@ -65,7 +65,7 @@ const BookDetails = () => {
           <div className="px-10 text-white">
             <h2 className="text-4xl">{book?.title}</h2>
             <p className="text-xs">
-              by <span className="font-bold">{book?.writer}</span>
+              by <span className="font-bold text-sm">{book?.writer}</span>
             </p>
             <p className="text-3xl pt-3 pb-5">
               {book?.price} <span className="text-xs font-bold">$</span>
@@ -122,9 +122,7 @@ const BookDetails = () => {
               natus maiores aliquam nulla architecto, perferendis repudiandae
               praesentium facere hic reiciendis totam eveniet tempore, vitae,
               natus maiores aliquam nulla architecto, perferendis repudiandae
-              praesentium facere hic reiciendis totam eveniet tempore, vitae,
-              natus maiores aliquam nulla architecto, perferendis repudiandae
-              corrupti?
+              praesentium facere hic reiciendis totam. {book?.description}
             </p>
 
             {/* User action */}
