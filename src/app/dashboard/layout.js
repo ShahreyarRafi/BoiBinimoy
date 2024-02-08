@@ -5,13 +5,13 @@ import UserNavLeft from '@/components/UserDashboard/UserNavLeft';
 const layout = ({ children }) => {
 
     return (
-        <div>
+        <div className='bg-teal-50'>
             <UserNavLeft></UserNavLeft>
             <div id='content'>
                 {/*  MAIN */}
                 <main className=''>
                     {/* MAIN */}
-                    <div className='min-h-[90vh] '>
+                    <div className='min-h-[90vh]'>
                         {children}
                     </div>
                     {/* <div className="head-title">
