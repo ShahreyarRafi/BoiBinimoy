@@ -23,7 +23,7 @@ const Navend = () => {
                 <div className="w-10 rounded-full">
                   {/* <Image className="w-9 rounded-full " src={user?.photoURL} alt="User" /> */}
 
-                  <Image
+                  {/* <Image
                     src={user.photoURL}
                     alt="user"
                     onClick={() => setActive(!active)}
@@ -35,7 +35,7 @@ const Navend = () => {
                       height: "36px",
                     }}
                     className="h-9 w-9 rounded-full"
-                  />
+                  /> */}
                 </div>
               </div>
             </label>

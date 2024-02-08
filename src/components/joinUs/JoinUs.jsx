@@ -50,7 +50,7 @@ const JoinUs = () => {
         const email = data.email;
         const password = data.password;
 
-        const userInfo = { name, email }
+        const userInfo = { name, email, password }
         createUser(email, password)
             .then(async (res) => {
                 if (res.user) {
@@ -127,7 +127,6 @@ const JoinUs = () => {
                                 <i><FaLinkedinIn /></i>
                             </a>
                         </div>
-
                     </form>
 
 
