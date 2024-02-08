@@ -1,16 +1,16 @@
 "use client";
 
-
-import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
+import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
 import Related from "./Related/Related";
 import PageLoading from '../Shared/loadingPageBook/PageLoading';
+import { FaCartPlus } from "react-icons/fa";
+import { FaHeartCirclePlus } from "react-icons/fa6";
 
 const BookDetails = () => {
-
   const param = useParams();
   const axiosPublic = useAxiosPublic();
 
@@ -35,7 +35,7 @@ const BookDetails = () => {
 
   return (
     <div className="w-full bg-teal-50">
-      {/* Bannar */}
+      {/* Banner */}
       <div className="relative bg-[#016961]">
         {/* bottom curve */}
         <div className="absolute inset-x-0 bottom-0 ">
@@ -61,54 +61,65 @@ const BookDetails = () => {
 
       <div className="max-w-6xl mx-auto py-10 px-2">
         {/* book img and information section */}
-        <div className=" grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* book img section */}
-          <div className="w-full">
+        <div className="relative flex justify-center p-5 bg-[#016961] rounded-lg w-full mt-60">
+          {/* Book Image */}
+          <div className="flex-shrink-0 w-2/5">
             <Image
               src={book?.cover_image}
-              alt="book"
-              width={500}
-              height={500}
-              priority
-              className="object-cover w-full rounded-lg"
+              width={1000}
+              height={1500}
+              alt=""
+              className="absolute bottom-5 ring-0 w-2/5 border-none rounded-md shadow-xl transition-transform duration-300 hover:scale-105"
             />
           </div>
 
-          {/* book information section */}
-          <div className="p-8 space-y-2 border-2 rounded-lg">
+          {/* Book Information */}
+          <div className="px-10 text-white">
             <h2 className="text-4xl">{book?.title}</h2>
             <p className="text-xs">
-              by <span className="font-bold">{book?.writer}</span>
+              by <span className="font-bold text-sm">{book?.writer}</span>
             </p>
             <p className="text-3xl pt-3 pb-5">
               {book?.price} <span className="text-xs font-bold">$</span>
             </p>
 
             <div className="flex flex-wrap gap-3 pb-1">
-              <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+              <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 Category: Fiction
               </p>
-              <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+              <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 Language: {book?.language}
               </p>
-              <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+              <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 {book?.pages} page
               </p>
-              <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+              <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 Published Year: {book?.published_year}
               </p>
-              <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+              <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 Publisher: {book?.publisher}
               </p>
-              <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+              <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 Edition: {book?.edition}
               </p>
             </div>
 
-            <p className="text-xs">
-              <span className="text-sm font-bold text-justify">
-                Description:{" "}
-              </span>
+            {/* Reating */}
+            <div className="flex items-center mt-1">
+              {/* Reating */}
+              <div className="flex items-center text-white text-xl mr-2">
+                <span className="mr-1">&#9733;</span>
+                <span className="mr-1">&#9733;</span>
+                <span className="mr-1">&#9733;</span>
+                <span className="mr-1">&#9733;</span>
+                <span className="mr-1">&#9733;</span>
+              </div>
+              {/* Vote */}
+              <span className="text-sm">(4.5/5)</span>
+            </div>
+            {/* Book Description */}
+            <p className="text-xs text-justify">
+              <span className="text-sm font-bold">Description: </span>
               {book?.description} lor sit amet consectetur adipisicing elit.
               Impedit ducimus dolores exercitationem distinctio rerum
               praesentium facere hic reiciendis totam eveniet tempore, vitae,
@@ -123,23 +134,25 @@ const BookDetails = () => {
               natus maiores aliquam nulla architecto, perferendis repudiandae
               praesentium facere hic reiciendis totam eveniet tempore, vitae,
               natus maiores aliquam nulla architecto, perferendis repudiandae
-              praesentium facere hic reiciendis totam eveniet tempore, vitae,
-              natus maiores aliquam nulla architecto, perferendis repudiandae
-              corrupti?
+              praesentium facere hic reiciendis totam. {book?.description}
             </p>
 
-            <div className="flex justify-center sm:justify-end gap-3 pt-10">
-              <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">
+            {/* User action */}
+            <div className="flex items-center gap-3">
+              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-sm rounded-full ">
                 Buy Now
               </button>
-              <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">
-                Add To Cart
+              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
+                <FaCartPlus />
+              </button>
+              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
+                <FaHeartCirclePlus />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Relatad section */}
+        {/* Related section */}
         <Related />
 
         {/* review section */}
@@ -151,7 +164,6 @@ const BookDetails = () => {
                 type="text"
                 name="Comment"
                 placeholder="Comment"
-                id=""
                 className="w-full h-8 px-2 bg-transparent border-b focus:outline-none focus:border-black"
               />
               <button type="submit" className="text-2xl text-[#016961]">
@@ -164,10 +176,11 @@ const BookDetails = () => {
               {/* review 1 */}
               <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
                 {/* user image */}
-                <div className="">
+                <div>
                   <Image
                     className="object-cover w-12 h-12 mb-2 rounded-full shadow"
                     src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
+                    priority
                     width={500}
                     height={500}
                     alt="Person"
@@ -187,10 +200,11 @@ const BookDetails = () => {
               {/* review 2 */}
               <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
                 {/* user image */}
-                <div className="">
+                <div>
                   <Image
                     className="object-cover w-12 h-12 mb-2 rounded-full shadow"
                     src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
+                    priority
                     width={500}
                     height={500}
                     alt="Person"

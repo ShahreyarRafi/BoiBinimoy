@@ -1,18 +1,17 @@
 "use client"
 
-import BookDetails from '@/components/BookDetails/BookDetails';
 import Footer from '@/components/Shared/Footer';
 import Navbar from '@/components/Shared/Navbar/Navbar';
 import React from 'react';
 
-const page = () => {
+const layout = ({ children }) => {
     return (
         <div>
-            <Navbar />
-            <BookDetails />
-            <Footer />
+            <Navbar></Navbar>
+            {children}
+            <Footer></Footer>
         </div>
     );
 };
 
-export default page;
+export default layout;

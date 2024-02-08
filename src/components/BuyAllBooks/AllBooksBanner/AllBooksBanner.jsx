@@ -1,5 +1,3 @@
-
-
 const AllBooksBanner = () => {
   return (
     <div className="relative bg-[#016961]">
@@ -19,7 +17,7 @@ const AllBooksBanner = () => {
       <div className="text-center px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
           <h2 className="mb-6 text-3xl font-bold text-white sm:text-5xl">
-            Buy Books
+            All Books
           </h2>
         </div>
       </div>

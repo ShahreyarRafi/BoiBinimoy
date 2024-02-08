@@ -11,9 +11,6 @@ import ComponentLoading from '@/components/Shared/loadingPageBook/ComponentLoadi
 
 const TestExchange = () => {
 
-
-  
-
   const axiosPublic = useAxiosPublic();
 
   const { data: books = [], isLoading } = useQuery({
