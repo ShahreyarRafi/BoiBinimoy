@@ -9,22 +9,25 @@ const Stats = () => {
   const statsRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
+    if (typeof window !== 'undefined') {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
       });
-    });
-
-    observer.observe(statsRef.current);
-
-    // Cleanup observer on unmount
-    return () => {
-      observer.disconnect();
-    };
+  
+      observer.observe(statsRef.current);
+  
+      // Cleanup observer on unmount
+      return () => {
+        observer.disconnect();
+      };
+    }
   }, []);
+  
 
   return (
     <div ref={statsRef} className="my-10 px-5">
