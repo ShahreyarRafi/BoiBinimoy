@@ -23,8 +23,8 @@ const TestExchange = () => {
 
   if (isLoading) {
     return (
-      <ComponentLoading/>
-      )
+      <ComponentLoading />
+    )
   }
 
 
@@ -59,7 +59,7 @@ const TestExchange = () => {
 
         <div className="col-span-full lg:col-span-6">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {books.map(item => (
+            {books.slice(0, 10).map(item => (
               <ExchangeCard key={item._id} item={item} />
             ))}
           </div>
