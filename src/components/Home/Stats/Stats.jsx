@@ -34,7 +34,8 @@ const Stats = () => {
         <div className="grid grid-cols-2 row-gap-8 md:grid-cols-4">
           <div className="text-center md:border-r">
             <h6 className="text-3xl font-bold lg:text-4xl xl:text-5xl">
-              {isVisible && <CountUp end={144000} duration={2} />}
+              {isVisible && <CountUp end={893} duration={2} separator="," />}
+              K
             </h6>
             <p className="text-sm font-medium tracking-widest text-gray-100 uppercase lg:text-base">
               Exchange
@@ -42,7 +43,8 @@ const Stats = () => {
           </div>
           <div className="text-center md:border-r">
             <h6 className="text-3xl font-bold lg:text-4xl xl:text-5xl">
-              {isVisible && <CountUp end={12900} duration={2} />}
+              {isVisible && <CountUp end={649} duration={2} separator="," />}
+              K
             </h6>
             <p className="text-sm font-medium tracking-widest text-gray-100 uppercase lg:text-base">
               Sale
@@ -50,7 +52,8 @@ const Stats = () => {
           </div>
           <div className="text-center md:border-r">
             <h6 className="text-3xl font-bold lg:text-4xl xl:text-5xl">
-              {isVisible && <CountUp end={48300} duration={2} />}
+              {isVisible && <CountUp end={483} duration={2} separator="," />}
+              K
             </h6>
             <p className="text-sm font-medium tracking-widest text-gray-100 uppercase lg:text-base">
               Users
@@ -58,7 +61,8 @@ const Stats = () => {
           </div>
           <div className="text-center">
             <h6 className="text-3xl font-bold lg:text-4xl xl:text-5xl">
-              {isVisible && <CountUp end={24500} duration={2} />}
+              {isVisible && <CountUp end={45} duration={2} separator="," />}
+              K
             </h6>
             <p className="text-sm font-medium tracking-widest text-gray-100 uppercase lg:text-base">
               Writer
