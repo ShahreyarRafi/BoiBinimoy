@@ -9,9 +9,6 @@ import { FiArrowUpRight } from "react-icons/fi";
 
 const TestExchange = () => {
 
-
-  
-
   const axiosPublic = useAxiosPublic();
 
   const { data: books = [], isLoading } = useQuery({
@@ -21,8 +18,6 @@ const TestExchange = () => {
       return res.data;
     },
   });
-
-
 
   const transparentBanner = "https://i.ibb.co/GPmg3HB/Swap-Books-t.png"
 

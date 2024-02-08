@@ -1,12 +1,12 @@
 "use client"
 
-import BookDetails from '@/components/BookDetails/BookDetails';
+import BlogDetails from '@/components/BlogDetails/BlogDetails';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <BookDetails></BookDetails>
+            <BlogDetails></BlogDetails>
         </div>
     );
 };
