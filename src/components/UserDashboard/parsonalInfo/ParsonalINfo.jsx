@@ -7,31 +7,73 @@ import Link from "next/link";
 import { CiEdit } from "react-icons/ci";
 import { IoMdAdd } from "react-icons/io";
 import { AuthContext } from '@/providers/AuthProvider';
-import useAllUser from '@/Hooks/api/useAllUser';
-
+import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
+import Swal from 'sweetalert2';
+import useOneUser from '@/Hooks/api/useOneUser';
+import { useRouter } from 'next/navigation';
+// import palesholderImage from "../../../../public/placeholder.png"
+import { IoIosCamera } from "react-icons/io";
 
 const ParsonalInfo = () => {
 
 
-    // const { user } = useContext(AuthContext);
-    // console.log(user?.email);
-  
-    // // All user data
-    // const [allUser] = useAllUser();
-    // // console.log(allUser);
-  
-    // // specific user
-    // const currentUser = allUser.filter((data) => data?.email === user?.email);
+    const axiosSecure = useAxiosSecure()
 
+    const [currentUser] = useOneUser()
 
-
+    console.log(currentUser);
+    const router = useRouter();
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
+        const name = form.name.value;
+        const phone_number = form.phone_number.value;
+        const date_of_birth = form.date_of_birth.value;
+        const gender = form.gender.value;
+        const profession = form.profession.value;
+        const street = form.street.value;
+        const upozela = form.upozela.value;
+        const district = form.district.value;
+        const division = form.division.value;
+        const country = form.country.value;
+        const zip_code = form.zip_code.value;
+        const image = form.image.value;
+
+
+
+        const updateUserInformation = {
+
+            name, phone_number, date_of_birth, gender, profession,image,
+            location: {
+                street, upozela, district, division, country, zip_code
+            }
+        }
+
+        console.log(updateUserInformation);
+
+
+        axiosSecure.patch(`api/v1/users/${currentUser._id}`, updateUserInformation)
+            .then(res => {
+                console.log("update data ", res.data);
+                // Assuming your API returns the updated user document
+                const updatedUser = res.data;
+                if (updatedUser) {
+                    Swal.fire(' Profile Update successfully');
+                    router.push('/dashboard/profile')
+                } else {
+                    console.error("Update failed: User not found or update unsuccessful");
+                    Swal.fire('Update failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error("Error occurred during update:", error);
+                Swal.fire('Update failed. Please try again.');
+            });
 
     }
+
 
 
     return (
@@ -66,8 +108,36 @@ const ParsonalInfo = () => {
                         </div>
 
                         {/* User profile and profile information */}
-                        <div className="flex flex-col md:flex-row justify-center items-center gap-5 mt-5">
+
+
+                        <div className="flex flex-col md:flex-row justify-center items-center gap-5 mt-5 relative">
                             {/* user profile */}
+
+
+                            <div className='absolute mr-[70px]  text-3xl '>
+
+                                <input
+                                    type="file"
+                                    id="fileInput"
+                                    name = "image"
+                                    style={{ display: 'none' }}
+                                    // onChange={handleFileChange}
+                                />
+
+                                <button
+                                    onClick={() => {
+                                        document.getElementById('fileInput').click();
+                                    }}
+                                    style={{ border: 'none', background: 'none', cursor: 'pointer' }}
+                                >
+                                    <IoIosCamera /> 
+                                </button>
+
+                               
+
+
+
+                            </div>
                             <Image
                                 src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
                                 className="object-cover w-40 h-40 mb-2 rounded-full shadow"
@@ -75,6 +145,8 @@ const ParsonalInfo = () => {
                                 width={500}
                                 height={500}
                             />
+
+
                             {/* profile information */}
                             <div className="text-center md:text-start">
 
@@ -91,18 +163,20 @@ const ParsonalInfo = () => {
                 {/* personal information and contact Address */}
                 <div className="max-w-4xl mx-auto space-y-5 mt-3 px-5 py-3 text-[#016961]">
                     {/* personal information */}
-                    <div className="w-full border-2 rounded-lg p-3">
-                        <div className="flex justify-between items-center">
-                            <h3 className="text-2xl font-bold pb-2 text-[#016961]">
-                                Personal Info
-                            </h3>
-                            {/* <Link href="/dashboard/parsonalInfo"> <button className="text-xl md:text-2xl">
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="w-full border-2 rounded-lg p-3">
+                            <div className="flex justify-between items-center">
+                                <h3 className="text-2xl font-bold pb-2 text-[#016961]">
+                                    Personal Info
+                                </h3>
+                                {/* <Link href="/dashboard/parsonalInfo"> <button className="text-xl md:text-2xl">
                                 <CiEdit />
                             </button></Link> */}
-                        </div>
-                        <div className="space-y-5 mt-3">
-                            {/* user name */}
-                            <form>
+                            </div>
+                            <div className="space-y-5 mt-3">
+                                {/* user name */}
+
                                 <div className="relative py-3 px-5 border-2 w-full rounded-md">
                                     <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
                                         Full Name
@@ -118,22 +192,14 @@ const ParsonalInfo = () => {
 
                                 </div>
 
-                                {/* user Email */}
-                                {/* <div className="relative py-3 px-5 border-2 w-full rounded-md">
-                                    <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
-                                        Email
-                                    </p>
-                                    <p className="text-lg">user.name@gmail.com</p>
-                                </div> */}
 
-                                {/* user Email */}
                                 <div className="relative py-3 px-5 border-2 w-full rounded-md">
                                     <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
                                         Phone
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="phoneNumber"
+                                        name="phone_number"
                                         placeholder="Phone Number"
                                         type="number"
                                         required
@@ -148,12 +214,14 @@ const ParsonalInfo = () => {
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="birthday"
+                                        name="date_of_birth"
                                         placeholder=" Date Of Birth "
                                         type="date"
                                         required
                                     />
                                 </div>
+
+
 
                                 {/* user gander */}
                                 <div className="relative py-3 px-5 border-2 w-full rounded-md">
@@ -164,11 +232,11 @@ const ParsonalInfo = () => {
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] text-gray-400 rounded-lg focus:outline-none"
                                         name="gender"
                                     >
-                                        <option selected value="">
+                                        <option selected value="gender">
                                             Gender
                                         </option>
-                                        <option value="english">Male</option>
-                                        <option value="bangla">Female</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
 
                                     </select>
                                 </div>
@@ -187,29 +255,29 @@ const ParsonalInfo = () => {
                                     />
 
                                 </div>
-                            </form>
+
+                            </div>
                         </div>
-                    </div>
 
 
-                    {/* Address information */}
-                    <div className="w-full border-2 rounded-lg p-3 text-[#016961]">
-                        <div className="flex justify-between items-center">
-                            <h3 className="text-2xl font-bold pb-2 text-[#016961]">
-                                Address Information
-                            </h3>
-                            {/* <button className="text-xl md:text-2xl">
+                        {/* Address information */}
+                        <div className="w-full border-2 rounded-lg p-3 text-[#016961]">
+                            <div className="flex justify-between items-center">
+                                <h3 className="text-2xl font-bold pb-2 text-[#016961]">
+                                    Address Information
+                                </h3>
+                                {/* <button className="text-xl md:text-2xl">
                                 <CiEdit />
                             </button> */}
-                        </div>
+                            </div>
 
-                        <div className="space-y-5 mt-3">
+                            <div className="space-y-5 mt-3">
 
-                            <form >
+
                                 {/* user City */}
                                 <div className="relative py-3 px-5 border-2 w-full rounded-md">
                                     <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
-                                    Street
+                                        Street
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
@@ -219,11 +287,23 @@ const ParsonalInfo = () => {
                                         required
                                     />
                                 </div>
+                                <div className="relative py-3 px-5 border-2 w-full rounded-md">
+                                    <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
+                                        Zip Code
+                                    </p>
+                                    <input
+                                        className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        name="zip_code"
+                                        placeholder="Zip Code"
+                                        type="number"
+                                        required
+                                    />
+                                </div>
 
                                 {/* user Street */}
                                 <div className="relative py-3 px-5 border-2 w-full rounded-md">
                                     <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded  text-xs text-[#016961]  px-2">
-                                    Upozela / Thana
+                                        Upozela / Thana
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
@@ -259,15 +339,28 @@ const ParsonalInfo = () => {
                                         required
                                     />
                                 </div>
+                                <div className="relative py-3 px-5 border-2 w-full rounded-md">
+                                    <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded  text-xs text-[#016961]  px-2">
+                                        Country
+                                    </p>
+                                    <input
+                                        className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        name="country"
+                                        placeholder="Country"
+                                        type="text"
+                                        required
+                                    />
+                                </div>
 
                                 {/* user Address */}
                                 <div className="relative py-3 px-5 border-2 w-full rounded-md">
-                                
-                                    <button className="text-lg"> Submit </button>
+
+                                    <button type='submit' className="text-lg"> Submit </button>
                                 </div>
-                            </form>
+
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div >

@@ -7,6 +7,9 @@ import Link from "next/link";
 import { useContext } from "react";
 import { CiEdit } from "react-icons/ci";
 import { IoMdAdd } from "react-icons/io";
+import palesholderImage from "../../../../public/placeholder.png"
+
+
 
 const Profile = () => {
 
@@ -62,13 +65,33 @@ const Profile = () => {
             {/* User profile and profile information */}
             <div className="flex flex-col md:flex-row justify-center items-center gap-5 mt-5">
               {/* user profile */}
-              <Image
+
+              <div className="mb-4">
+                {user?.photoURL ? (
+                  <Image
+                    src={user?.photoURL}
+                    alt="Profile"
+                    className="h-40 w-40 rounded-full mx-auto"
+                  />
+                ) : (
+                  <Image
+                    src={palesholderImage}
+                    alt="Placeholder"
+                    className="h-40 w-40 rounded-full bg-gray-300 mx-auto"
+                  />
+                )}
+              </div>
+
+
+              {/* <Image
                 src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
                 className="object-cover w-40 h-40 mb-2 rounded-full shadow"
                 alt=""
                 width={500}
                 height={500}
-              />
+              /> */}
+
+
               {/* profile information */}
               <div className="text-center md:text-start">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl"> {currentUser.name}</h2>
@@ -129,7 +152,11 @@ const Profile = () => {
                 <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
                   Phone
                 </p>
-                <p className="text-lg">01800-000000</p>
+                {currentUser.phone_number ? (
+                  <> <span className="text-lg">{currentUser.phone_number}</span></>
+                ) : (
+                  <> 01******** </>
+                )}
               </div>
 
               {/* user dob */}
@@ -137,7 +164,11 @@ const Profile = () => {
                 <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
                   Dath Of Birth
                 </p>
-                <p className="text-lg">Not set yet</p>
+                {currentUser.date_of_birth ? (
+                  <> <span className="text-lg">{currentUser.date_of_birth}</span></>
+                ) : (
+                  <> Not set yet </>
+                )}
               </div>
 
               {/* user gander */}
@@ -145,7 +176,11 @@ const Profile = () => {
                 <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
                   Gender
                 </p>
-                <p className="text-lg">Not set yet</p>
+                {currentUser.gender ? (
+                  <> <span className="text-lg uppercase">{currentUser.gender}</span></>
+                ) : (
+                  <> Not set yet </>
+                )}
               </div>
 
               {/* user Profession */}
@@ -153,7 +188,11 @@ const Profile = () => {
                 <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
                   Profession
                 </p>
-                <p className="text-lg">Not set yet</p>
+                {currentUser.profession ? (
+                  <> <span className="text-lg ">{currentUser.profession}</span></>
+                ) : (
+                  <> Not set yet </>
+                )}
               </div>
             </div>
           </div>
@@ -176,7 +215,11 @@ const Profile = () => {
                 <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
                   Street
                 </p>
-                <p className="text-lg">Not set yet</p>
+                {currentUser?.location?.street ? (
+                  <> <span className="text-lg uppercase">{currentUser?.location?.street}</span></>
+                ) : (
+                  <> Not set yet </>
+                )}
               </div>
 
               {/* user Street */}
@@ -184,7 +227,11 @@ const Profile = () => {
                 <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded  text-xs text-[#016961]  px-2">
                   Upozela / Thana
                 </p>
-                <p className="text-lg">Not set yet</p>
+                {currentUser?.location?.upozela ? (
+                  <> <span className="text-lg uppercase">{currentUser?.location?.upozela}</span></>
+                ) : (
+                  <> Not set yet </>
+                )}
               </div>
 
               {/* user Country */}
@@ -192,15 +239,34 @@ const Profile = () => {
                 <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded  text-xs text-[#016961]  px-2">
                   District
                 </p>
-                <p className="text-lg">Not set yet</p>
+                {currentUser?.location?.district ? (
+                  <> <span className="text-lg uppercase">{currentUser?.location?.district}</span></>
+                ) : (
+                  <> Not set yet </>
+                )}
               </div>
 
               {/* user Address */}
               <div className="relative py-3 px-5 border-2 w-full rounded-md">
                 <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded  text-xs text-[#016961]  px-2">
-                  Address
+                  Division
                 </p>
-                <p className="text-lg">Not set yet</p>
+                {currentUser?.location?.division ? (
+                  <> <span className="text-lg uppercase">{currentUser?.location?.division}</span></>
+                ) : (
+                  <> Not set yet </>
+                )}
+              </div>
+
+              <div className="relative py-3 px-5 border-2 w-full rounded-md">
+                <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded  text-xs text-[#016961]  px-2">
+                  Country
+                </p>
+                {currentUser?.location?.country ? (
+                  <> <span className="text-lg uppercase">{currentUser?.location?.country}</span></>
+                ) : (
+                  <> Not set yet </>
+                )}
               </div>
             </div>
           </div>
