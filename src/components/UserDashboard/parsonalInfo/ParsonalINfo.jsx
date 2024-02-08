@@ -39,13 +39,13 @@ const ParsonalInfo = () => {
         const division = form.division.value;
         const country = form.country.value;
         const zip_code = form.zip_code.value;
-        const image = form.image.value;
+        // const image = form.image.value;
 
 
 
         const updateUserInformation = {
 
-            name, phone_number, date_of_birth, gender, profession,image,
+            name, phone_number, date_of_birth, gender, profession,
             location: {
                 street, upozela, district, division, country, zip_code
             }
