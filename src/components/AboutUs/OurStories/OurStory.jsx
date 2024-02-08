@@ -1,9 +1,8 @@
-'use client'
+"use client";
 
 const OurStory = () => {
-
   return (
-    <div className="max-w-5xl mx-auto my-8">
+    <div className="max-w-5xl mx-auto my-8 text-[#016961]">
       <div className="mx-auto mb-10 lg:max-w-xl sm:text-center">
         <h2 className="mb-2 text-2xl md:text-3xl lg:text-4xl text-center font-bold">
           From Bookworms to Boi Binimoy
@@ -18,8 +17,8 @@ const OurStory = () => {
           <div className="flex flex-row">
             <div className="hidden md:flex flex-col items-center">
               <div className="w-32 py-5 border border-gray-300 rounded mr-4 uppercase flex flex-col items-center justify-center">
-                <div className="text-3xl font-black text-gray-500">Step 1</div>
-                <div className="text-gray-500 text-sm">Idea</div>
+                <div className="text-3xl font-black ">Step 1</div>
+                <div className=" text-sm">Idea</div>
               </div>
               <div className="h-full border-l-4 border-transparent">
                 <div className="border-l-4 mr-4 h-full border-gray-300 border-dashed"></div>
@@ -28,10 +27,10 @@ const OurStory = () => {
             <div className="flex-auto border rounded  border-gray-300">
               <div className="flex md:flex-row flex-col items-center">
                 <div className="flex-auto">
-                  <div className="md:hidden text-sm font-normal uppercase pt-3 pl-3 text-gray-500">
+                  <div className="md:hidden text-sm font-normal uppercase pt-3 pl-3 ">
                     <span className="font-black">Step 1</span> - Idea
                   </div>
-                  <div className="p-3 text-3xl text-gray-800 font">
+                  <div className="p-3 text-3xl font">
                     Development Phases
                   </div>
                   <div className="px-3 pb-6">
@@ -58,8 +57,8 @@ const OurStory = () => {
           <div className="flex flex-row-reverse">
             <div className="hidden md:flex flex-col items-center">
               <div className="w-32 py-5 border border-gray-300 rounded ml-4 uppercase flex flex-col items-center justify-center">
-                <div className="text-3xl font-black text-gray-500">Step 2</div>
-                <div className="text-gray-500 text-sm">Collaboration</div>
+                <div className="text-3xl font-black ">Step 2</div>
+                <div className=" text-sm">Collaboration</div>
               </div>
               <div className="h-full border-r-4 border-transparent">
                 <div className="border-l-4 ml-4 h-full border-gray-300 border-dashed"></div>
@@ -68,10 +67,10 @@ const OurStory = () => {
             <div className="flex-auto border rounded  border-gray-300">
               <div className="flex md:flex-row flex-col items-center">
                 <div className="flex-auto">
-                  <div className="md:hidden text-sm font-normal uppercase pt-3 pl-3 text-gray-500">
+                  <div className="md:hidden text-sm font-normal uppercase pt-3 pl-3 ">
                     <span className="font-black">Step 2</span> - Collaboration
                   </div>
-                  <div className="p-3 text-3xl text-gray-800 font">
+                  <div className="p-3 text-3xl font">
                     Find your team and collaborate
                   </div>
                   <div className="px-3 pb-6">
@@ -98,8 +97,8 @@ const OurStory = () => {
           <div className="flex flex-row">
             <div className="hidden md:flex flex-col items-center">
               <div className="w-32 py-5 border border-gray-300 rounded mr-4 uppercase flex flex-col items-center justify-center">
-                <div className="text-3xl font-black text-gray-500">Step 3</div>
-                <div className="text-gray-500 text-sm">Planification</div>
+                <div className="text-3xl font-black ">Step 3</div>
+                <div className=" text-sm">Planification</div>
               </div>
               <div className="h-full border-l-4 border-transparent">
                 <div className="border-l-4 mr-4 h-full border-gray-300 border-dashed"></div>
@@ -108,10 +107,10 @@ const OurStory = () => {
             <div className="flex-auto border rounded  border-gray-300">
               <div className="flex md:flex-row flex-col items-center">
                 <div className="flex-auto">
-                  <div className="md:hidden text-sm font-normal uppercase pt-3 pl-3 text-gray-500">
+                  <div className="md:hidden text-sm font-normal uppercase pt-3 pl-3 ">
                     <span className="font-black">Step 3</span> - Planification
                   </div>
-                  <div className="p-3 text-3xl text-gray-800 font">
+                  <div className="p-3 text-3xl font">
                     Make a good plan and prepare tasks
                   </div>
                   <div className="px-3 pb-6">
@@ -138,17 +137,17 @@ const OurStory = () => {
           <div className="flex flex-row-reverse">
             <div className="hidden md:flex flex-col items-center">
               <div className="w-32 py-5 border border-gray-300 rounded ml-4 uppercase flex flex-col items-center justify-center">
-                <div className="text-3xl font-black text-gray-500">Step 4</div>
-                <div className="text-gray-500 text-sm">Implementation</div>
+                <div className="text-3xl font-black ">Step 4</div>
+                <div className=" text-sm">Implementation</div>
               </div>
             </div>
             <div className="flex-auto border rounded  border-gray-300">
               <div className="flex md:flex-row flex-col items-center">
                 <div className="flex-auto">
-                  <div className="md:hidden text-sm font-normal uppercase pt-3 pl-3 text-gray-500">
+                  <div className="md:hidden text-sm font-normal uppercase pt-3 pl-3 ">
                     <span className="font-black">Step 4</span> - Implementation
                   </div>
-                  <div className="p-3 text-3xl text-gray-800 font">
+                  <div className="p-3 text-3xl font">
                     Execute, impletement your solution
                   </div>
                   <div className="px-3 pb-6">

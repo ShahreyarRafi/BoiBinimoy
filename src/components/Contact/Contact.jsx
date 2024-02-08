@@ -40,7 +40,7 @@ const Contact = () => {
         <div className="container mx-auto my-4 px-4 lg:px-20">
           <div className="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
             <div className="flex">
-              <h1 className="font-bold uppercase text-3xl md:text-4xl lg:text-5xl">
+              <h1 className="font-bold uppercase text-[#016961] text-3xl md:text-4xl lg:text-5xl">
                 Send us a message
               </h1>
             </div>
@@ -49,25 +49,25 @@ const Contact = () => {
               {/* input fild */}
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
                 <input
-                  className="w-full mt-2 p-3 rounded-lg focus:outline-none"
+                  className="w-full mt-2 p-3 bg-transparent border-2 text-[#016961] rounded-lg focus:outline-none"
                   type="text"
                   name="from_name"
                   placeholder="First Name*"
                   required
                 />
                 <input
-                  className="w-full mt-2 p-3 rounded-lg focus:outline-none"
+                  className="w-full mt-2 p-3 bg-transparent border-2 text-[#016961] rounded-lg focus:outline-none"
                   type="text"
                   placeholder="Last Name*"
                 />
                 <input
-                  className="w-full mt-2 p-3 rounded-lg focus:outline-none"
+                  className="w-full mt-2 p-3 bg-transparent border-2 text-[#016961] rounded-lg focus:outline-none"
                   type="email"
                   name="user_email"
                   placeholder="Email*"
                 />
                 <input
-                  className="w-full mt-2 p-3 rounded-lg focus:outline-none"
+                  className="w-full mt-2 p-3 bg-transparent border-2 text-[#016961] rounded-lg focus:outline-none"
                   type="text"
                   placeholder="Subjuct*"
                 />
@@ -79,7 +79,7 @@ const Contact = () => {
                   placeholder="Message*"
                   name="message"
                   required
-                  className="w-full h-32  mt-2 p-3 rounded-lg focus:outline-none"
+                  className="w-full h-32 bg-transparent border-2 text-[#016961] mt-2 p-3 rounded-lg focus:outline-none"
                 ></textarea>
               </div>
 
