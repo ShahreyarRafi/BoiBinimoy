@@ -18,10 +18,7 @@ const AddBook = () => {
 
   const onSubmit = async(data) => {
     const {  bookType, bookCondition, whatYouWant, bookCategory, title, writer, language, pages, publisher, publicationYear, edition, price, owner, location, stockLimit, tags, awards, description} =  data;
-
-     console.log(data)
     const imageFile = { image: data.image1[0] };
-    console.log(imageFile)
     
     const url = await axios.post(image_hosting_api, imageFile, {
       headers: {
@@ -29,7 +26,6 @@ const AddBook = () => {
       },
     });
     const image = url?.data?.data?.display_url || "";
-    console.log(image)
   
     const newBook = {
       bookType,
