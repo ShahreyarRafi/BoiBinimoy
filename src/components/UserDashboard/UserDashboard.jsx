@@ -7,9 +7,10 @@ import "./style.css";
 import { AuthContext } from "@/providers/AuthProvider";
 
 const UserDashboard = () => {
-  const { user } = useContext(AuthContext);
- 
 
+
+
+  const { user, logOut } = useContext(AuthContext);
   const [componentsMounted, setComponentMounted] = useState(false);
 
   useEffect(() => {
@@ -162,12 +163,14 @@ const UserDashboard = () => {
               <span className="text">Users</span>
             </a>
           </li>
+
           <li>
             <a href="/dashboard/userProfile">
               <i className="bx bxs-group"></i>
               <span className="text">Profile</span>
             </a>
           </li>
+
         </ul>
         <ul className="side-menu">
           <li>
@@ -179,61 +182,71 @@ const UserDashboard = () => {
           <li>
             <a href="#" className="logout">
               <i className="bx bxs-log-out-circle"></i>
-              <span className="text">Logout</span>
+              <button onClick={logOut}> <span className="text">Logout </span> </button>
             </a>
           </li>
         </ul>
       </section>
       {/*  SIDEBAR */}
 
-            {/*  CONTENT */}
-            <section id="content">
-                {/*  NAVBAR */}
-                <nav>
-                    <i className='bx bx-menu'></i>
-                    <a href="#" className="nav-link">Categories</a>
-                    <form action="#">
-                        <div className="form-input">
-                            <input type="search" placeholder="Search..." />
-                            <button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
-                        </div>
-                    </form>
-                    <input type="checkbox" id="switch-mode" hidden />
-                    <label for="switch-mode" className="switch-mode"></label>
-                    <a href="#" className="notification">
-                        <i className='bx bxs-bell' ></i>
-                        <span className="num">8</span>
-                    </a>
-                    <a href="#" className="profile">
-                        <Image src={placeholder} alt='' />
-                    </a>
-                </nav>
-                {/*  NAVBAR */}
+      {/*  CONTENT */}
+      <section id="content">
+        {/*  NAVBAR */}
+        <nav>
+          <i className="bx bx-menu"></i>
+          <a href="#" className="nav-link">
+            Categories
+          </a>
+          <form action="#">
+            <div className="form-input">
+              <input type="search" placeholder="Search..." />
+              <button type="submit" className="search-btn">
+                <i className="bx bx-search"></i>
+              </button>
+            </div>
+          </form>
+          <input type="checkbox" id="switch-mode" hidden />
+          <label for="switch-mode" className="switch-mode"></label>
+          <a href="#" className="notification">
+            <i className="bx bxs-bell"></i>
+            <span className="num">8</span>
+          </a>
+          <a href="#" className="profile">
+            <Image src={placeholder} alt="" />
+          </a>
+        </nav>
+        {/*  NAVBAR */}
 
-                {/*  MAIN */}
-                <main className='min-h-[100svh]'>
-                    <div className="head-title">
-                        <div className="left">
-                            <h1>Dashboard</h1>
-                            <ul className="breadcrumb">
-                                <li>
-                                    <a href="#">Dashboard</a>
-                                </li>
-                                <li><i className='bx bx-chevron-right' ></i></li>
-                                <li>
-                                    <a className="active" href="#">Home</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="w-full h-[75svh] flex items-center justify-center">
-                        <h1 className="text-xl font-medium">Additional dashboard items will appear here</h1>
-                    </div>
-                </main>
-                {/* MAIN */}
-            </section>
-        </>
-    );
+        {/*  MAIN */}
+        <main className="min-h-[100svh]">
+          <div className="head-title">
+            <div className="left">
+              <h1>Dashboard</h1>
+              <ul className="breadcrumb">
+                <li>
+                  <a href="#">Dashboard</a>
+                </li>
+                <li>
+                  <i className="bx bx-chevron-right"></i>
+                </li>
+                <li>
+                  <a className="active" href="#">
+                    Home
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="w-full h-[75svh] flex items-center justify-center">
+            <h1 className="text-xl font-medium">
+              Additional dashboard items will appear here
+            </h1>
+          </div>
+        </main>
+        {/* MAIN */}
+      </section>
+    </>
+  );
 };
 
 export default UserDashboard;

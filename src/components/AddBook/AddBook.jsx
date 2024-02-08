@@ -5,8 +5,7 @@ import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
 
 const AddBook = () => {
-
-  const axios = require('axios').default;
+  const axios = require("axios").default;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +29,6 @@ const AddBook = () => {
     const awards = form.awards.value;
     const description = form.description.value;
 
-
     // const newBook
     const newBook = {
       bookType,
@@ -50,39 +48,42 @@ const AddBook = () => {
       stockLimit,
       tags,
       awards,
-      description
+      description,
     };
 
-    axios.post('https://boi-binimoy-server.vercel.app/api/v1/buyBooks', newBook)
-      .then(response => {
+    axios
+      .post("https://boi-binimoy-server.vercel.app/api/v1/buyBooks", newBook)
+      .then((response) => {
         // Handle the success response
-        console.log('Response:', response.data);
+        console.log("Response:", response.data);
       })
-      .catch(error => {
+      .catch((error) => {
         // Handle errors
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
   };
 
   return (
-    <div className="bg-teal-50 text-gray-500 min-h-screen">
-      <div className="max-w-5xl mx-auto px-3 md:px-5 lg:px-0 py-10">
-        <div className="border-2 border-gray-300 rounded-lg px-3">
-          <h1 className="text-lg  font-bold py-2">Add Book</h1>
+    <div className="max-w-[1800px] mx-auto min-h-screen">
+      <div className="px-3 md:px-7 mb-10 text-[#016961]">
+        <div className="border-2 rounded-lg px-3">
+          <h1 className="text-2xl font-bold py-5 md:py-3 text-center md:text-start">
+            Add Your Book
+          </h1>
 
           <form onSubmit={handleSubmit}>
             {/* basic information div */}
-            <div className=" border-2 border-gray-300 rounded-lg px-3 pb-3">
+            <div className="border-2 rounded-lg px-3 pb-3">
               {/* title */}
-              <h3 className="text-sm font-light py-2">Basic Information:</h3>
+              <h3 className="py-2">Basic Information:</h3>
               {/* information */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                 {/* product type name:bookType*/}
                 <select
-                  className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                  className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border rounded-lg focus:outline-none"
                   name="bookType"
                 >
-                  <option selected value="">
+                  <option selected value="bookType">
                     Book type
                   </option>
                   <option value="newPhysicalBook">New Physical Book</option>
@@ -93,10 +94,10 @@ const AddBook = () => {
 
                 {/* product conditions name:bookCondition*/}
                 <select
-                  className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                  className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border rounded-lg focus:outline-none"
                   name="bookCondition"
                 >
-                  <option selected value="">
+                  <option selected value="bookCondition">
                     Book Condition
                   </option>
                   <option value="good">Good</option>
@@ -108,10 +109,10 @@ const AddBook = () => {
 
                 {/* what you wants name:whatYouWant*/}
                 <select
-                  className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                  className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border rounded-lg focus:outline-none"
                   name="whatYouWant"
                 >
-                  <option selected value="">
+                  <option selected value="want">
                     What you want?
                   </option>
                   <option value="exchange">Exchange</option>
@@ -121,10 +122,10 @@ const AddBook = () => {
 
                 {/* book category name:bookCategory*/}
                 <select
-                  className="h-10 w-full text-xs px-2 bg-transparent border rounded-lg focus:outline-none"
+                  className="h-10 w-full text-xs lg:text-sm text-gray-400 px-2 bg-transparent border rounded-lg focus:outline-none"
                   name="bookCategory"
                 >
-                  <option selected value="">
+                  <option selected value="category">
                     Book Category
                   </option>
                   <option value="self-help">Self-Help</option>
@@ -153,16 +154,16 @@ const AddBook = () => {
             </div>
 
             {/* book information and image div */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-3 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-2 md:space-y-0 my-3 md:gap-3">
               {/* book information div */}
-              <div className="border-2 col-span-1 lg:col-span-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
+              <div className="border-2 col-span-2 rounded-lg h-full w-full px-2 pb-3">
                 {/* title */}
-                <h3 className="text-sm font-light py-2">Book Information:</h3>
+                <h3 className="py-2">Book Information:</h3>
                 {/* information */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {/* book title  name:title*/}
                   <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
                     name="title"
                     placeholder="Book Title"
                     type="text"
@@ -171,7 +172,7 @@ const AddBook = () => {
 
                   {/* book author  name:writer*/}
                   <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
                     name="writer"
                     placeholder="Book Author"
                     type="text"
@@ -180,7 +181,7 @@ const AddBook = () => {
 
                   {/* book language  name:language*/}
                   <select
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border text-gray-400 rounded-lg focus:outline-none"
                     name="language"
                   >
                     <option selected value="">
@@ -193,7 +194,7 @@ const AddBook = () => {
 
                   {/* book page count  name:pages*/}
                   <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
                     name="pages"
                     placeholder="Book Page Count"
                     type="number"
@@ -202,7 +203,7 @@ const AddBook = () => {
 
                   {/* book publisher name:publisher*/}
                   <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
                     name="publisher"
                     placeholder="Book Publisher"
                     type="text"
@@ -211,7 +212,7 @@ const AddBook = () => {
 
                   {/* book publication year name:publicationYear*/}
                   <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
                     name="publicationYear"
                     placeholder="Book Publication Year"
                     type="number"
@@ -220,7 +221,7 @@ const AddBook = () => {
 
                   {/* book edition name:edition*/}
                   <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
                     name="edition"
                     placeholder="Book Edition"
                     type="text"
@@ -229,7 +230,7 @@ const AddBook = () => {
 
                   {/* book price name:price*/}
                   <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
                     name="price"
                     placeholder="Book Price"
                     type="number"
@@ -239,21 +240,19 @@ const AddBook = () => {
               </div>
 
               {/* image div */}
-              <div className="border-2 col-span-1 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
+              <div className="border-2 md:col-span-2 lg:col-span-1 rounded-lg h-full w-full px-2 pb-3">
                 {/* title */}
-                <h3 className="text-sm font-light py-2">
-                  Uploade book cover Image:
-                </h3>
+                <h3 className="py-2">Uploade book cover Image:</h3>
                 {/* iamge */}
                 <div
                   for="imageFile"
-                  className="w-full h-32 border flex justify-center items-center border-gray-300 rounded-lg"
+                  className="w-full h-32 border flex justify-center items-center rounded-lg"
                 >
                   <label
                     for="imageFile"
-                    className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                    className="px-16 py-16 flex justify-center items-center gap-3 text-center text-xs lg:text-sm cursor-pointer"
                   >
-                    <BsUpload /> <span> Upload Here</span>
+                    <BsUpload /> <span> Upload</span>
                   </label>
                   <input
                     className="h-5 w-full"
@@ -268,11 +267,11 @@ const AddBook = () => {
                   {/* 1 */}
                   <div
                     for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
+                    className="w-full h-16 border flex justify-center items-center rounded-lg"
                   >
                     <label
                       for="imageFile"
-                      className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                      className="px-2 py-2 gap-3 text-center text-xs lg:text-sm cursor-pointer"
                     >
                       <BsUpload />
                     </label>
@@ -283,14 +282,15 @@ const AddBook = () => {
                       hidden
                     />
                   </div>
+
                   {/* 2 */}
                   <div
                     for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
+                    className="w-full h-16 border flex justify-center items-center rounded-lg"
                   >
                     <label
                       for="imageFile"
-                      className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                      className="px-2 py-2 gap-3 text-center text-xs lg:text-sm cursor-pointer"
                     >
                       <BsUpload />
                     </label>
@@ -301,14 +301,15 @@ const AddBook = () => {
                       hidden
                     />
                   </div>
+
                   {/* 3 */}
                   <div
                     for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
+                    className="w-full h-16 border flex justify-center items-center rounded-lg"
                   >
                     <label
                       for="imageFile"
-                      className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                      className="px-2 py-2 gap-3 text-center text-xs lg:text-sm cursor-pointer"
                     >
                       <BsUpload />
                     </label>
@@ -325,15 +326,15 @@ const AddBook = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-3 gap-3">
               {/* owner information  div*/}
-              <div className="border-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
+              <div className="border-2 rounded-lg h-full w-full px-2 pb-3">
                 {/* title */}
-                <h3 className="text-sm font-light py-2">Owner Information:</h3>
+                <h3 className="py-2">Owner Information:</h3>
 
                 {/* information div */}
                 <div className="grid grid-cols-1 gap-3">
                   {/* owner name name:owner*/}
                   <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
                     name="owner"
                     placeholder="Book Owner Name"
                     type="text"
@@ -342,7 +343,7 @@ const AddBook = () => {
 
                   {/* owner location name:location*/}
                   <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
                     name="location"
                     placeholder="Book Owner location"
                     type="text"
@@ -352,15 +353,15 @@ const AddBook = () => {
               </div>
 
               {/* other information */}
-              <div className="border-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
+              <div className="border-2 rounded-lg h-full w-full px-2 pb-3">
                 {/* title */}
-                <h3 className="text-sm font-light py-2">Other Information:</h3>
+                <h3 className="py-2">Other Information:</h3>
 
                 {/* information */}
                 <div className="grid grid-cols-1 gap-3">
                   {/* book Stock Limit name:stockLimit*/}
                   <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
                     name="stockLimit"
                     placeholder="Book Stock"
                     type="number"
@@ -370,17 +371,15 @@ const AddBook = () => {
               </div>
 
               {/* optional information */}
-              <div className="border-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
+              <div className="border-2 col-span-1 md:col-span-2 lg:col-span-1 rounded-lg h-full w-full px-2 pb-3">
                 {/* title */}
-                <h3 className="text-sm font-light py-2">
-                  Optional Information:
-                </h3>
+                <h3 className="py-2">Optional Information:</h3>
 
                 {/* information */}
                 <div className="grid grid-cols-1 gap-3">
                   {/* book Tags name:tags*/}
                   <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
                     name="tags"
                     placeholder="Book Tags"
                     type="text"
@@ -388,7 +387,7 @@ const AddBook = () => {
 
                   {/* book awards name:awards*/}
                   <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
                     name="awards"
                     placeholder="Book Awards"
                     type="text"
@@ -400,7 +399,7 @@ const AddBook = () => {
             {/* book description div name:description*/}
             <div className="my-3">
               <textarea
-                className="w-full p-2 text-xs bg-transparent border-2 border-gray-300 rounded-lg focus:outline-none"
+                className="w-full p-2 text-xs lg:text-sm bg-transparent border-2 rounded-lg focus:outline-none"
                 name="description"
                 placeholder="Book Description"
                 cols="30"
@@ -409,21 +408,15 @@ const AddBook = () => {
               ></textarea>
             </div>
 
-            {/* go to home and submit buttons */}
-            <div className="flex justify-center md:justify-end text-xs items-center mb-4 gap-3">
-              <Link href="/dashboard">
-                <button className="px-3 py-2 border-2 border-gray-300 rounded-lg uppercase">
-                  <span className="flex items-center gap-1">
-                    <SlArrowLeft /> <span>Go to Dashboard</span>
-                  </span>
-                </button>
-              </Link>
+            {/* button section */}
+            <div className="flex justify-end md:justify-end items-center mb-4 gap-3">
+              {/* Publish button */}
               <button
                 type="submit"
-                className="px-3 py-2 border-2 border-gray-300 rounded-lg uppercase"
+                className="px-3 py-2 border-2 rounded-lg uppercase"
               >
-                <span className="flex items-center gap-1">
-                  <span>Submit</span> <SlArrowRight />
+                <span className="flex items-center gap-1 text-xs lg:text-sm xl:text-base">
+                  <span>Publish</span> <SlArrowRight />
                 </span>
               </button>
             </div>

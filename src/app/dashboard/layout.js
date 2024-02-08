@@ -3,9 +3,7 @@
 import UserNavLeft from '@/components/UserDashboard/UserNavLeft';
 import UserNavTop from '@/components/UserDashboard/UserNavTop';
 
-const layout = ({ children, path }) => {
-
-    console.log(path);
+const layout = ({ children }) => {
 
     return (
         <div>
@@ -14,7 +12,11 @@ const layout = ({ children, path }) => {
             <div id='content'>
                 {/*  MAIN */}
                 <main className=''>
-                    <div className="head-title">
+                    {/* MAIN */}
+                    <div className='min-h-[90vh] '>
+                        {children}
+                    </div>
+                    {/* <div className="head-title">
                         <div className="left">
                             <h1>Dashboard</h1>
                             <ul className="breadcrumb">
@@ -27,12 +29,9 @@ const layout = ({ children, path }) => {
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> */}
                 </main>
-                {/* MAIN */}
-                <div className='min-h-[90vh] '>
-                    {children}
-                </div>
+
             </div>
         </div>
     );

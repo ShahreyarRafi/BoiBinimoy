@@ -30,9 +30,8 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(1)}
-            className={`border-b-0 transition-colors ${
-              open === 1 ? "text-blue-500 hover:!text-blue-700" : ""
-            }`}
+            className={`border-b-0 transition-colors ${open === 1 ? "text-blue-500 hover:!text-blue-700" : ""
+              }`}
           >
             What is Boi Binimoy?
           </AccordionHeader>
@@ -50,9 +49,8 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(2)}
-            className={`border-b-0 transition-colors ${
-              open === 2 ? "text-blue-500 hover:!text-blue-700" : ""
-            }`}
+            className={`border-b-0 transition-colors ${open === 2 ? "text-blue-500 hover:!text-blue-700" : ""
+              }`}
           >
             How do I exchange books on Boi Binimoy?
           </AccordionHeader>
@@ -85,9 +83,8 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(3)}
-            className={`border-b-0 transition-colors ${
-              open === 3 ? "text-blue-500 hover:!text-blue-700" : ""
-            }`}
+            className={`border-b-0 transition-colors ${open === 3 ? "text-blue-500 hover:!text-blue-700" : ""
+              }`}
           >
             Can I buy or sell books on Boi Binimoy?
           </AccordionHeader>
@@ -116,9 +113,8 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(4)}
-            className={`border-b-0 transition-colors ${
-              open === 4 ? "text-blue-500 hover:!text-blue-700" : ""
-            }`}
+            className={`border-b-0 transition-colors ${open === 4 ? "text-blue-500 hover:!text-blue-700" : ""
+              }`}
           >
             What types of books can I find on Boi Binimoy?
           </AccordionHeader>
@@ -145,9 +141,8 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(5)}
-            className={`border-b-0 transition-colors ${
-              open === 5 ? "text-blue-500 hover:!text-blue-700" : ""
-            }`}
+            className={`border-b-0 transition-colors ${open === 5 ? "text-blue-500 hover:!text-blue-700" : ""
+              }`}
           >
             How do I know if a book is in good condition?
           </AccordionHeader>
@@ -164,9 +159,8 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(6)}
-            className={`border-b-0 transition-colors ${
-              open === 6 ? "text-blue-500 hover:!text-blue-700" : ""
-            }`}
+            className={`border-b-0 transition-colors ${open === 6 ? "text-blue-500 hover:!text-blue-700" : ""
+              }`}
           >
             Is it safe to exchange or buy books on Boi Binimoy?
           </AccordionHeader>
@@ -192,9 +186,8 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(7)}
-            className={`border-b-0 transition-colors ${
-              open === 7 ? "text-blue-500 hover:!text-blue-700" : ""
-            }`}
+            className={`border-b-0 transition-colors ${open === 7 ? "text-blue-500 hover:!text-blue-700" : ""
+              }`}
           >
             What if I have a problem with my book or transaction?
           </AccordionHeader>
@@ -211,9 +204,8 @@ const FAQ = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(8)}
-            className={`border-b-0 transition-colors ${
-              open === 8 ? "text-blue-500 hover:!text-blue-700" : ""
-            }`}
+            className={`border-b-0 transition-colors ${open === 8 ? "text-blue-500 hover:!text-blue-700" : ""
+              }`}
           >
             How can I stay updated on Boi Binimoy news and promotions?
           </AccordionHeader>

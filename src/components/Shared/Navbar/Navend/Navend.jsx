@@ -9,12 +9,15 @@ import Link from "next/link";
 
 const Navend = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [active, setActive] = useState(false);
+  // const [active, setActive] = useState(false);
+
+  // console.log(user.email);
 
   return (
     <div className="flex items-center gap-2">
       <MdFavoriteBorder />
       <MdOutlineShoppingCart />
+
       <div className="navbar-end">
         {user?.email ? (
           <div className="dropdown dropdown-end ">
@@ -39,34 +42,26 @@ const Navend = () => {
                 </div>
               </div>
             </label>
-
-            {active && (
-              <div
-                tabIndex={0}
-                className="dropdown-content z-[1] menu p-2 shadow  rounded-box w-52"
+            <div
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow  rounded-box w-52"
+            >
+              <Link
+                href="/dashboard"
+                className="px-4 py-2 hover:bg-base-300 rounded-lg"
               >
-                <Link href="dashboard">
-                  <button className="px-4 py-2 hover:bg-base-300 rounded-lg">
-                    {" "}
-                    Dashboard{" "}
-                  </button>
-                </Link>
-                <div
-                  onClick={logOut}
-                  className="cursor-pointer text-red-500 px-4 py-2 hover:bg-base-300 rounded-lg"
-                >
-                  Logout
-                </div>
-              </div>
-            )}
+                Dashboard
+              </Link>
+              <button
+                onClick={logOut}
+                className="cursor-pointer text-red-500 px-4 py-2 hover:bg-base-300 rounded-lg"
+              >
+                Logout
+              </button>
+            </div>
           </div>
         ) : (
-          <Link
-            href="/login"
-            className={({ isActive }) =>
-              isActive ? "btn btn-neutral btn-sm " : ""
-            }
-          >
+          <Link href="/login" className="text-[19px]">
             <LuUser2 />
           </Link>
         )}

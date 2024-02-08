@@ -1,31 +1,18 @@
 "use client";
-
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import BookCard from "../Shared/BookCard";
 
 const BuyAllBooks = () => {
-  const [books, setBooks] = useState([]);
-  const [fetchData, setFetchData] = useState(true);
+  const axiosPublic = useAxiosPublic();
 
-  useEffect(() => {
-    if (fetchData) {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            "https://boi-binimoy-server.vercel.app/api/v1/buyBooks"
-          );
-          setBooks(response.data);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      };
-
-      fetchData();
-    }
-
-    return () => { };
-  }, [fetchData]);
+  const { data: books = [], isLoading } = useQuery({
+    queryKey: ["books"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/api/v1/buy-books`);
+      return res.data;
+    },
+  });
 
   return (
     <div className="min-h-screen container mx-auto px-3">

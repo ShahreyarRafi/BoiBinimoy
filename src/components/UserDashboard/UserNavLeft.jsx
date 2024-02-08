@@ -5,7 +5,8 @@ import useAdmin from "@/Hooks/useAdmin";
 import { AuthContext } from "@/providers/AuthProvider";
 
 const UserNavLeft = () => {
-  const { user } = useContext(AuthContext);
+  const { user , logOut } = useContext(AuthContext);
+  
   const [isAdmin] = useAdmin();
 
   const [componentsMounted, setComponentMounted] = useState(false);
@@ -34,7 +35,7 @@ const UserNavLeft = () => {
         });
         li.classList.add("active");
       });
-      console.log(li);
+      // console.log(li);
     });
 
     // TOGGLE SIDEBAR
@@ -113,12 +114,17 @@ const UserNavLeft = () => {
                   <span className="text">Add Book</span>
                 </Link>
               </li>
-              <li>
+
+
+
+              {/* <li>
                 <Link href="/dashboard/profile">
                   <i className="bx bxs-group"></i>
                   <span className="text">Profile</span>
                 </Link>
-              </li>
+              </li> */}
+
+
               <li>
                 <Link href="/dashboard/users">
                   <i className="bx bxs-group"></i>
@@ -173,7 +179,7 @@ const UserNavLeft = () => {
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="/dashboard/message">
                   <i className="bx bxs-message-dots"></i>
                   <span className="text">Message</span>
                 </Link>
@@ -192,7 +198,7 @@ const UserNavLeft = () => {
           <li>
             <Link href="#" className="logout">
               <i className="bx bxs-log-out-circle"></i>
-              <span className="text">Logout</span>
+              <button onClick={logOut}> <span className="text">Logout</span> </button>
             </Link>
           </li>
         </ul>

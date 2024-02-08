@@ -1,94 +1,25 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
 import Related from "./Related/Related";
+import { FaCartPlus } from "react-icons/fa";
+import { FaHeartCirclePlus } from "react-icons/fa6";
 
 const BookDetails = () => {
-  const [book, setBook] = useState([]);
-  const [fetchData, setFetchData] = useState(true);
   const param = useParams();
+  const axiosPublic = useAxiosPublic();
 
-  useEffect(() => {
-    if (fetchData) {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            `https://boi-binimoy-server.vercel.app/api/v1/buyBooks/${param.buyId}`
-          );
-          setBook(response.data);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      };
-
-      fetchData();
-    }
-
-    return () => { };
-  }, [fetchData, param.buyId]);
-
-  console.log(book);
-
-  const exchangeBooks = [
-    {
-      id: 1,
-      cover_image: "https://i.ibb.co/fNhJX8L/Untitled-design-8.png",
-      title: "The Great Gatsby",
-      writer: "F. Scott Fitzgerald",
-      genre: "Classic",
-      description:
-        "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
+  const { data: book = [], isLoading } = useQuery({
+    queryKey: ["books"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/api/v1/buy-books/${param.buyId}`);
+      return res.data;
     },
-    {
-      id: 2,
-      cover_image: "https://i.ibb.co/wyJk0Df/Untitled-design-11.png",
-      title: "The Great Gatsby",
-      writer: "F. Scott Fitzgerald",
-      genre: "Classic",
-      description:
-        "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-    },
-    {
-      id: 3,
-      cover_image: "https://i.ibb.co/NVwBhZJ/Untitled-design-10.png",
-      title: "The Great Gatsby",
-      writer: "F. Scott Fitzgerald",
-      genre: "Classic",
-      description:
-        "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-    },
-    {
-      id: 4,
-      cover_image: "https://i.ibb.co/d52WsrH/Untitled-design-9.png",
-      title: "The Great Gatsby",
-      writer: "F. Scott Fitzgerald",
-      genre: "Classic",
-      description:
-        "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-    },
-    {
-      id: 5,
-      cover_image: "https://i.ibb.co/HzPW8vW/Untitled-design-13.png",
-      title: "The Great Gatsby",
-      writer: "F. Scott Fitzgerald",
-      genre: "Classic",
-      description:
-        "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-    },
-    {
-      id: 6,
-      cover_image: "https://i.ibb.co/vdcSqxv/Untitled-design-12.png",
-      title: "The Great Gatsby",
-      writer: "F. Scott Fitzgerald",
-      genre: "Classic",
-      description:
-        "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
-    },
-  ];
+  });
 
   return (
     <div className="w-full bg-teal-50">
@@ -118,54 +49,65 @@ const BookDetails = () => {
 
       <div className="max-w-6xl mx-auto py-10 px-2">
         {/* book img and information section */}
-        <div className=" grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* book img section */}
-          <div className="w-full">
+        <div className="relative flex justify-center p-5 bg-[#016961] rounded-lg w-full mt-60">
+          {/* Book Image */}
+          <div className="flex-shrink-0 w-2/5">
             <Image
               src={book?.cover_image}
-              alt="book"
-              width={500}
-              height={500}
-              priority
-              className="object-cover w-full rounded-lg"
+              width={1000}
+              height={1500}
+              alt=""
+              className="absolute bottom-5 ring-0 w-2/5 border-none rounded-md shadow-xl transition-transform duration-300 hover:scale-105"
             />
           </div>
 
-          {/* book information section */}
-          <div className="p-8 space-y-2 border-2 rounded-lg">
+          {/* Book Information */}
+          <div className="px-10 text-white">
             <h2 className="text-4xl">{book?.title}</h2>
             <p className="text-xs">
-              by <span className="font-bold">{book?.writer}</span>
+              by <span className="font-bold text-sm">{book?.writer}</span>
             </p>
             <p className="text-3xl pt-3 pb-5">
               {book?.price} <span className="text-xs font-bold">$</span>
             </p>
 
             <div className="flex flex-wrap gap-3 pb-1">
-              <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+              <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 Category: Fiction
               </p>
-              <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+              <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 Language: {book?.language}
               </p>
-              <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+              <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 {book?.pages} page
               </p>
-              <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+              <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 Published Year: {book?.published_year}
               </p>
-              <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+              <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 Publisher: {book?.publisher}
               </p>
-              <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+              <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 Edition: {book?.edition}
               </p>
             </div>
 
-            <p className="text-xs">
-              <span className="text-sm font-bold text-justify">
-                Description:{" "}
-              </span>
+            {/* Reating */}
+            <div className="flex items-center mt-1">
+              {/* Reating */}
+              <div className="flex items-center text-white text-xl mr-2">
+                <span className="mr-1">&#9733;</span>
+                <span className="mr-1">&#9733;</span>
+                <span className="mr-1">&#9733;</span>
+                <span className="mr-1">&#9733;</span>
+                <span className="mr-1">&#9733;</span>
+              </div>
+              {/* Vote */}
+              <span className="text-sm">(4.5/5)</span>
+            </div>
+            {/* Book Description */}
+            <p className="text-xs text-justify">
+              <span className="text-sm font-bold">Description: </span>
               {book?.description} lor sit amet consectetur adipisicing elit.
               Impedit ducimus dolores exercitationem distinctio rerum
               praesentium facere hic reiciendis totam eveniet tempore, vitae,
@@ -180,17 +122,19 @@ const BookDetails = () => {
               natus maiores aliquam nulla architecto, perferendis repudiandae
               praesentium facere hic reiciendis totam eveniet tempore, vitae,
               natus maiores aliquam nulla architecto, perferendis repudiandae
-              praesentium facere hic reiciendis totam eveniet tempore, vitae,
-              natus maiores aliquam nulla architecto, perferendis repudiandae
-              corrupti?
+              praesentium facere hic reiciendis totam. {book?.description}
             </p>
 
-            <div className="flex justify-center sm:justify-end gap-3 pt-10">
-              <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">
+            {/* User action */}
+            <div className="flex items-center gap-3">
+              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-sm rounded-full ">
                 Buy Now
               </button>
-              <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">
-                Add To Cart
+              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
+                <FaCartPlus />
+              </button>
+              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
+                <FaHeartCirclePlus />
               </button>
             </div>
           </div>
