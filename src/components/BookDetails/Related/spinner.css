@@ -34,28 +34,6 @@ body {
 	transform: translate3d(0,0,0);
 	transform-style: preserve-3d;
 }
-/* .book__pg-shadow,
-.book__pg {
-	position: absolute;
-	left: 0.25em;
-	width: calc(50% - 0.25em);
-}
-.book__pg-shadow {
-	animation-name: shadow;
-	background-image: linear-gradient(-45deg,hsla(0,0%,0%,0) 50%,hsla(0,0%,0%,0.3) 50%);
-	filter: blur(0.25em);
-	top: calc(100% - 0.25em);
-	height: 3.75em;
-	transform: scaleY(0);
-	transform-origin: 100% 0%;
-}
-.book__pg {
-	animation-name: pg1;
-	background-color: var(--white);
-	background-image: linear-gradient(90deg,hsla(var(--hue),10%,90%,0) 87.5%,hsl(var(--hue),10%,90%));
-	height: calc(100% - 0.5em);
-	transform-origin: 100% 50%;
-} */
 
 .book__pg-shadow,
 .book__pg {

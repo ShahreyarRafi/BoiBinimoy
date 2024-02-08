@@ -11,7 +11,7 @@ const Navend = () => {
   const { user, logOut } = useContext(AuthContext);
   // const [active, setActive] = useState(false);
 
-  console.log(user.email);
+  // console.log(user.email);
 
   return (
     <div className="flex items-center gap-2">
@@ -24,7 +24,6 @@ const Navend = () => {
             <label tabIndex={0} className="cursor-pointer">
               <div>
                 <div className="w-10 rounded-full">
-
                   {/* <Image
                     src={user.photoURL}
                     alt="user"
@@ -45,21 +44,22 @@ const Navend = () => {
               tabIndex={0}
               className="dropdown-content z-[1] menu p-2 shadow  rounded-box w-52"
             >
-              <Link href="/dashboard" className="px-4 py-2 hover:bg-base-300 rounded-lg">
+              <Link
+                href="/dashboard"
+                className="px-4 py-2 hover:bg-base-300 rounded-lg"
+              >
                 Dashboard
               </Link>
               <button
                 onClick={logOut}
                 className="cursor-pointer text-red-500 px-4 py-2 hover:bg-base-300 rounded-lg"
               >
-                Logout 
+                Logout
               </button>
             </div>
-          </div>) : (
-          <Link
-            href="/login"
-            className="btn  btn-sm"
-          >
+          </div>
+        ) : (
+          <Link href="/login" className="text-[19px]">
             <LuUser2 />
           </Link>
         )}
