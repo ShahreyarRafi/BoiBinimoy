@@ -7,7 +7,10 @@ import "./style.css";
 import { AuthContext } from "@/providers/AuthProvider";
 
 const UserDashboard = () => {
-  const { user } = useContext(AuthContext);
+
+
+
+  const { user, logOut } = useContext(AuthContext);
   const [componentsMounted, setComponentMounted] = useState(false);
 
   useEffect(() => {
@@ -160,12 +163,14 @@ const UserDashboard = () => {
               <span className="text">Users</span>
             </a>
           </li>
+
           <li>
             <a href="/dashboard/userProfile">
               <i className="bx bxs-group"></i>
               <span className="text">Profile</span>
             </a>
           </li>
+
         </ul>
         <ul className="side-menu">
           <li>
@@ -177,7 +182,7 @@ const UserDashboard = () => {
           <li>
             <a href="#" className="logout">
               <i className="bx bxs-log-out-circle"></i>
-              <span className="text">Logout</span>
+              <button onClick={logOut}> <span className="text">Logout </span> </button>
             </a>
           </li>
         </ul>

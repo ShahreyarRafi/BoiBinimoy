@@ -6,11 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import ExchangeCard from "../../Shared/ExchangeCard";
 import { FiArrowUpRight } from "react-icons/fi";
+import ComponentLoading from '@/components/Shared/loadingPageBook/ComponentLoading';
 
 const TestExchange = () => {
-
-
-  
 
   const axiosPublic = useAxiosPublic();
 
@@ -22,6 +20,11 @@ const TestExchange = () => {
     },
   });
 
+  if (isLoading) {
+    return (
+      <ComponentLoading />
+    )
+  }
 
 
   const transparentBanner = "https://i.ibb.co/GPmg3HB/Swap-Books-t.png"
@@ -55,7 +58,7 @@ const TestExchange = () => {
 
         <div className="col-span-full lg:col-span-6">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {books.map(item => (
+            {books.slice(0, 10).map(item => (
               <ExchangeCard key={item._id} item={item} />
             ))}
           </div>

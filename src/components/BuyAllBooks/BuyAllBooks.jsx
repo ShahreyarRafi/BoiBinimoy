@@ -1,19 +1,24 @@
 "use client";
+
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
+import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import BookCard from "../Shared/BookCard";
+import PageLoading from "../Shared/loadingPageBook/PageLoading";
 
 const BuyAllBooks = () => {
-
   const axiosPublic = useAxiosPublic();
 
   const { data: books = [], isLoading } = useQuery({
-    queryKey: ['books'],
+    queryKey: ["books"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/api/v1/buy-books`);
       return res.data;
     },
   });
+
+  if (isLoading) {
+    return <PageLoading />;
+  }
 
 
   return (

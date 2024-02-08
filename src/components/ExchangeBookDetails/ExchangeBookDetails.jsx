@@ -6,31 +6,28 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
 import Related from "./Related/Related";
+import Link from 'next/link'
 
 const ExchangeBookDetails = () => {
 
     const [book, setBook] = useState([]);
-    const [fetchData, setFetchData] = useState(true);
     const param = useParams();
 
     useEffect(() => {
-        if (fetchData) {
-            const fetchData = async () => {
-                try {
-                    const response = await axios.get(
-                        `https://boi-binimoy-server.vercel.app/api/v1/exchangableBooks/${param.exchangeId}`
-                    );
-                    setBook(response.data);
-                } catch (error) {
-                    console.error("Error:", error);
-                }
-            };
-
-            fetchData();
-        }
-
-        return () => { };
-    }, [fetchData, param.exchangeId]);
+        axios.get(`https://boi-binimoy-server.vercel.app/api/v1/exchange-books/${param?.exchangeId}`)
+            .then(function (response) {
+                // handle success
+                console.log(response);
+                setBook(response.data);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
+    }, [param?.exchangeId])
 
     return (
         <div className="w-full bg-teal-50">
@@ -125,9 +122,9 @@ const ExchangeBookDetails = () => {
                         </p>
 
                         <div className="flex justify-center sm:justify-end gap-3 pt-10">
-                            <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">
+                            <Link href={`/exchangeAllBooks/${book?._id}/exchangeRequest`} className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">
                                 Exchange Request
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

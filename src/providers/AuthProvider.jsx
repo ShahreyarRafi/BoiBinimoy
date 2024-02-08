@@ -6,7 +6,7 @@ import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword,
 import PropTypes from 'prop-types';
 import { createContext, useEffect, useState } from "react";
 
-export const AuthContext = createContext(null)
+export const AuthContext = createContext("")
 
 
 const AuthProvider = ({ children }) => {
