@@ -7,19 +7,30 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
 import Related from "./Related/Related";
+import PageLoading from '../Shared/loadingPageBook/PageLoading';
 
 const BookDetails = () => {
 
   const param = useParams();
   const axiosPublic = useAxiosPublic();
 
+
+
   const { data: book = [], isLoading } = useQuery({
-    queryKey: ['books'],
+    queryKey: ['book'],
     queryFn: async () => {
       const res = await axiosPublic.get(`/api/v1/buy-books/${param.buyId}`);
       return res.data;
     },
   });
+
+  if (isLoading) {
+    return (
+      <PageLoading />
+      )
+  }
+
+
 
 
   return (

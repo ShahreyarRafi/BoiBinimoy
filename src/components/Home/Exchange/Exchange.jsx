@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import ExchangeCard from "../../Shared/ExchangeCard";
 import { FiArrowUpRight } from "react-icons/fi";
+import PageLoading from '@/components/Shared/loadingPageBook/PageLoading';
+import ComponentLoading from '@/components/Shared/loadingPageBook/ComponentLoading';
 
 const TestExchange = () => {
 
@@ -22,6 +24,11 @@ const TestExchange = () => {
     },
   });
 
+  if (isLoading) {
+    return (
+      <ComponentLoading/>
+      )
+  }
 
 
   const transparentBanner = "https://i.ibb.co/GPmg3HB/Swap-Books-t.png"
