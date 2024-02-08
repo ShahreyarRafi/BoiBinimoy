@@ -1,6 +1,7 @@
 "use client"
 
 import "./Card.css";
+import Link from "next/link";
 import { FaCartPlus, FaExchangeAlt } from "react-icons/fa";
 
 // bg-[#f2fdf9]
@@ -15,9 +16,9 @@ export default function ExchangeCard({ item }) {
           style={{ backgroundImage: `url(${item.cover_image})` }}
         >
           <div className="grid grid-cols-1 items-end justify-end gap-2 card__action">
-            <button className=" text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
+            <Link href={`/exchangeAllBooks/${item?._id}`} className=" text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
               <FaExchangeAlt />
-            </button>
+            </Link>
             <button className=" text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
               <FaCartPlus />
             </button>
