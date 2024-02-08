@@ -1,35 +1,36 @@
 "use client";
-import Link from "next/link";
+
 import React from "react";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
+import Swal from "sweetalert2";
+
+// const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=7365e777963cf7664292cb83647a9d98`;
+
 
 const AddBook = () => {
-  const axios = require("axios").default;
+  const { register, handleSubmit, reset } = useForm();
+  const axiosSecure = useAxiosSecure();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const bookType = form.bookType.value;
-    const bookCondition = form.bookCondition.value;
-    const whatYouWant = form.whatYouWant.value;
-    const bookCategory = form.bookCategory.value;
-    const title = form.title.value;
-    const writer = form.writer.value;
-    const language = form.language.value;
-    const pages = form.pages.value;
-    const publisher = form.publisher.value;
-    const publicationYear = form.publicationYear.value;
-    const edition = form.edition.value;
-    const price = form.price.value;
-    const owner = form.owner.value;
-    const location = form.location.value;
-    const stockLimit = form.stockLimit.value;
-    const tags = form.tags.value;
-    const awards = form.awards.value;
-    const description = form.description.value;
+  const onSubmit = async(data) => {
+    const {  bookType, bookCondition, whatYouWant, bookCategory, title, writer, language, pages, publisher, publicationYear, edition, price, owner, location, stockLimit, tags, awards, description} =  data;
 
-    // const newBook
+     console.log(data)
+    const imageFile = { image: data.image1[0] };
+    console.log(imageFile)
+    
+    const url = await axios.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    const image = url?.data?.data?.display_url || "";
+    console.log(image)
+  
     const newBook = {
       bookType,
       bookCondition,
@@ -43,6 +44,7 @@ const AddBook = () => {
       publicationYear,
       edition,
       price,
+      cover_image: image,
       owner,
       location,
       stockLimit,
@@ -50,17 +52,15 @@ const AddBook = () => {
       awards,
       description,
     };
+     
+    const res = await axiosSecure.post("/api/v1/exchange-books", newBook);
 
-    axios
-      .post("https://boi-binimoy-server.vercel.app/api/v1/buyBooks", newBook)
-      .then((response) => {
-        // Handle the success response
-        console.log("Response:", response.data);
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Error:", error);
-      });
+    if(res?.data){
+       reset();
+       Swal.fire('Book upload successfull')
+
+    }
+
   };
 
   return (
@@ -71,7 +71,7 @@ const AddBook = () => {
             Add Your Book
           </h1>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {/* basic information div */}
             <div className="border-2 border-[#016961] rounded-lg px-3 pb-3">
               {/* title */}
@@ -81,7 +81,8 @@ const AddBook = () => {
                 {/* product type name:bookType*/}
                 <select
                   className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                  name="bookType"
+          
+                  {...register("bookType")}
                 >
                   <option selected value="bookType">
                     Book type
@@ -95,7 +96,8 @@ const AddBook = () => {
                 {/* product conditions name:bookCondition*/}
                 <select
                   className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                  name="bookCondition"
+        
+                  {...register("bookCondition")}
                 >
                   <option selected value="bookCondition">
                     Book Condition
@@ -110,7 +112,7 @@ const AddBook = () => {
                 {/* what you wants name:whatYouWant*/}
                 <select
                   className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                  name="whatYouWant"
+                  {...register("whatYouWant")}
                 >
                   <option selected value="want">
                     What you want?
@@ -123,7 +125,7 @@ const AddBook = () => {
                 {/* book category name:bookCategory*/}
                 <select
                   className="h-10 w-full text-xs lg:text-sm text-gray-400 px-2 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                  name="bookCategory"
+                  {...register("bookCategory")}
                 >
                   <option selected value="category">
                     Book Category
@@ -164,7 +166,7 @@ const AddBook = () => {
                   {/* book title  name:title*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    name="title"
+                    {...register("title")}
                     placeholder="Book Title"
                     type="text"
                     required
@@ -173,8 +175,9 @@ const AddBook = () => {
                   {/* book author  name:writer*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    name="writer"
-                    placeholder="Book Author"
+
+                    {...register("writer")}
+                    placeholder="Book writer"
                     type="text"
                     required
                   />
@@ -182,7 +185,7 @@ const AddBook = () => {
                   {/* book language  name:language*/}
                   <select
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] text-gray-400 rounded-lg focus:outline-none"
-                    name="language"
+                    {...register("language")}
                   >
                     <option selected value="">
                       Book Language
@@ -195,7 +198,7 @@ const AddBook = () => {
                   {/* book page count  name:pages*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    name="pages"
+                    {...register("pages")}
                     placeholder="Book Page Count"
                     type="number"
                     required
@@ -204,7 +207,8 @@ const AddBook = () => {
                   {/* book publisher name:publisher*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    name="publisher"
+    
+                    {...register("publisher")}
                     placeholder="Book Publisher"
                     type="text"
                     required
@@ -213,7 +217,8 @@ const AddBook = () => {
                   {/* book publication year name:publicationYear*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    name="publicationYear"
+               
+                    {...register("publicationYear")}
                     placeholder="Book Publication Year"
                     type="number"
                     required
@@ -222,7 +227,8 @@ const AddBook = () => {
                   {/* book edition name:edition*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    name="edition"
+           
+                    {...register("edition")}
                     placeholder="Book Edition"
                     type="text"
                     required
@@ -231,7 +237,8 @@ const AddBook = () => {
                   {/* book price name:price*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    name="price"
+               
+                    {...register("price")}
                     placeholder="Book Price"
                     type="number"
                     required
@@ -258,6 +265,7 @@ const AddBook = () => {
                     className="h-5 w-full"
                     type="file"
                     id="imageFile"
+                    {...register("image1")}
                     hidden
                   />
                 </div>
@@ -335,7 +343,8 @@ const AddBook = () => {
                   {/* owner name name:owner*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    name="owner"
+                
+                    {...register("owner")}
                     placeholder="Book Owner Name"
                     type="text"
                     required
@@ -344,7 +353,8 @@ const AddBook = () => {
                   {/* owner location name:location*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    name="location"
+              
+                    {...register("location")}
                     placeholder="Book Owner location"
                     type="text"
                     required
@@ -362,7 +372,8 @@ const AddBook = () => {
                   {/* book Stock Limit name:stockLimit*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    name="stockLimit"
+             
+                    {...register("stockLimit")}
                     placeholder="Book Stock"
                     type="number"
                     required
@@ -380,7 +391,8 @@ const AddBook = () => {
                   {/* book Tags name:tags*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    name="tags"
+                 
+                    {...register("tags")}
                     placeholder="Book Tags"
                     type="text"
                   />
@@ -388,7 +400,8 @@ const AddBook = () => {
                   {/* book awards name:awards*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    name="awards"
+              
+                    {...register("awards")}
                     placeholder="Book Awards"
                     type="text"
                   />
@@ -400,7 +413,8 @@ const AddBook = () => {
             <div className="my-3">
               <textarea
                 className="w-full p-2 text-xs lg:text-sm bg-transparent border-2 border-[#016961] rounded-lg focus:outline-none"
-                name="description"
+          
+                {...register("description")}
                 placeholder="Book Description"
                 cols="30"
                 rows="10"
