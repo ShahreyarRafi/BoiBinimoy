@@ -1,31 +1,23 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
 import Related from "./Related/Related";
 
 const BookDetails = () => {
-  const [book, setBook] = useState([]);
   const param = useParams();
+  const axiosPublic = useAxiosPublic();
 
-  useEffect(() => {
-    axios.get(`https://boi-binimoy-server.vercel.app/api/v1/buy-books/${param?.buyId}`)
-      .then(function (response) {
-        // handle success
-        console.log(response);
-        setBook(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .finally(function () {
-        // always executed
-      });
-  }, [param?.buyId])
+  const { data: book = [], isLoading } = useQuery({
+    queryKey: ['books'],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/api/v1/buy-books/${param.buyId}`);
+      return res.data;
+    },
+  });
 
   return (
     <div className="w-full bg-teal-50">

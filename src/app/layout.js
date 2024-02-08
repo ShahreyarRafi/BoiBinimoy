@@ -12,10 +12,11 @@ const sourceSerif = Source_Serif_4({
 });
 
 
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light" className="dark">
-      <body className={sourceSerif.className}>
+      <body className={`${sourceSerif.className} bg-teal-50`}>
         <TranstackProvider>
           <AuthProvider>
             {children}

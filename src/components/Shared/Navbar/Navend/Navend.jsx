@@ -29,8 +29,6 @@ const Navend = () => {
       });
   }, [user?.email])
 
-  // console.log(currentUser);
-
   return (
     <div className="flex items-center gap-2">
       <MdFavoriteBorder />
@@ -41,7 +39,7 @@ const Navend = () => {
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
                 <Image
-                  src={currentUser?.image}
+                  src={currentUser.image}
                   alt="user"
                   priority
                   width={300}

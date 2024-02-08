@@ -6,55 +6,27 @@ import { BsUpload } from "react-icons/bs";
 import axios from 'axios';
 import { AuthContext } from "@/providers/AuthProvider";
 import { useContext } from "react";
+import Swal from 'sweetalert2'
 
 const AddBlog = () => {
-
-    let body = [];
-
-    function checkEnter(event) {
-        // Check if the key pressed is Enter (key code 13)
-        if (event.key === 'Enter') {
-            // Prevent the default Enter key behavior (e.g., form submission)
-            event.preventDefault();
-
-            // Trim and add the paragraph to the array
-            addParagraph();
-        }
-    }
-
-    function addParagraph() {
-        // Get the input value
-        const paragraphText = document.getElementById('paragraphInput').value;
-
-        // Check if the input is not empty
-        if (paragraphText.trim() !== '') {
-            // Add the paragraph to the array
-            body.push(paragraphText);
-
-            // Clear the input field
-            document.getElementById('paragraphInput').value = '';
-
-            // Display the updated array
-            // displayParagraphs();
-        }
-    }
-
 
     const { user } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         const form = e.target;
         const title = form.title.value;
-        const cover_image = 'sjhttps://i.ibb.co/zZ4Y84m/Boi-Binimoy.pngdvhkvsj'
+        const body = [form.description.value];
+        const cover_image = 'https://images.unsplash.com/photo-1483058712412-4245e9b90334?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80'
         const user_name = 'admin';
         const user_email = user?.email;
         const category = form.category.value;
 
         const newBlog = {
             title,
-            cover_image,
             body,
+            cover_image,
             user_name,
             user_email,
             category
@@ -64,6 +36,14 @@ const AddBlog = () => {
             .then((response) => {
                 // Handle the success response
                 console.log("Response:", response.data);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your blog has been published.",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
             })
             .catch((error) => {
                 // Handle errors
@@ -100,8 +80,6 @@ const AddBlog = () => {
                                 <div>
                                     <textarea
                                         className="w-full p-2 text-xs bg-transparent border-2 border-gray-300 rounded-lg focus:outline-none"
-                                        id="paragraphInput"
-                                        onkeyup="checkEnter(event)"
                                         name="description"
                                         placeholder="Blog Description"
                                         cols="30"

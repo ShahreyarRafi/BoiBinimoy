@@ -1,36 +1,23 @@
 "use client"
 
+import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import Link from "next/link";
 import ExchangeCard from "../../Shared/ExchangeCard";
 import { FiArrowUpRight } from "react-icons/fi";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import Link from 'next/link'
 
 const TestExchange = () => {
 
-  const [exchangeBooks, setExchangeBooks] = useState([]);
-  const [fetchData, setFetchData] = useState(true);
+  const axiosPublic = useAxiosPublic();
 
-  useEffect(() => {
-    if (fetchData) {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            "https://boi-binimoy-server.vercel.app/api/v1/exchange-books"
-          );
-          setExchangeBooks(response.data);
-          // console.log(response.data);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      };
-
-      fetchData();
-    }
-
-    return () => { };
-  }, [fetchData]);
+  const { data: books = [], isLoading } = useQuery({
+    queryKey: ['books'],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/api/v1/exchange-books`);
+      return res.data;
+    },
+  });
 
   const transparentBanner = "https://i.ibb.co/GPmg3HB/Swap-Books-t.png"
 
@@ -63,7 +50,7 @@ const TestExchange = () => {
 
         <div className="col-span-full lg:col-span-6">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {exchangeBooks.map(item => (
+            {books.map(item => (
               <ExchangeCard key={item._id} item={item} />
             ))}
           </div>
