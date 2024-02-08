@@ -10,9 +10,6 @@ import axios from 'axios';
 
 const Navend = () => {
 
-<<<<<<< HEAD
-  console.log(user?.email);
-=======
   const { user, logOut } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState([]);
 
@@ -31,7 +28,6 @@ const Navend = () => {
         // always executed
       });
   }, [user?.email])
->>>>>>> 3ec6d75d1c6ad742567dc184c69569a3a367d8e4
 
   return (
     <div className="flex items-center gap-2">
