@@ -1,100 +1,88 @@
-"use client"
-import Image from "next/image";
-import React from "react";
-import icon from "@/assets/ScienceFiction.png";
+"use client";
+import React, { useRef } from "react";
+import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import CategoryCard from "./CategoryCard";
+import CategoryCardSkeleton from "@/components/Skeleton/CategoryCardSkeleton";
+import Link from "next/link";
+import { CgArrowTopRightO } from "react-icons/cg";
 
-const Category = () => {
-  const categories = [
-    {
-      title: "Science Fiction",
-      image: "image.png",
+export default function Category() {
+  const axiosPublic = useAxiosPublic();
+  const sliderRef = useRef(null);
+
+  const { data: categories = [], isLoading } = useQuery({
+    queryKey: ["category"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/api/v1/category`);
+      return res.data;
     },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-    {
-      title: "Science Fiction",
-      image: "image.png",
-    },
-  ];
+  });
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 8,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+    ],
+  };
 
   return (
-    <div className="max-w-6xl mx-auto my-5 rounded-lg w-full bg-[#016961] p-10">
-      <h4 className="text-3xl text-white font-bold text-center mb-8">
-        Find books by Category
-      </h4>
-      <div className="grid grid-cols-8 gap-3">
-        {categories.map((categoty, key) => (
-          <div
-            key={key}
-            className="text-center flex flex-col justify-center items-center space-y-1 py-2 cursor-pointer"
-          >
-            <Image
-              src={icon}
-              className="w-12"
-              width={500}
-              height={500}
-              alt=""
-            />
-            <h6 className="text-white">Science Fiction</h6>
-          </div>
-        ))}
-      </div>
+    <div className="container mx-auto my-10 relative">
+      <Slider ref={sliderRef} {...settings} className="">
+        {isLoading
+          ? Array.from(Array(8).keys()).map((index) => (
+              <CategoryCardSkeleton key={index} />
+            ))
+          : categories.map((category) => (
+              <CategoryCard key={category._id} category={category} />
+            ))}
+      </Slider>
+
+      {isLoading || (
+        <Link
+          href={"/category"}
+          className="absolute right-0 lg:-right-5 bg-teal-50 rounded-full  top-[40%] cursor-pointer"
+        >
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-800 opacity-75"></span>
+          <span className="text-4xl text-[#016961]">
+            <CgArrowTopRightO />
+          </span>
+        </Link>
+      )}
     </div>
   );
-};
-
-export default Category;
+}
