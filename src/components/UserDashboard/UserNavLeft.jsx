@@ -143,6 +143,12 @@ const UserNavLeft = () => {
                   <span className="text">Add Book</span>
                 </Link>
               </li>
+              <li className={pathname == "/dashboard/list-exchange" ? "active" : ""}> 
+                <Link href="/dashboard/addbook">
+                  <i className="bx bxs-book-add"></i>
+                  <span className="text">List Book</span>
+                </Link>
+              </li>
               <li className={pathname == "/dashboard/users" ? "active" : ""}> 
                 <Link href="/dashboard/users">
                   <i className="bx bxs-group"></i>
