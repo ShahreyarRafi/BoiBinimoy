@@ -8,7 +8,25 @@ import ExchangeCard from "../../Shared/ExchangeCard";
 import { FiArrowUpRight } from "react-icons/fi";
 import ComponentLoading from '@/components/Shared/loadingPageBook/ComponentLoading';
 
+
+
 const TestExchange = () => {
+  // useEffect(() => {
+  //   if (fetchData) {
+  //     const fetchData = async () => {
+  //       try {
+  //         const response = await axios.get(
+  //           // "https://boi-binimoy-server.vercel.app/api/v1/exchange-books"
+  //           "http://localhost:5000/api/v1/exchange-books"
+  //         );
+  //         setExchangeBooks(response.data);
+  //         console.log(response.data);
+  //       } catch (error) {
+  //         console.error("Error:", error);
+  //       }
+  //     };
+  //   }
+  // });
 
   const axiosPublic = useAxiosPublic();
 
@@ -19,6 +37,8 @@ const TestExchange = () => {
       return res.data;
     },
   });
+
+  console.log(books);
 
   if (isLoading) {
     return (
