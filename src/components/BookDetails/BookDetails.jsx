@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
 import Related from "./Related/Related";
+import PageLoading from '../Shared/loadingPageBook/PageLoading';
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeartCirclePlus } from "react-icons/fa6";
 
@@ -13,17 +14,28 @@ const BookDetails = () => {
   const param = useParams();
   const axiosPublic = useAxiosPublic();
 
+
+
   const { data: book = [], isLoading } = useQuery({
-    queryKey: ["books"],
+    queryKey: ['book'],
     queryFn: async () => {
       const res = await axiosPublic.get(`/api/v1/buy-books/${param.buyId}`);
       return res.data;
     },
   });
 
+  if (isLoading) {
+    return (
+      <PageLoading />
+      )
+  }
+
+
+
+
   return (
     <div className="w-full bg-teal-50">
-      {/* Bannar */}
+      {/* Banner */}
       <div className="relative bg-[#016961]">
         {/* bottom curve */}
         <div className="absolute inset-x-0 bottom-0 ">
@@ -140,7 +152,7 @@ const BookDetails = () => {
           </div>
         </div>
 
-        {/* Relatad section */}
+        {/* Related section */}
         <Related />
 
         {/* review section */}
@@ -152,7 +164,6 @@ const BookDetails = () => {
                 type="text"
                 name="Comment"
                 placeholder="Comment"
-                id=""
                 className="w-full h-8 px-2 bg-transparent border-b focus:outline-none focus:border-black"
               />
               <button type="submit" className="text-2xl text-[#016961]">
@@ -165,10 +176,11 @@ const BookDetails = () => {
               {/* review 1 */}
               <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
                 {/* user image */}
-                <div className="">
+                <div>
                   <Image
                     className="object-cover w-12 h-12 mb-2 rounded-full shadow"
                     src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
+                    priority
                     width={500}
                     height={500}
                     alt="Person"
@@ -188,10 +200,11 @@ const BookDetails = () => {
               {/* review 2 */}
               <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
                 {/* user image */}
-                <div className="">
+                <div>
                   <Image
                     className="object-cover w-12 h-12 mb-2 rounded-full shadow"
                     src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
+                    priority
                     width={500}
                     height={500}
                     alt="Person"

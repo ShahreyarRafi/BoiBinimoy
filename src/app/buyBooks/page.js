@@ -1,17 +1,17 @@
-
+"use client"
 
 import AllBooksBanner from "@/components/BuyAllBooks/AllBooksBanner/AllBooksBanner";
-import AllBooks from "@/components/BuyAllBooks/BuyAllBooks";
+import BuyAllBooks from "@/components/BuyAllBooks/BuyAllBooks";
 import Footer from "@/components/Shared/Footer";
 import Navbar from "@/components/Shared/Navbar/Navbar";
 import React from "react";
 
 const page = () => {
   return (
-    <div>
+    <div className="bg-teal-50">
       <Navbar />
       <AllBooksBanner />
-      <AllBooks />
+      <BuyAllBooks />
       <Footer />
     </div>
   );

@@ -1,214 +1,76 @@
+"use client"
+
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
+import BlogSideCard from "../Shared/BlogSideCard";
+import BlogLatestCard from "../Shared/BlogLatestCard";
+import Link from "next/link";
 
 const Blog = () => {
+
+  const axiosPublic = useAxiosPublic();
+
+  const { data: blogs = [], isLoading } = useQuery({
+    queryKey: ['blogs'],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/api/v1/blogs`);
+      return res.data;
+    },
+  });
+
+  const main = blogs[0];
+  const sides = [blogs[1], blogs[2], blogs[3], blogs[4]];
+  const latests = [blogs[5], blogs[6], blogs[7]];
+
   return (
     <div className="max-w-6xl mx-auto mt-8 mb-36">
       <main className="mt-12">
-        {/* <div className="flex flex-wrap md:flex-no-wrap space-x-0 md:space-x-6 mb-16"> */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* main blog */}
           <div className="mb-4 lg:mb-0  p-4 lg:p-0 w-full md:w-4/7 relative rounded block">
             <Image
-              src="https://images.unsplash.com/photo-1427751840561-9852520f8ce8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-              className="rounded-md object-cover w-full h-64"
+              src={main?.cover_image}
+              priority
               width={500}
               height={500}
-              alt=""
+              alt="Main blog"
+              className="w-full h-[300px]"
             />
             <span className="text-[#016961] text-sm hidden md:block mt-4">
               Technology
             </span>
             <h1 className="text-black text-4xl font-bold mt-2 mb-2 leading-tight">
-              Ignorant branched humanity led now marianne too.
+              {main?.title}
             </h1>
             <p className="text-black mb-4">
-              Necessary ye contented newspaper zealously breakfast he prevailed.
-              Melancholy middletons yet understood decisively boy law she.
-              Answer him easily are its barton little. Oh no though mother be
-              things simple itself. Oh be me, sure wise sons, no. Piqued ye of
-              am spirit regret. Stimulated discretion impossible admiration in
-              particular conviction up.
+              {main?.body}
             </p>
-            <a
-              href="#"
+            <Link
+              href={`/blogs/${main?._id}`}
               className="inline-block px-6 py-3 mt-2 rounded-md bg-[#016961] hover:bg-orange-400 text-white"
             >
               Read more
-            </a>
+            </Link>
           </div>
 
           {/* side blog */}
           <div className="w-full md:w-4/7 px-4">
-            <div className="rounded-md w-full flex flex-col md:flex-row mb-10">
-              <Image
-                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-                className="block rounded-md h-64 md:h-32 md:m-0"
-                width={500}
-                height={500}
-                alt=""
-              />
-              <div className="px-4 pt-2">
-                <span className="text-[#016961] text-sm hidden md:block">
-                  Gadgets
-                </span>
-                <div className="md:mt-0 text-blackfont-semibold text-xl mb-2">
-                  At every tiled on ye defer do. No attention suspected oh
-                  difficult.
-                </div>
-                <p className="block md:hidden p-2 pl-0 pt-1 text-sm text-black">
-                  Wonder matter now can estate esteem assure fat roused. Am
-                  performed on existence as discourse is. Pleasure friendly at
-                  marriage blessing or
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-md w-full flex flex-col md:flex-row mb-10">
-              <Image
-                src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-                className="block rounded-md h-64 md:h-32 md:m-0"
-                width={500}
-                height={500}
-                alt=""
-              />
-              <div className="px-4 pt-2">
-                <span className="text-[#016961] text-sm hidden md:block">
-                  Bitcoin
-                </span>
-                <div className="md:mt-0 text-black font-semibold text-xl mb-2">
-                  Fond his say old meet cold find come whom. The sir park sake
-                  bred.
-                </div>
-                <p className="block md:hidden p-2 pl-0 pt-1 text-sm text-black">
-                  Integer commodo, sapien ut vulputate viverra, Integer commodo
-                  Integer commodo, sapien ut vulputate viverra, Integer commodo
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-md w-full flex flex-col md:flex-row mb-10">
-              <Image
-                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-                className="block rounded-md h-64 md:h-32 md:m-0"
-                width={500}
-                height={500}
-                alt=""
-              />
-              <div className="px-4 pt-2">
-                <span className="text-[#016961] text-sm hidden md:block">
-                  Insights
-                </span>
-                <div className="md:mt-0 text-black font-semibold text-xl mb-2">
-                  Advice me cousin an spring of needed. Tell use paid law ever
-                  yet new.
-                </div>
-                <p className="block md:hidden p-2 pl-0 pt-1 text-sm text-black">
-                  Meant to learn of vexed if style allow he there. Tiled man
-                  stand tears ten joy there terms any widen.
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-md w-full flex flex-col md:flex-row mb-10">
-              <Image
-                src="https://images.unsplash.com/photo-1489844097929-c8d5b91c456e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-                className="block rounded-md h-64 md:h-32 md:m-0"
-                width={500}
-                height={500}
-                alt=""
-              />
-              <div className="px-4 pt-2">
-                <span className="text-[#016961] text-sm hidden md:block">
-                  Cryptocurrency
-                </span>
-                <div className="md:mt-0 text-black font-semibold text-xl mb-2">
-                  Advice me cousin an spring of needed. Tell use paid law ever
-                  yet new.
-                </div>
-                <p className="block md:hidden p-2 pl-0 pt-1 text-sm text-black">
-                  Meant to learn of vexed if style allow he there. Tiled man
-                  stand tears ten joy there terms any widen.
-                </p>
-              </div>
-            </div>
+            {
+              sides?.map(blog => <BlogSideCard key={blog?._id} item={blog}></BlogSideCard>)
+            }
           </div>
         </div>
 
         {/* Latest blog */}
         <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
           <h2 className="font-bold text-xl md:text-3xl">Latest blog</h2>
-          <a className="bg-[#016961] hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer">
+          <Link href="/allBlog" className="bg-[#016961] hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer">
             View all
-          </a>
+          </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-5">
-          {/* latest blog 1 */}
-          <div className="rounded w-full">
-            <Image
-              src="https://images.unsplash.com/photo-1526666923127-b2970f64b422?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-              className="rounded"
-              width={500}
-              height={500}
-              alt=""
-            />
-            <div className="p-4 pl-0">
-              <h2 className="font-bold text-2xl text-gray-800">
-                Put all speaking her delicate recurred possible.
-              </h2>
-              <p className="text-gray-700 mt-2">
-                Set indulgence inquietude discretion insensible bed why
-                announcing. Middleton fat two satisfied additions. So continued
-                he or commanded household smallness delivered. Door poor on do
-                walk in half. Roof his head the what...{" "}
-                <span className="text-blue-400">Read more</span>
-              </p>
-            </div>
-          </div>
-
-          {/* latest blog 2 */}
-          <div className="rounded w-full">
-            <Image
-              src="https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-              className="rounded"
-              width={500}
-              height={500}
-              alt=""
-            />
-            <div className="p-4 pl-0">
-              <h2 className="font-bold text-2xl text-gray-800">
-                Is at purse tried jokes china ready decay an.{" "}
-              </h2>
-              <p className="text-gray-700 mt-2">
-                Small its shy way had woody downs power. To denoting admitted
-                speaking learning my exercise so in. Procured shutters mr it
-                feelings. To or three offer house begin taken am at...{" "}
-                <span className="text-blue-400">Read more</span>
-              </p>
-            </div>
-          </div>
-
-          {/* latest blog 3 */}
-          <div className="rounded w-full">
-            <Image
-              src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
-              className="rounded"
-              width={500}
-              height={500}
-              alt=""
-            />
-            <div className="p-4 pl-0">
-              <h2 className="font-bold text-2xl text-gray-800">
-                As dissuade cheerful overcame so of friendly he indulged
-                unpacked.
-              </h2>
-              <p className="text-gray-700 mt-2">
-                Alteration connection to so as collecting me. Difficult in
-                delivered extensive at direction allowance. Alteration put use
-                diminution can considered sentiments interested discretion...{" "}
-                <span className="text-blue-400">Read more</span>
-              </p>
-            </div>
-          </div>
+          {latests?.map(blog => <BlogLatestCard key={blog?._id} item={blog}></BlogLatestCard>)}
         </div>
 
         {/* news later subscription */}
@@ -245,79 +107,12 @@ const Blog = () => {
         {/* popular blog */}
         <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
           <h2 className="font-bold text-xl md:text-3xl">Popular blogs</h2>
-          <a className="bg-[#016961] hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer">
+          <Link href="/allBlog" className="bg-[#016961] hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer">
             View all
-          </a>
+          </Link>
         </div>
-        {/* popular blog 1 */}
-        {/* <div className="block space-x-0 lg:flex lg:space-x-6"> */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-5">
-          <div className="rounded w-full">
-            <Image
-              src="https://images.unsplash.com/photo-1526666923127-b2970f64b422?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-              className="rounded"
-              width={500}
-              height={500}
-              alt=""
-            />
-            <div className="p-4 pl-0">
-              <h2 className="font-bold text-2xl text-gray-800">
-                Put all speaking her delicate recurred possible.
-              </h2>
-              <p className="text-gray-700 mt-2">
-                Set indulgence inquietude discretion insensible bed why
-                announcing. Middleton fat two satisfied additions. So continued
-                he or commanded household smallness delivered. Door poor on do
-                walk in half. Roof his head the what...{" "}
-                <span className="text-blue-400">Read more</span>
-              </p>
-            </div>
-          </div>
-
-          {/* popular blog 2 */}
-          <div className="rounded w-full">
-            <Image
-              src="https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-              className="rounded"
-              width={500}
-              height={500}
-              alt=""
-            />
-            <div className="p-4 pl-0">
-              <h2 className="font-bold text-2xl text-gray-800">
-                Is at purse tried jokes china ready decay an.{" "}
-              </h2>
-              <p className="text-gray-700 mt-2">
-                Small its shy way had woody downs power. To denoting admitted
-                speaking learning my exercise so in. Procured shutters mr it
-                feelings. To or three offer house begin taken am at...{" "}
-                <span className="text-blue-400">Read more</span>
-              </p>
-            </div>
-          </div>
-
-          {/* popular blog 3 */}
-          <div className="rounded w-full">
-            <Image
-              src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
-              className="rounded"
-              width={500}
-              height={500}
-              alt=""
-            />
-            <div className="p-4 pl-0">
-              <h2 className="font-bold text-2xl text-gray-800">
-                As dissuade cheerful overcame so of friendly he indulged
-                unpacked.
-              </h2>
-              <p className="text-gray-700 mt-2">
-                Alteration connection to so as collecting me. Difficult in
-                delivered extensive at direction allowance. Alteration put use
-                diminution can considered sentiments interested discretion...{" "}
-                <span className="text-blue-400">Read more</span>
-              </p>
-            </div>
-          </div>
+          {latests?.map(blog => <BlogLatestCard key={blog?._id} item={blog}></BlogLatestCard>)}
         </div>
       </main>
     </div>

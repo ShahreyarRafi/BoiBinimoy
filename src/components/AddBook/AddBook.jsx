@@ -1,35 +1,32 @@
 "use client";
-import Link from "next/link";
+
 import React from "react";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
+import Swal from "sweetalert2";
 
+// const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=7365e777963cf7664292cb83647a9d98`;
+
+// merged
 const AddBook = () => {
-  const axios = require("axios").default;
+  const { register, handleSubmit, reset } = useForm();
+  const axiosSecure = useAxiosSecure();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const bookType = form.bookType.value;
-    const bookCondition = form.bookCondition.value;
-    const whatYouWant = form.whatYouWant.value;
-    const bookCategory = form.bookCategory.value;
-    const title = form.title.value;
-    const writer = form.writer.value;
-    const language = form.language.value;
-    const pages = form.pages.value;
-    const publisher = form.publisher.value;
-    const publicationYear = form.publicationYear.value;
-    const edition = form.edition.value;
-    const price = form.price.value;
-    const owner = form.owner.value;
-    const location = form.location.value;
-    const stockLimit = form.stockLimit.value;
-    const tags = form.tags.value;
-    const awards = form.awards.value;
-    const description = form.description.value;
-
-    // const newBook
+  const onSubmit = async(data) => {
+    const {  bookType, bookCondition, whatYouWant, bookCategory, title, writer, language, pages, publisher, publicationYear, edition, price, owner, location, stockLimit, tags, awards, description} =  data;
+    const imageFile = { image: data.image1[0] };
+    
+    const url = await axios.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    const image = url?.data?.data?.display_url || "";
+  
     const newBook = {
       bookType,
       bookCondition,
@@ -43,6 +40,7 @@ const AddBook = () => {
       publicationYear,
       edition,
       price,
+      cover_image: image,
       owner,
       location,
       stockLimit,
@@ -50,38 +48,37 @@ const AddBook = () => {
       awards,
       description,
     };
+     
+    const res = await axiosSecure.post("/api/v1/exchange-books", newBook);
 
-    axios
-      .post("https://boi-binimoy-server.vercel.app/api/v1/buyBooks", newBook)
-      .then((response) => {
-        // Handle the success response
-        console.log("Response:", response.data);
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Error:", error);
-      });
+    if(res?.data){
+       reset();
+       Swal.fire('Book upload successfull')
+
+    }
+
   };
 
   return (
     <div className="max-w-[1800px] mx-auto min-h-screen">
       <div className="px-3 md:px-7 mb-10 text-[#016961]">
-        <div className="border-2 rounded-lg px-3">
+        <div className="border-2 border-[#016961] rounded-lg px-3">
           <h1 className="text-2xl font-bold py-5 md:py-3 text-center md:text-start">
             Add Your Book
           </h1>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {/* basic information div */}
-            <div className="border-2 rounded-lg px-3 pb-3">
+            <div className="border-2 border-[#016961] rounded-lg px-3 pb-3">
               {/* title */}
               <h3 className="py-2">Basic Information:</h3>
               {/* information */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                 {/* product type name:bookType*/}
                 <select
-                  className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border rounded-lg focus:outline-none"
-                  name="bookType"
+                  className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+          
+                  {...register("bookType")}
                 >
                   <option selected value="bookType">
                     Book type
@@ -94,8 +91,9 @@ const AddBook = () => {
 
                 {/* product conditions name:bookCondition*/}
                 <select
-                  className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border rounded-lg focus:outline-none"
-                  name="bookCondition"
+                  className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+        
+                  {...register("bookCondition")}
                 >
                   <option selected value="bookCondition">
                     Book Condition
@@ -109,8 +107,8 @@ const AddBook = () => {
 
                 {/* what you wants name:whatYouWant*/}
                 <select
-                  className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border rounded-lg focus:outline-none"
-                  name="whatYouWant"
+                  className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                  {...register("whatYouWant")}
                 >
                   <option selected value="want">
                     What you want?
@@ -122,8 +120,8 @@ const AddBook = () => {
 
                 {/* book category name:bookCategory*/}
                 <select
-                  className="h-10 w-full text-xs lg:text-sm text-gray-400 px-2 bg-transparent border rounded-lg focus:outline-none"
-                  name="bookCategory"
+                  className="h-10 w-full text-xs lg:text-sm text-gray-400 px-2 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                  {...register("bookCategory")}
                 >
                   <option selected value="category">
                     Book Category
@@ -156,15 +154,15 @@ const AddBook = () => {
             {/* book information and image div */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-2 md:space-y-0 my-3 md:gap-3">
               {/* book information div */}
-              <div className="border-2 col-span-2 rounded-lg h-full w-full px-2 pb-3">
+              <div className="border-2 col-span-2 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
                 {/* title */}
                 <h3 className="py-2">Book Information:</h3>
                 {/* information */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-3">
                   {/* book title  name:title*/}
                   <input
-                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
-                    name="title"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                    {...register("title")}
                     placeholder="Book Title"
                     type="text"
                     required
@@ -172,17 +170,18 @@ const AddBook = () => {
 
                   {/* book author  name:writer*/}
                   <input
-                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
-                    name="writer"
-                    placeholder="Book Author"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+
+                    {...register("writer")}
+                    placeholder="Book writer"
                     type="text"
                     required
                   />
 
                   {/* book language  name:language*/}
                   <select
-                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border text-gray-400 rounded-lg focus:outline-none"
-                    name="language"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] text-gray-400 rounded-lg focus:outline-none"
+                    {...register("language")}
                   >
                     <option selected value="">
                       Book Language
@@ -194,8 +193,8 @@ const AddBook = () => {
 
                   {/* book page count  name:pages*/}
                   <input
-                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
-                    name="pages"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                    {...register("pages")}
                     placeholder="Book Page Count"
                     type="number"
                     required
@@ -203,8 +202,9 @@ const AddBook = () => {
 
                   {/* book publisher name:publisher*/}
                   <input
-                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
-                    name="publisher"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+    
+                    {...register("publisher")}
                     placeholder="Book Publisher"
                     type="text"
                     required
@@ -212,8 +212,9 @@ const AddBook = () => {
 
                   {/* book publication year name:publicationYear*/}
                   <input
-                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
-                    name="publicationYear"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+               
+                    {...register("publicationYear")}
                     placeholder="Book Publication Year"
                     type="number"
                     required
@@ -221,8 +222,9 @@ const AddBook = () => {
 
                   {/* book edition name:edition*/}
                   <input
-                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
-                    name="edition"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+           
+                    {...register("edition")}
                     placeholder="Book Edition"
                     type="text"
                     required
@@ -230,8 +232,9 @@ const AddBook = () => {
 
                   {/* book price name:price*/}
                   <input
-                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
-                    name="price"
+                    className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+               
+                    {...register("price")}
                     placeholder="Book Price"
                     type="number"
                     required
@@ -240,13 +243,13 @@ const AddBook = () => {
               </div>
 
               {/* image div */}
-              <div className="border-2 md:col-span-2 lg:col-span-1 rounded-lg h-full w-full px-2 pb-3">
+              <div className="border-2 md:col-span-2 lg:col-span-1 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
                 {/* title */}
                 <h3 className="py-2">Uploade book cover Image:</h3>
                 {/* iamge */}
                 <div
                   for="imageFile"
-                  className="w-full h-32 border flex justify-center items-center rounded-lg"
+                  className="w-full h-32 border flex justify-center items-center border-[#016961] rounded-lg"
                 >
                   <label
                     for="imageFile"
@@ -258,6 +261,7 @@ const AddBook = () => {
                     className="h-5 w-full"
                     type="file"
                     id="imageFile"
+                    {...register("image1")}
                     hidden
                   />
                 </div>
@@ -267,7 +271,7 @@ const AddBook = () => {
                   {/* 1 */}
                   <div
                     for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center rounded-lg"
+                    className="w-full h-16 border flex justify-center items-center border-[#016961] rounded-lg"
                   >
                     <label
                       for="imageFile"
@@ -286,7 +290,7 @@ const AddBook = () => {
                   {/* 2 */}
                   <div
                     for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center rounded-lg"
+                    className="w-full h-16 border flex justify-center items-center border-[#016961] rounded-lg"
                   >
                     <label
                       for="imageFile"
@@ -305,7 +309,7 @@ const AddBook = () => {
                   {/* 3 */}
                   <div
                     for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center rounded-lg"
+                    className="w-full h-16 border flex justify-center items-center border-[#016961] rounded-lg"
                   >
                     <label
                       for="imageFile"
@@ -326,7 +330,7 @@ const AddBook = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-3 gap-3">
               {/* owner information  div*/}
-              <div className="border-2 rounded-lg h-full w-full px-2 pb-3">
+              <div className="border-2 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
                 {/* title */}
                 <h3 className="py-2">Owner Information:</h3>
 
@@ -334,8 +338,9 @@ const AddBook = () => {
                 <div className="grid grid-cols-1 gap-3">
                   {/* owner name name:owner*/}
                   <input
-                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
-                    name="owner"
+                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                
+                    {...register("owner")}
                     placeholder="Book Owner Name"
                     type="text"
                     required
@@ -343,8 +348,9 @@ const AddBook = () => {
 
                   {/* owner location name:location*/}
                   <input
-                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
-                    name="location"
+                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+              
+                    {...register("location")}
                     placeholder="Book Owner location"
                     type="text"
                     required
@@ -353,7 +359,7 @@ const AddBook = () => {
               </div>
 
               {/* other information */}
-              <div className="border-2 rounded-lg h-full w-full px-2 pb-3">
+              <div className="border-2 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
                 {/* title */}
                 <h3 className="py-2">Other Information:</h3>
 
@@ -361,8 +367,9 @@ const AddBook = () => {
                 <div className="grid grid-cols-1 gap-3">
                   {/* book Stock Limit name:stockLimit*/}
                   <input
-                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
-                    name="stockLimit"
+                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+             
+                    {...register("stockLimit")}
                     placeholder="Book Stock"
                     type="number"
                     required
@@ -371,7 +378,7 @@ const AddBook = () => {
               </div>
 
               {/* optional information */}
-              <div className="border-2 col-span-1 md:col-span-2 lg:col-span-1 rounded-lg h-full w-full px-2 pb-3">
+              <div className="border-2 border-[#016961] col-span-1 md:col-span-2 lg:col-span-1 rounded-lg h-full w-full px-2 pb-3">
                 {/* title */}
                 <h3 className="py-2">Optional Information:</h3>
 
@@ -379,16 +386,18 @@ const AddBook = () => {
                 <div className="grid grid-cols-1 gap-3">
                   {/* book Tags name:tags*/}
                   <input
-                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
-                    name="tags"
+                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                 
+                    {...register("tags")}
                     placeholder="Book Tags"
                     type="text"
                   />
 
                   {/* book awards name:awards*/}
                   <input
-                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border rounded-lg focus:outline-none"
-                    name="awards"
+                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+              
+                    {...register("awards")}
                     placeholder="Book Awards"
                     type="text"
                   />
@@ -399,8 +408,9 @@ const AddBook = () => {
             {/* book description div name:description*/}
             <div className="my-3">
               <textarea
-                className="w-full p-2 text-xs lg:text-sm bg-transparent border-2 rounded-lg focus:outline-none"
-                name="description"
+                className="w-full p-2 text-xs lg:text-sm bg-transparent border-2 border-[#016961] rounded-lg focus:outline-none"
+          
+                {...register("description")}
                 placeholder="Book Description"
                 cols="30"
                 rows="10"
@@ -413,7 +423,7 @@ const AddBook = () => {
               {/* Publish button */}
               <button
                 type="submit"
-                className="px-3 py-2 border-2 rounded-lg uppercase"
+                className="px-3 py-2 border-2 border-[#016961] rounded-lg uppercase"
               >
                 <span className="flex items-center gap-1 text-xs lg:text-sm xl:text-base">
                   <span>Publish</span> <SlArrowRight />
