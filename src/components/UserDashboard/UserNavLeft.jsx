@@ -48,7 +48,7 @@ const UserNavLeft = () => {
     const allSideMenu = document.querySelectorAll(
       "#sidebar .side-menu.top li a"
     );
-    
+
     allSideMenu.forEach((item) => {
       const li = item.parentElement;
       if (li) { // Check if li exists
@@ -135,7 +135,7 @@ const UserNavLeft = () => {
                   <span className="text">Dashboard</span>
                 </Link>
               </li>
-              <li className={pathname == "/dashboard/addBlog" ? "active" : ""}> 
+              <li className={pathname == "/dashboard/addblog" ? "active" : ""}> 
                 <Link href="/dashboard/addBlog">
                   <i className="bx bxs-book-add"></i>
                   <span className="text">Add Blog</span>
