@@ -16,7 +16,7 @@ li {
 
 :root {
   --light: #016961;
-  --blue: #f0fdfa;
+  --blue: #016961;
   --light-blue: #cfe8ff;
   --grey: #eee;
   --dark-grey: #aaaaaa;
@@ -231,6 +231,7 @@ body {
   display: flex;
   align-items: center;
   height: 36px;
+  
 }
 
 #content nav form .form-input input {
@@ -243,6 +244,7 @@ body {
   outline: none;
   width: 100%;
   color: var(--dark);
+
 }
 
 #content nav form .form-input button {
@@ -251,11 +253,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--blue);
-  color: var(--light);
+  background: #eee;
+  color: var(--blue);
   font-size: 18px;
   border: none;
   outline: none;
+  /* border: 1px solid #aaaaaa; */
   border-radius: 0 36px 36px 0;
   cursor: pointer;
 }
