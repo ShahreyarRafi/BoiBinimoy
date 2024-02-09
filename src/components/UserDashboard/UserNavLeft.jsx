@@ -6,11 +6,13 @@ import Link from "next/link";
 import { AuthContext } from "@/providers/AuthProvider";
 import axios from "axios";
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const UserNavLeft = () => {
   const { user, logOut } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState([]);
   const [fetchData, setFetchData] = useState(true);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (fetchData) {
@@ -28,6 +30,7 @@ const UserNavLeft = () => {
       fetchData();
     }
   }, [fetchData, user?.email]);
+
 
   const [componentsMounted, setComponentMounted] = useState(false);
 
@@ -122,37 +125,37 @@ const UserNavLeft = () => {
         {currentUser?.isAdmin ? (
           <>
             <ul className="side-menu top">
-              <li className="active">
+              <li className={pathname == "/dashboard" ? "active" : ""}>
                 <Link href="/dashboard">
                   <i className="bx bxs-dashboard"></i>
                   <span className="text">Dashboard</span>
                 </Link>
               </li>
-              <li>
+              <li className={pathname == "/dashboard/addBlog" ? "active" : ""}> 
                 <Link href="/dashboard/addBlog">
                   <i className="bx bxs-book-add"></i>
                   <span className="text">Add Blog</span>
                 </Link>
               </li>
-              <li>
+              <li className={pathname == "/dashboard/addbook" ? "active" : ""}> 
                 <Link href="/dashboard/addbook">
                   <i className="bx bxs-book-add"></i>
                   <span className="text">Add Book</span>
                 </Link>
               </li>
-              <li>
+              <li className={pathname == "/dashboard/users" ? "active" : ""}> 
                 <Link href="/dashboard/users">
                   <i className="bx bxs-group"></i>
                   <span className="text">Users</span>
                 </Link>
               </li>
-              <li>
+              <li className={pathname == "/dashboard/analytics" ? "active" : ""}> 
                 <Link href="#">
                   <i className="bx bxs-doughnut-chart"></i>
                   <span className="text">Analytics</span>
                 </Link>
               </li>
-              <li>
+              <li className={pathname == "/dashboard/message" ? "active" : ""}> 
                 <Link href="#">
                   <i className="bx bxs-message-dots"></i>
                   <span className="text">Message</span>
@@ -163,37 +166,37 @@ const UserNavLeft = () => {
         ) : (
           <>
             <ul className="side-menu top">
-              <li className="active">
+              <li className={pathname == "/dashboard" ? "active" : ""}> 
                 <a href="/dashboard">
                   <i className="bx bxs-dashboard"></i>
                   <span className="text">Dashboard</span>
                 </a>
               </li>
-              <li>
+              <li className={pathname == "/dashboard/addbook" ? "active" : ""}> 
                 <Link href="/dashboard/addbook">
                   <i className="bx bxs-book-add"></i>
                   <span className="text">Add Book</span>
                 </Link>
               </li>
-              <li>
+              <li className={pathname == "/dashboard/profile" ? "active" : ""}> 
                 <Link href="/dashboard/profile">
                   <i className="bx bxs-group"></i>
                   <span className="text">Profile</span>
                 </Link>
               </li>
-              <li>
+              <li className={pathname == "/dashboard/users" ? "active" : ""}> 
                 <Link href="/dashboard/users">
                   <i className="bx bxs-group"></i>
                   <span className="text">Users</span>
                 </Link>
               </li>
-              <li>
+              <li className={pathname == "/dashboard/analytics" ? "active" : ""}> 
                 <Link href="#">
                   <i className="bx bxs-doughnut-chart"></i>
                   <span className="text">Analytics</span>
                 </Link>
               </li>
-              <li>
+              <li className={pathname == "/dashboard/message" ? "active" : ""}> 
                 <Link href="/dashboard/message">
                   <i className="bx bxs-message-dots"></i>
                   <span className="text">Message</span>
