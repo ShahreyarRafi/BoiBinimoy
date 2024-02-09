@@ -144,9 +144,15 @@ const UserNavLeft = () => {
                 </Link>
               </li>
               <li className={pathname == "/dashboard/list-exchange" ? "active" : ""}> 
-                <Link href="/dashboard/addbook">
+                <Link href="/dashboard/list-exchange">
                   <i className="bx bxs-book-add"></i>
                   <span className="text">List Book</span>
+                </Link>
+              </li>
+              <li className={pathname == "/dashboard/profile" ? "active" : ""}> 
+                <Link href="/dashboard/profile">
+                  <i className="bx bxs-group"></i>
+                  <span className="text">Profile</span>
                 </Link>
               </li>
               <li className={pathname == "/dashboard/users" ? "active" : ""}> 
@@ -162,7 +168,7 @@ const UserNavLeft = () => {
                 </Link>
               </li>
               <li className={pathname == "/dashboard/message" ? "active" : ""}> 
-                <Link href="#">
+                <Link href="/dashboard/message">
                   <i className="bx bxs-message-dots"></i>
                   <span className="text">Message</span>
                 </Link>

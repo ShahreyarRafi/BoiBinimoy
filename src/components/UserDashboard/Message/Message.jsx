@@ -38,8 +38,8 @@ const Message = () => {
   ];
 
   return (
-    <div>
-      <div className="mx-3 bg-[#016961] text-white rounded-lg p-5 min-h-[80vh] mb-10">
+    <div className="">
+      <div className="mx-3 bg-[#016961] text-white rounded-lg p-5 h-[86vh] mb-10">
         {/* Chatting  */}
         <div className="flex gap-3">
           {/* chat list  */}
@@ -89,7 +89,7 @@ const Message = () => {
             </div>
 
             {/* user list  */}
-            <div className="bg-gray-100/50 backdrop:filter backdrop:blur-lg rounded-lg text-white py-5 px-2 min-h-[70vh]">
+            <div className="bg-gray-100/50 backdrop:filter backdrop:blur-lg rounded-lg text-white py-5 px-2 h-[36.5vh]">
               {/* title */}
               <div className="flex justify-between items-center px-2 pb-3">
                 <h5 className="text-lg font-semibold">Message</h5>
@@ -140,7 +140,7 @@ const Message = () => {
           {/* end chat list  */}
 
           {/* message */}
-          <div className="relative w-full bg-teal-50/50 rounded-lg min-h-[70vh]">
+          <div className="relative w-full bg-teal-50/50 rounded-lg h-[82vh]">
             {/* message header */}
             <div className="h-14 shadow-md w-full">
               <div>
