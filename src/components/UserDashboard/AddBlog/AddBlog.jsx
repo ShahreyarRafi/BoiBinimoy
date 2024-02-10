@@ -52,10 +52,10 @@ const AddBlog = () => {
     }
 
     return (
-        <div className="bg-teal-50 text-[#016961] min-h-screen">
-            <div className="max-w-5xl mx-auto px-3 md:px-5 lg:px-0 py-10">
-                <div className="border-2 border-[#016961] rounded-lg px-3">
-                    <h1 className="text-3xl text-center font-bold py-2">Add Blog</h1>
+        <div className=" text-[#016961] min-h-screen">
+            <div className="container mx-auto px-3 md:px-5 lg:px-0">
+                <div className="border-2 border-[#016961] rounded-lg px-3 bg-teal-50">
+                    <h1 className="text-2xl font-bold py-5 md:py-3 text-center md:text-start">Add Blog</h1>
                     <form onSubmit={handleSubmit}>
                         {/* basic information div */}
                         <div className=" border-2 border-[#016961] rounded-lg px-3 pb-3">
