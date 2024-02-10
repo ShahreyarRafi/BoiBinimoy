@@ -3,18 +3,22 @@ import Navend from "./Navend/Navend";
 import Navlinks from "./Navlinks/Navlinks";
 import Search from "./Search/Search";
 import { CiMenuKebab } from "react-icons/ci";
+import Link from 'next/link'
 
 const Navbar = () => {
+
+  // bg-[#016961]
+
   return (
-    <nav className="bg-[#016961] text-white sticky top-0 right-0 z-50 py-5">
+    <nav className="bg text-white sticky top-0 right-0 z-50 py-5">
       {/* nav for md and lg screen */}
-      <div className="max-w-7xl mx-auto py-3 h-28 hidden md:block">
+      <div className="max-w-7xl mx-auto  hidden md:block">
         {/* upper side nav */}
         <div className="flex justify-between items-center py-2 px-5">
           {/* logo */}
-          <div className="text-2xl">
+          <Link href='/' className="text-2xl">
             <Logo />
-          </div>
+          </Link>
 
           {/* search */}
           <div className="flex-1 px-8">

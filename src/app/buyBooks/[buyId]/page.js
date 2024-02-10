@@ -1,12 +1,16 @@
+"use client"
 
-
-import BookDetails from '@/components/BookDetails/BookDetails';
+import BuyBookDetails from '@/components/BuyBook/BuyBookDetails/BuyBookDetails';
+import Footer from '@/components/Shared/Footer/Footer';
+import Navbar from '@/components/Shared/Navbar/Navbar';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <BookDetails></BookDetails>
+            <Navbar />
+            <BuyBookDetails />
+            <Footer />
         </div>
     );
 };

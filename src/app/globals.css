@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg {
+  background: url('https://i.ibb.co/DfnH8Vq/boi-binimoy-seamless-pattern.png') repeat;
+  background-repeat: repeat;
+  background-size: 20%; 
+}
+
+.bg-50 {
+  background: url('https://i.ibb.co/vwPGFwM/boi-binimoy-seamless-pattern-50.png') repeat;
+  background-repeat: repeat;
+  background-size: 20%; 
+}
+
+.bg-50-50 {
+  background: url('https://i.ibb.co/tHMFDx1/boi-binimoy-seamless-pattern-50-50.png') repeat;
+  background-repeat: repeat;
+  background-size: 25%; 
+}
+
+
+
 .active-link {
   text-decoration: underline;
 }
@@ -98,5 +118,7 @@
 .button-color:has(:last-child:active)::before {
   transition: transform 500ms, opacity 250ms;
 }
+
+
 
 

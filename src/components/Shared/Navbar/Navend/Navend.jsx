@@ -2,69 +2,69 @@
 
 import { MdFavoriteBorder, MdOutlineShoppingCart } from "react-icons/md";
 import { LuUser2 } from "react-icons/lu";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
 import Image from "next/image";
 import Link from "next/link";
+import axios from 'axios';
 
 const Navend = () => {
-  const { user, logOut } = useContext(AuthContext);
-  // const [active, setActive] = useState(false);
 
-  // console.log(user.email);
+  const { user, logOut } = useContext(AuthContext);
+  const [currentUser, setCurrentUser] = useState([]);
+
+  useEffect(() => {
+    axios.get(`https://boi-binimoy-server.vercel.app/api/v1/users/${user?.email}`)
+      .then(function (response) {
+        // handle success
+        console.log(response);
+        setCurrentUser(response.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error.message);
+      })
+      .finally(function () {
+        // always executed
+      });
+  }, [user?.email])
 
   return (
     <div className="flex items-center gap-2">
       <MdFavoriteBorder />
       <MdOutlineShoppingCart />
-
       <div className="navbar-end">
-        {user?.email ? (
-          <div className="dropdown dropdown-end ">
-            <label tabIndex={0} className="cursor-pointer">
-              <div>
-                <div className="w-10 rounded-full">
-                  {/* <Image
-                    src={user.photoURL}
-                    alt="user"
-                    onClick={() => setActive(!active)}
-                    priority
-                    width={100}
-                    height={100}
-                    style={{
-                      width: "36px",
-                      height: "36px",
-                    }}
-                    className="h-9 w-9 rounded-full"
-                  /> */}
-                </div>
+        {user ? <div>
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <Image
+                  src={currentUser.image}
+                  alt="user"
+                  priority
+                  width={300}
+                  height={300}
+                />
               </div>
-            </label>
-            <div
-              tabIndex={0}
-              className="dropdown-content z-[1] menu p-2 shadow  rounded-box w-52"
-            >
-              <Link
-                href="/dashboard"
-                className="px-4 py-2 hover:bg-base-300 rounded-lg"
-              >
+            </div>
+            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+              <li><Link href="/dashboard" className="px-4 py-2 hover:bg-base-300 rounded-lg text-black">
                 Dashboard
-              </Link>
-              <button
+              </Link></li>
+              <li> <button
                 onClick={logOut}
                 className="cursor-pointer text-red-500 px-4 py-2 hover:bg-base-300 rounded-lg"
               >
                 Logout
-              </button>
-            </div>
+              </button></li>
+            </ul>
           </div>
-        ) : (
-          <Link href="/login" className="text-[19px]">
-            <LuUser2 />
-          </Link>
-        )}
-      </div>
-    </div>
+        </div> : <Link href="/login" className="text-lg">
+          <LuUser2 />
+        </Link>
+        }
+      </div >
+    </div >
   );
 };
 

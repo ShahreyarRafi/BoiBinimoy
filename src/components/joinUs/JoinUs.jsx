@@ -243,7 +243,6 @@ const JoinUs = () => {
                                 <i><FaLinkedinIn /></i>
                             </a>
                         </div>
-
                     </form>
 
 

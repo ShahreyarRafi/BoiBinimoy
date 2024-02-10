@@ -1,19 +1,17 @@
 "use client"
 
 import UserNavLeft from '@/components/UserDashboard/UserNavLeft';
-import UserNavTop from '@/components/UserDashboard/UserNavTop';
 
 const layout = ({ children }) => {
 
     return (
-        <div>
+        <div className='bg-teal-50'>
             <UserNavLeft></UserNavLeft>
-            <UserNavTop></UserNavTop>
             <div id='content'>
                 {/*  MAIN */}
                 <main className=''>
                     {/* MAIN */}
-                    <div className='min-h-[90vh] '>
+                    <div className='min-h-[90vh]'>
                         {children}
                     </div>
                     {/* <div className="head-title">

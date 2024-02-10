@@ -1,13 +1,13 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 
 const Navlinks = () => {
   const currentPath = usePathname();
 
   const navlinks = (
-    <div className="flex items-center justify-around gap-10">
+    <div className="md:flex items-center justify-around gap-10 ">
       <Link className={currentPath === "/" && "active-link"} href="/">
         <li>Home</li>
       </Link>

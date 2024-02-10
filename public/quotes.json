@@ -71,8 +71,6 @@
   "cover_image": "image url",
 }
 
-
-
 {
   "user_name": "user",
   "user_email": "user email",
@@ -81,4 +79,17 @@
   "title": "Title here",
   "body": "blog body here",
   "cover_image": "image url",
+}
+
+{
+  "owner_name": "owner name",
+  "owner_email": "owner email",
+  "requester_name": "requester name",
+  "requester_email": "requester name",
+  "owner_book_id": "gtg954dfgdfg5f",
+  "requester_book_id": "45gfg4dfghjh5",
+  "req_date":"15/02/2024",
+  "req_time": "5:30pm",
+  "req_message": "hi hello",
+  "status": "status"
 }
