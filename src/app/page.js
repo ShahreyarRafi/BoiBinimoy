@@ -10,7 +10,7 @@ import Category from "@/components/Home/Category/Category";
 
 const HomePage = () => {
   return (
-    <div className="bg-50-50">
+    <div className="bg-teal-50">
       <div className="">
         <div className="parallax hidden md:block">
           <BannerSlider />
