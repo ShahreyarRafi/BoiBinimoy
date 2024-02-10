@@ -8,7 +8,10 @@ import axios from "axios";
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-const UserNavLeft = () => {
+const profilePlaceholder = "/userPicPlaceholder.png";
+
+
+const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState([]);
   const [fetchData, setFetchData] = useState(true);
@@ -214,11 +217,23 @@ const UserNavLeft = () => {
             <span className="num">8</span>
           </a>
           <a href="#" className="profile">
-            <Image src={currentUser?.image}
-              alt='profile'
-              priority
-              width={300}
-              height={300} />
+            {currentUser.image ? (
+              <Image
+                src={currentUser.image}
+                alt="user"
+                priority
+                width={300}
+                height={300}
+              />
+            ) : (
+              <Image
+                src={profilePlaceholder} // Placeholder image source
+                alt="placeholder"
+                priority
+                width={300}
+                height={300}
+              />
+            )}
           </a>
         </nav>
         {/*  NAVBAR */}
@@ -227,4 +242,4 @@ const UserNavLeft = () => {
   );
 };
 
-export default UserNavLeft;
+export default Dashboard;
