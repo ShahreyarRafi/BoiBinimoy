@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const RelatedCard = ({cardInfo}) => {
+const RelatedCard = ({ cardInfo }) => {
     return (
         <div>
             <div
@@ -10,10 +10,11 @@ const RelatedCard = ({cardInfo}) => {
                 {/* Book Image */}
                 <div className="flex-shrink-0 w-44">
                     <Image
-                        src={cardInfo.img}
+                        src={cardInfo?.img}
+                        priority
                         width={1000}
                         height={1500}
-                        alt=""
+                        alt="author"
                         className="absolute top-5 ring-0 w-48 border-none rounded-md shadow-xl transition-transform duration-300 hover:scale-105"
                     />
                 </div>

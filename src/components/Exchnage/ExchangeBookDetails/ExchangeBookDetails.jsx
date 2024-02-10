@@ -1,25 +1,23 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
-import Related from "./Related/Related";
-import { AuthContext } from "@/providers/AuthProvider";
-import Swal from 'sweetalert2'
+import Related from "../../Shared/Related/Related";
 import Link from 'next/link'
 
-const ExchangeRequest = () => {
+const ExchangeBookDetails = () => {
+
     const [book, setBook] = useState([]);
-    const [bookEmail, setBookEmail] = useState([]);
     const param = useParams();
-    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         axios.get(`https://boi-binimoy-server.vercel.app/api/v1/exchange-books/${param?.exchangeId}`)
             .then(function (response) {
                 // handle success
+                console.log(response);
                 setBook(response.data);
             })
             .catch(function (error) {
@@ -30,32 +28,6 @@ const ExchangeRequest = () => {
                 // always executed
             });
     }, [param?.exchangeId])
-
-    useEffect(() => {
-        axios.get('https://boi-binimoy-server.vercel.app/api/v1/exchange-books')
-            .then(function (response) {
-                // handle success
-                setBookEmail(response.data.filter(book => book?.owner_email === user?.email));
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-            .finally(function () {
-                // always executed
-            });
-    }, [user?.email])
-
-    const handleRequest = (e) => {
-        e.preventDefault();
-        return Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Request successful.",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
 
     return (
         <div className="w-full bg-teal-50">
@@ -99,44 +71,62 @@ const ExchangeRequest = () => {
                     </div>
 
                     {/* book information section */}
-                    {bookEmail.length === 0 ?
-                        <div className="flex flex-col justify-center">
-                            <h1 className="text-4xl text-center">OOPS! It seems like you don&apos;t have any book listed for exchange yet.</h1>
-                            <p className="text-xl text-center mt-10">Don&apos;t worry, you can easily add a book to your exchange list by clicking on the &apos;Add a Book&apos; button below. Share the joy of reading and start exchanging books with fellow book lovers today!</p>
-                            <Link href="/dashboard/addbook" className="button-color w-1/2 mx-auto py-2 mt-5 rounded-full text-sm md:text-base text-white text-center">Add book</Link>
-                        </div> : <div className="p-8 space-y-2 border-2 rounded-lg">
-                            <h2 className="text-4xl">Select the book you want to exchange</h2>
-                            <select
-                                className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                name="bookTitle"
-                            >
-                                <option selected value="bookTitle">
-                                    Book Title
-                                </option>
-                                <option value="newPhysicalBook">New Physical Book</option>
-                                <option value="oldPhysicalBook">Old Physical Book</option>
-                                <option value="pdfFormatBook">PDF Format Book</option>
-                                <option value="audioFormatBook">Audio Format Book</option>
-                            </select>
+                    <div className="p-8 space-y-2 border-2 rounded-lg">
+                        <h2 className="text-4xl">{book?.title}</h2>
+                        <p className="text-xs">
+                            by <span className="font-bold">{book?.writer}</span>
+                        </p>
 
-                            {/* book description div name:description*/}
-                            <h3 className="py-2">Write a message for the owner :</h3>
-                            <div className="my-3">
-                                <textarea
-                                    className="w-full p-2 text-xs lg:text-sm bg-transparent border-2 border-[#016961] rounded-lg focus:outline-none"
-                                    name="description"
-                                    placeholder="Description"
-                                    cols="30"
-                                    rows="10"
-                                ></textarea>
-                            </div>
-                            <div className="flex justify-center sm:justify-end gap-3 pt-5">
-                                <button onClick={handleRequest} className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">
-                                    Submit Request
-                                </button>
-                            </div>
+                        <div className="flex flex-wrap gap-3 pb-1">
+                            <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+                                Category: Fiction
+                            </p>
+                            <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+                                Language: {book?.language}
+                            </p>
+                            <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+                                {book?.pages} page
+                            </p>
+                            <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+                                Published Year: {book?.published_year}
+                            </p>
+                            <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+                                Publisher: {book?.publisher}
+                            </p>
+                            <p className="text-xs border rounded-sm px-2 py-1 font-bold">
+                                Edition: {book?.edition}
+                            </p>
                         </div>
-                    }
+
+                        <p className="text-xs">
+                            <span className="text-sm font-bold text-justify">
+                                Description:{" "}
+                            </span>
+                            {book?.description} lor sit amet consectetur adipisicing elit.
+                            Impedit ducimus dolores exercitationem distinctio rerum
+                            praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                            natus maiores aliquam nulla architecto, perferendis repudiandae
+                            praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                            natus maiores aliquam nulla architecto, perferendis repudiandae
+                            praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                            natus maiores aliquam nulla architecto, perferendis repudiandae
+                            praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                            natus maiores aliquam nulla architecto, perferendis repudiandae
+                            praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                            natus maiores aliquam nulla architecto, perferendis repudiandae
+                            praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                            natus maiores aliquam nulla architecto, perferendis repudiandae
+                            praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                            natus maiores aliquam nulla architecto, perferendis repudiandae
+                            corrupti?
+                        </p>
+
+                        <div className="flex justify-center sm:justify-end gap-3 pt-10">
+                            <Link href={`/exchangeAllBooks/${book?._id}/exchangeRequest`} className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">
+                                Exchange Request
+                            </Link>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Related section */}
@@ -208,8 +198,8 @@ const ExchangeRequest = () => {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 
-export default ExchangeRequest;
+export default ExchangeBookDetails;

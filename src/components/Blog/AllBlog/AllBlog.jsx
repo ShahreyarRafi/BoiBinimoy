@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
-import AllBlogCard from "../Shared/AllBlogCard";
+import AllBlogCard from "../../Shared/Blogs/AllBlogCard";
 
 const AllBlog = () => {
 

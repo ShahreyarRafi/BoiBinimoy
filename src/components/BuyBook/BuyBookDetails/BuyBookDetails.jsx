@@ -5,12 +5,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
-import Related from "./Related/Related";
-import PageLoading from '../Shared/loadingPageBook/PageLoading';
+import Related from "../../Shared/Related/Related";
+import PageLoading from '../../Shared/loadingPageBook/PageLoading';
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeartCirclePlus } from "react-icons/fa6";
 
-const BookDetails = () => {
+const BuyBookDetails = () => {
   const param = useParams();
   const axiosPublic = useAxiosPublic();
 
@@ -226,4 +226,4 @@ const BookDetails = () => {
   );
 };
 
-export default BookDetails;
+export default BuyBookDetails;

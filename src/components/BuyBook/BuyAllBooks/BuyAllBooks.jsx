@@ -2,8 +2,8 @@
 
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
-import BookCard from "../Shared/BookCard";
-import PageLoading from "../Shared/loadingPageBook/PageLoading";
+import BookCard from "../../Shared/BookCard";
+import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 
 const BuyAllBooks = () => {
   const axiosPublic = useAxiosPublic();

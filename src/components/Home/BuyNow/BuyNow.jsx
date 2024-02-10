@@ -1,19 +1,19 @@
 "use client"
 
+import 'swiper/css/bundle';
 import React, { useEffect, useState } from 'react';
 import BookCard from "../../Shared/BookCard";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper/core';
 import { Navigation } from 'swiper/modules';
-import './Spinner.css'
-import 'swiper/css/bundle';
 import Link from 'next/link';
 import { FiArrowUpRight } from 'react-icons/fi';
+import ComponentLoading from '@/components/Shared/loadingPageBook/ComponentLoading';
 
 SwiperCore.use([Navigation]);
 
 
-export default function Buy() {
+export default function BuyNow() {
 
     const [swiperInitialized, setSwiperInitialized] = useState(false);
     const [swiper, setSwiper] = useState(null);
@@ -164,16 +164,7 @@ export default function Buy() {
                         </SwiperSlide>
                     ))
                 ) : (
-                    <div className="w-full flex justify-center items-center">
-                        <div className="book">
-                            <div className="book__pg-shadow"></div>
-                            <div className="book__pg"></div>
-                            <div className="book__pg book__pg--2"></div>
-                            <div className="book__pg book__pg--3"></div>
-                            <div className="book__pg book__pg--4"></div>
-                            <div className="book__pg book__pg--5"></div>
-                        </div>
-                    </div>
+                    <ComponentLoading />
                 )}
             </Swiper>
         </div>

@@ -1,8 +1,8 @@
 "use client";
-import PageLoading from "../Shared/loadingPageBook/PageLoading";
+import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
-import ExchangeAllCards from "../Shared/ExchangeAllCards";
+import ExchangeAllCards from "../../Shared/ExchnageBook/ExchangeAllCards";
 
 
 const ExchangeAllBooks = () => {

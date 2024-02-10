@@ -1,6 +1,6 @@
 "use client"
 
-import "./Card.css";
+import "../Card.css";
 import Link from "next/link";
 import { FaCartPlus, FaExchangeAlt } from "react-icons/fa";
 
