@@ -30,16 +30,22 @@ const UserDashboard = () => {
       "#sidebar .side-menu.top li a"
     );
 
+    
     allSideMenu.forEach((item) => {
       const li = item.parentElement;
-
-      item.addEventListener("click", function () {
-        allSideMenu.forEach((i) => {
-          i.parentElement.classList.remove("active");
+      if (li) { // Check if li exists
+        item.addEventListener("click", function () {
+          allSideMenu.forEach((i) => {
+            const parentLi = i.parentElement;
+            if (parentLi) { // Check if parentLi exists
+              parentLi.classList.remove("active");
+            }
+          });
+          li.classList.add("active");
         });
-        li.classList.add("active");
-      });
+      }
     });
+    
 
     // TOGGLE SIDEBAR
     const menuBar = document.querySelector("#content nav .bx.bx-menu");
@@ -97,7 +103,7 @@ const UserDashboard = () => {
   return (
     <>
       {/*  SIDEBAR */}
-      <section id="sidebar">
+      {/* <section id="sidebar">
         <a href="/" className="brand">
           <i className="bx bxs-smile"></i>
           <span className="text">BoiBinimoy</span>
@@ -186,7 +192,7 @@ const UserDashboard = () => {
             </a>
           </li>
         </ul>
-      </section>
+      </section> */}
       {/*  SIDEBAR */}
 
       {/*  CONTENT */}
