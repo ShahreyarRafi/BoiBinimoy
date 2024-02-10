@@ -53,7 +53,7 @@ const Navend = () => {
                   />
                 ) : (
                   <Image
-                    src={profilePlaceholder} // Placeholder image source
+                    src={profilePlaceholder} 
                     alt="placeholder"
                     priority
                     width={300}
