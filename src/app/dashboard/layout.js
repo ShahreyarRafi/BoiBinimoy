@@ -1,12 +1,12 @@
 "use client"
 
-import UserNavLeft from '@/components/UserDashboard/UserNavLeft';
+import Dashboard from '@/components/UserDashboard/Dashboard';
 
 const layout = ({ children }) => {
 
     return (
         <div className='bg-teal-50'>
-            <UserNavLeft></UserNavLeft>
+            <Dashboard />
             <div id='content'>
                 {/*  MAIN */}
                 <main className=''>
