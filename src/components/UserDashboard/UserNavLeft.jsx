@@ -119,8 +119,8 @@ const UserNavLeft = () => {
   }
 
   return (
-    <>
-      <section id="sidebar">
+    <div className="">
+      <section id="sidebar" className="">
         <Link href="/" className="brand">
           <i className="bx bxs-smile"></i>
           <span className="text">BoiBinimoy</span>
@@ -198,7 +198,7 @@ const UserNavLeft = () => {
       {/*TOP  CONTENT */}
       <section id="content">
         {/*  NAVBAR */}
-        <nav>
+        <nav className="bg">
           <i className='bx bx-menu'></i>
           <a href="#" className="nav-link">Categories</a>
           <form action="#">
@@ -223,7 +223,7 @@ const UserNavLeft = () => {
         </nav>
         {/*  NAVBAR */}
       </section>
-    </>
+    </div>
   );
 };
 

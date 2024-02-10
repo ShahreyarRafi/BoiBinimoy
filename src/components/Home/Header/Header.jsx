@@ -44,10 +44,11 @@ const Header = () => {
     return () => clearInterval(intervalId);
   }
 
+  // bg-[#016961]
 
   return (
     <div>
-      <div className="relative bg-[#016961]">
+      <div className="relative bg">
         {/* bottom curve */}
         <div className="absolute inset-x-0 bottom-0">
           <svg

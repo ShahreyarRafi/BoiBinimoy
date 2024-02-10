@@ -10,19 +10,21 @@ import Category from "@/components/Home/Category/Category";
 
 const HomePage = () => {
   return (
-    <div className="bg-teal-50">
-      <div className="parallax hidden md:block">
-        <BannerSlider />
-      </div>
-      <div className="md:mt-[100vh]">
-        <Navbar />
-        <Header />
-        <Category />
-        <Stats />
-        <Exchange />
-        <Trending />
-        <Buy />
-        <Footer />
+    <div className="bg-50-50">
+      <div className="">
+        <div className="parallax hidden md:block">
+          <BannerSlider />
+        </div>
+        <div className="md:mt-[100vh]">
+          <Navbar />
+          <Header />
+          <Category />
+          <Stats />
+          <Exchange />
+          <Trending />
+          <Buy />
+          <Footer />
+        </div>
       </div>
     </div>
   );
