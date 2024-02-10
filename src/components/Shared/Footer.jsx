@@ -23,17 +23,17 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="relative mt-28 bg-[#016961]">
+    <div className="relative mt-28 bg">
       <svg
-        className="absolute top-0 w-full h-6 -mt-5 sm:-mt-10 sm:h-16 text-[#016961]"
+        viewBox="0 0 224 12"
+        fill="currentColor"
+        className="w-full -mb-1 text-teal-50"
         preserveAspectRatio="none"
-        viewBox="0 0 1440 54"
+        style={{ transform: 'rotate(180deg)' }}
       >
-        <path
-          fill="currentColor"
-          d="M0 22L120 16.7C240 11 480 1.00001 720 0.700012C960 1.00001 1200 11 1320 16.7L1440 22V54H1320C1200 54 960 54 720 54C480 54 240 54 120 54H0V22Z"
-        />
+        <path d="M0,0 C20,2 70,6 112,6 C154,6 204,2 224,0 L224,12 L0,12 Z" />
       </svg>
+
       <div className="px-4 pt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
           <div className="text-center text-white md:text-start md:max-w-md lg:col-span-2">
