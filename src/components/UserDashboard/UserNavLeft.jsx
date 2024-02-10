@@ -51,15 +51,19 @@ const UserNavLeft = () => {
 
     allSideMenu.forEach((item) => {
       const li = item.parentElement;
-
-      item.addEventListener("click", function () {
-        allSideMenu.forEach((i) => {
-          i.parentElement.classList.remove("active");
+      if (li) { // Check if li exists
+        item.addEventListener("click", function () {
+          allSideMenu.forEach((i) => {
+            const parentLi = i.parentElement;
+            if (parentLi) { // Check if parentLi exists
+              parentLi.classList.remove("active");
+            }
+          });
+          li.classList.add("active");
         });
-        li.classList.add("active");
-      });
-      // console.log(li);
+      }
     });
+
 
     // TOGGLE SIDEBAR
     const menuBar = document.querySelector("#content nav .bx.bx-menu");
@@ -115,96 +119,65 @@ const UserNavLeft = () => {
   }
 
   return (
-    <>
-      <section id="sidebar">
+    <div className="">
+      <section id="sidebar" className="">
         <Link href="/" className="brand">
           <i className="bx bxs-smile"></i>
           <span className="text">BoiBinimoy</span>
         </Link>
 
-        {currentUser?.isAdmin ? (
-          <>
-            <ul className="side-menu top">
-              <li className={pathname == "/dashboard" ? "active" : ""}>
-                <Link href="/dashboard">
-                  <i className="bx bxs-dashboard"></i>
-                  <span className="text">Dashboard</span>
-                </Link>
-              </li>
-              <li className={pathname == "/dashboard/addBlog" ? "active" : ""}> 
-                <Link href="/dashboard/addBlog">
-                  <i className="bx bxs-book-add"></i>
-                  <span className="text">Add Blog</span>
-                </Link>
-              </li>
-              <li className={pathname == "/dashboard/addbook" ? "active" : ""}> 
-                <Link href="/dashboard/addbook">
-                  <i className="bx bxs-book-add"></i>
-                  <span className="text">Add Book</span>
-                </Link>
-              </li>
-              <li className={pathname == "/dashboard/users" ? "active" : ""}> 
-                <Link href="/dashboard/users">
-                  <i className="bx bxs-group"></i>
-                  <span className="text">Users</span>
-                </Link>
-              </li>
-              <li className={pathname == "/dashboard/analytics" ? "active" : ""}> 
-                <Link href="#">
-                  <i className="bx bxs-doughnut-chart"></i>
-                  <span className="text">Analytics</span>
-                </Link>
-              </li>
-              <li className={pathname == "/dashboard/message" ? "active" : ""}> 
-                <Link href="#">
-                  <i className="bx bxs-message-dots"></i>
-                  <span className="text">Message</span>
-                </Link>
-              </li>
-            </ul>
-          </>
-        ) : (
-          <>
-            <ul className="side-menu top">
-              <li className={pathname == "/dashboard" ? "active" : ""}> 
-                <a href="/dashboard">
-                  <i className="bx bxs-dashboard"></i>
-                  <span className="text">Dashboard</span>
-                </a>
-              </li>
-              <li className={pathname == "/dashboard/addbook" ? "active" : ""}> 
-                <Link href="/dashboard/addbook">
-                  <i className="bx bxs-book-add"></i>
-                  <span className="text">Add Book</span>
-                </Link>
-              </li>
-              <li className={pathname == "/dashboard/profile" ? "active" : ""}> 
-                <Link href="/dashboard/profile">
-                  <i className="bx bxs-group"></i>
-                  <span className="text">Profile</span>
-                </Link>
-              </li>
-              <li className={pathname == "/dashboard/users" ? "active" : ""}> 
-                <Link href="/dashboard/users">
-                  <i className="bx bxs-group"></i>
-                  <span className="text">Users</span>
-                </Link>
-              </li>
-              <li className={pathname == "/dashboard/analytics" ? "active" : ""}> 
-                <Link href="#">
-                  <i className="bx bxs-doughnut-chart"></i>
-                  <span className="text">Analytics</span>
-                </Link>
-              </li>
-              <li className={pathname == "/dashboard/message" ? "active" : ""}> 
-                <Link href="/dashboard/message">
-                  <i className="bx bxs-message-dots"></i>
-                  <span className="text">Message</span>
-                </Link>
-              </li>
-            </ul>
-          </>
-        )}
+        <>
+          <ul className="side-menu top">
+            <li className={pathname == "/dashboard" ? "active" : ""}>
+              <Link href="/dashboard">
+                <i className="bx bxs-dashboard"></i>
+                <span className="text">Dashboard</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/addblog" ? "active" : ""}>
+              <Link href="/dashboard/addBlog">
+                <i className="bx bxs-book-add"></i>
+                <span className="text">Add Blog</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/addbook" ? "active" : ""}>
+              <Link href="/dashboard/addbook">
+                <i className="bx bxs-book-add"></i>
+                <span className="text">Add Book</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/list-exchange" ? "active" : ""}>
+              <Link href="/dashboard/list-exchange">
+                <i className="bx bxs-book-add"></i>
+                <span className="text">List Book</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/profile" ? "active" : ""}>
+              <Link href="/dashboard/profile">
+                <i className="bx bxs-group"></i>
+                <span className="text">Profile</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/users" ? "active" : ""}>
+              <Link href="/dashboard/users">
+                <i className="bx bxs-group"></i>
+                <span className="text">Users</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/analytics" ? "active" : ""}>
+              <Link href="#">
+                <i className="bx bxs-doughnut-chart"></i>
+                <span className="text">Analytics</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/message" ? "active" : ""}>
+              <Link href="/dashboard/message">
+                <i className="bx bxs-message-dots"></i>
+                <span className="text">Message</span>
+              </Link>
+            </li>
+          </ul>
+        </>
 
         <ul className="side-menu">
           <li>
@@ -225,7 +198,7 @@ const UserNavLeft = () => {
       {/*TOP  CONTENT */}
       <section id="content">
         {/*  NAVBAR */}
-        <nav>
+        <nav className="bg">
           <i className='bx bx-menu'></i>
           <a href="#" className="nav-link">Categories</a>
           <form action="#">
@@ -250,7 +223,7 @@ const UserNavLeft = () => {
         </nav>
         {/*  NAVBAR */}
       </section>
-    </>
+    </div>
   );
 };
 

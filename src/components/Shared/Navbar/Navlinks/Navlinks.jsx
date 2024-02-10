@@ -7,7 +7,7 @@ const Navlinks = () => {
   const currentPath = usePathname();
 
   const navlinks = (
-    <div className="md:flex items-center justify-around gap-10">
+    <div className="md:flex items-center justify-around gap-10 ">
       <Link className={currentPath === "/" && "active-link"} href="/">
         <li>Home</li>
       </Link>
