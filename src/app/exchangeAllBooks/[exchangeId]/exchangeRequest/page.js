@@ -1,6 +1,6 @@
 "use client"
 
-import ExchangeRequest from '@/components/ExchangeRequest/ExchangeRequest';
+import ExchangeRequest from '@/components/Exchnage/ExchangeRequest/ExchangeRequest';
 
 const page = () => {
     return (
