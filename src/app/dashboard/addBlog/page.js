@@ -1,6 +1,6 @@
 "use client"
 
-import AddBlog from '@/components/AddBlog/AddBlog';
+import AddBlog from '@/components/UserDashboard/AddBlog/AddBlog';
 
 const page = () => {
     return (

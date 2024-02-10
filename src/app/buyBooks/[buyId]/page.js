@@ -1,7 +1,7 @@
 "use client"
 
-import BookDetails from '@/components/BookDetails/BookDetails';
-import Footer from '@/components/Shared/Footer';
+import BuyBookDetails from '@/components/BuyBook/BuyBookDetails/BuyBookDetails';
+import Footer from '@/components/Shared/Footer/Footer';
 import Navbar from '@/components/Shared/Navbar/Navbar';
 import React from 'react';
 
@@ -9,7 +9,7 @@ const page = () => {
     return (
         <div>
             <Navbar />
-            <BookDetails />
+            <BuyBookDetails />
             <Footer />
         </div>
     );

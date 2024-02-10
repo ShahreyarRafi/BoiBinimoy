@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
-import BlogSideCard from "../Shared/BlogSideCard";
-import BlogLatestCard from "../Shared/BlogLatestCard";
+import BlogSideCard from "../Shared/Blogs/BlogSideCard";
+import BlogLatestCard from "../Shared/Blogs/BlogLatestCard";
 import Link from "next/link";
 
 const Blog = () => {

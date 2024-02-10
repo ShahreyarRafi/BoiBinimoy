@@ -4,7 +4,7 @@ import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import ExchangeCard from "../../Shared/ExchangeCard";
+import ExchangeCard from "../../Shared/ExchnageBook/ExchangeCard";
 import { FiArrowUpRight } from "react-icons/fi";
 import ComponentLoading from '@/components/Shared/loadingPageBook/ComponentLoading';
 

@@ -1,4 +1,4 @@
-import ExchangeAdd from '@/components/ExchangeAdd/ExchangeAdd';
+import ExchangeAdd from '@/components/UserDashboard/ExchangeAdd/ExchangeAdd';
 import React from 'react';
 
 const page = () => {
