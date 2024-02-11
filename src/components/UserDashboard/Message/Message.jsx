@@ -1,9 +1,26 @@
+"use client";
+
 import Image from "next/image";
 import { IoIosSend, IoMdAdd } from "react-icons/io";
 import { MdAttachFile } from "react-icons/md";
-import { FaChevronRight } from "react-icons/fa6";
+import { HiArrowTopRightOnSquare } from "react-icons/hi2";
+import { CiSearch } from "react-icons/ci";
+import { IoInformationCircleOutline } from "react-icons/io5";
+import { AiOutlineClose } from "react-icons/ai";
+import "./Message.css";
+import React from "react";
+import {
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+} from "@material-tailwind/react";
 
 const Message = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => setOpen((cur) => !cur);
+
   const cardsInfo = [
     {
       id: 1,
@@ -39,12 +56,11 @@ const Message = () => {
 
   return (
     <div className="">
-      <div className="mx-3 bg-[#016961] text-white rounded-lg p-5 h-[86vh] mb-10">
+      <div className="mx-3 bg text-white rounded-lg p-5 h-[86vh] mb-10">
         {/* Chatting  */}
         <div className="flex gap-3">
-          {/* chat list  */}
-          <div className="w-2/5 space-y-3">
-            <div className="text-white bg-teal-50/50 rounded-lg py-5">
+          <div className="w-2/5 space-y-3 overflow-y-scroll no-scrollbar">
+            <div className="text-white bg-teal-50/15 rounded-lg py-5">
               <div className="flex justify-center my-3">
                 <Image
                   src="https://pbs.twimg.com/profile_images/737221709267374081/sdwta9Oh.jpg"
@@ -61,14 +77,14 @@ const Message = () => {
             </div>
 
             {/* related section */}
-            <div className="bg-teal-50/50 rounded-lg text-white py-5 px-2 ">
+            <div className="bg-teal-50/15 rounded-lg text-white py-5 px-2 ">
               {/* related section title and see more buttonF */}
               <div className="flex justify-between items-center px-2 mb-5">
                 {/* title */}
                 <h4 className="text-white text-lg font-semibold">Related</h4>
                 {/* see more button */}
-                <button className="bg-[#016961] text-xs text-white px-2 py-1 rounded-md flex items-center gap-1">
-                  <span> See More</span> <FaChevronRight />
+                <button className="bg-white text-[#016961] rounded-sm text-lg p-0.5">
+                  <HiArrowTopRightOnSquare />
                 </button>
               </div>
 
@@ -88,19 +104,29 @@ const Message = () => {
               </div>
             </div>
 
-            {/* user list  */}
-            <div className="bg-gray-100/50 backdrop:filter backdrop:blur-lg rounded-lg text-white py-5 px-2 h-[36.5vh]">
-              {/* title */}
-              <div className="flex justify-between items-center px-2 pb-3">
-                <h5 className="text-lg font-semibold">Message</h5>
-                <button className="bg-[#016961] text-xs px-2 py-1 rounded-md flex items-center gap-1">
-                  <span> New Chat </span>
+            {/* Chat list  */}
+            <div className="bg-teal-50/15 rounded-lg text-white py-5 px-2 h-full">
+              {/* chat list header */}
+              <div className="flex items-center gap-2.5 px-2 pb-5">
+                <span className="flex items-center border-b-2 w-full">
+                  <input
+                    className="bg-transparent text-white focus:outline-none w-full px-1"
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder="Search"
+                  />
+                  <button className="text-2xl">
+                    <CiSearch />
+                  </button>
+                </span>
+                <button className="bg-white text-[#016961] rounded-sm text-xl">
                   <IoMdAdd />
                 </button>
               </div>
 
               {/* user 1 */}
-              <div className="flex py-3 px-2 items-center border-b border-gray-200">
+              <div className="flex py-3 px-2 items-center rounded-md cursor-pointer hover:bg-teal-50/20">
                 <div className="w-16">
                   <Image
                     src="https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg"
@@ -118,7 +144,7 @@ const Message = () => {
 
               {/* user 2 */}
               <div className="">
-                <div className="flex py-3 px-2 items-center border-b border-gray-200">
+                <div className="flex py-3 px-2 items-center rounded-md cursor-pointer hover:bg-teal-50/20">
                   <div className="w-16">
                     <Image
                       src="https://images-na.ssl-images-amazon.com/images/I/A1kNdYXw0GL.jpg"
@@ -135,32 +161,94 @@ const Message = () => {
                 </div>
               </div>
             </div>
-            {/* end user list  */}
           </div>
-          {/* end chat list  */}
 
           {/* message */}
-          <div className="relative w-full bg-teal-50/50 rounded-lg h-[82vh]">
+          <div className="relative w-full bg-teal-50/15 rounded-lg h-[82vh]">
             {/* message header */}
-            <div className="h-14 shadow-md w-full">
-              <div>
-                <div className="flex py-2 px-2 items-center">
-                  <div className="w-10">
-                    <Image
-                      src="https://images-na.ssl-images-amazon.com/images/I/A1kNdYXw0GL.jpg"
-                      className="object-cover h-10 w-10 rounded-full"
-                      alt=""
-                      width={500}
-                      height={500}
-                    />
-                  </div>
-                  <div className="w-full text-white ml-3">
-                    <h6 className="text-md font-semibold">Ten Thousand</h6>
-                    <p className="text-xs font-light">Active</p>
-                  </div>
+            <div className="shadow-md w-full px-4 py-1 flex justify-between items-center bg-teal-50/20 rounded-t-lg">
+              <div className="flex py-2 px-2 items-center">
+                <div className="w-14">
+                  <Image
+                    src="https://images-na.ssl-images-amazon.com/images/I/A1kNdYXw0GL.jpg"
+                    className="object-cover h-10 w-10 rounded-full"
+                    alt=""
+                    width={500}
+                    height={500}
+                  />
+                </div>
+                <div className="w-full text-white ml-3">
+                  <h6 className="text-md font-semibold">Ten Thousand</h6>
+                  <p className="text-xs font-light">Active</p>
                 </div>
               </div>
+
+              <div>
+                <button onClick={handleOpen} className="text-2xl">
+                  <IoInformationCircleOutline />
+                </button>
+
+                {/* Dailog start */}
+                <Dialog
+                  className="bg-black/50 h-screen"
+                  open={open}
+                  handler={handleOpen}
+                >
+                  <div className="max-w-sm mx-auto rounded-lg mt-28 bg-white">
+                    <DialogHeader className="justify-between">
+                      <div className="text-xl font-bold">Chat Info</div>
+                      <div>
+                        <button
+                          onClick={handleOpen}
+                          className="hover:bg-gray-300 p-1 rounded-md"
+                        >
+                          <AiOutlineClose />
+                        </button>
+                      </div>
+                    </DialogHeader>
+
+                    <DialogBody className="flex justify-center gap-3">
+                      <div>
+                        <Image
+                          src="https://images-na.ssl-images-amazon.com/images/I/A1kNdYXw0GL.jpg"
+                          width={500}
+                          height={500}
+                          alt=""
+                          className="w-36 rounded-md shadow-xl"
+                        />
+                      </div>
+                      <div>
+                        <h2 className="text-4xl">Book Title</h2>
+                        <p className="text-xs pt-1">
+                          by{" "}
+                          <span className="font-bold text-sm">
+                            Book auther name
+                          </span>
+                        </p>
+                        <p className="text-3xl py-1">
+                          30.99
+                          <span className="text-xs font-bold">$</span>
+                        </p>
+                        <p className="text-xs font-bold py-1">
+                          Category: Fiction
+                        </p>
+                        <p className="text-xs font-bold py-1">Page: 190</p>
+                        <p className="text-xs font-bold py-1">Condition: New</p>
+                        <p className="text-xs font-bold py-1">City: Dhaka</p>
+                      </div>
+                    </DialogBody>
+
+                    <DialogFooter className="justify-between gap-2">
+                      <button className="bg-[#016961] w-full py-3 rounded-lg text-white font-bold">
+                        Learn More
+                      </button>
+                    </DialogFooter>
+                  </div>
+                </Dialog>
+                {/* Dailog end */}
+              </div>
             </div>
+
             {/* all message  */}
             <div className="px-5">
               <div className="flex flex-col mt-5">
@@ -173,7 +261,7 @@ const Message = () => {
                 <div className="flex justify-start items-end mb-4">
                   <div className="w-14">
                     <Image
-                      src="https://pbs.twimg.com/profile_images/737221709267374081/sdwta9Oh.jpg"
+                      src="https://images-na.ssl-images-amazon.com/images/I/A1kNdYXw0GL.jpg"
                       className="object-cover h-8 w-8 rounded-full"
                       alt=""
                       width={500}
@@ -211,7 +299,7 @@ const Message = () => {
                 <div className="flex justify-start items-end mb-4">
                   <div className="w-10">
                     <Image
-                      src="https://pbs.twimg.com/profile_images/737221709267374081/sdwta9Oh.jpg"
+                      src="https://images-na.ssl-images-amazon.com/images/I/A1kNdYXw0GL.jpg"
                       className="object-cover h-8 w-8 rounded-full"
                       alt=""
                       width={500}
@@ -225,7 +313,7 @@ const Message = () => {
               </div>
 
               {/* send */}
-              <div className="absolute bottom-3 w-[96%] flex items-center py-2 px-3 rounded-lg bg-white">
+              <div className="absolute bottom-0 w-full left-0 flex items-center py-2 px-3 rounded-lg bg-white">
                 <div>
                   <button className="text-xl text-[#016961]">
                     <MdAttachFile />
