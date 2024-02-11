@@ -1,6 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumar+One+Outline&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.kumar-one-outline {
+  font-family: 'Kumar One Outline', system-ui;
+}
+
+
+
 
 .bg {
   background: url('https://i.ibb.co/DfnH8Vq/boi-binimoy-seamless-pattern.png') repeat;

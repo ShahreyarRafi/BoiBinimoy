@@ -10,7 +10,7 @@ const data = [
         "author": "Boi Binimoy",
         "title": "BLACK FRIDAY",
         "topic": "UP TO 70% OFF",
-        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
             { "label": "Buy Now", "link": "/Buy Now-link" }
@@ -24,7 +24,7 @@ const data = [
         "author": "Boi Binimoy",
         "title": "BLACK FRIDAY",
         "topic": "UP TO 70% OFF",
-        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
             { "label": "Buy Now", "link": "/Buy Now-link" }
@@ -38,7 +38,7 @@ const data = [
         "author": "Boi Binimoy",
         "title": "BLACK FRIDAY",
         "topic": "UP TO 70% OFF",
-        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
             { "label": "Buy Now", "link": "/Buy Now-link" }
@@ -52,7 +52,7 @@ const data = [
         "author": "Boi Binimoy",
         "title": "BLACK FRIDAY",
         "topic": "UP TO 70% OFF",
-        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
             { "label": "Buy Now", "link": "/Buy Now-link" }
@@ -66,7 +66,7 @@ const data = [
         "author": "Boi Binimoy",
         "title": "BLACK FRIDAY",
         "topic": "UP TO 70% OFF",
-        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
             { "label": "Buy Now", "link": "/Buy Now-link" }
@@ -80,7 +80,7 @@ const data = [
         "author": "Boi Binimoy",
         "title": "BLACK FRIDAY",
         "topic": "UP TO 70% OFF",
-        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
             { "label": "Buy Now", "link": "/Buy Now-link" }
@@ -171,7 +171,7 @@ export default function BannerNew() {
                             <Image src={item.cover_image} height={4100} width={2310} alt="alt" />
                             <div className="content">
                                 <div className="author">{item.author}</div>
-                                <div className="title">{item.title}</div>
+                                <div className="title font-outline">{item.title}</div>
                                 <div className="topic">{item.topic}</div>
                                 <div className="des">{item.description}</div>
                                 <div className="buttons">

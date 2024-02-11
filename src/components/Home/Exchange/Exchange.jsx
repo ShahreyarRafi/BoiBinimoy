@@ -38,7 +38,6 @@ const TestExchange = () => {
     },
   });
 
-  console.log(books);
 
   if (isLoading) {
     return (
