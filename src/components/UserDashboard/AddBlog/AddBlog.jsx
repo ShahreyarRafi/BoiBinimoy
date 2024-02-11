@@ -5,34 +5,48 @@ import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
 import axios from 'axios';
 import { AuthContext } from "@/providers/AuthProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Swal from 'sweetalert2'
+import Image from "next/image";
+import { useForm } from "react-hook-form";
+import useImageURL from "@/Hooks/ImageURL/useImageURL";
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
+import useImagePreview from "@/Hooks/ImagePreview/useImagePreview";
 
 const AddBlog = () => {
-
+    const { register, handleSubmit, reset } = useForm();
     const { user } = useContext(AuthContext);
+    const [selectedFile, setSelectedFile] = useState();
+    const [preview, setPreview] = useState();
+    const { imageUrl, uploadImage } = useImageURL(selectedFile);
+    const axiosSecure = useAxiosSecure();
+  
+    // create a preview as a side effect, whenever selected file is changed
+    const onSelectFile = (e) => {
+      const files = e.target.files;
+     
+      if (!files || files.length === 0) {
+        setSelectedFile(undefined);
+        setPreview(undefined);
+        return;
+      }
+    
+      const selectedImage = files[0];
+      setSelectedFile(selectedImage);
+    
+      const objectUrl = URL.createObjectURL(selectedImage);
+      setPreview(objectUrl);
+    };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const form = e.target;
-        const title = form.title.value;
-        const body = [form.description.value];
-        const cover_image = 'https://images.unsplash.com/photo-1483058712412-4245e9b90334?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80'
-        const user_name = 'admin';
-        const user_email = user?.email;
-        const category = form.category.value;
-
-        const newBlog = {
-            title,
-            body,
-            cover_image,
-            user_name,
-            user_email,
-            category
-        };
-
-        axios.post("https://boi-binimoy-server.vercel.app/api/v1/blogs", newBlog)
+    // blogs submitting function
+    const handleBlogSubmit = async(data) => {
+        console.log("cliked");
+        const { form, title, body, category } = data;
+        const uploadedImageUrl = await uploadImage();
+        
+        const newBlog = {form, title, body, cover_image: uploadedImageUrl, user_name: user?.displayName, user_email: user?.email, category };
+      
+        axiosSecure.post("/api/v1/blogs", newBlog)
             .then((response) => {
                 // Handle the success response
                 console.log("Response:", response.data);
@@ -56,14 +70,15 @@ const AddBlog = () => {
             <div className="container mx-auto">
                 <div className="border-2 border-[#016961] rounded-lg px-3 bg-teal-50">
                     <h1 className="text-2xl font-bold py-5 md:py-3 text-center md:text-start">Add Blog</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit(handleBlogSubmit)}>
                         {/* basic information div */}
                         <div className=" border-2 border-[#016961] rounded-lg px-3 pb-3">
                             {/* title */}
                             <h3 className="text-sm font-light py-2">Blog Title:</h3>
                             <input
                                 className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
-                                name="title"
+                            
+                                {...register("title")}
                                 placeholder="Blog Title"
                                 type="text"
                                 required
@@ -80,7 +95,8 @@ const AddBlog = () => {
                                 <div>
                                     <textarea
                                         className="w-full p-2 text-xs bg-transparent border-2 border-[#016961] rounded-lg focus:outline-none"
-                                        name="description"
+                                
+                                        {...register("description")}
                                         placeholder="Blog Description"
                                         cols="30"
                                         rows="10"
@@ -100,15 +116,19 @@ const AddBlog = () => {
                                     for="imageFile"
                                     className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg"
                                 >
-                                    <label
-                                        for="imageFile"
-                                        className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
-                                    >
-                                        <BsUpload /> <span> Upload Here</span>
-                                    </label>
+                                   {
+                                    !selectedFile ?  <label
+                                    for="imageFile"
+                                    className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                                >
+                                    <BsUpload /> <span> Upload Here</span>
+                                </label> :  <Image  src={preview} width = {500} height = {500} alt="Image Preview"  />
+                                   }
                                     <input
                                         type="file"
                                         id="imageFile"
+                                        {...register("cover_image")}
+                                        onChange={onSelectFile}
                                         hidden
                                     />
                                 </div>
@@ -127,7 +147,8 @@ const AddBlog = () => {
                                     {/* blog Tags name:tags*/}
                                     <input
                                         className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="category"
+                                    
+                                        {...register("category")}
                                         placeholder="Blog Category"
                                         type="text"
                                         required
@@ -143,7 +164,8 @@ const AddBlog = () => {
                                     {/* blog Tags name:tags*/}
                                     <input
                                         className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="tags"
+                                  
+                                        {...register("tags")}
                                         placeholder="Blog Tags"
                                         type="text"
                                     />

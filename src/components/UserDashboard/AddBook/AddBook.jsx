@@ -1,12 +1,12 @@
 "use client";
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import Swal from "sweetalert2";
+import Image from "next/image";
 
 // const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=7365e777963cf7664292cb83647a9d98`;
@@ -15,7 +15,31 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=7365e777963cf76642
 const AddBook = () => {
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
+  const [selectedFile, setSelectedFile] = useState();
+  const [preview, setPreview] = useState();
 
+  // create a preview as a side effect, whenever selected file is changed
+  const onSelectFile = (e) => {
+    const files = e.target.files;
+   
+    if (!files || files.length === 0) {
+      setSelectedFile(undefined);
+      setPreview(undefined);
+      return;
+    }
+    
+    console.log("image file: ", files)
+    const selectedImage = files[0];
+    setSelectedFile(selectedImage);
+  
+    const objectUrl = URL.createObjectURL(selectedImage);
+    setPreview(objectUrl);
+  };
+  
+
+
+
+  console.log("preview:", preview)
   const onSubmit = async(data) => {
     const {  bookType, bookCondition, whatYouWant, bookCategory, title, writer, language, pages, publisher, publicationYear, edition, price, owner, location, stockLimit, tags, awards, description} =  data;
     const imageFile = { image: data.image1[0] };
@@ -251,18 +275,22 @@ const AddBook = () => {
                   for="imageFile"
                   className="w-full h-32 border flex justify-center items-center border-[#016961] rounded-lg"
                 >
-                  <label
-                    for="imageFile"
-                    className="px-16 py-16 flex justify-center items-center gap-3 text-center text-xs lg:text-sm cursor-pointer"
-                  >
-                    <BsUpload /> <span> Upload</span>
-                  </label>
+                 {
+                  !selectedFile ?  <label
+                  htmlFor="imageFile"
+                  className="px-16 py-16 flex justify-center items-center gap-3 text-center text-xs lg:text-sm cursor-pointer"
+                >
+                  <BsUpload /> <span> Upload</span>
+                </label> : 
+                 <Image  src={preview} width = {500} height = {500} alt="Image Preview"  />
+                 }
                   <input
                     className="h-5 w-full"
                     type="file"
                     id="imageFile"
+                    onChange={onSelectFile}
                     {...register("image1")}
-                    hidden
+                    // hidden
                   />
                 </div>
 
@@ -282,7 +310,7 @@ const AddBook = () => {
                     <input
                       className="h-5 w-full"
                       type="file"
-                      id="imageFile"
+                   
                       hidden
                     />
                   </div>
@@ -301,7 +329,7 @@ const AddBook = () => {
                     <input
                       className="h-5 w-full"
                       type="file"
-                      id="imageFile"
+              
                       hidden
                     />
                   </div>
@@ -320,7 +348,7 @@ const AddBook = () => {
                     <input
                       className="h-5 w-full"
                       type="file"
-                      id="imageFile"
+              
                       hidden
                     />
                   </div>
