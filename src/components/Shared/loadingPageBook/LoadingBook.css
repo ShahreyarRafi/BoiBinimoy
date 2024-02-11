@@ -9,11 +9,7 @@
 	--white: hsl(var(--hue),10%,100%);
 	--white-d: hsl(var(--hue),10%,45%);
 }
-body {
-	background-color: var(--bg);
-	color: var(--fg);
-	font: 1em/1.5 sans-serif;
-}
+
 
 .book,
 .book__pg-shadow,

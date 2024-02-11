@@ -1,8 +1,6 @@
-
 body {
   margin: 0;
-  font-family: Poppins;
-  font-size: 12px;
+  font: 1em/1.5 sans-serif;
 }
 
 a {
@@ -35,7 +33,7 @@ header a {
   width: 100%;
   overflow: hidden;
   position: relative;
-  
+
 }
 
 .carousel .list .item {
@@ -43,7 +41,7 @@ header a {
   height: 100vh;
   position: absolute;
   inset: 0 0 0 0;
-  
+
 }
 
 .carousel .list .item img {
@@ -57,7 +55,7 @@ header a {
   top: 20%;
   width: 1140px;
   max-width: 80%;
-  left: 47%;
+  left: 45%;
   transform: translateX(-50%);
   padding-right: 30%;
   box-sizing: border-box;
@@ -79,15 +77,15 @@ header a {
 
 }
 
-.carousel .list .item .title{
-  font-size: 6em;
+.carousel .list .item .title {
+  font-size: 6.5em;
   font-weight: bold;
   line-height: 1em;
   letter-spacing: 0.01em;
 
 }
 
-.des{
+.des {
   font-size: 0.90em;
   line-height: 2em;
   max-width: 90%;
@@ -99,11 +97,10 @@ header a {
 }
 
 .font-outline {
-  color: transparent; /* Set the text color to transparent */
-  -webkit-text-stroke: 2px white; /* Set the outline with a white color */
-  -webkit-text-fill-color: transparent; /* Make the inner text transparent */
+  color: transparent;
+  -webkit-text-stroke: 2px white;
+  -webkit-text-fill-color: transparent;
 }
-
 
 .carousel .list .item .buttons {
   display: grid;
@@ -219,9 +216,9 @@ header a {
 
 @keyframes showContent {
   to {
-      transform: translateY(0px);
-      filter: blur(0px);
-      opacity: 1;
+    transform: translateY(0px);
+    filter: blur(0px);
+    opacity: 1;
   }
 }
 
@@ -254,11 +251,11 @@ header a {
 
 @keyframes showImage {
   to {
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
   }
 }
 
@@ -273,8 +270,8 @@ header a {
 
 @keyframes showThumbnail {
   from {
-      width: 0;
-      opacity: 0;
+    width: 0;
+    opacity: 0;
   }
 }
 
@@ -284,7 +281,7 @@ header a {
 
 @keyframes effectNext {
   from {
-      transform: translateX(150px);
+    transform: translateX(150px);
   }
 }
 
@@ -307,11 +304,11 @@ header a {
 
 @keyframes runningTime {
   from {
-      width: 100%
+    width: 100%
   }
 
   to {
-      width: 0
+    width: 0
   }
 }
 
@@ -331,11 +328,11 @@ header a {
 
 @keyframes outFrame {
   to {
-      width: 150px;
-      height: 220px;
-      bottom: 50px;
-      left: 50%;
-      border-radius: 20px;
+    width: 150px;
+    height: 220px;
+    bottom: 50px;
+    left: 50%;
+    border-radius: 20px;
   }
 }
 
@@ -360,9 +357,9 @@ header a {
 
 @keyframes contentOut {
   to {
-      transform: translateY(-150px);
-      filter: blur(20px);
-      opacity: 0;
+    transform: translateY(-150px);
+    filter: blur(20px);
+    opacity: 0;
   }
 }
 
@@ -371,13 +368,11 @@ header a {
 
 @media screen and (max-width: 678px) {
   .carousel .list .item .content {
-      padding-right: 0;
+    padding-right: 0;
   }
 
   .carousel .list .item .content .title {
-      font-size: 30px;
+    font-size: 30px;
   }
 
 }
-
-
