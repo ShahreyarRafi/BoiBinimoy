@@ -213,13 +213,13 @@ const UserNavLeft = () => {
             <i className='bx bxs-bell' ></i>
             <span className="num">8</span>
           </a>
-          <a href="#" className="profile">
+          {/* <a href="#" className="profile">
             <Image src={currentUser?.image}
               alt='profile'
               priority
               width={300}
               height={300} />
-          </a>
+          </a> */}
         </nav>
         {/*  NAVBAR */}
       </section>
