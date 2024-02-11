@@ -84,8 +84,8 @@ const AddBook = () => {
   };
 
   return (
-    <div className="max-w-[1800px] mx-auto min-h-screen">
-      <div className="px-3 md:px-7 mb-10 text-[#016961]">
+    <div className="min-h-screen">
+      <div className="container mx-auto text-[#016961]">
         <div className="border-2 border-[#016961] rounded-lg px-3">
           <h1 className="text-2xl font-bold py-5 md:py-3 text-center md:text-start">
             Add Your Book

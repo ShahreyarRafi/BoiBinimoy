@@ -175,19 +175,29 @@ body {
 /* SIDEBAR */
 
 /* CONTENT */
-#content {
+#content,
+#content-main,
+#content nav {
   position: relative;
   width: calc(100% - 280px);
   left: 280px;
-  transition: 0.3s ease;
+  transition: width 0.3s ease, left 0.3s ease; /* Add left property to the transition */
 }
 
-#sidebar.hide ~ #content {
+#sidebar.hide ~ #content,
+#sidebar.hide ~ #content-main,
+#sidebar.hide ~ #content nav {
   width: calc(100% - 60px);
-  left: 60px;
+  left: 60px; /* Adjusted position when sidebar is hidden */
 }
 
-/* NAVBAR */
+
+#content .content-wrapper {
+  padding-top: 80px; 
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 #content nav {
   height: 56px;
   background: url('https://i.ibb.co/DfnH8Vq/boi-binimoy-seamless-pattern.png') repeat;
@@ -197,8 +207,13 @@ body {
   display: flex;
   align-items: center;
   grid-gap: 24px;
+  position: fixed; /* Change from 'sticky' to 'fixed' */
+  top: 0;
+  left: 280px; /* Add 'left: 0' to ensure it's fixed to the left edge */
+  right: 0; /* Add 'right: 0' to ensure it spans the entire width */
   z-index: 1000;
 }
+
 
 #content nav::before {
   content: "";
@@ -294,8 +309,8 @@ body {
 }
 
 #content nav .profile img {
-  width: 36px;
-  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -562,12 +577,22 @@ body {
 /* MAIN */
 /* CONTENT */
 
+
+
+@media screen and (max-width: 1200px) {
+  #content nav {
+    background-size: 30%; 
+  }
+  
+}
+
 @media screen and (max-width: 768px) {
   #sidebar {
     width: 200px;
   }
 
-  #content {
+  #content,
+  #content nav {
     width: calc(100% - 60px);
     left: 200px;
   }
@@ -575,9 +600,20 @@ body {
   #content nav .nav-link {
     display: none;
   }
+
+  #content nav {
+    background-size: 50%; 
+  }
+  
 }
 
 @media screen and (max-width: 576px) {
+
+  #content nav {
+    background-size: 70%; 
+  }
+  
+
   #content nav form .form-input input {
     display: none;
   }
@@ -623,4 +659,11 @@ body {
   #content main .table-data .todo .todo-list {
     min-width: 420px;
   }
+}
+
+@media screen and (max-width: 500px) {
+  #content nav {
+    background-size: 90%; 
+  }
+  
 }

@@ -8,7 +8,10 @@ import axios from "axios";
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-const UserNavLeft = () => {
+const profilePlaceholder = "/userPicPlaceholder.png";
+
+
+const Dashboard = ({ children }) => {
   const { user, logOut } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState([]);
   const [fetchData, setFetchData] = useState(true);
@@ -119,7 +122,7 @@ const UserNavLeft = () => {
   }
 
   return (
-    <div className="">
+    <div className="bg-teal-50">
       <section id="sidebar" className="">
         <Link href="/" className="brand">
           <i className="bx bxs-smile"></i>
@@ -134,14 +137,14 @@ const UserNavLeft = () => {
                 <span className="text">Dashboard</span>
               </Link>
             </li>
-            <li className={pathname == "/dashboard/addblog" ? "active" : ""}>
-              <Link href="/dashboard/addBlog">
+            <li className={pathname == "/dashboard/add-blog" ? "active" : ""}>
+              <Link href="/dashboard/add-blog">
                 <i className="bx bxs-book-add"></i>
                 <span className="text">Add Blog</span>
               </Link>
             </li>
-            <li className={pathname == "/dashboard/addbook" ? "active" : ""}>
-              <Link href="/dashboard/addbook">
+            <li className={pathname == "/dashboard/add-book" ? "active" : ""}>
+              <Link href="/dashboard/add-book">
                 <i className="bx bxs-book-add"></i>
                 <span className="text">Add Book</span>
               </Link>
@@ -198,33 +201,53 @@ const UserNavLeft = () => {
       {/*TOP  CONTENT */}
       <section id="content">
         {/*  NAVBAR */}
-        <nav className="bg">
-          <i className='bx bx-menu'></i>
-          <a href="#" className="nav-link">Categories</a>
-          <form action="#">
-            <div className="form-input">
-              <input type="search" placeholder="Search..." />
-              <button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
-            </div>
-          </form>
-          <input type="checkbox" id="switch-mode" hidden />
-          <label htmlFor="switch-mode" className="switch-mode"></label>
-          <a href="#" className="notification">
-            <i className='bx bxs-bell' ></i>
-            <span className="num">8</span>
-          </a>
-          <a href="#" className="profile">
-            <Image src={currentUser?.image}
-              alt='profile'
-              priority
-              width={300}
-              height={300} />
-          </a>
-        </nav>
+        <div>
+          <nav >
+            <i className='bx bx-menu'></i>
+            <a href="#" className="nav-link">Categories</a>
+            <form action="#">
+              <div className="form-input">
+                <input type="search" placeholder="Search..." />
+                <button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
+              </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden />
+            <label htmlFor="switch-mode" className="switch-mode"></label>
+            <a href="#" className="notification">
+              <i className='bx bxs-bell' ></i>
+              <span className="num">8</span>
+            </a>
+            <a href="#" className="profile">
+              {currentUser.image ? (
+                <Image
+                  src={currentUser.image}
+                  alt="user"
+                  priority
+                  width={36}
+                  height={36}
+                />
+              ) : (
+                <Image
+                  src={profilePlaceholder}
+                  alt="placeholder"
+                  priority
+                  width={36}
+                  height={36}
+                />
+              )}
+            </a>
+          </nav>
+        </div>
         {/*  NAVBAR */}
+
+        {/* CONTENT */}
+        <div class="content-wrapper">
+          {children}
+        </div>
+        {/* CONTENT */}
       </section>
     </div>
   );
 };
 
-export default UserNavLeft;
+export default Dashboard;

@@ -74,10 +74,10 @@ const ExchangeAdd = () => {
     };
 
     return (
-        <div className="bg-teal-50 text-gray-500 min-h-screen">
-            <div className="max-w-5xl mx-auto px-3 md:px-5 lg:px-0 py-10">
-                <div className="border-2 border-gray-300 rounded-lg px-3">
-                    <h1 className="text-lg  font-bold py-2">Add Book</h1>
+        <div className="bg-teal-50 text-[#016961] min-h-screen">
+            <div className="container mx-auto">
+                <div className="border-2 border-[#016961] rounded-lg px-3">
+                    <h1 className="text-2xl font-bold py-5 md:py-3 text-center md:text-start">Add Book</h1>
 
                     <form onSubmit={handleSubmit}>
                         {/* basic information div */}
