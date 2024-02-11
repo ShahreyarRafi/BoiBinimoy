@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useContext } from "react";
 import Image from "next/image";
@@ -13,47 +13,51 @@ import useOneUser from '@/Hooks/api/useOneUser';
 import { useRouter } from 'next/navigation';
 // import palesholderImage from "../../../../public/placeholder.png"
 import { IoIosCamera } from "react-icons/io";
+import useImageURL from '@/Hooks/ImageURL/useImageURL';
+import { useForm } from 'react-hook-form';
 
 const ParsonalInfo = () => {
-
-
-    const axiosSecure = useAxiosSecure()
-
+    const { register, handleSubmit, reset } = useForm();
+    const [selectedFile, setSelectedFile] = useState();
+    const [preview, setPreview] = useState();
+    const { imageUrl, uploadImage } = useImageURL(selectedFile);
+    const axiosSecure = useAxiosSecure();
     const [currentUser] = useOneUser()
-
-    console.log(currentUser);
     const router = useRouter();
+   
+  
+    // create a preview as a side effect, whenever selected file is changed
+    const onSelectFile = (e) => {
+      const files = e.target.files;
+     
+      if (!files || files.length === 0) {
+        setSelectedFile(undefined);
+        setPreview(undefined);
+        return;
+      }
+    
+      const selectedImage = files[0];
+      setSelectedFile(selectedImage);
+    
+      const objectUrl = URL.createObjectURL(selectedImage);
+      setPreview(objectUrl);
+    };
 
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const name = form.name.value;
-        const phone_number = form.phone_number.value;
-        const date_of_birth = form.date_of_birth.value;
-        const gender = form.gender.value;
-        const profession = form.profession.value;
-        const street = form.street.value;
-        const upozela = form.upozela.value;
-        const district = form.district.value;
-        const division = form.division.value;
-        const country = form.country.value;
-        const zip_code = form.zip_code.value;
-        // const image = form.image.value;
-
-
-
+    // update profile funcotin
+    const handleUpdateProfile = async(data) => {
+      
+        const uploadedImageUrl = await uploadImage();
+        const {name, phone_number, date_of_birth, gender, profession, street, upozela, district, division, country, zip_code} = data
+     
         const updateUserInformation = {
-
-            name, phone_number, date_of_birth, gender, profession,
+            name, image: uploadedImageUrl, phone_number, date_of_birth, gender, profession,
             location: {
                 street, upozela, district, division, country, zip_code
             }
         }
 
-        console.log(updateUserInformation);
-
-
+    
         axiosSecure.patch(`api/v1/users/${currentUser._id}`, updateUserInformation)
             .then(res => {
                 console.log("update data ", res.data);
@@ -115,13 +119,12 @@ const ParsonalInfo = () => {
 
 
                             <div className='absolute mr-[70px]  text-3xl '>
-
                                 <input
                                     type="file"
                                     id="fileInput"
-                                    name = "image"
-                                    style={{ display: 'none' }}
-                                    // onChange={handleFileChange}
+                                    {...register("image")}
+                                    hidden
+                                    onChange={onSelectFile}
                                 />
 
                                 <button
@@ -133,18 +136,23 @@ const ParsonalInfo = () => {
                                     <IoIosCamera /> 
                                 </button>
 
-                               
-
-
 
                             </div>
-                            <Image
-                                src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-                                className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                                alt=""
-                                width={500}
-                                height={500}
-                            />
+                          {
+                            !selectedFile ?   <Image
+                            src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+                            className="object-cover w-40 h-40 mb-2 rounded-full shadow"
+                            alt=""
+                            width={500}
+                            height={500}
+                        /> : <Image
+                        src={preview}
+                        className="object-cover w-40 h-40 mb-2 rounded-full shadow"
+                        alt=""
+                        width={500}
+                        height={500}
+                    /> 
+                          }
 
 
                             {/* profile information */}
@@ -164,7 +172,7 @@ const ParsonalInfo = () => {
                 <div className="max-w-4xl mx-auto space-y-5 mt-3 px-5 py-3 text-[#016961]">
                     {/* personal information */}
 
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit(handleUpdateProfile)}>
                         <div className="w-full border-2 rounded-lg p-3">
                             <div className="flex justify-between items-center">
                                 <h3 className="text-2xl font-bold pb-2 text-[#016961]">
@@ -183,7 +191,7 @@ const ParsonalInfo = () => {
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="name"
+                                        {...register("name")}
                                         placeholder="Full Name"
                                         type="text"
                                         required
@@ -199,7 +207,7 @@ const ParsonalInfo = () => {
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="phone_number"
+                                        {...register("phone_number")}
                                         placeholder="Phone Number"
                                         type="number"
                                         required
@@ -214,7 +222,7 @@ const ParsonalInfo = () => {
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="date_of_birth"
+                                        {...register("date_of_birth")}
                                         placeholder=" Date Of Birth "
                                         type="date"
                                         required
@@ -230,7 +238,7 @@ const ParsonalInfo = () => {
                                     </p>
                                     <select
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] text-gray-400 rounded-lg focus:outline-none"
-                                        name="gender"
+                                        {...register("gender")}
                                     >
                                         <option selected value="gender">
                                             Gender
@@ -248,7 +256,7 @@ const ParsonalInfo = () => {
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="profession"
+                                        {...register("profession")}
                                         placeholder="Profession"
                                         type="text"
                                         required
@@ -281,7 +289,7 @@ const ParsonalInfo = () => {
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="street"
+                                        {...register("street")}
                                         placeholder="Street"
                                         type="text"
                                         required
@@ -293,7 +301,7 @@ const ParsonalInfo = () => {
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="zip_code"
+                                        {...register("zip_code")}
                                         placeholder="Zip Code"
                                         type="number"
                                         required
@@ -307,7 +315,7 @@ const ParsonalInfo = () => {
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="upozela"
+                                        {...register("upozela")}
                                         placeholder=" Upozela / Thana "
                                         type="text"
                                         required
@@ -321,7 +329,7 @@ const ParsonalInfo = () => {
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="district"
+                                        {...register("district")}
                                         placeholder="District"
                                         type="text"
                                         required
@@ -333,7 +341,7 @@ const ParsonalInfo = () => {
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="division"
+                                        {...register("division")}
                                         placeholder="Division"
                                         type="text"
                                         required
@@ -345,7 +353,7 @@ const ParsonalInfo = () => {
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                                        name="country"
+                                        {...register("country")}
                                         placeholder="Country"
                                         type="text"
                                         required

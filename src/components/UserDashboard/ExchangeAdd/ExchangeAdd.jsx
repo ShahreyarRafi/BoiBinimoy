@@ -81,14 +81,14 @@ const ExchangeAdd = () => {
 
                     <form onSubmit={handleSubmit}>
                         {/* basic information div */}
-                        <div className=" border-2 border-[#016961] rounded-lg px-3 pb-3">
+                        <div className=" border-2 border-gray-300 rounded-lg px-3 pb-3">
                             {/* title */}
                             <h3 className="text-sm font-light py-2">Basic Information:</h3>
                             {/* information */}
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                                 {/* product type name:coverType*/}
                                 <select
-                                    className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                     name="coverType"
                                 >
                                     <option selected value="">
@@ -102,7 +102,7 @@ const ExchangeAdd = () => {
 
                                 {/* product conditions name:bookCondition*/}
                                 <select
-                                    className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                     name="bookCondition"
                                 >
                                     <option selected value="">
@@ -117,7 +117,7 @@ const ExchangeAdd = () => {
 
                                 {/* what you wants name:whatYouWant*/}
                                 <select
-                                    className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                     name="whatYouWant"
                                 >
                                     <option selected value="">
@@ -130,7 +130,7 @@ const ExchangeAdd = () => {
 
                                 {/* book category name:bookCategory*/}
                                 <select
-                                    className="h-10 w-full text-xs px-2 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                    className="h-10 w-full text-xs px-2 bg-transparent border rounded-lg focus:outline-none"
                                     name="bookCategory"
                                 >
                                     <option selected value="">
@@ -164,14 +164,14 @@ const ExchangeAdd = () => {
                         {/* book information and image div */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-3 gap-3">
                             {/* book information div */}
-                            <div className="border-2 col-span-1 lg:col-span-2 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
+                            <div className="border-2 col-span-1 lg:col-span-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
                                 {/* title */}
                                 <h3 className="text-sm font-light py-2">Book Information:</h3>
                                 {/* information */}
                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                                     {/* book title  name:title*/}
                                     <input
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="title"
                                         placeholder="Book Title"
                                         type="text"
@@ -180,7 +180,7 @@ const ExchangeAdd = () => {
 
                                     {/* book author  name:writer*/}
                                     <input
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="writer"
                                         placeholder="Book Author"
                                         type="text"
@@ -189,7 +189,7 @@ const ExchangeAdd = () => {
 
                                     {/* book language  name:language*/}
                                     <select
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="language"
                                     >
                                         <option selected value="">
@@ -202,7 +202,7 @@ const ExchangeAdd = () => {
 
                                     {/* book page count  name:pages*/}
                                     <input
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="pages"
                                         placeholder="Book Page Count"
                                         type="number"
@@ -211,7 +211,7 @@ const ExchangeAdd = () => {
 
                                     {/* book publisher name:publisher*/}
                                     <input
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="publisher"
                                         placeholder="Book Publisher"
                                         type="text"
@@ -220,7 +220,7 @@ const ExchangeAdd = () => {
 
                                     {/* book publication year name:publicationYear*/}
                                     <input
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="publicationYear"
                                         placeholder="Book Publication Year"
                                         type="number"
@@ -229,7 +229,7 @@ const ExchangeAdd = () => {
 
                                     {/* book edition name:edition*/}
                                     <input
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="edition"
                                         placeholder="Book Edition"
                                         type="text"
@@ -238,7 +238,7 @@ const ExchangeAdd = () => {
 
                                     {/* Originally Published in name:originally_published_in*/}
                                     <input
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="originally_published_in"
                                         placeholder="Originally Published in"
                                         type="text"
@@ -248,7 +248,7 @@ const ExchangeAdd = () => {
                             </div>
 
                             {/* image div */}
-                            <div className="border-2 col-span-1 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
+                            <div className="border-2 col-span-1 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
                                 {/* title */}
                                 <h3 className="text-sm font-light py-2">
                                     Upload book cover Image:
@@ -256,7 +256,7 @@ const ExchangeAdd = () => {
                                 {/* iamge */}
                                 <div
                                     for="imageFile"
-                                    className="w-full h-32 border flex justify-center items-center border-[#016961] rounded-lg"
+                                    className="w-full h-32 border flex justify-center items-center border-gray-300 rounded-lg"
                                 >
                                     <label
                                         for="imageFile"
@@ -277,7 +277,7 @@ const ExchangeAdd = () => {
                                     {/* 1 */}
                                     <div
                                         for="imageFile"
-                                        className="w-full h-16 border flex justify-center items-center border-[#016961] rounded-lg"
+                                        className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
                                     >
                                         <label
                                             for="imageFile"
@@ -295,7 +295,7 @@ const ExchangeAdd = () => {
                                     {/* 2 */}
                                     <div
                                         for="imageFile"
-                                        className="w-full h-16 border flex justify-center items-center border-[#016961] rounded-lg"
+                                        className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
                                     >
                                         <label
                                             for="imageFile"
@@ -313,7 +313,7 @@ const ExchangeAdd = () => {
                                     {/* 3 */}
                                     <div
                                         for="imageFile"
-                                        className="w-full h-16 border flex justify-center items-center border-[#016961] rounded-lg"
+                                        className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
                                     >
                                         <label
                                             for="imageFile"
@@ -334,7 +334,7 @@ const ExchangeAdd = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-3 gap-3">
                             {/* owner information  div*/}
-                            <div className="border-2 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
+                            <div className="border-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
                                 {/* title */}
                                 <h3 className="text-sm font-light py-2">Owner Information:</h3>
 
@@ -342,7 +342,7 @@ const ExchangeAdd = () => {
                                 <div className="grid grid-cols-1 gap-3">
                                     {/* owner name name:owner*/}
                                     <input
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="owner"
                                         placeholder="Book Owner Name"
                                         type="text"
@@ -351,7 +351,7 @@ const ExchangeAdd = () => {
 
                                     {/* owner location name:email*/}
                                     <input
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="email"
                                         placeholder="Book Owner Email"
                                         type="text"
@@ -361,7 +361,7 @@ const ExchangeAdd = () => {
                             </div>
 
                             {/* other information */}
-                            <div className="border-2 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
+                            <div className="border-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
                                 {/* title */}
                                 <h3 className="text-sm font-light py-2">Other Information:</h3>
 
@@ -369,7 +369,7 @@ const ExchangeAdd = () => {
                                 <div className="grid grid-cols-1 gap-3">
                                     {/* book Stock Limit name:stockLimit*/}
                                     <input
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="stockLimit"
                                         placeholder="Book Stock"
                                         type="number"
@@ -379,7 +379,7 @@ const ExchangeAdd = () => {
                             </div>
 
                             {/* optional information */}
-                            <div className="border-2 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
+                            <div className="border-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
                                 {/* title */}
                                 <h3 className="text-sm font-light py-2">
                                     Optional Information:
@@ -389,7 +389,7 @@ const ExchangeAdd = () => {
                                 <div className="grid grid-cols-1 gap-3">
                                     {/* book Tags name:tags*/}
                                     <input
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="tags"
                                         placeholder="Book Tags"
                                         type="text"
@@ -397,7 +397,7 @@ const ExchangeAdd = () => {
 
                                     {/* book awards name:awards*/}
                                     <input
-                                        className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                                        className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                                         name="awards"
                                         placeholder="Book Awards"
                                         type="text"
@@ -409,7 +409,7 @@ const ExchangeAdd = () => {
                         {/* book description div name:description*/}
                         <div className="my-3">
                             <textarea
-                                className="w-full p-2 text-xs bg-transparent border-2 border-[#016961] rounded-lg focus:outline-none"
+                                className="w-full p-2 text-xs bg-transparent border-2 border-gray-300 rounded-lg focus:outline-none"
                                 name="description"
                                 placeholder="Book Description"
                                 cols="30"
@@ -421,7 +421,7 @@ const ExchangeAdd = () => {
                         {/* go to home and submit buttons */}
                         <div className="flex justify-center md:justify-end text-xs items-center mb-4 gap-3">
                             <Link href="/dashboard">
-                                <button className="px-3 py-2 border-2 border-[#016961] rounded-lg uppercase">
+                                <button className="px-3 py-2 border-2 border-gray-300 rounded-lg uppercase">
                                     <span className="flex items-center gap-1">
                                         <SlArrowLeft /> <span>Go to Dashboard</span>
                                     </span>
@@ -429,7 +429,7 @@ const ExchangeAdd = () => {
                             </Link>
                             <button
                                 type="submit"
-                                className="px-3 py-2 border-2 border-[#016961] rounded-lg uppercase"
+                                className="px-3 py-2 border-2 border-gray-300 rounded-lg uppercase"
                             >
                                 <span className="flex items-center gap-1">
                                     <span>Submit</span> <SlArrowRight />
