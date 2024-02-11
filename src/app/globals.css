@@ -21,6 +21,39 @@
 }
 
 
+@media screen and (max-width: 1200px) {
+  .bg {
+    background-size: 25%; 
+  }
+  
+}
+
+@media screen and (max-width: 1000px) {
+  .bg {
+    background-size: 30%; 
+  }
+  
+}
+
+@media screen and (max-width: 768px) {
+  .bg {
+    background-size: 35%; 
+  }
+  
+}
+@media screen and (max-width: 600px) {
+  .bg {
+    background-size: 45%; 
+  }
+  
+}
+@media screen and (max-width: 480px) {
+  .bg {
+    background-size: 70%; 
+  }
+  
+}
+
 
 .active-link {
   text-decoration: underline;
