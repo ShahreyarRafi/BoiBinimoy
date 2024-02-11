@@ -3,9 +3,9 @@
 	--hue: 223;
 	--bg: hsl(var(--hue),10%,90%);
 	--fg: hsl(var(--hue),10%,10%);
-	--primary: hsl(var(--hue),90%,55%);
-	--primary-l: hsl(var(--hue),90%,65%);
-	--primary-d: hsl(var(--hue),90%,45%);
+	--primary: #016961;
+	--primary-l: #10857b;
+	--primary-d: #016961;
 	--white: hsl(var(--hue),10%,100%);
 	--white-d: hsl(var(--hue),10%,45%);
 }
