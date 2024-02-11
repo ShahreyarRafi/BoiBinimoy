@@ -6,10 +6,10 @@ import Image from 'next/image';
 
 const data = [
     {
-        "cover_image": "https://i.ibb.co/n1zgRWn/book-cover-6-6.png",
+        "cover_image": "https://i.ibb.co/brpBJxB/Dark-Modern-Bold-Black-Friday-Sale-Facebook-Cover-2-1.png",
         "author": "Boi Binimoy",
-        "title": "BUY NOW",
-        "topic": "30% Flat Off",
+        "title": "BLACK FRIDAY",
+        "topic": "UP TO 70% OFF",
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
@@ -20,10 +20,10 @@ const data = [
         "thumbnail_description": "Description"
     },
     {
-        "cover_image": "https://i.ibb.co/L6y20Z5/book-cover-7-2.png",
+        "cover_image": "https://i.ibb.co/7Wk3ysW/Black-and-White-Minimalist-Black-Friday-Banner-1-1.png",
         "author": "Boi Binimoy",
-        "title": "BUY NOW",
-        "topic": "30% Flat Off",
+        "title": "BLACK FRIDAY",
+        "topic": "UP TO 70% OFF",
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
@@ -34,10 +34,10 @@ const data = [
         "thumbnail_description": "Description"
     },
     {
-        "cover_image": "https://i.ibb.co/VtjcbTC/book-cover-7-3.png",
+        "cover_image": "https://i.ibb.co/QHkZVtd/Copy-of-Black-Modern-Black-Friday-Sale-Facebook-Cover-2-1.png",
         "author": "Boi Binimoy",
-        "title": "BUY NOW",
-        "topic": "30% Flat Off",
+        "title": "BLACK FRIDAY",
+        "topic": "UP TO 70% OFF",
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
@@ -48,10 +48,10 @@ const data = [
         "thumbnail_description": "Description"
     },
     {
-        "cover_image": "https://i.ibb.co/pf9JZWy/book-cover-7-4.png",
+        "cover_image": "https://i.ibb.co/DK9CQLm/Bold-Minimalist-Black-Friday-Sale-Facebook-Cover-1.png",
         "author": "Boi Binimoy",
-        "title": "BUY NOW",
-        "topic": "30% Flat Off",
+        "title": "BLACK FRIDAY",
+        "topic": "UP TO 70% OFF",
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
@@ -62,10 +62,10 @@ const data = [
         "thumbnail_description": "Description"
     },
     {
-        "cover_image": "https://i.ibb.co/Tm26pfr/book-cover-7-8.png",
+        "cover_image": "https://i.ibb.co/4j42bC7/Dark-Simple-Modern-Black-Friday-Sale-Facebook-Cover-3-1.png",
         "author": "Boi Binimoy",
-        "title": "BUY NOW",
-        "topic": "30% Flat Off",
+        "title": "BLACK FRIDAY",
+        "topic": "UP TO 70% OFF",
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
@@ -76,10 +76,10 @@ const data = [
         "thumbnail_description": "Description"
     },
     {
-        "cover_image": "https://i.ibb.co/82HNKpB/book-cover-6-1.png",
+        "cover_image": "https://i.ibb.co/PCv3C8S/Dark-Simple-Modern-Black-Friday-Sale-Facebook-Cover-8-1.png",
         "author": "Boi Binimoy",
-        "title": "BUY NOW",
-        "topic": "30% Flat Off",
+        "title": "BLACK FRIDAY",
+        "topic": "UP TO 70% OFF",
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
         "buttons": [
             { "label": "SEE MORE", "link": "/see-more-link" },
@@ -168,7 +168,7 @@ export default function BannerNew() {
                 <div className="list">
                     {data.map((item, index) => (
                         <div className="item" key={index}>
-                            <Image src={item.cover_image} height={800} width={2000} alt="alt" />
+                            <Image src={item.cover_image} height={4100} width={2310} alt="alt" />
                             <div className="content">
                                 <div className="author">{item.author}</div>
                                 <div className="title">{item.title}</div>
