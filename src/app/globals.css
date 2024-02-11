@@ -20,6 +20,48 @@
   background-size: 25%; 
 }
 
+.bg-text {
+  background: url('https://i.ibb.co/tHMFDx1/boi-binimoy-seamless-pattern-50-50.png') repeat;
+  background-size: 20%; 
+  -webkit-background-clip: text; /* Clip the background to the text */
+  background-clip: text; /* Clip the background to the text */
+  color: transparent; /* Make the text transparent */
+} 
+
+
+
+@media screen and (max-width: 1200px) {
+  .bg {
+    background-size: 25%; 
+  }
+  
+}
+
+@media screen and (max-width: 1000px) {
+  .bg {
+    background-size: 30%; 
+  }
+  
+}
+
+@media screen and (max-width: 768px) {
+  .bg {
+    background-size: 35%; 
+  }
+  
+}
+@media screen and (max-width: 600px) {
+  .bg {
+    background-size: 45%; 
+  }
+  
+}
+@media screen and (max-width: 480px) {
+  .bg {
+    background-size: 70%; 
+  }
+  
+}
 
 
 .active-link {
