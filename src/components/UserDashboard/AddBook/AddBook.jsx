@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
 import { useForm } from "react-hook-form";
@@ -15,31 +15,31 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=7365e777963cf76642
 const AddBook = () => {
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
-  const [imagePreview, setImagePreview] = useState(null);
+  const [selectedFile, setSelectedFile] = useState();
+  const [preview, setPreview] = useState();
 
-  // image preview function
-  const handleImageChange = (e) => {
-    console.log("image file here")
-    const file = e.target.files[0];
-    console.log("image file: ", file)
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-
-      reader.readAsDataURL(file);
-    } else {
-      setImagePreview(null);
+  // create a preview as a side effect, whenever selected file is changed
+  const onSelectFile = (e) => {
+    const files = e.target.files;
+   
+    if (!files || files.length === 0) {
+      setSelectedFile(undefined);
+      setPreview(undefined);
+      return;
     }
+    
+    console.log("image file: ", files)
+    const selectedImage = files[0];
+    setSelectedFile(selectedImage);
+  
+    const objectUrl = URL.createObjectURL(selectedImage);
+    setPreview(objectUrl);
   };
+  
 
 
-  console.log(handleImageChange)
 
-
-  console.log("preview:", imagePreview)
+  console.log("preview:", preview)
   const onSubmit = async(data) => {
     const {  bookType, bookCondition, whatYouWant, bookCategory, title, writer, language, pages, publisher, publicationYear, edition, price, owner, location, stockLimit, tags, awards, description} =  data;
     const imageFile = { image: data.image1[0] };
@@ -276,21 +276,21 @@ const AddBook = () => {
                   className="w-full h-32 border flex justify-center items-center border-[#016961] rounded-lg"
                 >
                  {
-                  !imagePreview ?  <label
+                  !selectedFile ?  <label
                   htmlFor="imageFile"
                   className="px-16 py-16 flex justify-center items-center gap-3 text-center text-xs lg:text-sm cursor-pointer"
                 >
                   <BsUpload /> <span> Upload</span>
                 </label> : 
-                 <Image  src={imagePreview} width = {500} height = {500} alt="Image Preview"  />
+                 <Image  src={preview} width = {500} height = {500} alt="Image Preview"  />
                  }
                   <input
                     className="h-5 w-full"
                     type="file"
                     id="imageFile"
-                    onChange={handleImageChange}
+                    onChange={onSelectFile}
                     {...register("image1")}
-                    hidden
+                    // hidden
                   />
                 </div>
 
