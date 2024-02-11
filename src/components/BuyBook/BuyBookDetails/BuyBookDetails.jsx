@@ -14,8 +14,6 @@ const BuyBookDetails = () => {
   const param = useParams();
   const axiosPublic = useAxiosPublic();
 
-
-
   const { data: book = [], isLoading } = useQuery({
     queryKey: ['book'],
     queryFn: async () => {
@@ -27,11 +25,8 @@ const BuyBookDetails = () => {
   if (isLoading) {
     return (
       <PageLoading />
-      )
+    )
   }
-
-
-
 
   return (
     <div className="w-full bg-teal-50">

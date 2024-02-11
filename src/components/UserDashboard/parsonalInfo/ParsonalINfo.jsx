@@ -41,8 +41,6 @@ const ParsonalInfo = () => {
         const zip_code = form.zip_code.value;
         // const image = form.image.value;
 
-
-
         const updateUserInformation = {
 
             name, phone_number, date_of_birth, gender, profession,
@@ -52,7 +50,6 @@ const ParsonalInfo = () => {
         }
 
         console.log(updateUserInformation);
-
 
         axiosSecure.patch(`api/v1/users/${currentUser._id}`, updateUserInformation)
             .then(res => {
@@ -97,8 +94,7 @@ const ParsonalInfo = () => {
                         {/* wellcome and edit btton */}
                         <div className="flex justify-between items-center py-3">
                             <div>
-
-                                <h6 className="text-lg font-bold">Wellcome, User frist name!</h6>
+                                <h6 className="text-lg font-bold">Wellcome, User first name!</h6>
                             </div>
                             <div>
                                 <button className="text-xl md:text-2xl">
@@ -112,16 +108,13 @@ const ParsonalInfo = () => {
 
                         <div className="flex flex-col md:flex-row justify-center items-center gap-5 mt-5 relative">
                             {/* user profile */}
-
-
-                            <div className='absolute mr-[70px]  text-3xl '>
-
+                            <div className='absolute mr-[70px] text-3xl '>
                                 <input
                                     type="file"
                                     id="fileInput"
-                                    name = "image"
+                                    name="image"
                                     style={{ display: 'none' }}
-                                    // onChange={handleFileChange}
+                                // onChange={handleFileChange}
                                 />
 
                                 <button
@@ -130,13 +123,8 @@ const ParsonalInfo = () => {
                                     }}
                                     style={{ border: 'none', background: 'none', cursor: 'pointer' }}
                                 >
-                                    <IoIosCamera /> 
+                                    <IoIosCamera />
                                 </button>
-
-                               
-
-
-
                             </div>
                             <Image
                                 src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
@@ -145,7 +133,6 @@ const ParsonalInfo = () => {
                                 width={500}
                                 height={500}
                             />
-
 
                             {/* profile information */}
                             <div className="text-center md:text-start">
@@ -189,9 +176,7 @@ const ParsonalInfo = () => {
                                         required
 
                                     />
-
                                 </div>
-
 
                                 <div className="relative py-3 px-5 border-2 w-full rounded-md">
                                     <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
@@ -203,19 +188,18 @@ const ParsonalInfo = () => {
                                         placeholder="Phone Number"
                                         type="number"
                                         required
-
                                     />
                                 </div>
 
                                 {/* user dob */}
                                 <div className="relative py-3 px-5 border-2 w-full rounded-md">
                                     <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
-                                        Dath Of Birth
+                                        Date Of Birth
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
                                         name="date_of_birth"
-                                        placeholder=" Date Of Birth "
+                                        placeholder="Date Of Birth"
                                         type="date"
                                         required
                                     />

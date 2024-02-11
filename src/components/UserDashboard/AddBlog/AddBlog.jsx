@@ -32,6 +32,8 @@ const AddBlog = () => {
             category
         };
 
+        form.reset();
+
         axios.post("https://boi-binimoy-server.vercel.app/api/v1/blogs", newBlog)
             .then((response) => {
                 // Handle the success response

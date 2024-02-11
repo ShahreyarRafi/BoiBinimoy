@@ -170,7 +170,7 @@ const Profile = () => {
               {/* user dob */}
               <div className="relative py-3 px-5 border-2 w-full rounded-md">
                 <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
-                  Dath Of Birth
+                  Date Of Birth
                 </p>
                 {currentUser.date_of_birth ? (
                   <> <span className="text-lg">{currentUser.date_of_birth}</span></>
