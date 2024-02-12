@@ -122,8 +122,8 @@ const Users = () => {
                                     <div key={user._id} className="bg-white rounded-3xl lg:rounded-none shadow-sm hover:bg-[#19a49113] lg:shadow-inherit border border-gray-100">
                                         <div className="flex flex-col lg:flex-row items-center justify-start lg:justify-between gap-1  rounded-3xl lg:rounded-none px-6 lg:px-10 py-5 mx-auto duration-300">
                                             <div className="min-w-[40px] mr-2">
-                                                {user.photoURL ? (
-                                                    <Image src={user.photoURL} alt="profile" priority width={500} height={500} className='rounded-full p-1 mx-auto size-32 lg:size-10' />
+                                                {user.image ? (
+                                                    <Image src={user.image} alt="profile" priority width={500} height={500} className='rounded-full p-1 mx-auto size-32 lg:size-10' />
                                                 ) : (
                                                     <Image src={userPicPlaceHolder} alt="profile" priority width={500} height={500} className='rounded-full p-1 mx-auto size-32 lg:size-10' />
                                                 )}
