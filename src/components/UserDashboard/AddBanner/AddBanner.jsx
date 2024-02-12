@@ -22,7 +22,7 @@ const AddBanner = () => {
               </h3>
 
               {/* title, auther and topic */}
-              <div className="flex items-center gap-3 ">
+              <div className="flex flex-col lg:flex-row items-center gap-3 ">
                 <input
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
                   placeholder="Cover Title"
@@ -44,7 +44,7 @@ const AddBanner = () => {
               </div>
 
               {/* button links */}
-              <div className="flex items-center gap-3 pt-3">
+              <div className="flex flex-col lg:flex-row items-center gap-3 pt-3">
                 <input
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
                   placeholder="SEE MORE button link"
@@ -60,7 +60,7 @@ const AddBanner = () => {
               </div>
 
               {/* description and image upload */}
-              <div className="flex gap-3 pt-3">
+              <div className="flex  flex-col lg:flex-row gap-3 pt-3">
                 {/* descripthion */}
                 <div className="w-full">
                   <textarea
@@ -75,7 +75,7 @@ const AddBanner = () => {
                 {/* image */}
                 <div
                   for="imageFile"
-                  className="w-2/5 border flex justify-center items-center border-[#016961] rounded-lg"
+                  className="w-full lg:w-2/5 border flex justify-center items-center border-[#016961] rounded-lg"
                 >
                   <label
                     for="imageFile"
@@ -83,11 +83,7 @@ const AddBanner = () => {
                   >
                     <BsUpload /> <span> Upload Here</span>
                   </label>
-                  <input
-                    type="file"
-                    id="imageFile"
-                    hidden
-                  />
+                  <input type="file" id="imageFile" hidden />
                 </div>
               </div>
             </div>
@@ -110,7 +106,7 @@ const AddBanner = () => {
               </div>
 
               {/* thambnail descripthion */}
-              <div className="flex gap-3 pt-3">
+              <div className="flex flex-col lg:flex-row gap-3 pt-3">
                 {/* descripthion */}
                 <div className="w-full">
                   <textarea
@@ -125,7 +121,7 @@ const AddBanner = () => {
                 {/* image */}
                 <div
                   for="imageFile"
-                  className="w-2/5 border flex justify-center items-center border-[#016961] rounded-lg"
+                  className="w-full lg:w-2/5 border flex justify-center items-center border-[#016961] rounded-lg"
                 >
                   <label
                     for="imageFile"
@@ -133,21 +129,17 @@ const AddBanner = () => {
                   >
                     <BsUpload /> <span> Upload Here</span>
                   </label>
-                  <input
-                    type="file"
-                    id="imageFile"
-                    hidden
-                  />
+                  <input type="file" id="imageFile" hidden />
                 </div>
               </div>
             </div>
 
             {/* go to home and submit buttons */}
-            <div className="flex justify-center md:justify-end text-xs items-center my-4 gap-3">
+            <div className="flex flex-col md:flex-row justify-center md:justify-end text-xs items-center my-4 gap-3">
               <Link href="/dashboard">
                 <button className="px-3 py-2 border-2 border-[#016961] rounded-lg uppercase">
                   <span className="flex items-center gap-1">
-                    <SlArrowLeft /> <span>Go to Dashboard</span>
+                    <SlArrowLeft /> <span>GO to Dashboard</span>
                   </span>
                 </button>
               </Link>
