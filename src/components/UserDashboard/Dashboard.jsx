@@ -1,15 +1,14 @@
-"use client"
+"use client";
 
 import { useContext, useEffect, useState } from "react";
 import "./style.css";
 import Link from "next/link";
 import { AuthContext } from "@/providers/AuthProvider";
 import axios from "axios";
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
-
 
 const Dashboard = ({ children }) => {
   const { user, logOut } = useContext(AuthContext);
@@ -34,7 +33,6 @@ const Dashboard = ({ children }) => {
     }
   }, [fetchData, user?.email]);
 
-
   const [componentsMounted, setComponentMounted] = useState(false);
 
   useEffect(() => {
@@ -54,11 +52,13 @@ const Dashboard = ({ children }) => {
 
     allSideMenu.forEach((item) => {
       const li = item.parentElement;
-      if (li) { // Check if li exists
+      if (li) {
+        // Check if li exists
         item.addEventListener("click", function () {
           allSideMenu.forEach((i) => {
             const parentLi = i.parentElement;
-            if (parentLi) { // Check if parentLi exists
+            if (parentLi) {
+              // Check if parentLi exists
               parentLi.classList.remove("active");
             }
           });
@@ -66,7 +66,6 @@ const Dashboard = ({ children }) => {
         });
       }
     });
-
 
     // TOGGLE SIDEBAR
     const menuBar = document.querySelector("#content nav .bx.bx-menu");
@@ -149,7 +148,15 @@ const Dashboard = ({ children }) => {
                 <span className="text">Add Book</span>
               </Link>
             </li>
-            <li className={pathname == "/dashboard/list-exchange" ? "active" : ""}>
+            <li className={pathname == "/dashboard/add-banner" ? "active" : ""}>
+              <Link href="/dashboard/add-banner">
+                <i className="bx bxs-banner-add"></i>
+                <span className="text">Add Banner</span>
+              </Link>
+            </li>
+            <li
+              className={pathname == "/dashboard/list-exchange" ? "active" : ""}
+            >
               <Link href="/dashboard/list-exchange">
                 <i className="bx bxs-book-add"></i>
                 <span className="text">List Book</span>
@@ -192,7 +199,10 @@ const Dashboard = ({ children }) => {
           <li>
             <Link href="#" className="logout">
               <i className="bx bxs-log-out-circle"></i>
-              <button onClick={logOut}> <span className="text">Logout</span> </button>
+              <button onClick={logOut}>
+                {" "}
+                <span className="text">Logout</span>{" "}
+              </button>
             </Link>
           </li>
         </ul>
@@ -202,19 +212,23 @@ const Dashboard = ({ children }) => {
       <section id="content">
         {/*  NAVBAR */}
         <div>
-          <nav >
-            <i className='bx bx-menu'></i>
-            <a href="#" className="nav-link">Categories</a>
+          <nav>
+            <i className="bx bx-menu"></i>
+            <a href="#" className="nav-link">
+              Categories
+            </a>
             <form action="#">
               <div className="form-input">
                 <input type="search" placeholder="Search..." />
-                <button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
+                <button type="submit" className="search-btn">
+                  <i className="bx bx-search"></i>
+                </button>
               </div>
             </form>
             <input type="checkbox" id="switch-mode" hidden />
             <label htmlFor="switch-mode" className="switch-mode"></label>
             <a href="#" className="notification">
-              <i className='bx bxs-bell' ></i>
+              <i className="bx bxs-bell"></i>
               <span className="num">8</span>
             </a>
             <a href="#" className="profile">
@@ -241,9 +255,7 @@ const Dashboard = ({ children }) => {
         {/*  NAVBAR */}
 
         {/* CONTENT */}
-        <div class="content-wrapper">
-          {children}
-        </div>
+        <div class="content-wrapper">{children}</div>
         {/* CONTENT */}
       </section>
     </div>
