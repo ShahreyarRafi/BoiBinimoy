@@ -7,7 +7,7 @@ import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 import { CiSearch } from "react-icons/ci";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
-import "./Message.css";
+import "./style.css";
 import React from "react";
 import {
   Dialog,

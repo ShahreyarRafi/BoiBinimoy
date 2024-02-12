@@ -16,7 +16,7 @@ const Related = () => {
       id: 1,
       img: "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg",
       title: "BIG MAGIC",
-      auther: "by Elizabeth Gilbert",
+      auther: "Elizabeth Gilbert",
       color: "#EB5757",
       details:
         "Readers of all ages and walks of life have drawn inspiration and empowerment from Elizabeth Gilbert’s books for years.",
@@ -25,7 +25,7 @@ const Related = () => {
       id: 2,
       img: "https://images-na.ssl-images-amazon.com/images/I/A1kNdYXw0GL.jpg",
       title: "Ten Thousand Skies Above",
-      auther: "by Claudia Gray",
+      auther: "Claudia Gray",
       color: "#A4E0EB",
       details:
         "The hunt for each splinter of Paul's soul sends Marguerite racing through a war-torn San Francisco.",
@@ -34,7 +34,7 @@ const Related = () => {
       id: 3,
       img: "https://images-na.ssl-images-amazon.com/images/I/81eI0ExR+VL.jpg",
       title: "A Tale For The Time Being",
-      auther: "by Ruth Ozeki",
+      auther: "Ruth Ozeki",
       color: "#EDB9D6",
       details:
         "In Tokyo, sixteen-year-old Nao has decided there’s only one escape from her aching loneliness and her classmates’ bullying.",
@@ -43,7 +43,7 @@ const Related = () => {
       id: 4,
       img: "https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg",
       title: "The Great Gatsby",
-      auther: "by F.Scott Fitzgerald",
+      auther: "F.Scott Fitzgerald",
       color: "#FDCA95",
       details:
         "The Great Gatsby, F. Scott Fitzgerald’s third book, stands as the supreme achievement of his career.",
@@ -52,7 +52,7 @@ const Related = () => {
       id: 5,
       img: "https://images-na.ssl-images-amazon.com/images/I/81UWB7oUZ0L.jpg",
       title: "After You",
-      auther: "by Jojo Moyes",
+      auther: "Jojo Moyes",
       color: "#CBB5E2",
       details:
         "Louisa Clark is no longer just an ordinary girl living an ordinary life. After the transformative six months spent.",

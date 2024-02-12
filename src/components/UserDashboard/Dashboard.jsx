@@ -7,6 +7,8 @@ import { AuthContext } from "@/providers/AuthProvider";
 import axios from "axios";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { FaCheck } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
 
@@ -15,6 +17,11 @@ const Dashboard = ({ children }) => {
   const [currentUser, setCurrentUser] = useState([]);
   const [fetchData, setFetchData] = useState(true);
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleNotification = () => {
+    setIsOpen(!isOpen);
+  };
 
   useEffect(() => {
     if (fetchData) {
@@ -111,7 +118,7 @@ const Dashboard = ({ children }) => {
 
     const switchMode = document.getElementById("switch-mode");
 
-    switchMode.addEventListener("change", function () {
+    switchMode?.addEventListener("change", function () {
       if (this.checked) {
         document.body.classList.add("dark");
       } else {
@@ -120,12 +127,45 @@ const Dashboard = ({ children }) => {
     });
   }
 
+  const cardsInfo = [
+    {
+      id: 1,
+      img: "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg",
+      title: "BIG MAGIC",
+      auther: "Elizabeth Gilbert",
+    },
+    {
+      id: 2,
+      img: "https://images-na.ssl-images-amazon.com/images/I/A1kNdYXw0GL.jpg",
+      title: "Ten Thousand Skies Above",
+      auther: "Claudia Gray",
+    },
+    {
+      id: 3,
+      img: "https://images-na.ssl-images-amazon.com/images/I/81eI0ExR+VL.jpg",
+      title: "A Tale For The Time Being",
+      auther: "Ruth Ozeki",
+    },
+    {
+      id: 4,
+      img: "https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg",
+      title: "The Great Gatsby",
+      auther: "F.Scott Fitzgerald",
+    },
+    {
+      id: 5,
+      img: "https://images-na.ssl-images-amazon.com/images/I/81UWB7oUZ0L.jpg",
+      title: "After You",
+      auther: "Jojo Moyes",
+    },
+  ];
+
   return (
     <div className="bg-teal-50">
       <section id="sidebar" className="">
         <Link href="/" className="brand">
-          <i className="bx bxs-smile"></i>
-          <span className="text">BoiBinimoy</span>
+          {/* <i className="bx bxs-smile"></i> */}
+          <span className="text ml-10">BoiBinimoy</span>
         </Link>
 
         <>
@@ -225,12 +265,70 @@ const Dashboard = ({ children }) => {
                 </button>
               </div>
             </form>
-            <input type="checkbox" id="switch-mode" hidden />
-            <label htmlFor="switch-mode" className="switch-mode"></label>
-            <a href="#" className="notification">
-              <i className="bx bxs-bell"></i>
-              <span className="num">8</span>
-            </a>
+            {/* <input type="checkbox" id="switch-mode" hidden />
+            <label htmlFor="switch-mode" className="switch-mode"></label> */}
+
+            {/* notification start*/}
+            <div className="relative">
+              {/* notification button start */}
+              <button onClick={toggleNotification} className="notification">
+                <i className="bx bxs-bell"></i>
+                <span className="num">8</span>
+              </button>
+              {/* notification button end */}
+
+              {/* notification information start */}
+              {isOpen && (
+                <div className="absolute top-10 -left-36 rounded-lg bg-50 w-56 h-72 p-2 overflow-y-scroll">
+                  {/* notification card start */}
+                  {cardsInfo.map((cardInfo) => (
+                    <div key={cardInfo.id}>
+                      <div className="flex justify-center gap-3 hover:bg-teal-100 p-2 rounded-lg cursor-pointer">
+                        {/* image */}
+                        <div className="w-16 flex justify-center">
+                          <Image
+                            className="w-6 h-6 rounded-full"
+                            src={cardInfo.img}
+                            width={500}
+                            height={500}
+                            alt=""
+                          />
+                        </div>
+                        {/* text and button */}
+                        <div className="space-y-1">
+                          {/* text */}
+                          <h4 className="text-[10px] md:text-xs font-light text-[#016961]">
+                            <span className="font-semibold">
+                              {cardInfo.auther}
+                            </span>{" "}
+                            want to exachange{" "}
+                            <span className="font-semibold">
+                              {cardInfo.title}
+                            </span>{" "}
+                            whit you.
+                          </h4>
+                          {/* buttons */}
+                          <div className="flex items-center gap-2">
+                            {/* button 1 */}
+                            <button className="py-1 bg-green-200 text-green-600 text-xs rounded-md w-full flex justify-center hover:bg-green-300">
+                              <FaCheck />
+                              {/* boutton 2 */}
+                            </button>
+                            <button className="py-1 bg-red-200 text-red-600 text-xs rounded-md w-full flex justify-center hover:bg-red-300">
+                              <RxCross2 />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  {/* notification card end */}
+                </div>
+              )}
+              {/* notification information end */}
+            </div>
+            {/* notification end */}
+
             <a href="#" className="profile">
               {currentUser.image ? (
                 <Image
