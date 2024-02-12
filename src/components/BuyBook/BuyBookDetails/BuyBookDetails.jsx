@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
 import Related from "../../Shared/Related/Related";
-import PageLoading from '../../Shared/loadingPageBook/PageLoading';
+import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeartCirclePlus } from "react-icons/fa6";
 
@@ -14,10 +14,8 @@ const BuyBookDetails = () => {
   const param = useParams();
   const axiosPublic = useAxiosPublic();
 
-
-
   const { data: book = [], isLoading } = useQuery({
-    queryKey: ['book'],
+    queryKey: ["book"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/api/v1/buy-books/${param.buyId}`);
       return res.data;
@@ -25,13 +23,8 @@ const BuyBookDetails = () => {
   });
 
   if (isLoading) {
-    return (
-      <PageLoading />
-      )
+    return <PageLoading />;
   }
-
-
-
 
   return (
     <div className="w-full bg-teal-50">

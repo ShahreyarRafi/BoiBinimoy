@@ -1,14 +1,16 @@
-"use client"
+"use client";
 
 import { useContext, useEffect, useState } from "react";
 import "./style.css";
 import Link from "next/link";
 import { AuthContext } from "@/providers/AuthProvider";
 import axios from "axios";
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
-const UserNavLeft = () => {
+const profilePlaceholder = "/userPicPlaceholder.png";
+
+const Dashboard = ({ children }) => {
   const { user, logOut } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState([]);
   const [fetchData, setFetchData] = useState(true);
@@ -31,7 +33,6 @@ const UserNavLeft = () => {
     }
   }, [fetchData, user?.email]);
 
-
   const [componentsMounted, setComponentMounted] = useState(false);
 
   useEffect(() => {
@@ -51,11 +52,13 @@ const UserNavLeft = () => {
 
     allSideMenu.forEach((item) => {
       const li = item.parentElement;
-      if (li) { // Check if li exists
+      if (li) {
+        // Check if li exists
         item.addEventListener("click", function () {
           allSideMenu.forEach((i) => {
             const parentLi = i.parentElement;
-            if (parentLi) { // Check if parentLi exists
+            if (parentLi) {
+              // Check if parentLi exists
               parentLi.classList.remove("active");
             }
           });
@@ -63,7 +66,6 @@ const UserNavLeft = () => {
         });
       }
     });
-
 
     // TOGGLE SIDEBAR
     const menuBar = document.querySelector("#content nav .bx.bx-menu");
@@ -119,7 +121,7 @@ const UserNavLeft = () => {
   }
 
   return (
-    <div className="">
+    <div className="bg-teal-50">
       <section id="sidebar" className="">
         <Link href="/" className="brand">
           <i className="bx bxs-smile"></i>
@@ -146,10 +148,24 @@ const UserNavLeft = () => {
                 <span className="text">Add Book</span>
               </Link>
             </li>
-            <li className={pathname == "/dashboard/list-exchange" ? "active" : ""}>
+            <li className={pathname == "/dashboard/add-banner" ? "active" : ""}>
+              <Link href="/dashboard/add-banner">
+                <i className="bx bxs-banner-add"></i>
+                <span className="text">Add Banner</span>
+              </Link>
+            </li>
+            <li
+              className={pathname == "/dashboard/list-exchange" ? "active" : ""}
+            >
               <Link href="/dashboard/list-exchange">
                 <i className="bx bxs-book-add"></i>
                 <span className="text">List Book</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/all-books" ? "active" : ""}>
+              <Link href="/dashboard/all-books">
+                <i className="bx bxs-group"></i>
+                <span className="text"> My Books </span>
               </Link>
             </li>
             <li className={pathname == "/dashboard/profile" ? "active" : ""}>
@@ -189,7 +205,10 @@ const UserNavLeft = () => {
           <li>
             <Link href="#" className="logout">
               <i className="bx bxs-log-out-circle"></i>
-              <button onClick={logOut}> <span className="text">Logout</span> </button>
+              <button onClick={logOut}>
+                {" "}
+                <span className="text">Logout</span>{" "}
+              </button>
             </Link>
           </li>
         </ul>
@@ -198,33 +217,55 @@ const UserNavLeft = () => {
       {/*TOP  CONTENT */}
       <section id="content">
         {/*  NAVBAR */}
-        <nav className="bg">
-          <i className='bx bx-menu'></i>
-          <a href="#" className="nav-link">Categories</a>
-          <form action="#">
-            <div className="form-input">
-              <input type="search" placeholder="Search..." />
-              <button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
-            </div>
-          </form>
-          <input type="checkbox" id="switch-mode" hidden />
-          <label htmlFor="switch-mode" className="switch-mode"></label>
-          <a href="#" className="notification">
-            <i className='bx bxs-bell' ></i>
-            <span className="num">8</span>
-          </a>
-          {/* <a href="#" className="profile">
-            <Image src={currentUser?.image}
-              alt='profile'
-              priority
-              width={300}
-              height={300} />
-          </a> */}
-        </nav>
+        <div>
+          <nav>
+            <i className="bx bx-menu"></i>
+            <a href="#" className="nav-link">
+              Categories
+            </a>
+            <form action="#">
+              <div className="form-input">
+                <input type="search" placeholder="Search..." />
+                <button type="submit" className="search-btn">
+                  <i className="bx bx-search"></i>
+                </button>
+              </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden />
+            <label htmlFor="switch-mode" className="switch-mode"></label>
+            <a href="#" className="notification">
+              <i className="bx bxs-bell"></i>
+              <span className="num">8</span>
+            </a>
+            <a href="#" className="profile">
+              {currentUser.image ? (
+                <Image
+                  src={currentUser.image}
+                  alt="user"
+                  priority
+                  width={36}
+                  height={36}
+                />
+              ) : (
+                <Image
+                  src={profilePlaceholder}
+                  alt="placeholder"
+                  priority
+                  width={36}
+                  height={36}
+                />
+              )}
+            </a>
+          </nav>
+        </div>
         {/*  NAVBAR */}
+
+        {/* CONTENT */}
+        <div class="content-wrapper">{children}</div>
+        {/* CONTENT */}
       </section>
     </div>
   );
 };
 
-export default UserNavLeft;
+export default Dashboard;
