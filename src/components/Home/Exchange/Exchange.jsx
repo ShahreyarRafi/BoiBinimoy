@@ -7,10 +7,12 @@ import Link from "next/link";
 import ExchangeCard from "../../Shared/ExchnageBook/ExchangeCard";
 import { FiArrowUpRight } from "react-icons/fi";
 import ComponentLoading from '@/components/Shared/loadingPageBook/ComponentLoading';
+import useAuth from "@/Hooks/auth/useAuth";
 
 
 
 const TestExchange = () => {
+
   // useEffect(() => {
   //   if (fetchData) {
   //     const fetchData = async () => {
@@ -38,7 +40,6 @@ const TestExchange = () => {
     },
   });
 
-  console.log(books);
 
   if (isLoading) {
     return (
