@@ -1,3 +1,5 @@
+"use client"
+
 import MyBooks from '@/components/UserDashboard/MyBooks/MyBooks';
 import React from 'react';
 

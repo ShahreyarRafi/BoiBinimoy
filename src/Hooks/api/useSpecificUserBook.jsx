@@ -8,11 +8,11 @@ import { AuthContext } from "@/providers/AuthProvider";
 const useSpecificUserBook = () => {
 
     const { user } = useContext(AuthContext)
-    console.log( " user ", user?.email);
+    console.log(" user ", user?.email);
 
     const axiosSecure = useAxiosSecure()
 
-    const { data: specificBooks = [] , refetch , isLoading} = useQuery({
+    const { data: specificBooks = [], refetch, isLoading } = useQuery({
         queryKey: ["specificBooks"],
         queryFn: async () => {
             const res = await axiosSecure.get(`/api/v1/buy-books-individual/${user?.email}`)
@@ -20,7 +20,10 @@ const useSpecificUserBook = () => {
         }
     })
     return [specificBooks, refetch, isLoading]
+    
 };
+
+
 
 
 export default useSpecificUserBook;
