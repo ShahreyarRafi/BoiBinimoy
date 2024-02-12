@@ -214,11 +214,11 @@ const UserNavLeft = () => {
             <span className="num">8</span>
           </a>
           <a href="#" className="profile">
-            <Image src={currentUser?.image}
+            {/* <Image src={currentUser?.image}
               alt='profile'
               priority
               width={300}
-              height={300} />
+              height={300} /> */}
           </a>
         </nav>
         {/*  NAVBAR */}
