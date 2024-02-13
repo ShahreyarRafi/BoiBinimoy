@@ -13,57 +13,62 @@
 
 
 .bg {
-  background: url('https://i.ibb.co/DfnH8Vq/boi-binimoy-seamless-pattern.png') repeat;
+  background: url("https://i.ibb.co/DfnH8Vq/boi-binimoy-seamless-pattern.png")
+    repeat;
   background-repeat: repeat;
-  background-size: 20%; 
+  background-size: 20%;
 }
 
 .bg-50 {
-  background: url('https://i.ibb.co/vwPGFwM/boi-binimoy-seamless-pattern-50.png') repeat;
+  background: url("https://i.ibb.co/vwPGFwM/boi-binimoy-seamless-pattern-50.png")
+    repeat;
   background-repeat: repeat;
-  background-size: 20%; 
+  background-size: 20%;
 }
 
 .bg-50-50 {
-  background: url('https://i.ibb.co/tHMFDx1/boi-binimoy-seamless-pattern-50-50.png') repeat;
+  background: url("https://i.ibb.co/tHMFDx1/boi-binimoy-seamless-pattern-50-50.png")
+    repeat;
   background-repeat: repeat;
-  background-size: 25%; 
+  background-size: 25%;
 }
 
+.bg-text {
+  background: url("https://i.ibb.co/tHMFDx1/boi-binimoy-seamless-pattern-50-50.png")
+    repeat;
+  background-size: 20%;
+  -webkit-background-clip: text; /* Clip the background to the text */
+  background-clip: text; /* Clip the background to the text */
+  color: transparent; /* Make the text transparent */
+}
 
 @media screen and (max-width: 1200px) {
   .bg {
-    background-size: 25%; 
+    background-size: 25%;
   }
-  
 }
 
 @media screen and (max-width: 1000px) {
   .bg {
-    background-size: 30%; 
+    background-size: 30%;
   }
-  
 }
 
 @media screen and (max-width: 768px) {
   .bg {
-    background-size: 35%; 
+    background-size: 35%;
   }
-  
 }
 @media screen and (max-width: 600px) {
   .bg {
-    background-size: 45%; 
+    background-size: 45%;
   }
-  
 }
 @media screen and (max-width: 480px) {
   .bg {
-    background-size: 70%; 
+    background-size: 70%;
   }
-  
 }
-
 
 .active-link {
   text-decoration: underline;
@@ -114,10 +119,8 @@
 
 .button-color:hover,
 .button-color:focus-visible {
-  background:  #408a84;
+  background: #408a84;
 }
-
-
 
 .button-color > :first-child {
   left: 0;
@@ -161,7 +164,3 @@
 .button-color:has(:last-child:active)::before {
   transition: transform 500ms, opacity 250ms;
 }
-
-
-
-

@@ -75,7 +75,7 @@ export default function Category() {
 
       {isLoading || (
         <Link
-          href={"/category"}
+          href={"/categories"}
           className="absolute right-0 lg:-right-5 bg-teal-50 rounded-full  top-[40%] cursor-pointer"
         >
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-800 opacity-75"></span>

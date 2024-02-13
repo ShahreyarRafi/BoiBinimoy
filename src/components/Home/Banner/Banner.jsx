@@ -187,7 +187,7 @@ export default function BannerNew() {
                     <div className="thumbnail">
                         {data.map((item, index) => (
                             <div className="item" key={index}>
-                                <Image src={item.thumbnail_img} height={1500} width={1000} alt="alt" />
+                                <Image src={item?.thumbnail_img} height={1500} width={1000} alt="alt" />
                                 <div className="content">
                                     <div className="title">{item.thumbnail_title}</div>
                                     <div className="description">{item.thumbnail_description}</div>

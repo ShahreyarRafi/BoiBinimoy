@@ -17,7 +17,7 @@ import { AuthContext } from '@/providers/AuthProvider';
 const JoinUs = () => {
     const { register, handleSubmit, reset } = useForm();
     // const { createUser, signin, googleLogin } = useAuth();
-    const { createUser, signin, googleLogin } = useContext(AuthContext);
+    const { createUser, signin, googleLogin, updateUserProfiole } = useContext(AuthContext);
     const router = useRouter();
     const axiosPublic = useAxiosPublic();
     const [componentsMounted, setComponentMounted] = useState(false);
@@ -58,6 +58,8 @@ const JoinUs = () => {
         const userInfo = { name, email, password }
         createUser(email, password)
             .then(async (res) => {
+                 const updateName = await updateUserProfiole(name);
+                 console.log("user name : ",updateName);
                 if (res.user) {
                     reset();
                     const res = await axiosPublic.post("/api/v1/users", userInfo);
