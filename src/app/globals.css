@@ -1,14 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Kumar+One+Outline&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kumar+One+Outline&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 .kumar-one-outline {
-  font-family: 'Kumar One Outline', system-ui;
+  font-family: "Kumar One Outline", system-ui;
 }
-
 
 .bg {
   background: url("https://i.ibb.co/DfnH8Vq/boi-binimoy-seamless-pattern.png")
@@ -23,7 +21,6 @@
   background-repeat: repeat;
   background-size: 80%;
 }
-
 
 .bg-50-50 {
   background: url("https://i.ibb.co/tHMFDx1/boi-binimoy-seamless-pattern-50-50.png")
@@ -164,8 +161,6 @@
   transition: transform 500ms, opacity 250ms;
 }
 
-
-
 /* --------------scrollbar css--------------*/
 /* Scrollbar */
 ::-webkit-scrollbar {
@@ -198,7 +193,7 @@
   display: contents;
   background-color: #ccc;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>'); /* Upward arrow SVG */
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   background-size: contain;
   height: 12px;
 }
@@ -208,7 +203,7 @@
   display: contents;
   background-color: #ccc;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M6.41 8.59L11 13.17l4.59-4.58L16 10l-6 6-6-6z"/></svg>'); /* Downward arrow SVG */
-  background-repeat: no-repeat; 
-  background-size: contain; 
+  background-repeat: no-repeat;
+  background-size: contain;
   height: 12px;
 }
