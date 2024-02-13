@@ -251,6 +251,31 @@ const Dashboard = ({ children }) => {
       {/*TOP  CONTENT */}
       <section id="content">
         {/*  NAVBAR */}
+<<<<<<< HEAD:src/components/UserDashboard/UserNavLeft.jsx
+        <nav className="bg">
+          <i className='bx bx-menu'></i>
+          <a href="#" className="nav-link">Categories</a>
+          <form action="#">
+            <div className="form-input">
+              <input type="search" placeholder="Search..." />
+              <button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
+            </div>
+          </form>
+          <input type="checkbox" id="switch-mode" hidden />
+          <label htmlFor="switch-mode" className="switch-mode"></label>
+          <a href="#" className="notification">
+            <i className='bx bxs-bell' ></i>
+            <span className="num">8</span>
+          </a>
+          <a href="#" className="profile">
+            {/* <Image src={currentUser?.image}
+              alt='profile'
+              priority
+              width={300}
+              height={300} /> */}
+          </a>
+        </nav>
+=======
         <div>
           <nav>
             <i className="bx bx-menu"></i>
@@ -350,6 +375,7 @@ const Dashboard = ({ children }) => {
             </a>
           </nav>
         </div>
+>>>>>>> 3c32cbd5a0dca9e970e4e93fd64ec432e8e29f50:src/components/UserDashboard/Dashboard.jsx
         {/*  NAVBAR */}
 
         {/* CONTENT */}
