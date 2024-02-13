@@ -8,37 +8,21 @@ import ExchangeCard from "../../Shared/ExchnageBook/ExchangeCard";
 import { FiArrowUpRight } from "react-icons/fi";
 import ComponentLoading from '@/components/Shared/loadingPageBook/ComponentLoading';
 import useAuth from "@/Hooks/auth/useAuth";
+import useExchangeBooks from "@/Hooks/exchangeBooks/useExchangeBooks";
+import useExchangeBooksForHome from "@/Hooks/exchangeBooks/useExchangeBooksForHome";
 
 
 
 const TestExchange = () => {
-
-  // useEffect(() => {
-  //   if (fetchData) {
-  //     const fetchData = async () => {
-  //       try {
-  //         const response = await axios.get(
-  //           // "https://boi-binimoy-server.vercel.app/api/v1/exchange-books"
-  //           "http://localhost:5000/api/v1/exchange-books"
-  //         );
-  //         setExchangeBooks(response.data);
-  //         console.log(response.data);
-  //       } catch (error) {
-  //         console.error("Error:", error);
-  //       }
-  //     };
-  //   }
+  const { exchangeBooks: books, isLoading } = useExchangeBooksForHome()
+  // const axiosPublic = useAxiosPublic();
+  // const { data: books = [], isLoading } = useQuery({
+  //   queryKey: ["books"],
+  //   queryFn: async () => {
+  //     const res = await axiosPublic.get(`/api/v1/exchange-books`);
+  //     return res.data;
+  //   },
   // });
-
-  const axiosPublic = useAxiosPublic();
-
-  const { data: books = [], isLoading } = useQuery({
-    queryKey: ["books"],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/api/v1/exchange-books`);
-      return res.data;
-    },
-  });
 
 
   if (isLoading) {
@@ -85,7 +69,7 @@ const TestExchange = () => {
 
         <div className="col-span-full lg:col-span-6">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {books.slice(0, 10).map(item => (
+            {books?.map(item => (
               <ExchangeCard key={item._id} item={item} />
             ))}
           </div>

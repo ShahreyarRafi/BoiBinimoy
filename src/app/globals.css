@@ -167,7 +167,6 @@
 
 
 /* --------------scrollbar css--------------*/
-
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -213,4 +212,3 @@
   background-size: contain; 
   height: 12px;
 }
-
