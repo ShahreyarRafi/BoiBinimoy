@@ -1,24 +1,43 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import BookCard from "../../Shared/BookCard";
 import PageLoading from "../../Shared/loadingPageBook/PageLoading";
+import useBuyBooks from "@/Hooks/buyBooks/useBuyBooks";
+import { useState } from "react";
 
 const BuyAllBooks = () => {
-  const axiosPublic = useAxiosPublic();
-
-  const { data: books = [], isLoading } = useQuery({
-    queryKey: ["books"],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/api/v1/buy-books`);
-      return res.data;
-    },
-  });
-
+  const [currentPage, setCurrentPage ] = useState()
+  const { buyBooksData, isLoading } = useBuyBooks(currentPage, 14)
+  
   if (isLoading) {
     return <PageLoading />;
   }
+
+
+  const books = buyBooksData?.buyBooks || [];
+  const totalBooks = buyBooksData?.totalBook || 0;
+
+  
+  const pageNumbers = Array.from(
+    { length: Math.ceil(totalBooks / 14) },
+    (_, index) => index + 1
+  );
+
+  const handlePagination = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < Math.ceil(totalBooks / 14)) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
 
 
   return (
@@ -29,6 +48,33 @@ const BuyAllBooks = () => {
             <BookCard key={book?._id} item={book}></BookCard>
           ))}
         </div>
+        {pageNumbers?.length > 1 && (
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={handlePrevPage}
+              className="mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700"
+            >
+              Prev
+            </button>
+            {pageNumbers.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handlePagination(index + 1)}
+                className={`mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700 ${
+                  currentPage === index + 1 ? "bg-blue-700" : ""
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button
+              onClick={handleNextPage}
+              className="mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
