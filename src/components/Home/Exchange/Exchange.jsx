@@ -69,7 +69,7 @@ const TestExchange = () => {
 
         <div className="col-span-full lg:col-span-6">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {books.map(item => (
+            {books?.map(item => (
               <ExchangeCard key={item._id} item={item} />
             ))}
           </div>

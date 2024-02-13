@@ -1,16 +1,18 @@
-"use client";
+"use client"
 
 import { useContext, useEffect, useState } from "react";
 import "./style.css";
 import Link from "next/link";
 import { AuthContext } from "@/providers/AuthProvider";
 import axios from "axios";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 
+
 const profilePlaceholder = "/userPicPlaceholder.png";
+
 
 const Dashboard = ({ children }) => {
   const { user, logOut } = useContext(AuthContext);
@@ -22,6 +24,7 @@ const Dashboard = ({ children }) => {
   const toggleNotification = () => {
     setIsOpen(!isOpen);
   };
+
 
   useEffect(() => {
     if (fetchData) {
@@ -39,6 +42,7 @@ const Dashboard = ({ children }) => {
       fetchData();
     }
   }, [fetchData, user?.email]);
+
 
   const [componentsMounted, setComponentMounted] = useState(false);
 
@@ -59,13 +63,11 @@ const Dashboard = ({ children }) => {
 
     allSideMenu.forEach((item) => {
       const li = item.parentElement;
-      if (li) {
-        // Check if li exists
+      if (li) { // Check if li exists
         item.addEventListener("click", function () {
           allSideMenu.forEach((i) => {
             const parentLi = i.parentElement;
-            if (parentLi) {
-              // Check if parentLi exists
+            if (parentLi) { // Check if parentLi exists
               parentLi.classList.remove("active");
             }
           });
@@ -73,6 +75,7 @@ const Dashboard = ({ children }) => {
         });
       }
     });
+
 
     // TOGGLE SIDEBAR
     const menuBar = document.querySelector("#content nav .bx.bx-menu");
@@ -118,7 +121,7 @@ const Dashboard = ({ children }) => {
 
     const switchMode = document.getElementById("switch-mode");
 
-    switchMode?.addEventListener("change", function () {
+    switchMode.addEventListener("change", function () {
       if (this.checked) {
         document.body.classList.add("dark");
       } else {
@@ -164,8 +167,8 @@ const Dashboard = ({ children }) => {
     <div className="bg-teal-50">
       <section id="sidebar" className="">
         <Link href="/" className="brand">
-          {/* <i className="bx bxs-smile"></i> */}
-          <span className="text ml-10">BoiBinimoy</span>
+          <i className="bx bxs-smile"></i>
+          <span className="text">BoiBinimoy</span>
         </Link>
 
         <>
@@ -190,7 +193,7 @@ const Dashboard = ({ children }) => {
             </li>
             <li className={pathname == "/dashboard/add-banner" ? "active" : ""}>
               <Link href="/dashboard/add-banner">
-                <i className="bx bxs-banner-add"></i>
+                <i class='bx bxs-image-add'></i>
                 <span className="text">Add Banner</span>
               </Link>
             </li>
@@ -200,6 +203,12 @@ const Dashboard = ({ children }) => {
               <Link href="/dashboard/list-exchange">
                 <i className="bx bxs-book-add"></i>
                 <span className="text">List Book</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/all-books" ? "active" : ""}>
+              <Link href="/dashboard/all-books">
+                <i className="bx bxs-group"></i>
+                <span className="text"> My Books </span>
               </Link>
             </li>
             <li className={pathname == "/dashboard/profile" ? "active" : ""}>
@@ -251,48 +260,18 @@ const Dashboard = ({ children }) => {
       {/*TOP  CONTENT */}
       <section id="content">
         {/*  NAVBAR */}
-<<<<<<< HEAD:src/components/UserDashboard/UserNavLeft.jsx
-        <nav className="bg">
-          <i className='bx bx-menu'></i>
-          <a href="#" className="nav-link">Categories</a>
-          <form action="#">
-            <div className="form-input">
-              <input type="search" placeholder="Search..." />
-              <button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
-            </div>
-          </form>
-          <input type="checkbox" id="switch-mode" hidden />
-          <label htmlFor="switch-mode" className="switch-mode"></label>
-          <a href="#" className="notification">
-            <i className='bx bxs-bell' ></i>
-            <span className="num">8</span>
-          </a>
-          <a href="#" className="profile">
-            {/* <Image src={currentUser?.image}
-              alt='profile'
-              priority
-              width={300}
-              height={300} /> */}
-          </a>
-        </nav>
-=======
         <div>
-          <nav>
-            <i className="bx bx-menu"></i>
-            <a href="#" className="nav-link">
-              Categories
-            </a>
+          <nav >
+            <i className='bx bx-menu'></i>
+            <a href="#" className="nav-link">Categories</a>
             <form action="#">
               <div className="form-input">
                 <input type="search" placeholder="Search..." />
-                <button type="submit" className="search-btn">
-                  <i className="bx bx-search"></i>
-                </button>
+                <button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
               </div>
             </form>
-            {/* <input type="checkbox" id="switch-mode" hidden />
-            <label htmlFor="switch-mode" className="switch-mode"></label> */}
-
+            <input type="checkbox" id="switch-mode" hidden />
+            <label htmlFor="switch-mode" className="switch-mode"></label>
             {/* notification start*/}
             <div className="relative">
               {/* notification button start */}
@@ -304,7 +283,7 @@ const Dashboard = ({ children }) => {
 
               {/* notification information start */}
               {isOpen && (
-                <div className="absolute top-10 -left-36 rounded-lg bg-50 w-56 h-72 p-2 overflow-y-scroll">
+                <div className="absolute top-10 -right-1 rounded-lg bg-50 w-72 h-96 p-2 overflow-y-scroll shadow-lg border border-gray-300">
                   {/* notification card start */}
                   {cardsInfo.map((cardInfo) => (
                     <div key={cardInfo.id}>
@@ -353,7 +332,6 @@ const Dashboard = ({ children }) => {
               {/* notification information end */}
             </div>
             {/* notification end */}
-
             <a href="#" className="profile">
               {currentUser.image ? (
                 <Image
@@ -375,11 +353,12 @@ const Dashboard = ({ children }) => {
             </a>
           </nav>
         </div>
->>>>>>> 3c32cbd5a0dca9e970e4e93fd64ec432e8e29f50:src/components/UserDashboard/Dashboard.jsx
         {/*  NAVBAR */}
 
         {/* CONTENT */}
-        <div class="content-wrapper">{children}</div>
+        <div class="content-wrapper">
+          {children}
+        </div>
         {/* CONTENT */}
       </section>
     </div>
