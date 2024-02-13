@@ -196,6 +196,7 @@ body {
   padding-top: 80px; 
   margin-left: 20px;
   margin-right: 20px;
+  min-height: 100svh;
 }
 
 #content nav {

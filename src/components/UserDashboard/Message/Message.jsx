@@ -7,7 +7,6 @@ import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 import { CiSearch } from "react-icons/ci";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
-import "./style.css";
 import React from "react";
 import {
   Dialog,
@@ -58,7 +57,7 @@ const Message = () => {
     <div className="max-w-[1800px] mx-3 bg text-white rounded-lg p-5 h-[86vh] mb-10">
       {/* Chatting  */}
       <div className="flex gap-3">
-        <div className="w-2/5 space-y-3 overflow-y-scroll no-scrollbar">
+        <div className="w-2/5 space-y-3 pr-1 overflow-y-scroll">
           <div className="text-white bg-teal-50/15 rounded-lg py-5">
             <div className="flex justify-center my-3">
               <Image

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
 import { useForm } from "react-hook-form";
@@ -7,6 +7,7 @@ import axios from "axios";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import Swal from "sweetalert2";
 import Image from "next/image";
+import { AuthContext } from "@/providers/AuthProvider";
 
 // const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=7365e777963cf7664292cb83647a9d98`;
@@ -17,42 +18,45 @@ const AddBook = () => {
   const axiosSecure = useAxiosSecure();
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
+  const { user } = useContext(AuthContext)
+  const owner_email = user?.email
+  console.log(owner_email);
 
   // create a preview as a side effect, whenever selected file is changed
   const onSelectFile = (e) => {
     const files = e.target.files;
-   
+
     if (!files || files.length === 0) {
       setSelectedFile(undefined);
       setPreview(undefined);
       return;
     }
-    
+
     console.log("image file: ", files)
     const selectedImage = files[0];
     setSelectedFile(selectedImage);
-  
+
     const objectUrl = URL.createObjectURL(selectedImage);
     setPreview(objectUrl);
   };
-  
-
-
 
   console.log("preview:", preview)
-  const onSubmit = async(data) => {
-    const {  bookType, bookCondition, whatYouWant, bookCategory, title, writer, language, pages, publisher, publicationYear, edition, price, owner, location, stockLimit, tags, awards, description} =  data;
+
+  
+  const onSubmit = async (data) => {
+    const { bookType, bookCondition, whatYouWant, bookCategory, title, writer, language, pages, publisher, publicationYear, edition, price, owner, location, stockLimit, tags, awards, description , } = data;
     const imageFile = { image: data.image1[0] };
-    
+
     const url = await axios.post(image_hosting_api, imageFile, {
       headers: {
         "content-type": "multipart/form-data",
       },
     });
     const image = url?.data?.data?.display_url || "";
-  
+
     const newBook = {
       bookType,
+      owner_email,
       bookCondition,
       whatYouWant,
       bookCategory,
@@ -72,13 +76,13 @@ const AddBook = () => {
       awards,
       description,
     };
-     
-    const res = await axiosSecure.post("/api/v1/exchange-books", newBook);
 
-    if(res?.data){
-       reset();
-       Swal.fire('Book upload successfull')
 
+    const res = await axiosSecure.post("/api/v1/buy-books", newBook);
+
+    if (res?.data) {
+      reset();
+      Swal.fire('Book upload successfull')
     }
 
   };
@@ -101,7 +105,7 @@ const AddBook = () => {
                 {/* product type name:bookType*/}
                 <select
                   className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-          
+
                   {...register("bookType")}
                 >
                   <option selected value="bookType">
@@ -116,7 +120,7 @@ const AddBook = () => {
                 {/* product conditions name:bookCondition*/}
                 <select
                   className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-        
+
                   {...register("bookCondition")}
                 >
                   <option selected value="bookCondition">
@@ -227,7 +231,7 @@ const AddBook = () => {
                   {/* book publisher name:publisher*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-    
+
                     {...register("publisher")}
                     placeholder="Book Publisher"
                     type="text"
@@ -237,7 +241,7 @@ const AddBook = () => {
                   {/* book publication year name:publicationYear*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-               
+
                     {...register("publicationYear")}
                     placeholder="Book Publication Year"
                     type="number"
@@ -247,7 +251,7 @@ const AddBook = () => {
                   {/* book edition name:edition*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-           
+
                     {...register("edition")}
                     placeholder="Book Edition"
                     type="text"
@@ -257,7 +261,7 @@ const AddBook = () => {
                   {/* book price name:price*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-               
+
                     {...register("price")}
                     placeholder="Book Price"
                     type="number"
@@ -275,22 +279,22 @@ const AddBook = () => {
                   for="imageFile"
                   className="w-full h-32 border flex justify-center items-center border-[#016961] rounded-lg"
                 >
-                 {
-                  !selectedFile ?  <label
-                  htmlFor="imageFile"
-                  className="px-16 py-16 flex justify-center items-center gap-3 text-center text-xs lg:text-sm cursor-pointer"
-                >
-                  <BsUpload /> <span> Upload</span>
-                </label> : 
-                 <Image  src={preview} width = {500} height = {500} alt="Image Preview"  />
-                 }
+                  {
+                    !selectedFile ? <label
+                      htmlFor="imageFile"
+                      className="px-16 py-16 flex justify-center items-center gap-3 text-center text-xs lg:text-sm cursor-pointer"
+                    >
+                      <BsUpload /> <span> Upload</span>
+                    </label> :
+                      <Image src={preview} width={500} height={500} alt="Image Preview" />
+                  }
                   <input
                     className="h-5 w-full"
                     type="file"
                     id="imageFile"
                     onChange={onSelectFile}
                     {...register("image1")}
-                    // hidden
+                  // hidden
                   />
                 </div>
 
@@ -310,7 +314,7 @@ const AddBook = () => {
                     <input
                       className="h-5 w-full"
                       type="file"
-                   
+
                       hidden
                     />
                   </div>
@@ -329,7 +333,7 @@ const AddBook = () => {
                     <input
                       className="h-5 w-full"
                       type="file"
-              
+
                       hidden
                     />
                   </div>
@@ -348,7 +352,7 @@ const AddBook = () => {
                     <input
                       className="h-5 w-full"
                       type="file"
-              
+
                       hidden
                     />
                   </div>
@@ -367,7 +371,7 @@ const AddBook = () => {
                   {/* owner name name:owner*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                
+
                     {...register("owner")}
                     placeholder="Book Owner Name"
                     type="text"
@@ -377,7 +381,7 @@ const AddBook = () => {
                   {/* owner location name:location*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-              
+
                     {...register("location")}
                     placeholder="Book Owner location"
                     type="text"
@@ -396,7 +400,7 @@ const AddBook = () => {
                   {/* book Stock Limit name:stockLimit*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-             
+
                     {...register("stockLimit")}
                     placeholder="Book Stock"
                     type="number"
@@ -415,7 +419,7 @@ const AddBook = () => {
                   {/* book Tags name:tags*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                 
+
                     {...register("tags")}
                     placeholder="Book Tags"
                     type="text"
@@ -424,7 +428,7 @@ const AddBook = () => {
                   {/* book awards name:awards*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-              
+
                     {...register("awards")}
                     placeholder="Book Awards"
                     type="text"
@@ -437,7 +441,7 @@ const AddBook = () => {
             <div className="my-3">
               <textarea
                 className="w-full p-2 text-xs lg:text-sm bg-transparent border-2 border-[#016961] rounded-lg focus:outline-none"
-          
+
                 {...register("description")}
                 placeholder="Book Description"
                 cols="30"

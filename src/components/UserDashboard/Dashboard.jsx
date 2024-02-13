@@ -118,7 +118,7 @@ const Dashboard = ({ children }) => {
 
     const switchMode = document.getElementById("switch-mode");
 
-    switchMode?.addEventListener("change", function () {
+    switchMode.addEventListener("change", function () {
       if (this.checked) {
         document.body.classList.add("dark");
       } else {
@@ -164,8 +164,8 @@ const Dashboard = ({ children }) => {
     <div className="bg-teal-50">
       <section id="sidebar" className="">
         <Link href="/" className="brand">
-          {/* <i className="bx bxs-smile"></i> */}
-          <span className="text ml-10">BoiBinimoy</span>
+          <i className="bx bxs-smile"></i>
+          <span className="text">BoiBinimoy</span>
         </Link>
 
         <>
@@ -190,7 +190,7 @@ const Dashboard = ({ children }) => {
             </li>
             <li className={pathname == "/dashboard/add-banner" ? "active" : ""}>
               <Link href="/dashboard/add-banner">
-                <i className="bx bxs-banner-add"></i>
+                <i class="bx bxs-image-add"></i>
                 <span className="text">Add Banner</span>
               </Link>
             </li>
@@ -200,6 +200,12 @@ const Dashboard = ({ children }) => {
               <Link href="/dashboard/list-exchange">
                 <i className="bx bxs-book-add"></i>
                 <span className="text">List Book</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/all-books" ? "active" : ""}>
+              <Link href="/dashboard/all-books">
+                <i className="bx bxs-group"></i>
+                <span className="text"> My Books </span>
               </Link>
             </li>
             <li className={pathname == "/dashboard/profile" ? "active" : ""}>
@@ -265,9 +271,8 @@ const Dashboard = ({ children }) => {
                 </button>
               </div>
             </form>
-            {/* <input type="checkbox" id="switch-mode" hidden />
-            <label htmlFor="switch-mode" className="switch-mode"></label> */}
-
+            <input type="checkbox" id="switch-mode" hidden />
+            <label htmlFor="switch-mode" className="switch-mode"></label>
             {/* notification start*/}
             <div className="relative">
               {/* notification button start */}
@@ -279,7 +284,7 @@ const Dashboard = ({ children }) => {
 
               {/* notification information start */}
               {isOpen && (
-                <div className="absolute top-10 -left-36 rounded-lg bg-50 w-56 h-72 p-2 overflow-y-scroll">
+                <div className="absolute top-10 -right-1 rounded-lg bg-50 w-72 h-96 p-2 overflow-y-scroll shadow-lg border border-gray-300">
                   {/* notification card start */}
                   {cardsInfo.map((cardInfo) => (
                     <div key={cardInfo.id}>
@@ -328,7 +333,6 @@ const Dashboard = ({ children }) => {
               {/* notification information end */}
             </div>
             {/* notification end */}
-
             <a href="#" className="profile">
               {currentUser.image ? (
                 <Image
