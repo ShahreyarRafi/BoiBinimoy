@@ -6,34 +6,6 @@ import Image from 'next/image';
 
 const data = [
     {
-        "cover_image": "https://i.ibb.co/brpBJxB/Dark-Modern-Bold-Black-Friday-Sale-Facebook-Cover-2-1.png",
-        "author": "Boi Binimoy",
-        "title": "BLACK FRIDAY",
-        "topic": "UP TO 70% OFF",
-        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
-        "buttons": [
-            { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "Buy Now", "link": "/Buy Now-link" }
-        ],
-        "thumbnail_img": "https://i.ibb.co/wry18Qy/book1.png",
-        "thumbnail_title": "Name Slider",
-        "thumbnail_description": "Description"
-    },
-    {
-        "cover_image": "https://i.ibb.co/7Wk3ysW/Black-and-White-Minimalist-Black-Friday-Banner-1-1.png",
-        "author": "Boi Binimoy",
-        "title": "BLACK FRIDAY",
-        "topic": "UP TO 70% OFF",
-        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
-        "buttons": [
-            { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "Buy Now", "link": "/Buy Now-link" }
-        ],
-        "thumbnail_img": "https://i.ibb.co/gg6zpVY/book2.png",
-        "thumbnail_title": "Name Slider",
-        "thumbnail_description": "Description"
-    },
-    {
         "cover_image": "https://i.ibb.co/QHkZVtd/Copy-of-Black-Modern-Black-Friday-Sale-Facebook-Cover-2-1.png",
         "author": "Boi Binimoy",
         "title": "BLACK FRIDAY",
@@ -62,6 +34,20 @@ const data = [
         "thumbnail_description": "Description"
     },
     {
+        "cover_image": "https://i.ibb.co/PCv3C8S/Dark-Simple-Modern-Black-Friday-Sale-Facebook-Cover-8-1.png",
+        "author": "Boi Binimoy",
+        "title": "BLACK FRIDAY",
+        "topic": "UP TO 70% OFF",
+        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
+        "buttons": [
+            { "label": "SEE MORE", "link": "/see-more-link" },
+            { "label": "Buy Now", "link": "/Buy Now-link" }
+        ],
+        "thumbnail_img": "https://i.ibb.co/HT901q9/book6.png",
+        "thumbnail_title": "Name Slider",
+        "thumbnail_description": "Description"
+    },
+    {
         "cover_image": "https://i.ibb.co/4j42bC7/Dark-Simple-Modern-Black-Friday-Sale-Facebook-Cover-3-1.png",
         "author": "Boi Binimoy",
         "title": "BLACK FRIDAY",
@@ -76,7 +62,7 @@ const data = [
         "thumbnail_description": "Description"
     },
     {
-        "cover_image": "https://i.ibb.co/PCv3C8S/Dark-Simple-Modern-Black-Friday-Sale-Facebook-Cover-8-1.png",
+        "cover_image": "https://i.ibb.co/7Wk3ysW/Black-and-White-Minimalist-Black-Friday-Banner-1-1.png",
         "author": "Boi Binimoy",
         "title": "BLACK FRIDAY",
         "topic": "UP TO 70% OFF",
@@ -85,10 +71,24 @@ const data = [
             { "label": "SEE MORE", "link": "/see-more-link" },
             { "label": "Buy Now", "link": "/Buy Now-link" }
         ],
-        "thumbnail_img": "https://i.ibb.co/HT901q9/book6.png",
+        "thumbnail_img": "https://i.ibb.co/gg6zpVY/book2.png",
         "thumbnail_title": "Name Slider",
         "thumbnail_description": "Description"
-    }
+    },
+    {
+        "cover_image": "https://i.ibb.co/brpBJxB/Dark-Modern-Bold-Black-Friday-Sale-Facebook-Cover-2-1.png",
+        "author": "Boi Binimoy",
+        "title": "BLACK FRIDAY",
+        "topic": "UP TO 70% OFF",
+        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
+        "buttons": [
+            { "label": "SEE MORE", "link": "/see-more-link" },
+            { "label": "Buy Now", "link": "/Buy Now-link" }
+        ],
+        "thumbnail_img": "https://i.ibb.co/wry18Qy/book1.png",
+        "thumbnail_title": "Name Slider",
+        "thumbnail_description": "Description"
+    },
 ]
 
 

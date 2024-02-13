@@ -106,7 +106,7 @@ header a {
   display: grid;
   grid-template-columns: repeat(2, 130px);
   grid-template-rows: 40px;
-  gap: 5px;
+  gap: 7px;
   margin-top: 20px;
 }
 
@@ -131,7 +131,7 @@ header a {
   bottom: 5%;
   left: 50%;
   width: max-content;
-  z-index: 100;
+  z-index: 0;
   display: flex;
   gap: 20px;
 }

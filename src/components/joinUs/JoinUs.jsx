@@ -7,17 +7,16 @@ import { FaFacebookF, FaGoogle, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import logImg from './img/log.svg'
 import regImg from './img/register.svg'
 import { useForm } from 'react-hook-form';
-// import useAuth from '@/Hooks/auth/useAuth';
 import { useRouter } from 'next/navigation';
 import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { AuthContext } from '@/providers/AuthProvider';
+import SocialLogin from './SocialLogin/SocialLogin';
 
 
 const JoinUs = () => {
     const { register, handleSubmit, reset } = useForm();
-    // const { createUser, signin, googleLogin } = useAuth();
-    const { createUser, signin, googleLogin, updateUserProfiole } = useContext(AuthContext);
+    const { createUser, signin, googleLogin } = useContext(AuthContext);
     const router = useRouter();
     const axiosPublic = useAxiosPublic();
     const [componentsMounted, setComponentMounted] = useState(false);
@@ -56,6 +55,7 @@ const JoinUs = () => {
         const password = data.password;
 
         const userInfo = { name, email, password }
+        
         createUser(email, password)
             .then(async (res) => {
                  const updateName = await updateUserProfiole(name);
@@ -88,123 +88,65 @@ const JoinUs = () => {
 
     // handle google sign in function
 
-    // const handleSocialLogin = async () => {
-    //     try {
-    //         const result = await googleLogin();
-    //         const userInfo = {
-    //             name: result.user?.displayName,
-    //             email: result.user?.email,
-    //             photo: result.user?.photoURL,
-    //         }
-    //         console.log("clicke")
-    //         console.log(userInfo);
-    //         axiosPublic.post('/api/v1/users', userInfo)
-    //             .then(res => {
-    //                 console.log(res.data);
-    //                 router.push('/')
-    //             })
-    //     } catch (error) {
-    //         console.error('Error during Google sign-in:', error);
-    //     }
-    // };
-
-
-
     // const handleSocialLogin = (user) => {
-    //     user().then((res) => {
-    //         console.log(res.user);
-    //         if (res.user) {
-    //             Swal.fire('Login successfull')
-    //         };
-
-    //         const userInformation = {
-    //             email: res.user?.email,
-    //             name: res.user?.displayName,
-    //         }
-
-    //         axiosPublic.post("/api/v1/users", userInformation)
-    //             .then(res => {
-    //                 console.log(res.data);
-
-    //                     router.push("/")
-    //             })
-
-
-    //     }).catch(error => {
-    //         Swal.fire(error);
-    //     });
-    // };
-
-
-
-
-    // const handleSocialLogin =  (user) => {
-
     //     user()
     //         .then(res => {
     //             console.log(res.user);
     //             if (res.user) {
-    //                 Swal.fire('User logged in successfully')
+    //                 Swal.fire('User logged in successfully');
     //                 setTimeout(() => {
+    //                     const userInfo = {
+    //                         email: res.user?.email,
+    //                         name: res.user?.displayName,
+    //                     };
+
+    //                     axiosPublic.post("/api/v1/users", userInfo)
+    //                         .then(res => {
+    //                             console.log(res.data);
+    //                             router.push('/');
+    //                         })
+    //                         .catch(error => {
+    //                             console.error("Error in Axios POST request:", error);
+    //                             Swal.fire('An error occurred while processing your request.');
+    //                         });
     //                 }, 1000);
     //             }
-
-    //             const userInfo = {
-    //                 email: res.user?.email,
-    //                 name: res.user?.displayName,
-    //             }
-
-    //            axiosPublic.post("/api/v1/users", userInfo)
-    //                 .then(res => {
-    //                     console.log(res.data);
-
-    //                     router.push('/')
-    //                 })
-
-    //         }).catch(error => {
-    //             Swal.fire(error);
     //         })
-    // }
+    //         .catch(error => {
+    //             console.error("Error in social login:", error);
+    //             Swal.fire('An error occurred while logging in.');
+    //         });
+    // };
 
 
 
     const handleSocialLogin = (user) => {
-        user()
-            .then(res => {
-                console.log(res.user);
-                if (res.user) {
-                    Swal.fire('User logged in successfully');
-                    setTimeout(() => {
-                        const userInfo = {
-                            email: res.user?.email,
-                            name: res.user?.displayName,
-                        };
-    
-                        axiosPublic.post("/api/v1/users", userInfo)
-                            .then(res => {
-                                console.log(res.data);
-                                router.push('/');
-                            })
-                            .catch(error => {
-                                console.error("Error in Axios POST request:", error);
-                                Swal.fire('An error occurred while processing your request.');
-                            });
-                    }, 1000);
-                }
-            })
-            .catch(error => {
-                console.error("Error in social login:", error);
-                Swal.fire('An error occurred while logging in.');
-            });
+        user().then((res) => {
+            console.log(res.user);
+            if (res.user) {
+                toast.success("User logged in successfully", {
+                    position: "top-center",
+                })
+            };
+
+            const userInfo = {
+                email: res.user?.email,
+                name: res.user?.displayName,
+            }
+
+            axiosPublic.post("/users", userInfo)
+                .then(res => {
+                    console.log(res.data);
+                    router.push("/");
+
+                })
+
+        }).catch(error => {
+            Swal.fire(error);
+
+
+        });
     };
-    
-
-
-
-
-
-
-
 
 
 
@@ -231,21 +173,46 @@ const JoinUs = () => {
                         </div>
                         <input type="submit" value="Login" className="btn solid" />
                         <p className="social-text">Or Sign in with social platforms</p>
-                        <div className="social-media">
+                        {/* <div className="social-media">
                             <a href="#" className="social-icon">
                                 <i><FaFacebookF /></i>
                             </a>
                             <a href="#" className="social-icon">
                                 <i><FaTwitter /></i>
                             </a>
-                            <a className="social-icon">
-                                <i onClick={() => handleSocialLogin(googleLogin)} ><FaGoogle /></i>
-                            </a>
+                           
+                            <button className='social-icon' onClick={() => handleSocialLogin(googleLogin)} >
+                                <FaGoogle /> 
+                                
+                                </button>
+                           
                             <a href="#" className="social-icon">
                                 <i><FaLinkedinIn /></i>
                             </a>
-                        </div>
+                        </div> */}
                     </form>
+
+
+
+                    {/* <div className="social-media">
+                            <a href="#" className="social-icon">
+                                <i><FaFacebookF /></i>
+                            </a>
+                            <a href="#" className="social-icon">
+                                <i><FaTwitter /></i>
+                            </a>
+                           
+                            <button className='social-icon' onClick={() => handleSocialLogin(googleLogin)} >
+                                <FaGoogle /> 
+                                
+                                </button>
+                           
+                            <a href="#" className="social-icon">
+                                <i><FaLinkedinIn /></i>
+                            </a>
+                        </div> */}
+
+                    <SocialLogin></SocialLogin>
 
 
                     <form onSubmit={handleSubmit(signUp)} action="#" className="sign-up-form">
@@ -271,9 +238,10 @@ const JoinUs = () => {
                             <a href="#" className="social-icon">
                                 <i><FaTwitter /></i>
                             </a>
-                            <a href="#" className="social-icon">
-                                <i onClick={() => handleSocialLogin(googleLogin)}><FaGoogle /></i>
-                            </a>
+                            <button className="social-icon"
+                                onClick={() => handleSocialLogin(googleLogin)}>
+                                <FaGoogle />
+                            </button>
                             <a href="#" className="social-icon">
                                 <i><FaLinkedinIn /></i>
                             </a>
