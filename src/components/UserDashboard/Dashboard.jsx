@@ -1,18 +1,16 @@
-"use client"
+"use client";
 
 import { useContext, useEffect, useState } from "react";
 import "./style.css";
 import Link from "next/link";
 import { AuthContext } from "@/providers/AuthProvider";
 import axios from "axios";
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 
-
 const profilePlaceholder = "/userPicPlaceholder.png";
-
 
 const Dashboard = ({ children }) => {
   const { user, logOut } = useContext(AuthContext);
@@ -24,7 +22,6 @@ const Dashboard = ({ children }) => {
   const toggleNotification = () => {
     setIsOpen(!isOpen);
   };
-
 
   useEffect(() => {
     if (fetchData) {
@@ -42,7 +39,6 @@ const Dashboard = ({ children }) => {
       fetchData();
     }
   }, [fetchData, user?.email]);
-
 
   const [componentsMounted, setComponentMounted] = useState(false);
 
@@ -63,11 +59,13 @@ const Dashboard = ({ children }) => {
 
     allSideMenu.forEach((item) => {
       const li = item.parentElement;
-      if (li) { // Check if li exists
+      if (li) {
+        // Check if li exists
         item.addEventListener("click", function () {
           allSideMenu.forEach((i) => {
             const parentLi = i.parentElement;
-            if (parentLi) { // Check if parentLi exists
+            if (parentLi) {
+              // Check if parentLi exists
               parentLi.classList.remove("active");
             }
           });
@@ -75,7 +73,6 @@ const Dashboard = ({ children }) => {
         });
       }
     });
-
 
     // TOGGLE SIDEBAR
     const menuBar = document.querySelector("#content nav .bx.bx-menu");
@@ -193,7 +190,7 @@ const Dashboard = ({ children }) => {
             </li>
             <li className={pathname == "/dashboard/add-banner" ? "active" : ""}>
               <Link href="/dashboard/add-banner">
-                <i class='bx bxs-image-add'></i>
+                <i class="bx bxs-image-add"></i>
                 <span className="text">Add Banner</span>
               </Link>
             </li>
@@ -261,13 +258,17 @@ const Dashboard = ({ children }) => {
       <section id="content">
         {/*  NAVBAR */}
         <div>
-          <nav >
-            <i className='bx bx-menu'></i>
-            <a href="#" className="nav-link">Categories</a>
+          <nav>
+            <i className="bx bx-menu"></i>
+            <a href="#" className="nav-link">
+              Categories
+            </a>
             <form action="#">
               <div className="form-input">
                 <input type="search" placeholder="Search..." />
-                <button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
+                <button type="submit" className="search-btn">
+                  <i className="bx bx-search"></i>
+                </button>
               </div>
             </form>
             <input type="checkbox" id="switch-mode" hidden />
@@ -356,9 +357,7 @@ const Dashboard = ({ children }) => {
         {/*  NAVBAR */}
 
         {/* CONTENT */}
-        <div class="content-wrapper">
-          {children}
-        </div>
+        <div class="content-wrapper">{children}</div>
         {/* CONTENT */}
       </section>
     </div>

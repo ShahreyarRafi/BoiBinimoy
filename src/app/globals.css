@@ -21,7 +21,7 @@
   background: url("https://i.ibb.co/vwPGFwM/boi-binimoy-seamless-pattern-50.png")
     repeat;
   background-repeat: repeat;
-  background-size: 100%;
+  background-size: 80%;
 }
 
 
@@ -169,7 +169,7 @@
 /* --------------scrollbar css--------------*/
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 /* Track */

@@ -6,15 +6,13 @@ import Image from "next/image";
 import Link from "next/link";
 import ExchangeCard from "../../Shared/ExchnageBook/ExchangeCard";
 import { FiArrowUpRight } from "react-icons/fi";
-import ComponentLoading from '@/components/Shared/loadingPageBook/ComponentLoading';
+import ComponentLoading from "@/components/Shared/loadingPageBook/ComponentLoading";
 import useAuth from "@/Hooks/auth/useAuth";
 import useExchangeBooks from "@/Hooks/exchangeBooks/useExchangeBooks";
 import useExchangeBooksForHome from "@/Hooks/exchangeBooks/useExchangeBooksForHome";
 
-
-
 const TestExchange = () => {
-  const { exchangeBooks: books, isLoading } = useExchangeBooksForHome()
+  const { exchangeBooks: books, isLoading } = useExchangeBooksForHome();
   // const axiosPublic = useAxiosPublic();
   // const { data: books = [], isLoading } = useQuery({
   //   queryKey: ["books"],
@@ -24,15 +22,11 @@ const TestExchange = () => {
   //   },
   // });
 
-
   if (isLoading) {
-    return (
-      <ComponentLoading />
-    )
+    return <ComponentLoading />;
   }
 
-
-  const transparentBanner = "https://i.ibb.co/GPmg3HB/Swap-Books-t.png"
+  const transparentBanner = "https://i.ibb.co/GPmg3HB/Swap-Books-t.png";
 
   return (
     <div className="container mx-auto pt-5 rounded-lg px-5">
@@ -69,7 +63,7 @@ const TestExchange = () => {
 
         <div className="col-span-full lg:col-span-6">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {books?.map(item => (
+            {books?.map((item) => (
               <ExchangeCard key={item._id} item={item} />
             ))}
           </div>
