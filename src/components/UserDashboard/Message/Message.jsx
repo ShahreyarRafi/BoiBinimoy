@@ -192,7 +192,7 @@ const Message = () => {
                 open={open}
                 handler={handleOpen}
               >
-                <div className="max-w-sm mx-auto rounded-lg mt-28 bg-white">
+                <div className="max-w-sm mx-auto rounded-lg mt-28 bg-50">
                   <DialogHeader className="justify-between">
                     <div className="text-xl font-bold">Chat Info</div>
                     <div>
@@ -216,7 +216,7 @@ const Message = () => {
                       />
                     </div>
                     <div>
-                      <h2 className="text-4xl">Book Title</h2>
+                      <h2 className="text-4xl font-semibold">Book Title</h2>
                       <p className="text-xs pt-1">
                         by{" "}
                         <span className="font-bold text-sm">
