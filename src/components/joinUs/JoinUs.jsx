@@ -16,7 +16,12 @@ import SocialLogin from './SocialLogin/SocialLogin';
 
 const JoinUs = () => {
     const { register, handleSubmit, reset } = useForm();
+<<<<<<< HEAD
     const { createUser, signin, googleLogin } = useContext(AuthContext);
+=======
+    // const { createUser, signin, googleLogin } = useAuth();
+    const { createUser, signin, googleLogin, updateUserProfiole } = useContext(AuthContext);
+>>>>>>> 756810d36dbd15ddaac49289cca73e690c180b77
     const router = useRouter();
     const axiosPublic = useAxiosPublic();
     const [componentsMounted, setComponentMounted] = useState(false);
@@ -58,6 +63,8 @@ const JoinUs = () => {
         
         createUser(email, password)
             .then(async (res) => {
+                 const updateName = await updateUserProfiole(name);
+                 console.log("user name : ",updateName);
                 if (res.user) {
                     reset();
                     const res = await axiosPublic.post("/api/v1/users", userInfo);
