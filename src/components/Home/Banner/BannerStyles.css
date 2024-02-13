@@ -71,7 +71,7 @@ header a {
 
 
 .carousel .list .item .topic {
-  font-size: 3.2em;
+  font-size: 3.4em;
   font-weight: bold;
   line-height: 1.3em;
 
@@ -86,10 +86,10 @@ header a {
 }
 
 .des {
-  font-size: 0.90em;
+  font-size: 1em;
   line-height: 2em;
-  max-width: 90%;
-  letter-spacing: 0.02em;
+  max-width: 95%;
+  letter-spacing: 0.025em;
 }
 
 .carousel .list .item .topic {
@@ -116,7 +116,7 @@ header a {
   letter-spacing: 3px;
   font-family: Poppins;
   font-weight: 500;
-  border-radius: 9999px;
+  /* border-radius: 9999px; */
 }
 
 .carousel .list .item .buttons button:nth-child(2) {

@@ -75,7 +75,8 @@ const Navend = () => {
               </button></li>
             </ul>
           </div>
-        </div> : <Link href="/login" className="text-lg">
+        </div> : 
+        <Link href="/joinUs" className="text-lg">
           <LuUser2 />
         </Link>
         }
