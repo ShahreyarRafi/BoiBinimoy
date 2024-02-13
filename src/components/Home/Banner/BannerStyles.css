@@ -131,9 +131,10 @@ header a {
   bottom: 5%;
   left: 50%;
   width: max-content;
-  z-index: 0;
+  z-index: 100;
   display: flex;
   gap: 20px;
+
 }
 
 .thumbnail .item {
