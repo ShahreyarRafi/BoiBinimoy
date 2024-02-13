@@ -9,12 +9,14 @@ import Related from "../../Shared/Related/Related";
 import { AuthContext } from "@/providers/AuthProvider";
 import Swal from 'sweetalert2'
 import Link from 'next/link'
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 
 const ExchangeRequest = () => {
     const [book, setBook] = useState([]);
     const [bookEmail, setBookEmail] = useState([]);
     const param = useParams();
     const { user } = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
         axios.get(`https://boi-binimoy-server.vercel.app/api/v1/exchange-books/${param?.exchangeId}`)
@@ -35,7 +37,9 @@ const ExchangeRequest = () => {
         axios.get('https://boi-binimoy-server.vercel.app/api/v1/exchange-books')
             .then(function (response) {
                 // handle success
+                console.log(response.data);
                 setBookEmail(response.data.filter(book => book?.owner_email === user?.email));
+                console.log(bookEmail);
             })
             .catch(function (error) {
                 // handle error
@@ -46,16 +50,41 @@ const ExchangeRequest = () => {
             });
     }, [user?.email])
 
-    const handleRequest = (e) => {
-        e.preventDefault();
-        return Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Request successful.",
-            showConfirmButton: false,
-            timer: 1500
-        });
+    const handleRequest = () => {
+
+        const owner_name = book?.owner;
+        const owner_email = book?.owner_email;
+        const requester_name = user?.name;
+        const requester_email = user?.email;
+        const owner_book_id = book?._id;
+        const requester_book_id = document.getElementById('bookTitle').value;
+        const req_message = document.getElementById('message').value;
+        const status = "pending";
+
+        const request = {
+            owner_name, owner_email, requester_name, requester_email, owner_book_id, requester_book_id, req_message, status
+        }
+
+        axiosSecure.post("api/v1/request-books", request)
+            .then((response) => {
+                // Handle the success response
+                console.log("Response:", response.data);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Request successful.",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                document.getElementById('bookTitle').value.reset();
+                document.getElementById('message').value.rest();
+            })
+            .catch((error) => {
+                // Handle errors
+                console.error("Error:", error);
+            });
     }
+
 
     return (
         <div className="w-full bg-teal-50">
@@ -109,14 +138,16 @@ const ExchangeRequest = () => {
                             <select
                                 className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
                                 name="bookTitle"
+                                id="bookTitle"
                             >
-                                <option selected value="bookTitle">
-                                    Book Title
+                                <option selected value="bookValue">
+                                    Your Books
                                 </option>
-                                <option value="newPhysicalBook">New Physical Book</option>
-                                <option value="oldPhysicalBook">Old Physical Book</option>
-                                <option value="pdfFormatBook">PDF Format Book</option>
-                                <option value="audioFormatBook">Audio Format Book</option>
+                                {
+                                    bookEmail.map(book => <option key={book?._id} value={book?._id}>
+                                        {book?.title}
+                                    </option>)
+                                }
                             </select>
 
                             {/* book description div name:description*/}
@@ -124,8 +155,9 @@ const ExchangeRequest = () => {
                             <div className="my-3">
                                 <textarea
                                     className="w-full p-2 text-xs lg:text-sm bg-transparent border-2 border-[#016961] rounded-lg focus:outline-none"
-                                    name="description"
-                                    placeholder="Description"
+                                    name="message"
+                                    id="message"
+                                    placeholder="Your Message"
                                     cols="30"
                                     rows="10"
                                 ></textarea>

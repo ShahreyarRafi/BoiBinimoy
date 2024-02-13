@@ -1,7 +1,5 @@
 "use client";
 
-import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
@@ -9,10 +7,28 @@ import Related from "../../Shared/Related/Related";
 import PageLoading from '../../Shared/loadingPageBook/PageLoading';
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeartCirclePlus } from "react-icons/fa6";
+import ReviewCard from "@/components/Shared/ReviewCard";
+import { useContext } from "react";
+import { AuthContext } from "@/providers/AuthProvider";
+import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import Swal from 'sweetalert2';
 
 const BuyBookDetails = () => {
   const param = useParams();
+  const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+
+  const email = user?.email;
+  console.log(email);
+
+  const { data: currentUser = [], isPending: userLoading } = useQuery({
+    queryKey: ['currentUser'],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/api/v1/users/${email}`);
+      return res.data;
+    },
+  });
 
   const { data: book = [], isLoading } = useQuery({
     queryKey: ['book'],
@@ -26,6 +42,49 @@ const BuyBookDetails = () => {
     return (
       <PageLoading />
     )
+  }
+
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const comment = form.comment.value;
+
+    const user_name = currentUser?.name;
+    const user_email = currentUser?.email;
+    const user_image = currentUser?.image;
+    const rating = 5;
+
+    const newComment = {
+      user_name,
+      user_email,
+      user_image,
+      rating,
+      comment
+    }
+
+    const reviews = [...book?.reviews, newComment]
+
+    console.log(reviews);
+
+    // axiosPublic.patch(`/api/v1/buy-books/${param.buyId}`, { reviews: reviews })
+    //   .then((response) => {
+    //     // Handle the success response
+    //     console.log("Response:", response.data);
+    //     Swal.fire({
+    //       position: "top-end",
+    //       icon: "success",
+    //       title: "Add comment successful.",
+    //       showConfirmButton: false,
+    //       timer: 1500
+    //     });
+    //     document.getElementById('comment').value.reset();
+    //   })
+    //   .catch((error) => {
+    //     // Handle errors
+    //     console.error("Error:", error);
+    //   });
   }
 
   return (
@@ -99,9 +158,9 @@ const BuyBookDetails = () => {
               </p>
             </div>
 
-            {/* Reating */}
+            {/* Rating */}
             <div className="flex items-center mt-1">
-              {/* Reating */}
+              {/* Rating */}
               <div className="flex items-center text-white text-xl mr-2">
                 <span className="mr-1">&#9733;</span>
                 <span className="mr-1">&#9733;</span>
@@ -154,11 +213,12 @@ const BuyBookDetails = () => {
         <div className="w-full p-8 border-2 rounded-lg">
           <div className="max-w-5xl mx-auto">
             {/* send review */}
-            <form className="flex items-center gap-3 pb-5">
+            <form onSubmit={handleSubmit} className="flex items-center gap-3 pb-5">
               <input
                 type="text"
-                name="Comment"
-                placeholder="Comment"
+                name="comment"
+                id="comment"
+                placeholder="comment"
                 className="w-full h-8 px-2 bg-transparent border-b focus:outline-none focus:border-black"
               />
               <button type="submit" className="text-2xl text-[#016961]">
@@ -168,51 +228,9 @@ const BuyBookDetails = () => {
 
             {/* all review */}
             <div className="p-2 space-y-4">
-              {/* review 1 */}
-              <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
-                {/* user image */}
-                <div>
-                  <Image
-                    className="object-cover w-12 h-12 mb-2 rounded-full shadow"
-                    src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
-                    priority
-                    width={500}
-                    height={500}
-                    alt="Person"
-                  />
-                </div>
-                {/* user name, review */}
-                <div>
-                  <h5 className="text-md font-bold">Mr. jhon</h5>
-                  <p className="text-xs">
-                    Dolor sit amet, consectetur adipisicing elit.r adipisicing
-                    elitr adipisicing elit
-                  </p>
-                </div>
-                <hr />
-              </div>
-
-              {/* review 2 */}
-              <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
-                {/* user image */}
-                <div>
-                  <Image
-                    className="object-cover w-12 h-12 mb-2 rounded-full shadow"
-                    src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
-                    priority
-                    width={500}
-                    height={500}
-                    alt="Person"
-                  />
-                </div>
-                {/* user name, review */}
-                <div>
-                  <h5 className="text-md font-bold">Mr. jhon</h5>
-                  <p className="text-xs">
-                    Dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
+              {
+                book?.reviews.map(commenter => <ReviewCard key={commenter?.user_email} review={commenter}></ReviewCard>)
+              }
             </div>
           </div>
         </div>

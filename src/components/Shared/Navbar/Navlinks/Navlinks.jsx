@@ -15,7 +15,13 @@ const Navlinks = () => {
         className={currentPath === "/buyBooks" && "active-link"}
         href="/buyBooks"
       >
-        <li>All Books</li>
+        <li>Buy Books</li>
+      </Link>
+      <Link
+        className={currentPath === "/exchangeAllBooks" && "active-link"}
+        href="/exchangeAllBooks"
+      >
+        <li>Exchange Books</li>
       </Link>
       <Link className={currentPath === "/blogs" && "active-link"} href="/blogs">
         <li>Blogs</li>
@@ -37,12 +43,6 @@ const Navlinks = () => {
         href="/dashboard"
       >
         <li>Dashboard</li>
-      </Link>
-      <Link
-        className={currentPath === "/addBook" && "active-link"}
-        href="/addBook"
-      >
-        <li>Add Book</li>
       </Link>
       <Link
         className="border-2 border-white rounded-full py-2 px-3"

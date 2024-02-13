@@ -10,9 +10,6 @@ import axios from 'axios';
 
 const profilePlaceholder = "/userPicPlaceholder.png";
 
-
-
-
 const Navend = () => {
 
   const { user, logOut } = useContext(AuthContext);
@@ -22,7 +19,6 @@ const Navend = () => {
     axios.get(`https://boi-binimoy-server.vercel.app/api/v1/users/${user?.email}`)
       .then(function (response) {
         // handle success
-        console.log(response);
         setCurrentUser(response.data);
       })
       .catch(function (error) {
@@ -53,7 +49,7 @@ const Navend = () => {
                   />
                 ) : (
                   <Image
-                    src={profilePlaceholder} 
+                    src={profilePlaceholder}
                     alt="placeholder"
                     priority
                     width={300}

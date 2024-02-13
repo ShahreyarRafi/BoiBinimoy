@@ -26,7 +26,7 @@ const ExchangeAdd = () => {
         const edition = form.edition.value;
         const originally_published_in = form.originally_published_in.value;
         const owner = form.owner.value;
-        const email = form.email.value;
+        const owner_email = form.email.value;
         const stockLimit = form.stockLimit.value;
         const tags = form.tags.value;
         const awards = form.awards.value;
@@ -47,7 +47,7 @@ const ExchangeAdd = () => {
             edition,
             originally_published_in,
             owner,
-            email,
+            owner_email,
             stockLimit,
             tags,
             awards,
@@ -55,7 +55,7 @@ const ExchangeAdd = () => {
             exchange_status: 'available'
         };
 
-        axios.post('https://boi-binimoy-server.vercel.app/api/v1/exchangableBooks', newBook)
+        axios.post('https://boi-binimoy-server.vercel.app/api/v1/exchange-books', newBook)
             .then(response => {
                 // Handle the success response
                 console.log('Response:', response.data);
@@ -66,6 +66,7 @@ const ExchangeAdd = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                form.reset();
             })
             .catch(error => {
                 // Handle errors

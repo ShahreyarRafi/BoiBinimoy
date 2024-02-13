@@ -40,7 +40,7 @@ const AddBlog = () => {
 
     // blogs submitting function
     const handleBlogSubmit = async (data) => {
-        console.log("cliked");
+        console.log("clicked");
         const { form, title, body, category } = data;
         const uploadedImageUrl = await uploadImage();
 
