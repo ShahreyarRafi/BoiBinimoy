@@ -9,7 +9,7 @@ import { IoMdAdd } from "react-icons/io";
 import { AuthContext } from '@/providers/AuthProvider';
 import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
 import Swal from 'sweetalert2';
-import useOneUser from '@/Hooks/api/useOneUser';
+import useOneUser from '@/Hooks/Users/useOneUser';
 import { useRouter } from 'next/navigation';
 // import palesholderImage from "../../../../public/placeholder.png"
 import { IoIosCamera } from "react-icons/io";
@@ -22,7 +22,7 @@ const ParsonalInfo = () => {
     const [preview, setPreview] = useState();
     const { imageUrl, uploadImage } = useImageURL(selectedFile);
     const axiosSecure = useAxiosSecure();
-    const [currentUser] = useOneUser()
+    const {currentUser} = useOneUser()
     const router = useRouter();
    
   
