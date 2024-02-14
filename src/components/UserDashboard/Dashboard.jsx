@@ -192,6 +192,12 @@ const Dashboard = ({ children }) => {
                 <span className="text"> My Books </span>
               </Link>
             </li>
+            <li className={pathname == "/dashboard/exchange-books" ? "active" : ""}>
+              <Link href="/dashboard/exchange-books">
+                <i className="bx bxs-group"></i>
+                <span className="text">Exchange Books </span>
+              </Link>
+            </li>
             <li className={pathname == "/dashboard/profile" ? "active" : ""}>
               <Link href="/dashboard/profile">
                 <i className="bx bxs-group"></i>
