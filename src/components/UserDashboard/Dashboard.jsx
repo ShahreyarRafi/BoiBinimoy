@@ -9,13 +9,13 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
+import useOneUser from "@/Hooks/Users/useOneUser";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
 
 const Dashboard = ({ children }) => {
-  const { user, logOut } = useContext(AuthContext);
-  const [currentUser, setCurrentUser] = useState([]);
-  const [fetchData, setFetchData] = useState(true);
+  const {  logOut } = useContext(AuthContext);
+  const { currentUser} = useOneUser()
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,22 +23,6 @@ const Dashboard = ({ children }) => {
     setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
-    if (fetchData) {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            `https://boi-binimoy-server.vercel.app/api/v1/users/${user?.email}`
-          );
-          setCurrentUser(response.data);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      };
-
-      fetchData();
-    }
-  }, [fetchData, user?.email]);
 
   const [componentsMounted, setComponentMounted] = useState(false);
 

@@ -19,7 +19,6 @@ const useOneUser = () => {
         }
     })
     const { isAdmin, isModerator, isPublisher, isSeller } = currentUser;
-    console.log(isAdmin, isModerator, isPublisher, isSeller);
     return {currentUser, isLoading, isAdmin, isModerator, isPublisher, isSeller }
 };
 
