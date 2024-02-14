@@ -1,6 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumar+One+Outline&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.kumar-one-outline {
+  font-family: "Kumar One Outline", system-ui;
+}
 
 .bg {
   background: url("https://i.ibb.co/DfnH8Vq/boi-binimoy-seamless-pattern.png")
@@ -13,7 +19,7 @@
   background: url("https://i.ibb.co/vwPGFwM/boi-binimoy-seamless-pattern-50.png")
     repeat;
   background-repeat: repeat;
-  background-size: 20%;
+  background-size: 80%;
 }
 
 .bg-50-50 {
@@ -153,4 +159,51 @@
 .button-color:has(:first-child:active)::before,
 .button-color:has(:last-child:active)::before {
   transition: transform 500ms, opacity 250ms;
+}
+
+/* --------------scrollbar css--------------*/
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Hide default scrollbar buttons */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Button for scrolling to the top */
+::-webkit-scrollbar-button:start {
+  display: contents;
+  background-color: #ccc;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>'); /* Upward arrow SVG */
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 12px;
+}
+
+/* Button for scrolling to the bottom */
+::-webkit-scrollbar-button:end {
+  display: contents;
+  background-color: #ccc;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M6.41 8.59L11 13.17l4.59-4.58L16 10l-6 6-6-6z"/></svg>'); /* Downward arrow SVG */
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 12px;
 }
