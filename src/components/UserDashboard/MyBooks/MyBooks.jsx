@@ -64,7 +64,7 @@ const MyBooks = () => {
   }
 
   return (
-    <div>
+    <>
       <div className="grid grid-cols-1 gap-5">
         <div className="flex items-center justify-center">
           <div className="container duration-300">
@@ -106,7 +106,7 @@ const MyBooks = () => {
                         </Link>
                         <button
                           onClick={() => handleBookDelete(book._id, book.title)}
-                          className="p-2 text-2xl bg-red-200 text-red-700 rounded-md hover:bg-red-300  hover:text-red-800"
+                          className="p-1 text-3xl bg-red-200 text-red-700 rounded-md hover:bg-red-300  hover:text-red-800"
                         >
                           <MdDeleteOutline />
                         </button>
@@ -119,7 +119,7 @@ const MyBooks = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
