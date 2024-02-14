@@ -5,14 +5,14 @@ import Image from "next/image";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import Swal from "sweetalert2";
-import useAllUsers from "@/Hooks/allUsers/useAllUsers";
 import PageLoading from "@/components/Shared/loadingPageBook/PageLoading";
+import useAllUsers from "@/Hooks/Users/useAllUsers";
 
 const Users = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState({});
   const axiosSecure = useAxiosSecure();
-  const { usersData, isLoading } = useAllUsers(currentPage, 14);
+  const { usersData, isLoading, refetch } = useAllUsers(currentPage, 14);
 
   if (isLoading) {
     return <PageLoading />;

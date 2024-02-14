@@ -13,14 +13,7 @@ import useExchangeBooksForHome from "@/Hooks/exchangeBooks/useExchangeBooksForHo
 
 const TestExchange = () => {
   const { exchangeBooks: books, isLoading } = useExchangeBooksForHome();
-  // const axiosPublic = useAxiosPublic();
-  // const { data: books = [], isLoading } = useQuery({
-  //   queryKey: ["books"],
-  //   queryFn: async () => {
-  //     const res = await axiosPublic.get(`/api/v1/exchange-books`);
-  //     return res.data;
-  //   },
-  // });
+
 
   if (isLoading) {
     return <ComponentLoading />;
