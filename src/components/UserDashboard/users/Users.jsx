@@ -110,7 +110,6 @@ const Users = () => {
       });
   };
 
-
   console.log(allUser);
 
   return (
@@ -199,7 +198,6 @@ const Users = () => {
                 onClick={() => removeUserRole(data._id, "isModerator")}
                 className="font-bold text-lg"
               >
-                
                 Remove Moderator
               </button>
             ) : (
@@ -207,7 +205,6 @@ const Users = () => {
                 onClick={() => hendleUserRole(data._id, "isModerator")}
                 className="font-bold text-lg"
               >
-                
                 Add Moderator
               </button>
             )}
@@ -216,7 +213,6 @@ const Users = () => {
                 onClick={() => removeUserRole(data._id, "isPublisher")}
                 className="font-bold text-lg"
               >
-                
                 Remove Publisher
               </button>
             ) : (
@@ -224,7 +220,6 @@ const Users = () => {
                 onClick={() => hendleUserRole(data._id, "isPublisher")}
                 className="font-bold text-lg"
               >
-                
                 Add Publisher
               </button>
             )}
@@ -233,7 +228,6 @@ const Users = () => {
                 onClick={() => removeUserRole(data._id, "isSeller")}
                 className="font-bold text-lg"
               >
-                
                 Remove Seller
               </button>
             ) : (
@@ -241,7 +235,6 @@ const Users = () => {
                 onClick={() => hendleUserRole(data._id, "isSeller")}
                 className="font-bold text-lg"
               >
-                
                 Add Seller
               </button>
             )}
