@@ -44,7 +44,13 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
-
+   
+     // update user profile
+     const updateUserProfiole = (name) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name,
+        })
+    }
 
 
     //   loging  Account 
@@ -65,6 +71,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubcribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
+           
             const userEmail = { email: user?.email };
             axiosPublic.post("/jwt", userEmail, {
                 withCredentials: true
@@ -94,6 +101,7 @@ const AuthProvider = ({ children }) => {
         logOut,
         loading,
         handleUpdateProfile,
+        updateUserProfiole
     }
 
     return (

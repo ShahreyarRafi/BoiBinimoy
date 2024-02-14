@@ -1,21 +1,27 @@
-"use client"
+"use client";
 
 import { useContext, useEffect, useState } from "react";
 import "./style.css";
 import Link from "next/link";
 import { AuthContext } from "@/providers/AuthProvider";
 import axios from "axios";
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { FaCheck } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
-
 
 const Dashboard = ({ children }) => {
   const { user, logOut } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState([]);
   const [fetchData, setFetchData] = useState(true);
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleNotification = () => {
+    setIsOpen(!isOpen);
+  };
 
   useEffect(() => {
     if (fetchData) {
@@ -33,7 +39,6 @@ const Dashboard = ({ children }) => {
       fetchData();
     }
   }, [fetchData, user?.email]);
-
 
   const [componentsMounted, setComponentMounted] = useState(false);
 
@@ -54,11 +59,13 @@ const Dashboard = ({ children }) => {
 
     allSideMenu.forEach((item) => {
       const li = item.parentElement;
-      if (li) { // Check if li exists
+      if (li) {
+        // Check if li exists
         item.addEventListener("click", function () {
           allSideMenu.forEach((i) => {
             const parentLi = i.parentElement;
-            if (parentLi) { // Check if parentLi exists
+            if (parentLi) {
+              // Check if parentLi exists
               parentLi.classList.remove("active");
             }
           });
@@ -66,7 +73,6 @@ const Dashboard = ({ children }) => {
         });
       }
     });
-
 
     // TOGGLE SIDEBAR
     const menuBar = document.querySelector("#content nav .bx.bx-menu");
@@ -121,6 +127,39 @@ const Dashboard = ({ children }) => {
     });
   }
 
+  const cardsInfo = [
+    {
+      id: 1,
+      img: "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg",
+      title: "BIG MAGIC",
+      auther: "Elizabeth Gilbert",
+    },
+    {
+      id: 2,
+      img: "https://images-na.ssl-images-amazon.com/images/I/A1kNdYXw0GL.jpg",
+      title: "Ten Thousand Skies Above",
+      auther: "Claudia Gray",
+    },
+    {
+      id: 3,
+      img: "https://images-na.ssl-images-amazon.com/images/I/81eI0ExR+VL.jpg",
+      title: "A Tale For The Time Being",
+      auther: "Ruth Ozeki",
+    },
+    {
+      id: 4,
+      img: "https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg",
+      title: "The Great Gatsby",
+      auther: "F.Scott Fitzgerald",
+    },
+    {
+      id: 5,
+      img: "https://images-na.ssl-images-amazon.com/images/I/81UWB7oUZ0L.jpg",
+      title: "After You",
+      auther: "Jojo Moyes",
+    },
+  ];
+
   return (
     <div className="bg-teal-50">
       <section id="sidebar" className="">
@@ -149,10 +188,24 @@ const Dashboard = ({ children }) => {
                 <span className="text">Add Book</span>
               </Link>
             </li>
-            <li className={pathname == "/dashboard/list-exchange" ? "active" : ""}>
+            <li className={pathname == "/dashboard/add-banner" ? "active" : ""}>
+              <Link href="/dashboard/add-banner">
+                <i class="bx bxs-image-add"></i>
+                <span className="text">Add Banner</span>
+              </Link>
+            </li>
+            <li
+              className={pathname == "/dashboard/list-exchange" ? "active" : ""}
+            >
               <Link href="/dashboard/list-exchange">
                 <i className="bx bxs-book-add"></i>
                 <span className="text">List Book</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/all-books" ? "active" : ""}>
+              <Link href="/dashboard/all-books">
+                <i className="bx bxs-group"></i>
+                <span className="text"> My Books </span>
               </Link>
             </li>
             <li className={pathname == "/dashboard/profile" ? "active" : ""}>
@@ -198,7 +251,10 @@ const Dashboard = ({ children }) => {
           <li>
             <Link href="#" className="logout">
               <i className="bx bxs-log-out-circle"></i>
-              <button onClick={logOut}> <span className="text">Logout</span> </button>
+              <button onClick={logOut}>
+                {" "}
+                <span className="text">Logout</span>{" "}
+              </button>
             </Link>
           </li>
         </ul>
@@ -208,21 +264,81 @@ const Dashboard = ({ children }) => {
       <section id="content">
         {/*  NAVBAR */}
         <div>
-          <nav >
-            <i className='bx bx-menu'></i>
-            <a href="#" className="nav-link">Categories</a>
+          <nav>
+            <i className="bx bx-menu"></i>
+            <a href="#" className="nav-link">
+              Categories
+            </a>
             <form action="#">
               <div className="form-input">
                 <input type="search" placeholder="Search..." />
-                <button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
+                <button type="submit" className="search-btn">
+                  <i className="bx bx-search"></i>
+                </button>
               </div>
             </form>
             <input type="checkbox" id="switch-mode" hidden />
             <label htmlFor="switch-mode" className="switch-mode"></label>
-            <a href="#" className="notification">
-              <i className='bx bxs-bell' ></i>
-              <span className="num">8</span>
-            </a>
+            {/* notification start*/}
+            <div className="relative">
+              {/* notification button start */}
+              <button onClick={toggleNotification} className="notification">
+                <i className="bx bxs-bell"></i>
+                <span className="num">8</span>
+              </button>
+              {/* notification button end */}
+
+              {/* notification information start */}
+              {isOpen && (
+                <div className="absolute top-10 -right-1 rounded-lg bg-50 w-72 h-96 p-2 overflow-y-scroll shadow-lg border border-gray-300">
+                  {/* notification card start */}
+                  {cardsInfo.map((cardInfo) => (
+                    <div key={cardInfo.id}>
+                      <div className="flex justify-center gap-3 hover:bg-teal-100 p-2 rounded-lg cursor-pointer">
+                        {/* image */}
+                        <div className="w-16 flex justify-center">
+                          <Image
+                            className="w-6 h-6 rounded-full"
+                            src={cardInfo.img}
+                            width={500}
+                            height={500}
+                            alt=""
+                          />
+                        </div>
+                        {/* text and button */}
+                        <div className="space-y-1">
+                          {/* text */}
+                          <h4 className="text-[10px] md:text-xs font-light text-[#016961]">
+                            <span className="font-semibold">
+                              {cardInfo.auther}
+                            </span>{" "}
+                            want to exachange{" "}
+                            <span className="font-semibold">
+                              {cardInfo.title}
+                            </span>{" "}
+                            whit you.
+                          </h4>
+                          {/* buttons */}
+                          <div className="flex items-center gap-2">
+                            {/* button 1 */}
+                            <button className="py-1 bg-green-200 text-green-600 text-xs rounded-md w-full flex justify-center hover:bg-green-300">
+                              <FaCheck />
+                              {/* boutton 2 */}
+                            </button>
+                            <button className="py-1 bg-red-200 text-red-600 text-xs rounded-md w-full flex justify-center hover:bg-red-300">
+                              <RxCross2 />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  {/* notification card end */}
+                </div>
+              )}
+              {/* notification information end */}
+            </div>
+            {/* notification end */}
             <a href="#" className="profile">
               {currentUser.image ? (
                 <Image
@@ -247,9 +363,7 @@ const Dashboard = ({ children }) => {
         {/*  NAVBAR */}
 
         {/* CONTENT */}
-        <div class="content-wrapper">
-          {children}
-        </div>
+        <div class="content-wrapper">{children}</div>
         {/* CONTENT */}
       </section>
     </div>

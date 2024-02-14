@@ -66,12 +66,14 @@ const Profile = () => {
                 {user?.photoURL ? (
                   <Image
                     src={user?.photoURL}
+                    priority width={100} height={100}
                     alt="Profile"
                     className="h-40 w-40 rounded-full mx-auto"
                   />
                 ) : (
                   <Image
                     src={palesholderImage}
+                    priority width={100} height={100}
                     alt="Placeholder"
                     className="h-40 w-40 rounded-full bg-gray-300 mx-auto"
                   />

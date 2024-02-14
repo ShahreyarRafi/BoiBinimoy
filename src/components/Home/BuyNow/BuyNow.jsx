@@ -92,7 +92,7 @@ export default function BuyNow() {
         }
     ]
 
-
+   
     const handleNextButtonClick = () => {
         if (swiper) {
             swiper.slideNext();

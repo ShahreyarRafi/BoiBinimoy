@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
 import Related from "../../Shared/Related/Related";
-import PageLoading from '../../Shared/loadingPageBook/PageLoading';
+import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeartCirclePlus } from "react-icons/fa6";
 import ReviewCard from "@/components/Shared/ReviewCard";
@@ -31,7 +31,7 @@ const BuyBookDetails = () => {
   });
 
   const { data: book = [], isLoading } = useQuery({
-    queryKey: ['book'],
+    queryKey: ["book"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/api/v1/buy-books/${param.buyId}`);
       return res.data;
