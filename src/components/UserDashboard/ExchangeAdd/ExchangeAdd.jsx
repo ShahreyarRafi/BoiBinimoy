@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
 import Swal from "sweetalert2";
@@ -9,8 +9,12 @@ import useImageURL from "@/Hooks/ImageURL/useImageURL";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "@/providers/AuthProvider";
 
 const ExchangeAdd = () => {
+  const { user } = useContext(AuthContext)
+  const owner_email = user?.email
+  console.log(owner_email);
   const { register, handleSubmit, reset } = useForm();
   const axios = require("axios").default;
   const [selectedFile, setSelectedFile] = useState(null);
@@ -61,6 +65,7 @@ const ExchangeAdd = () => {
     // const newBook
     const newBook = {
       coverType,
+      owner_email,
       bookCondition,
       whatYouWant,
       bookCategory,

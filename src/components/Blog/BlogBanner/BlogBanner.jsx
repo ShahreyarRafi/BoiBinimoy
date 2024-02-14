@@ -1,8 +1,9 @@
+import SectionTitle from "@/components/Shared/SectionTitle/SectionTitle";
 import React from "react";
 
 const BlogBanner = () => {
   return (
-    <div className="relative bg-[#016961]">
+    <div className="relative bg">
       {/* bottom curve */}
       <div className="absolute inset-x-0 bottom-0 ">
         <svg
@@ -19,7 +20,9 @@ const BlogBanner = () => {
       <div className="text-center px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
           <h2 className="mb-6 text-3xl font-bold text-white sm:text-5xl">
-            Blogs
+            <SectionTitle heading={" Blog Page"}>
+
+            </SectionTitle>
           </h2>
         </div>
       </div>
