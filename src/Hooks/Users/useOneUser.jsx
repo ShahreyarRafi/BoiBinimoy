@@ -18,9 +18,12 @@ const useOneUser = () => {
             return res.data
         }
     })
+
     const { isAdmin, isModerator, isPublisher, isSeller } = currentUser;
     return {currentUser, isLoading, isAdmin, isModerator, isPublisher, isSeller }
 };
 
 
 export default useOneUser;
+
+// update this
