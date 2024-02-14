@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 const SocialLogin = () => {
   const { googleLogin } = useContext(AuthContext);
   const router = useRouter();
+  const axiosPublic = useAxiosPublic();
 
   const handleSocialLogin = (user) => {
     user().then((res) => {
@@ -24,23 +25,17 @@ const SocialLogin = () => {
       const userInfo = {
         email: res.user?.email,
         name: res.user?.displayName,
+        image: res.user?.photoURL
       }
 
       axiosPublic.post("/users", userInfo)
         .then(res => {
           console.log(res.data);
-
-          
             router.push("/");
-          
-
         })
 
-
     }).catch(error => {
-      Swal.fire(error);
-
-
+      Swal.fire(error.message);
     });
   };
 

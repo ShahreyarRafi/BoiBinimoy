@@ -9,8 +9,8 @@ import useAuth from "../auth/useAuth";
 import { useRouter } from "next/navigation";
 
 export const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
-    // baseURL: "https://boi-binimoy-server.vercel.app",
+    // baseURL: 'http://localhost:5000',
+    baseURL: "https://boi-binimoy-server.vercel.app",
     withCredentials: true
 });
 
@@ -27,7 +27,7 @@ const useAxiosSecure = () => {
                 console.log('logout the user')
                 logOut()
                     .then(() => {
-                        navigate.push('/login')
+                        navigate.push('/joinUs')
                     })
                     .catch(error => console.log(error))
             }

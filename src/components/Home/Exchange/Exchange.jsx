@@ -14,15 +14,8 @@ import useExchangeBooksForHome from "@/Hooks/exchangeBooks/useExchangeBooksForHo
 
 
 const TestExchange = () => {
-  const { exchangeBooks: books, isLoading } = useExchangeBooksForHome()
-  // const axiosPublic = useAxiosPublic();
-  // const { data: books = [], isLoading } = useQuery({
-  //   queryKey: ["books"],
-  //   queryFn: async () => {
-  //     const res = await axiosPublic.get(`/api/v1/exchange-books`);
-  //     return res.data;
-  //   },
-  // });
+  const { exchangeBooks: books , isLoading } = useExchangeBooksForHome()
+
 
 
   if (isLoading) {
@@ -69,7 +62,7 @@ const TestExchange = () => {
 
         <div className="col-span-full lg:col-span-6">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {books.map(item => (
+            {books?.map(item => (
               <ExchangeCard key={item._id} item={item} />
             ))}
           </div>
