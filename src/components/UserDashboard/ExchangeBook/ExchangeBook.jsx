@@ -1,97 +1,115 @@
-"use client"
-import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
-import useExchangeBooks from '@/Hooks/api/useExchangeBooks';
-import Image from 'next/image';
-import React from 'react';
-import Swal from 'sweetalert2';
+"use client";
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
+import useExchangeBooks from "@/Hooks/api/useExchangeBooks";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { GrDocumentUpdate } from "react-icons/gr";
+import { MdDeleteOutline } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const ExchangeBook = () => {
-    const [exchangeBooks, refetch, isLoading] = useExchangeBooks()
-    console.log(exchangeBooks);
-    const axiosSecure = useAxiosSecure();
+  const [exchangeBooks, refetch, isLoading] = useExchangeBooks();
+  console.log(exchangeBooks);
+  const axiosSecure = useAxiosSecure();
 
-
-    // delete operation 
-    const handleDeleteExchangeBook = (id, title) => {
-        Swal.fire({
-            title: `Delete Book`,
-            text: `Are you sure you want to delete the book "${title}"?`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axiosSecure.delete(`/api/v1/exchange-books/${id}`)
-                    .then(response => {
-                        console.log(response.data);
-                        if (response.data) {
-                            Swal.fire(
-                                'Deleted!',
-                                `Your book "${title}" has been deleted.`,
-                                'success'
-                            );
-                            refetch();
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error deleting Book:', error);
-                        Swal.fire(
-                            'Error!',
-                            'An error occurred while deleting the book.',
-                            'error'
-                        );
-                    });
+  // delete operation
+  const handleDeleteExchangeBook = (id, title) => {
+    Swal.fire({
+      title: `Delete Book`,
+      text: `Are you sure you want to delete the book "${title}"?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/api/v1/exchange-books/${id}`)
+          .then((response) => {
+            console.log(response.data);
+            if (response.data) {
+              Swal.fire(
+                "Deleted!",
+                `Your book "${title}" has been deleted.`,
+                "success"
+              );
+              refetch();
             }
-        });
-    };
+          })
+          .catch((error) => {
+            console.error("Error deleting Book:", error);
+            Swal.fire(
+              "Error!",
+              "An error occurred while deleting the book.",
+              "error"
+            );
+          });
+      }
+    });
+  };
 
-
-
-
-
-
-    return (
-        <div>
-            <h1> ExchangeBook {exchangeBooks.length} </h1>
-            <div className=' grid md:grid-cols-2 grid-cols-1 gap-6 '>
-                {
-                    exchangeBooks?.map(book => <div key={book._id}>
-
-                        <div
-                            className="flex flex-col rounded-lg px-2 bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 md:max-w-xl md:flex-row">
-                            <Image
-
-                                className="h-60 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                                src={book?.cover_image}
-                                priority width={100} height={100}
-                                alt="exchange-book" />
-                            <div className="flex flex-col justify-start p-6">
-                                <h5
-                                    className="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
-                                    {book?.title}
-                                </h5>
-                                <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                                    {book?.writer}
-                                </p>
-                                <p className="text-xs text-neutral-500 dark:text-neutral-300">
-                                    <div className=' flex items-center gap-6'>
-
- 
-                                        <button onClick={()=> handleDeleteExchangeBook(book._id, book.title)}className='btn' > Delete </button>
-                                        <button className='btn'> Update </button>
-                                    </div>
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>)
-                }
+  return (
+    <>
+      <div className="grid grid-cols-1 gap-5">
+        <div className="flex items-center justify-center">
+          <div className="container duration-300">
+            <div className="w-full rounded-2xl overflow-hidden lg:shadow-lg my-5 duration-300">
+              <div className="hidden lg:block bg-[#016961] duration-300 text-white ">
+                <div className="flex items-center justify-between font-semibold border border-gray-100 px-10 py-5">
+                  <h5 className="w-[40px] lg:mr-10"></h5>
+                  <h5 className="w-full lg:mr-10">Title</h5>
+                  <h5 className="w-full lg:mr-10">Writer</h5>
+                  <h5 className="w-full lg:mr-10">Format</h5>
+                  <h5 className="w-full lg:mr-10">Cover Type</h5>
+                  <h5 className="w-full lg:mr-10">Actions</h5>
+                </div>
+              </div>
+              <div className="flex-1 sm:flex-none grid grid-cols-1 gap-5 lg:gap-0">
+                {exchangeBooks.map((book) => (
+                  <div
+                    key={book._id}
+                    className="bg-white rounded-3xl lg:rounded-none shadow-sm hover:bg-[#19a49113] lg:shadow-inherit border border-gray-100"
+                  >
+                    <div className="flex flex-col lg:flex-row items-center justify-start lg:justify-between gap-1  rounded-3xl lg:rounded-none px-6 lg:px-10 py-5 mx-auto duration-300">
+                      <h5 className="w-full lg:mr-10 text-lg font-semibold text-center lg:text-start line-clamp-1 truncate text-wrap">
+                        {book.title}
+                      </h5>
+                      <h5 className="w-full lg:mr-10 text-center lg:text-start">
+                        {book.writer}
+                      </h5>
+                      <h5 className="w-full lg:mr-10 text-center lg:text-start">
+                        {book.format}
+                      </h5>
+                      <h5 className="w-full lg:mr-10 text-center lg:text-start">
+                        {book.cover_type}
+                      </h5>
+                      <div className="w-full flex justify-center lg:justify-start gap-3">
+                        <Link href={`/updateMyBook/${book._id}`}>
+                          <button className="p-2 text-2xl bg-green-200 text-green-700 rounded-md hover:bg-green-300 hover:text-green-800">
+                            <GrDocumentUpdate />
+                          </button>
+                        </Link>
+                        <button
+                          onClick={() =>
+                            handleDeleteExchangeBook(book._id, book.title)
+                          }
+                          className="p-1 text-3xl bg-red-200 text-red-700 rounded-md hover:bg-red-300  hover:text-red-800"
+                        >
+                          <MdDeleteOutline />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-
+          </div>
         </div>
-    );
+      </div>
+    </>
+  );
 };
 
 export default ExchangeBook;
