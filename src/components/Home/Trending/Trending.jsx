@@ -5,9 +5,9 @@ import BookCard from "../../Shared/BookCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper/core";
 import { Navigation } from "swiper/modules";
-import "./Spinner.css";
 import "swiper/css/bundle";
 import { FiArrowUpRight } from "react-icons/fi";
+import ComponentLoading from "@/components/Shared/loadingPageBook/ComponentLoading";
 
 SwiperCore.use([Navigation]);
 
@@ -167,16 +167,7 @@ export default function Trending() {
                         </SwiperSlide>
                     ))
                 ) : (
-                    <div className="w-full flex justify-center items-center">
-                        <div className="book">
-                            <div className="book__pg-shadow"></div>
-                            <div className="book__pg"></div>
-                            <div className="book__pg book__pg--2"></div>
-                            <div className="book__pg book__pg--3"></div>
-                            <div className="book__pg book__pg--4"></div>
-                            <div className="book__pg book__pg--5"></div>
-                        </div>
-                    </div>
+                    <ComponentLoading />
                 )}
             </Swiper>
         </div>

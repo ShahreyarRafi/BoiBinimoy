@@ -111,6 +111,8 @@ const Users = () => {
   };
 
 
+  console.log(allUser);
+
   return (
     <>
       <div className="grid grid-cols-1 gap-5">
