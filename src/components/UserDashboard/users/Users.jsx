@@ -5,14 +5,14 @@ import Image from "next/image";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import Swal from "sweetalert2";
-import useAllUsers from "@/Hooks/allUsers/useAllUsers";
 import PageLoading from "@/components/Shared/loadingPageBook/PageLoading";
+import useAllUsers from "@/Hooks/Users/useAllUsers";
 
 const Users = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState({});
   const axiosSecure = useAxiosSecure();
-  const { usersData, isLoading } = useAllUsers(currentPage, 14);
+  const { usersData, isLoading, refetch } = useAllUsers(currentPage, 14);
 
   if (isLoading) {
     return <PageLoading />;
@@ -110,7 +110,6 @@ const Users = () => {
       });
   };
 
-
   console.log(allUser);
 
   return (
@@ -199,7 +198,6 @@ const Users = () => {
                 onClick={() => removeUserRole(data._id, "isModerator")}
                 className="font-bold text-lg"
               >
-                
                 Remove Moderator
               </button>
             ) : (
@@ -207,7 +205,6 @@ const Users = () => {
                 onClick={() => hendleUserRole(data._id, "isModerator")}
                 className="font-bold text-lg"
               >
-                
                 Add Moderator
               </button>
             )}
@@ -216,7 +213,6 @@ const Users = () => {
                 onClick={() => removeUserRole(data._id, "isPublisher")}
                 className="font-bold text-lg"
               >
-                
                 Remove Publisher
               </button>
             ) : (
@@ -224,7 +220,6 @@ const Users = () => {
                 onClick={() => hendleUserRole(data._id, "isPublisher")}
                 className="font-bold text-lg"
               >
-                
                 Add Publisher
               </button>
             )}
@@ -233,7 +228,6 @@ const Users = () => {
                 onClick={() => removeUserRole(data._id, "isSeller")}
                 className="font-bold text-lg"
               >
-                
                 Remove Seller
               </button>
             ) : (
@@ -241,7 +235,6 @@ const Users = () => {
                 onClick={() => hendleUserRole(data._id, "isSeller")}
                 className="font-bold text-lg"
               >
-                
                 Add Seller
               </button>
             )}

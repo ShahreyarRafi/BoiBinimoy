@@ -1,10 +1,10 @@
-import ExchangeAdd from "@/components/UserDashboard/ExchangeAdd/ExchangeAdd";
+import ExchangeBook from "@/components/UserDashboard/ExchangeBook/ExchangeBook";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <ExchangeAdd />
+      <ExchangeBook />
     </div>
   );
 };

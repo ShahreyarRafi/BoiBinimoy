@@ -1,47 +1,27 @@
-"use client"
+"use client";
 
 import { useContext, useEffect, useState } from "react";
 import "./style.css";
 import Link from "next/link";
 import { AuthContext } from "@/providers/AuthProvider";
 import axios from "axios";
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
-
+import useOneUser from "@/Hooks/Users/useOneUser";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
 
-
 const Dashboard = ({ children }) => {
-  const { user, logOut } = useContext(AuthContext);
-  const [currentUser, setCurrentUser] = useState([]);
-  const [fetchData, setFetchData] = useState(true);
+  const {  logOut } = useContext(AuthContext);
+  const { currentUser} = useOneUser()
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNotification = () => {
     setIsOpen(!isOpen);
   };
-
-
-  useEffect(() => {
-    if (fetchData) {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            `https://boi-binimoy-server.vercel.app/api/v1/users/${user?.email}`
-          );
-          setCurrentUser(response.data);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      };
-
-      fetchData();
-    }
-  }, [fetchData, user?.email]);
 
 
   const [componentsMounted, setComponentMounted] = useState(false);
@@ -63,11 +43,13 @@ const Dashboard = ({ children }) => {
 
     allSideMenu.forEach((item) => {
       const li = item.parentElement;
-      if (li) { // Check if li exists
+      if (li) {
+        // Check if li exists
         item.addEventListener("click", function () {
           allSideMenu.forEach((i) => {
             const parentLi = i.parentElement;
-            if (parentLi) { // Check if parentLi exists
+            if (parentLi) {
+              // Check if parentLi exists
               parentLi.classList.remove("active");
             }
           });
@@ -75,7 +57,6 @@ const Dashboard = ({ children }) => {
         });
       }
     });
-
 
     // TOGGLE SIDEBAR
     const menuBar = document.querySelector("#content nav .bx.bx-menu");
@@ -193,7 +174,7 @@ const Dashboard = ({ children }) => {
             </li>
             <li className={pathname == "/dashboard/add-banner" ? "active" : ""}>
               <Link href="/dashboard/add-banner">
-                <i class='bx bxs-image-add'></i>
+                <i class="bx bxs-image-add"></i>
                 <span className="text">Add Banner</span>
               </Link>
             </li>
@@ -209,6 +190,12 @@ const Dashboard = ({ children }) => {
               <Link href="/dashboard/all-books">
                 <i className="bx bxs-group"></i>
                 <span className="text"> My Books </span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/exchange-books" ? "active" : ""}>
+              <Link href="/dashboard/exchange-books">
+                <i className="bx bxs-group"></i>
+                <span className="text">Exchange Books </span>
               </Link>
             </li>
             <li className={pathname == "/dashboard/profile" ? "active" : ""}>
@@ -261,13 +248,17 @@ const Dashboard = ({ children }) => {
       <section id="content">
         {/*  NAVBAR */}
         <div>
-          <nav >
-            <i className='bx bx-menu'></i>
-            <a href="#" className="nav-link">Categories</a>
+          <nav>
+            <i className="bx bx-menu"></i>
+            <a href="#" className="nav-link">
+              Categories
+            </a>
             <form action="#">
               <div className="form-input">
                 <input type="search" placeholder="Search..." />
-                <button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
+                <button type="submit" className="search-btn">
+                  <i className="bx bx-search"></i>
+                </button>
               </div>
             </form>
             <input type="checkbox" id="switch-mode" hidden />
@@ -356,9 +347,7 @@ const Dashboard = ({ children }) => {
         {/*  NAVBAR */}
 
         {/* CONTENT */}
-        <div class="content-wrapper">
-          {children}
-        </div>
+        <div class="content-wrapper">{children}</div>
         {/* CONTENT */}
       </section>
     </div>
