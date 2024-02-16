@@ -1,6 +1,6 @@
 "use client";
 
-import useOneUser from "@/Hooks/api/useOneUser";
+import useOneUser from "@/Hooks/Users/useOneUser";
 import { AuthContext } from "@/providers/AuthProvider";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +15,7 @@ const Profile = () => {
   const { user } = useContext(AuthContext);
   // console.log(user?.email);
 
-  const [currentUser] = useOneUser();
+  const {currentUser} = useOneUser();
 
   console.log(currentUser);
 
@@ -128,7 +128,7 @@ const Profile = () => {
                   Full Name
                 </p>
                 <h6 className="text-lg font-bold">
-                  {currentUser.name ? (
+                  {currentUser?.name ? (
                     <>
                       {" "}
                       <span className="text-lg">{currentUser.name}</span>
@@ -172,7 +172,7 @@ const Profile = () => {
               {/* user dob */}
               <div className="relative py-3 px-5 border-2 w-full rounded-md">
                 <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
-                  Dath Of Birth
+                  Date Of Birth
                 </p>
                 {currentUser.date_of_birth ? (
                   <> <span className="text-lg">{currentUser.date_of_birth}</span></>

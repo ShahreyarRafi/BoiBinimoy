@@ -23,9 +23,9 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="relative mt-28 bg">
+    <div className="relative bg">
       <svg
-        viewBox="0 0 224 12"
+        viewBox="0 0 224 11"
         fill="currentColor"
         className="w-full -mb-1 text-teal-50"
         preserveAspectRatio="none"

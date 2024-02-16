@@ -1,7 +1,5 @@
 "use client";
 
-import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
@@ -9,11 +7,66 @@ import Related from "../../Shared/Related/Related";
 import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeartCirclePlus } from "react-icons/fa6";
+import ReviewCard from "@/components/Shared/ReviewCard";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/providers/AuthProvider";
+import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import Swal from 'sweetalert2';
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 
 const BuyBookDetails = () => {
   const param = useParams();
+  const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+  const [current, setCurrent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [reviews, setReviews] = useState(null);
 
+
+  // User data load
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/users/${user?.email}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const result = await response.json();
+        setCurrent(result);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [user?.email]);
+
+  // Comment loading
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/reviews/${param.buyId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const result = await response.json();
+        setReviews(result);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [param.buyId]);
+
+
+  // Book details data loading
   const { data: book = [], isLoading } = useQuery({
     queryKey: ["book"],
     queryFn: async () => {
@@ -23,7 +76,79 @@ const BuyBookDetails = () => {
   });
 
   if (isLoading) {
-    return <PageLoading />;
+    return (
+      <PageLoading />
+    )
+  }
+
+  // Handle comment form
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const comment = form.comment.value;
+
+    const user_name = current?.name;
+    const user_email = current?.email;
+    const user_image = current?.image;
+    const rating = 5;
+    const book_id = book?._id;
+
+    const newComment = {
+      user_name,
+      user_email,
+      user_image,
+      rating,
+      comment,
+      book_id
+    }
+
+    axiosSecure
+      .post("/api/v1/reviews", newComment)
+      .then((response) => {
+        console.log("Response:", response.data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your Comment Added.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
+  // Handle add to cart
+  const handleCart = () => {
+
+    const user_name = current?.name;
+    const user_email = current?.email;
+    const book_id = book?._id;
+    const price = book?.price;
+
+    const addCart = {
+      user_name,
+      user_email,
+      book_id,
+      price
+    }
+
+    axiosSecure
+      .post("/api/v1/carts", addCart)
+      .then((response) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Add book in the cart.",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   }
 
   return (
@@ -97,9 +222,9 @@ const BuyBookDetails = () => {
               </p>
             </div>
 
-            {/* Reating */}
+            {/* Rating */}
             <div className="flex items-center mt-1">
-              {/* Reating */}
+              {/* Rating */}
               <div className="flex items-center text-white text-xl mr-2">
                 <span className="mr-1">&#9733;</span>
                 <span className="mr-1">&#9733;</span>
@@ -135,7 +260,7 @@ const BuyBookDetails = () => {
               <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-sm rounded-full ">
                 Buy Now
               </button>
-              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
+              <button onClick={handleCart} className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
                 <FaCartPlus />
               </button>
               <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
@@ -152,11 +277,12 @@ const BuyBookDetails = () => {
         <div className="w-full p-8 border-2 rounded-lg">
           <div className="max-w-5xl mx-auto">
             {/* send review */}
-            <form className="flex items-center gap-3 pb-5">
+            <form onSubmit={handleSubmit} className="flex items-center gap-3 pb-5">
               <input
                 type="text"
-                name="Comment"
-                placeholder="Comment"
+                name="comment"
+                id="comment"
+                placeholder="comment"
                 className="w-full h-8 px-2 bg-transparent border-b focus:outline-none focus:border-black"
               />
               <button type="submit" className="text-2xl text-[#016961]">
@@ -166,51 +292,8 @@ const BuyBookDetails = () => {
 
             {/* all review */}
             <div className="p-2 space-y-4">
-              {/* review 1 */}
-              <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
-                {/* user image */}
-                <div>
-                  <Image
-                    className="object-cover w-12 h-12 mb-2 rounded-full shadow"
-                    src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
-                    priority
-                    width={500}
-                    height={500}
-                    alt="Person"
-                  />
-                </div>
-                {/* user name, review */}
-                <div>
-                  <h5 className="text-md font-bold">Mr. jhon</h5>
-                  <p className="text-xs">
-                    Dolor sit amet, consectetur adipisicing elit.r adipisicing
-                    elitr adipisicing elit
-                  </p>
-                </div>
-                <hr />
-              </div>
-
-              {/* review 2 */}
-              <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
-                {/* user image */}
-                <div>
-                  <Image
-                    className="object-cover w-12 h-12 mb-2 rounded-full shadow"
-                    src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
-                    priority
-                    width={500}
-                    height={500}
-                    alt="Person"
-                  />
-                </div>
-                {/* user name, review */}
-                <div>
-                  <h5 className="text-md font-bold">Mr. jhon</h5>
-                  <p className="text-xs">
-                    Dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
+              {reviews && reviews?.map(commenter => <ReviewCard key={commenter?.user_email} review={commenter}></ReviewCard>)
+              }
             </div>
           </div>
         </div>

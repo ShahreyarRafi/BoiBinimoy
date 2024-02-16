@@ -11,12 +11,16 @@ import { useRouter } from 'next/navigation';
 import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { AuthContext } from '@/providers/AuthProvider';
-import SocialLogin from './SocialLogin/SocialLogin';
+import SocialLogin from './SocialLogin';
+// import SocialLogin from './SocialLogin/SocialLogin';
 
 
 const JoinUs = () => {
     const { register, handleSubmit, reset } = useForm();
-    const { createUser, signin, googleLogin } = useContext(AuthContext);
+    // const { createUser, signin, googleLogin } = useAuth();
+    const { createUser, signin, googleLogin, updateUserProfiole } = useContext(AuthContext);
+
+
     const router = useRouter();
     const axiosPublic = useAxiosPublic();
     const [componentsMounted, setComponentMounted] = useState(false);
@@ -88,37 +92,6 @@ const JoinUs = () => {
 
     // handle google sign in function
 
-    // const handleSocialLogin = (user) => {
-    //     user()
-    //         .then(res => {
-    //             console.log(res.user);
-    //             if (res.user) {
-    //                 Swal.fire('User logged in successfully');
-    //                 setTimeout(() => {
-    //                     const userInfo = {
-    //                         email: res.user?.email,
-    //                         name: res.user?.displayName,
-    //                     };
-
-    //                     axiosPublic.post("/api/v1/users", userInfo)
-    //                         .then(res => {
-    //                             console.log(res.data);
-    //                             router.push('/');
-    //                         })
-    //                         .catch(error => {
-    //                             console.error("Error in Axios POST request:", error);
-    //                             Swal.fire('An error occurred while processing your request.');
-    //                         });
-    //                 }, 1000);
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.error("Error in social login:", error);
-    //             Swal.fire('An error occurred while logging in.');
-    //         });
-    // };
-
-
 
     const handleSocialLogin = (user) => {
         user().then((res) => {
@@ -173,44 +146,9 @@ const JoinUs = () => {
                         </div>
                         <input type="submit" value="Login" className="btn solid" />
                         <p className="social-text">Or Sign in with social platforms</p>
-                        {/* <div className="social-media">
-                            <a href="#" className="social-icon">
-                                <i><FaFacebookF /></i>
-                            </a>
-                            <a href="#" className="social-icon">
-                                <i><FaTwitter /></i>
-                            </a>
-                           
-                            <button className='social-icon' onClick={() => handleSocialLogin(googleLogin)} >
-                                <FaGoogle /> 
-                                
-                                </button>
-                           
-                            <a href="#" className="social-icon">
-                                <i><FaLinkedinIn /></i>
-                            </a>
-                        </div> */}
+                     
                     </form>
 
-
-
-                    {/* <div className="social-media">
-                            <a href="#" className="social-icon">
-                                <i><FaFacebookF /></i>
-                            </a>
-                            <a href="#" className="social-icon">
-                                <i><FaTwitter /></i>
-                            </a>
-                           
-                            <button className='social-icon' onClick={() => handleSocialLogin(googleLogin)} >
-                                <FaGoogle /> 
-                                
-                                </button>
-                           
-                            <a href="#" className="social-icon">
-                                <i><FaLinkedinIn /></i>
-                            </a>
-                        </div> */}
 
                     <SocialLogin></SocialLogin>
 
@@ -231,21 +169,7 @@ const JoinUs = () => {
                         </div>
                         <input type="submit" className="btn" value="Sign up" />
                         <p className="social-text">Or Sign up with social platforms</p>
-                        <div className="social-media">
-                            <a href="#" className="social-icon">
-                                <i><FaFacebookF /></i>
-                            </a>
-                            <a href="#" className="social-icon">
-                                <i><FaTwitter /></i>
-                            </a>
-                            <button className="social-icon"
-                                onClick={() => handleSocialLogin(googleLogin)}>
-                                <FaGoogle />
-                            </button>
-                            <a href="#" className="social-icon">
-                                <i><FaLinkedinIn /></i>
-                            </a>
-                        </div>
+                   
                     </form>
                 </div>
             </div>

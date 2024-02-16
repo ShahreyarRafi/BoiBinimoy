@@ -6,7 +6,7 @@ import useBuyBooks from "@/Hooks/buyBooks/useBuyBooks";
 import { useState } from "react";
 
 const BuyAllBooks = () => {
-  const [currentPage, setCurrentPage ] = useState()
+  const [currentPage, setCurrentPage ] = useState(1)
   const { buyBooksData, isLoading } = useBuyBooks(currentPage, 14)
   
   if (isLoading) {

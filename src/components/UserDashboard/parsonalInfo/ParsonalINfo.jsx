@@ -9,9 +9,9 @@ import { IoMdAdd } from "react-icons/io";
 import { AuthContext } from '@/providers/AuthProvider';
 import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
 import Swal from 'sweetalert2';
-import useOneUser from '@/Hooks/api/useOneUser';
+import useOneUser from '@/Hooks/Users/useOneUser';
 import { useRouter } from 'next/navigation';
-// import palesholderImage from "../../../../public/placeholder.png"
+import palesholderImage from "../../../../public/placeholder.png"
 import { IoIosCamera } from "react-icons/io";
 import useImageURL from '@/Hooks/ImageURL/useImageURL';
 import { useForm } from 'react-hook-form';
@@ -22,34 +22,34 @@ const ParsonalInfo = () => {
     const [preview, setPreview] = useState();
     const { imageUrl, uploadImage } = useImageURL(selectedFile);
     const axiosSecure = useAxiosSecure();
-    const [currentUser] = useOneUser()
+    const {currentUser} = useOneUser()
     const router = useRouter();
-   
-  
+
+
     // create a preview as a side effect, whenever selected file is changed
     const onSelectFile = (e) => {
-      const files = e.target.files;
-     
-      if (!files || files.length === 0) {
-        setSelectedFile(undefined);
-        setPreview(undefined);
-        return;
-      }
-    
-      const selectedImage = files[0];
-      setSelectedFile(selectedImage);
-    
-      const objectUrl = URL.createObjectURL(selectedImage);
-      setPreview(objectUrl);
+        const files = e.target.files;
+
+        if (!files || files.length === 0) {
+            setSelectedFile(undefined);
+            setPreview(undefined);
+            return;
+        }
+
+        const selectedImage = files[0];
+        setSelectedFile(selectedImage);
+
+        const objectUrl = URL.createObjectURL(selectedImage);
+        setPreview(objectUrl);
     };
 
 
     // update profile funcotin
-    const handleUpdateProfile = async(data) => {
-      
+    const handleUpdateProfile = async (data) => {
+
         const uploadedImageUrl = await uploadImage();
-        const {name, phone_number, date_of_birth, gender, profession, street, upozela, district, division, country, zip_code} = data
-     
+        const { name, phone_number, date_of_birth, gender, profession, street, upozela, district, division, country, zip_code } = data
+
         const updateUserInformation = {
             name, image: uploadedImageUrl, phone_number, date_of_birth, gender, profession,
             location: {
@@ -57,7 +57,7 @@ const ParsonalInfo = () => {
             }
         }
 
-    
+
         axiosSecure.patch(`api/v1/users/${currentUser._id}`, updateUserInformation)
             .then(res => {
                 console.log("update data ", res.data);
@@ -101,8 +101,7 @@ const ParsonalInfo = () => {
                         {/* wellcome and edit btton */}
                         <div className="flex justify-between items-center py-3">
                             <div>
-
-                                <h6 className="text-lg font-bold">Wellcome, User frist name!</h6>
+                                <h6 className="text-lg font-bold">Wellcome, User first name!</h6>
                             </div>
                             <div>
                                 <button className="text-xl md:text-2xl">
@@ -133,14 +132,14 @@ const ParsonalInfo = () => {
                                     }}
                                     style={{ border: 'none', background: 'none', cursor: 'pointer' }}
                                 >
-                                    <IoIosCamera /> 
+                                    <IoIosCamera />
                                 </button>
 
 
                             </div>
                           {
                             !selectedFile ?   <Image
-                            src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+                            src={palesholderImage}
                             className="object-cover w-40 h-40 mb-2 rounded-full shadow"
                             alt=""
                             width={500}
@@ -197,9 +196,7 @@ const ParsonalInfo = () => {
                                         required
 
                                     />
-
                                 </div>
-
 
                                 <div className="relative py-3 px-5 border-2 w-full rounded-md">
                                     <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
@@ -211,14 +208,13 @@ const ParsonalInfo = () => {
                                         placeholder="Phone Number"
                                         type="number"
                                         required
-
                                     />
                                 </div>
 
                                 {/* user dob */}
                                 <div className="relative py-3 px-5 border-2 w-full rounded-md">
                                     <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded text-xs text-[#016961] px-2">
-                                        Dath Of Birth
+                                        Date Of Birth
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
@@ -311,7 +307,7 @@ const ParsonalInfo = () => {
                                 {/* user Street */}
                                 <div className="relative py-3 px-5 border-2 w-full rounded-md">
                                     <p className="absolute top-[-8px] ring-0 bg-gray-200 rounded  text-xs text-[#016961]  px-2">
-                                        Upozela / Thana
+                                        Upazela / Thana
                                     </p>
                                     <input
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
@@ -376,10 +372,3 @@ const ParsonalInfo = () => {
 };
 
 export default ParsonalInfo;
-
-
-
-
-
-
-

@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useForm } from "react-hook-form";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
-import Image from "next/image";
 
 const AddBanner = () => {
+  const { register } = useForm();
   return (
     <div className=" text-[#016961] min-h-screen pb-10">
       <div className="container mx-auto">
@@ -25,6 +26,7 @@ const AddBanner = () => {
               <div className="flex flex-col lg:flex-row items-center gap-3 ">
                 <input
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
+                  {...register("coverTitle")}
                   placeholder="Cover Title"
                   type="text"
                   required
