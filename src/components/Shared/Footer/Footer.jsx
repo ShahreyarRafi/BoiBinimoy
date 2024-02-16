@@ -23,7 +23,7 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="relative mt-20 bg">
+    <div className="relative bg">
       <svg
         viewBox="0 0 224 11"
         fill="currentColor"

@@ -71,38 +71,40 @@ const Cart = () => {
     };
 
     return (
-        <div className='max-w-5xl mx-auto py-10'>
-            <div className='grid grid-cols-2 gap-5'>
-                {
-                    cart?.books?.map(book => <div key={book?._id}>
-                        <div className='flex gap-5 border-2 border-gray-600 rounded-lg p-5'>
-                            <Image
-                                src={book?.cover_image}
-                                width={500}
-                                height={500}
-                                alt="book"
-                                priority
-                                style={{ width: "150px", height: "200px" }}
-                            />
-                            <div>
-                                <h2>Book Name: {book?.title}</h2>
-                                <h2>Book Writer: {book?.writer}</h2>
-                                <h2>Book category: {book?.category}</h2>
-                                <h2>Book Price: {book?.price} BDT</h2>
-                                <button onClick={() => handleDelete(book?._id)} className="mt-5 button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">Remove</button>
+        <div className=' bg-teal-50  min-h-[100svh]'>
+            <div className='max-w-5xl mx-auto py-10 '>
+                <div className='grid grid-cols-2 gap-5'>
+                    {
+                        cart?.books?.map(book => <div key={book?._id}>
+                            <div className='flex gap-5 border-2 border-gray-600 rounded-lg p-5'>
+                                <Image
+                                    src={book?.cover_image}
+                                    width={500}
+                                    height={500}
+                                    alt="book"
+                                    priority
+                                    style={{ width: "150px", height: "200px" }}
+                                />
+                                <div>
+                                    <h2>Book Name: {book?.title}</h2>
+                                    <h2>Book Writer: {book?.writer}</h2>
+                                    <h2>Book category: {book?.category}</h2>
+                                    <h2>Book Price: {book?.price} BDT</h2>
+                                    <button onClick={() => handleDelete(book?._id)} className="mt-5 button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">Remove</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    )
-                }
-            </div>
-            <div className='mt-5 flex justify-between items-end'>
-                <div>
-                    <h2 className='text-3xl font-semibold'>Total quantity: {cart?.books?.length}</h2>
-                    <h2 className='text-3xl font-semibold mt-3'>Total price: {totalPrice} BDT</h2>
+                        )
+                    }
                 </div>
-                <div>
-                    <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">Checkout</button>
+                <div className='mt-5 flex justify-between items-end'>
+                    <div>
+                        <h2 className='text-3xl font-semibold'>Total quantity: {cart?.books?.length}</h2>
+                        <h2 className='text-3xl font-semibold mt-3'>Total price: {totalPrice} BDT</h2>
+                    </div>
+                    <div>
+                        <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">Checkout</button>
+                    </div>
                 </div>
             </div>
         </div>
