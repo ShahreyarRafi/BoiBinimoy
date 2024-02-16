@@ -1,3 +1,4 @@
+import SectionTitle from "@/components/Shared/SectionTitle/SectionTitle";
 import React from "react";
 
 const AboutBanner = () => {
@@ -19,7 +20,9 @@ const AboutBanner = () => {
       <div className="text-center px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
           <h2 className="mb-6 text-3xl font-bold text-white sm:text-5xl">
-            About Us
+            <SectionTitle heading={"About Page"}>
+              
+            </SectionTitle>
           </h2>
         </div>
       </div>

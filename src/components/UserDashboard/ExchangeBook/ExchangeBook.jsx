@@ -1,17 +1,20 @@
 "use client";
-
-import Swal from "sweetalert2";
-import useSpecificUserBook from "@/Hooks/api/useSpecificUserBook";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
+import useExchangeBooks from "@/Hooks/api/useExchangeBooks";
+import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 import { GrDocumentUpdate } from "react-icons/gr";
 import { MdDeleteOutline } from "react-icons/md";
+import Swal from "sweetalert2";
 
-const MyBooks = () => {
-  const [specificBooks, refetch, isLoading] = useSpecificUserBook();
+const ExchangeBook = () => {
+  const [exchangeBooks, refetch, isLoading] = useExchangeBooks();
+  console.log(exchangeBooks);
   const axiosSecure = useAxiosSecure();
 
-  const handleBookDelete = (id, title) => {
+  // delete operation
+  const handleDeleteExchangeBook = (id, title) => {
     Swal.fire({
       title: `Delete Book`,
       text: `Are you sure you want to delete the book "${title}"?`,
@@ -23,7 +26,7 @@ const MyBooks = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure
-          .delete(`/api/v1/buy-books/${id}`)
+          .delete(`/api/v1/exchange-books/${id}`)
           .then((response) => {
             console.log(response.data);
             if (response.data) {
@@ -47,22 +50,6 @@ const MyBooks = () => {
     });
   };
 
-  if (isLoading) {
-    return (
-      <div>
-        <span className="loading loading-ball loading-lg"></span>
-      </div>
-    );
-  }
-
-  if (specificBooks.length === 0) {
-    return (
-      <div>
-        <h1>No books found.</h1>
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="grid grid-cols-1 gap-5">
@@ -74,29 +61,29 @@ const MyBooks = () => {
                   <h5 className="w-[40px] lg:mr-10"></h5>
                   <h5 className="w-full lg:mr-10">Title</h5>
                   <h5 className="w-full lg:mr-10">Writer</h5>
-                  <h5 className="w-full lg:mr-10">Category</h5>
-                  <h5 className="w-full lg:mr-10">Upload Time</h5>
+                  <h5 className="w-full lg:mr-10">Format</h5>
+                  <h5 className="w-full lg:mr-10">Cover Type</h5>
                   <h5 className="w-full lg:mr-10">Actions</h5>
                 </div>
               </div>
               <div className="flex-1 sm:flex-none grid grid-cols-1 gap-5 lg:gap-0">
-                {specificBooks.map((book) => (
+                {exchangeBooks.map((book) => (
                   <div
                     key={book._id}
                     className="bg-white rounded-3xl lg:rounded-none shadow-sm hover:bg-[#19a49113] lg:shadow-inherit border border-gray-100"
                   >
                     <div className="flex flex-col lg:flex-row items-center justify-start lg:justify-between gap-1  rounded-3xl lg:rounded-none px-6 lg:px-10 py-5 mx-auto duration-300">
-                      <h5 className="w-full lg:mr-10 text-lg font-semibold text-center lg:text-start line-clamp-1 truncate">
+                      <h5 className="w-full lg:mr-10 text-lg font-semibold text-center lg:text-start line-clamp-1 truncate text-wrap">
                         {book.title}
                       </h5>
                       <h5 className="w-full lg:mr-10 text-center lg:text-start">
                         {book.writer}
                       </h5>
                       <h5 className="w-full lg:mr-10 text-center lg:text-start">
-                        {book.category}
+                        {book.format}
                       </h5>
                       <h5 className="w-full lg:mr-10 text-center lg:text-start">
-                        {book.upload_time}
+                        {book.cover_type}
                       </h5>
                       <div className="w-full flex justify-center lg:justify-start gap-3">
                         <Link href={`/updateMyBook/${book._id}`}>
@@ -105,7 +92,9 @@ const MyBooks = () => {
                           </button>
                         </Link>
                         <button
-                          onClick={() => handleBookDelete(book._id, book.title)}
+                          onClick={() =>
+                            handleDeleteExchangeBook(book._id, book.title)
+                          }
                           className="p-1 text-3xl bg-red-200 text-red-700 rounded-md hover:bg-red-300  hover:text-red-800"
                         >
                           <MdDeleteOutline />
@@ -123,4 +112,4 @@ const MyBooks = () => {
   );
 };
 
-export default MyBooks;
+export default ExchangeBook;

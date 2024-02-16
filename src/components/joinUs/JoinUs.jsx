@@ -16,7 +16,8 @@ import SocialLogin from './SocialLogin/SocialLogin';
 
 const JoinUs = () => {
     const { register, handleSubmit, reset } = useForm();
-    const { createUser, signin, googleLogin } = useContext(AuthContext);
+    // const { createUser, signin, googleLogin } = useAuth();
+    const { createUser, signin, googleLogin, updateUserProfiole } = useContext(AuthContext);
     const router = useRouter();
     const axiosPublic = useAxiosPublic();
     const [componentsMounted, setComponentMounted] = useState(false);

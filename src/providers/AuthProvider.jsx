@@ -2,6 +2,7 @@
 
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import { auth } from "@/utils/firebase.config";
+import Cookies from "js-cookie";
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import PropTypes from 'prop-types';
 import { createContext, useEffect, useState } from "react";
@@ -62,6 +63,8 @@ const AuthProvider = ({ children }) => {
 
     //   logOut account 
     const logOut = () => {
+        // Cookies.remove('accessToken')
+        Cookies.remove('token')
         return signOut(auth);
     }
 
@@ -71,26 +74,28 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubcribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
-           
-            const userEmail = { email: user?.email };
-            axiosPublic.post("/jwt", userEmail, {
-                withCredentials: true
-            }).then(res => {
-                console.log("totken data: ", res.data)
-            })
+            
+            if(user?.email){
+                const userEmail = { email: user?.email };
+                axiosPublic.post("/jwt", userEmail, {
+                    withCredentials: true
+                }).then(res => {
+                    console.log("totken data: ", res.data)
+                })
+            }
+          
 
             // console.log("token: ",res.data)
 
         });
         return () => {
             unSubcribe()
-
         }
     }, [axiosPublic]);
 
     // console.log(user);
 
-
+    console.log('current user --> : ', user);
 
     const authentication = {
         googleLogin,
