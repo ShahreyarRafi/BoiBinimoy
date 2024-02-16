@@ -1,10 +1,15 @@
-"use client";
+"use client"
 
 import Link from "next/link";
 import { BsUpload } from "react-icons/bs";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
+
+
 const UpdateBook = () => {
+
+
+ 
 
 
   

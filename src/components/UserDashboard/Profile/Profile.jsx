@@ -128,7 +128,7 @@ const Profile = () => {
                   Full Name
                 </p>
                 <h6 className="text-lg font-bold">
-                  {currentUser.name ? (
+                  {currentUser?.name ? (
                     <>
                       {" "}
                       <span className="text-lg">{currentUser.name}</span>
