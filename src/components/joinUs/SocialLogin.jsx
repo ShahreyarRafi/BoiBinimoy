@@ -44,28 +44,24 @@ const SocialLogin = () => {
   };
 
   return (
-    <div>
-
-
-                               <div className="social-media">
-                            <a href="#" className="social-icon">
-                                <i><FaFacebookF /></i>
-                            </a>
-                            <a href="#" className="social-icon">
-                                <i><FaTwitter /></i>
-                            </a>
-                            <button className="social-icon"
-                                onClick={() => handleSocialLogin(googleLogin)}
-                                >
-                                <FaGoogle />
-                            </button>
-                            <a href="#" className="social-icon">
-                                <i><FaLinkedinIn /></i>
-                            </a>
-                        </div>
-
-  
-    </div>
+<div>
+<div className="social-media">
+    <a href="#" className="social-icon">
+        <i><FaFacebookF /></i>
+    </a>
+    <a href="#" className="social-icon">
+        <i><FaTwitter /></i>
+    </a>
+    <button className="social-icon"
+        onClick={() => handleSocialLogin(googleLogin)}
+        >
+        <FaGoogle />
+    </button>
+    <a href="#" className="social-icon">
+        <i><FaLinkedinIn /></i>
+    </a>
+</div>
+</div>
   );
 };
 
