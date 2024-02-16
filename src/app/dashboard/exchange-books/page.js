@@ -1,12 +1,12 @@
-import ExchangeBook from '@/components/UserDashboard/ExchangeBook/ExchangeBook';
-import React from 'react';
+import ExchangeBook from "@/components/UserDashboard/ExchangeBook/ExchangeBook";
+import React from "react";
 
 const page = () => {
-    return (
-        <div>
-            <ExchangeBook></ExchangeBook>
-        </div>
-    );
+  return (
+    <div>
+      <ExchangeBook />
+    </div>
+  );
 };
 
 export default page;

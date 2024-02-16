@@ -1,13 +1,14 @@
 
 
 "use client";
-
+import { FaFacebookF, FaGoogle, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import { AuthContext } from "@/providers/AuthProvider";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
+import './joinUs.css'
 
 const SocialLogin = () => {
   const { googleLogin } = useContext(AuthContext);
@@ -43,18 +44,27 @@ const SocialLogin = () => {
   };
 
   return (
-    <div className="flex-col flex items-center justify-center px-10">
-      <button
-        onClick={() => handleSocialLogin(googleLogin)}
-        className="border-2 border-black rounded-full py-2 w-full flex items-center justify-center font-bold gap-1"
-      >
-        <span className="text-xl">
-          <FcGoogle />
-        </span>
-        <span className="text-fuchsia-600 font-semibold">
-          Login With Google
-        </span>
-      </button>
+    <div>
+
+
+                               <div className="social-media">
+                            <a href="#" className="social-icon">
+                                <i><FaFacebookF /></i>
+                            </a>
+                            <a href="#" className="social-icon">
+                                <i><FaTwitter /></i>
+                            </a>
+                            <button className="social-icon"
+                                onClick={() => handleSocialLogin(googleLogin)}
+                                >
+                                <FaGoogle />
+                            </button>
+                            <a href="#" className="social-icon">
+                                <i><FaLinkedinIn /></i>
+                            </a>
+                        </div>
+
+  
     </div>
   );
 };
