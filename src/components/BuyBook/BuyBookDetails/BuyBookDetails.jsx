@@ -8,28 +8,65 @@ import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeartCirclePlus } from "react-icons/fa6";
 import ReviewCard from "@/components/Shared/ReviewCard";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Swal from 'sweetalert2';
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 
 const BuyBookDetails = () => {
   const param = useParams();
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+  const [current, setCurrent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [reviews, setReviews] = useState(null);
 
-  const email = user?.email;
-  console.log(email);
 
-  const { data: currentUser = [], isPending: userLoading } = useQuery({
-    queryKey: ['currentUser'],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/api/v1/users/${email}`);
-      return res.data;
-    },
-  });
+  // User data load
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/users/${user?.email}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const result = await response.json();
+        setCurrent(result);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchData();
+  }, [user?.email]);
+
+  // Comment loading
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/reviews/${param.buyId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const result = await response.json();
+        setReviews(result);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [param.buyId]);
+
+
+  // Book details data loading
   const { data: book = [], isLoading } = useQuery({
     queryKey: ["book"],
     queryFn: async () => {
@@ -44,47 +81,74 @@ const BuyBookDetails = () => {
     )
   }
 
-
-
+  // Handle comment form
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const comment = form.comment.value;
 
-    const user_name = currentUser?.name;
-    const user_email = currentUser?.email;
-    const user_image = currentUser?.image;
+    const user_name = current?.name;
+    const user_email = current?.email;
+    const user_image = current?.image;
     const rating = 5;
+    const book_id = book?._id;
 
     const newComment = {
       user_name,
       user_email,
       user_image,
       rating,
-      comment
+      comment,
+      book_id
     }
 
-    const reviews = [...book?.reviews, newComment]
+    axiosSecure
+      .post("/api/v1/reviews", newComment)
+      .then((response) => {
+        console.log("Response:", response.data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your Comment Added.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
 
-    console.log(reviews);
+  // Handle add to cart
+  const handleCart = () => {
 
-    // axiosPublic.patch(`/api/v1/buy-books/${param.buyId}`, { reviews: reviews })
-    //   .then((response) => {
-    //     // Handle the success response
-    //     console.log("Response:", response.data);
-    //     Swal.fire({
-    //       position: "top-end",
-    //       icon: "success",
-    //       title: "Add comment successful.",
-    //       showConfirmButton: false,
-    //       timer: 1500
-    //     });
-    //     document.getElementById('comment').value.reset();
-    //   })
-    //   .catch((error) => {
-    //     // Handle errors
-    //     console.error("Error:", error);
-    //   });
+    const user_name = current?.name;
+    const user_email = current?.email;
+    const book_id = book?._id;
+    const price = book?.price;
+
+    const addCart = {
+      user_name,
+      user_email,
+      book_id,
+      price
+    }
+
+    axiosSecure
+      .post("/api/v1/carts", addCart)
+      .then((response) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Add book in the cart.",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   }
 
   return (
@@ -196,7 +260,7 @@ const BuyBookDetails = () => {
               <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-sm rounded-full ">
                 Buy Now
               </button>
-              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
+              <button onClick={handleCart} className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
                 <FaCartPlus />
               </button>
               <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
@@ -228,8 +292,7 @@ const BuyBookDetails = () => {
 
             {/* all review */}
             <div className="p-2 space-y-4">
-              {
-                book?.reviews.map(commenter => <ReviewCard key={commenter?.user_email} review={commenter}></ReviewCard>)
+              {reviews && reviews?.map(commenter => <ReviewCard key={commenter?.user_email} review={commenter}></ReviewCard>)
               }
             </div>
           </div>

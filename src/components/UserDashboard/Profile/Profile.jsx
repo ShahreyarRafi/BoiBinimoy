@@ -1,6 +1,6 @@
 "use client";
 
-import useOneUser from "@/Hooks/api/useOneUser";
+import useOneUser from "@/Hooks/Users/useOneUser";
 import { AuthContext } from "@/providers/AuthProvider";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +15,7 @@ const Profile = () => {
   const { user } = useContext(AuthContext);
   // console.log(user?.email);
 
-  const [currentUser] = useOneUser();
+  const {currentUser} = useOneUser();
 
   console.log(currentUser);
 
