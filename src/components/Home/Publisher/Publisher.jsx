@@ -4,6 +4,9 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Slider from "react-slick";
 import PublisherCard from "./PublisherCard";
+import PublisherCardSkeleton from "@/components/Skeleton/PublisherCardSkeleton";
+import Link from "next/link";
+import { MdArrowOutward } from "react-icons/md";
 
 export default function Publisher() {
   const axiosPublic = useAxiosPublic();
@@ -53,10 +56,25 @@ export default function Publisher() {
   return (
     <div className="container mx-auto my-10 bg-white p-4">
       <div className="slider-container">
+        <div className="flex justify-between items-center gap-4 mb-8">
+          <h2 className="text-teal-800 text-2xl font-bold">
+            Shop By Publisher
+          </h2>
+          <Link
+            href={"/publisher"}
+            className="w-[125px]  bg-teal-800 hover:bg-teal-600 text-white py-2 rounded-full flex justify-center items-center gap-2"
+          >
+            View All <MdArrowOutward className="text-xl" />
+          </Link>
+        </div>
         <Slider {...settings}>
-          {publishers?.slice(0, 20)?.map((item) => (
-            <PublisherCard key={item._id} item={item} />
-          ))}
+          {isLoading
+            ? Array.from(Array(8).keys()).map((index) => (
+                <PublisherCardSkeleton key={index} />
+              ))
+            : publishers
+                ?.slice(0, 20)
+                ?.map((item) => <PublisherCard key={item._id} item={item} />)}
         </Slider>
       </div>
     </div>
