@@ -11,16 +11,12 @@ const sourceSerif = Source_Serif_4({
   display: "swap",
 });
 
-
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light" className="dark">
       <body className={`${sourceSerif.className} min-h-[100svh]`}>
         <TranstackProvider>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </TranstackProvider>
       </body>
     </html>
