@@ -16,8 +16,6 @@ const AllBlog = () => {
         },
     });
 
-    console.log(blogs);
-
     return (
         <div className="min-h-screen container mx-auto px-3">
             <div className="py-12">
