@@ -7,6 +7,7 @@ import BuyNow from "@/components/Home/BuyNow/BuyNow";
 import Trending from "@/components/Home/Trending/Trending";
 import Stats from "@/components/Home/Stats/Stats";
 import Category from "@/components/Home/Category/Category";
+import Publisher from "@/components/Home/Publisher/Publisher";
 const HomePage = () => {
   return (
     <div className="bg-teal-50">
@@ -21,6 +22,7 @@ const HomePage = () => {
           <Stats />
           <Exchange />
           <Trending />
+          <Publisher />
           <BuyNow />
           <Footer />
         </div>
