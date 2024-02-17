@@ -229,11 +229,6 @@ const Dashboard = ({ children }) => {
               <Link href="/dashboard/notification">
                 <i className="bx bxs-message-dots"></i>
                 <span className="text">Notification</span>
-=======
-            <li
-              className={pathname == "/dashboard/track-order" ? "active" : ""}
-            >
-
               </Link>
             </li>
           </ul>
