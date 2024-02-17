@@ -14,15 +14,14 @@ import useOneUser from "@/Hooks/Users/useOneUser";
 const profilePlaceholder = "/userPicPlaceholder.png";
 
 const Dashboard = ({ children }) => {
-  const {  logOut } = useContext(AuthContext);
-  const { currentUser} = useOneUser()
+  const { logOut } = useContext(AuthContext);
+  const { currentUser } = useOneUser();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNotification = () => {
     setIsOpen(!isOpen);
   };
-
 
   const [componentsMounted, setComponentMounted] = useState(false);
 
@@ -192,7 +191,11 @@ const Dashboard = ({ children }) => {
                 <span className="text"> My Books </span>
               </Link>
             </li>
-            <li className={pathname == "/dashboard/exchange-books" ? "active" : ""}>
+            <li
+              className={
+                pathname == "/dashboard/exchange-books" ? "active" : ""
+              }
+            >
               <Link href="/dashboard/exchange-books">
                 <i className="bx bxs-group"></i>
                 <span className="text">Exchange Books </span>
@@ -226,6 +229,11 @@ const Dashboard = ({ children }) => {
               <Link href="/dashboard/notification">
                 <i className="bx bxs-message-dots"></i>
                 <span className="text">Notification</span>
+=======
+            <li
+              className={pathname == "/dashboard/track-order" ? "active" : ""}
+            >
+
               </Link>
             </li>
           </ul>
