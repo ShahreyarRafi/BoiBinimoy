@@ -6,6 +6,8 @@ import { AuthContext } from "@/providers/AuthProvider";
 import Image from "next/image";
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import { RxCross2 } from "react-icons/rx";
+import { FaPlus, FaMinus } from "react-icons/fa6";
 
 const Cart = () => {
 
@@ -13,6 +15,7 @@ const Cart = () => {
     const [cart, setCart] = useState(null);
     const [books, setBooks] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [counter, setCounter] = useState(1)
     let totalPrice = 0;
     let cartId = null;
 
@@ -70,41 +73,58 @@ const Cart = () => {
         });
     };
 
+    const increaseCounter = () => {
+        setCounter(counter + 1)
+    }
+    const decreaseCounter = () => {
+        setCounter(counter - 1)
+    }
+
     return (
-        <div className=' bg-teal-50  min-h-[100svh]'>
-            <div className='max-w-5xl mx-auto py-10 '>
-                <div className='grid grid-cols-2 gap-5'>
-                    {
-                        cart?.books?.map(book => <div key={book?._id}>
-                            <div className='flex gap-5 border-2 border-gray-600 rounded-lg p-5'>
+        <div className="container duration-300">
+            <div className="w-full rounded-2xl overflow-hidden lg:shadow-lg my-5 duration-300">
+                <div className="bg-[#016961] duration-300 text-white ">
+                    <div className="grid grid-cols-6 items-center justify-between font-semibold border border-gray-100 px-10 py-5">
+                        <h5 className="text-center text-xs md:text-base">Product</h5>
+                        <h5 className="text-center text-xs md:text-base">Product Name</h5>
+                        <h5 className="text-center text-xs md:text-base">Unit Price</h5>
+                        <h5 className="text-center text-xs md:text-base">Quantity</h5>
+                        <h5 className="text-center text-xs md:text-base">Total</h5>
+                        <h5 className="text-center text-xs md:text-base">Close</h5>
+                    </div>
+                </div>
+                <div className="flex-1 sm:flex-none grid grid-cols-1 gap-5 lg:gap-0">
+                    {cart?.books?.map((book) => (
+                        <div
+                            key={book?._id}
+                            className="bg-white rounded-3xl lg:rounded-none shadow-sm hover:bg-[#19a49113] lg:shadow-inherit border border-gray-100"
+                        >
+                            <div className="grid grid-cols-6 items-center text-center font-semibold border border-gray-100 p-5">
                                 <Image
                                     src={book?.cover_image}
-                                    width={500}
-                                    height={500}
+                                    width={150}
+                                    height={200}
                                     alt="book"
                                     priority
-                                    style={{ width: "150px", height: "200px" }}
+                                    style={{ width: "50%", height: "100%" }}
+                                    className='mx-auto'
                                 />
+                                <h5 >{book?.title}</h5>
+                                <h5>{book?.price} BDT</h5>
+                                <h5>
+                                    <div className='flex items-center gap-2'>
+                                        <button onClick={decreaseCounter} className="bg-base-300 p-3"><FaMinus className='mx-auto'></FaMinus></button>
+                                        <h3>{counter}</h3>
+                                        <button onClick={increaseCounter} className="bg-base-300 p-3"><FaPlus className='mx-auto'></FaPlus></button>
+                                    </div>
+                                </h5>
+                                <h5>Total BDT</h5>
                                 <div>
-                                    <h2>Book Name: {book?.title}</h2>
-                                    <h2>Book Writer: {book?.writer}</h2>
-                                    <h2>Book category: {book?.category}</h2>
-                                    <h2>Book Price: {book?.price} BDT</h2>
-                                    <button onClick={() => handleDelete(book?._id)} className="mt-5 button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">Remove</button>
+                                    <button onClick={() => handleDelete(book?._id)} className="button-color rounded-full text-white p-3"><RxCross2 className='mx-auto'></RxCross2></button>
                                 </div>
                             </div>
                         </div>
-                        )
-                    }
-                </div>
-                <div className='mt-5 flex justify-between items-end'>
-                    <div>
-                        <h2 className='text-3xl font-semibold'>Total quantity: {cart?.books?.length}</h2>
-                        <h2 className='text-3xl font-semibold mt-3'>Total price: {totalPrice} BDT</h2>
-                    </div>
-                    <div>
-                        <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">Checkout</button>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
