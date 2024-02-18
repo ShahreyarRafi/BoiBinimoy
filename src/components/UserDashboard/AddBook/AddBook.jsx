@@ -40,7 +40,6 @@ const AddBook = () => {
     setPreview(objectUrl);
   };
 
-  console.log("preview:", preview)
 
   
   const onSubmit = async (data) => {
@@ -88,7 +87,7 @@ const AddBook = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-scree">
       <div className="container mx-auto text-[#016961]">
         <div className="border-2 border-[#016961] rounded-lg px-3">
           <h1 className="text-2xl font-bold py-5 md:py-3 text-center md:text-start">

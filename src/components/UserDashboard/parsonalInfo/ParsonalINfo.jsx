@@ -11,7 +11,7 @@ import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
 import Swal from 'sweetalert2';
 import useOneUser from '@/Hooks/Users/useOneUser';
 import { useRouter } from 'next/navigation';
-// import palesholderImage from "../../../../public/placeholder.png"
+import palesholderImage from "../../../../public/placeholder.png"
 import { IoIosCamera } from "react-icons/io";
 import useImageURL from '@/Hooks/ImageURL/useImageURL';
 import { useForm } from 'react-hook-form';
@@ -137,21 +137,22 @@ const ParsonalInfo = () => {
 
 
                             </div>
-                            {
-                                !selectedFile ? <Image
-                                    src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-                                    className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                                    alt=""
-                                    width={500}
-                                    height={500}
-                                /> : <Image
-                                    src={preview}
-                                    className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                                    alt=""
-                                    width={500}
-                                    height={500}
-                                />
-                            }
+                          {
+                            !selectedFile ?   <Image
+                            src={palesholderImage}
+                            className="object-cover w-40 h-40 mb-2 rounded-full shadow"
+                            alt=""
+                            width={500}
+                            height={500}
+                        /> : <Image
+                        src={preview}
+                        className="object-cover w-40 h-40 mb-2 rounded-full shadow"
+                        alt=""
+                        width={500}
+                        height={500}
+                    /> 
+                          }
+
 
                             {/* profile information */}
                             <div className="text-center md:text-start">

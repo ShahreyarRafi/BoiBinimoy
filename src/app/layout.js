@@ -1,11 +1,12 @@
 "use client";
 import AuthProvider from "@/providers/AuthProvider";
-import { Source_Serif_4 } from "next/font/google";
+import { Source_Serif_4, Merriweather, Crimson_Text, EB_Garamond, Libre_Baskerville, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import TranstackProvider from "@/providers/TranstackProvider";
 
+// Configure Source Serif 4 font
 const sourceSerif = Source_Serif_4({
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400",  "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",

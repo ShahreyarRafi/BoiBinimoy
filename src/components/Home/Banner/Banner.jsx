@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import './BannerStyles.css';
 import Image from 'next/image';
+import { Source_Serif_4, Merriweather, Crimson_Text, EB_Garamond, Libre_Baskerville, Playfair_Display } from "next/font/google";
+
 
 const data = [
     {
@@ -92,6 +94,12 @@ const data = [
 ]
 
 
+const sourceSerif = Libre_Baskerville({
+    weight: ["400",  "700"],
+    style: ["normal", "italic"],
+    subsets: ["latin"],
+    display: "swap",
+  });
 
 export default function BannerNew() {
     const [componentsMounted, setComponentMounted] = useState(false);
@@ -171,7 +179,7 @@ export default function BannerNew() {
                             <Image src={item.cover_image} height={4100} width={2310} alt="alt" />
                             <div className="content">
                                 <div className="author">{item.author}</div>
-                                <div className="title font-outline">{item.title}</div>
+                                <div className={`${sourceSerif.className} title font-outline`}>{item.title}</div>
                                 <div className="topic">{item.topic}</div>
                                 <div className="des">{item.description}</div>
                                 <div className="buttons">

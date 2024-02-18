@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
+import React, { useState } from "react";
 import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import ExchangeAllCards from "../../Shared/ExchnageBook/ExchangeAllCards";
 import useExchangeBooks from "@/Hooks/exchangeBooks/useExchangeBooks";
-import { useState } from "react";
 
 const ExchangeAllBooks = () => {
   const [currentPage, setCurrentPage] = useState(1);
