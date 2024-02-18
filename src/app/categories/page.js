@@ -1,14 +1,14 @@
 import Categories from "@/components/Categories/Categories";
-import ContactBanner from "@/components/ContactUs/ContactBanner/ContactBanner";
+import CategoriesBanner from "@/components/Categories/CategoriesBanner";
 import Footer from "@/components/Shared/Footer/Footer";
 import Navbar from "@/components/Shared/Navbar/Navbar";
 import React from "react";
 
-export default function CategoryPage() {
+export default function CategoriesPage() {
   return (
-    <div className="bg-teal-50">
+    <div>
       <Navbar />
-      <ContactBanner />
+      <CategoriesBanner />
       <Categories />
       <Footer />
     </div>

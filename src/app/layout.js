@@ -17,9 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme="light" className="dark">
       <body className={`${sourceSerif.className} min-h-[100svh]`}>
         <TranstackProvider>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </TranstackProvider>
       </body>
     </html>
