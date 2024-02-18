@@ -31,7 +31,7 @@ export default function WritersComponent() {
       <div className="flex justify-center items-center mt-6">
         <input
           type="text"
-          placeholder="Search by Publisher"
+          placeholder="Search by Writer"
           value={searchQuery}
           onChange={handleSearchChange}
           className="py-3 px-6 border w-[350px] max-w-[400px] rounded-full shadow-md"
