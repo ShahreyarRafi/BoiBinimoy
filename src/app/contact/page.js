@@ -1,5 +1,6 @@
+"use client"
 
-
+import CategoriesBanner from "@/components/Categories/CategoriesBanner/CategoriesBanner";
 import Contact from "@/components/ContactUs/Contact/Contact";
 import ContactBanner from "@/components/ContactUs/ContactBanner/ContactBanner";
 import Footer from "@/components/Shared/Footer/Footer";
@@ -10,7 +11,7 @@ const page = () => {
   return (
     <div className="bg-teal-50">
       <Navbar />
-      <ContactBanner />
+      <ContactBanner></ContactBanner>
       <Contact />
       <Footer />
     </div>

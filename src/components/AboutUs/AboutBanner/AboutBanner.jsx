@@ -21,7 +21,7 @@ const AboutBanner = () => {
         <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
           <h2 className="mb-6 text-3xl font-bold text-white sm:text-5xl">
             <SectionTitle heading={"About Page"}>
-              
+
             </SectionTitle>
           </h2>
         </div>

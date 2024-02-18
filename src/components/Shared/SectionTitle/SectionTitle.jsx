@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SectionTitle = ({heading}) => {
+const SectionTitle = ({ heading }) => {
     return (
         <div>
             <h2> {heading} </h2>
