@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const useAdmin = () => {
   const { user, loading } = useAuth();
+  
   const { data: isAdmin, isPending: isAdminLoading } = useQuery({
     queryKey: [user?.email, "isAdmin"],
     enabled: !loading,

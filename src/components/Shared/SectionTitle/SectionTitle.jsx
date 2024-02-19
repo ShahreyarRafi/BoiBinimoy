@@ -22,6 +22,8 @@ const SectionTitle = ({ heading }) => {
                 </div>
             </div>
         </div>
+
+
     );
 };
 

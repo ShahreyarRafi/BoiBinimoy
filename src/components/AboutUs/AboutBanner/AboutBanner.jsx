@@ -1,13 +1,11 @@
 import SectionTitle from "@/components/Shared/SectionTitle/SectionTitle";
 import React from "react";
 
-const ContactBanner = () => {
+const AboutBanner = () => {
   return (
-    <SectionTitle
-      heading={"Contact Page"}>
-
+    <SectionTitle heading={"About Page"}>
     </SectionTitle>
   );
 };
 
-export default ContactBanner;
+export default AboutBanner;

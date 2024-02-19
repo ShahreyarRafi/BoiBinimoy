@@ -10,7 +10,6 @@ const useOneUser = () => {
     const axiosPublic = useAxiosPublic()
     const { user } = useContext(AuthContext)
    
-
     const { data: currentUser = [] , isPending: isLoading} = useQuery({
         queryKey: ["currentUser", user?.email],
         queryFn: async () => {

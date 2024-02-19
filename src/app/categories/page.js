@@ -6,9 +6,9 @@ import Navbar from "@/components/Shared/Navbar/Navbar";
 import SectionTitle from "@/components/Shared/SectionTitle/SectionTitle";
 import React from "react";
 
-export default function CategoryPage() {
+export default function CategoriesPage() {
   return (
-    <div className="bg-teal-50">
+    <div>
       <Navbar />
       <SectionTitle heading={"All Categories"}></SectionTitle>
       <Categories />

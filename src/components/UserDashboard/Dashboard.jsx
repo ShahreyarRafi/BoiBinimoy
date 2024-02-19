@@ -231,10 +231,6 @@ const Dashboard = ({ children }) => {
                 <span className="text">Notification</span>
               </Link>
             </li>
-            <li
-              className={pathname == "/dashboard/track-order" ? "active" : ""}
-            >
-            </li>
           </ul>
         </>
 

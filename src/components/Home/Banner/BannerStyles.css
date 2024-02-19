@@ -64,9 +64,10 @@ header a {
 }
 
 .carousel .list .item .author {
-  font-size: 0.8em;
-  font-weight: bold;
+  font-size: 0.85em;
+  font-weight: 600;
   letter-spacing: 10px;
+  margin-bottom: 10px;
 }
 
 
@@ -93,7 +94,7 @@ header a {
 }
 
 .carousel .list .item .topic {
-  color: #FF6100;
+  color: #3d9776;
 }
 
 .font-outline {
@@ -112,7 +113,7 @@ header a {
 
 .carousel .list .item .buttons button {
   border: none;
-  background-color: #FF6100;
+  background-color: #3d9776;
   letter-spacing: 3px;
   font-family: Poppins;
   font-weight: 500;
@@ -121,7 +122,7 @@ header a {
 
 .carousel .list .item .buttons button:nth-child(2) {
   background-color: transparent;
-  border: 1px solid #FF6100;
+  border: 1px solid #3d9776;
   color: #eee;
 }
 
@@ -134,7 +135,6 @@ header a {
   z-index: 100;
   display: flex;
   gap: 20px;
-
 }
 
 .thumbnail .item {
@@ -160,7 +160,7 @@ header a {
 }
 
 .thumbnail .item .content .title {
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .thumbnail .item .content .description {
@@ -293,7 +293,7 @@ header a {
   z-index: 1000;
   width: 0%;
   height: 3px;
-  background-color: #FF6100;
+  background-color: #3d9776;
   left: 0;
   top: 0;
 }
