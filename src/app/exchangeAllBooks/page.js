@@ -1,13 +1,15 @@
+"use client"
+
 import ExchangeAllBooks from '@/components/Exchnage/ExchangeAllBooks/ExchangeAllBooks';
-import ExchangeAllBooksBanner from '@/components/Exchnage/ExchangeAllBooksBanner/ExchangeAllBooksBanner';
 import Footer from '@/components/Shared/Footer/Footer';
 import Navbar from '@/components/Shared/Navbar/Navbar';
+import SectionTitle from '@/components/Shared/SectionTitle/SectionTitle';
 
 const page = () => {
     return (
         <div>
             <Navbar />
-            <ExchangeAllBooksBanner />
+            <SectionTitle heading={"Exchange Books"}></SectionTitle>
             <ExchangeAllBooks />
             <Footer />
         </div>
