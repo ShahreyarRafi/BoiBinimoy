@@ -3,10 +3,9 @@ import Navend from "./Navend/Navend";
 import Navlinks from "./Navlinks/Navlinks";
 import Search from "./Search/Search";
 import { CiMenuKebab } from "react-icons/ci";
-import Link from 'next/link'
+import Link from "next/link";
 
 const Navbar = () => {
-
   // bg-[#016961]
 
   return (
@@ -16,7 +15,7 @@ const Navbar = () => {
         {/* upper side nav */}
         <div className="flex justify-between items-center py-2 px-5">
           {/* logo */}
-          <Link href='/' className="text-2xl">
+          <Link href="/" className="text-2xl">
             <Logo />
           </Link>
 
@@ -48,12 +47,12 @@ const Navbar = () => {
           >
             <CiMenuKebab />
           </div>
-          {/* <ul
+          <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-black"
           >
             <Navlinks />
-          </ul> */}
+          </ul>
         </div>
 
         <div className="text-xl">

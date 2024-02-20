@@ -1,18 +1,38 @@
 "use client"
 
+import useGetOneBuyBook from "@/Hooks/buyBooks/useGetOneBuyBook";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { BsUpload } from "react-icons/bs";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import PageLoading from "../Shared/loadingPageBook/PageLoading";
 
 
 
 const UpdateBook = () => {
 
 
+  const { update_book_id } = useParams()
+
+
+  const { getOneBuyBook, isLoading } = useGetOneBuyBook(update_book_id)
+
  
 
+  console.log(getOneBuyBook);
 
-  
+  if (isLoading) {
+    return <PageLoading></PageLoading>
+  }
+
+const  { description} = getOneBuyBook
+
+
+
+
+
+  console.log(update_book_id);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -24,6 +44,8 @@ const UpdateBook = () => {
     };
     console.log(newBook);
   };
+
+
 
   return (
     <div className="bg-teal-50 text-gray-500 min-h-screen">
@@ -370,6 +392,7 @@ const UpdateBook = () => {
                 className="w-full p-2 text-xs bg-transparent border-2 border-gray-300 rounded-lg focus:outline-none"
                 name="description"
                 id=""
+                defaultValue={description}
                 placeholder="Book Description"
                 cols="30"
                 rows="10"

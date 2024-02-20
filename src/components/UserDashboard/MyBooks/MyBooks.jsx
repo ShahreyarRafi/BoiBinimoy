@@ -10,10 +10,9 @@ import { MdDeleteOutline } from "react-icons/md";
 
 
 const MyBooks = () => {
+
     const [specificBooks, refetch, isLoading] = useSpecificUserBook();
     const axiosSecure = useAxiosSecure();
-
-
 
 
     const handleBookDelete = (id, title) => {
@@ -105,17 +104,18 @@ const MyBooks = () => {
                                             </h5>
                                             <div className="w-full flex justify-center lg:justify-start gap-3">
 
-                                                <Link href={{ pathname: `/updateBook/${book._id}`, query: { title: book.title, writer: book.writer, category: book.category } }}>
+                                                {/* <Link href={{ pathname: `/updateBook/${book._id}`, query: { title: book.title, writer: book.writer, category: book.category } }}>
+                                                    <button className="p-2 text-2xl bg-green-200 text-green-700 rounded-md hover:bg-green-300 hover:text-green-800">
+                                                        <GrDocumentUpdate />
+                                                    </button>
+                                                </Link> */}
+
+                                                <Link href={`/dashboard/updateBook/${book._id}`}>
                                                     <button className="p-2 text-2xl bg-green-200 text-green-700 rounded-md hover:bg-green-300 hover:text-green-800">
                                                         <GrDocumentUpdate />
                                                     </button>
                                                 </Link>
 
-                                                {/* <Link href={`/updateBook/${book._id}`}>
-                          <button className="p-2 text-2xl bg-green-200 text-green-700 rounded-md hover:bg-green-300 hover:text-green-800">
-                            <GrDocumentUpdate />
-                          </button>
-                        </Link> */}
                                                 <button
                                                     onClick={() => handleBookDelete(book._id, book.title)}
                                                     className="p-2 text-2xl bg-red-200 text-red-700 rounded-md hover:bg-red-300  hover:text-red-800"
