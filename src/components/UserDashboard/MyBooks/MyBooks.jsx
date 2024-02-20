@@ -53,8 +53,8 @@ const MyBooks = () => {
 
     if (isLoading) {
         return (
-            <div>
-                <span className="loading loading-ball loading-lg"></span>
+            <div className="text-center items-center justify-center flex  ">
+                <span className="loading loading-ball loading-lg "></span>
             </div>
         );
     }
@@ -62,7 +62,7 @@ const MyBooks = () => {
     if (specificBooks.length === 0) {
         return (
             <div>
-                <h1>No books found.</h1>
+                <h1 className="text-center justify-center font-semibold md:text-3xl  lg:text-4xl  "> Books  Not Found....</h1>
             </div>
         );
     }

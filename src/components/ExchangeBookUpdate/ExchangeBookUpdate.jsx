@@ -11,17 +11,17 @@ import Swal from "sweetalert2";
 
 
 
-const UpdateBook = () => {
+const ExchangeBookUpdate = () => {
 
   const axiosSecure = useAxiosSecure();
   const router = useRouter();
 
-  const { update_book_id } = useParams()
+  const {exchange_update_book_id } = useParams()
 
 
 
-  const { getOneBuyBook, isLoading } = useGetOneBuyBook(update_book_id)
-  console.log(getOneBuyBook);
+  const { getOneExchangeBook, isLoading } = useGetOneBuyBook(exchange_update_book_id)
+  console.log(getOneExchangeBook);
 
  
 
@@ -494,4 +494,4 @@ const UpdateBook = () => {
   );
 };
 
-export default UpdateBook;
+export default ExchangeBookUpdate;
