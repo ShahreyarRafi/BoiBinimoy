@@ -1,6 +1,5 @@
 "use client"
 
-import useGetOneBuyBook from "@/Hooks/buyBooks/useGetOneBuyBook";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { BsUpload } from "react-icons/bs";
@@ -8,6 +7,7 @@ import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import PageLoading from "../Shared/loadingPageBook/PageLoading";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import Swal from "sweetalert2";
+import useGetOneExchangeBook from "@/Hooks/exchangeBooks/useGetOneExchangeBook";
 
 
 
@@ -19,8 +19,7 @@ const ExchangeBookUpdate = () => {
   const {exchange_update_book_id } = useParams()
 
 
-
-  const { getOneExchangeBook, isLoading } = useGetOneBuyBook(exchange_update_book_id)
+  const { getOneExchangeBook, isLoading } = useGetOneExchangeBook(exchange_update_book_id)
   console.log(getOneExchangeBook);
 
  
@@ -34,8 +33,8 @@ const ExchangeBookUpdate = () => {
     edition, bookType,
     bookCondition,
     pages, price, whatYouWant, owner,
-    publisher, writer, bookCategory, language, publication_year, } = getOneBuyBook || {};
-  console.log(update_book_id);
+    publisher, writer, bookCategory, language, publication_year, } = getOneExchangeBook || {};
+  console.log(exchange_update_book_id);
 
 
   const handleSubmit = (e) => {
@@ -57,7 +56,7 @@ const ExchangeBookUpdate = () => {
     const description = form.description.value;
 
     const currentDate = new Date().toISOString();
-    const updateBuyBook = {
+    const updateExchangeBook = {
       title,
       uploadTime: currentDate,
       description,
@@ -67,18 +66,17 @@ const ExchangeBookUpdate = () => {
       publisher, writer, bookCategory, language, publication_year,
 
     };
-    console.log(updateBuyBook);
+    console.log(updateExchangeBook);
 
 
 
-    axiosSecure.patch(`/api/v1/buy-books/${_id}`, updateBuyBook)
+    axiosSecure.put(`/api/v1/exchange-books/${_id}`, updateExchangeBook)
       .then(res => {
         console.log("update data ", res.data);
-        // Assuming your API returns the updated user document
         const updatedBook = res.data;
         if (updatedBook) {
           Swal.fire(' Book Update successfully');
-          router.push('/dashboard/all-books')
+          router.push('/dashboard/exchange-books')
         } else {
           console.error("Update failed: Book not found or update unsuccessful");
           Swal.fire('Update failed. Please try again.');
