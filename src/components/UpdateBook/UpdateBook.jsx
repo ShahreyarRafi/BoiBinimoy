@@ -2,47 +2,89 @@
 
 import useGetOneBuyBook from "@/Hooks/buyBooks/useGetOneBuyBook";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { BsUpload } from "react-icons/bs";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import PageLoading from "../Shared/loadingPageBook/PageLoading";
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 
 const UpdateBook = () => {
 
+  const axiosSecure = useAxiosSecure();
+  const router = useRouter();
 
   const { update_book_id } = useParams()
 
-
   const { getOneBuyBook, isLoading } = useGetOneBuyBook(update_book_id)
-
- 
-
   console.log(getOneBuyBook);
 
   if (isLoading) {
     return <PageLoading></PageLoading>
   }
 
-const  { description} = getOneBuyBook
-
-
-
-
-
+  const { _id , description, title,
+    edition, bookType,
+    bookCondition,
+    pages, price, whatYouWant, owner,
+    publisher, writer, bookCategory, language, publication_year, } = getOneBuyBook || {};
   console.log(update_book_id);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const form = e.target;
     const title = form.title.value;
+    const writer = form.writer.value;
+    const publisher = form.publisher.value;
+    const owner = form.owner.value;
+    const whatYouWant = form.whatYouWant.value;
+    const publication_year = form.publication_year.value;
+    const language = form.language.value;
+    const bookCategory = form.bookCategory.value;
+    const edition = form.edition.value;
+    const pages = form.pages.value;
+    const bookCondition = form.bookCondition.value;
+    const price = form.price.value;
+    const description = form.description.value;
+
     const currentDate = new Date().toISOString();
-    const newBook = {
+    const updateBuyBook = {
       title,
       uploadTime: currentDate,
+      description,
+      edition, bookType,
+      bookCondition,
+      pages, price, whatYouWant, owner,
+      publisher, writer, bookCategory, language, publication_year, 
+
     };
-    console.log(newBook);
+    console.log(updateBuyBook);
+
+
+
+    axiosSecure.patch(`/api/v1/buy-books/${_id}`, updateBuyBook)
+    .then(res => {
+        console.log("update data ", res.data);
+        // Assuming your API returns the updated user document
+        const updatedBook = res.data;
+        if (updatedBook) {
+            Swal.fire(' Book Update successfully');
+            router.push('/dashboard/all-books')
+        } else {
+            console.error("Update failed: Book not found or update unsuccessful");
+            Swal.fire('Update failed. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error("Error occurred during update:", error);
+        Swal.fire('Update failed. Please try again.');
+    });
+
+
   };
 
 
@@ -66,6 +108,7 @@ const  { description} = getOneBuyBook
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                   name="bookType"
+                  defaultValue={bookType}
                   id=""
                 >
                   <option selected value="">
@@ -81,6 +124,7 @@ const  { description} = getOneBuyBook
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                   name="bookCondition"
+                  defaultValue={bookCondition}
                   id=""
                 >
                   <option selected value="">
@@ -97,6 +141,7 @@ const  { description} = getOneBuyBook
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                   name="whatYouWant"
+                  defaultValue={whatYouWant}
                   id=""
                 >
                   <option selected value="">
@@ -111,6 +156,7 @@ const  { description} = getOneBuyBook
                 <select
                   className="h-10 w-full text-xs px-2 bg-transparent border rounded-lg focus:outline-none"
                   name="bookCategory"
+                  defaultValue={bookCategory}
                   id=""
                 >
                   <option selected value="">
@@ -124,7 +170,7 @@ const  { description} = getOneBuyBook
                   <option value="travel">Travel</option>
                   <option value="food&cooking">Food & Cooking</option>
                   <option value="health&wellness">Health & Wellness</option>
-                  <option value="business&economics">
+                  <option value="business&economics" >
                     Business & Economics
                   </option>
                   <option value="humor">Humor</option>
@@ -154,6 +200,7 @@ const  { description} = getOneBuyBook
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="title"
                     placeholder="Book Title"
+                    defaultValue={title}
                     type="text"
                     required
                   />
@@ -163,6 +210,7 @@ const  { description} = getOneBuyBook
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="writer"
                     placeholder="Book Auhtor"
+                    defaultValue={writer}
                     type="text"
                     required
                   />
@@ -171,6 +219,7 @@ const  { description} = getOneBuyBook
                   <select
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="language"
+                    defaultValue={language}
                   >
                     <option selected value="">
                       Book Language
@@ -185,6 +234,7 @@ const  { description} = getOneBuyBook
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="pages"
                     placeholder="Book Page Count"
+                    defaultValue={pages}
                     type="number"
                     required
                   />
@@ -193,6 +243,7 @@ const  { description} = getOneBuyBook
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="publisher"
+                    defaultValue={publisher}
                     placeholder="Book Publisher"
                     type="text"
                     required
@@ -202,6 +253,7 @@ const  { description} = getOneBuyBook
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="publication_year"
+                    defaultValue={publication_year}
                     placeholder="Book Publication Year"
                     type="number"
                     required
@@ -211,6 +263,7 @@ const  { description} = getOneBuyBook
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="edition"
+                    defaultValue={edition}
                     placeholder="Book Edition"
                     type="text"
                     required
@@ -220,6 +273,7 @@ const  { description} = getOneBuyBook
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="price"
+                    defaultValue={price}
                     placeholder="Book Price"
                     type="number"
                     required
@@ -247,6 +301,7 @@ const  { description} = getOneBuyBook
                   <input
                     className="h-5 w-full"
                     type="file"
+                    // defaultValue={cover_image}
                     id="imageFile"
                     hidden
                   />
@@ -268,6 +323,7 @@ const  { description} = getOneBuyBook
                     <input
                       className="h-5 w-full"
                       type="file"
+                      // defaultValue={cover_image}
                       id="imageFile"
                       hidden
                     />
@@ -286,6 +342,7 @@ const  { description} = getOneBuyBook
                     <input
                       className="h-5 w-full"
                       type="file"
+                      // defaultValue={cover_image}
                       id="imageFile"
                       hidden
                     />
@@ -304,6 +361,7 @@ const  { description} = getOneBuyBook
                     <input
                       className="h-5 w-full"
                       type="file"
+                      // defaultValue={cover_image}
                       id="imageFile"
                       hidden
                     />
@@ -324,6 +382,7 @@ const  { description} = getOneBuyBook
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="owner"
+                    defaultValue={owner}
                     placeholder="Book Owner Name"
                     type="text"
                     required
@@ -333,6 +392,7 @@ const  { description} = getOneBuyBook
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="location"
+                    // defaultValue={location}
                     placeholder="Book Owner location"
                     type="text"
                     required
@@ -351,6 +411,7 @@ const  { description} = getOneBuyBook
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="stock_limit"
+                    // defaultValue={stock_limit}
                     placeholder="Book Stock"
                     type="number"
                     required
@@ -371,6 +432,7 @@ const  { description} = getOneBuyBook
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="tags"
+                    // defaultValue={}
                     placeholder="Book Tags"
                     type="text"
                   />
@@ -379,6 +441,8 @@ const  { description} = getOneBuyBook
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="awards"
+                    // defaultValue={}  
+
                     placeholder="Book Awards"
                     type="text"
                   />

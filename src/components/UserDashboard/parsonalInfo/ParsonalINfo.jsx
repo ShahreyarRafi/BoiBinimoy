@@ -137,24 +137,6 @@ const ParsonalInfo = () => {
 
 
                             </div>
-<<<<<<< HEAD
-                          {
-                            !selectedFile ?   <Image
-                            src={palesholderImage}
-                            className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                            alt=""
-                            width={500}
-                            height={500}
-                        /> : <Image
-                        src={preview}
-                        className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                        alt=""
-                        width={500}
-                        height={500}
-                    /> 
-                          }
-
-=======
                             {
                                 !selectedFile ? <Image
                                     src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
@@ -170,7 +152,6 @@ const ParsonalInfo = () => {
                                     height={500}
                                 />
                             }
->>>>>>> 140dd8fcd979e6eb2ffaf2a24ed028716bf6baa9
 
                             {/* profile information */}
                             <div className="text-center md:text-start">
