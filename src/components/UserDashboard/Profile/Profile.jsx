@@ -63,9 +63,9 @@ const Profile = () => {
               {/* user profile */}
 
               <div className="mb-4">
-                {user?.photoURL ? (
+                {currentUser?.image ? (
                   <Image
-                    src={user?.photoURL}
+                    
                     priority width={100} height={100}
                     alt="Profile"
                     className="h-40 w-40 rounded-full mx-auto"

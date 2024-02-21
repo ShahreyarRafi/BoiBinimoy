@@ -22,7 +22,7 @@ const ParsonalInfo = () => {
     const [preview, setPreview] = useState();
     const { imageUrl, uploadImage } = useImageURL(selectedFile);
     const axiosSecure = useAxiosSecure();
-    const {currentUser} = useOneUser()
+    const { currentUser } = useOneUser()
     const router = useRouter();
 
 
@@ -139,7 +139,7 @@ const ParsonalInfo = () => {
                             </div>
                             {
                                 !selectedFile ? <Image
-                                    src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+                                    src={currentUser?.image}
                                     className="object-cover w-40 h-40 mb-2 rounded-full shadow"
                                     alt=""
                                     width={500}
