@@ -10,7 +10,7 @@ import { MdDeleteOutline } from "react-icons/md";
 // Convert UTC time string to local time string
 function convertToLocalTime(utcTimeString) {
     const utcTime = new Date(utcTimeString);
-    const localTime = new Date(utcTime.getTime() - (utcTime.getTimezoneOffset() * 60000));
+    const localTime = new Date(utcTime.getTime() - (utcTime.getTimezoneOffset() * 60));
     return localTime.toLocaleString(); // Format according to user's locale
 }
 
