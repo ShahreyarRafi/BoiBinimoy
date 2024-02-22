@@ -1,48 +1,80 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
-import axios from "axios";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
+import useImageURL from "@/Hooks/ImageURL/useImageURL";
+import Image from "next/image";
 
 const AddBanner = () => {
   const { register, handleSubmit } = useForm();
   const axiosSecure = useAxiosSecure();
+  const [selectedFile, setSelectedFile] = useState();
+  const [preview1, setPreview1] = useState();
+  const [selectedFile2, setSelectedFile2] = useState();
+  const [preview2, setPreview2] = useState();
+  const { uploadImage } = useImageURL(selectedFile);
+  const { uploadImage : thumbnel_image } = useImageURL(selectedFile2);
 
+  // create a preview1 as a side effect, whenever selected file is changed
+  const onSelectFile = (e) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) {
+      setSelectedFile(undefined);
+      setPreview1(undefined);
+      return;
+    }
+    const selectedImage = files[0];
+    setSelectedFile(selectedImage);
+    const objectUrl = URL.createObjectURL(selectedImage);
+    setPreview1(objectUrl);
+  };
+  // create a preview1 as a side effect, whenever selected file is changed
+  const onSelectFile2 = (e) => {
+    const files = e.target.files;
+    console.log('files', files);
+    if (!files || files.length === 0) {
+      setSelectedFile2(undefined);
+      setPreview2(undefined);
+      return;
+    }
+    const selectedImage = files[0];
+    setSelectedFile2(selectedImage);
+    const objectUrl = URL.createObjectURL(selectedImage);
+    setPreview2(objectUrl);
+  };
 
+  // post banner data
   const onSubmit = async (data) => {
-
     console.log(data);
 
-
     axiosSecure
-    .post("/api/v1/banner", data)
-    .then((response) => {
-      // Handle the success response
-      console.log("Response:", response.data);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Your banner has been published.",
-        showConfirmButton: false,
-        timer: 1500,
+      .post("/api/v1/banner", data)
+      .then((response) => {
+        // Handle the success response
+        console.log("Response:", response.data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your banner has been published.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error("Error:", error);
       });
-    })
-    .catch((error) => {
-      // Handle errors
-      console.error("Error:", error);
-    });
 
     // try {
     //   const response = await axios.post("/api/v1/banner", data);
-    //   console.log("Response:", response.data); 
+    //   console.log("Response:", response.data);
     // } catch (error) {
-    //   console.error("Error:", error); 
+    //   console.error("Error:", error);
     // }
-
   };
 
   return (
@@ -61,21 +93,21 @@ const AddBanner = () => {
               <div className="flex flex-col lg:flex-row items-center gap-3 ">
                 <input
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
-                  {...register("coverTitle")}
+                  {...register("title")}
                   placeholder="Cover Title"
                   type="text"
                   required
                 />
                 <input
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
-                  {...register("coverBookAuthor")}
+                  {...register("author")}
                   placeholder="Cover Book Author"
                   type="text"
                   required
                 />
                 <input
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
-                  {...register("coverTopic")}
+                  {...register("topic")}
                   placeholder="Cover Topic"
                   type="text"
                   required
@@ -103,7 +135,7 @@ const AddBanner = () => {
                 <div className="w-full">
                   <textarea
                     className="w-full p-3 text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    {...register("bannerDescription")}
+                    {...register("description")}
                     placeholder="Banner Cover Description"
                     cols="30"
                     rows="10"
@@ -111,16 +143,25 @@ const AddBanner = () => {
                   ></textarea>
                 </div>
                 <div className="w-full lg:w-2/5 border flex justify-center items-center border-[#016961] rounded-lg">
-                  <label
-                    htmlFor="imageFile"
-                    className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm cursor-pointer"
-                  >
-                    <BsUpload /> <span> Upload Here</span>
-                  </label>
+                {
+                  !selectedFile ?   <label
+                  for="cover_image"
+                  className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm cursor-pointer"
+                >
+                  <BsUpload /> <span> Upload Here</span>
+                </label> :   <Image
+                      src={preview1}
+                      width={500}
+                      height={500}
+                      alt="Image Preview1"
+                    />
+
+                }
                   <input
                     type="file"
-                    id="imageFile"
-                    {...register("coverImage")}
+                    id="cover_image"
+                    {...register("cover_image")}
+                    onChange={onSelectFile}
                     hidden
                   />
                 </div>
@@ -135,7 +176,7 @@ const AddBanner = () => {
               <div>
                 <input
                   className="h-10 w-full px-2 text-sm bg-transparent border rounded-lg border-[#016961] focus:outline-none"
-                  {...register("thumbnailTitle")}
+                  {...register("thumbnail_title")}
                   placeholder="Thumbnail Title"
                   type="text"
                   required
@@ -145,7 +186,7 @@ const AddBanner = () => {
                 <div className="w-full">
                   <textarea
                     className="w-full p-3 text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    {...register("thumbnailDescription")}
+                    {...register("thumbnail_description")}
                     placeholder="Thumbnail Description"
                     cols="30"
                     rows="10"
@@ -153,16 +194,26 @@ const AddBanner = () => {
                   ></textarea>
                 </div>
                 <div className="w-full lg:w-2/5 border flex justify-center items-center border-[#016961] rounded-lg">
-                  <label
-                    htmlFor="thumbnailImageFile"
-                    className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm cursor-pointer"
-                  >
-                    <BsUpload /> <span> Upload Here</span>
-                  </label>
+                  {!selectedFile2 ? (
+                    <label
+                      for="thumbnailImageFile"
+                      className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm cursor-pointer"
+                    >
+                      <BsUpload /> <span> Upload Here</span>
+                    </label>
+                  ) : (
+                    <Image
+                      src={preview2}
+                      width={500}
+                      height={500}
+                      alt="Image Preview2"
+                    />
+                  )}
                   <input
                     type="file"
                     id="thumbnailImageFile"
-                    {...register("thumbnailImage")}
+                    {...register("thumbnail_img")}
+                    onChange={onSelectFile2}
                     hidden
                   />
                 </div>

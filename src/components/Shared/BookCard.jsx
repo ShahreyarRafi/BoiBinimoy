@@ -29,7 +29,7 @@ export default function ExchangeCard({ item }) {
             </button>
           </div>
           <span className="price-tag">
-            <span className="text-lg">$29.99</span>
+            <span className="text-lg">${item?.price}</span>
           </span>
         </div>
       </div>
