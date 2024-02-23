@@ -132,7 +132,7 @@ const ExchangeRequest = () => {
                         <div className="flex flex-col justify-center">
                             <h1 className="text-4xl text-center">OOPS! It seems like you don&apos;t have any book listed for exchange yet.</h1>
                             <p className="text-xl text-center mt-10">Don&apos;t worry, you can easily add a book to your exchange list by clicking on the &apos;Add a Book&apos; button below. Share the joy of reading and start exchanging books with fellow book lovers today!</p>
-                            <Link href="/dashboard/addbook" className="button-color w-1/2 mx-auto py-2 mt-5 rounded-full text-sm md:text-base text-white text-center">Add book</Link>
+                            <Link href="/dashboard/add-book" className="button-color w-1/2 mx-auto py-2 mt-5 rounded-full text-sm md:text-base text-white text-center">Add book</Link>
                         </div> : <div className="p-8 space-y-2 border-2 rounded-lg">
                             <h2 className="text-4xl">Select the book you want to exchange</h2>
                             <select

@@ -1,8 +1,5 @@
-import React from 'react';
-
 const SectionTitle = ({ heading }) => {
     return (
-
         <div className="relative bg">
             {/* bottom curve */}
             <div className="absolute inset-x-0 bottom-0 ">

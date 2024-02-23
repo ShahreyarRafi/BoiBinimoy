@@ -56,20 +56,24 @@ const Navend = () => {
 
       {/* Drawer cart */}
       <div className="drawer drawer-end">
-        <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
+        <input
+          id="cart-drawer"
+          type="checkbox"
+          className="drawer-toggle overflow-hidden"
+        />
         <div className="drawer-content">
           {/* Page content here */}
           <label htmlFor="cart-drawer" className="drawer-button">
             <MdOutlineShoppingCart />
           </label>
         </div>
-        <div className="drawer-side z-[2]">
+        <div className="drawer-side overflow-hidden z-[2]">
           <label
             htmlFor="cart-drawer"
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-1/3 min-h-full bg-base-200 text-base-content">
+          <ul className="menu w-1/3 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
             {cart?.books?.map((book) => (
               <li key={book?._id}>
