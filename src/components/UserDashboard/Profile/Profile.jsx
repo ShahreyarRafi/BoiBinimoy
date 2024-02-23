@@ -114,7 +114,7 @@ const Profile = () => {
               <h3 className="text-2xl font-bold pb-2 text-[#016961]">
                 Personal Information
               </h3>
-              <Link href="/dashboard/parsonalInfo">
+              <Link href="/dashboard/profile-edit">
                 {" "}
                 <button className="text-xl md:text-2xl">
                   <CiEdit />
@@ -213,7 +213,7 @@ const Profile = () => {
               <h3 className="text-2xl font-bold pb-2 text-[#016961]">
                 Address Info
               </h3>
-              <Link href="/dashboard/parsonalInfo">
+              <Link href="/dashboard/profile-edit">
                 {" "}
                 <button className="text-xl md:text-2xl">
                   <CiEdit />

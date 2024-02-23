@@ -16,7 +16,7 @@ import { IoIosCamera } from "react-icons/io";
 import useImageURL from '@/Hooks/ImageURL/useImageURL';
 import { useForm } from 'react-hook-form';
 
-const ParsonalInfo = () => {
+const ProfileEdit = () => {
     const { register, handleSubmit, reset } = useForm();
     const [selectedFile, setSelectedFile] = useState();
     const [preview, setPreview] = useState();
@@ -137,24 +137,6 @@ const ParsonalInfo = () => {
 
 
                             </div>
-<<<<<<< HEAD
-                          {
-                            !selectedFile ?   <Image
-                            src={palesholderImage}
-                            className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                            alt=""
-                            width={500}
-                            height={500}
-                        /> : <Image
-                        src={preview}
-                        className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                        alt=""
-                        width={500}
-                        height={500}
-                    /> 
-                          }
-
-=======
                             {
                                 !selectedFile ? <Image
                                     src={currentUser?.image}
@@ -170,7 +152,6 @@ const ParsonalInfo = () => {
                                     height={500}
                                 />
                             }
->>>>>>> 0cb1a91ea90bda52a1ebecc0b5468d13c70d4609
 
                             {/* profile information */}
                             <div className="text-center md:text-start">
@@ -389,4 +370,4 @@ const ParsonalInfo = () => {
     );
 };
 
-export default ParsonalInfo;
+export default ProfileEdit;
