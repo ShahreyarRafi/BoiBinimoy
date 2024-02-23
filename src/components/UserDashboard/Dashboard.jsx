@@ -171,6 +171,18 @@ const Dashboard = ({ children }) => {
                 <span className="text">Add Book</span>
               </Link>
             </li>
+            <li className={pathname == "/dashboard/orders" ? "active" : ""}>
+              <Link href="/dashboard/orders">
+                <i className="bx bxs-book-add"></i>
+                <span className="text">Orders</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/my-orders" ? "active" : ""}>
+              <Link href="/dashboard/my-orders">
+                <i className="bx bxs-book-add"></i>
+                <span className="text">My Orders</span>
+              </Link>
+            </li>
             <li className={pathname == "/dashboard/add-banner" ? "active" : ""}>
               <Link href="/dashboard/add-banner">
                 <i class="bx bxs-image-add"></i>
@@ -230,10 +242,6 @@ const Dashboard = ({ children }) => {
                 <i className="bx bxs-message-dots"></i>
                 <span className="text">Notification</span>
               </Link>
-            </li>
-            <li
-              className={pathname == "/dashboard/track-order" ? "active" : ""}
-            >
             </li>
           </ul>
         </>

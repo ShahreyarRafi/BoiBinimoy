@@ -1,20 +1,19 @@
 "use client"
 
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
-import { AuthContext } from "@/providers/AuthProvider";
 import useAxiosPublic from "../Axios/useAxiosPublic";
+import useAuth from "../auth/useAuth";
 
-const useOneUser = () => {
-
-    const axiosPublic = useAxiosPublic()
-    const { user } = useContext(AuthContext)
+const useOneUser = () => {    
+    const axiosPublic = useAxiosPublic();
+    const { user } = useAuth();
    
 
     const { data: currentUser = [] , isPending: isLoading} = useQuery({
         queryKey: ["currentUser", user?.email],
         queryFn: async () => {
-            const res = await axiosPublic.get(`api/v1/users/${user?.email}`)
+            const email = await user.email
+            const res = await axiosPublic.get(`api/v1/users/${email}`)
             return res.data
         }
     })
