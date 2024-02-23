@@ -45,17 +45,17 @@ const Navend = () => {
   cart?.books?.map(book => totalPrice = parseFloat(totalPrice) + parseFloat(book.price))
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 ">
       <MdFavoriteBorder />
 
       {/* Drawer cart */}
       <div className="drawer drawer-end">
-        <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
+        <input id="cart-drawer" type="checkbox" className="drawer-toggle overflow-hidden" />
         <div className="drawer-content">
           {/* Page content here */}
           <label htmlFor="cart-drawer" className="drawer-button"><MdOutlineShoppingCart /></label>
         </div>
-        <div className="drawer-side z-[2]">
+        <div className="drawer-side z-[2] overflow-hidden">
           <label htmlFor="cart-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
           <ul className="menu p-4 w-1/3 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
