@@ -45,20 +45,28 @@ const AuthProvider = ({ children }) => {
 
     //  twitter login 
 
-    const twitterSignIn = async () => {
-        setLoading(true);
-        try {
-            const result = await signInWithPopup(auth, twitterProvider);
-            const user = result.user;
-            setUser(user);
-            setLoading(false);
-            return result;
-        } catch (error) {
-            console.error(error);
-            setLoading(false);
-            throw error;
-        }
-    };
+    // const twitterSignIn = async () => {
+    //     setLoading(true);
+    //     try {
+    //         const result = await signInWithPopup(auth, twitterProvider);
+    //         const user = result.user;
+    //         setUser(user);
+    //         setLoading(false);
+    //         return result;
+    //     } catch (error) {
+    //         console.error(error);
+    //         setLoading(false);
+    //         throw error;
+    //     }
+    // };
+
+
+    const twitterSignIn = () => {
+        setLoading(true)
+        return signInWithPopup(auth, twitterProvider)
+    }
+
+
 
     // google login 
     const googleLogin = () => {

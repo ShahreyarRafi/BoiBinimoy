@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import useOneUser from "@/Hooks/Users/useOneUser";
+import useAdmin from "@/Hooks/useAdmin";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
 
@@ -18,6 +19,10 @@ const Dashboard = ({ children }) => {
   const { currentUser } = useOneUser();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  const [isAdmin] = useAdmin()
+    console.log( "admin " ,isAdmin);
+
 
   const toggleNotification = () => {
     setIsOpen(!isOpen);
