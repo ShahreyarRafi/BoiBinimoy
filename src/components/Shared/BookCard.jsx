@@ -28,7 +28,7 @@ export default function ExchangeCard({ item }) {
             </button>
           </div>
           <span className="price-tag">
-            <span className="text-lg">{item?.price}</span>
+            <span className="text-lg">${item?.price}</span>
           </span>
         </div>
       </div>
