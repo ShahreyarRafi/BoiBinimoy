@@ -55,7 +55,7 @@ export default function Writer() {
   };
 
   return (
-    <div className="container mx-auto my-10 bg-white p-4">
+    <div className="container mx-auto my-10 bg-white px-10">
       <div className="slider-container">
         <div className="flex justify-between items-center gap-5 mb-8">
           <h2 className="text-teal-800 text-2xl font-bold">Shop By Writer</h2>
