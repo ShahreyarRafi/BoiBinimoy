@@ -75,22 +75,6 @@ const Blog = () => {
             <BlogLatestCard key={blog?._id} item={blog}></BlogLatestCard>
           ))}
         </div>
-
-        {/* popular blog */}
-        <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
-          <h2 className="font-bold text-xl md:text-3xl">Popular blogs</h2>
-          <Link
-            href="/allBlog"
-            className="bg-[#016961] hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer"
-          >
-            View all
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-5">
-          {latests?.map((blog) => (
-            <BlogLatestCard key={blog?._id} item={blog}></BlogLatestCard>
-          ))}
-        </div>
       </main>
     </div>
   );
