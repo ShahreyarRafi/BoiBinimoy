@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
 import {
   FaFacebook,
   FaGithub,
   FaLinkedin,
   FaTwitter,
 } from "react-icons/fa";
-import emailjs from "@emailjs/browser";
-import Swal from "sweetalert2";
+
 
 const ContactUs = () => {
   const form = useRef();
@@ -42,15 +43,12 @@ const ContactUs = () => {
   return (
     <div className="bg-base-100">
       <div className={" mt-8  max-w-7xl mx-auto text-gray-800"}>
-        <h2 className="text-2xl font-semibold mb-4 pt-5 text-center">
-          Contact Us
-        </h2>
+        <h2 className="text-2xl font-semibold mb-4 pt-5 text-center">Contact Us</h2>
 
         <div className=" flex flex-col md:flex-row">
           <div className=" flex-1 md:my-20 mx-5 md:mx-8">
-            <p className=" mb-4">{`Feel free to drop us a message, and we will get back to you as soon as possible!`}</p>
-
-            <p className=" mb-4">{`Shoot us an email at boibinimoy.web@gmail.com and we'll be sure to respond.`}</p>
+            <p className=" mb-4">Feel free to drop us a message, and we will get back to you as soon as possible!</p>
+            <p className=" mb-4">Shoot us an email at boibinimoy.web@gmail.com and we&apos;ll be sure to respond.</p>
             <p className=" mb-4">
               Follow us on social media platforms to stay up-to-date on the latest
               news and events.

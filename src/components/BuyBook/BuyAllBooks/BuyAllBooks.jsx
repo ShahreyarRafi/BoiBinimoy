@@ -6,18 +6,17 @@ import useBuyBooks from "@/Hooks/buyBooks/useBuyBooks";
 import { useState } from "react";
 
 const BuyAllBooks = () => {
-  const [currentPage, setCurrentPage ] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
   const { buyBooksData, isLoading } = useBuyBooks(currentPage, 14)
-  
+
   if (isLoading) {
     return <PageLoading />;
   }
 
-
   const books = buyBooksData?.buyBooks || [];
   const totalBooks = buyBooksData?.totalBook || 0;
 
-  
+
   const pageNumbers = Array.from(
     { length: Math.ceil(totalBooks / 14) },
     (_, index) => index + 1
@@ -60,9 +59,8 @@ const BuyAllBooks = () => {
               <button
                 key={index}
                 onClick={() => handlePagination(index + 1)}
-                className={`mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700 ${
-                  currentPage === index + 1 ? "bg-blue-700" : ""
-                }`}
+                className={`mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700 ${currentPage === index + 1 ? "bg-blue-700" : ""
+                  }`}
               >
                 {index + 1}
               </button>

@@ -1,4 +1,5 @@
 "use client";
+
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -7,6 +8,7 @@ import { IoSearch } from "react-icons/io5";
 import PublisherCard from "../Home/Publisher/PublisherCard";
 
 export default function Categories() {
+
   const axiosPublish = useAxiosPublic();
   const [searchQuery, setSearchQuery] = useState("");
 

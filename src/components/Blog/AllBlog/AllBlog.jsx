@@ -1,7 +1,7 @@
 "use client"
 
-import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
+import { useQuery } from "@tanstack/react-query";
 import AllBlogCard from "../../Shared/Blogs/AllBlogCard";
 
 const AllBlog = () => {

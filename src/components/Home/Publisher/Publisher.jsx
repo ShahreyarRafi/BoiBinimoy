@@ -1,4 +1,5 @@
 "use client";
+
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -70,11 +71,11 @@ export default function Publisher() {
         <Slider {...settings}>
           {isLoading
             ? Array.from(Array(8).keys()).map((index) => (
-                <PublisherCardSkeleton key={index} />
-              ))
+              <PublisherCardSkeleton key={index} />
+            ))
             : publishers
-                ?.slice(0, 20)
-                ?.map((item) => <PublisherCard key={item._id} item={item} />)}
+              ?.slice(0, 20)
+              ?.map((item) => <PublisherCard key={item._id} item={item} />)}
         </Slider>
       </div>
     </div>

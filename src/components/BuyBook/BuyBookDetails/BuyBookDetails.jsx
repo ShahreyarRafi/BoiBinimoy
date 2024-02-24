@@ -25,10 +25,8 @@ const BuyBookDetails = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const { currentUser } = useOneUser();
-  const { reviews, isPending, refetch }  = useReviews(book_id)
+  const { reviews, isPending, refetch } = useReviews(book_id)
   const { book, bookLoading, bookRefetch } = useGetOneBuyBook(book_id)
-
-
 
   if (bookLoading || isPending) {
     return (
@@ -83,7 +81,7 @@ const BuyBookDetails = () => {
     const user_email = currentUser?.email;
     const book_id = book?._id;
     const price = book?.price;
-    const quantity  = 1;
+    const quantity = 1;
 
     const addCart = {
       user_name,

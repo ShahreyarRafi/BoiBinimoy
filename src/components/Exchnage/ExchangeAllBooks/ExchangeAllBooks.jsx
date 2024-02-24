@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import PageLoading from "../../Shared/loadingPageBook/PageLoading";
-import ExchangeAllCards from "../../Shared/ExchnageBook/ExchangeAllCards";
 import useExchangeBooks from "@/Hooks/exchangeBooks/useExchangeBooks";
+import ExchangeCard from "@/components/Shared/ExchnageBook/ExchangeCard";
 
 const ExchangeAllBooks = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,7 +42,7 @@ const ExchangeAllBooks = () => {
       <div className="py-12">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
           {books?.map((book) => (
-            <ExchangeAllCards key={book?._id} item={book}></ExchangeAllCards>
+            <ExchangeCard key={book?._id} item={book}></ExchangeCard>
           ))}
         </div>
 
@@ -58,9 +58,8 @@ const ExchangeAllBooks = () => {
               <button
                 key={index}
                 onClick={() => handlePagination(index + 1)}
-                className={`mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700 ${
-                  currentPage === index + 1 ? "bg-blue-700" : ""
-                }`}
+                className={`mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700 ${currentPage === index + 1 ? "bg-blue-700" : ""
+                  }`}
               >
                 {index + 1}
               </button>
