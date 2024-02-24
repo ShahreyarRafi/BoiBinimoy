@@ -1,18 +1,17 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
+import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import BlogSideCard from "../Shared/Blogs/BlogSideCard";
 import BlogLatestCard from "../Shared/Blogs/BlogLatestCard";
 import Link from "next/link";
 
 const Blog = () => {
-
   const axiosPublic = useAxiosPublic();
 
   const { data: blogs = [], isLoading } = useQuery({
-    queryKey: ['blogs'],
+    queryKey: ["blogs"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/api/v1/blogs`);
       return res.data;
@@ -43,12 +42,10 @@ const Blog = () => {
             <h1 className="text-black text-4xl font-bold mt-2 mb-2 leading-tight">
               {main?.title}
             </h1>
-            <p className="text-black mb-4">
-              {main?.body}
-            </p>
+            <p className="text-black mb-4">{main?.body}</p>
             <Link
               href={`/blogs/${main?._id}`}
-              className="inline-block px-6 py-3 mt-2 rounded-md bg-[#016961] hover:bg-orange-400 text-white"
+              className="inline-block px-6 py-3 mt-2 rounded-md bg-[#016961] hover:bg-[#1e4743] text-white"
             >
               Read more
             </Link>
@@ -56,21 +53,27 @@ const Blog = () => {
 
           {/* side blog */}
           <div className="w-full md:w-4/7 px-4">
-            {
-              sides?.map(blog => <BlogSideCard key={blog?._id} item={blog}></BlogSideCard>)
-            }
+            {sides?.map((blog) => (
+              <BlogSideCard key={blog?._id} item={blog}></BlogSideCard>
+            ))}
           </div>
         </div>
 
         {/* Latest blog */}
         <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
           <h2 className="font-bold text-xl md:text-3xl">Latest blog</h2>
-          <Link href="/allBlog" className="bg-[#016961] hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer">
+          <Link
+            href="/allBlog"
+            className="bg-[#016961] hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer"
+          >
             View all
           </Link>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-5">
-          {latests?.map(blog => <BlogLatestCard key={blog?._id} item={blog}></BlogLatestCard>)}
+          {latests?.map((blog) => (
+            <BlogLatestCard key={blog?._id} item={blog}></BlogLatestCard>
+          ))}
         </div>
 
         {/* news later subscription */}
@@ -83,7 +86,9 @@ const Blog = () => {
             alt=""
           />
           <div className="pl-8 py-8 text-white">
-            <h3 className="text-3xl  font-bold mt-4">Subscribe to newsletter</h3>
+            <h3 className="text-3xl  font-bold mt-4">
+              Subscribe to newsletter
+            </h3>
             <p className="text-xl ">
               We sent latest news and posts once in every week, fresh from the
               oven
@@ -107,12 +112,17 @@ const Blog = () => {
         {/* popular blog */}
         <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
           <h2 className="font-bold text-xl md:text-3xl">Popular blogs</h2>
-          <Link href="/allBlog" className="bg-[#016961] hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer">
+          <Link
+            href="/allBlog"
+            className="bg-[#016961] hover:bg-orange-400 text-xs md:text-sm text-white px-3 py-1 rounded cursor-pointer"
+          >
             View all
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-5">
-          {latests?.map(blog => <BlogLatestCard key={blog?._id} item={blog}></BlogLatestCard>)}
+          {latests?.map((blog) => (
+            <BlogLatestCard key={blog?._id} item={blog}></BlogLatestCard>
+          ))}
         </div>
       </main>
     </div>
