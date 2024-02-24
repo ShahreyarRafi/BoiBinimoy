@@ -20,9 +20,8 @@ const Dashboard = ({ children }) => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
-  const [isAdmin] = useAdmin()
-    console.log( "admin " ,isAdmin);
-
+  const [isAdmin] = useAdmin();
+  console.log("admin ", isAdmin);
 
   const toggleNotification = () => {
     setIsOpen(!isOpen);
@@ -246,14 +245,14 @@ const Dashboard = ({ children }) => {
               <Link href="/dashboard/notification">
                 <i className="bx bxs-message-dots"></i>
                 <span className="text">Notification</span>
-                </Link>
-              
+              </Link>
             </li>
-              {/* <li
-              className={pathname == "/dashboard/track-order" ? "active" : ""}
-            >
-
-              </Link> */}
+            <li className={pathname == "/dashboard/allBlog" ? "active" : ""}>
+              <Link href="/dashboard/allBlog">
+                <i className="bx bxs-image-add"></i>
+                <span className="text">All Blogs</span>
+              </Link>
+            </li>
           </ul>
         </>
 
@@ -268,8 +267,7 @@ const Dashboard = ({ children }) => {
             <Link href="#" className="logout">
               <i className="bx bxs-log-out-circle"></i>
               <button onClick={logOut}>
-                {" "}
-                <span className="text">Logout</span>{" "}
+                <span className="text">Logout</span>
               </button>
             </Link>
           </li>
