@@ -20,16 +20,12 @@ const useGetMyCarts = () => {
     },
   });
 
-  const carts = cartsData?.carts;
-  const books = cartsData?.books;
+  const myCarts = cartsData?.myCarts;
   const price = cartsData?.totalPrice;
+  let quantity = cartsData?.quantity;
+ 
 
-  let quantity = 0;
-  carts?.map((cart) => {
-    quantity += cart.quantity;
-  });
-
-  return { carts, books, price, quantity, isPending, refetch };
+  return { myCarts , price, quantity, isPending, refetch };
 };
 
 export default useGetMyCarts;

@@ -17,10 +17,10 @@ const useMyOrders = () => {
         }
     });
    
-    const myOrders = myOrdersData?.orders || [];
-    const carts = myOrdersData?.allCarts || [];
+    const orders = myOrdersData?.orders || [];
+    const myOrders = myOrdersData?.myOrders || [];
 
-    return { myOrders, carts, isPending, refetch};
+    return { myOrders, orders, isPending, refetch};
 };
 
 export default useMyOrders;
