@@ -5,7 +5,7 @@ import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import useExchangeBooks from "@/Hooks/exchangeBooks/useExchangeBooks";
 import ExchangeCard from "@/components/Shared/ExchangeBook/ExchangeCard";
 
-const ExchangeAllBooks = () => {
+const AllExchangeBooks = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { exchangeBooks, isLoading } = useExchangeBooks(currentPage, 14);
 
@@ -77,4 +77,4 @@ const ExchangeAllBooks = () => {
   );
 };
 
-export default ExchangeAllBooks;
+export default AllExchangeBooks;
