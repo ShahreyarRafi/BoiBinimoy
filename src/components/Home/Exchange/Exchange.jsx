@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 import useExchangeBooksForHome from "@/Hooks/exchangeBooks/useExchangeBooksForHome";
 import BookCardSkeleton from "@/components/Skeleton/BookCardSkeleton";
-import ExchangeCard from "@/components/Shared/ExchnageBook/ExchangeBookCard";
+import ExchangeCard from "@/components/Shared/ExchnageBook/ExchangeCard";
 
 const TestExchange = () => {
   const { exchangeBooks: books, isLoading } = useExchangeBooksForHome();

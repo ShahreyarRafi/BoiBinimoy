@@ -7,13 +7,13 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { useState } from "react";
 import CartsDetails from "./CartsDetails";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 const Cart = () => {
   const { myCarts, price, isPending, refetch } = useGetMyCarts();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const router = useRouter(); // Assuming you forgot to import useRouter
+  // const router = useRouter(); // Assuming you forgot to import useRouter
 
   if (isPending) {
     return <PageLoading />;
