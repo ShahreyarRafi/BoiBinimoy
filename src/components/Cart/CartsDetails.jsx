@@ -18,18 +18,18 @@ const CartsDetails = ({ cart, refetch }) => {
     return <PageLoading />;
   }
 
+
   if (lastFetchedBookId !== cart.book_id) {
     // The book_id has changed, set a loading state
     setLastFetchedBookId(cart.book_id);
     return <PageLoading />;
   }
 
-  console.log(  'cartId: ', cart.book_id, ' book: ', book );
 
   const handleIncrement = async (id) => {
-    if (quantity < book?.stock_limit) {
+    if (quantity < cart?.book?.stock_limit) {
       setQuantity((prevQuantity) => prevQuantity + 1);
-      const price = quantity*book?.price;
+      const price = quantity*cart?.book?.price;
       const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {quantity, price});
       console.log(res.data);
       if(res.data){
@@ -37,7 +37,7 @@ const CartsDetails = ({ cart, refetch }) => {
         refetch();
       }
     } else {
-      setError(`Opps this book limit is ${book?.stock_limit}`);
+      setError(`Opps this book limit is ${cart?.book?.stock_limit}`);
     }
   };
 
@@ -46,7 +46,7 @@ const CartsDetails = ({ cart, refetch }) => {
     if (quantity > 1) {
       setError("");
       setQuantity((prevQuantity) => prevQuantity - 1);
-      const price = quantity*book?.price;
+      const price = quantity*cart?.book?.price;
       const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {quantity, price});
       console.log(res.data);
       if(res.data){
@@ -102,7 +102,7 @@ const handleDeleteCart = (id, title) => {
       <div className="bg-white rounded-3xl lg:rounded-none shadow-sm hover:bg-[#19a49113] lg:shadow-inherit border border-gray-100">
         <div className="grid grid-cols-6 items-center text-center font-semibold border border-gray-100 p-5">
           <Image
-            src={book?.cover_image}
+            src={cart?.book?.cover_image}
             width={150}
             height={200}
             alt="book"
@@ -110,19 +110,19 @@ const handleDeleteCart = (id, title) => {
             style={{ width: "50%", height: "100%" }}
             className="mx-auto"
           />
-          <h5>{book?.title}</h5>
-          <h5>{book?.price} BDT</h5>
+          <h5>{cart?.book?.title}</h5>
+          <h5>{cart?.book?.price} BDT</h5>
           <h5>
             <div className="flex items-center gap-2">
               <button
-                onClick={() => handleDecrement(cart._id)}
+                onClick={() => handleDecrement(cart?.cart._id)}
                 className="bg-base-300 p-3"
               >
                 <FaMinus className="mx-auto"></FaMinus>
               </button>
               <h3>{quantity}</h3>
               <button
-                onClick={() => handleIncrement(cart._id)}
+                onClick={() => handleIncrement(cart?.cart._id)}
                 className="bg-base-300 p-3"
               >
                 <FaPlus className="mx-auto"></FaPlus>
@@ -130,10 +130,10 @@ const handleDeleteCart = (id, title) => {
               {error && <p className="text-red-500">{error}</p>}
             </div>
           </h5>
-          <h5>{quantity * book.price} BDT</h5>
+          <h5>{quantity * cart?.book.price} BDT</h5>
           <div>
             <button
-              onClick={() => handleDeleteCart(cart?._id, book?.title)}
+              onClick={() => handleDeleteCart(cart?.cart?._id, cart?.book?.title)}
               className=" bg-red-500 rounded-full text-white p-3"
             >
               <RxCross2 className="mx-auto"></RxCross2>

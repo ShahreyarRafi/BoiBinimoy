@@ -27,7 +27,7 @@ const MyOrders = () => {
         </div>
         <div className="flex-1 sm:flex-none grid grid-cols-1 gap-5 lg:gap-0">
           <div className="bg-white rounded-3xl lg:rounded-none shadow-sm hover:bg-[#19a49113] lg:shadow-inherit border border-gray-100">
-            {carts?.map((cart) => (
+            {myOrders?.map((cart) => (
               <MyOrder key={cart._id} cart={cart}></MyOrder>
             ))}
           </div>

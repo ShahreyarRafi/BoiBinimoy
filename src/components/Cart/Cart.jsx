@@ -13,17 +13,14 @@ import CartsDetails from "./CartsDetails";
 
 const Cart = () => {
 
-  const { carts, books, price, quantity, isPending, refetch } = useGetMyCarts();
+  const { myCarts , price, quantity, isPending, refetch } = useGetMyCarts();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const router = useRouter();
 
 
   if (isPending) {
     return <PageLoading />;
   }
-
-
 
 
   const handleCheckout = async () => {
@@ -53,8 +50,8 @@ const Cart = () => {
           </div>
         </div>
         <div className="flex-1 sm:flex-none grid grid-cols-1 gap-5 lg:gap-0">
-          {carts?.map((cart) => (
-          <CartsDetails key={cart._id} cart = {cart} refetch = {refetch}></CartsDetails>
+          {myCarts?.map((cart) => (
+          <CartsDetails key={cart.cart._id} cart = {cart} refetch = {refetch}></CartsDetails>
           ))}
           <div className=" flex justify-center mb-3">
             <button
