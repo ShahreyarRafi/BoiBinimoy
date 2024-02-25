@@ -26,15 +26,18 @@ const BuyBookDetails = () => {
   const axiosSecure = useAxiosSecure();
   const { currentUser } = useOneUser();
   const { reviews, isPending, refetch }  = useReviews(book_id)
-  const { book, bookLoading, bookRefetch } = useGetOneBuyBook(book_id)
+  const { getOneBuyBook : book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
 
-
+  console.log(book_id);
 
   if (bookLoading || isPending) {
     return (
       <PageLoading />
     )
   }
+
+  console.log(book);
+
 
   // Handle comment form
   const handleSubmit = (e) => {
@@ -108,6 +111,7 @@ const BuyBookDetails = () => {
         console.error("Error:", error);
       });
   }
+
 
   return (
     <div className="w-full bg-teal-50">

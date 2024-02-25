@@ -9,14 +9,9 @@ import Swal from "sweetalert2";
 import { axiosSecure } from "@/Hooks/Axios/useAxiosSecure";
 
 const CartsDetails = ({ cart, refetch }) => {
-  const { book, bookLoading, bookRefetch } = useGetOneBuyBook(cart.book_id);
   const [error, setError] = useState("");
   const [quantity, setQuantity] = useState(cart?.quantity || 1);
   const [lastFetchedBookId, setLastFetchedBookId] = useState(null);
-
-  if (bookLoading) {
-    return <PageLoading />;
-  }
 
 
   if (lastFetchedBookId !== cart.book_id) {
@@ -33,7 +28,6 @@ const CartsDetails = ({ cart, refetch }) => {
       const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {quantity, price});
       console.log(res.data);
       if(res.data){
-        bookRefetch();
         refetch();
       }
     } else {
@@ -50,7 +44,7 @@ const CartsDetails = ({ cart, refetch }) => {
       const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {quantity, price});
       console.log(res.data);
       if(res.data){
-        bookRefetch();
+     
         refetch();
       }
       
@@ -82,7 +76,8 @@ const handleDeleteCart = (id, title) => {
                 `Your book "${title}" has been deleted.`,
                 "success"
               );
-              bookRefetch();
+
+              refetch();
             }
           })
           .catch((error) => {

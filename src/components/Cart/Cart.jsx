@@ -53,7 +53,8 @@ const Cart = () => {
           {myCarts?.map((cart) => (
           <CartsDetails key={cart.cart._id} cart = {cart} refetch = {refetch}></CartsDetails>
           ))}
-          <div className=" flex justify-center mb-3">
+          <div className=" flex  items-center justify-center gap-4 mb-3">
+            <p >Total price: {price}</p>
             <button
               onClick={handleCheckout}
               className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1"

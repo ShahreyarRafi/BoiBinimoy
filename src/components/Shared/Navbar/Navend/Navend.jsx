@@ -10,6 +10,7 @@ import Link from "next/link";
 import axios from "axios";
 import PageLoading from "../../loadingPageBook/PageLoading";
 import useOneUser from "@/Hooks/Users/useOneUser";
+import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
 
@@ -18,35 +19,38 @@ const Navend = () => {
   // Current user data from database
   const { currentUser } = useOneUser();
   const [cart, setCart] = useState(null);
-  const [books, setBooks] = useState(null);
-  const [loading, setLoading] = useState(true);
-  let totalPrice = 0;
-  let cartId = null;
+  // const [books, setBooks] = useState(null);
+  // const [loading, setLoading] = useState(true);
+  // let totalPrice = 0;
+  // let cartId = null;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://boi-binimoy-server.vercel.app/api/v1/my-carts/${user?.email}`
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
-        setCart(result);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `https://boi-binimoy-server.vercel.app/api/v1/my-carts/${user?.email}`
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
+  //       const result = await response.json();
+  //       setCart(result);
+  //     } catch (error) {
+  //       console.log(error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchData();
-  }, [user?.email, totalPrice]);
+  //   fetchData();
+  // }, [user?.email, totalPrice]);
 
-  cart?.books?.map(
-    (book) => (totalPrice = parseFloat(totalPrice) + parseFloat(book.price))
-  );
+  // cart?.books?.map(
+  //   (book) => (totalPrice = parseFloat(totalPrice) + parseFloat(book.price))
+  // );
+
+  const { myCarts , price, quantity, isPending, refetch } = useGetMyCarts();
+
 
   return (
     <div className="flex items-center gap-2">
@@ -75,12 +79,12 @@ const Navend = () => {
           ></label>
           <ul className="menu w-1/3 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            {cart?.books?.map((book) => (
-              <li key={book?._id}>
+            {myCarts?.map((cart) => (
+              <li key={cart?.cart._id}>
                 <div className="flex items-center justify-between rounded-lg p-2">
                   <div className="flex gap-5 items-center">
                     <Image
-                      src={book?.cover_image}
+                      src={cart?.book?.cover_image}
                       width={70}
                       height={100}
                       alt="book"
@@ -89,14 +93,14 @@ const Navend = () => {
                       className="rounded-md"
                     />
                     <div>
-                      <h2 className="font-bold text-lg">{book?.title}</h2>
+                      <h2 className="font-bold text-lg">{cart?.book?.title}</h2>
                       <h2 className="text-orange-700 font-bold text-lg">
-                        {book?.price} BDT
+                        {cart?.book?.price} BDT
                       </h2>
                     </div>
                   </div>
                   <button
-                    onClick={() => handleDelete(book?._id)}
+                    onClick={() => handleDelete(cart?.book?._id)}
                     className="mt-5 button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1"
                   >
                     <RxCross2></RxCross2>
@@ -106,7 +110,7 @@ const Navend = () => {
               </li>
             ))}
             <li className="mx-auto">
-              <h3 className="text-xl font-bold">Total: {totalPrice}</h3>
+              <h3 className="text-xl font-bold">Total: {price}</h3>
             </li>
             <li>
               <hr />

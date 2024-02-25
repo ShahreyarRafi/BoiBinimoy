@@ -9,12 +9,13 @@ import { FaCartPlus, FaExchangeAlt } from "react-icons/fa";
 // text-[#2f8880]
 
 export default function ExchangeCard({ item }) {
+
   return (
     <div className="l-container md:p-1 ">
       <div className="b-game-card ">
         <div
           className="b-game-card__cover book-cover-effect"
-          // style={{ backgroundImage: `url(${item?.cover_image})` }}
+          style={{ backgroundImage: `url(${item?.cover_image})` }}
         >
           <div className="grid grid-cols-1 items-end justify-end gap-2 card__action">
             <Link href={`/buyBooks/${item?._id}`}>
