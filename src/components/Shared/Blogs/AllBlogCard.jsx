@@ -2,7 +2,6 @@
 
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import Image from "next/image";
-import Link from "next/link";
 import { BsUpload } from "react-icons/bs";
 import Swal from "sweetalert2";
 import { AuthContext } from "@/providers/AuthProvider";
@@ -139,19 +138,24 @@ const AllBlogCard = ({ item }) => {
             <h2 className="font-bold text-xl text-gray-800">{item?.title}</h2>
           </div>
         </div>
-        <div className="flex justify-end items-center gap-2 px-4 py-2 border-t">
-          <button
-            onClick={handleUpdate}
-            className="text-center cursor-pointer font-semibold text-xl text-gray-500 hover:text-gray-700"
-          >
-            <FaEdit />
-          </button>
-          <button
-            onClick={() => deleteButton(item?._id)}
-            className="text-center cursor-pointer font-semibold text-xl text-gray-500 hover:text-gray-700"
-          >
-            <RiDeleteBin6Fill />
-          </button>
+        <div className="flex justify-between items-center gap-2 px-4 py-2 border-t">
+          <div>
+            <h6 className="text-[#016961] font-bold">{item?.category}</h6>
+          </div>
+          <div className="space-x-2">
+            <button
+              onClick={handleUpdate}
+              className="text-center cursor-pointer font-semibold text-xl text-gray-500 hover:text-gray-700"
+            >
+              <FaEdit />
+            </button>
+            <button
+              onClick={() => deleteButton(item?._id)}
+              className="text-center cursor-pointer font-semibold text-xl text-gray-500 hover:text-gray-700"
+            >
+              <RiDeleteBin6Fill />
+            </button>
+          </div>
         </div>
       </div>
       <dialog id="update_blog_modal" className="modal">

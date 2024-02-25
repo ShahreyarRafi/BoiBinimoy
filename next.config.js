@@ -18,7 +18,7 @@ const nextConfig = {
       "images-na.ssl-images-amazon.com",
       "source.unsplash.com",
       "pbs.twimg.com",
-      
+      "thumbor.forbes.com",
     ],
   },
 };

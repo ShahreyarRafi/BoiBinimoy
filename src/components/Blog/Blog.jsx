@@ -18,33 +18,35 @@ const Blog = () => {
     },
   });
 
-  const sides = [blogs[5], blogs[1], blogs[6]];
+  // const sides = [blogs[5], blogs[1], blogs[6], blogs[3]];
   return (
     <div className="max-w-6xl mx-auto mt-8 mb-36">
-      <div className="flex flex-col lg:flex-row gap-3">
+      <div className="">
         {/* All blog */}
         <div className="w-full">
           {blogs?.map((blog) => (
-            <div key={blog?._id} className="mb-10 px-5 lg:px-0">
+            <div key={blog?._id} className="mb-10 px-5">
               <Image
                 src={blog?.cover_image}
                 priority
                 width={500}
                 height={500}
                 alt="Main blog"
-                className="w-full h-[300px] object-cover"
+                className="w-full h-96 object-cover rounded-lg"
               />
-              <span className="text-[#016961] text-sm hidden md:block mt-4">
-                Technology
-              </span>
+              <p className="text-[#016961] text-sm font-bold mt-4">
+                {blog?.category}
+              </p>
               <Link href={`/blogs/${blog?._id}`}>
-                <h1 className="text-black text-4xl font-bold mt-2 mb-2 leading-tight">
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my- leading-tight">
                   {blog?.title}
                 </h1>
               </Link>
 
-              <p className="text-gray-700 mt-2">
-                {blog?.body[0].slice(0, 100) + "..."}
+              <hr className="my-2" />
+
+              <p className=" mt-2 text-xs sm:text-sm md:text-base text-justify">
+                {blog?.body[0].slice(0, 500) + "..."}
                 <Link href={`/blogs/${blog?._id}`} className="text-blue-400">
                   Read more
                 </Link>
@@ -54,14 +56,14 @@ const Blog = () => {
         </div>
 
         {/* Populer blog */}
-        <div className="w-full px-4">
+        {/* <div className="w-full px-4">
           <h1 className="text-3xl font-semibold text-[#016961] pb-5">
             Populer
           </h1>
           {sides?.map((blog) => (
             <BlogSideCard key={blog?._id} item={blog}></BlogSideCard>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -60,11 +60,15 @@ const BlogDetails = ({}) => {
 
           {/* book information section */}
           <div className="py-3 space-y-2">
-            <p className="text-xl font-semibold text-[#016961]">
+            <p className="text-sm sm:text-base font-bold text-[#016961]">
               {blog?.category}
             </p>
-            <h2 className="text-4xl">{blog?.title}</h2>
-            <p className="text-lg">{blog?.body}</p>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+              {blog?.title}
+            </h2>
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-justify">
+              {blog?.body}
+            </p>
           </div>
         </div>
       </div>
