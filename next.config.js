@@ -19,6 +19,8 @@ const nextConfig = {
       "source.unsplash.com",
       "pbs.twimg.com",
       "thumbor.forbes.com",
+      "example.com",
+      "graph.facebook.com"
     ],
   },
 };

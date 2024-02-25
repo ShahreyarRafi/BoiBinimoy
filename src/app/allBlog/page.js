@@ -1,15 +1,15 @@
 "use client"
 
-import BuyBookDetails from '@/components/BuyBook/BuyBookDetails/BuyBookDetails';
+import AllBlog from '@/components/Blog/AllBlog/AllBlog';
 import Footer from '@/components/Shared/Footer/Footer';
 import Navbar from '@/components/Shared/Navbar/Navbar';
 
 const page = () => {
     return (
         <div>
-            <Navbar />
-            <BuyBookDetails />
-            <Footer />
+            <Navbar></Navbar>
+            <AllBlog></AllBlog>
+            <Footer></Footer>
         </div>
     );
 };

@@ -3,13 +3,16 @@
 import { useQuery } from "@tanstack/react-query";
 import CategoryCardSkeleton from "../Skeleton/CategoryCardSkeleton";
 import CategoryCard from "../Home/Category/CategoryCard";
+import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
 
 export default function Categories() {
+
+  const axiosPublic = useAxiosPublic();
 
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["category"],
     queryFn: async () => {
-      const res = await axiosPublis.get(`/api/v1/category`);
+      const res = await axiosPublic.get(`/api/v1/category`);
       return res.data;
     },
   });

@@ -148,7 +148,7 @@ const OurStory = () => {
                     <span className="font-black">Step 4</span> - Implementation
                   </div>
                   <div className="p-3 text-3xl font">
-                    Execute, impletement your solution
+                    Execute, implement your solution
                   </div>
                   <div className="px-3 pb-6">
                     Today, Boi Binimoy stands as a testament to that passion.
