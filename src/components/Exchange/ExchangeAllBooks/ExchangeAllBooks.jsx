@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import useExchangeBooks from "@/Hooks/exchangeBooks/useExchangeBooks";
-import ExchangeCard from "@/components/Shared/ExchnageBook/ExchangeCard";
+import ExchangeCard from "@/components/Shared/ExchangeBook/ExchangeCard";
 
 const ExchangeAllBooks = () => {
   const [currentPage, setCurrentPage] = useState(1);

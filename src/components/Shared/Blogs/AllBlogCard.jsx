@@ -138,7 +138,7 @@ const AllBlogCard = ({ item }) => {
                             {item?.title.slice(0, 40) + '...'}
                         </h2>
                         <p className="text-gray-700 mt-2">
-                            {item?.body[0].slice(0, 100) + '...'}
+                            {item?.body.slice(0, 1000) + '...'}
                             <Link href={`/ blogs / ${item?._id}`} className="text-blue-400"> Read more</Link>
                         </p>
                     </div>

@@ -13,7 +13,7 @@ import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 
 const ExchangeRequest = () => {
     const [book, setBook] = useState([]);
-    const [bookEmail, setBookEmail] = useState([]);
+    const [bookByEmail, setBookByEmail] = useState([]);
     const param = useParams();
     const { user } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
@@ -31,15 +31,13 @@ const ExchangeRequest = () => {
             .finally(function () {
                 // always executed
             });
-    }, [param?.exchangeId])
+    }, [])
 
     useEffect(() => {
-        axios.get('https://boi-binimoy-server.vercel.app/api/v1/exchange-books')
+        axios.get(`https://boi-binimoy-server.vercel.app/api/v1/exchange-books-individual/${user?.email}`)
             .then(function (response) {
                 // handle success
-                console.log(response.data);
-                setBookEmail(response.data.filter(book => book?.owner_email === user?.email));
-                console.log(bookEmail);
+                setBookByEmail(response.data)
             })
             .catch(function (error) {
                 // handle error
@@ -49,6 +47,8 @@ const ExchangeRequest = () => {
                 // always executed
             });
     }, [user?.email])
+
+    console.log();
 
     const handleRequest = () => {
 
@@ -128,7 +128,7 @@ const ExchangeRequest = () => {
                     </div>
 
                     {/* book information section */}
-                    {bookEmail.length === 0 ?
+                    {bookByEmail.length === 0 ?
                         <div className="flex flex-col justify-center">
                             <h1 className="text-4xl text-center">OOPS! It seems like you don&apos;t have any book listed for exchange yet.</h1>
                             <p className="text-xl text-center mt-10">Don&apos;t worry, you can easily add a book to your exchange list by clicking on the &apos;Add a Book&apos; button below. Share the joy of reading and start exchanging books with fellow book lovers today!</p>
@@ -140,11 +140,11 @@ const ExchangeRequest = () => {
                                 name="bookTitle"
                                 id="bookTitle"
                             >
-                                <option selected value="bookValue">
+                                <option hidden selected value="bookValue">
                                     Your Books
                                 </option>
                                 {
-                                    bookEmail.map(book => <option key={book?._id} value={book?._id}>
+                                    bookByEmail.map(book => <option key={book?._id} value={book?._id}>
                                         {book?.title}
                                     </option>)
                                 }

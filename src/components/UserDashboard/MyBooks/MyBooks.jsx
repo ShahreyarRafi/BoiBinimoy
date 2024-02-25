@@ -13,9 +13,6 @@ const MyBooks = () => {
     const [specificBooks, refetch, isLoading] = useSpecificUserBook();
     const axiosSecure = useAxiosSecure();
 
-
-
-
     const handleBookDelete = (id, title) => {
         Swal.fire({
             title: `Delete Book`,

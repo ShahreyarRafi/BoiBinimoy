@@ -1,4 +1,4 @@
-import ExchangeBookDetails from '@/components/Exchnage/ExchangeBookDetails/ExchangeBookDetails';
+import ExchangeBookDetails from '@/components/Exchange/ExchangeBookDetails/ExchangeBookDetails';
 import React from 'react';
 
 const page = () => {
