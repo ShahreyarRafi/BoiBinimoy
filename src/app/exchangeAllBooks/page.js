@@ -1,6 +1,7 @@
 "use client"
 
-import ExchangeAllBooks from '@/components/Exchnage/ExchangeAllBooks/ExchangeAllBooks';
+
+import AllExchangeBooks from '@/components/Exchange/ExchangeAllBooks/AllExchangeBooks';
 import Footer from '@/components/Shared/Footer/Footer';
 import Navbar from '@/components/Shared/Navbar/Navbar';
 import SectionTitle from '@/components/Shared/SectionTitle/SectionTitle';
@@ -10,10 +11,15 @@ const page = () => {
         <div>
             <Navbar />
             <SectionTitle heading={"Exchange Books"}></SectionTitle>
-            <ExchangeAllBooks />
+            <AllExchangeBooks />
             <Footer />
         </div>
     );
 };
 
 export default page;
+
+
+
+
+
