@@ -30,12 +30,12 @@ const AllBlogCard = ({ item, refetch }) => {
           .delete(`api/v1/blogs/${id}`)
           .then((res) => {
             if (res.status === 200) {
+              refetch()
               Swal.fire({
                 icon: "success",
                 title: "Success!",
                 text: "Your blog has been deleted.",
               });
-              refetch()
             } else {
               Swal.fire({
                 icon: "error",
@@ -98,12 +98,12 @@ const AllBlogCard = ({ item, refetch }) => {
       .patch(`api/v1/blogs/${id}`, updateBlog)
       .then((res) => {
         if (res.status === 200) {
+          refetch()
           Swal.fire({
             icon: "success",
             title: "Success!",
             text: "Blog updated successfully",
           });
-          refetch()
           document.getElementById("update_blog_modal").close();
         } else {
           Swal.fire({

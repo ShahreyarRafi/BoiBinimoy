@@ -31,7 +31,8 @@ const ExchangeBookUpdate = () => {
 
   const { _id, description, title,
     edition, bookType,
-    bookCondition,
+    
+condition,
     pages, price, whatYouWant, owner,
     publisher, writer, bookCategory, language, publication_year, } = getOneExchangeBook || {};
   console.log(exchange_update_book_id);
@@ -51,7 +52,9 @@ const ExchangeBookUpdate = () => {
     const bookCategory = form.bookCategory.value;
     const edition = form.edition.value;
     const pages = form.pages.value;
-    const bookCondition = form.bookCondition.value;
+    const 
+    condition = form.
+    condition.value;
     const price = form.price.value;
     const description = form.description.value;
 
@@ -61,7 +64,8 @@ const ExchangeBookUpdate = () => {
       uploadTime: currentDate,
       description,
       edition, bookType,
-      bookCondition,
+      
+condition,
       pages, price, whatYouWant, owner,
       publisher, writer, bookCategory, language, publication_year,
 
@@ -127,7 +131,7 @@ const ExchangeBookUpdate = () => {
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                   name="bookCondition"
-                  defaultValue={bookCondition}
+                  defaultValue={condition}
                   id=""
                 >
                   <option selected value="">
