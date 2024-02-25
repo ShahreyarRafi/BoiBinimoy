@@ -16,13 +16,13 @@ import { IoIosCamera } from "react-icons/io";
 import useImageURL from '@/Hooks/ImageURL/useImageURL';
 import { useForm } from 'react-hook-form';
 
-const ParsonalInfo = () => {
+const ProfileEdit = () => {
     const { register, handleSubmit, reset } = useForm();
     const [selectedFile, setSelectedFile] = useState();
     const [preview, setPreview] = useState();
     const { imageUrl, uploadImage } = useImageURL(selectedFile);
     const axiosSecure = useAxiosSecure();
-    const {currentUser} = useOneUser()
+    const { currentUser } = useOneUser()
     const router = useRouter();
 
 
@@ -137,22 +137,21 @@ const ParsonalInfo = () => {
 
 
                             </div>
-                          {
-                            !selectedFile ?   <Image
-                            src={palesholderImage}
-                            className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                            alt=""
-                            width={500}
-                            height={500}
-                        /> : <Image
-                        src={preview}
-                        className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                        alt=""
-                        width={500}
-                        height={500}
-                    /> 
-                          }
-
+                            {
+                                !selectedFile ? <Image
+                                    src={currentUser?.image}
+                                    className="object-cover w-40 h-40 mb-2 rounded-full shadow"
+                                    alt=""
+                                    width={500}
+                                    height={500}
+                                /> : <Image
+                                    src={preview}
+                                    className="object-cover w-40 h-40 mb-2 rounded-full shadow"
+                                    alt=""
+                                    width={500}
+                                    height={500}
+                                />
+                            }
 
                             {/* profile information */}
                             <div className="text-center md:text-start">
@@ -371,4 +370,4 @@ const ParsonalInfo = () => {
     );
 };
 
-export default ParsonalInfo;
+export default ProfileEdit;

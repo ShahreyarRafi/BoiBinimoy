@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import ExchangeCard from "../../Shared/ExchnageBook/ExchangeCard";
 import { FiArrowUpRight } from "react-icons/fi";
-
 import useExchangeBooksForHome from "@/Hooks/exchangeBooks/useExchangeBooksForHome";
 import BookCardSkeleton from "@/components/Skeleton/BookCardSkeleton";
 

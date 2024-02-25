@@ -5,6 +5,7 @@ const nextConfig = {
     domains: [
       "firebasestorage.googleapis.com",
       "images.unsplash.com",
+      "graph.facebook.com",
       "i.postimg.cc",
       "i.ibb.co",
       "ibb.co",
@@ -17,6 +18,7 @@ const nextConfig = {
       "images-na.ssl-images-amazon.com",
       "source.unsplash.com",
       "pbs.twimg.com",
+      "thumbor.forbes.com",
     ],
   },
 };

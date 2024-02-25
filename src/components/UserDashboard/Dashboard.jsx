@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import useOneUser from "@/Hooks/Users/useOneUser";
+import useAdmin from "@/Hooks/useAdmin";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
 
@@ -18,6 +19,9 @@ const Dashboard = ({ children }) => {
   const { currentUser } = useOneUser();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  const [isAdmin] = useAdmin();
+  console.log("admin ", isAdmin);
 
   const toggleNotification = () => {
     setIsOpen(!isOpen);
@@ -203,6 +207,12 @@ const Dashboard = ({ children }) => {
                 <span className="text"> My Books </span>
               </Link>
             </li>
+            <li className={pathname == "/dashboard/allBlog" ? "active" : ""}>
+              <Link href="/dashboard/allBlog">
+                <i className="bx bxs-group"></i>
+                <span className="text">My Blogs</span>
+              </Link>
+            </li>
             <li
               className={
                 pathname == "/dashboard/exchange-books" ? "active" : ""
@@ -257,8 +267,7 @@ const Dashboard = ({ children }) => {
             <Link href="#" className="logout">
               <i className="bx bxs-log-out-circle"></i>
               <button onClick={logOut}>
-                {" "}
-                <span className="text">Logout</span>{" "}
+                <span className="text">Logout</span>
               </button>
             </Link>
           </li>

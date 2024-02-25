@@ -46,7 +46,7 @@ const Contact = () => {
             </div>
 
             <form ref={form} onSubmit={sendEmail}>
-              {/* input fild */}
+              {/* input field */}
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
                 <input
                   className="w-full mt-2 p-3 bg-transparent border-2 text-[#016961] rounded-lg focus:outline-none"
@@ -69,7 +69,7 @@ const Contact = () => {
                 <input
                   className="w-full mt-2 p-3 bg-transparent border-2 text-[#016961] rounded-lg focus:outline-none"
                   type="text"
-                  placeholder="Subjuct*"
+                  placeholder="Subject*"
                 />
               </div>
 
