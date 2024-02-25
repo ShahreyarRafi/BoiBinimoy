@@ -1,4 +1,4 @@
-"use client"
+
 
 import Categories from '@/components/UserDashboard/Categories/Categories';
 

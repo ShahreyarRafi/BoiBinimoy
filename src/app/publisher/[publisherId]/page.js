@@ -1,4 +1,3 @@
-"use client"
 
 import PublisherDetails from "@/components/Home/Publisher/PublisherDetails/PublisherDetails";
 import Footer from "@/components/Shared/Footer/Footer";

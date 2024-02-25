@@ -1,4 +1,4 @@
-"use client"
+
 
 import ExchangeRequest from '@/components/Exchange/ExchangeRequest/ExchangeRequest';
 

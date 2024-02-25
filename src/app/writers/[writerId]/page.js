@@ -1,4 +1,3 @@
-"use client"
 
 import WriterDetails from "@/components/Home/Writer/WriterDetails/WriterDetails";
 import Footer from "@/components/Shared/Footer/Footer";
