@@ -15,19 +15,12 @@ const BlogSideCard = ({ item }) => {
       />
       <div className="pt-2">
         <p className="text-[#016961] text-sm">{item?.category}</p>
-        {/* <h5 className="md:mt-0 text-black font-semibold text-xl mb-2">
-          {item?.title}
-        </h5> */}
 
         <Link href={`/blogs/${item?._id}`}>
           <span className="text-black font-semibold text-xl mb-2">
             {item?.title}
           </span>
         </Link>
-
-        {/* <p className="block md:hidden p-2 pl-0 pt-1 text-sm text-black">
-                    {item?.body}
-                </p> */}
       </div>
     </div>
   );
