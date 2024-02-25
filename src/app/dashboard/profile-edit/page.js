@@ -2,7 +2,7 @@
 import ProfileEdit from '@/components/UserDashboard/ProfileEdit/ProfileEdit';
 import React from 'react';
 
-const profileEdit = () => {
+const page = () => {
     return (
         <div>
             <ProfileEdit></ProfileEdit>
@@ -10,7 +10,7 @@ const profileEdit = () => {
     );
 };
 
-export default profileEdit;
+export default page;
 
 
 
