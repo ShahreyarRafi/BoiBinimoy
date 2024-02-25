@@ -1,28 +1,106 @@
-"use client";
+"use client"
 
+import useGetOneBuyBook from "@/Hooks/buyBooks/useGetOneBuyBook";
 import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
 import { BsUpload } from "react-icons/bs";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import PageLoading from "../Shared/loadingPageBook/PageLoading";
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
+import Swal from "sweetalert2";
+
+
 
 const UpdateBook = () => {
 
+  const axiosSecure = useAxiosSecure();
+  const router = useRouter();
 
-  
+  const { update_book_id } = useParams()
+
+
+
+
+  const { book, isLoading } = useGetOneBuyBook(update_book_id)
+
+  console.log(book);
+
+
+
+
+  if (isLoading) {
+    return <PageLoading></PageLoading>
+  }
+
+  const { _id, description, title,
+    edition, bookType,
+    bookCondition,
+    pages, price, whatYouWant, owner,
+    publisher, writer, bookCategory, language, publication_year, } = book || {};
+
+  console.log(book);
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const form = e.target;
     const title = form.title.value;
+    const writer = form.writer.value;
+    const publisher = form.publisher.value;
+    const owner = form.owner.value;
+    const whatYouWant = form.whatYouWant.value;
+    const publication_year = form.publication_year.value;
+    const language = form.language.value;
+    const bookCategory = form.bookCategory.value;
+    const edition = form.edition.value;
+    const pages = form.pages.value;
+    const bookCondition = form.bookCondition.value;
+    const price = form.price.value;
+    const description = form.description.value;
+
     const currentDate = new Date().toISOString();
-    const newBook = {
+
+    const updateBuyBook = {
       title,
       uploadTime: currentDate,
+      description,
+      edition, bookType,
+      bookCondition,
+      pages, price, whatYouWant, owner,
+      publisher, writer, bookCategory, language, publication_year,
+
     };
-    console.log(newBook);
+    console.log(updateBuyBook);
+
+
+
+    axiosSecure.patch(`/api/v1/buy-books/${_id}`, updateBuyBook)
+      .then(res => {
+        console.log("update data ", res.data);
+        // Assuming your API returns the updated user document
+        const updatedBook = res.data;
+        if (updatedBook) {
+          Swal.fire(' Book Update successfully');
+          router.push('/dashboard/all-books')
+        } else {
+          console.error("Update failed: Book not found or update unsuccessful");
+          Swal.fire('Update failed. Please try again.');
+        }
+      })
+      .catch(error => {
+        console.error("Error occurred during update:", error);
+        Swal.fire('Update failed. Please try again.');
+      });
+
+
   };
+
+
 
   return (
     <div className="bg-teal-50 text-gray-500 min-h-screen">
-      <div className="max-w-5xl mx-auto px-3 md:px-5 lg:px-0 py-10">
+      <div className="max-w-7xl mx-auto px-3 md:px-5 lg:px-0 py-10">
         <div className="border-2 border-gray-300 rounded-lg px-3">
           <h1 className="text-lg  font-bold py-2">
             Update book name here Book
@@ -39,7 +117,8 @@ const UpdateBook = () => {
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                   name="bookType"
-                  id=""
+                  // defaultValue={bookType}
+                  id="bookType"
                 >
                   <option selected value="">
                     Book type
@@ -54,6 +133,7 @@ const UpdateBook = () => {
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                   name="bookCondition"
+                  defaultValue={bookCondition}
                   id=""
                 >
                   <option selected value="">
@@ -70,6 +150,7 @@ const UpdateBook = () => {
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                   name="whatYouWant"
+                  defaultValue={whatYouWant}
                   id=""
                 >
                   <option selected value="">
@@ -84,6 +165,7 @@ const UpdateBook = () => {
                 <select
                   className="h-10 w-full text-xs px-2 bg-transparent border rounded-lg focus:outline-none"
                   name="bookCategory"
+                  defaultValue={bookCategory}
                   id=""
                 >
                   <option selected value="">
@@ -97,7 +179,7 @@ const UpdateBook = () => {
                   <option value="travel">Travel</option>
                   <option value="food&cooking">Food & Cooking</option>
                   <option value="health&wellness">Health & Wellness</option>
-                  <option value="business&economics">
+                  <option value="business&economics" >
                     Business & Economics
                   </option>
                   <option value="humor">Humor</option>
@@ -127,6 +209,7 @@ const UpdateBook = () => {
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="title"
                     placeholder="Book Title"
+                    defaultValue={title}
                     type="text"
                     required
                   />
@@ -136,6 +219,7 @@ const UpdateBook = () => {
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="writer"
                     placeholder="Book Auhtor"
+                    defaultValue={writer}
                     type="text"
                     required
                   />
@@ -144,11 +228,10 @@ const UpdateBook = () => {
                   <select
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="language"
+                    defaultValue={language} // Add defaultValue here
                   >
-                    <option selected value="">
-                      Book Language
-                    </option>
-                    <option value="english">Snglish</option>
+                    <option value="">Book Language</option>
+                    <option value="english">English</option>
                     <option value="bangla">Bangla</option>
                     <option value="arabic">Arabic</option>
                   </select>
@@ -158,6 +241,7 @@ const UpdateBook = () => {
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="pages"
                     placeholder="Book Page Count"
+                    defaultValue={pages}
                     type="number"
                     required
                   />
@@ -166,6 +250,7 @@ const UpdateBook = () => {
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="publisher"
+                    defaultValue={publisher}
                     placeholder="Book Publisher"
                     type="text"
                     required
@@ -175,6 +260,7 @@ const UpdateBook = () => {
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="publication_year"
+                    defaultValue={publication_year}
                     placeholder="Book Publication Year"
                     type="number"
                     required
@@ -184,6 +270,7 @@ const UpdateBook = () => {
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="edition"
+                    defaultValue={edition}
                     placeholder="Book Edition"
                     type="text"
                     required
@@ -193,6 +280,7 @@ const UpdateBook = () => {
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="price"
+                    defaultValue={price}
                     placeholder="Book Price"
                     type="number"
                     required
@@ -220,6 +308,7 @@ const UpdateBook = () => {
                   <input
                     className="h-5 w-full"
                     type="file"
+                    // defaultValue={cover_image}
                     id="imageFile"
                     hidden
                   />
@@ -241,6 +330,7 @@ const UpdateBook = () => {
                     <input
                       className="h-5 w-full"
                       type="file"
+                      // defaultValue={cover_image}
                       id="imageFile"
                       hidden
                     />
@@ -259,6 +349,7 @@ const UpdateBook = () => {
                     <input
                       className="h-5 w-full"
                       type="file"
+                      // defaultValue={cover_image}
                       id="imageFile"
                       hidden
                     />
@@ -277,6 +368,7 @@ const UpdateBook = () => {
                     <input
                       className="h-5 w-full"
                       type="file"
+                      // defaultValue={cover_image}
                       id="imageFile"
                       hidden
                     />
@@ -297,6 +389,7 @@ const UpdateBook = () => {
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="owner"
+                    defaultValue={owner}
                     placeholder="Book Owner Name"
                     type="text"
                     required
@@ -306,6 +399,7 @@ const UpdateBook = () => {
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="location"
+                    // defaultValue={location}
                     placeholder="Book Owner location"
                     type="text"
                     required
@@ -324,6 +418,7 @@ const UpdateBook = () => {
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="stock_limit"
+                    // defaultValue={stock_limit}
                     placeholder="Book Stock"
                     type="number"
                     required
@@ -344,6 +439,7 @@ const UpdateBook = () => {
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="tags"
+                    // defaultValue={}
                     placeholder="Book Tags"
                     type="text"
                   />
@@ -352,6 +448,8 @@ const UpdateBook = () => {
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="awards"
+                    // defaultValue={}  
+
                     placeholder="Book Awards"
                     type="text"
                   />
@@ -365,6 +463,7 @@ const UpdateBook = () => {
                 className="w-full p-2 text-xs bg-transparent border-2 border-gray-300 rounded-lg focus:outline-none"
                 name="description"
                 id=""
+                defaultValue={description}
                 placeholder="Book Description"
                 cols="30"
                 rows="10"

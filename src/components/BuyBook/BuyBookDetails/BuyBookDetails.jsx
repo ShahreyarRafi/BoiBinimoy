@@ -14,72 +14,30 @@ import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Swal from 'sweetalert2';
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
+import useOneUser from "@/Hooks/Users/useOneUser";
+import useReviews from "@/Hooks/Reviews/useReviews";
+import useGetOneBuyBook from "@/Hooks/buyBooks/useGetOneBuyBook";
 
 const BuyBookDetails = () => {
   const param = useParams();
+  const book_id = param.buyId
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const [current, setCurrent] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [reviews, setReviews] = useState(null);
+  const { currentUser } = useOneUser();
+  const { reviews, isPending, refetch }  = useReviews(book_id)
+  const { getOneBuyBook : book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
 
+  console.log(book_id);
 
-  // User data load
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/users/${user?.email}`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const result = await response.json();
-        setCurrent(result);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [user?.email]);
-
-  // Comment loading
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/reviews/${param.buyId}`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const result = await response.json();
-        setReviews(result);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [param.buyId]);
-
-
-  // Book details data loading
-  const { data: book = [], isLoading } = useQuery({
-    queryKey: ["book"],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/api/v1/buy-books/${param.buyId}`);
-      return res.data;
-    },
-  });
-
-  if (isLoading) {
+  if (bookLoading || isPending) {
     return (
       <PageLoading />
     )
   }
+
+  console.log(book);
+
 
   // Handle comment form
   const handleSubmit = (e) => {
@@ -87,9 +45,9 @@ const BuyBookDetails = () => {
     const form = e.target;
     const comment = form.comment.value;
 
-    const user_name = current?.name;
-    const user_email = current?.email;
-    const user_image = current?.image;
+    const user_name = currentUser?.name;
+    const user_email = currentUser?.email;
+    const user_image = currentUser?.image;
     const rating = 5;
     const book_id = book?._id;
 
@@ -105,6 +63,7 @@ const BuyBookDetails = () => {
     axiosSecure
       .post("/api/v1/reviews", newComment)
       .then((response) => {
+        refetch()
         console.log("Response:", response.data);
         Swal.fire({
           position: "top-end",
@@ -123,16 +82,18 @@ const BuyBookDetails = () => {
   // Handle add to cart
   const handleCart = () => {
 
-    const user_name = current?.name;
-    const user_email = current?.email;
+    const user_name = currentUser?.name;
+    const user_email = currentUser?.email;
     const book_id = book?._id;
     const price = book?.price;
+    const quantity = 1;
 
     const addCart = {
       user_name,
       user_email,
       book_id,
-      price
+      price,
+      quantity
     }
 
     axiosSecure
@@ -150,6 +111,7 @@ const BuyBookDetails = () => {
         console.error("Error:", error);
       });
   }
+
 
   return (
     <div className="w-full bg-teal-50">

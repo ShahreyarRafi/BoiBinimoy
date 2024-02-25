@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import useOneUser from "@/Hooks/Users/useOneUser";
+import useAdmin from "@/Hooks/useAdmin";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
 
@@ -18,6 +19,9 @@ const Dashboard = ({ children }) => {
   const { currentUser } = useOneUser();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  const [isAdmin] = useAdmin();
+  console.log("admin ", isAdmin);
 
   const toggleNotification = () => {
     setIsOpen(!isOpen);
@@ -171,6 +175,18 @@ const Dashboard = ({ children }) => {
                 <span className="text">Add Book</span>
               </Link>
             </li>
+            <li className={pathname == "/dashboard/orders" ? "active" : ""}>
+              <Link href="/dashboard/orders">
+                <i className="bx bxs-book-add"></i>
+                <span className="text">Orders</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/my-orders" ? "active" : ""}>
+              <Link href="/dashboard/my-orders">
+                <i className="bx bxs-book-add"></i>
+                <span className="text">My Orders</span>
+              </Link>
+            </li>
             <li className={pathname == "/dashboard/add-banner" ? "active" : ""}>
               <Link href="/dashboard/add-banner">
                 <i class="bx bxs-image-add"></i>
@@ -189,6 +205,12 @@ const Dashboard = ({ children }) => {
               <Link href="/dashboard/all-books">
                 <i className="bx bxs-group"></i>
                 <span className="text"> My Books </span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/allBlog" ? "active" : ""}>
+              <Link href="/dashboard/allBlog">
+                <i className="bx bxs-group"></i>
+                <span className="text">My Blogs</span>
               </Link>
             </li>
             <li
@@ -229,11 +251,12 @@ const Dashboard = ({ children }) => {
               <Link href="/dashboard/notification">
                 <i className="bx bxs-message-dots"></i>
                 <span className="text">Notification</span>
-=======
-            <li
-              className={pathname == "/dashboard/track-order" ? "active" : ""}
-            >
-
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/categories" ? "active" : ""}>
+              <Link href="/dashboard/categories">
+                <i className="bx bxs-message-dots"></i>
+                <span className="text">Categories</span>
               </Link>
             </li>
           </ul>
@@ -250,8 +273,7 @@ const Dashboard = ({ children }) => {
             <Link href="#" className="logout">
               <i className="bx bxs-log-out-circle"></i>
               <button onClick={logOut}>
-                {" "}
-                <span className="text">Logout</span>{" "}
+                <span className="text">Logout</span>
               </button>
             </Link>
           </li>

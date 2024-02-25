@@ -164,18 +164,19 @@
 /* --------------scrollbar css--------------*/
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 9px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #c9ddd8;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #016961;
   border-radius: 4px;
+  border: 1px solid rgb(101, 163, 157);
 }
 
 /* Handle on hover */

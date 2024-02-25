@@ -79,10 +79,9 @@ const AddBlog = () => {
             Add Blog
           </h1>
           <form onSubmit={handleSubmit(handleBlogSubmit)}>
-            {/* basic information div */}
-            <div className=" border-2 border-[#016961] rounded-lg px-3 pb-3">
-              {/* title */}
-              <h3 className="text-sm font-light py-2">Blog Title:</h3>
+            <div className="border-2 border-[#016961] rounded-lg p-3">
+              <h3 className="text-sm font-light pb-3">Basic Information:</h3>
+
               <input
                 className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
                 {...register("title")}
@@ -90,96 +89,77 @@ const AddBlog = () => {
                 type="text"
                 required
               />
-            </div>
 
-            {/* blog information and image div */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-3 gap-3">
-              {/* book description div */}
-              <div className="border-2 col-span-1 lg:col-span-2 border-[#016961] rounded-lg h-full w-full px-2 pb-1">
-                {/* title */}
-                <h3 className="text-sm font-light py-2">Blog Description:</h3>
-                {/* blog description div name:description*/}
-                <div>
-                  <textarea
-                    className="w-full p-2 text-xs bg-transparent border-2 border-[#016961] rounded-lg focus:outline-none"
-                    {...register("description")}
-                    placeholder="Blog Description"
-                    cols="30"
-                    rows="10"
-                    required
-                  ></textarea>
-                </div>
+              <div className="flex flex-col md:flex-row gap-3 py-3">
+                {/* blog Tags name:tags*/}
+                <input
+                  className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                  {...register("category")}
+                  placeholder="Blog Category"
+                  type="text"
+                  required
+                />
+
+                {/* blog Tags name:tags*/}
+                <input
+                  className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                  {...register("tags")}
+                  placeholder="Blog Tags"
+                  type="text"
+                />
               </div>
 
-              {/* image div */}
-              <div className="border-2 flex flex-col border-[#016961] rounded-lg h-full w-full px-2 pb-3">
-                {/* title */}
-                <h3 className="text-sm font-light py-2">
-                  Upload blog cover image:
-                </h3>
-                {/* image */}
-                <div
-                  for="imageFile"
-                  className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg"
-                >
-                  {!selectedFile ? (
-                    <label
-                      for="imageFile"
-                      className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
-                    >
-                      <BsUpload /> <span> Upload Here</span>
-                    </label>
-                  ) : (
-                    <Image
-                      src={preview}
-                      width={500}
-                      height={500}
-                      alt="Image Preview"
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                {/*description div start*/}
+                <div className="col-span-1 lg:col-span-2 h-full w-full pb-1">
+                  <div>
+                    <textarea
+                      className="w-full p-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                      {...register("description")}
+                      placeholder="Blog Description"
+                      cols="30"
+                      rows="10"
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+                {/*description div end*/}
+
+                {/* image div start*/}
+                <div className="flex flex-col h-full w-full pb-3">
+                  <div
+                    for="imageFile"
+                    className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg"
+                  >
+                    {!selectedFile ? (
+                      <label
+                        for="imageFile"
+                        className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                      >
+                        <BsUpload /> <span> Upload Here</span>
+                      </label>
+                    ) : (
+                      <Image
+                        src={preview}
+                        width={500}
+                        height={500}
+                        alt="Image Preview"
+                      />
+                    )}
+                    <input
+                      type="file"
+                      id="imageFile"
+                      {...register("cover_image")}
+                      onChange={onSelectFile}
+                      hidden
                     />
-                  )}
-                  <input
-                    type="file"
-                    id="imageFile"
-                    {...register("cover_image")}
-                    onChange={onSelectFile}
-                    hidden
-                  />
+                  </div>
                 </div>
+                {/* image div end */}
               </div>
             </div>
 
-            {/* Blog tag */}
-            <div className="flex flex-col md:flex-row gap-3">
-              <div className="border-2 border-[#016961] rounded-lg h-full w-full px-2 mt-3 pb-3">
-                <h3 className="text-sm font-light py-2">Blog Category:</h3>
-
-                <div className="grid grid-cols-1 gap-3">
-                  {/* blog Tags name:tags*/}
-                  <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    {...register("category")}
-                    placeholder="Blog Category"
-                    type="text"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="border-2 border-[#016961] rounded-lg h-full w-full px-2 mt-3 pb-3">
-                <h3 className="text-sm font-light py-2">Blog Tags:</h3>
-
-                <div className="grid grid-cols-1 gap-3">
-                  {/* blog Tags name:tags*/}
-                  <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                    {...register("tags")}
-                    placeholder="Blog Tags"
-                    type="text"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* go to home and submit buttons */}
+            {/* go to home and submit buttons div start */}
             <div className="flex justify-center md:justify-end text-xs items-center my-4 gap-3">
               <Link href="/dashboard">
                 <button className="px-3 py-2 border-2 border-[#016961] rounded-lg uppercase">
@@ -197,6 +177,7 @@ const AddBlog = () => {
                 </span>
               </button>
             </div>
+            {/* go to home and submit buttons div end */}
           </form>
         </div>
       </div>

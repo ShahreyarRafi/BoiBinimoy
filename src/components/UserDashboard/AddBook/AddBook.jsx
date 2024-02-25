@@ -12,14 +12,13 @@ import { AuthContext } from "@/providers/AuthProvider";
 // const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=7365e777963cf7664292cb83647a9d98`;
 
-
 const AddBook = () => {
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
-  const { user } = useContext(AuthContext)
-  const owner_email = user?.email
+  const { user } = useContext(AuthContext);
+  const owner_email = user?.email;
   console.log(owner_email);
 
   // create a preview as a side effect, whenever selected file is changed
@@ -32,7 +31,7 @@ const AddBook = () => {
       return;
     }
 
-    console.log("image file: ", files)
+    console.log("image file: ", files);
     const selectedImage = files[0];
     setSelectedFile(selectedImage);
 
@@ -40,11 +39,27 @@ const AddBook = () => {
     setPreview(objectUrl);
   };
 
-  console.log("preview:", preview)
-
-  
   const onSubmit = async (data) => {
-    const { bookType, bookCondition, whatYouWant, bookCategory, title, writer, language, pages, publisher, publicationYear, edition, price, owner, location, stockLimit, tags, awards, description , } = data;
+    const {
+      bookType,
+      bookCondition,
+      whatYouWant,
+      bookCategory,
+      title,
+      writer,
+      language,
+      pages,
+      publisher,
+      publicationYear,
+      edition,
+      price,
+      owner,
+      location,
+      stockLimit,
+      tags,
+      awards,
+      description,
+    } = data;
     const imageFile = { image: data.image1[0] };
 
     const url = await axios.post(image_hosting_api, imageFile, {
@@ -77,18 +92,16 @@ const AddBook = () => {
       description,
     };
 
-
     const res = await axiosSecure.post("/api/v1/buy-books", newBook);
 
     if (res?.data) {
       reset();
-      Swal.fire('Book upload successfull')
+      Swal.fire("Book upload successfull");
     }
-
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-scree">
       <div className="container mx-auto text-[#016961]">
         <div className="border-2 border-[#016961] rounded-lg px-3">
           <h1 className="text-2xl font-bold py-5 md:py-3 text-center md:text-start">
@@ -105,8 +118,8 @@ const AddBook = () => {
                 {/* product type name:bookType*/}
                 <select
                   className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-
                   {...register("bookType")}
+                  
                 >
                   <option selected value="bookType">
                     Book type
@@ -120,7 +133,6 @@ const AddBook = () => {
                 {/* product conditions name:bookCondition*/}
                 <select
                   className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-
                   {...register("bookCondition")}
                 >
                   <option selected value="bookCondition">
@@ -199,7 +211,6 @@ const AddBook = () => {
                   {/* book author  name:writer*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-
                     {...register("writer")}
                     placeholder="Book writer"
                     type="text"
@@ -231,7 +242,6 @@ const AddBook = () => {
                   {/* book publisher name:publisher*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-
                     {...register("publisher")}
                     placeholder="Book Publisher"
                     type="text"
@@ -241,7 +251,6 @@ const AddBook = () => {
                   {/* book publication year name:publicationYear*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-
                     {...register("publicationYear")}
                     placeholder="Book Publication Year"
                     type="number"
@@ -251,7 +260,6 @@ const AddBook = () => {
                   {/* book edition name:edition*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-
                     {...register("edition")}
                     placeholder="Book Edition"
                     type="text"
@@ -261,7 +269,6 @@ const AddBook = () => {
                   {/* book price name:price*/}
                   <input
                     className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-
                     {...register("price")}
                     placeholder="Book Price"
                     type="number"
@@ -279,22 +286,28 @@ const AddBook = () => {
                   for="imageFile"
                   className="w-full h-32 border flex justify-center items-center border-[#016961] rounded-lg"
                 >
-                  {
-                    !selectedFile ? <label
+                  {!selectedFile ? (
+                    <label
                       htmlFor="imageFile"
                       className="px-16 py-16 flex justify-center items-center gap-3 text-center text-xs lg:text-sm cursor-pointer"
                     >
                       <BsUpload /> <span> Upload</span>
-                    </label> :
-                      <Image src={preview} width={500} height={500} alt="Image Preview" />
-                  }
+                    </label>
+                  ) : (
+                    <Image
+                      src={preview}
+                      width={500}
+                      height={500}
+                      alt="Image Preview"
+                    />
+                  )}
                   <input
                     className="h-5 w-full"
                     type="file"
                     id="imageFile"
                     onChange={onSelectFile}
                     {...register("image1")}
-                  // hidden
+                    hidden
                   />
                 </div>
 
@@ -311,12 +324,7 @@ const AddBook = () => {
                     >
                       <BsUpload />
                     </label>
-                    <input
-                      className="h-5 w-full"
-                      type="file"
-
-                      hidden
-                    />
+                    <input className="h-5 w-full" type="file" hidden />
                   </div>
 
                   {/* 2 */}
@@ -330,12 +338,7 @@ const AddBook = () => {
                     >
                       <BsUpload />
                     </label>
-                    <input
-                      className="h-5 w-full"
-                      type="file"
-
-                      hidden
-                    />
+                    <input className="h-5 w-full" type="file" hidden />
                   </div>
 
                   {/* 3 */}
@@ -349,12 +352,7 @@ const AddBook = () => {
                     >
                       <BsUpload />
                     </label>
-                    <input
-                      className="h-5 w-full"
-                      type="file"
-
-                      hidden
-                    />
+                    <input className="h-5 w-full" type="file" hidden />
                   </div>
                 </div>
               </div>
@@ -362,33 +360,6 @@ const AddBook = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-3 gap-3">
               {/* owner information  div*/}
-              <div className="border-2 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
-                {/* title */}
-                <h3 className="py-2">Owner Information:</h3>
-
-                {/* information div */}
-                <div className="grid grid-cols-1 gap-3">
-                  {/* owner name name:owner*/}
-                  <input
-                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-
-                    {...register("owner")}
-                    placeholder="Book Owner Name"
-                    type="text"
-                    required
-                  />
-
-                  {/* owner location name:location*/}
-                  <input
-                    className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-
-                    {...register("location")}
-                    placeholder="Book Owner location"
-                    type="text"
-                    required
-                  />
-                </div>
-              </div>
 
               {/* other information */}
               <div className="border-2 border-[#016961] rounded-lg h-full w-full px-2 pb-3">
@@ -400,7 +371,6 @@ const AddBook = () => {
                   {/* book Stock Limit name:stockLimit*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-
                     {...register("stockLimit")}
                     placeholder="Book Stock"
                     type="number"
@@ -419,7 +389,6 @@ const AddBook = () => {
                   {/* book Tags name:tags*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-
                     {...register("tags")}
                     placeholder="Book Tags"
                     type="text"
@@ -428,7 +397,6 @@ const AddBook = () => {
                   {/* book awards name:awards*/}
                   <input
                     className="h-10 w-full px-2 text-xs lg:text-sm bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-
                     {...register("awards")}
                     placeholder="Book Awards"
                     type="text"
@@ -441,7 +409,6 @@ const AddBook = () => {
             <div className="my-3">
               <textarea
                 className="w-full p-2 text-xs lg:text-sm bg-transparent border-2 border-[#016961] rounded-lg focus:outline-none"
-
                 {...register("description")}
                 placeholder="Book Description"
                 cols="30"
