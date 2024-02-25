@@ -56,14 +56,14 @@ const Blog = () => {
 
           <div className="w-full">
             {mains?.map((main) => (
-              <div key={main?._id} className="mb-10">
+              <div key={main?._id} className="mb-10 px-5 lg:px-0">
                 <Image
                   src={main?.cover_image}
                   priority
                   width={500}
                   height={500}
                   alt="Main blog"
-                  className="w-full h-[300px]"
+                  className="w-full h-[300px] object-cover"
                 />
                 <span className="text-[#016961] text-sm hidden md:block mt-4">
                   Technology
@@ -89,7 +89,7 @@ const Blog = () => {
           </div>
 
           {/* side blog */}
-          <div className="w-full md:w-4/7 px-4">
+          <div className="w-full px-4">
             <h1 className="text-3xl font-semibold text-[#016961] pb-5">
               Populer
             </h1>
