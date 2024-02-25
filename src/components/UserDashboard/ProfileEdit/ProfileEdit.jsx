@@ -58,8 +58,8 @@ const ProfileEdit = () => {
         }
 
 
-        axiosSecure.patch(api/v1/users/${currentUser._id}, updateUserInformation)
-            .then(res => {
+        axiosSecure.patch(`api/v1/users/${currentUser._id}`, updateUserInformation)
+        .then(res => {
                 console.log("update data ", res.data);
                 // Assuming your API returns the updated user document
                 const updatedUser = res.data;
