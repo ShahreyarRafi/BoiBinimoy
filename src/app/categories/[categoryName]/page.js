@@ -8,13 +8,13 @@ import { usePathname } from 'next/navigation';
 
 const page = () => {
 
-    const pathname = usePathname();
-    const category = pathname.split("/");
+    // const pathname = usePathname();
+    // const category = pathname.split("/");
 
     return (
         <div>
             <Navbar></Navbar>
-            <SectionTitle heading={category[category.length - 1]}></SectionTitle>
+            {/* <SectionTitle heading={category[category.length - 1]}></SectionTitle> */}
             <CategoryByName></CategoryByName>
             <Footer></Footer>
         </div>

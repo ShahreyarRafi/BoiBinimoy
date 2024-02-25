@@ -1,11 +1,11 @@
 "use client"
 
-import BlogDetails from '@/components/Blog/BlogDetails/BlogDetails';
+import Writer from '@/components/UserDashboard/Writer/Writer';
 
 const page = () => {
     return (
         <div>
-            <BlogDetails></BlogDetails>
+            <Writer></Writer>
         </div>
     );
 };
