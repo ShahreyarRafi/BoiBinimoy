@@ -9,7 +9,7 @@ import { useContext, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
-const AllBlogCard = ({ item }) => {
+const AllBlogCard = ({ item, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [id, setId] = useState(item?._id);
@@ -30,6 +30,7 @@ const AllBlogCard = ({ item }) => {
           .delete(`api/v1/blogs/${id}`)
           .then((res) => {
             if (res.status === 200) {
+              refetch()
               Swal.fire({
                 icon: "success",
                 title: "Success!",
@@ -97,6 +98,7 @@ const AllBlogCard = ({ item }) => {
       .patch(`api/v1/blogs/${id}`, updateBlog)
       .then((res) => {
         if (res.status === 200) {
+          refetch()
           Swal.fire({
             icon: "success",
             title: "Success!",
