@@ -25,15 +25,10 @@ const BuyBookDetails = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const { currentUser } = useOneUser();
-<<<<<<< HEAD
-  const { reviews, isPending, refetch } = useReviews(book_id)
-  const { book, bookLoading, bookRefetch } = useGetOneBuyBook(book_id)
-=======
   const { reviews, isPending, refetch }  = useReviews(book_id)
   const { getOneBuyBook : book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
 
   console.log(book_id);
->>>>>>> 3f107f6ed5b73d3b87cc70fafb9803650d360fdf
 
   if (bookLoading || isPending) {
     return (
