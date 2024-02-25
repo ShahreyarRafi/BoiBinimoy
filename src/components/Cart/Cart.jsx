@@ -5,10 +5,6 @@ import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
 import PageLoading from "../Shared/loadingPageBook/PageLoading";
 import useAuth from "@/Hooks/auth/useAuth";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
-import { useRouter } from "next/navigation";
-import { FaMinus, FaPlus } from "react-icons/fa";
-import { RxCross2 } from "react-icons/rx";
-import { useState } from "react";
 import CartsDetails from "./CartsDetails";
 
 const Cart = () => {
