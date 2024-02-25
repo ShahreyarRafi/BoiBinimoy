@@ -1,22 +1,23 @@
 "use client";
 
-import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import ExchangeCard from "../../Shared/ExchnageBook/ExchangeCard";
 import { FiArrowUpRight } from "react-icons/fi";
-import ComponentLoading from "@/components/Shared/loadingPageBook/ComponentLoading";
-import useAuth from "@/Hooks/auth/useAuth";
-import useExchangeBooks from "@/Hooks/exchangeBooks/useExchangeBooks";
 import useExchangeBooksForHome from "@/Hooks/exchangeBooks/useExchangeBooksForHome";
+import BookCardSkeleton from "@/components/Skeleton/BookCardSkeleton";
 
 const TestExchange = () => {
   const { exchangeBooks: books, isLoading } = useExchangeBooksForHome();
 
-
   if (isLoading) {
-    return <ComponentLoading />;
+    return (
+      <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        {Array.from(Array(8).keys()).map((index) => (
+          <BookCardSkeleton key={index} />
+        ))}
+      </div>
+    );
   }
 
   const transparentBanner = "https://i.ibb.co/GPmg3HB/Swap-Books-t.png";

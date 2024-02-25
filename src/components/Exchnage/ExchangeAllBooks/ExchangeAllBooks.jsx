@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
+import React, { useState } from "react";
 import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import ExchangeAllCards from "../../Shared/ExchnageBook/ExchangeAllCards";
 import useExchangeBooks from "@/Hooks/exchangeBooks/useExchangeBooks";
-import { useState } from "react";
 
 const ExchangeAllBooks = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,8 +37,6 @@ const ExchangeAllBooks = () => {
     }
   };
 
-
-
   return (
     <div className="min-h-screen container mx-auto px-3">
       <div className="py-12">
@@ -60,8 +58,9 @@ const ExchangeAllBooks = () => {
               <button
                 key={index}
                 onClick={() => handlePagination(index + 1)}
-                className={`mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700 ${currentPage === index + 1 ? "bg-blue-700" : ""
-                  }`}
+                className={`mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700 ${
+                  currentPage === index + 1 ? "bg-blue-700" : ""
+                }`}
               >
                 {index + 1}
               </button>

@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
-import './joinUs.css'
+
 
 const SocialLogin = () => {
   const { googleLogin, facebookLogin, twitterSignIn } = useContext(AuthContext);
@@ -47,6 +47,7 @@ const SocialLogin = () => {
 
 
   return (
+<<<<<<< HEAD
     <div>
 
 
@@ -75,6 +76,26 @@ const SocialLogin = () => {
 
 
     </div>
+=======
+<div>
+<div className="social-media">
+    <a href="#" className="social-icon">
+        <i><FaFacebookF /></i>
+    </a>
+    <a href="#" className="social-icon">
+        <i><FaTwitter /></i>
+    </a>
+    <button className="social-icon"
+        onClick={() => handleSocialLogin(googleLogin)}
+        >
+        <FaGoogle />
+    </button>
+    <a href="#" className="social-icon">
+        <i><FaLinkedinIn /></i>
+    </a>
+</div>
+</div>
+>>>>>>> 31c1b791a2af4d932feb8a9470d5b0bf8f204909
   );
 };
 

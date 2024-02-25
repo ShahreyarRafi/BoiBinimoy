@@ -1,7 +1,7 @@
 "use client"
 
 import 'swiper/css/bundle';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import BookCard from "../../Shared/BookCard";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper/core';
@@ -12,87 +12,34 @@ import ComponentLoading from '@/components/Shared/loadingPageBook/ComponentLoadi
 
 SwiperCore.use([Navigation]);
 
-
 export default function BuyNow() {
 
     const [swiperInitialized, setSwiperInitialized] = useState(false);
     const [swiper, setSwiper] = useState(null);
+    const [books, setBooks] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const exchangeBooks = [
-        {
-            "id": 1,
-            "cover_image": "https://i.ibb.co/fNhJX8L/Untitled-design-8.png",
-            "title": "The Great Gatsby",
-            "writer": "F. Scott Fitzgerald",
-            "genre": "Classic",
-            "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
-        },
-        {
-            "id": 2,
-            "cover_image": "https://i.ibb.co/wyJk0Df/Untitled-design-11.png",
-            "title": "The Great Gatsby",
-            "writer": "F. Scott Fitzgerald",
-            "genre": "Classic",
-            "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
-        },
-        {
-            "id": 3,
-            "cover_image": "https://i.ibb.co/NVwBhZJ/Untitled-design-10.png",
-            "title": "The Great Gatsby",
-            "writer": "F. Scott Fitzgerald",
-            "genre": "Classic",
-            "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
-        },
-        {
-            "id": 4,
-            "cover_image": "https://i.ibb.co/d52WsrH/Untitled-design-9.png",
-            "title": "The Great Gatsby",
-            "writer": "F. Scott Fitzgerald",
-            "genre": "Classic",
-            "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
-        },
-        {
-            "id": 5,
-            "cover_image": "https://i.ibb.co/HzPW8vW/Untitled-design-13.png",
-            "title": "The Great Gatsby",
-            "writer": "F. Scott Fitzgerald",
-            "genre": "Classic",
-            "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
-        },
-        {
-            "id": 6,
-            "cover_image": "https://i.ibb.co/vdcSqxv/Untitled-design-12.png",
-            "title": "The Great Gatsby",
-            "writer": "F. Scott Fitzgerald",
-            "genre": "Classic",
-            "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
-        }, {
-            "id": 7,
-            "cover_image": "https://i.ibb.co/fNhJX8L/Untitled-design-8.png",
-            "title": "The Great Gatsby",
-            "writer": "F. Scott Fitzgerald",
-            "genre": "Classic",
-            "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
-        },
-        {
-            "id": 8,
-            "cover_image": "https://i.ibb.co/wyJk0Df/Untitled-design-11.png",
-            "title": "The Great Gatsby",
-            "writer": "F. Scott Fitzgerald",
-            "genre": "Classic",
-            "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
-        },
-        {
-            "id": 9,
-            "cover_image": "https://i.ibb.co/NVwBhZJ/Untitled-design-10.png",
-            "title": "The Great Gatsby",
-            "writer": "F. Scott Fitzgerald",
-            "genre": "Classic",
-            "description": "A tale of wealth, love, and the American Dream set in the Roaring Twenties."
-        }
-    ]
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("https://boi-binimoy-server.vercel.app/api/v1/buy-books");
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const result = await response.json();
+                setBooks(result.buyBooks.slice(0, 6));
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
 
-   
+    console.log(books);
+
+
     const handleNextButtonClick = () => {
         if (swiper) {
             swiper.slideNext();
@@ -116,8 +63,6 @@ export default function BuyNow() {
             swiper.update();
         }
     }, [swiper]);
-
-
 
     return (
         <div className="container mt-12 md:mt-14 mx-auto px-5">
@@ -158,8 +103,8 @@ export default function BuyNow() {
                 }}
             >
                 {swiperInitialized ? (
-                    exchangeBooks.map(item => (
-                        <SwiperSlide key={item.id}>
+                    books?.map(item => (
+                        <SwiperSlide key={item?._id}>
                             <BookCard item={item} />
                         </SwiperSlide>
                     ))

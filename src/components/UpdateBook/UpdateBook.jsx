@@ -20,10 +20,12 @@ const UpdateBook = () => {
 
 
 
-  const { getOneBuyBook, isLoading } = useGetOneBuyBook(update_book_id)
-  console.log(getOneBuyBook);
 
- 
+  const { book, isLoading } = useGetOneBuyBook(update_book_id)
+
+  console.log(book);
+
+
 
 
   if (isLoading) {
@@ -34,8 +36,9 @@ const UpdateBook = () => {
     edition, bookType,
     bookCondition,
     pages, price, whatYouWant, owner,
-    publisher, writer, bookCategory, language, publication_year, } = getOneBuyBook || {};
-  console.log(update_book_id);
+    publisher, writer, bookCategory, language, publication_year, } = book || {};
+
+  console.log(book);
 
 
   const handleSubmit = (e) => {
@@ -57,6 +60,7 @@ const UpdateBook = () => {
     const description = form.description.value;
 
     const currentDate = new Date().toISOString();
+
     const updateBuyBook = {
       title,
       uploadTime: currentDate,
@@ -113,8 +117,8 @@ const UpdateBook = () => {
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                   name="bookType"
-                  defaultValue={bookType}
-                  id=""
+                  // defaultValue={bookType}
+                  id="bookType"
                 >
                   <option selected value="">
                     Book type
@@ -224,12 +228,10 @@ const UpdateBook = () => {
                   <select
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     name="language"
-                    defaultValue={language}
+                    defaultValue={language} // Add defaultValue here
                   >
-                    <option selected value="">
-                      Book Language
-                    </option>
-                    <option value="english">Snglish</option>
+                    <option value="">Book Language</option>
+                    <option value="english">English</option>
                     <option value="bangla">Bangla</option>
                     <option value="arabic">Arabic</option>
                   </select>
