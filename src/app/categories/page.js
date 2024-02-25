@@ -1,14 +1,16 @@
+"use client"
+
 import Categories from "@/components/Categories/Categories";
-import ContactBanner from "@/components/ContactUs/ContactBanner/ContactBanner";
 import Footer from "@/components/Shared/Footer/Footer";
 import Navbar from "@/components/Shared/Navbar/Navbar";
+import SectionTitle from "@/components/Shared/SectionTitle/SectionTitle";
 import React from "react";
 
-export default function CategoryPage() {
+export default function CategoriesPage() {
   return (
-    <div className="bg-teal-50">
+    <div>
       <Navbar />
-      <ContactBanner />
+      <SectionTitle heading={"All Categories"}></SectionTitle>
       <Categories />
       <Footer />
     </div>

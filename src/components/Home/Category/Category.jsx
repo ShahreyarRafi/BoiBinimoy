@@ -66,17 +66,17 @@ export default function Category() {
       <Slider ref={sliderRef} {...settings} className="">
         {isLoading
           ? Array.from(Array(8).keys()).map((index) => (
-              <CategoryCardSkeleton key={index} />
-            ))
+            <CategoryCardSkeleton key={index} />
+          ))
           : categories.map((category) => (
-              <CategoryCard key={category._id} category={category} />
-            ))}
+            <CategoryCard key={category._id} category={category} />
+          ))}
       </Slider>
 
       {isLoading || (
         <Link
           href={"/categories"}
-          className="absolute right-0 lg:-right-5 bg-teal-50 rounded-full  top-[40%] cursor-pointer"
+          className="absolute right-0 lg:-right-10 bg-teal-50 rounded-full top-[40%] cursor-pointer"
         >
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-800 opacity-75"></span>
           <span className="text-4xl text-[#016961]">

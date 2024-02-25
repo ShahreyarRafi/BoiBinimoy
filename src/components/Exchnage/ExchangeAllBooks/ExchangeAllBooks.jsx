@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
+import React, { useState } from "react";
 import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import ExchangeAllCards from "../../Shared/ExchnageBook/ExchangeAllCards";
 import useExchangeBooks from "@/Hooks/exchangeBooks/useExchangeBooks";
-import { useState } from "react";
 
 const ExchangeAllBooks = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,45 +37,42 @@ const ExchangeAllBooks = () => {
     }
   };
 
-
-
   return (
-    <div className=" bg-teal-50 min-h-[100svh]">
-      <div className=" container mx-auto px-3">
-        <div className="py-12">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
-            {books?.map((book) => (
-              <ExchangeAllCards key={book?._id} item={book}></ExchangeAllCards>
-            ))}
-          </div>
-
-          {pageNumbers?.length > 1 && (
-            <div className="flex justify-center mt-4">
-              <button
-                onClick={handlePrevPage}
-                className="mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700"
-              >
-                Prev
-              </button>
-              {pageNumbers.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => handlePagination(index + 1)}
-                  className={`mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700 ${currentPage === index + 1 ? "bg-blue-700" : ""
-                    }`}
-                >
-                  {index + 1}
-                </button>
-              ))}
-              <button
-                onClick={handleNextPage}
-                className="mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700"
-              >
-                Next
-              </button>
-            </div>
-          )}
+    <div className="min-h-screen container mx-auto px-3">
+      <div className="py-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
+          {books?.map((book) => (
+            <ExchangeAllCards key={book?._id} item={book}></ExchangeAllCards>
+          ))}
         </div>
+
+        {pageNumbers?.length > 1 && (
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={handlePrevPage}
+              className="mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700"
+            >
+              Prev
+            </button>
+            {pageNumbers.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handlePagination(index + 1)}
+                className={`mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700 ${
+                  currentPage === index + 1 ? "bg-blue-700" : ""
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button
+              onClick={handleNextPage}
+              className="mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

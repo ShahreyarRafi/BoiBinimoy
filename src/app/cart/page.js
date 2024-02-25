@@ -3,14 +3,15 @@
 import Cart from '@/components/Cart/Cart';
 import Footer from '@/components/Shared/Footer/Footer';
 import Navbar from '@/components/Shared/Navbar/Navbar';
-import React from 'react';
+import SectionTitle from '@/components/Shared/SectionTitle/SectionTitle';
 
 const page = () => {
     return (
         <div>
-            <Navbar />
-            <Cart />
-            <Footer />
+            <Navbar></Navbar>
+            <SectionTitle heading={"Cart"}></SectionTitle>
+            <Cart></Cart>
+            <Footer></Footer>
         </div>
 
     );
