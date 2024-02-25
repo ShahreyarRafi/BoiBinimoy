@@ -55,26 +55,28 @@ export default function Writer() {
   };
 
   return (
-    <div className="container mx-auto my-10 bg-white px-10">
-      <div className="slider-container">
-        <div className="flex justify-between items-center gap-5 mb-8">
-          <h2 className="text-teal-800 text-2xl font-bold">Shop By Writer</h2>
-          <Link
-            href={"/writers"}
-            className="w-[125px] bg-teal-800 hover:bg-teal-600 text-white py-2 rounded-full flex justify-center items-center gap-2"
-          >
-            View All <MdArrowOutward className="text-xl" />
-          </Link>
+    <div className="container mx-auto px-5 my-16">
+      <div className="container mx-auto my-10 bg-50 px-10 pb-10 pt-5 border-2 border-[#016961] rounded-lg">
+        <div className="slider-container">
+          <div className="flex justify-between items-center gap-5 mb-6">
+            <h2 className="text-teal-800 text-2xl font-bold">Shop By Writer</h2>
+            <Link
+              href={"/writers"}
+              className="w-[125px] bg-teal-800 hover:bg-teal-600 text-white py-2 rounded-full flex justify-center items-center gap-2"
+            >
+              View All <MdArrowOutward className="text-xl" />
+            </Link>
+          </div>
+          <Slider {...settings}>
+            {isLoading
+              ? Array.from(Array(8).keys()).map((index) => (
+                <WriterCardSkeleton key={index} />
+              ))
+              : writers
+                ?.slice(0, 20)
+                ?.map((item) => <WriterCard key={item._id} item={item} />)}
+          </Slider>
         </div>
-        <Slider {...settings}>
-          {isLoading
-            ? Array.from(Array(8).keys()).map((index) => (
-              <WriterCardSkeleton key={index} />
-            ))
-            : writers
-              ?.slice(0, 20)
-              ?.map((item) => <WriterCard key={item._id} item={item} />)}
-        </Slider>
       </div>
     </div>
   );

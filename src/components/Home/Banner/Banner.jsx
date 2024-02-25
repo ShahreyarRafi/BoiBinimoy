@@ -1,118 +1,35 @@
-"use client"
+'use client'
 
 import { useEffect, useState } from 'react';
 import './BannerStyles.css';
 import Image from 'next/image';
-import { Source_Serif_4, Merriweather, Crimson_Text, EB_Garamond, Libre_Baskerville, Playfair_Display } from "next/font/google";
-
-
-const data = [
-    {
-        "cover_image": "https://i.ibb.co/QHkZVtd/Copy-of-Black-Modern-Black-Friday-Sale-Facebook-Cover-2-1.png",
-        "author": "Boi Binimoy",
-        "title": "BLACK FRIDAY",
-        "topic": "UP TO 70% OFF",
-        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
-        "buttons": [
-            { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "Buy Now", "link": "/Buy Now-link" }
-        ],
-        "thumbnail_img": "https://i.ibb.co/X5w89Kh/book3.png",
-        "thumbnail_title": "Name Slider",
-        "thumbnail_description": "Description"
-    },
-    {
-        "cover_image": "https://i.ibb.co/DK9CQLm/Bold-Minimalist-Black-Friday-Sale-Facebook-Cover-1.png",
-        "author": "Boi Binimoy",
-        "title": "BLACK FRIDAY",
-        "topic": "UP TO 70% OFF",
-        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
-        "buttons": [
-            { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "Buy Now", "link": "/Buy Now-link" }
-        ],
-        "thumbnail_img": "https://i.ibb.co/6sHJqkj/book4.png",
-        "thumbnail_title": "Name Slider",
-        "thumbnail_description": "Description"
-    },
-    {
-        "cover_image": "https://i.ibb.co/PCv3C8S/Dark-Simple-Modern-Black-Friday-Sale-Facebook-Cover-8-1.png",
-        "author": "Boi Binimoy",
-        "title": "BLACK FRIDAY",
-        "topic": "UP TO 70% OFF",
-        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
-        "buttons": [
-            { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "Buy Now", "link": "/Buy Now-link" }
-        ],
-        "thumbnail_img": "https://i.ibb.co/HT901q9/book6.png",
-        "thumbnail_title": "Name Slider",
-        "thumbnail_description": "Description"
-    },
-    {
-        "cover_image": "https://i.ibb.co/4j42bC7/Dark-Simple-Modern-Black-Friday-Sale-Facebook-Cover-3-1.png",
-        "author": "Boi Binimoy",
-        "title": "BLACK FRIDAY",
-        "topic": "UP TO 70% OFF",
-        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
-        "buttons": [
-            { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "Buy Now", "link": "/Buy Now-link" }
-        ],
-        "thumbnail_img": "https://i.ibb.co/frT6m8q/book5.png",
-        "thumbnail_title": "Name Slider",
-        "thumbnail_description": "Description"
-    },
-    {
-        "cover_image": "https://i.ibb.co/7Wk3ysW/Black-and-White-Minimalist-Black-Friday-Banner-1-1.png",
-        "author": "Boi Binimoy",
-        "title": "BLACK FRIDAY",
-        "topic": "UP TO 70% OFF",
-        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
-        "buttons": [
-            { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "Buy Now", "link": "/Buy Now-link" }
-        ],
-        "thumbnail_img": "https://i.ibb.co/gg6zpVY/book2.png",
-        "thumbnail_title": "Name Slider",
-        "thumbnail_description": "Description"
-    },
-    {
-        "cover_image": "https://i.ibb.co/brpBJxB/Dark-Modern-Bold-Black-Friday-Sale-Facebook-Cover-2-1.png",
-        "author": "Boi Binimoy",
-        "title": "BLACK FRIDAY",
-        "topic": "UP TO 70% OFF",
-        "description": "📚 Uncover Incredible Black Friday Savings on Your Next Favorite Reads! 🎉 Dive into Our Library of Deals and Discover Books That Will Transport You to New Worlds. Don't Miss Out – Grab Your Favorites Now at Unbeatable Prices! #BlackFridayBookBonanza",
-        "buttons": [
-            { "label": "SEE MORE", "link": "/see-more-link" },
-            { "label": "Buy Now", "link": "/Buy Now-link" }
-        ],
-        "thumbnail_img": "https://i.ibb.co/wry18Qy/book1.png",
-        "thumbnail_title": "Name Slider",
-        "thumbnail_description": "Description"
-    },
-]
-
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
+import { Libre_Baskerville } from "next/font/google";
+import PageLoading from '@/components/Shared/loadingPageBook/PageLoading';
 
 const sourceSerif = Libre_Baskerville({
-    weight: ["400",  "700"],
+    weight: ["400", "700"],
     style: ["normal", "italic"],
     subsets: ["latin"],
     display: "swap",
-  });
+});
 
 export default function BannerNew() {
-    const [componentsMounted, setComponentMounted] = useState(false);
+    const axiosPublic = useAxiosPublic();
+    const { data: bannerData = [], isLoading } = useQuery({
+        queryKey: ["banner"],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`api/v1/banner`);
+            return res.data;
+        },
+    });
 
     useEffect(() => {
-        setComponentMounted(true);
-    }, []);
-
-    useEffect(() => {
-        if (componentsMounted) {
+        if (!isLoading && bannerData.length > 0) {
             initializeSlider();
         }
-    }, [componentsMounted]);
+    }, [isLoading, bannerData]);
 
     function initializeSlider() {
         let nextDom = document.getElementById('next');
@@ -124,7 +41,9 @@ export default function BannerNew() {
         let thumbnailItemsDom = thumbnailBorderDom.querySelectorAll('.item');
         let timeDom = document.querySelector('.carousel .time');
 
-        thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+        if (thumbnailItemsDom.length > 0) {
+            thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+        }
 
         let timeRunning = 3000;
         let timeAutoNext = 15000;
@@ -169,12 +88,15 @@ export default function BannerNew() {
         }
     }
 
+    if (isLoading) {
+        return <div className='bg-50-50'><PageLoading /></div>
+    }
 
     return (
         <div className='carousel-container banner-slider '>
             <div className="carousel">
                 <div className="list">
-                    {data.map((item, index) => (
+                    {bannerData.map((item, index) => (
                         <div className="item" key={index}>
                             <Image src={item.cover_image} height={4100} width={2310} alt="alt" />
                             <div className="content">
@@ -193,7 +115,7 @@ export default function BannerNew() {
                 </div>
                 <div>
                     <div className="thumbnail">
-                        {data.map((item, index) => (
+                        {bannerData.map((item, index) => (
                             <div className="item" key={index}>
                                 <Image src={item?.thumbnail_img} height={1500} width={1000} alt="alt" />
                                 <div className="content">
