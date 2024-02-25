@@ -1,4 +1,3 @@
-"use client"
 
 import Writer from '@/components/UserDashboard/Writer/Writer';
 

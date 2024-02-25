@@ -7,7 +7,7 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { useState } from "react";
 import CartsDetails from "./CartsDetails";
-// import { useRouter } from "next/router";
+
 
 const Cart = () => {
   const { myCarts, price, isPending, refetch } = useGetMyCarts();

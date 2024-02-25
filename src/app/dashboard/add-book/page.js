@@ -1,4 +1,3 @@
-"use client"
 
 import AddBook from '@/components/UserDashboard/AddBook/AddBook';
 

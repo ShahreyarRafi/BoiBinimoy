@@ -1,4 +1,4 @@
-"use client";
+
 
 import Publisher from "../../components/Publisher/Publisher";
 import Footer from "@/components/Shared/Footer/Footer";

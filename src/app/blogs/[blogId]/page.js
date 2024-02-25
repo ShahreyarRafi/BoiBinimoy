@@ -1,4 +1,3 @@
-"use client"
 
 import BlogDetails from '@/components/Blog/BlogDetails/BlogDetails';
 

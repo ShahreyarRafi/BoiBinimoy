@@ -1,10 +1,10 @@
-"use client"
+
 
 import CategoryByName from '@/components/Categories/CategoryByName/CategoryByName';
 import Footer from '@/components/Shared/Footer/Footer';
 import Navbar from '@/components/Shared/Navbar/Navbar';
 import SectionTitle from '@/components/Shared/SectionTitle/SectionTitle';
-import { usePathname } from 'next/navigation';
+// import { usePathname } from 'next/navigation';
 
 const page = () => {
 

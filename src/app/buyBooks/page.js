@@ -1,4 +1,4 @@
-"use client"
+
 
 import BuyAllBooks from "@/components/BuyBook/BuyAllBooks/BuyAllBooks";
 import Footer from "@/components/Shared/Footer/Footer";

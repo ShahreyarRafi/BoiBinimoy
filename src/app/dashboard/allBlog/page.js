@@ -1,4 +1,4 @@
-"use client";
+
 
 import AllBlog from "@/components/Blog/AllBlog/AllBlog";
 import React from "react";
