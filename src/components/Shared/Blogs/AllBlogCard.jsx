@@ -9,7 +9,7 @@ import { useContext, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
-const AllBlogCard = ({ item }) => {
+const AllBlogCard = ({ item, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [id, setId] = useState(item?._id);
@@ -35,6 +35,7 @@ const AllBlogCard = ({ item }) => {
                 title: "Success!",
                 text: "Your blog has been deleted.",
               });
+              refetch()
             } else {
               Swal.fire({
                 icon: "error",
@@ -102,6 +103,7 @@ const AllBlogCard = ({ item }) => {
             title: "Success!",
             text: "Blog updated successfully",
           });
+          refetch()
           document.getElementById("update_blog_modal").close();
         } else {
           Swal.fire({
