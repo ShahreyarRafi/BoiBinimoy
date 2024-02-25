@@ -18,11 +18,6 @@ const Blog = () => {
     },
   });
 
-
-  console.log(data);
-
-
-
   // const sides = [blogs[5], blogs[1], blogs[6], blogs[3]];
   return (
     <div className="max-w-6xl mx-auto mt-8 mb-36">
