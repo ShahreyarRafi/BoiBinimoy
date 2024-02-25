@@ -7,6 +7,8 @@ import { BsUpload } from "react-icons/bs";
 import Swal from "sweetalert2";
 import { AuthContext } from "@/providers/AuthProvider";
 import { useContext, useState } from "react";
+import { FaEdit } from "react-icons/fa";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 const AllBlogCard = ({ item }) => {
   const axiosSecure = useAxiosSecure();
@@ -123,8 +125,8 @@ const AllBlogCard = ({ item }) => {
   };
 
   return (
-    <>
-      <div className="rounded w-full flex flex-col justify-between">
+    <div>
+      <div className="rounded shadow-lg w-full h-full flex flex-col justify-between">
         <div>
           <Image
             src={item?.cover_image}
@@ -133,30 +135,31 @@ const AllBlogCard = ({ item }) => {
             height={500}
             alt="latest"
           />
-          <div className="p-4 pl-0">
+          <div className="p-4">
             <h2 className="font-bold text-xl text-gray-800">
-              {item?.title.slice(0, 40) + "..."}
+              {/* {item?.title.slice(0, 40) + "..."} */}
+              {item?.title}
             </h2>
-            <p className="text-gray-700 mt-2">
+            {/* <p className="text-gray-700 mt-2">
               {item?.body[0].slice(0, 100) + "..."}
               <Link href={`/blogs/${item?._id}`} className="text-blue-400">
                 Read more
               </Link>
-            </p>
+            </p> */}
           </div>
         </div>
-        <div className="p-4 flex gap-5">
+        <div className="flex justify-end items-center gap-2 px-4 py-2 border-t">
           <button
             onClick={handleUpdate}
-            className="w-full mt-6 text-center cursor-pointer bg-[#016961] text-white font-medium p-2 text-sm rounded-full "
+            className="text-center cursor-pointer font-semibold text-xl text-gray-500 hover:text-gray-700"
           >
-            Update
+            <FaEdit />
           </button>
           <button
             onClick={() => deleteButton(item?._id)}
-            className="w-full mt-6 text-center cursor-pointer bg-[#016961] text-white font-medium p-2 text-sm rounded-full "
+            className="text-center cursor-pointer font-semibold text-xl text-gray-500 hover:text-gray-700"
           >
-            Delete
+            <RiDeleteBin6Fill />
           </button>
         </div>
       </div>
@@ -278,7 +281,7 @@ const AllBlogCard = ({ item }) => {
           </div>
         </div>
       </dialog>
-    </>
+    </div>
   );
 };
 

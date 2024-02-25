@@ -207,6 +207,12 @@ const Dashboard = ({ children }) => {
                 <span className="text"> My Books </span>
               </Link>
             </li>
+            <li className={pathname == "/dashboard/allBlog" ? "active" : ""}>
+              <Link href="/dashboard/allBlog">
+                <i className="bx bxs-group"></i>
+                <span className="text">My Blogs</span>
+              </Link>
+            </li>
             <li
               className={
                 pathname == "/dashboard/exchange-books" ? "active" : ""
@@ -245,12 +251,6 @@ const Dashboard = ({ children }) => {
               <Link href="/dashboard/notification">
                 <i className="bx bxs-message-dots"></i>
                 <span className="text">Notification</span>
-              </Link>
-            </li>
-            <li className={pathname == "/dashboard/allBlog" ? "active" : ""}>
-              <Link href="/dashboard/allBlog">
-                <i className="bx bxs-image-add"></i>
-                <span className="text">All Blogs</span>
               </Link>
             </li>
           </ul>
