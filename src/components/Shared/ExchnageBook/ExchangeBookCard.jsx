@@ -7,7 +7,7 @@ import { FaRegHeart, FaExchangeAlt } from "react-icons/fa";
 // bg-[#f2fdf9]
 // text-[#2f8880]
 
-export default function ExchangeCard({ item }) {
+export default function ExchangeBookCard({ item }) {
   return (
     <Link href={`exchangeAllBooks/${item?._id}`}>
       <div className="l-container md:px-0.5 ">

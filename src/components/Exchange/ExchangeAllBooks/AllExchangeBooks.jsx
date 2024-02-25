@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import useExchangeBooks from "@/Hooks/exchangeBooks/useExchangeBooks";
-import ExchangeCard from "@/components/Shared/ExchangeBook/ExchangeCard";
+import ExchangeBookCard from "@/components/Shared/ExchnageBook/ExchangeBookCard";
+
 
 const AllExchangeBooks = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,7 +43,7 @@ const AllExchangeBooks = () => {
       <div className="py-12">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
           {books?.map((book) => (
-            <ExchangeCard key={book?._id} item={book}></ExchangeCard>
+            <ExchangeBookCard key={book?._id} item={book}></ExchangeBookCard>
           ))}
         </div>
 
