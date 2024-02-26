@@ -8,9 +8,10 @@ import { BsUpload } from "react-icons/bs";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import useImageURL from "@/Hooks/ImageURL/useImageURL";
 import Image from "next/image";
+import Swal from "sweetalert2";
 
 const AddBanner = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
   const [selectedFile, setSelectedFile] = useState();
   const [preview1, setPreview1] = useState();
@@ -18,7 +19,8 @@ const AddBanner = () => {
   const [preview2, setPreview2] = useState();
   const { uploadImage } = useImageURL(selectedFile);
   const { uploadImage : thumbnel_image } = useImageURL(selectedFile2);
-
+ 
+  
   // create a preview1 as a side effect, whenever selected file is changed
   const onSelectFile = (e) => {
     const files = e.target.files;
@@ -50,9 +52,15 @@ const AddBanner = () => {
   // post banner data
   const onSubmit = async (data) => {
     console.log(data);
+    
+    const cover_image = await uploadImage();
+    const thumbnail_img = await thumbnel_image();
+
+    const {title, author, topic,  see_more_button, buy_now_button,  description , thumbnail_description} = data;
+    const blogInfo = { cover_image,  title, author, topic,  see_more_button, buy_now_button,  description , thumbnail_description , thumbnail_img  };
 
     axiosSecure
-      .post("/api/v1/banner", data)
+      .post("/api/v1/banner", blogInfo)
       .then((response) => {
         // Handle the success response
         console.log("Response:", response.data);
@@ -63,18 +71,14 @@ const AddBanner = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        reset();
       })
       .catch((error) => {
         // Handle errors
         console.error("Error:", error);
       });
 
-    // try {
-    //   const response = await axios.post("/api/v1/banner", data);
-    //   console.log("Response:", response.data);
-    // } catch (error) {
-    //   console.error("Error:", error);
-    // }
+
   };
 
   return (
@@ -117,17 +121,17 @@ const AddBanner = () => {
               <div className="flex flex-col lg:flex-row items-center gap-3 pt-3">
                 <input
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
-                  {...register("seeMoreLink")}
+                  {...register("see_more_button")}
                   placeholder="SEE MORE button link"
                   type="url"
-                  required
+                
                 />
                 <input
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
-                  {...register("buyNowLink")}
+                  {...register("buy_now_button")}
                   placeholder="Buy Now button link"
                   type="url"
-                  required
+               
                 />
               </div>
               {/* Description and image upload */}
