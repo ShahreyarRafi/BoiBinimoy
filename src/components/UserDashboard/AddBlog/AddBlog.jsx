@@ -47,10 +47,12 @@ const AddBlog = () => {
       title,
       body,
       cover_image: uploadedImageUrl,
-      user_name: user?.displayName,
+      user_name: "admin",
       user_email: user?.email,
       category,
     };
+
+    console.log(newBlog);
 
     axiosSecure
       .post("/api/v1/blogs", newBlog)

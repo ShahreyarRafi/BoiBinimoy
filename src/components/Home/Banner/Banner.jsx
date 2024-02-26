@@ -87,7 +87,6 @@ export default function BannerNew() {
             }, timeAutoNext);
         }
     }
-
     if (isLoading) {
         return <div className='bg-50-50'><PageLoading /></div>
     }
@@ -105,7 +104,7 @@ export default function BannerNew() {
                                 <div className="topic">{item.topic}</div>
                                 <div className="des">{item.description}</div>
                                 <div className="buttons">
-                                    {item.buttons.map((button, buttonIndex) => (
+                                    {item.buttons && Array.isArray(item.buttons) && item.buttons.map((button, buttonIndex) => (
                                         <button key={buttonIndex} href={button.link}>{button.label}</button>
                                     ))}
                                 </div>
