@@ -8,6 +8,7 @@ import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import { Libre_Baskerville } from "next/font/google";
 import PageLoading from '@/components/Shared/loadingPageBook/PageLoading';
 
+
 const sourceSerif = Libre_Baskerville({
     weight: ["400", "700"],
     style: ["normal", "italic"],
@@ -87,7 +88,6 @@ export default function BannerNew() {
             }, timeAutoNext);
         }
     }
-
     if (isLoading) {
         return <div className='bg-50-50'><PageLoading /></div>
     }
@@ -96,17 +96,17 @@ export default function BannerNew() {
         <div className='carousel-container banner-slider '>
             <div className="carousel">
                 <div className="list">
-                    {bannerData.map((item, index) => (
+                    {Array.isArray(bannerData) && bannerData.map((item, index) => (
                         <div className="item" key={index}>
-                            <Image src={item.cover_image} height={4100} width={2310} alt="alt" />
+                            <Image src={item?.cover_image} height={4100} width={2310} alt="alt" />
                             <div className="content">
-                                <div className="author">{item.author}</div>
-                                <div className={`${sourceSerif.className} title font-outline`}>{item.title}</div>
-                                <div className="topic">{item.topic}</div>
-                                <div className="des">{item.description}</div>
+                                <div className="author">{item?.author}</div>
+                                <div className={`${sourceSerif.className} title font-outline`}>{item?.title}</div>
+                                <div className="topic">{item?.topic}</div>
+                                <div className="des">{item?.description}</div>
                                 <div className="buttons">
-                                    {item.buttons.map((button, buttonIndex) => (
-                                        <button key={buttonIndex} href={button.link}>{button.label}</button>
+                                    {Array.isArray(item?.buttons) && item?.buttons.map((button, buttonIndex) => (
+                                        <button key={buttonIndex} href={button?.link}>{button?.label}</button>
                                     ))}
                                 </div>
                             </div>
@@ -115,12 +115,12 @@ export default function BannerNew() {
                 </div>
                 <div>
                     <div className="thumbnail">
-                        {bannerData.map((item, index) => (
+                        {Array.isArray(bannerData) && bannerData.map((item, index) => (
                             <div className="item" key={index}>
                                 <Image src={item?.thumbnail_img} height={1500} width={1000} alt="alt" />
                                 <div className="content">
-                                    <div className="title">{item.thumbnail_title}</div>
-                                    <div className="description">{item.thumbnail_description}</div>
+                                    <div className="title">{item?.thumbnail_title}</div>
+                                    <div className="description">{item?.thumbnail_description}</div>
                                 </div>
                             </div>
                         ))}
