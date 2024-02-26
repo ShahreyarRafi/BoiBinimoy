@@ -18,13 +18,26 @@ const sourceSerif = Libre_Baskerville({
 
 export default function BannerNew() {
     const axiosPublic = useAxiosPublic();
+
     const { data: bannerData = [], isLoading } = useQuery({
         queryKey: ["banner"],
         queryFn: async () => {
-            const res = await axiosPublic.get(`api/v1/banner`);
-            return res.data;
+            const cachedData = localStorage.getItem('bannerData');
+            if (cachedData) {
+                return JSON.parse(cachedData);
+            } else {
+                const res = await axiosPublic.get(`api/v1/banner`);
+                const newData = res.data;
+                localStorage.setItem('bannerData', JSON.stringify(newData));
+                // Set a timestamp for when the data was cached
+                localStorage.setItem('bannerDataCachedAt', Date.now());
+                return newData;
+            }
         },
+        // Cache data for 10 minutes (600,000 milliseconds)
+        staleTime: 600000,
     });
+
 
     useEffect(() => {
         if (!isLoading && bannerData.length > 0) {
