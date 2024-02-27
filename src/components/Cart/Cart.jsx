@@ -18,7 +18,8 @@ const Cart = () => {
     return <PageLoading />;
   }
 
-
+   
+  console.log(myCarts);
   const handleCheckout = async () => {
     const email = await user?.email;
   

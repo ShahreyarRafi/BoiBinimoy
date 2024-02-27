@@ -13,6 +13,7 @@ const CartsDetails = ({ cart, refetch }) => {
   const [quantity, setQuantity] = useState(cart?.quantity || 1);
   const [lastFetchedBookId, setLastFetchedBookId] = useState(null);
 
+  console.log(cart?.quantity);
 
   if (lastFetchedBookId !== cart.book_id) {
     // The book_id has changed, set a loading state
@@ -26,8 +27,8 @@ const CartsDetails = ({ cart, refetch }) => {
       setQuantity((prevQuantity) => prevQuantity + 1);
       const price = quantity*cart?.book?.price;
       const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {quantity, price});
-      console.log(res.data);
-      if(res.data){
+      console.log(res?.data);
+      if(res?.data){
         refetch();
       }
     } else {
