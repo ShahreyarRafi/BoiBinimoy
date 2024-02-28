@@ -8,7 +8,6 @@ import WriterCard from "../Home/Writer/WriterCard";
 import WriterCardSkeleton from "../Skeleton/WriterCardSkeleton";
 
 export default function WritersComponent() {
-
   const axiosPublish = useAxiosPublic();
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -36,9 +35,9 @@ export default function WritersComponent() {
           placeholder="Search by Writer"
           value={searchQuery}
           onChange={handleSearchChange}
-          className="py-3 px-6 border w-[350px] max-w-[400px] rounded-full shadow-md"
+          className="py-3 px-6 border w-[350px] max-w-[500px] rounded-full shadow-md focus:outline-none bg-teal-50"
         />
-        <IoSearch className="-ml-10 text-2xl" />
+        <IoSearch className="-ml-10 text-2xl text-teal-800" />
       </div>
       <div className="my-20 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-5">
         {isLoading ? (
