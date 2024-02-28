@@ -1,4 +1,5 @@
 "use client";
+
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -7,10 +8,11 @@ import WriterCard from "../Home/Writer/WriterCard";
 import WriterCardSkeleton from "../Skeleton/WriterCardSkeleton";
 
 export default function WritersComponent() {
+
   const axiosPublish = useAxiosPublic();
   const [searchQuery, setSearchQuery] = useState("");
 
-  const { data: allWrriters = [], isLoading } = useQuery({
+  const { data: allWriters = [], isLoading } = useQuery({
     queryKey: ["writers"],
     queryFn: async () => {
       const res = await axiosPublish.get(`/api/v1/writers`);
@@ -18,7 +20,7 @@ export default function WritersComponent() {
     },
   });
 
-  const filteredWriters = allWrriters.filter((writer) =>
+  const filteredWriters = allWriters.filter((writer) =>
     writer.writer_name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 

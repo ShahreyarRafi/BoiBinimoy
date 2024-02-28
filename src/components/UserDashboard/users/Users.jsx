@@ -191,8 +191,44 @@ const Users = () => {
 
       <dialog id="role_modal" className="modal">
         <div className="modal-box">
-          <h3 className="font-bold text-lg"> {data?.name} </h3>
-          <div className=" flex items-center gap-6 cursor-pointer">
+         
+
+
+
+          <a
+            href="#"
+            className="relative block overflow-hidden rounded-lg border border-gray-300 p-4 sm:p-6 lg:p-8"
+          >
+            <span
+              className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
+            ></span>
+
+            <div className="sm:flex sm:justify-between sm:gap-4">
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 sm:text-xl">
+                {data?.name}
+                </h3>
+
+                <p className="pt-3"> Location: {data?.location?.street ? data.location.street : "Not Found"} </p>
+
+                <p className="mt-1 text-md font-medium text-gray-600"> Gender  : {data?.gender ? data?.gender :"Not Found"}  </p>
+              </div>
+
+              <div class="hidden sm:block sm:shrink-0">
+                <Image
+                  alt=""
+                  src={data?.image}
+                  priority width={100} height={100}
+                  className="size-20 rounded-lg object-cover shadow-sm"
+                />
+              </div>
+            </div>
+
+          
+
+            <dl className="mt-6 flex gap-4 sm:gap-6">
+
+            <div className=" flex items-center gap-6 cursor-pointer">
             {data?.isModerator ? (
               <button
                 onClick={() => removeUserRole(data._id, "isModerator")}
@@ -239,6 +275,12 @@ const Users = () => {
               </button>
             )}
           </div>
+
+            </dl>
+          </a>
+
+
+
           <div className="modal-action">
             <form method="dialog">
               <button className="btn">
@@ -261,9 +303,8 @@ const Users = () => {
             <button
               key={index}
               onClick={() => handlePagination(index + 1)}
-              className={`mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700 ${
-                currentPage === index + 1 ? "bg-blue-700" : ""
-              }`}
+              className={`mx-1 px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-700 ${currentPage === index + 1 ? "bg-blue-700" : ""
+                }`}
             >
               {index + 1}
             </button>

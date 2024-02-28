@@ -1,7 +1,6 @@
 "use client"
 
 import BlogDetails from '@/components/Blog/BlogDetails/BlogDetails';
-import React from 'react';
 
 const page = () => {
     return (

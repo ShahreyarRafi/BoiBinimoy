@@ -23,7 +23,7 @@ const ExchangeAdd = () => {
   const axiosSecure = useAxiosSecure();
 
   console.log("preview image: ", preview);
-  // create a preview as a side effect, whenever selected file is changed
+
   const onSelectFile = (e) => {
     const files = e.target.files;
     console.log("image file: ", files);
@@ -42,53 +42,45 @@ const ExchangeAdd = () => {
 
   const handleExchangeBook = async (data) => {
     const {
-      coverType,
-      bookCondition,
-      whatYouWant,
-      bookCategory,
+      cover_type,
+      condition,
+      format,
+      category,
       title,
       writer,
       language,
       pages,
+      cover_image,
       publisher,
-      publicationYear,
+      publication_year,
       edition,
-      originally_published_in,
-      owner,
-      email,
-      stockLimit,
       tags,
-      awards,
       description,
     } = data;
 
     // const newBook
     const newBook = {
-      coverType,
+      cover_type,
       owner_email,
-      bookCondition,
-      whatYouWant,
-      bookCategory,
+      condition,
+      format,
+      category,
       title,
       writer,
       language,
       pages,
+      // cover_image,
       publisher,
-      publicationYear,
+      publication_year,
       edition,
-      originally_published_in,
-      owner,
-      email,
-      stockLimit,
       tags,
-      awards,
       description,
       exchange_status: "available",
     };
 
     axios
       .post(
-        "https://boi-binimoy-server.vercel.app/api/v1/exchangableBooks",
+        "https://boi-binimoy-server.vercel.app/api/v1/exchange-books",
         newBook
       )
       .then((response) => {
@@ -113,66 +105,58 @@ const ExchangeAdd = () => {
       <div className="container mx-auto">
         <div className="border-2 border-[#016961] rounded-lg px-3">
           <h1 className="text-2xl font-bold py-5 md:py-3 text-center md:text-start">
-            Add Book
+            Add Book for Exchange
           </h1>
 
           <form onSubmit={handleSubmit(handleExchangeBook)}>
             {/* basic information div */}
-            <div className=" border-2 border-gray-300 rounded-lg px-3 pb-3">
+            <div className="border-2 border-gray-300 rounded-lg px-3 pb-3">
               {/* title */}
               <h3 className="text-sm font-light py-2">Basic Information:</h3>
               {/* information */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                {/* product type name:coverType*/}
+                {/* product type name:cover_type*/}
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                  {...register("coverType")}
+                  {...register("cover_type")} required
                 >
-                  <option selected value="">
-                    Cover type
-                  </option>
-                  <option value="newPhysicalBook">New Physical Book</option>
-                  <option value="oldPhysicalBook">Old Physical Book</option>
-                  <option value="pdfFormatBook">PDF Format Book</option>
-                  <option value="audioFormatBook">Audio Format Book</option>
+                  <option hidden selected value="">Cover type</option>
+                  <option value="paperback">Paperback</option>
+                  <option value="abstract">Abstract Cover</option>
+                  <option value="photographic">Photographic Cover</option>
+                  <option value="illustrated">Illustrated Cover</option>
                 </select>
 
                 {/* product conditions name:bookCondition*/}
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                  {...register("bookCondition")}
+                  {...register("condition")} required
                 >
-                  <option selected value="">
-                    Book Condition
-                  </option>
+                  <option hidden selected value="">Book Condition</option>
                   <option value="good">Good</option>
                   <option value="veryGood">Very Good</option>
-                  <option value="notSoGoodorBad">Not So Good or Bad</option>
+                  <option value="notGoodOrBad">Not So Good or Bad</option>
                   <option value="bad">Bad</option>
                   <option value="veryBad">Very Bad</option>
                 </select>
 
-                {/* what you wants name:whatYouWant*/}
+                {/* what you wants name:bookFormat*/}
                 <select
                   className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                  {...register("whatYouWant")}
+                  {...register("format")} required
                 >
-                  <option selected value="">
-                    What you want?
-                  </option>
-                  <option value="exchange">Exchange</option>
-                  <option value="sale">Sale</option>
-                  <option value="exchangeOrSale">Exchange or Sale</option>
+                  <option value="" hidden selected>Book Format</option>
+                  <option value="print">Print</option>
+                  <option value="pdf">PDF</option>
+                  <option value="audioBook">AudioBook</option>
                 </select>
 
                 {/* book category name:bookCategory*/}
                 <select
                   className="h-10 w-full text-xs px-2 bg-transparent border rounded-lg focus:outline-none"
-                  {...register("bookCategory")}
+                  {...register("category")} required
                 >
-                  <option selected value="">
-                    Book Category
-                  </option>
+                  <option hidden selected value="">Book Category</option>
                   <option value="self-help">Self-Help</option>
                   <option value="biography/memoir">Biography/Memoir</option>
                   <option value="history">History</option>
@@ -181,9 +165,7 @@ const ExchangeAdd = () => {
                   <option value="travel">Travel</option>
                   <option value="food&cooking">Food & Cooking</option>
                   <option value="health&wellness">Health & Wellness</option>
-                  <option value="business&economics">
-                    Business & Economics
-                  </option>
+                  <option value="business&economics">Business & Economics</option>
                   <option value="humor">Humor</option>
                   <option value="crimeFiction">Crime Fiction</option>
                   <option value="graphicNovels">Graphic Novels</option>
@@ -227,21 +209,19 @@ const ExchangeAdd = () => {
                   {/* book language  name:language*/}
                   <select
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                    {...register("language")}
+                    {...register("language")} required
                   >
-                    <option selected value="">
-                      Book Language
-                    </option>
+                    <option hidden selected value="">Book Language</option>
                     <option value="english">English</option>
                     <option value="bangla">Bangla</option>
                     <option value="arabic">Arabic</option>
                   </select>
 
-                  {/* book page count  name:pages*/}
+                  {/* book page  name:pages*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                     {...register("pages")}
-                    placeholder="Book Page Count"
+                    placeholder="Book Pages"
                     type="number"
                     required
                   />
@@ -255,10 +235,10 @@ const ExchangeAdd = () => {
                     required
                   />
 
-                  {/* book publication year name:publicationYear*/}
+                  {/* book publication year name:publication_year*/}
                   <input
                     className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                    {...register("publicationYear")}
+                    {...register("publication_year")}
                     placeholder="Book Publication Year"
                     type="number"
                     required
@@ -273,225 +253,74 @@ const ExchangeAdd = () => {
                     required
                   />
 
-                  {/* Originally Published in name:originally_published_in*/}
-                  <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                    {...register("originally_published_in")}
-                    placeholder="Originally Published in"
-                    type="text"
+                </div>
+                {/* book description div name:description*/}
+                <div className="mt-3">
+                  <textarea
+                    className="w-full p-2 text-xs bg-transparent border-2 border-gray-300 rounded-lg focus:outline-none"
+                    {...register("description")}
+                    placeholder="Book Description"
+                    cols="30"
+                    rows="10"
                     required
-                  />
+                  ></textarea>
                 </div>
               </div>
 
-              {/* image div */}
-              <div className="border-2 col-span-1 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
-                {/* title */}
-                <h3 className="text-sm font-light py-2">
-                  Upload book cover Image:
-                </h3>
-                {/* iamge */}
-                <div className="w-full h-32 border flex justify-center items-center border-gray-300 rounded-lg">
-                  {!selectedFile ? (
-                    <label
-                      htmlFor="imageFile1"
-                      className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
-                    >
-                      <BsUpload /> <span> Upload Here</span>
-                    </label>
-                  ) : (
-                    <Image
-                      src={preview}
-                      width={500}
-                      height={500}
-                      alt="Image Preview"
-                      className="w-full h-full object-cover rounded-lg"
-                    />
-                  )}
-                  <input
-                    className="h-5 w-full"
-                    id="imageFile1"
-                    type="file"
-                    onChange={onSelectFile}
-                    {...register("imageFile1")}
-                    hidden
-                  />
-                </div>
-
-                {/* 3 image uploade feilds */}
-                {/* <div className="grid grid-cols-3 gap-3 mt-2"> */}
-                {/* 1 */}
-                {/* <div
-                    for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
-                  >
+              <div className="flex flex-col gap-3">
+                {/* image div */}
+                <div className="border-2 col-span-1 border-gray-300 rounded-lg h-full w-full px-2">
+                  {/* title */}
+                  <h3 className="text-sm font-light my-2">
+                    Upload book cover Image:
+                  </h3>
+                  {/* image */}
+                  <div className="w-full h-[85%] border flex justify-center items-center border-gray-300 rounded-lg">
                     {!selectedFile ? (
                       <label
-                        for="imageFile"
-                        className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                        htmlFor="imageFile1"
+                        className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
                       >
-                        <BsUpload />
+                        <BsUpload /> <span> Upload Here</span>
                       </label>
                     ) : (
                       <Image
                         src={preview}
-                        width={500}
-                        height={500}
-                        alt="Image Preview"
+                        width={200}
+                        height={200}
+                        alt="Preview"
+                        className="w-full h-full object-cover rounded-lg"
                       />
                     )}
                     <input
                       className="h-5 w-full"
+                      id="imageFile1"
                       type="file"
-                    //   onChange={onSelectFile}
-                      {...register("image2")}
+                      onChange={onSelectFile}
+                      {...register("cover_image")}
                       hidden
                     />
-                  </div> */}
-                {/* 2 */}
-                {/* <div
-                    for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
-                  >
-                    {!selectedFile ? (
-                      <label
-                        for="imageFile"
-                        className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
-                      >
-                        <BsUpload />
-                      </label>
-                    ) : (
-                      <Image
-                        src={preview}
-                        width={500}
-                        height={500}
-                        alt="Image Preview"
-                      />
-                    )}
+                  </div>
+                </div>
+                {/* optional information */}
+                <div className="flex-1 border-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
+                  {/* title */}
+                  <h3 className="text-sm font-light py-2">
+                    Optional Information:
+                  </h3>
+
+                  {/* information */}
+                  <div className="grid grid-cols-1 gap-3">
+                    {/* book Tags name:tags*/}
                     <input
-                      className="h-5 w-full"
-                      type="file"
-                    //   onChange={onSelectFile}
-                      {...register("image3")}
-                      hidden
+                      className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                      {...register("tags")}
+                      placeholder="Book Tags"
+                      type="text"
                     />
-                  </div> */}
-                {/* 3 */}
-                {/* <div
-                    for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
-                  >
-                    {!selectedFile ? (
-                      <label
-                        for="imageFile"
-                        className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
-                      >
-                        <BsUpload />
-                      </label>
-                    ) : (
-                      <Image
-                        src={preview}
-                        width={500}
-                        height={500}
-                        alt="Image Preview"
-                      />
-                    )}
-                    <input
-                      className="h-5 w-full"
-                      type="file"
-                    //   onChange={onSelectFile}
-                      {...register("image4")}
-                      hidden
-                    />
-                  </div> */}
-                {/* </div> */}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-3 gap-3">
-              {/* owner information  div*/}
-              <div className="border-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
-                {/* title */}
-                <h3 className="text-sm font-light py-2">Owner Information:</h3>
-
-                {/* information div */}
-                <div className="grid grid-cols-1 gap-3">
-                  {/* owner name name:owner*/}
-                  <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                    {...register("owner")}
-                    placeholder="Book Owner Name"
-                    type="text"
-                    required
-                  />
-
-                  {/* owner location name:email*/}
-                  <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                    {...register("email")}
-                    placeholder="Book Owner Email"
-                    type="text"
-                    required
-                  />
+                  </div>
                 </div>
               </div>
-
-              {/* other information */}
-              <div className="border-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
-                {/* title */}
-                <h3 className="text-sm font-light py-2">Other Information:</h3>
-
-                {/* information */}
-                <div className="grid grid-cols-1 gap-3">
-                  {/* book Stock Limit name:stockLimit*/}
-                  <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                    {...register("stockLimit")}
-                    placeholder="Book Stock"
-                    type="number"
-                    required
-                  />
-                </div>
-              </div>
-
-              {/* optional information */}
-              <div className="border-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
-                {/* title */}
-                <h3 className="text-sm font-light py-2">
-                  Optional Information:
-                </h3>
-
-                {/* information */}
-                <div className="grid grid-cols-1 gap-3">
-                  {/* book Tags name:tags*/}
-                  <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                    {...register("tags")}
-                    placeholder="Book Tags"
-                    type="text"
-                  />
-
-                  {/* book awards name:awards*/}
-                  <input
-                    className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                    {...register("awards")}
-                    placeholder="Book Awards"
-                    type="text"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* book description div name:description*/}
-            <div className="my-3">
-              <textarea
-                className="w-full p-2 text-xs bg-transparent border-2 border-gray-300 rounded-lg focus:outline-none"
-                {...register("description")}
-                placeholder="Book Description"
-                cols="30"
-                rows="10"
-                required
-              ></textarea>
             </div>
 
             {/* go to home and submit buttons */}

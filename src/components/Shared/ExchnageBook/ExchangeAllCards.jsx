@@ -5,6 +5,8 @@ import Link from "next/link";
 import { FaCartPlus, FaExchangeAlt } from "react-icons/fa";
 
 const ExchangeAllCards = ({ item }) => {
+
+    console.log(item);
     return (
         <div className="l-container md:p-1 ">
             <div className="b-game-card ">

@@ -119,6 +119,7 @@ const AddBook = () => {
                 <select
                   className="h-10 w-full px-2 text-xs lg:text-sm text-gray-400 bg-transparent border border-[#016961] rounded-lg focus:outline-none"
                   {...register("bookType")}
+                  
                 >
                   <option selected value="bookType">
                     Book type
