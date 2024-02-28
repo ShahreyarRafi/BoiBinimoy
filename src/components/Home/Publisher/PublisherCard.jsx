@@ -11,7 +11,7 @@ export default function PublisherCard({ item }) {
         width={200}
         height={200}
         priority
-        className="size-20 md:size-24 lg:size-32 border-4 border-teal-300 p-1 rounded-full mx-auto shadow-xl"
+        className="size-20 object-cover md:size-24 lg:size-32 border-4 border-teal-200 p-1 rounded-full mx-auto shadow-xl"
         alt="writer profile"
       />
       <h3
