@@ -14,8 +14,13 @@ export default function PublisherCard({ item }) {
         className="size-20 md:size-24 lg:size-32 border-4 border-teal-300 p-1 rounded-full mx-auto shadow-xl"
         alt="writer profile"
       />
-      <h3 title={item.publisher} className="text-center font-semibold text-xs lg:text-base">
-        {item.publisher?.slice(0, 15) + ".."}
+      <h3
+        title={item.publisher}
+        className="text-center font-semibold text-xs lg:text-base"
+      >
+        {item?.publisher.length > 15
+          ? `${item?.publisher.slice(0, 15)}..`
+          : item?.publisher}
       </h3>
     </Link>
   );

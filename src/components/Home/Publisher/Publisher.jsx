@@ -28,7 +28,6 @@ export default function Publisher() {
     speed: 2000,
     autoplaySpeed: 2000,
     cssEase: "linear",
-
     responsive: [
       {
         breakpoint: 1024,
@@ -58,12 +57,12 @@ export default function Publisher() {
     <div className="container mx-auto px-5 my-16">
       <div className="bg-50-50 border border-[#016961] rounded-lg p-5">
         <div className="flex justify-between items-center gap-4 mb-5">
-          <h2 className="text-[#016961] text-sm md:text-lg lg:text-3xl font-bold">
+          <h2 className="text-[#016961] text-base md:text-lg lg:text-3xl font-bold">
             Shop By Publisher
           </h2>
           <Link
             href={"/publisher"}
-            className="py-2 px-3 bg-[#016961] hover:bg-teal-600 text-xs lg:text-sm text-white rounded-full flex justify-center items-center gap-2"
+            className="py-1 lg:py-2 px-2 lg:px-3 bg-[#016961] hover:bg-teal-600 text-xs lg:text-sm text-white rounded-full flex justify-center items-center gap-2"
           >
             View All <MdArrowOutward className="text-xs lg:text-sm" />
           </Link>
