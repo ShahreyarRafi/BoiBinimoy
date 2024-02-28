@@ -1,10 +1,9 @@
 "use client";
 
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image";
+import Link from "next/link";
 
 export default function PublisherCard({ item }) {
-
   return (
     <Link href={`/publisher/${item?._id}`} className="space-y-3">
       <Image
@@ -12,10 +11,12 @@ export default function PublisherCard({ item }) {
         width={200}
         height={200}
         priority
-        className="w-24 h-24 border-4 border-teal-300 p-1 rounded-full mx-auto"
+        className="size-20 md:size-24 lg:size-32 border-4 border-teal-300 p-1 rounded-full mx-auto shadow-xl"
         alt="writer profile"
       />
-      <h3 className="text-center font-semibold">{item.publisher}</h3>
+      <h3 title={item.publisher} className="text-center font-semibold text-xs lg:text-base">
+        {item.publisher?.slice(0, 15) + ".."}
+      </h3>
     </Link>
   );
 }
