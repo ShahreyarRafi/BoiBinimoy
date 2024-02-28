@@ -137,23 +137,6 @@ const ParsonalInfo = () => {
 
 
                             </div>
-<<<<<<< HEAD
-                            {
-                                !selectedFile ? <Image
-                                    src={currentUser?.image}
-                                    className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                                    alt=""
-                                    width={500}
-                                    height={500}
-                                /> : <Image
-                                    src={preview}
-                                    className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                                    alt=""
-                                    width={500}
-                                    height={500}
-                                />
-                            }
-=======
                           {
                             !selectedFile ?   <Image
                             src={palesholderImage}
@@ -170,7 +153,6 @@ const ParsonalInfo = () => {
                     /> 
                           }
 
->>>>>>> 31c1b791a2af4d932feb8a9470d5b0bf8f204909
 
                             {/* profile information */}
                             <div className="text-center md:text-start">

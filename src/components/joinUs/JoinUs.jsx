@@ -4,7 +4,6 @@ import React, { useContext, useEffect, useState } from "react";
 import "./joinUs.css";
 import Image from "next/image";
 import { FaFacebookF, FaGoogle, FaLinkedinIn, FaTwitter } from "react-icons/fa";
-<<<<<<< HEAD
 import logImg from './img/log.svg'
 import regImg from './img/register.svg'
 import { useForm } from 'react-hook-form';
@@ -20,22 +19,6 @@ const JoinUs = () => {
     const { register, handleSubmit, reset } = useForm();
     // const { createUser, signin, googleLogin } = useAuth();
     const { createUser, signin, googleLogin, updateUserProfiole } = useContext(AuthContext);
-=======
-import logImg from "./img/log.svg";
-import regImg from "./img/register.svg";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
-import Swal from "sweetalert2";
-import { AuthContext } from "@/providers/AuthProvider";
-import SocialLogin from "./SocialLogin";
-
-const JoinUs = () => {
-  const { register, handleSubmit, reset } = useForm();
-  // const { createUser, signin, googleLogin } = useAuth();
-  const { createUser, signin, googleLogin, updateUserProfiole } =
-    useContext(AuthContext);
->>>>>>> 31c1b791a2af4d932feb8a9470d5b0bf8f204909
 
   const router = useRouter();
   const axiosPublic = useAxiosPublic();
@@ -100,37 +83,7 @@ const JoinUs = () => {
     });
   };
 
-  // handle google sign in function
 
-  // const handleSocialLogin = (user) => {
-  //     user()
-  //         .then(res => {
-  //             console.log(res.user);
-  //             if (res.user) {
-  //                 Swal.fire('User logged in successfully');
-  //                 setTimeout(() => {
-  //                     const userInfo = {
-  //                         email: res.user?.email,
-  //                         name: res.user?.displayName,
-  //                     };
-
-  //                     axiosPublic.post("/api/v1/users", userInfo)
-  //                         .then(res => {
-  //                             console.log(res.data);
-  //                             router.push('/');
-  //                         })
-  //                         .catch(error => {
-  //                             console.error("Error in Axios POST request:", error);
-  //                             Swal.fire('An error occurred while processing your request.');
-  //                         });
-  //                 }, 1000);
-  //             }
-  //         })
-  //         .catch(error => {
-  //             console.error("Error in social login:", error);
-  //             Swal.fire('An error occurred while logging in.');
-  //         });
-  // };
 
   const handleSocialLogin = (user) => {
     user()

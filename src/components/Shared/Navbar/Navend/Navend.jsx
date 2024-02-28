@@ -10,6 +10,7 @@ import Link from "next/link";
 import axios from 'axios';
 import PageLoading from "../../loadingPageBook/PageLoading";
 import useOneUser from "@/Hooks/Users/useOneUser";
+import { AiOutlineHeart } from "react-icons/ai";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
 
@@ -45,8 +46,15 @@ const Navend = () => {
   cart?.books?.map(book => totalPrice = parseFloat(totalPrice) + parseFloat(book.price))
 
   return (
-    <div className="flex items-center gap-2">
-      <MdFavoriteBorder />
+    <div className="flex items-center gap-4 ">
+
+      <Link href="/wishList">
+        <div className="indicator text-3xl ">
+          <span className="indicator-item badge badge-secondary">99+</span>
+          <button className=""> <AiOutlineHeart></AiOutlineHeart> </button>
+        </div>
+
+      </Link>
 
       {/* Drawer cart */}
       <div className="drawer drawer-end">
@@ -105,6 +113,7 @@ const Navend = () => {
                   priority
                   width={300}
                   height={300}
+                  className="avatar online"
                 />
               </div>
             </div>

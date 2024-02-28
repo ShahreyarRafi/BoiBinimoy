@@ -1,34 +1,76 @@
 "use client";
 
+import { AuthContext } from "@/providers/AuthProvider";
 import "./Card.css";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { FaCartPlus, FaExchangeAlt } from "react-icons/fa";
 
 // bg-[#f2fdf9]
 // text-[#2f8880]
 
+
+
+
+
+
+
+
+
 export default function ExchangeCard({ item }) {
+
+const {user} = useContext(AuthContext)
+const userEmail = user?.email
+console.log(userEmail);
+
+
+  const { title , cover_image , price ,writer } = item || {}
+  console.log(title, cover_image,"item data ", item);
+
+
+
+  const handleWishListNow = () => {
+
+
+
+
+  };
+
+
+
+
+
   return (
     <div className="l-container md:p-1 ">
       <div className="b-game-card ">
         <div
           className="b-game-card__cover book-cover-effect"
-          // style={{ backgroundImage: `url(${item?.cover_image})` }}
+        // style={{ backgroundImage: `url(${item?.cover_image})` }}
         >
           <div className="grid grid-cols-1 items-end justify-end gap-2 card__action">
+            {/* card icon */}
             <Link href={`/buyBooks/${item?._id}`}>
               <button className=" text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
-                <FaExchangeAlt />
+                <FaCartPlus />
               </button>
             </Link>
 
-            <button className=" text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
-              <FaCartPlus />
+
+
+            {/* wishlist icon  */}
+            <button onClick={handleWishListNow} className=" text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
+              <FaExchangeAlt />
             </button>
+
+
+
           </div>
           <span className="price-tag">
             <span className="text-lg">{item?.price}</span>
+
+
           </span>
         </div>
       </div>
