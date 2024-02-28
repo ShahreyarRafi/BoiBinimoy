@@ -1,22 +1,39 @@
+import Link from "next/link";
 import Logo from "../Logo/Logo";
 
 export const Footer = () => {
   const ImportantLinks = [
     {
-      title: " Category",
-      links: ["Books", "World", "References"],
+      title: "Links",
+      links: [
+        { label: "Books", url: "/buyBooks" },
+        { label: "Exchange", url: "/exchangeAllBooks" },
+        { label: "Dashboard", url: "/dashboard" },
+      ],
     },
     {
       title: "Company",
-      links: ["About Us", "Careers", "Our Team"],
+      links: [
+        { label: "About Us", url: "/aboutus" },
+        { label: "Contact Us", url: "/contact" },
+        { label: "Careers", title: "coming soon" },
+      ],
     },
     {
-      title: "Help Center",
-      links: ["Discord", "Twitter", "Contact Us"],
+      title: "Social",
+      links: [
+        { label: "Discord", url: "https://discord.com" },
+        { label: "Twitter", url: "https://twitter.com" },
+        { label: "Linkedin", url: "https://linkedin.com" },
+      ],
     },
     {
       title: "Resources",
-      links: ["Blog", "Newsletter", "Affiliate Program"],
+      links: [
+        { label: "Blog", url: "/blogs" },
+        { label: "Newsletter", title: "coming soon" },
+        { label: "Affiliate", title: "coming soon" },
+      ],
     },
   ];
 
@@ -29,7 +46,7 @@ export const Footer = () => {
         fill="currentColor"
         className="w-full -mb-1 text-teal-50"
         preserveAspectRatio="none"
-        style={{ transform: 'rotate(180deg)' }}
+        style={{ transform: "rotate(180deg)" }}
       >
         <path d="M0,0 C20,2 70,6 112,6 C154,6 204,2 224,0 L224,12 L0,12 Z" />
       </svg>
@@ -61,11 +78,23 @@ export const Footer = () => {
                   {title}
                 </h3>
                 <ul className="mt-2 space-y-1">
-                  {links.map((links, key) => (
+                  {links.map((link, key) => (
                     <li key={key} className="font-normal">
-                      <span className="inline-block cursor-pointer text-white transition-transform hover:scale-105">
-                        {links}
-                      </span>
+                      {link.url ? (
+                        <Link
+                          href={link.url}
+                          className="inline-block cursor-pointer text-white transition-transform hover:scale-105"
+                        >
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <span
+                          title={link.title}
+                          className="inline-block cursor-pointer text-white transition-transform hover:scale-105"
+                        >
+                          {link.label}
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
