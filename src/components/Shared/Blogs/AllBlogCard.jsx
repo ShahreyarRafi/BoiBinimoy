@@ -30,7 +30,7 @@ const AllBlogCard = ({ item, refetch }) => {
           .delete(`api/v1/blogs/${id}`)
           .then((res) => {
             if (res.status === 200) {
-              refetch()
+              refetch();
               Swal.fire({
                 icon: "success",
                 title: "Success!",
@@ -98,7 +98,7 @@ const AllBlogCard = ({ item, refetch }) => {
       .patch(`api/v1/blogs/${id}`, updateBlog)
       .then((res) => {
         if (res.status === 200) {
-          refetch()
+          refetch();
           Swal.fire({
             icon: "success",
             title: "Success!",
@@ -168,7 +168,7 @@ const AllBlogCard = ({ item, refetch }) => {
             {/* id */}
             <h3 className="text-sm font-light py-2">Blog Id:</h3>
             <input
-              className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
+              className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] disabled focus:outline-none"
               name="id"
               type="text"
               id="id"

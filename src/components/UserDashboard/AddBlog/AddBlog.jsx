@@ -76,16 +76,16 @@ const AddBlog = () => {
   return (
     <div className=" text-[#016961] min-h-screen">
       <div className="container mx-auto">
-        <div className="border-2 border-[#016961] rounded-lg px-3 bg-teal-50">
+        <div className="border-2 border-[#016961] rounded-lg px-3 bg-50-50">
           <h1 className="text-2xl font-bold py-5 md:py-3 text-center md:text-start">
             Add Blog
           </h1>
           <form onSubmit={handleSubmit(handleBlogSubmit)}>
-            <div className="border-2 border-[#016961] rounded-lg p-3">
-              <h3 className="text-sm font-light pb-3">Basic Information:</h3>
+            <div className="p-3">
+              {/* <h3 className="text-sm font-light pb-3">Basic Information:</h3> */}
 
               <input
-                className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
+                className="h-10 w-full px-2 text-sm bg-teal-50/50 border rounded-lg border-[#016961] focus:outline-none shadow-md"
                 {...register("title")}
                 placeholder="Blog Title"
                 type="text"
@@ -95,7 +95,7 @@ const AddBlog = () => {
               <div className="flex flex-col md:flex-row gap-3 py-3">
                 {/* blog Tags name:tags*/}
                 <input
-                  className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                  className="h-10 w-full px-2 text-sm bg-teal-50/50 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                   {...register("category")}
                   placeholder="Blog Category"
                   type="text"
@@ -104,7 +104,7 @@ const AddBlog = () => {
 
                 {/* blog Tags name:tags*/}
                 <input
-                  className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                  className="h-10 w-full px-2 text-sm bg-teal-50/50 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                   {...register("tags")}
                   placeholder="Blog Tags"
                   type="text"
@@ -116,7 +116,7 @@ const AddBlog = () => {
                 <div className="col-span-1 lg:col-span-2 h-full w-full pb-1">
                   <div>
                     <textarea
-                      className="w-full p-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
+                      className="w-full p-2 text-xs bg-teal-50/50 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                       {...register("description")}
                       placeholder="Blog Description"
                       cols="30"
@@ -131,7 +131,7 @@ const AddBlog = () => {
                 <div className="flex flex-col h-full w-full pb-3">
                   <div
                     for="imageFile"
-                    className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg"
+                    className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/50 shadow-md"
                   >
                     {!selectedFile ? (
                       <label
@@ -164,7 +164,7 @@ const AddBlog = () => {
             {/* go to home and submit buttons div start */}
             <div className="flex justify-center md:justify-end text-xs items-center my-4 gap-3">
               <Link href="/dashboard">
-                <button className="px-3 py-2 border-2 border-[#016961] rounded-lg uppercase">
+                <button className="px-3 py-2 border border-[#016961] rounded-lg bg-teal-50/50 uppercase shadow-md hover:shadow-none">
                   <span className="flex items-center gap-1">
                     <SlArrowLeft /> <span>Go to Dashboard</span>
                   </span>
@@ -172,7 +172,7 @@ const AddBlog = () => {
               </Link>
               <button
                 type="submit"
-                className="px-3 py-2 border-2 border-[#016961] rounded-lg uppercase"
+                className="px-3 py-2 border border-[#016961] rounded-lg bg-teal-50/50 uppercase shadow-md hover:shadow-none"
               >
                 <span className="flex items-center gap-1">
                   <span>Submit</span> <SlArrowRight />
