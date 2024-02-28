@@ -9,6 +9,7 @@ import {
   UPDATE,
   MESSAGE_GET_SUCCESS_CLEAR,
 } from "../type/messengerType";
+
 const messengerState = {
   friends: [],
   message: [],
