@@ -3,41 +3,49 @@
 import { AuthContext } from "@/providers/AuthProvider";
 import "./Card.css";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { FaCartPlus, FaExchangeAlt } from "react-icons/fa";
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 
 // bg-[#f2fdf9]
 // text-[#2f8880]
 
 
-
-
-
-
-
-
-
 export default function ExchangeCard({ item }) {
 
-const {user} = useContext(AuthContext)
-const userEmail = user?.email
-console.log(userEmail);
+
+  const axiosSecure = useAxiosSecure()
+  const { user } = useContext(AuthContext)
+  const userEmail = user?.email
+  console.log(userEmail);
 
 
-  const { title , cover_image , price ,writer } = item || {}
-  console.log(title, cover_image,"item data ", item);
+  const { title, cover_image, price, writer } = item || {}
+  console.log(title, cover_image, item);
 
 
 
   const handleWishListNow = () => {
 
+    const wishlistData = {
+      title,
+      cover_image,
+      price,
+      writer,
+      userEmail
+    };
 
+    
+    axiosSecure.post('/api/v1/wishlist', wishlistData)
+      .then(response => {
+        console.log('Wishlist item added:', response.data);
 
-
+      })
+      .catch(error => {
+        console.error('Error adding to wishlist:', error);
+      });
   };
-
 
 
 
