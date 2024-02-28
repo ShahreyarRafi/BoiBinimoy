@@ -36,14 +36,12 @@ export default function ExchangeBookCard({ item }) {
               {item.title}
             </h2>
             <p className="text-[13px] text-[#626980] italic line-clamp-1">
-              {" "}
               <span>-</span> {item.writer}
             </p>
           </div>
           <hr className="hr-card" />
           <div className="mt-2.5">
             <p className="text-sm text-[#62807b] line-clamp-3">
-              {" "}
               {item.description}
             </p>
           </div>
