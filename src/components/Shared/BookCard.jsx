@@ -10,6 +10,7 @@ import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import useWishListBook from "@/Hooks/wishList/useWishListBook";
 import Swal from "sweetalert2";
 import {MdOutlineShoppingCart } from "react-icons/md";
+import { FaHeart } from "react-icons/fa";
 
 // bg-[#f2fdf9]
 // text-[#2f8880]
@@ -91,8 +92,8 @@ export default function ExchangeCard({ item, }) {
             <div>
               {filteredData.length > 0 ? (
                
-                <button onClick={handleBookDelete} className=" text-white bg-red-700 text-center text-xl border mb-6 border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
-                  <FaRegHeart />
+                <button onClick={handleBookDelete} className="  text-red-700 text-center text-xl border mb-6 border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
+                  <FaHeart />
                 </button>
 
               ) : filteredData.length === 0 ? (
