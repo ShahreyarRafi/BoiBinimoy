@@ -7,17 +7,18 @@ import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import CartsDetails from "./CartsDetails";
 
 const Cart = () => {
-  const { myCarts, price, isPending, refetch } = useGetMyCarts();
+  const { myCarts, price, isLoading, refetch } = useGetMyCarts();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   // const router = useRouter(); // Assuming you forgot to import useRouter
 
-  if (isPending) {
+  if (isLoading) {
     return <PageLoading />;
   }
 
    
-  console.log(myCarts);
+  console.log("my Cart", myCarts);
+
   const handleCheckout = async () => {
     const email = await user?.email;
     const res = await axiosSecure.post("/api/v1/order", { email: email });

@@ -6,6 +6,8 @@ const Order = ({order}) => {
 
   const {cart, book } = order;
 
+  
+
   return (
     <div className="grid grid-cols-10 items-center text-center font-semibold border border-gray-100 p-5">
       <Image
