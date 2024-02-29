@@ -93,7 +93,6 @@ const Categories = () => {
                             });
                         }
                         refetch();
-                        // location.reload();
                     })
                     .catch(error => {
                         console.error(error);
@@ -160,7 +159,7 @@ const Categories = () => {
                 <div className="flex items-center justify-center">
                     <div className="container duration-300">
                         <div className="w-full rounded-2xl overflow-hidden lg:shadow-lg my-5 duration-300">
-                            <div className="hidden lg:block bg-[#016961] duration-300 text-white ">
+                            <div className="hidden md:block bg-[#016961] duration-300 text-white ">
                                 <div className="flex items-center justify-between font-semibold border border-gray-100 py-5">
                                     <h5 className="w-full text-center">No</h5>
                                     <h5 className="w-full text-center">Category Image</h5>
@@ -174,7 +173,7 @@ const Categories = () => {
                                         key={category._id}
                                         className="bg-white rounded-3xl lg:rounded-none shadow-sm hover:bg-[#19a49113] lg:shadow-inherit border border-gray-100"
                                     >
-                                        <div className="flex flex-col lg:flex-row items-center justify-start lg:justify-between gap-1 rounded-3xl lg:rounded-none py-5 mx-auto duration-300">
+                                        <div className="flex flex-col md:flex-row items-center justify-start md:justify-between gap-1 rounded-3xl lg:rounded-none py-5 mx-auto duration-300">
                                             <h5 className="w-full text-lg font-semibold text-center line-clamp-1 truncate">
                                                 {count + 1}
                                             </h5>
