@@ -242,8 +242,8 @@ const Dashboard = ({ children }) => {
                 <span className="text">Writers</span>
               </Link>
             </li>
-            <li className={pathname == "/dashboard/publisher" ? "active" : ""}>
-              <Link href="/dashboard/publisher">
+            <li className={pathname == "/dashboard/publishers" ? "active" : ""}>
+              <Link href="/dashboard/publishers">
                 <i class='bx bxs-store'></i>
                 <span className="text">Publisher</span>
               </Link>

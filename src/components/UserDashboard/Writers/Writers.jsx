@@ -75,8 +75,6 @@ const Writers = () => {
     const handleUpdate = (id, name, profile, dateBirth, dateDeath, followers, biography) => {
         setCurrent({ id, name, profile, dateBirth, dateDeath, followers, biography });
 
-        console.log(current);
-
         const modal = document.getElementById('update_modal');
         modal.showModal();
 
@@ -317,7 +315,7 @@ const Writers = () => {
                     </div>
                     <div className="modal-action gap-5">
                         <form method="dialog">
-                            <button onClick={handleSubmit} className="btn">Submit</button>
+                            <button onClick={handleSubmit} className="btn">Update</button>
                             <button className="btn">Close</button>
                         </form>
                     </div>
