@@ -22,7 +22,10 @@ const CartsDetails = ({ cart, refetch }) => {
     if (quantity < cart?.book?.stock_limit) {
       setQuantity((prevQuantity) => prevQuantity + 1);
       const price = quantity * cart?.book?.price;
-      const res = await axiosSecure.patch(`/api/v1/carts/${id}`, { quantity, price });
+      const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {
+        quantity,
+        price,
+      });
       console.log(res?.data);
       if (res?.data) {
         refetch();
@@ -37,7 +40,10 @@ const CartsDetails = ({ cart, refetch }) => {
       setError("");
       setQuantity((prevQuantity) => prevQuantity - 1);
       const price = quantity * cart?.book?.price;
-      const res = await axiosSecure.patch(`/api/v1/carts/${id}`, { quantity, price });
+      const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {
+        quantity,
+        price,
+      });
       console.log(res.data);
       if (res.data) {
         refetch();
@@ -59,7 +65,11 @@ const CartsDetails = ({ cart, refetch }) => {
         axiosSecure.delete(`/api/v1/delete-cart/${id}`).then((response) => {
           console.log(response.data);
           if (response.data) {
-            Swal.fire("Deleted!", `Your book "${title}" has been deleted.`, "success");
+            Swal.fire(
+              "Deleted!",
+              `Your book "${title}" has been deleted.`,
+              "success"
+            );
             refetch();
           }
         });
@@ -105,26 +115,31 @@ const CartsDetails = ({ cart, refetch }) => {
           <h5>{cart?.cart?.price} BDT</h5>
           <div>
             <button
-              onClick={() => handleDeleteCart(cart?.cart?._id, cart?.book?.title)}
+              onClick={() =>
+                handleDeleteCart(cart?.cart?._id, cart?.book?.title)
+              }
               className=" bg-red-500 rounded-full text-white p-3"
             >
               <RxCross2 className="mx-auto"></RxCross2>
             </button>
             <h3>{quantity}</h3>
-            <button onClick={() => handleIncrement(cart?.cart._id)} className="bg-base-300 p-3">
+            <button
+              onClick={() => handleIncrement(cart?.cart._id)}
+              className="bg-base-300 p-3"
+            >
               <FaPlus className="mx-auto"></FaPlus>
             </button>
             {error && <p className="text-red-500">{error}</p>}
           </div>
-          <h5>{quantity * cart?.book.price} BDT</h5>
-          <div>
-            <button
-              onClick={() => handleDeleteCart(cart?.cart?._id, cart?.book?.title)}
-              className=" bg-red-500 rounded-full text-white p-3"
-            >
-              <RxCross2 className="mx-auto"></RxCross2>
-            </button>
-          </div>
+        </div>
+        <h5>{quantity * cart?.book.price} BDT</h5>
+        <div>
+          <button
+            onClick={() => handleDeleteCart(cart?.cart?._id, cart?.book?.title)}
+            className=" bg-red-500 rounded-full text-white p-3"
+          >
+            <RxCross2 className="mx-auto"></RxCross2>
+          </button>
         </div>
       </div>
     </div>

@@ -1,14 +1,10 @@
-"use client"
+"use client";
 
-import Image from "next/image";
 import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
 import PageLoading from "../Shared/loadingPageBook/PageLoading";
 import useAuth from "@/Hooks/auth/useAuth";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
-import { FaMinus, FaPlus } from "react-icons/fa";
-import { RxCross2 } from "react-icons/rx";
 import CartsDetails from "./CartsDetails";
-
 
 const Cart = () => {
   const { myCarts, price, isPending, refetch } = useGetMyCarts();
@@ -28,7 +24,7 @@ const Cart = () => {
     console.log(res.data);
     if (res?.data?.url) {
       const url = await res.data.url;
-      window.open(url, '_blank');
+      window.open(url, "_blank");
     }
   };
 

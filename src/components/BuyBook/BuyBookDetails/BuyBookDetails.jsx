@@ -8,7 +8,7 @@ import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeartCirclePlus } from "react-icons/fa6";
 import ReviewCard from "@/components/Shared/ReviewCard";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import useOneUser from "@/Hooks/Users/useOneUser";
 import useReviews from "@/Hooks/Reviews/useReviews";
@@ -22,9 +22,12 @@ const BuyBookDetails = () => {
   const book_id = param.buyId;
   const axiosSecure = useAxiosSecure();
   const { currentUser } = useOneUser();
-  const { reviews, isPending, refetch }  = useReviews(book_id)
-  const { book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
-
+  const { reviews, isPending, refetch } = useReviews(book_id);
+  const {
+    book,
+    isLoading: bookLoading,
+    refetch: bookRefetch,
+  } = useGetOneBuyBook(book_id);
 
   console.log(book);
 
@@ -47,13 +50,13 @@ const BuyBookDetails = () => {
       user_image,
       rating,
       comment,
-      book_id
-    }
+      book_id,
+    };
 
     axiosSecure
       .post("/api/v1/reviews", newComment)
       .then((response) => {
-        refetch()
+        refetch();
         console.log("Response:", response.data);
         Swal.fire({
           position: "top-end",
@@ -67,11 +70,10 @@ const BuyBookDetails = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }
+  };
 
   // Handle add to cart
   const handleCart = () => {
-
     const user_name = currentUser?.name;
     const user_email = currentUser?.email;
     const book_id = book?._id;
@@ -84,8 +86,8 @@ const BuyBookDetails = () => {
       owner_email: book?.owner_email,
       book_id,
       price,
-      quantity
-    }
+      quantity,
+    };
 
     axiosSecure
       .post("/api/v1/carts", addCart)
@@ -95,14 +97,13 @@ const BuyBookDetails = () => {
           icon: "success",
           title: "Add book in the cart.",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-  }
-
+  };
 
   useEffect(() => {
     if (user) {
@@ -227,7 +228,10 @@ const BuyBookDetails = () => {
               <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-sm rounded-full ">
                 Buy Now
               </button>
-              <button onClick={handleCart} className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
+              <button
+                onClick={handleCart}
+                className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full "
+              >
                 <FaCartPlus />
               </button>
               <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
@@ -244,7 +248,10 @@ const BuyBookDetails = () => {
         <div className="w-full p-8 border-2 rounded-lg">
           <div className="max-w-5xl mx-auto">
             {/* send review */}
-            <form onSubmit={handleSubmit} className="flex items-center gap-3 pb-5">
+            <form
+              onSubmit={handleSubmit}
+              className="flex items-center gap-3 pb-5"
+            >
               <input
                 type="text"
                 name="comment"
@@ -259,8 +266,13 @@ const BuyBookDetails = () => {
 
             {/* all review */}
             <div className="p-2 space-y-4">
-              {reviews && reviews?.map(commenter => <ReviewCard key={commenter?.user_email} review={commenter}></ReviewCard>)
-              }
+              {reviews &&
+                reviews?.map((commenter) => (
+                  <ReviewCard
+                    key={commenter?.user_email}
+                    review={commenter}
+                  ></ReviewCard>
+                ))}
             </div>
           </div>
         </div>
