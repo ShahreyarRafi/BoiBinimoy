@@ -20,6 +20,8 @@ const Cart = () => {
     return <PageLoading />;
   }
 
+   
+  console.log(myCarts);
   const handleCheckout = async () => {
     const email = await user?.email;
     const res = await axiosSecure.post("/api/v1/order", { email: email });
@@ -31,7 +33,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="container duration-300">
+    <div className="container mx-auto duration-300">
       <div className="w-full rounded-2xl overflow-hidden lg:shadow-lg my-5 duration-300">
         <div className="bg-[#016961] duration-300 text-white">
           <div className="grid grid-cols-6 items-center justify-between font-semibold border border-gray-100 px-10 py-5">

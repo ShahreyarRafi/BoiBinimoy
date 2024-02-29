@@ -4,20 +4,38 @@ import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import Image from "next/image";
 import { BsUpload } from "react-icons/bs";
 import Swal from "sweetalert2";
-import { AuthContext } from "@/providers/AuthProvider";
-import { useContext, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import { useState } from "react";
+import useImageURL from "@/Hooks/ImageURL/useImageURL";
+import { useForm } from "react-hook-form";
 
 const AllBlogCard = ({ item, refetch }) => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const { imageUrl, uploadImage} = useImageURL(selectedFile);
+  const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
-  const { user } = useContext(AuthContext);
-  const [id, setId] = useState(item?._id);
 
 
+  // create a preview as a side effect, whenever selected file is changed
+  const onSelectFile = (e) => {
+    const files = e.target.files;
 
-  const deleteButton = (id) => {
-    console.log(id);
+    if (!files || files.length === 0) {
+      setSelectedFile(undefined);
+      setPreview(undefined);
+      return;
+    }
+
+    const selectedImage = files[0];
+    setSelectedFile(selectedImage);
+
+    const objectUrl = URL.createObjectURL(selectedImage);
+    setPreview(objectUrl);
+  };
+
+  const handelDeleteBlog = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -32,7 +50,7 @@ const AllBlogCard = ({ item, refetch }) => {
           .delete(`api/v1/blogs/${id}`)
           .then((res) => {
             if (res.status === 200) {
-              refetch()
+              refetch();
               Swal.fire({
                 icon: "success",
                 title: "Success!",
@@ -67,65 +85,34 @@ const AllBlogCard = ({ item, refetch }) => {
     const tagsInput = modal.querySelector('[name="tags"]');
 
     idInput.value = item?._id;
-    titleInput.value = item?.title;
-    descriptionInput.value = item?.body[0];
+    titleInput.value = item?.title || "";
+    descriptionInput.value =  item?.body || "empty";
     categoryInput.value = item?.category;
-    tagsInput.value = item?.tags[0];
+    tagsInput.value = item?.tags[0] ;
 
     modal.showModal();
   };
 
-  const handleSubmit = () => {
-    const id = document.getElementById("id").value;
-    const title = document.getElementById("title").value;
-    const body = [document.getElementById("description").value];
-    const category = document.getElementById("category").value;
-    const tags = [document.getElementById("tags").value];
-    const cover_image =
-      "https://images.unsplash.com/photo-1483058712412-4245e9b90334?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80";
-    const user_name = "admin";
-    const user_email = user?.email;
+  const handleUpdateBlog = async(data) => {
+    const { title, description: body, category, tags } = data;
+    const url = await uploadImage();
 
-    const updateBlog = {
+    const updateBlogInfo = {
       title,
       body,
-      cover_image,
-      user_name,
-      user_email,
       category,
       tags,
+      cover_image: url ,
     };
 
-    axiosSecure
-      .patch(`api/v1/blogs/${id}`, updateBlog)
-      .then((res) => {
-        if (res.status === 200) {
-          refetch()
-          Swal.fire({
-            icon: "success",
-            title: "Success!",
-            text: "Blog updated successfully",
-          });
-          document.getElementById("update_blog_modal").close();
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Failed to update blog",
-          });
-          document.getElementById("update_blog_modal").close();
-        }
-      })
-      .catch((error) => {
-        console.error("Error updating user role:", error);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Error updating blog",
-        });
-        document.getElementById("update_blog_modal").close();
-      });
-  };
+    const res = await axiosSecure.patch(`api/v1/blogs/${item?._id}`, updateBlogInfo);
+    
+    console.log(res?.data);
+    if(res?.data){
+      refetch()
+      document.getElementById("update_blog_modal").close();
+    }
+  }
 
   return (
     <div>
@@ -154,7 +141,7 @@ const AllBlogCard = ({ item, refetch }) => {
               <FaEdit />
             </button>
             <button
-              onClick={() => deleteButton(item?._id)}
+              onClick={() => handelDeleteBlog(item?._id)}
               className="text-center cursor-pointer font-semibold text-xl text-gray-500 hover:text-gray-700"
             >
               <RiDeleteBin6Fill />
@@ -167,7 +154,7 @@ const AllBlogCard = ({ item, refetch }) => {
           <h1 className="text-3xl text-center font-bold py-2">Update Blog</h1>
           {/* basic information div */}
           <div className=" border-2 border-[#016961] rounded-lg px-3 pb-3">
-            {/* id */}
+              {/* id */}
             <h3 className="text-sm font-light py-2">Blog Id:</h3>
             <input
               className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
@@ -181,7 +168,7 @@ const AllBlogCard = ({ item, refetch }) => {
             <h3 className="text-sm font-light py-2">Blog Title:</h3>
             <input
               className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
-              name="title"
+              {...register("title")}
               type="text"
               id="title"
               defaultValue={item?.title}
@@ -197,7 +184,7 @@ const AllBlogCard = ({ item, refetch }) => {
               <div>
                 <textarea
                   className="w-full p-2 text-xs bg-transparent border-2 border-[#016961] rounded-lg focus:outline-none"
-                  name="description"
+                  {...register("description")}
                   id="description"
                   defaultValue={item?.body}
                   cols="30"
@@ -218,13 +205,28 @@ const AllBlogCard = ({ item, refetch }) => {
                 for="imageFile"
                 className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg"
               >
-                <label
-                  for="imageFile"
-                  className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
-                >
-                  <BsUpload /> <span> Upload Here</span>
-                </label>
-                <input type="file" id="imageFile" hidden />
+                {!selectedFile ? (
+                  <label
+                    for="imageFile"
+                    className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                  >
+                    <BsUpload /> <span> Upload Here</span>
+                  </label>
+                ) : (
+                  <Image
+                    src={preview}
+                    width={500}
+                    height={500}
+                    alt="Image Preview"
+                  />
+                )}
+                <input
+                  id="imageFile"
+                  type="file"
+                  onChange={onSelectFile}
+                  name = "cover_image"
+                  hidden
+                />
               </div>
             </div>
           </div>
@@ -238,7 +240,7 @@ const AllBlogCard = ({ item, refetch }) => {
                 {/* blog Tags name:category*/}
                 <input
                   className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                  name="category"
+                  {...register("category")}
                   id="category"
                   type="text"
                   defaultValue={item?.category}
@@ -253,7 +255,7 @@ const AllBlogCard = ({ item, refetch }) => {
                 {/* blog Tags name:tags*/}
                 <input
                   className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                  name="tags"
+                  {...register("tags")}
                   id="tags"
                   defaultValue={item?.tags}
                   type="text"
@@ -267,7 +269,7 @@ const AllBlogCard = ({ item, refetch }) => {
               {/* if there is a button in form, it will close the modal */}
               <div className="flex gap-5">
                 <button
-                  onClick={handleSubmit}
+                  onClick={handleSubmit(handleUpdateBlog)}
                   className="w-full px-4 mt-6 text-center cursor-pointer bg-[#016961] text-white font-medium p-2 text-sm rounded-full "
                 >
                   Update
@@ -283,5 +285,6 @@ const AllBlogCard = ({ item, refetch }) => {
     </div>
   );
 };
+
 
 export default AllBlogCard;

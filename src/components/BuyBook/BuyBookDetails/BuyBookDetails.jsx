@@ -8,27 +8,22 @@ import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeartCirclePlus } from "react-icons/fa6";
 import ReviewCard from "@/components/Shared/ReviewCard";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "@/providers/AuthProvider";
-import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
 import Swal from 'sweetalert2';
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import useOneUser from "@/Hooks/Users/useOneUser";
 import useReviews from "@/Hooks/Reviews/useReviews";
 import useGetOneBuyBook from "@/Hooks/buyBooks/useGetOneBuyBook";
+import useAuth from "@/Hooks/auth/useAuth";
 
 const BuyBookDetails = () => {
+  const { user } = useAuth();
   const param = useParams();
-  const book_id = param.buyId
-  const { user } = useContext(AuthContext);
-  const axiosPublic = useAxiosPublic();
+  const book_id = param.buyId;
   const axiosSecure = useAxiosSecure();
   const { currentUser } = useOneUser();
-  const { reviews, isPending, refetch } = useReviews(book_id)
-  const { getOneBuyBook: book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
+  const { reviews, isPending, refetch }  = useReviews(book_id)
+  const { book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
 
-  console.log(book_id);
 
   console.log(book);
 
@@ -85,6 +80,7 @@ const BuyBookDetails = () => {
     const addCart = {
       user_name,
       user_email,
+      owner_email: book?.owner_email,
       book_id,
       price,
       quantity
