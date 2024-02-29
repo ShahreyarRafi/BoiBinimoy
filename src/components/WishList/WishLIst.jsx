@@ -1,19 +1,78 @@
 "use client"
 
+import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
 import useWishListBook from '@/Hooks/wishList/useWishListBook';
 import { useParams } from 'next/navigation';
 import React from 'react';
+import Swal from 'sweetalert2';
 
 const WishLIst = () => {
 
 
     const [wishListBook, refetch, isLoading] = useWishListBook()
-
+    const axiosSecure = useAxiosSecure();
     console.log("wish list data ", wishListBook);
 
-    const { wish_list_id } = useParams()
-    console.log(wish_list_id);
 
+    const handleBookDelete = (id, title) => {
+        console.log("Delete Book function called.");
+        Swal.fire({
+            title: `Delete Book`,
+            text: `Are you sure you want to delete the book "${title}"?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            console.log("Confirmation result:", result);
+            if (result.isConfirmed) {
+                console.log("User confirmed deletion.");
+                axiosSecure
+                    .delete(`/api/v1/wishlist/remove/${id}`)
+                    .then((response) => {
+                        console.log("Delete request successful. Response:", response.data);
+                        if (response) {
+                            console.log("success");
+                            Swal.fire(
+                                "Deleted!",
+                                `Your book "${title}" has been deleted.`,
+                                "success"
+                            );
+                            refetch();
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error deleting Book:", error);
+                        Swal.fire(
+                            "Error!",
+                            "An error occurred while deleting the book.",
+                            "error"
+                        );
+                    });
+            }
+        });
+    };
+
+
+
+    
+    if (isLoading) {
+        return (
+            <div className="text-center items-center justify-center flex">
+                <span className="loading loading-ball loading-lg"></span>
+            </div>
+        );
+    }
+
+    // Render message if specific books are not found
+    if (wishListBook.length === 0) {
+        return (
+            <div>
+                <h1 className="text-center justify-center font-semibold md:text-3xl lg:text-4xl"> Books Not Found....</h1>
+            </div>
+        );
+    }
 
 
     return (
@@ -54,6 +113,7 @@ const WishLIst = () => {
 
                                         {/* remove button */}
                                         <button
+                                            onClick={() => handleBookDelete(book._id, book.title)}
                                             type="button"
                                             class="inline-block rounded bg-[#DC4C64] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]">
                                             Remove

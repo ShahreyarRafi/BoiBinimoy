@@ -1,30 +1,33 @@
 "use client";
-
 import { useQuery } from "@tanstack/react-query";
-// import useAxiosSecure from "../Axios/useAxiosSecure";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
-import axios from "axios";
+import useAxiosSecure from "../Axios/useAxiosSecure";
 
 const useWishListBook = () => {
-    const { user } = useContext(AuthContext);
-  console.log(" user ", user?.email);
-
-//   const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
 
   const fetchData = async () => {
-    if (user && user.email) {
-      const res = await axios.get(`https://boi-binimoy-server.vercel.app/api/v1/wishlist/${user?.email}`);
-      return res.data;
-    } else {
-      return []; 
+    try {
+      if (user?.email) {
+        const res = await axiosSecure.get(`https://boi-binimoy-server.vercel.app/api/v1/wishlist/${user.email}`);
+        return res.data;
+      } else {
+        return [];
+      }
+    } catch (error) {
+      console.error("Error fetching wishlist:", error);
+      return [];
     }
   };
 
-  const { data: wishListBook = [], refetch, isLoading, } = useQuery({
-    queryKey: ["wishListBook"],
+  const queryKey = useMemo(() => ["wishListBook", user?.email], [user?.email]);
+
+  const { data: wishListBook = [], refetch, isLoading } = useQuery({
+    queryKey,
     queryFn: fetchData,
-    enabled: !!user && !!user?.email, 
+    enabled: !!user?.email,
   });
 
   return [wishListBook, refetch, isLoading];

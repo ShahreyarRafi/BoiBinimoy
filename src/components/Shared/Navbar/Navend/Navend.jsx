@@ -11,10 +11,13 @@ import axios from 'axios';
 import PageLoading from "../../loadingPageBook/PageLoading";
 import useOneUser from "@/Hooks/Users/useOneUser";
 import { AiOutlineHeart } from "react-icons/ai";
+import useWishListBook from "@/Hooks/wishList/useWishListBook";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
 
 const Navend = () => {
+
+  const [wishListBook ] = useWishListBook()
   const { user, logOut } = useContext(AuthContext);
   // Current user data from database
   const { currentUser } = useOneUser();
@@ -50,7 +53,7 @@ const Navend = () => {
 
       <Link href="/wishList">
         <div className="indicator text-3xl ">
-          <span className="indicator-item badge badge-secondary">99+</span>
+          <span className="indicator-item badge badge-secondary"> {wishListBook.length} </span>
           <button className=""> <AiOutlineHeart></AiOutlineHeart> </button>
         </div>
 
