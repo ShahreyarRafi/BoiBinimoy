@@ -6,21 +6,17 @@ import { BsUpload } from "react-icons/bs";
 import Swal from "sweetalert2";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-<<<<<<< HEAD
-import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
-=======
 import { useState } from "react";
 import useImageURL from "@/Hooks/ImageURL/useImageURL";
 import { useForm } from "react-hook-form";
->>>>>>> c0dab30d648b2d44e24d7a733d761524b42a2375
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 const AllBlogCard = ({ item, refetch }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  const { imageUrl, uploadImage} = useImageURL(selectedFile);
+  const { imageUrl, uploadImage } = useImageURL(selectedFile);
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
-
 
   // create a preview as a side effect, whenever selected file is changed
   const onSelectFile = (e) => {
@@ -90,14 +86,14 @@ const AllBlogCard = ({ item, refetch }) => {
 
     idInput.value = item?._id;
     titleInput.value = item?.title || "";
-    descriptionInput.value =  item?.body || "empty";
+    descriptionInput.value = item?.body || "empty";
     categoryInput.value = item?.category;
-    tagsInput.value = item?.tags[0] ;
+    tagsInput.value = item?.tags[0];
 
     modal.showModal();
   };
 
-  const handleUpdateBlog = async(data) => {
+  const handleUpdateBlog = async (data) => {
     const { title, description: body, category, tags } = data;
     const url = await uploadImage();
 
@@ -106,50 +102,20 @@ const AllBlogCard = ({ item, refetch }) => {
       body,
       category,
       tags,
-      cover_image: url ,
+      cover_image: url,
     };
 
-<<<<<<< HEAD
-    axiosSecure
-      .patch(`api/v1/blogs/${id}`, updateBlog)
-      .then((res) => {
-        if (res.status === 200) {
-          refetch();
-          Swal.fire({
-            icon: "success",
-            title: "Success!",
-            text: "Blog updated successfully",
-          });
-          document.getElementById("update_blog_modal").close();
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Failed to update blog",
-          });
-          document.getElementById("update_blog_modal").close();
-        }
-      })
-      .catch((error) => {
-        console.error("Error updating user role:", error);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Error updating blog",
-        });
-        document.getElementById("update_blog_modal").close();
-      });
-  };
-=======
-    const res = await axiosSecure.patch(`api/v1/blogs/${item?._id}`, updateBlogInfo);
-    
+    const res = await axiosSecure.patch(
+      `api/v1/blogs/${item?._id}`,
+      updateBlogInfo
+    );
+
     console.log(res?.data);
-    if(res?.data){
-      refetch()
+    if (res?.data) {
+      refetch();
       document.getElementById("update_blog_modal").close();
     }
-  }
->>>>>>> c0dab30d648b2d44e24d7a733d761524b42a2375
+  };
 
   return (
     <div>
@@ -191,69 +157,11 @@ const AllBlogCard = ({ item, refetch }) => {
 
       {/* dialog start */}
       <dialog id="update_blog_modal" className="modal">
-<<<<<<< HEAD
-        <div className="modal-box w-11/12 max-w-4xl bg-50-50">
-          <h1 className="text-3xl text-[#016961] text-start font-bold pb-5">
-            Update Blog
-          </h1>
-
-          <div className="flex flex-col lg:flex-row gap-3">
-            {/* id */}
-            <div className="w-full hidden">
-              {/* <h3 className="text-sm font-light py-2">Blog Id:</h3> */}
-              <input
-                className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border rounded-lg border-[#016961] disabled focus:outline-none shadow-md"
-                name="id"
-                type="text"
-                id="id"
-                defaultValue={item?._id}
-                readOnly
-              />
-            </div>
-
-            {/* title */}
-            <div className="w-full">
-              {/* <h3 className="text-sm font-light py-2">Blog Title:</h3> */}
-              <input
-                className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border rounded-lg border-[#016961] focus:outline-none shadow-md"
-                name="title"
-                type="text"
-                id="title"
-                defaultValue={item?.title}
-                required
-              />
-            </div>
-
-            {/* blog Tags name:category*/}
-            <div className="w-full lg:w-fit">
-              {/* <h3 className="text-sm font-light py-2">Blog Category:</h3> */}
-              <input
-                className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                name="category"
-                id="category"
-                type="text"
-                defaultValue={item?.category}
-                required
-              />
-            </div>
-
-            {/* blog Tags name:tags*/}
-            <div className="w-full lg:w-fit">
-              {/* <h3 className="text-sm font-light py-2">Blog Tags:</h3> */}
-              <input
-                className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                name="tags"
-                id="tags"
-                defaultValue={item?.tags}
-                type="text"
-              />
-            </div>
-=======
         <div className="modal-box w-11/12 max-w-4xl">
           <h1 className="text-3xl text-center font-bold py-2">Update Blog</h1>
           {/* basic information div */}
           <div className=" border-2 border-[#016961] rounded-lg px-3 pb-3">
-              {/* id */}
+            {/* id */}
             <h3 className="text-sm font-light py-2">Blog Id:</h3>
             <input
               className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
@@ -273,23 +181,9 @@ const AllBlogCard = ({ item, refetch }) => {
               defaultValue={item?.title}
               required
             />
->>>>>>> c0dab30d648b2d44e24d7a733d761524b42a2375
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-3 gap-3">
-<<<<<<< HEAD
-            {/* book description */}
-            <div className="col-span-1 lg:col-span-2">
-              <textarea
-                className="w-full p-3 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                name="description"
-                id="description"
-                defaultValue={item?.body}
-                cols="30"
-                rows="10"
-                required
-              ></textarea>
-=======
             {/* book description div */}
             <div className="border-2 col-span-1 lg:col-span-2 border-[#016961] rounded-lg h-full w-full px-2 pb-1">
               {/* title */}
@@ -306,7 +200,6 @@ const AllBlogCard = ({ item, refetch }) => {
                   required
                 ></textarea>
               </div>
->>>>>>> c0dab30d648b2d44e24d7a733d761524b42a2375
             </div>
 
             {/* image  */}
@@ -318,11 +211,6 @@ const AllBlogCard = ({ item, refetch }) => {
                 for="imageFile"
                 className="w-full h-full flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
               >
-<<<<<<< HEAD
-                <BsUpload /> <span> Upload Here</span>
-              </label>
-              <input type="file" id="imageFile" hidden />
-=======
                 {!selectedFile ? (
                   <label
                     for="imageFile"
@@ -342,10 +230,10 @@ const AllBlogCard = ({ item, refetch }) => {
                   id="imageFile"
                   type="file"
                   onChange={onSelectFile}
-                  name = "cover_image"
+                  name="cover_image"
                   hidden
                 />
-              </div>
+              </label>
             </div>
           </div>
 
@@ -379,7 +267,6 @@ const AllBlogCard = ({ item, refetch }) => {
                   type="text"
                 />
               </div>
->>>>>>> c0dab30d648b2d44e24d7a733d761524b42a2375
             </div>
           </div>
 
@@ -392,13 +279,8 @@ const AllBlogCard = ({ item, refetch }) => {
                   <span>Close</span>
                 </button>
                 <button
-<<<<<<< HEAD
-                  onClick={handleSubmit}
-                  className="flex justify-center items-center gap-1 uppercase text-xs md:text-sm border border-[#016961] rounded-md px-2 py-1 shadow-md hover:shadow-none"
-=======
                   onClick={handleSubmit(handleUpdateBlog)}
                   className="w-full px-4 mt-6 text-center cursor-pointer bg-[#016961] text-white font-medium p-2 text-sm rounded-full "
->>>>>>> c0dab30d648b2d44e24d7a733d761524b42a2375
                 >
                   <span>Update</span> <SlArrowRight />
                 </button>
@@ -411,6 +293,5 @@ const AllBlogCard = ({ item, refetch }) => {
     </div>
   );
 };
-
 
 export default AllBlogCard;
