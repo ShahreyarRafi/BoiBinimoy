@@ -11,6 +11,7 @@ import axios from "axios";
 import PageLoading from "../../loadingPageBook/PageLoading";
 import useOneUser from "@/Hooks/Users/useOneUser";
 import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
+import { AiOutlineHeart } from "react-icons/ai";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
 
@@ -49,14 +50,19 @@ const Navend = () => {
   //   (book) => (totalPrice = parseFloat(totalPrice) + parseFloat(book.price))
   // );
 
-  const { myCarts , price, quantity, isPending, refetch } = useGetMyCarts();
+  const { myCarts, price, quantity, isPending, refetch } = useGetMyCarts();
 
 
   return (
-    <div className="flex items-center gap-2">
-      <div className="text-2xl">
-        <MdFavoriteBorder />
-      </div>
+    <div className="flex items-center gap-4 ">
+
+      <Link href="/wishList">
+        <div className="indicator text-3xl ">
+          <span className="indicator-item badge badge-secondary">99+</span>
+          <button className=""> <AiOutlineHeart></AiOutlineHeart> </button>
+        </div>
+
+      </Link>
 
       {/* Drawer cart */}
       <div className="drawer drawer-end">
@@ -136,11 +142,7 @@ const Navend = () => {
         {user ? (
           <div>
             <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
+              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <Image
                     src={currentUser.image}
@@ -148,23 +150,17 @@ const Navend = () => {
                     priority
                     width={300}
                     height={300}
+                    className="avatar online"
                   />
                 </div>
               </div>
-              <ul
-                tabIndex={0}
-                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-              >
+              <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                 <li>
-                  <Link
-                    href="/dashboard"
-                    className="px-4 py-2 hover:bg-base-300 rounded-lg text-black"
-                  >
+                  <Link href="/dashboard" className="px-4 py-2 hover:bg-base-300 rounded-lg text-black">
                     Dashboard
                   </Link>
                 </li>
                 <li>
-                  {" "}
                   <button
                     onClick={logOut}
                     className="cursor-pointer text-red-500 px-4 py-2 hover:bg-base-300 rounded-lg"

@@ -1,14 +1,55 @@
 "use client";
 
+import { AuthContext } from "@/providers/AuthProvider";
 import "./Card.css";
 import Link from "next/link";
+import { useContext } from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
-import { FaCartPlus, FaRegHeart } from "react-icons/fa";
+import { FaCartPlus, FaExchangeAlt, FaRegHeart } from "react-icons/fa";
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 
 // bg-[#f2fdf9]
 // text-[#2f8880]
 
+
 export default function ExchangeCard({ item }) {
+
+
+  const axiosSecure = useAxiosSecure()
+  const { user } = useContext(AuthContext)
+  const userEmail = user?.email
+  console.log(userEmail);
+
+
+  const { title, cover_image, price, writer } = item || {}
+  console.log(title, cover_image, item);
+
+
+
+  const handleWishListNow = () => {
+
+    const wishlistData = {
+      title,
+      cover_image,
+      price,
+      writer,
+      userEmail
+    };
+
+    
+    axiosSecure.post('/api/v1/wishlist', wishlistData)
+      .then(response => {
+        console.log('Wishlist item added:', response.data);
+
+      })
+      .catch(error => {
+        console.error('Error adding to wishlist:', error);
+      });
+  };
+
+
+
+
   return (
     <Link href={`/buyBooks/${item?._id}`}>
       <div className="l-container md:p-1">
