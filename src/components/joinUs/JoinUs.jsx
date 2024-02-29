@@ -4,21 +4,25 @@ import React, { useContext, useEffect, useState } from "react";
 import "./joinUs.css";
 import Image from "next/image";
 import { FaFacebookF, FaGoogle, FaLinkedinIn, FaTwitter } from "react-icons/fa";
-import logImg from './img/log.svg'
-import regImg from './img/register.svg'
-import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
-import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
-import Swal from 'sweetalert2';
-import { AuthContext } from '@/providers/AuthProvider';
-import SocialLogin from './SocialLogin';
+import logImg from "./img/log.svg";
+import regImg from "./img/register.svg";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
+import Swal from "sweetalert2";
+import { AuthContext } from "@/providers/AuthProvider";
+import SocialLogin from "./SocialLogin";
+import { useDispatch } from "react-redux";
+import { userRegister } from "@/store/actions/authAction";
 // import SocialLogin from './SocialLogin/SocialLogin';
 
-
 const JoinUs = () => {
-    const { register, handleSubmit, reset } = useForm();
-    // const { createUser, signin, googleLogin } = useAuth();
-    const { createUser, signin, googleLogin, updateUserProfiole } = useContext(AuthContext);
+  const dispatch = useDispatch();
+
+  const { register, handleSubmit, reset } = useForm();
+  // const { createUser, signin, googleLogin } = useAuth();
+  const { createUser, signin, googleLogin, updateUserProfiole } =
+    useContext(AuthContext);
 
   const router = useRouter();
   const axiosPublic = useAxiosPublic();
@@ -69,6 +73,9 @@ const JoinUs = () => {
         router.push("/");
       }
     });
+
+    // form redux
+    dispatch(userRegister(userInfo));
   };
 
   // user login function
