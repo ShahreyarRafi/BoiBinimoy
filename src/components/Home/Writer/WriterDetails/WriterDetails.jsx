@@ -81,14 +81,16 @@ const WriterDetails = () => {
             Follow
           </button>
           <div>
-            <p className="text-teal-800">{writer?.bio}</p>
+            <p className="text-teal-800 indent-8 text-justify">{writer?.bio}</p>
           </div>
         </div>
         {/* wirter profile end */}
 
         {/* Books start */}
         <div className="w-full">
-          <h1 className="text-3xl text-teal-800 font-semibold">All books from this writer..</h1>
+          <h1 className="text-3xl text-teal-800 font-semibold">
+            All books from this writer..
+          </h1>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
             {books?.map((book) => (
               <BookCard key={book?._id} item={book}></BookCard>

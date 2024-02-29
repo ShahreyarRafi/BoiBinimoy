@@ -4,7 +4,7 @@ import Navbar from "@/components/Shared/Navbar/Navbar";
 
 const page = () => {
   return (
-    <div>
+    <div className="bg-teal-50">
       <Navbar></Navbar>
       <PublisherDetails></PublisherDetails>
       <Footer></Footer>
