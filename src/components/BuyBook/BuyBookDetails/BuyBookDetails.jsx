@@ -262,16 +262,16 @@ const BuyBookDetails = () => {
 
             {/* User action */}
             <div className="flex items-center gap-3">
-              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-sm rounded-full ">
+              <button className="mt-6 text-center text-lg cursor-pointer bg-white text-[#016961] font-semibold py-2 px-4 rounded-full ">
                 Buy Now
               </button>
               <button
                 onClick={handleCart}
-                className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full "
+                className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2.5 text-2xl rounded-full "
               >
                 <FaCartPlus />
               </button>
-              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
+              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2.5 text-2xl rounded-full ">
                 <FaHeartCirclePlus />
               </button>
             </div>
