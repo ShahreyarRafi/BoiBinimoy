@@ -1,12 +1,15 @@
 "use client"
 
 import Image from 'next/image'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "next/navigation";
 import BookCard from "../../../Shared/BookCard";
+import { AuthContext } from '@/providers/AuthProvider';
+import PageLoading from '@/components/Shared/loadingPageBook/PageLoading';
 
 const PublisherDetails = () => {
 
+    const { user } = useContext(AuthContext);
     const param = useParams();
     const [publisher, setPublisher] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -49,6 +52,16 @@ const PublisherDetails = () => {
 
         fetchData();
     }, [publisher?.publisher]);
+
+    useEffect(() => {
+        if (user) {
+            console.log("publisher:", param?.publisherId);
+        }
+    }, [user, param?.publisherId]);
+
+    if (loading ) {
+        return <div className='bg-50-50'><PageLoading /></div>;
+    }
 
     return (
         <div className="min-h-screen container mx-auto px-3">

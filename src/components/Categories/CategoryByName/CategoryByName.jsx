@@ -1,11 +1,14 @@
 "use client"
 
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BookCard from "../../Shared/BookCard";
+import { AuthContext } from "@/providers/AuthProvider";
+import PageLoading from "@/components/Shared/loadingPageBook/PageLoading";
 
 const CategoryByName = () => {
 
+    const { user } = useContext(AuthContext);
     const param = useParams();
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -28,6 +31,18 @@ const CategoryByName = () => {
 
         fetchData();
     }, [param?.categoryName]);
+
+    useEffect(() => {
+        if (user) {
+            const formattedCategoryName = decodeURIComponent(param?.categoryName).replace("%20", " ");
+            console.log("category:", formattedCategoryName);
+        }
+    }, [user, param?.categoryName]);
+
+    if (loading) {
+        return <div className='bg-50-50'><PageLoading /></div>;
+    }
+
 
     return (
         <div className="min-h-screen container mx-auto px-3">

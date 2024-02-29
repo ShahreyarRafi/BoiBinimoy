@@ -16,7 +16,7 @@ export default function WriterCard({ item }) {
           className="w-24 h-24 border-4 border-teal-300 p-1 rounded-full mx-auto"
           alt="writer profile"
         />
-        <h3 className="text-center font-semibold">{item?.writer_name}</h3>
+        <h3 className="text-center font-semibold">{ item?.writer_name}</h3>
       </div>
     </Link>
   );

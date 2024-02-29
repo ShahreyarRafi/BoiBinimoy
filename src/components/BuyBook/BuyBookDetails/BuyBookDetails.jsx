@@ -25,16 +25,10 @@ const BuyBookDetails = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const { currentUser } = useOneUser();
-  const { reviews, isPending, refetch }  = useReviews(book_id)
-  const { getOneBuyBook : book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
+  const { reviews, isPending, refetch } = useReviews(book_id)
+  const { getOneBuyBook: book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
 
   console.log(book_id);
-
-  if (bookLoading || isPending) {
-    return (
-      <PageLoading />
-    )
-  }
 
   console.log(book);
 
@@ -110,6 +104,20 @@ const BuyBookDetails = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
+  }
+
+
+  useEffect(() => {
+    if (user) {
+      console.log("book:", book_id);
+    }
+  }, [user, book_id]);
+
+
+  if (bookLoading || isPending) {
+    return (
+      <PageLoading />
+    )
   }
 
 

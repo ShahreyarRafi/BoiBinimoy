@@ -14,6 +14,8 @@ const AllBlogCard = ({ item, refetch }) => {
   const { user } = useContext(AuthContext);
   const [id, setId] = useState(item?._id);
 
+
+
   const deleteButton = (id) => {
     console.log(id);
     Swal.fire({
