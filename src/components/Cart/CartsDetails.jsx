@@ -10,10 +10,10 @@ import { axiosSecure } from "@/Hooks/Axios/useAxiosSecure";
 
 const CartsDetails = ({ cart, refetch }) => {
   const [error, setError] = useState("");
-  const [quantity, setQuantity] = useState(cart?.quantity || 1);
+  const [quantity, setQuantity] = useState(cart?.cart?.quantity);
   const [lastFetchedBookId, setLastFetchedBookId] = useState(null);
-
-  console.log(cart?.quantity);
+ 
+  console.log(cart?.cart.quantity);
 
   if (lastFetchedBookId !== cart.book_id) {
     // The book_id has changed, set a loading state
@@ -116,7 +116,7 @@ const handleDeleteCart = (id, title) => {
               >
                 <FaMinus className="mx-auto"></FaMinus>
               </button>
-              <h3>{quantity}</h3>
+              <h3>{cart?.cart?.quantity}</h3>
               <button
                 onClick={() => handleIncrement(cart?.cart._id)}
                 className="bg-base-300 p-3"
@@ -126,7 +126,7 @@ const handleDeleteCart = (id, title) => {
               {error && <p className="text-red-500">{error}</p>}
             </div>
           </h5>
-          <h5>{quantity * cart?.book.price} BDT</h5>
+          <h5>{cart?.cart?.price} BDT</h5>
           <div>
             <button
               onClick={() => handleDeleteCart(cart?.cart?._id, cart?.book?.title)}
