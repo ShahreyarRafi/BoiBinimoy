@@ -1,4 +1,4 @@
-"use client"
+
 
 import Banner from "../components/Home/Banner/Banner";
 import Footer from "@/components/Shared/Footer/Footer";

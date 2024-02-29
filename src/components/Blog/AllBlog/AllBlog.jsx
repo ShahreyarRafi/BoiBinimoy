@@ -1,30 +1,40 @@
-"use client"
+"use client";
 
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
+import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import AllBlogCard from "../../Shared/Blogs/AllBlogCard";
+import PageLoading from "@/components/Shared/loadingPageBook/PageLoading";
 
 const AllBlog = () => {
+  const axiosPublic = useAxiosPublic();
 
-    const axiosPublic = useAxiosPublic();
+  const {
+    data: blogs = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["blogs"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/api/v1/blogs`);
+      return res.data;
+    },
+  });
 
-    const { data: blogs = [], isLoading } = useQuery({
-        queryKey: ['blogs'],
-        queryFn: async () => {
-            const res = await axiosPublic.get(`/api/v1/blogs`);
-            return res.data;
-        },
-    });
+  if (isLoading) {
+    return <PageLoading></PageLoading>;
+  }
 
-    return (
-        <div className="min-h-screen container mx-auto px-3">
-            <div className="py-12">
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-                    {blogs?.map(blog => <AllBlogCard key={blog?._id} item={blog}></AllBlogCard>)}
-                </div>
-            </div>
+  return (
+    <div className="min-h-screen container mx-auto px-3">
+      <div className="py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          {blogs?.map((blog) => (
+            <AllBlogCard key={blog?._id} item={blog} refetch={refetch} />
+          ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default AllBlog;

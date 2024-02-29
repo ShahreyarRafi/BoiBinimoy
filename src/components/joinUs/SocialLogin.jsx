@@ -1,5 +1,3 @@
-
-
 "use client";
 import { FaFacebookF, FaGoogle, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";

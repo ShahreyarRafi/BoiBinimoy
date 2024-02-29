@@ -1,4 +1,4 @@
-"use client"
+
 
 // import Cart from '@/components/Cart/Cart';
 import Footer from '@/components/Shared/Footer/Footer';

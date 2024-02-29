@@ -1,17 +1,14 @@
-"use client";
-import Header from "@/components/Home/Header/Header";
-import PublisherComponent from "@/components/Publisher/Publisher";
-import PublisherBanner from "@/components/Publisher/PublisherBanner";
+import Publisher from "../../components/Publisher/Publisher";
 import Footer from "@/components/Shared/Footer/Footer";
 import Navbar from "@/components/Shared/Navbar/Navbar";
-import React from "react";
+import SectionTitle from "@/components/Shared/SectionTitle/SectionTitle";
 
 export default function PublisherPage() {
   return (
-    <div>
+    <div className="bg-teal-50">
       <Navbar />
-      <PublisherBanner />
-      <PublisherComponent />
+      <SectionTitle heading={"Publisher"}></SectionTitle>
+      <Publisher></Publisher>
       <Footer />
     </div>
   );
