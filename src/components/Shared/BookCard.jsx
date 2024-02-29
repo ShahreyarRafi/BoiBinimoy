@@ -53,7 +53,7 @@ export default function ExchangeCard({ item, }) {
 
 
 
-  // // delete operation 
+  // delete operation 
   const handleBookDelete = () => {
     console.log(filteredData[0]._id);
     axiosSecure.delete(`/api/v1/wishlist/remove/${filteredData[0]._id}`)

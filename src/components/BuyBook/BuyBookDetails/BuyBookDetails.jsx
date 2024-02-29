@@ -14,10 +14,12 @@ import useOneUser from "@/Hooks/Users/useOneUser";
 import useReviews from "@/Hooks/Reviews/useReviews";
 import useGetOneBuyBook from "@/Hooks/buyBooks/useGetOneBuyBook";
 import useAuth from "@/Hooks/auth/useAuth";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import SuggestedBooks from "../suggested books/SuggestedBooks";
 
 const BuyBookDetails = () => {
   const { user } = useAuth();
+  const { interest } = useOneUser()
   const param = useParams();
   const book_id = param.buyId;
   const axiosSecure = useAxiosSecure();
@@ -105,11 +107,46 @@ const BuyBookDetails = () => {
       });
   };
 
+  const updateUserInterest = useCallback(async (email, book_id) => {
+
+    try {
+      // Check if the book_id already exists in user's interest
+      if (!interest.book.includes(book_id)) {
+        const updatedInterest = {
+          ...interest,
+          book: [...interest.book, book_id] // Merge the new book_id with existing book_ids
+        };
+
+        const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/users-interest/${email}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ interest: updatedInterest })
+        });
+        console.log(response);
+        if (!response.ok) {
+          throw new Error('Failed to update user interest');
+        }
+        console.log('User interest updated successfully');
+      } else {
+        console.log('book already exists in user interest');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [interest]);
+
   useEffect(() => {
     if (user) {
       console.log("book:", book_id);
+
+      // Update user interest in the database
+      updateUserInterest(user.email, book_id);
     }
-  }, [user, book_id]);
+  }, [user, book_id, updateUserInterest]);
+
+
 
 
   if (bookLoading || isPending) {
@@ -139,7 +176,7 @@ const BuyBookDetails = () => {
         <div className="text-center px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
             <h2 className="mb-6 text-3xl font-bold text-white sm:text-5xl">
-              Detail of &quot;{book?.title}&quot;
+              Detail of &quot; {book?.title}&quot;
             </h2>
           </div>
         </div>
@@ -183,7 +220,7 @@ const BuyBookDetails = () => {
                 Published Year: {book?.published_year}
               </p>
               <p className="text-xs border rounded-md px-2 py-1 font-bold">
-                Publisher: {book?.publisher}
+                book: {book?.book}
               </p>
               <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 Edition: {book?.edition}
@@ -242,7 +279,12 @@ const BuyBookDetails = () => {
         </div>
 
         {/* Related section */}
-        <Related />
+        {/* <Related /> */}
+
+
+        <div>
+          <SuggestedBooks CurrentlyViewing={book._id}></SuggestedBooks>
+        </div>
 
         {/* review section */}
         <div className="w-full p-8 border-2 rounded-lg">
@@ -263,6 +305,8 @@ const BuyBookDetails = () => {
                 <IoIosSend />
               </button>
             </form>
+
+
 
             {/* all review */}
             <div className="p-2 space-y-4">
