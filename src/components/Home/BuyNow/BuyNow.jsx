@@ -39,7 +39,7 @@ export default function BuyNow() {
     fetchData();
   }, []);
 
-  console.log(books);
+  // console.log(books);
 
   const handleNextButtonClick = () => {
     if (swiper) {

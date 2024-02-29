@@ -63,9 +63,7 @@ condition,
       title,
       uploadTime: currentDate,
       description,
-      edition, bookType,
-      
-condition,
+      edition, bookType,condition,
       pages, price, whatYouWant, owner,
       publisher, writer, bookCategory, language, publication_year,
 

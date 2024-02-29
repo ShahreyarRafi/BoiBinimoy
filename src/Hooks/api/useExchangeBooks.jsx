@@ -16,7 +16,7 @@ const useExchangeBooks = () => {
             const res = await axiosSecure.get(`/api/v1/exchange-books-individual/${user.email}`);
             return res.data;
         } else {
-            return []; // Return empty array if there's no user or email
+            return [];
         }
     };
 

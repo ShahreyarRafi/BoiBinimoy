@@ -88,8 +88,36 @@
   "requester_email": "requester name",
   "owner_book_id": "gtg954dfgdfg5f",
   "requester_book_id": "45gfg4dfghjh5",
-  "req_date":"15/02/2024",
+  "req_date": "15/02/2024",
   "req_time": "5:30pm",
   "req_message": "hi hello",
   "status": "status"
+}
+
+
+{
+  "interest": {
+    "category": [
+      "Historical Fiction", 
+      "travel", 
+      "horror",
+    ],
+    "writer": [
+      "65cb31394bac4bbd224la",
+      "65cb31394bac4bbd224f353a",
+      "65cb31394bac4bbd224f353a",
+      "65cb31394bac4bbd224f353a",
+      "65cb31394bac4bbd224f353a",
+    ],
+    "publisher": [
+      "65cb31394bac4bbd224f353a",
+      "fgjndfgjnfdg6654",
+      "65cb31394bac4bbd224f353a",
+    ],
+    "book": [
+      "dfkfj65654654654 ",
+      "djfhskdj541151654",
+      "65cb31394bac4bbd224f353a",
+    ]
+  }
 }

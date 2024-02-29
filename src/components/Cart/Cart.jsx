@@ -1,24 +1,23 @@
-"use client"
+"use client";
 
-import Image from "next/image";
 import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
 import PageLoading from "../Shared/loadingPageBook/PageLoading";
 import useAuth from "@/Hooks/auth/useAuth";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
-import { FaMinus, FaPlus } from "react-icons/fa";
-import { RxCross2 } from "react-icons/rx";
 import CartsDetails from "./CartsDetails";
 
-
 const Cart = () => {
-  const { myCarts, price, isPending, refetch } = useGetMyCarts();
+  const { myCarts, price, isLoading, refetch } = useGetMyCarts();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   // const router = useRouter(); // Assuming you forgot to import useRouter
 
-  if (isPending) {
+  if (isLoading) {
     return <PageLoading />;
   }
+
+   
+  console.log("my Cart", myCarts);
 
   const handleCheckout = async () => {
     const email = await user?.email;
@@ -26,12 +25,12 @@ const Cart = () => {
     console.log(res.data);
     if (res?.data?.url) {
       const url = await res.data.url;
-      window.open(url, '_blank');
+      window.open(url, "_blank");
     }
   };
 
   return (
-    <div className="container duration-300">
+    <div className="container mx-auto duration-300">
       <div className="w-full rounded-2xl overflow-hidden lg:shadow-lg my-5 duration-300">
         <div className="bg-[#016961] duration-300 text-white">
           <div className="grid grid-cols-6 items-center justify-between font-semibold border border-gray-100 px-10 py-5">
