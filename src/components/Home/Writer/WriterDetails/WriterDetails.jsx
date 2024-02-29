@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import BookCard from "../../../Shared/BookCard";
+import { IoIosArrowDown } from "react-icons/io";
 
 const WriterDetails = () => {
 
@@ -73,6 +74,21 @@ const WriterDetails = () => {
                 <div>
                     <h2 className='text-2xl font-semibold'>{writer?.writer_name}</h2>
                     <p>{writer?.bio}</p>
+                </div>
+            </div>
+
+            <div className='flex justify-between items-center'>
+
+                <div className=''>
+                    <input type="text" name="" id="" placeholder='Search ...' className='p-2 rounded-lg border 2 border-black' />
+                </div>
+
+                <div className="dropdown dropdown-bottom">
+                    <div tabIndex={0} role="button" className="p-2 rounded-lg border 2 border-black">Sort By <IoIosArrowDown className='inline' /></div>
+                    <ul tabIndex={0} className="dropdown-content z-[10] menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li>price</li>
+                        <li>Name</li>
+                    </ul>
                 </div>
             </div>
 
