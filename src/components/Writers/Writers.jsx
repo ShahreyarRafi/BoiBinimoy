@@ -4,11 +4,8 @@ import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { IoSearch } from "react-icons/io5";
-import WriterCard from "../Home/Writer/WriterCard";
 import WriterCardSkeleton from "../Skeleton/WriterCardSkeleton";
-import Image from "next/image";
-import Link from "next/link";
-import { Card } from "@material-tailwind/react";
+import AllWriterCard from "./AllWriterCard";
 
 export default function WritersComponent() {
   const axiosPublish = useAxiosPublic();
@@ -50,29 +47,7 @@ export default function WritersComponent() {
           ))
         ) : filteredWriters.length > 0 ? (
           filteredWriters.map((item) => (
-            // <WriterCard key={item._id} item={item} />
-            <div key={item._id}>
-              <Link href={`/writers/${item?._id}`}>
-                <div className="flex items-center border-4 border-teal-200 py-1 px-2 mx-auto shadow-xl rounded-full hover:bg-teal-200 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
-                  <div className="w-1/3">
-                    <Image
-                      src={item?.profile}
-                      width={100}
-                      height={100}
-                      priority
-                      className="size-16 object-cover rounded-full"
-                      alt="writer profile"
-                    />
-                  </div>
-                  <div className="w-2/3 text-teal-800 space-y-1">
-                    <h2 className="text-xl font-bold truncate">
-                      {item?.writer_name}
-                    </h2>
-                    <h2 className="text-xs">4.5k Followers</h2>
-                  </div>
-                </div>
-              </Link>
-            </div>
+            <AllWriterCard key={item._id} item={item} />
           ))
         ) : (
           <p className="text-center text-gray-500">No results found.</p>

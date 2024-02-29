@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Card = ({ item }) => {
+const AllWriterCard = ({ item }) => {
   return (
     <div>
       <Link href={`/writers/${item?._id}`}>
@@ -26,4 +26,4 @@ const Card = ({ item }) => {
   );
 };
 
-export default Card;
+export default AllWriterCard;
