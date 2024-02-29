@@ -19,7 +19,8 @@ const useOneUser = () => {
     })
 
     const { isAdmin, isModerator, isPublisher, isSeller } = currentUser;
-    return {currentUser, isLoading, isAdmin, isModerator, isPublisher, isSeller }
+    const interest = currentUser.interest
+    return {currentUser, isLoading, isAdmin, isModerator, isPublisher, isSeller, interest }
 };
 
 

@@ -1,16 +1,18 @@
 "use client";
 
 import Image from 'next/image'
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import { useParams } from "next/navigation";
 import BookCard from "../../../Shared/BookCard";
 import { AuthContext } from '@/providers/AuthProvider';
 import PageLoading from '@/components/Shared/loadingPageBook/PageLoading';
+import useOneUser from '@/Hooks/Users/useOneUser';
 
 const WriterDetails = () => {
 
 
   const { user } = useContext(AuthContext);
+  const { interest } = useOneUser()
   const param = useParams();
   const [writer, setWriter] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -58,7 +60,43 @@ useEffect(() => {
   fetchData();
 }, [writer?.writer_name]);
 
-console.log(books);
+const updateUserInterest = useCallback(async (email, writerId) => {
+  try {
+    // Check if the writerId already exists in user's interest
+    if (!interest.writer.includes(writerId)) {
+      const updatedInterest = {
+        ...interest,
+        writer: [...interest.writer, writerId] // Merge the new writerId with existing writerIds
+      };
+
+      const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/users-interest/${email}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ interest: updatedInterest })
+      });
+      console.log(response);
+      if (!response.ok) {
+        throw new Error('Failed to update user interest');
+      }
+      console.log('User interest updated successfully');
+    } else {
+      console.log('writer already exists in user interest');
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}, [interest]);
+
+useEffect(() => {
+  if (user) {
+    console.log("writer:", param?.writerId);
+
+    // Update user interest in the database
+    updateUserInterest(user.email, param?.writerId);
+  }
+}, [user, param?.writerId, updateUserInterest]);
 
 useEffect(() => {
   if (user) {
