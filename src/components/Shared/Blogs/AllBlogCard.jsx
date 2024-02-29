@@ -4,18 +4,38 @@ import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import Image from "next/image";
 import { BsUpload } from "react-icons/bs";
 import Swal from "sweetalert2";
-import { AuthContext } from "@/providers/AuthProvider";
-import { useContext, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import { useState } from "react";
+import useImageURL from "@/Hooks/ImageURL/useImageURL";
+import { useForm } from "react-hook-form";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 const AllBlogCard = ({ item, refetch }) => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const { imageUrl, uploadImage } = useImageURL(selectedFile);
+  const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
-  const { user } = useContext(AuthContext);
-  const [id, setId] = useState(item?._id);
 
-  const deleteButton = (id) => {
-    console.log(id);
+  // create a preview as a side effect, whenever selected file is changed
+  const onSelectFile = (e) => {
+    const files = e.target.files;
+
+    if (!files || files.length === 0) {
+      setSelectedFile(undefined);
+      setPreview(undefined);
+      return;
+    }
+
+    const selectedImage = files[0];
+    setSelectedFile(selectedImage);
+
+    const objectUrl = URL.createObjectURL(selectedImage);
+    setPreview(objectUrl);
+  };
+
+  const handelDeleteBlog = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -30,7 +50,7 @@ const AllBlogCard = ({ item, refetch }) => {
           .delete(`api/v1/blogs/${id}`)
           .then((res) => {
             if (res.status === 200) {
-              refetch()
+              refetch();
               Swal.fire({
                 icon: "success",
                 title: "Success!",
@@ -65,68 +85,41 @@ const AllBlogCard = ({ item, refetch }) => {
     const tagsInput = modal.querySelector('[name="tags"]');
 
     idInput.value = item?._id;
-    titleInput.value = item?.title;
-    descriptionInput.value = item?.body[0];
+    titleInput.value = item?.title || "";
+    descriptionInput.value = item?.body || "empty";
     categoryInput.value = item?.category;
     tagsInput.value = item?.tags[0];
 
     modal.showModal();
   };
 
-  const handleSubmit = () => {
-    const id = document.getElementById("id").value;
-    const title = document.getElementById("title").value;
-    const body = [document.getElementById("description").value];
-    const category = document.getElementById("category").value;
-    const tags = [document.getElementById("tags").value];
-    const cover_image =
-      "https://images.unsplash.com/photo-1483058712412-4245e9b90334?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80";
-    const user_name = "admin";
-    const user_email = user?.email;
+  const handleUpdateBlog = async (data) => {
+    const { title, description: body, category, tags } = data;
+    const url = await uploadImage();
 
-    const updateBlog = {
+    const updateBlogInfo = {
       title,
       body,
-      cover_image,
-      user_name,
-      user_email,
       category,
       tags,
+      cover_image: url,
     };
 
-    axiosSecure
-      .patch(`api/v1/blogs/${id}`, updateBlog)
-      .then((res) => {
-        if (res.status === 200) {
-          refetch()
-          Swal.fire({
-            icon: "success",
-            title: "Success!",
-            text: "Blog updated successfully",
-          });
-          document.getElementById("update_blog_modal").close();
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Failed to update blog",
-          });
-          document.getElementById("update_blog_modal").close();
-        }
-      })
-      .catch((error) => {
-        console.error("Error updating user role:", error);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Error updating blog",
-        });
-        document.getElementById("update_blog_modal").close();
-      });
+    const res = await axiosSecure.patch(
+      `api/v1/blogs/${item?._id}`,
+      updateBlogInfo
+    );
+
+    console.log(res?.data);
+    if (res?.data) {
+      refetch();
+      document.getElementById("update_blog_modal").close();
+    }
   };
 
   return (
     <div>
+      {/* all blog card start */}
       <div className="rounded shadow-lg w-full h-full flex flex-col justify-between">
         <div>
           <Image
@@ -152,7 +145,7 @@ const AllBlogCard = ({ item, refetch }) => {
               <FaEdit />
             </button>
             <button
-              onClick={() => deleteButton(item?._id)}
+              onClick={() => handelDeleteBlog(item?._id)}
               className="text-center cursor-pointer font-semibold text-xl text-gray-500 hover:text-gray-700"
             >
               <RiDeleteBin6Fill />
@@ -160,6 +153,9 @@ const AllBlogCard = ({ item, refetch }) => {
           </div>
         </div>
       </div>
+      {/* all blog card end */}
+
+      {/* dialog start */}
       <dialog id="update_blog_modal" className="modal">
         <div className="modal-box w-11/12 max-w-4xl">
           <h1 className="text-3xl text-center font-bold py-2">Update Blog</h1>
@@ -179,13 +175,14 @@ const AllBlogCard = ({ item, refetch }) => {
             <h3 className="text-sm font-light py-2">Blog Title:</h3>
             <input
               className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
-              name="title"
+              {...register("title")}
               type="text"
               id="title"
               defaultValue={item?.title}
               required
             />
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-3 gap-3">
             {/* book description div */}
             <div className="border-2 col-span-1 lg:col-span-2 border-[#016961] rounded-lg h-full w-full px-2 pb-1">
@@ -195,7 +192,7 @@ const AllBlogCard = ({ item, refetch }) => {
               <div>
                 <textarea
                   className="w-full p-2 text-xs bg-transparent border-2 border-[#016961] rounded-lg focus:outline-none"
-                  name="description"
+                  {...register("description")}
                   id="description"
                   defaultValue={item?.body}
                   cols="30"
@@ -205,25 +202,38 @@ const AllBlogCard = ({ item, refetch }) => {
               </div>
             </div>
 
-            {/* image div */}
-            <div className="border-2 flex flex-col border-[#016961] rounded-lg h-full w-full px-2 pb-3">
-              {/* title */}
-              <h3 className="text-sm font-light py-2">
-                Upload blog cover image:
-              </h3>
-              {/* image */}
-              <div
+            {/* image  */}
+            <div
+              for="imageFile"
+              className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
+            >
+              <label
                 for="imageFile"
-                className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg"
+                className="w-full h-full flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
               >
-                <label
-                  for="imageFile"
-                  className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
-                >
-                  <BsUpload /> <span> Upload Here</span>
-                </label>
-                <input type="file" id="imageFile" hidden />
-              </div>
+                {!selectedFile ? (
+                  <label
+                    for="imageFile"
+                    className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                  >
+                    <BsUpload /> <span> Upload Here</span>
+                  </label>
+                ) : (
+                  <Image
+                    src={preview}
+                    width={500}
+                    height={500}
+                    alt="Image Preview"
+                  />
+                )}
+                <input
+                  id="imageFile"
+                  type="file"
+                  onChange={onSelectFile}
+                  name="cover_image"
+                  hidden
+                />
+              </label>
             </div>
           </div>
 
@@ -236,7 +246,7 @@ const AllBlogCard = ({ item, refetch }) => {
                 {/* blog Tags name:category*/}
                 <input
                   className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                  name="category"
+                  {...register("category")}
                   id="category"
                   type="text"
                   defaultValue={item?.category}
@@ -251,7 +261,7 @@ const AllBlogCard = ({ item, refetch }) => {
                 {/* blog Tags name:tags*/}
                 <input
                   className="h-10 w-full px-2 text-xs bg-transparent border border-[#016961] rounded-lg focus:outline-none"
-                  name="tags"
+                  {...register("tags")}
                   id="tags"
                   defaultValue={item?.tags}
                   type="text"
@@ -263,21 +273,23 @@ const AllBlogCard = ({ item, refetch }) => {
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <div className="flex gap-5">
+              <div className="flex justify-center md:justify-end gap-3">
+                <button className="flex justify-center items-center gap-1 uppercase text-xs md:text-sm border border-[#016961] rounded-md px-2 py-1 shadow-md hover:shadow-none">
+                  <SlArrowLeft />
+                  <span>Close</span>
+                </button>
                 <button
-                  onClick={handleSubmit}
+                  onClick={handleSubmit(handleUpdateBlog)}
                   className="w-full px-4 mt-6 text-center cursor-pointer bg-[#016961] text-white font-medium p-2 text-sm rounded-full "
                 >
-                  Update
-                </button>
-                <button className="w-full px-4 mt-6 text-center cursor-pointer bg-[#016961] text-white font-medium p-2 text-sm rounded-full ">
-                  Close
+                  <span>Update</span> <SlArrowRight />
                 </button>
               </div>
             </form>
           </div>
         </div>
       </dialog>
+      {/* dialog end */}
     </div>
   );
 };

@@ -17,7 +17,9 @@ const sourceSerif = Libre_Baskerville({
 });
 
 export default function BannerNew() {
+
     const axiosPublic = useAxiosPublic();
+
     const { data: bannerData = [], isLoading } = useQuery({
         queryKey: ["banner"],
         queryFn: async () => {
@@ -88,12 +90,13 @@ export default function BannerNew() {
             }, timeAutoNext);
         }
     }
-    if (isLoading) {
-        return <div className='bg-50-50'><PageLoading /></div>
+
+    if (isLoading || bannerData.length === 0) {
+        return <div className='bg-50-50'><PageLoading /></div>;
     }
 
     return (
-        <div className='carousel-container banner-slider '>
+        <div className='carousel-container banner-slider bg-50-50'>
             <div className="carousel">
                 <div className="list">
                     {Array.isArray(bannerData) && bannerData.map((item, index) => (
