@@ -1,4 +1,5 @@
-"use client";
+"use client"
+
 import AuthProvider from "@/providers/AuthProvider";
 import { Source_Serif_4, Merriweather, Crimson_Text, EB_Garamond, Libre_Baskerville, Playfair_Display } from "next/font/google";
 import "./globals.css";

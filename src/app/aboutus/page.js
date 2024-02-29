@@ -1,4 +1,4 @@
-"use client"
+
 
 import Navbar from "@/components/Shared/Navbar/Navbar";
 import OurStory from "@/components/AboutUs/OurStories/OurStory";
