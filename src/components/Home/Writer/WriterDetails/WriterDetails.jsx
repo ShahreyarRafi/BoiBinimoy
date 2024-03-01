@@ -7,6 +7,7 @@ import BookCard from "../../../Shared/BookCard";
 import { AuthContext } from '@/providers/AuthProvider';
 import PageLoading from '@/components/Shared/loadingPageBook/PageLoading';
 import useOneUser from '@/Hooks/Users/useOneUser';
+import { IoIosArrowDown } from "react-icons/io";
 
 const WriterDetails = () => {
 
@@ -126,6 +127,31 @@ return (
             }}
             className="rounded-full object-cover"
           />
+            <div className='flex justify-between items-center'>
+
+                <div className=''>
+                    <input type="text" name="" id="" placeholder='Search ...' className='p-2 rounded-lg border 2 border-black' />
+                </div>
+
+                <div className="dropdown dropdown-bottom">
+                    <div tabIndex={0} role="button" className="p-2 rounded-lg border 2 border-black">Sort By <IoIosArrowDown className='inline' /></div>
+                    <ul tabIndex={0} className="dropdown-content z-[10] menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li>price</li>
+                        <li>Name</li>
+                    </ul>
+                </div>
+            </div>
+
+            {/* Books */}
+            <div className="min-h-screen container mx-auto px-3">
+                <div className="py-12">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
+                        {books?.map((book) => (
+                            <BookCard key={book?._id} item={book}></BookCard>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
         <div className="text-center text-teal-800 space-y-1 mt-3">
           <h2 className="text-4xl font-bold">{writer?.writer_name}</h2>
