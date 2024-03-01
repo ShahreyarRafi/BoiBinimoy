@@ -27,6 +27,8 @@ const useBookSuggestion = (CurrentlyViewing) => {
         },
     });
 
+    console.log(bookDetails);
+
     const [bookSuggestion, setBookSuggestion] = useState([]);
     const [loading, setLoading] = useState(true);
 

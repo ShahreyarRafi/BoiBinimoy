@@ -9,6 +9,8 @@ import { FaCartPlus, FaExchangeAlt, FaRegHeart } from "react-icons/fa";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import useWishListBook from "@/Hooks/wishList/useWishListBook";
 import Swal from "sweetalert2";
+import {MdOutlineShoppingCart } from "react-icons/md";
+import { FaHeart } from "react-icons/fa";
 
 // bg-[#f2fdf9]
 // text-[#2f8880]
@@ -78,32 +80,41 @@ export default function ExchangeCard({ item, }) {
           className="b-game-card__cover book-cover-effect"
           style={{ backgroundImage: `url(${item?.cover_image})` }}
         >
-          <div className="grid grid-cols-1 items-end justify-end gap-2 card__action z-50">
-            {/* 
-                <button className=" text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
-                  <FaRegHeart />
-                </button> */}
-
-
-            {filteredData.length > 0 ? (
-              // Render "Remove" button when filteredData.length > 0
-              <button onClick={handleBookDelete} className="text-white text-center text-xl border border-gray-600 border-opacity-30 backdropdata.-blur-md p-3 bg-black/30 rounded-full">
-                Remove
+          <div className="grid grid-cols-1 items-end justify-end gap-2 card__action">
+            <Link href={`/buyBooks/${item?._id}`}>
+              <button className=" text-white text-center text-xl border mb-2 border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
+              <MdOutlineShoppingCart />
               </button>
+            </Link>
 
-            ) : filteredData.length === 0 ? (
-              <div >
-                <button onClick={handleAddToWishlist} className="text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
-                  Adding
+            <div>
+              {filteredData.length > 0 ? (
+               
+                <button onClick={handleBookDelete} className="  text-red-700 text-center text-xl border mb-6 border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
+                  <FaHeart />
                 </button>
-              </div>
-            ) : (
-              <button onClick={handleAddToWishlist} className="text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
-                Add
-              </button>
-            )}
+
+              ) : filteredData.length === 0 ? (
+                <div >
+
+                  <button onClick={handleAddToWishlist} className=" text-white text-center text-xl border mb-6 border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
+                    <FaRegHeart />
+                  </button>
+                
+                </div>
+              ) : (
+                <button onClick={handleAddToWishlist} className="text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
+                  
+                </button>
+              )}
+            </div>
 
           </div>
+
+
+
+
+
           <span className="price-tag">
             <span className="text-lg">{item?.price}</span>
           </span>
@@ -112,11 +123,9 @@ export default function ExchangeCard({ item, }) {
 
       <div className="px-1">
         <div className="space-y-1 mt-2.5 pb-1">
-          <Link href={`/buyBooks/${item?._id}`}>
-            <h2 className="text-lg font-bold text-[#016961] line-clamp-1">
-              {item?.title}
-            </h2>
-          </Link>
+          <h2 className="text-lg font-bold text-[#016961] line-clamp-1">
+            {item?.title}
+          </h2>
           <p className="text-[13px] text-[#626980] italic line-clamp-1">
             {" "}
             <span>-</span> {item?.writer}

@@ -16,6 +16,7 @@ import useGetOneBuyBook from "@/Hooks/buyBooks/useGetOneBuyBook";
 import useAuth from "@/Hooks/auth/useAuth";
 import { useCallback, useEffect } from "react";
 import SuggestedBooks from "../suggested books/SuggestedBooks";
+import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
 
 const BuyBookDetails = () => {
   const { user } = useAuth();
@@ -24,14 +25,17 @@ const BuyBookDetails = () => {
   const book_id = param.buyId;
   const axiosSecure = useAxiosSecure();
   const { currentUser } = useOneUser();
-  const { reviews, isPending, refetch } = useReviews(book_id);
-  const {
-    book,
-    isLoading: bookLoading,
-    refetch: bookRefetch,
-  } = useGetOneBuyBook(book_id);
+  const { reviews, isPending, refetch }  = useReviews(book_id)
+  const { book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
+  const { refetch: cartRefetch } = useGetMyCarts()
 
-  console.log(book);
+  if (bookLoading || isPending) {
+    return (
+      <PageLoading />
+    )
+  }
+  console.log("book: ", book_id, book);
+
 
 
   // Handle comment form
@@ -89,7 +93,8 @@ const BuyBookDetails = () => {
       book_id,
       price,
       quantity,
-    };
+      isDeliverd: false
+    }
 
     axiosSecure
       .post("/api/v1/carts", addCart)
@@ -101,58 +106,11 @@ const BuyBookDetails = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        cartRefetch()
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-  };
-
-  const updateUserInterest = useCallback(async (email, book_id) => {
-
-    try {
-      // Check if the book_id already exists in user's interest
-      if (!interest.book.includes(book_id)) {
-        const updatedInterest = {
-          ...interest,
-          book: [...interest.book, book_id] // Merge the new book_id with existing book_ids
-        };
-
-        const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/users-interest/${email}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ interest: updatedInterest })
-        });
-        console.log(response);
-        if (!response.ok) {
-          throw new Error('Failed to update user interest');
-        }
-        console.log('User interest updated successfully');
-      } else {
-        console.log('book already exists in user interest');
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [interest]);
-
-  useEffect(() => {
-    if (user) {
-      console.log("book:", book_id);
-
-      // Update user interest in the database
-      updateUserInterest(user.email, book_id);
-    }
-  }, [user, book_id, updateUserInterest]);
-
-
-
-
-  if (bookLoading || isPending) {
-    return (
-      <PageLoading />
-    )
   }
 
 
