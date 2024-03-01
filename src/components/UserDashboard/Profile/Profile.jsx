@@ -15,7 +15,7 @@ const Profile = () => {
   const { user } = useContext(AuthContext);
   // console.log(user?.email);
 
-  const {currentUser} = useOneUser();
+  const { currentUser } = useOneUser();
 
   console.log(currentUser);
 
@@ -65,7 +65,7 @@ const Profile = () => {
               <div className="mb-4">
                 {currentUser?.image ? (
                   <Image
-                    
+                    src={currentUser?.image}
                     priority width={100} height={100}
                     alt="Profile"
                     className="h-40 w-40 rounded-full mx-auto"
