@@ -78,24 +78,15 @@ const AllBlogCard = ({ item, refetch }) => {
 
   const handleUpdate = () => {
     const modal = document.getElementById("update_blog_modal");
-    const idInput = modal.querySelector('[name="id"]');
-    const titleInput = modal.querySelector('[name="title"]');
-    const descriptionInput = modal.querySelector('[name="description"]');
-    const categoryInput = modal.querySelector('[name="category"]');
-    const tagsInput = modal.querySelector('[name="tags"]');
-
-    idInput.value = item?._id;
-    titleInput.value = item?.title || "";
-    descriptionInput.value =  item?.body || "empty";
-    categoryInput.value = item?.category;
-    tagsInput.value = item?.tags[0] ;
-
+  
+    console.log(item._id);
     modal.showModal();
   };
 
-  const handleUpdateBlog = async(data) => {
+  const handleUpdateBlog = async(id, data) => {
     const { title, description: body, category, tags } = data;
     const url = await uploadImage();
+    console.log(item._id);
 
     const updateBlogInfo = {
       title,
@@ -105,12 +96,14 @@ const AllBlogCard = ({ item, refetch }) => {
       cover_image: url ,
     };
 
-    const res = await axiosSecure.patch(`api/v1/blogs/${item?._id}`, updateBlogInfo);
+    const res = await axiosSecure.patch(`api/v1/blogs/${id}`, updateBlogInfo);
     
     console.log(res?.data);
     if(res?.data){
       refetch()
       document.getElementById("update_blog_modal").close();
+      setSelectedFile(null)
+      setPreview(null)
     }
   }
 
@@ -155,15 +148,7 @@ const AllBlogCard = ({ item, refetch }) => {
           {/* basic information div */}
           <div className=" border-2 border-[#016961] rounded-lg px-3 pb-3">
               {/* id */}
-            <h3 className="text-sm font-light py-2">Blog Id:</h3>
-            <input
-              className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
-              name="id"
-              type="text"
-              id="id"
-              defaultValue={item?._id}
-              readOnly
-            />
+       
             {/* title */}
             <h3 className="text-sm font-light py-2">Blog Title:</h3>
             <input
@@ -269,7 +254,7 @@ const AllBlogCard = ({ item, refetch }) => {
               {/* if there is a button in form, it will close the modal */}
               <div className="flex gap-5">
                 <button
-                  onClick={handleSubmit(handleUpdateBlog)}
+                  onClick={ () => handleUpdateBlog(item?._id, getValues())}
                   className="w-full px-4 mt-6 text-center cursor-pointer bg-[#016961] text-white font-medium p-2 text-sm rounded-full "
                 >
                   Update

@@ -13,6 +13,7 @@ import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import useOneUser from "@/Hooks/Users/useOneUser";
 import useReviews from "@/Hooks/Reviews/useReviews";
 import useGetOneBuyBook from "@/Hooks/buyBooks/useGetOneBuyBook";
+import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
 
 const BuyBookDetails = () => {
   const param = useParams();
@@ -21,7 +22,7 @@ const BuyBookDetails = () => {
   const { currentUser } = useOneUser();
   const { reviews, isPending, refetch }  = useReviews(book_id)
   const { book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
-
+  const { refetch: cartRefetch } = useGetMyCarts()
 
   if (bookLoading || isPending) {
     return (
@@ -87,7 +88,8 @@ const BuyBookDetails = () => {
       owner_email: book?.owner_email,
       book_id,
       price,
-      quantity
+      quantity,
+      isDeliverd: false
     }
 
     axiosSecure
@@ -100,6 +102,7 @@ const BuyBookDetails = () => {
           showConfirmButton: false,
           timer: 1500
         });
+        cartRefetch()
       })
       .catch((error) => {
         console.error("Error:", error);

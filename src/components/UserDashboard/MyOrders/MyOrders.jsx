@@ -22,7 +22,7 @@ const MyOrders = () => {
             <h5 className="text-center text-xs md:text-base col-span-1 ">Unit Price</h5>
             <h5 className="text-center text-xs md:text-base col-span-1 ">total Price</h5>
             <h5 className="text-center text-xs md:text-base col-span-2 ">Seller Email</h5>
-            <h5 className="text-center text-xs md:text-base col-span-1 ">Status</h5>
+            <h5 className="text-center text-xs md:text-base col-span-1 ">Delivary Status</h5>
           </div>
         </div>
         <div className="flex-1 sm:flex-none grid grid-cols-1 gap-5 lg:gap-0">
