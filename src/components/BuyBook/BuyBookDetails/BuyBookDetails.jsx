@@ -147,7 +147,7 @@ const BuyBookDetails = () => {
           <div className="flex-shrink-0 w-2/5">
             <Image
               src={book?.cover_image}
-git               width={1000}
+              width={1000}
               height={1500}
               alt=""
               className="absolute bottom-5 ring-0 w-2/5 border-none rounded-md shadow-xl transition-transform duration-300 hover:scale-105"
