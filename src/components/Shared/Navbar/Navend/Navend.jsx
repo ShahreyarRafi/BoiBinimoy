@@ -7,54 +7,22 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
 import Image from "next/image";
 import Link from "next/link";
-import axios from "axios";
-import PageLoading from "../../loadingPageBook/PageLoading";
 import useOneUser from "@/Hooks/Users/useOneUser";
 import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
 import { AiOutlineHeart } from "react-icons/ai";
 import useWishListBook from "@/Hooks/wishList/useWishListBook";
 
-const profilePlaceholder = "/userPicPlaceholder.png";
-
 const Navend = () => {
 
   const [wishListBook ] = useWishListBook()
   const { user, logOut } = useContext(AuthContext);
-  // Current user data from database
   const { currentUser } = useOneUser();
-  const [cart, setCart] = useState(null);
-  // const [books, setBooks] = useState(null);
-  // const [loading, setLoading] = useState(true);
-  // let totalPrice = 0;
-  // let cartId = null;
+  let { myCarts, price, quantity, isPending, refetch } = useGetMyCarts();
+  const totalCart = myCarts?.length;
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `https://boi-binimoy-server.vercel.app/api/v1/my-carts/${user?.email}`
-  //       );
-  //       if (!response.ok) {
-  //         throw new Error("Network response was not ok");
-  //       }
-  //       const result = await response.json();
-  //       setCart(result);
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [user?.email, totalPrice]);
-
-  // cart?.books?.map(
-  //   (book) => (totalPrice = parseFloat(totalPrice) + parseFloat(book.price))
-  // );
-
-  const { myCarts, price, quantity, isPending, refetch } = useGetMyCarts();
-
+  if (myCarts?.length > 3) {
+    myCarts = myCarts.slice(0, 3);
+  }
 
   return (
     <div className="flex items-center gap-4 ">
@@ -76,6 +44,11 @@ const Navend = () => {
         />
         <div className="drawer-content">
           {/* Page content here */}
+          {totalCart && (
+            <span className="indicator-item badge badge-secondary">
+              {totalCart}
+            </span>
+          )}
           <label htmlFor="cart-drawer" className="drawer-button">
             <MdOutlineShoppingCart />
           </label>
@@ -130,11 +103,8 @@ const Navend = () => {
                   href="/cart"
                   className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1"
                 >
-                  View cart
+                  View carts
                 </Link>
-                <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">
-                  Checkout
-                </button>
               </div>
             </li>
           </ul>
