@@ -18,6 +18,19 @@ const Blog = () => {
     },
   });
 
+
+  const { data: books = [] } = useQuery({
+    queryKey: ["books"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/api/v1/buy-books`);
+      return res.data;
+    },
+  });
+
+  console.log(books);
+
+
+
   // const sides = [blogs[5], blogs[1], blogs[6], blogs[3]];
   return (
     <div className="max-w-6xl mx-auto mt-8 mb-36">

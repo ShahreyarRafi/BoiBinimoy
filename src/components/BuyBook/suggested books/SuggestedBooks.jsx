@@ -41,7 +41,7 @@ const SuggestedBooks = ({ CurrentlyViewing }) => {
       }, [swiper]);
 
       if (suggetionsLoading) {
-        return <div>Loading...</div>;
+        return <div className='my-20'><ComponentLoading/></div>;
     }
 
 

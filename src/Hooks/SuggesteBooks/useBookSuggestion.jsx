@@ -39,7 +39,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
         }
     }, [categoryDetails, categoryDetailsLoading]);
 
-    console.log("Books From Category", booksFromCategory.length);
+    console.log("Books From Category", booksFromCategory);
 
 
 
@@ -73,7 +73,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
         }
     }, [writersBooks, writersBooksLoading]);
 
-    console.log("Books From Writers", booksFromWriters.length);
+    console.log("Books From Writers", booksFromWriters);
 
 
 
@@ -107,7 +107,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
         }
     }, [publisherBooks, publisherBooksLoading]);
 
-    console.log("Books From Publishers", booksFromPublishers.length);
+    console.log("Books From Publishers", booksFromPublishers);
 
 
 
@@ -143,7 +143,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
         }
     }, [bookDetails, CurrentlyViewing, booksLaoding]);
 
-    console.log("Individual books", bookDetails.length);
+    console.log("Individual books", bookDetails);
 
 
 
@@ -188,7 +188,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
             if (
                 interest.writer.includes(book.writer) ||
                 interest.publisher.includes(book.publisher) ||
-                interest.category.includes(book.category) 
+                interest.category.includes(book.category)
             ) {
                 filteredBooks.push(book);
             }
@@ -202,8 +202,11 @@ const useBookSuggestion = (CurrentlyViewing) => {
         setTopTearSuggestions(uniqueBooks);
     }, [booksFromCategory, booksFromWriters, booksFromPublishers, bookSuggestion, interest]);
 
-    console.log("Top Tier Suggestions", topTearSuggestions.length);
+    console.log("Top Tier Suggestions", topTearSuggestions);
 
+
+
+    // ----------Loading------------
 
     const [suggetionsLoading, setSuggetionsLoading] = useState(true);
 
