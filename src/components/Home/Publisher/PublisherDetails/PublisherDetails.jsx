@@ -16,6 +16,7 @@ const PublisherDetails = () => {
   const [publisher, setPublisher] = useState([]);
   const [loading, setLoading] = useState(true);
   const [books, setBooks] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,13 +60,13 @@ const PublisherDetails = () => {
   }, [publisher?.publisher]);
 
 
-  const updateUserInterest = useCallback(async (email, publisherId) => {
+  const updateUserInterest = useCallback(async (email, publisherName) => {
     try {
       // Check if the publisherId already exists in user's interest
-      if (!interest.publisher.includes(publisherId)) {
+      if (!interest.publisher.includes(publisherName)) {
         const updatedInterest = {
           ...interest,
-          publisher: [...interest.publisher, publisherId] // Merge the new publisherId with existing publisherIds
+          publisher: [...interest.publisher, publisherName] // Merge the new publisherId with existing publisherIds
         };
 
         const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/users-interest/${email}`, {
@@ -90,12 +91,12 @@ const PublisherDetails = () => {
 
   useEffect(() => {
     if (user) {
-      console.log("publisher:", param?.publisherId);
+      console.log("publisher:", publisher?.publisher);
 
       // Update user interest in the database
-      updateUserInterest(user.email, param?.publisherId);
+      updateUserInterest(user.email, publisher?.publisher);
     }
-  }, [user, param?.publisherId, updateUserInterest]);
+  }, [user, publisher?.publisher, updateUserInterest]);
 
 
   if (loading) {
