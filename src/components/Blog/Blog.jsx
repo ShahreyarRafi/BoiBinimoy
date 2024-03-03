@@ -7,9 +7,11 @@ import BlogSideCard from "../Shared/Blogs/BlogSideCard";
 // import BlogLatestCard from "../Shared/Blogs/BlogLatestCard";
 import Link from "next/link";
 import PageLoading from "../Shared/loadingPageBook/PageLoading";
+import React, { useState } from "react";
 
 const Blog = () => {
   const axiosPublic = useAxiosPublic();
+  const [expandedBlogs, setExpandedBlogs] = useState({});
 
   const { data: blogs = [], isLoading } = useQuery({
     queryKey: ["blogs"],
@@ -60,12 +62,35 @@ const Blog = () => {
 
               {/* <hr className="my-2" /> */}
 
-              <p className=" mt-2 text-xs sm:text-sm md:text-base text-justify">
-                {blog?.body?.slice(0, 500) + "..."}
-                <Link href={`/blogs/${blog?._id}`} className="text-blue-400">
-                  Read more
-                </Link>
-              </p>
+              <div className="mt-2 text-xs sm:text-sm md:text-base text-justify">
+                {expandedBlogs[blog?._id]
+                  ? blog?.body?.split("\n").map((paragraph, index) => (
+                      <p key={index}>
+                        {paragraph} <br />
+                      </p>
+                    ))
+                  : blog?.body
+                      ?.split("\n")
+                      .map((paragraph, index) => (
+                        <React.Fragment key={index}>
+                          {index < 2 ? <p>{paragraph}</p> : null}
+                        </React.Fragment>
+                      ))}
+              </div>
+
+              {blog?.body?.length > 500 && (
+                <span
+                  className="text-gray-400 font-light cursor-pointer"
+                  onClick={() =>
+                    setExpandedBlogs((prev) => ({
+                      ...prev,
+                      [blog?._id]: !prev[blog?._id],
+                    }))
+                  }
+                >
+                  {expandedBlogs[blog?._id] ? " Show Less" : " Read More"}
+                </span>
+              )}
             </div>
           ))}
         </div>
