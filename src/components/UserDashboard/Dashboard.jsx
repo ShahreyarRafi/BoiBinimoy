@@ -181,7 +181,9 @@ const Dashboard = ({ children }) => {
                 <span className="text">Orders</span>
               </Link>
             </li>
-            <li className={pathname == "/dashboard/track-order" ? "active" : ""}>
+            <li
+              className={pathname == "/dashboard/track-order" ? "active" : ""}
+            >
               <Link href="/dashboard/track-order">
                 <i className="bx bxs-book-add"></i>
                 <span className="text">Track Orders</span>
@@ -213,8 +215,8 @@ const Dashboard = ({ children }) => {
                 <span className="text"> My Books </span>
               </Link>
             </li>
-            <li className={pathname == "/dashboard/allBlog" ? "active" : ""}>
-              <Link href="/dashboard/allBlog">
+            <li className={pathname == "/dashboard/my-blogs" ? "active" : ""}>
+              <Link href="/dashboard/my-blogs">
                 <i className="bx bxs-group"></i>
                 <span className="text">My Blogs</span>
               </Link>
