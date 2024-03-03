@@ -73,20 +73,25 @@ const Blog = () => {
                 {/* <hr className="my-2" /> */}
 
                 <div className="mt-2 text-xs sm:text-sm md:text-base text-justify">
-                  {expandedBlogs[blog?._id]
-                    ? blog?.body?.split("\n").map((paragraph, index) => (
-                        <p key={index}>
-                          {paragraph} <br />
-                        </p>
-                      ))
-                    : blog?.body
-                        ?.slice(0, 500)
+                  {expandedBlogs[blog?._id] ? (
+                    blog?.body?.split("\n").map((paragraph, index) => (
+                      <p key={index}>
+                        {paragraph} <br />
+                      </p>
+                    ))
+                  ) : (
+                    <>
+                      {blog?.body
+                        ?.slice(0, 300)
                         .split("\n")
                         .map((paragraph, index) => (
                           <p key={index}>
                             {paragraph} <br />
                           </p>
                         ))}
+                      {blog?.body?.length > 300 && " ..."}
+                    </>
+                  )}
                 </div>
               </div>
             </div>
