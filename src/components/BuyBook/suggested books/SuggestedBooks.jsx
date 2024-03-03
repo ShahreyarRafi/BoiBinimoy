@@ -14,7 +14,7 @@ import useBookSuggestion from '@/Hooks/SuggesteBooks/useBookSuggestion';
 const SuggestedBooks = ({ CurrentlyViewing }) => {
     const [swiperInitialized, setSwiperInitialized] = useState(false);
     const [swiper, setSwiper] = useState(null);
-    const {bookSuggestion, suggetionsLoading} = useBookSuggestion(CurrentlyViewing)
+    const {interestedBooks, suggetionsLoading} = useBookSuggestion(CurrentlyViewing)
 
 
     const handleNextButtonClick = () => {
@@ -111,7 +111,7 @@ const SuggestedBooks = ({ CurrentlyViewing }) => {
             slidesPerView={2} // Set a default value
           >
             {swiperInitialized ? (
-              bookSuggestion.map((cardInfo, index) => (
+              interestedBooks.map((cardInfo, index) => (
                 <SwiperSlide key={cardInfo.id}>
                   <SuggestedCard cardInfo={cardInfo} index={index}></SuggestedCard>
                 </SwiperSlide>
