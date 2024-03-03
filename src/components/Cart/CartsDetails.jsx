@@ -1,5 +1,6 @@
 "use client";
 
+import useGetOneBuyBook from "@/Hooks/buyBooks/useGetOneBuyBook";
 import Image from "next/image";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
@@ -55,8 +56,8 @@ const handleDeleteCart = (id, title) => {
     console.log("id: ", id);
 
     Swal.fire({
-      title: `Delete Book`,
-      text: `Are you sure you want to delete the book "${title}"?`,
+      title: "Delete Book",
+      text: `Are you sure you want to delete the book ${title}?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",

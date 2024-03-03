@@ -22,6 +22,7 @@ export default function Trending() {
             title: "The Great Gatsby",
             writer: "F. Scott Fitzgerald",
             genre: "Classic",
+            price: 250,
             description:
                 "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
         },
@@ -31,6 +32,7 @@ export default function Trending() {
             title: "The Great Gatsby",
             writer: "F. Scott Fitzgerald",
             genre: "Classic",
+            price: 299,
             description:
                 "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
         },
@@ -40,6 +42,7 @@ export default function Trending() {
             title: "The Great Gatsby",
             writer: "F. Scott Fitzgerald",
             genre: "Classic",
+            price: 269,
             description:
                 "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
         },
@@ -49,6 +52,7 @@ export default function Trending() {
             title: "The Great Gatsby",
             writer: "F. Scott Fitzgerald",
             genre: "Classic",
+            price: 320,
             description:
                 "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
         },
@@ -58,6 +62,7 @@ export default function Trending() {
             title: "The Great Gatsby",
             writer: "F. Scott Fitzgerald",
             genre: "Classic",
+            price: 299,
             description:
                 "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
         },
@@ -67,6 +72,7 @@ export default function Trending() {
             title: "The Great Gatsby",
             writer: "F. Scott Fitzgerald",
             genre: "Classic",
+            price: 350,
             description:
                 "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
         },
@@ -76,6 +82,7 @@ export default function Trending() {
             title: "The Great Gatsby",
             writer: "F. Scott Fitzgerald",
             genre: "Classic",
+            price: 250,
             description:
                 "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
         },
@@ -85,6 +92,7 @@ export default function Trending() {
             title: "The Great Gatsby",
             writer: "F. Scott Fitzgerald",
             genre: "Classic",
+            price: 220,
             description:
                 "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
         },
@@ -94,6 +102,7 @@ export default function Trending() {
             title: "The Great Gatsby",
             writer: "F. Scott Fitzgerald",
             genre: "Classic",
+            price: 190,
             description:
                 "A tale of wealth, love, and the American Dream set in the Roaring Twenties.",
         },

@@ -16,7 +16,7 @@ import { IoIosCamera } from "react-icons/io";
 import useImageURL from '@/Hooks/ImageURL/useImageURL';
 import { useForm } from 'react-hook-form';
 
-const ParsonalEdit = () => {
+const ProfileEdit = () => {
     const { register, handleSubmit, reset } = useForm();
     const [selectedFile, setSelectedFile] = useState();
     const [preview, setPreview] = useState();
@@ -46,43 +46,37 @@ const ParsonalEdit = () => {
 
     // update profile funcotin
     const handleUpdateProfile = async (data) => {
-        try {
-            const uploadedImageUrl = await uploadImage();
-            const { name, phone_number, date_of_birth, gender, profession, street, upozela, district, division, country, zip_code } = data;
-    
-            const updateUserInformation = {
-                name,
-                image: uploadedImageUrl,
-                phone_number,
-                date_of_birth,
-                gender,
-                profession,
-                location: {
-                    street,
-                    upozela,
-                    district,
-                    division,
-                    country,
-                    zip_code
-                }
-            };
-    
-            const response = await axiosSecure.patch(`/api/v1/users/${currentUser._id}`, updateUserInformation);
-    
-            if (response.status === 200) {
-                console.log("Update successful: ", response.data);
-                Swal.fire('Profile updated successfully');
-                router.push('/dashboard/profile');
-            } else {
-                console.error("Update failed: User not found or update unsuccessful");
-                Swal.fire('Update failed. Please try again.');
+
+        const uploadedImageUrl = await uploadImage();
+        const { name, phone_number, date_of_birth, gender, profession, street, upozela, district, division, country, zip_code } = data
+
+        const updateUserInformation = {
+            name, image: uploadedImageUrl, phone_number, date_of_birth, gender, profession,
+            location: {
+                street, upozela, district, division, country, zip_code
             }
-        } catch (error) {
-            console.error("Error occurred during update:", error);
-            Swal.fire('Update failed. Please try again.');
         }
-    };
-    
+
+
+        axiosSecure.patch(`api/v1/users/${currentUser._id}`, updateUserInformation)
+        .then(res => {
+                console.log("update data ", res.data);
+                // Assuming your API returns the updated user document
+                const updatedUser = res.data;
+                if (updatedUser) {
+                    Swal.fire(' Profile Update successfully');
+                    router.push('/dashboard/profile')
+                } else {
+                    console.error("Update failed: User not found or update unsuccessful");
+                    Swal.fire('Update failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error("Error occurred during update:", error);
+                Swal.fire('Update failed. Please try again.');
+            });
+
+    }
 
 
 
@@ -158,6 +152,8 @@ const ParsonalEdit = () => {
                         height={500}
                     /> 
                           }
+
+
                             {/* profile information */}
                             <div className="text-center md:text-start">
 
@@ -375,4 +371,4 @@ const ParsonalEdit = () => {
     );
 };
 
-export default ParsonalEdit;
+export default ProfileEdit;

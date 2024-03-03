@@ -1,5 +1,6 @@
+"use client"
+
 import Image from "next/image";
-import React from "react";
 
 const Teams = () => {
   const teams = [
@@ -29,8 +30,8 @@ const Teams = () => {
       title: "Frontend Developer",
     },
     {
-      img: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260",
-      name: "Martin Garix",
+      img: "https://i.ibb.co/sH9rW6p/Apon-02.jpg",
+      name: "Md Taiatul Islam Apon",
       title: "Frontend Developer",
     },
   ];
@@ -53,9 +54,10 @@ const Teams = () => {
               <Image
                 className="object-cover w-20 h-20 mb-2 rounded-full shadow"
                 src={team.img}
-                width={500}
-                height={500}
-                alt="Person"
+                width={100}
+                height={100}
+                priority
+                alt="Member"
               />
               <div className="flex flex-col items-center">
                 <p className="text-lg font-bold">{team.name}</p>

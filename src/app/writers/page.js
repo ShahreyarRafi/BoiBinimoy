@@ -1,14 +1,14 @@
+
 import Footer from "@/components/Shared/Footer/Footer";
 import Navbar from "@/components/Shared/Navbar/Navbar";
+import SectionTitle from "@/components/Shared/SectionTitle/SectionTitle";
 import WritersComponent from "@/components/Writers/Writers";
-import WritersBanner from "@/components/Writers/WritersBanner";
-import React from "react";
 
 export default function WritersPage() {
   return (
-    <div>
+    <div className="bg-teal-50">
       <Navbar />
-      <WritersBanner />
+      <SectionTitle heading={"Writers"}></SectionTitle>
       <WritersComponent />
       <Footer />
     </div>

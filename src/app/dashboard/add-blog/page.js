@@ -1,4 +1,4 @@
-"use client"
+
 
 import AddBlog from '@/components/UserDashboard/AddBlog/AddBlog';
 
