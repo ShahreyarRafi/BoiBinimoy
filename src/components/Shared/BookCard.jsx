@@ -71,9 +71,6 @@ export default function ExchangeCard({ item, }) {
   };
 
 
-
-
-
   return (
 
     <div className="l-container md:p-1">
