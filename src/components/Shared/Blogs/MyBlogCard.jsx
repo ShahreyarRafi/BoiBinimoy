@@ -9,6 +9,7 @@ import { useRef, useState } from "react";
 import useImageURL from "@/Hooks/ImageURL/useImageURL";
 import { useForm } from "react-hook-form";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import Link from "next/link";
 
 const MyBlogCard = ({ item, refetch }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -100,7 +101,12 @@ const MyBlogCard = ({ item, refetch }) => {
             alt="latest"
           />
           <div className="p-4">
-            <h2 className="font-bold text-xl text-gray-800">{item?.title}</h2>
+            <Link
+              href={`/blogs/${item?._id}`}
+              className="text-gray-600 hover:text-gray-800"
+            >
+              <h2 className="font-bold text-xl">{item?.title}</h2>
+            </Link>
           </div>
         </div>
         <div className="flex justify-between items-center gap-2 px-4 py-2 border-t">

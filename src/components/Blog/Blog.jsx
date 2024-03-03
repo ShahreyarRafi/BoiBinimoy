@@ -64,13 +64,10 @@ const Blog = () => {
                 <p className="text-[#016961] text-sm font-bold mt-4">
                   {blog?.category}
                 </p>
-                <Link href={`/blogs/${blog?._id}`}>
-                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my- leading-tight">
-                    {blog?.title}
-                  </h1>
-                </Link>
 
-                {/* <hr className="my-2" /> */}
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my- leading-tight">
+                  {blog?.title}
+                </h1>
 
                 <div className="mt-2 text-xs sm:text-sm md:text-base text-justify">
                   {expandedBlogs[blog?._id] ? (
