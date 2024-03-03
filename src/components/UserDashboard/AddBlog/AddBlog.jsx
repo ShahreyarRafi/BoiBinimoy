@@ -116,6 +116,7 @@ const AddBlog = () => {
                   {...register("tags")}
                   placeholder="Blog Tags"
                   type="text"
+                  required
                 />
               </div>
 
@@ -160,9 +161,12 @@ const AddBlog = () => {
                     <input
                       type="file"
                       id="imageFile"
-                      {...register("cover_image")}
+                      {...register("cover_image", {
+                        required: "Cover Image is required",
+                      })}
                       onChange={onSelectFile}
                       hidden
+                      required
                     />
                   </div>
                 </div>
