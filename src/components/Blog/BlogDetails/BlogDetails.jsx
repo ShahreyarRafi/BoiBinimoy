@@ -67,7 +67,11 @@ const BlogDetails = ({}) => {
               {blog?.title}
             </h2>
             <p className="text-xs sm:text-sm md:text-base lg:text-lg text-justify">
-              {blog?.body}
+              {blog?.body?.split("\n").map((paragraph, index) => (
+                <p key={index}>
+                  {paragraph} <br />
+                </p>
+              ))}
             </p>
           </div>
         </div>

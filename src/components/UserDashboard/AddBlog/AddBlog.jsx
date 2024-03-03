@@ -72,6 +72,7 @@ const AddBlog = () => {
           timer: 1500,
         });
         reset();
+        setSelectedFile(undefined);
       })
       .catch((error) => {
         // Handle errors
