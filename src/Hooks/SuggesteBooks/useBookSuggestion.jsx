@@ -176,7 +176,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
 
 
-    // ----------Interested books Related Books-----------
+    // ---------- Related books of Interested books -----------
 
     const [interestedBooksRelatedBooks, setInterestedBooksRelatedBooks] = useState([]);
     const [interestedBooksRelatedBooksLoading, setInterestedBooksRelatedBooksLoading] = useState(true);
@@ -211,7 +211,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
 
 
-    // ---------Currently Viewing Related Books-----------
+    // --------- Related Books of Currently Viewing -----------
 
     const [currentlyViewingRelatedBooks, setCurrentlyViewingRelatedBooks] = useState([]);
 
