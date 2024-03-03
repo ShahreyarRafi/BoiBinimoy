@@ -71,6 +71,7 @@ const AddBlog = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        reset();
       })
       .catch((error) => {
         // Handle errors
