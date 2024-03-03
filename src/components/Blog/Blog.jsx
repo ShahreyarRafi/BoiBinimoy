@@ -6,9 +6,12 @@ import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import BlogSideCard from "../Shared/Blogs/BlogSideCard";
 // import BlogLatestCard from "../Shared/Blogs/BlogLatestCard";
 import Link from "next/link";
+import PageLoading from "../Shared/loadingPageBook/PageLoading";
+import React, { useState } from "react";
 
 const Blog = () => {
   const axiosPublic = useAxiosPublic();
+  const [expandedBlogs, setExpandedBlogs] = useState({});
 
   const { data: blogs = [], isLoading } = useQuery({
     queryKey: ["blogs"],
@@ -18,39 +21,74 @@ const Blog = () => {
     },
   });
 
+  if (isLoading) {
+    return <PageLoading />;
+  }
+
+  if (blogs.length === 0) {
+    return (
+      <div>
+        <h1 className="text-center justify-center font-semibold md:text-3xl lg:text-4xl">
+          Blogs Not Found.
+        </h1>
+      </div>
+    );
+  }
+
   // const sides = [blogs[5], blogs[1], blogs[6], blogs[3]];
   return (
     <div className="max-w-6xl mx-auto mt-8 mb-36">
-      <div className="">
+      <div className="flex gap-5">
         {/* All blog */}
         <div className="w-full">
           {blogs?.map((blog) => (
-            <div key={blog?._id} className="mb-10 px-5">
-              <Image
-                src={blog?.cover_image}
-                priority
-                width={500}
-                height={500}
-                alt="Main blog"
-                className="w-full h-96 object-cover rounded-lg"
-              />
-              <p className="text-[#016961] text-sm font-bold mt-4">
-                {blog?.category}
-              </p>
-              <Link href={`/blogs/${blog?._id}`}>
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my- leading-tight">
-                  {blog?.title}
-                </h1>
-              </Link>
-
-              <hr className="my-2" />
-
-              <p className=" mt-2 text-xs sm:text-sm md:text-base text-justify">
-                {blog?.body[0]?.slice(0, 500) + "..."}
-                <Link href={`/blogs/${blog?._id}`} className="text-blue-400">
-                  Read more
+            <div
+              key={blog?._id}
+              className="mb-10 px-5 cursor-pointer"
+              onClick={() =>
+                setExpandedBlogs((prev) => ({
+                  ...prev,
+                  [blog?._id]: !prev[blog?._id],
+                }))
+              }
+            >
+              <div key={blog?._id} className="mb-10 px-5">
+                <Image
+                  src={blog?.cover_image}
+                  priority
+                  width={500}
+                  height={500}
+                  alt="Main blog"
+                  className="w-full h-96 object-cover rounded-lg"
+                />
+                <p className="text-[#016961] text-sm font-bold mt-4">
+                  {blog?.category}
+                </p>
+                <Link href={`/blogs/${blog?._id}`}>
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my- leading-tight">
+                    {blog?.title}
+                  </h1>
                 </Link>
-              </p>
+
+                {/* <hr className="my-2" /> */}
+
+                <div className="mt-2 text-xs sm:text-sm md:text-base text-justify">
+                  {expandedBlogs[blog?._id]
+                    ? blog?.body?.split("\n").map((paragraph, index) => (
+                        <p key={index}>
+                          {paragraph} <br />
+                        </p>
+                      ))
+                    : blog?.body
+                        ?.slice(0, 500)
+                        .split("\n")
+                        .map((paragraph, index) => (
+                          <p key={index}>
+                            {paragraph} <br />
+                          </p>
+                        ))}
+                </div>
+              </div>
             </div>
           ))}
         </div>

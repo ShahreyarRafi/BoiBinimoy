@@ -1,16 +1,19 @@
 "use client";
 
 import Image from 'next/image'
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import { useParams } from "next/navigation";
 import BookCard from "../../../Shared/BookCard";
 import { AuthContext } from '@/providers/AuthProvider';
 import PageLoading from '@/components/Shared/loadingPageBook/PageLoading';
+import useOneUser from '@/Hooks/Users/useOneUser';
+import { IoIosArrowDown } from "react-icons/io";
 
 const WriterDetails = () => {
 
 
   const { user } = useContext(AuthContext);
+  const { interest } = useOneUser()
   const param = useParams();
   const [writer, setWriter] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -58,13 +61,46 @@ useEffect(() => {
   fetchData();
 }, [writer?.writer_name]);
 
-console.log(books);
+const updateUserInterest = useCallback(async (email, writerName) => {
+  try {
+    // Check if the writerName already exists in user's interest
+    if (!interest.writer.includes(writerName)) {
+      const updatedInterest = {
+        ...interest,
+        writer: [...interest.writer, writerName] // Merge the new writerName with existing writerNames
+      };
+
+      const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/users-interest/${email}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ interest: updatedInterest })
+      });
+      console.log(response);
+      if (!response.ok) {
+        throw new Error('Failed to update user interest');
+      }
+      console.log('User interest updated successfully');
+    } else {
+      console.log('Writer already exists in user interest');
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}, [interest]);
+
 
 useEffect(() => {
   if (user) {
-    console.log("writer:", param?.writerId);
+    console.log("writer:",writer?.writer_name);
+
+    // Update user interest in the database
+    updateUserInterest(user.email, writer?.writer_name);
   }
-}, [user, param?.writerId]);
+}, [user, writer?.writer_name, updateUserInterest]);
+
+
 
 if (loading) {
   return <div className='bg-50-50'><PageLoading /></div>;
@@ -88,6 +124,31 @@ return (
             }}
             className="rounded-full object-cover"
           />
+            <div className='flex justify-between items-center'>
+
+                <div className=''>
+                    <input type="text" name="" id="" placeholder='Search ...' className='p-2 rounded-lg border 2 border-black' />
+                </div>
+
+                <div className="dropdown dropdown-bottom">
+                    <div tabIndex={0} role="button" className="p-2 rounded-lg border 2 border-black">Sort By <IoIosArrowDown className='inline' /></div>
+                    <ul tabIndex={0} className="dropdown-content z-[10] menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li>price</li>
+                        <li>Name</li>
+                    </ul>
+                </div>
+            </div>
+
+            {/* Books */}
+            <div className="min-h-screen container mx-auto px-3">
+                <div className="py-12">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
+                        {books?.map((book) => (
+                            <BookCard key={book?._id} item={book}></BookCard>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
         <div className="text-center text-teal-800 space-y-1 mt-3">
           <h2 className="text-4xl font-bold">{writer?.writer_name}</h2>

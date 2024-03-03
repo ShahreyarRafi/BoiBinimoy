@@ -9,9 +9,8 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useState } from "react";
 import useImageURL from "@/Hooks/ImageURL/useImageURL";
 import { useForm } from "react-hook-form";
-import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
-const AllBlogCard = ({ item, refetch }) => {
+const MyBlogCard = ({ item, refetch }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const { imageUrl, uploadImage } = useImageURL(selectedFile);
@@ -78,24 +77,16 @@ const AllBlogCard = ({ item, refetch }) => {
 
   const handleUpdate = () => {
     const modal = document.getElementById("update_blog_modal");
-    const idInput = modal.querySelector('[name="id"]');
-    const titleInput = modal.querySelector('[name="title"]');
-    const descriptionInput = modal.querySelector('[name="description"]');
-    const categoryInput = modal.querySelector('[name="category"]');
-    const tagsInput = modal.querySelector('[name="tags"]');
 
-    idInput.value = item?._id;
-    titleInput.value = item?.title || "";
-    descriptionInput.value = item?.body || "empty";
-    categoryInput.value = item?.category;
-    tagsInput.value = item?.tags[0];
-
+    console.log(item._id);
     modal.showModal();
   };
 
   const handleUpdateBlog = async (data) => {
+    console.log(data);
     const { title, description: body, category, tags } = data;
     const url = await uploadImage();
+    console.log(item?._id);
 
     const updateBlogInfo = {
       title,
@@ -114,12 +105,13 @@ const AllBlogCard = ({ item, refetch }) => {
     if (res?.data) {
       refetch();
       document.getElementById("update_blog_modal").close();
+      setSelectedFile(null);
+      setPreview(null);
     }
   };
 
   return (
     <div>
-      {/* all blog card start */}
       <div className="rounded shadow-lg w-full h-full flex flex-col justify-between">
         <div>
           <Image
@@ -153,24 +145,13 @@ const AllBlogCard = ({ item, refetch }) => {
           </div>
         </div>
       </div>
-      {/* all blog card end */}
-
-      {/* dialog start */}
       <dialog id="update_blog_modal" className="modal">
         <div className="modal-box w-11/12 max-w-4xl">
           <h1 className="text-3xl text-center font-bold py-2">Update Blog</h1>
           {/* basic information div */}
           <div className=" border-2 border-[#016961] rounded-lg px-3 pb-3">
             {/* id */}
-            <h3 className="text-sm font-light py-2">Blog Id:</h3>
-            <input
-              className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg border-[#016961] focus:outline-none"
-              name="id"
-              type="text"
-              id="id"
-              defaultValue={item?._id}
-              readOnly
-            />
+
             {/* title */}
             <h3 className="text-sm font-light py-2">Blog Title:</h3>
             <input
@@ -182,7 +163,6 @@ const AllBlogCard = ({ item, refetch }) => {
               required
             />
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-3 gap-3">
             {/* book description div */}
             <div className="border-2 col-span-1 lg:col-span-2 border-[#016961] rounded-lg h-full w-full px-2 pb-1">
@@ -202,14 +182,16 @@ const AllBlogCard = ({ item, refetch }) => {
               </div>
             </div>
 
-            {/* image  */}
-            <div
-              for="imageFile"
-              className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
-            >
-              <label
+            {/* image div */}
+            <div className="border-2 flex flex-col border-[#016961] rounded-lg h-full w-full px-2 pb-3">
+              {/* title */}
+              <h3 className="text-sm font-light py-2">
+                Upload blog cover image:
+              </h3>
+              {/* image */}
+              <div
                 for="imageFile"
-                className="w-full h-full flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
+                className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg"
               >
                 {!selectedFile ? (
                   <label
@@ -233,7 +215,7 @@ const AllBlogCard = ({ item, refetch }) => {
                   name="cover_image"
                   hidden
                 />
-              </label>
+              </div>
             </div>
           </div>
 
@@ -273,25 +255,23 @@ const AllBlogCard = ({ item, refetch }) => {
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <div className="flex justify-center md:justify-end gap-3">
-                <button className="flex justify-center items-center gap-1 uppercase text-xs md:text-sm border border-[#016961] rounded-md px-2 py-1 shadow-md hover:shadow-none">
-                  <SlArrowLeft />
-                  <span>Close</span>
-                </button>
+              <div className="flex gap-5">
                 <button
                   onClick={handleSubmit(handleUpdateBlog)}
                   className="w-full px-4 mt-6 text-center cursor-pointer bg-[#016961] text-white font-medium p-2 text-sm rounded-full "
                 >
-                  <span>Update</span> <SlArrowRight />
+                  Update
+                </button>
+                <button className="w-full px-4 mt-6 text-center cursor-pointer bg-[#016961] text-white font-medium p-2 text-sm rounded-full ">
+                  Close
                 </button>
               </div>
             </form>
           </div>
         </div>
       </dialog>
-      {/* dialog end */}
     </div>
   );
 };
 
-export default AllBlogCard;
+export default MyBlogCard;

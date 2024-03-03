@@ -21,28 +21,7 @@ export default function BannerNew() {
 
     const axiosPublic = useAxiosPublic();
 
-
-
-    // // modal code 
-    // const [isSignedUp, setIsSignedUp] = useState(false);
-
-    // useEffect(() => {
-    //     const signedUp = localStorage.getItem('signedUp');
-    //     if (signedUp) {
-    //         setIsSignedUp(true); // Set state to true if user has signed up
-    //         localStorage.removeItem('signedUp'); // Clear flag after showing the modal
-    //     }
-    // }, []);
-
-    // const closeModal = () => {
-    //     setIsSignedUp(false); // Close modal
-    // };
-
-
-
-
-
-
+    
 
     const { data: bannerData = [], isLoading } = useQuery({
         queryKey: ["banner"],

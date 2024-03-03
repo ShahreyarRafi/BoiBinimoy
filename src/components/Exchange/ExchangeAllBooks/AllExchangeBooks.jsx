@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import useExchangeBooks from "@/Hooks/exchangeBooks/useExchangeBooks";
-import ExchangeBookCard from "@/components/Shared/ExchnageBook/ExchangeCard";
+import ExchangeBookCard from "@/components/Shared/ExchangeBook/ExchangeCard";
+
 
 
 const AllExchangeBooks = () => {

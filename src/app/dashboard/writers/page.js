@@ -1,5 +1,6 @@
-import Writers from "@/components/UserDashboard/Writers/Writers";
+"use client"
 
+import Writers from '@/components/UserDashboard/Writers/Writers';
 
 const page = () => {
     return (

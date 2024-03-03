@@ -1,19 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import { useParams } from "next/navigation";
 import BookCard from "../../../Shared/BookCard";
 import { AuthContext } from '@/providers/AuthProvider';
 import PageLoading from '@/components/Shared/loadingPageBook/PageLoading';
+import useOneUser from "@/Hooks/Users/useOneUser";
 
 const PublisherDetails = () => {
 
   const { user } = useContext(AuthContext);
+  const { interest } = useOneUser()
   const param = useParams();
   const [publisher, setPublisher] = useState([]);
   const [loading, setLoading] = useState(true);
   const [books, setBooks] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -56,11 +59,45 @@ const PublisherDetails = () => {
     fetchData();
   }, [publisher?.publisher]);
 
+
+  const updateUserInterest = useCallback(async (email, publisherName) => {
+    try {
+      // Check if the publisherId already exists in user's interest
+      if (!interest.publisher.includes(publisherName)) {
+        const updatedInterest = {
+          ...interest,
+          publisher: [...interest.publisher, publisherName] // Merge the new publisherId with existing publisherIds
+        };
+
+        const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/users-interest/${email}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ interest: updatedInterest })
+        });
+        console.log(response);
+        if (!response.ok) {
+          throw new Error('Failed to update user interest');
+        }
+        console.log('User interest updated successfully');
+      } else {
+        console.log('publisher already exists in user interest');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [interest]);
+
   useEffect(() => {
     if (user) {
-      console.log("publisher:", param?.publisherId);
+      console.log("publisher:", publisher?.publisher);
+
+      // Update user interest in the database
+      updateUserInterest(user.email, publisher?.publisher);
     }
-  }, [user, param?.publisherId]);
+  }, [user, publisher?.publisher, updateUserInterest]);
+
 
   if (loading) {
     return <div className='bg-50-50'><PageLoading /></div>;
