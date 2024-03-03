@@ -146,6 +146,8 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
 
 
+    // ----------------Related books-----------------
+
     // ---------Fetch related books function-----------
 
     const fetchRelatedBooks = useCallback(async (writer, publisher, category) => {
@@ -194,7 +196,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
             } catch (error) {
                 console.error("Error fetching related books:", error);
             } finally {
-                setInterestedBooksRelatedBooksLoading(false); 
+                setInterestedBooksRelatedBooksLoading(false);
             }
         };
 
