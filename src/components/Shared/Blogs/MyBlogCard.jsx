@@ -144,6 +144,7 @@ const MyBlogCard = ({ item, refetch }) => {
               id="title"
               defaultValue={item?.title}
               required
+              placeholder="Title"
             />
             <input
               className="h-10 w-full px-2 text-xs md:text-sm bg-teal-50/40 shadow-md border border-[#016961] rounded-lg focus:outline-none"
@@ -151,6 +152,7 @@ const MyBlogCard = ({ item, refetch }) => {
               id="tags"
               defaultValue={item?.tags}
               type="text"
+              placeholder="Tags"
             />
           </div>
 
@@ -163,6 +165,7 @@ const MyBlogCard = ({ item, refetch }) => {
               cols="30"
               rows="20"
               required
+              placeholder="Description"
             ></textarea>
           </div>
 
