@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
-import AllBlogCard from "../../Shared/Blogs/AllBlogCard";
+import MyBlogCard from "../../Shared/Blogs/MyBlogCard";
 import PageLoading from "@/components/Shared/loadingPageBook/PageLoading";
 
 const AllBlog = () => {
@@ -29,7 +29,7 @@ const AllBlog = () => {
       <div className="py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {blogs?.map((blog) => (
-            <AllBlogCard key={blog?._id} item={blog} refetch={refetch} />
+            <MyBlogCard key={blog?._id} item={blog} refetch={refetch} />
           ))}
         </div>
       </div>

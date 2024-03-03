@@ -1,6 +1,6 @@
 
 
-import AllBlog from '@/components/Blog/AllBlog/AllBlog';
+import AllBlog from '@/components/Blog/MyBlogs/MyBlogs';
 import Footer from '@/components/Shared/Footer/Footer';
 import Navbar from '@/components/Shared/Navbar/Navbar';
 

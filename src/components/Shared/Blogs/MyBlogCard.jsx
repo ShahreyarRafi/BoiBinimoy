@@ -10,13 +10,12 @@ import { useState } from "react";
 import useImageURL from "@/Hooks/ImageURL/useImageURL";
 import { useForm } from "react-hook-form";
 
-const AllBlogCard = ({ item, refetch }) => {
+const MyBlogCard = ({ item, refetch }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  const { imageUrl, uploadImage} = useImageURL(selectedFile);
+  const { imageUrl, uploadImage } = useImageURL(selectedFile);
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
-
 
   // create a preview as a side effect, whenever selected file is changed
   const onSelectFile = (e) => {
@@ -78,12 +77,12 @@ const AllBlogCard = ({ item, refetch }) => {
 
   const handleUpdate = () => {
     const modal = document.getElementById("update_blog_modal");
-  
+
     console.log(item._id);
     modal.showModal();
   };
 
-  const handleUpdateBlog = async(data) => {
+  const handleUpdateBlog = async (data) => {
     console.log(data);
     const { title, description: body, category, tags } = data;
     const url = await uploadImage();
@@ -94,19 +93,22 @@ const AllBlogCard = ({ item, refetch }) => {
       body,
       category,
       tags,
-      cover_image: url ,
+      cover_image: url,
     };
 
-    const res = await axiosSecure.patch(`api/v1/blogs/${item?._id}`, updateBlogInfo);
-    
+    const res = await axiosSecure.patch(
+      `api/v1/blogs/${item?._id}`,
+      updateBlogInfo
+    );
+
     console.log(res?.data);
-    if(res?.data){
-      refetch()
+    if (res?.data) {
+      refetch();
       document.getElementById("update_blog_modal").close();
-      setSelectedFile(null)
-      setPreview(null)
+      setSelectedFile(null);
+      setPreview(null);
     }
-  }
+  };
 
   return (
     <div>
@@ -148,8 +150,8 @@ const AllBlogCard = ({ item, refetch }) => {
           <h1 className="text-3xl text-center font-bold py-2">Update Blog</h1>
           {/* basic information div */}
           <div className=" border-2 border-[#016961] rounded-lg px-3 pb-3">
-              {/* id */}
-       
+            {/* id */}
+
             {/* title */}
             <h3 className="text-sm font-light py-2">Blog Title:</h3>
             <input
@@ -210,7 +212,7 @@ const AllBlogCard = ({ item, refetch }) => {
                   id="imageFile"
                   type="file"
                   onChange={onSelectFile}
-                  name = "cover_image"
+                  name="cover_image"
                   hidden
                 />
               </div>
@@ -272,5 +274,4 @@ const AllBlogCard = ({ item, refetch }) => {
   );
 };
 
-
-export default AllBlogCard;
+export default MyBlogCard;

@@ -61,13 +61,13 @@ useEffect(() => {
   fetchData();
 }, [writer?.writer_name]);
 
-const updateUserInterest = useCallback(async (email, writerId) => {
+const updateUserInterest = useCallback(async (email, writerName) => {
   try {
-    // Check if the writerId already exists in user's interest
-    if (!interest.writer.includes(writerId)) {
+    // Check if the writerName already exists in user's interest
+    if (!interest.writer.includes(writerName)) {
       const updatedInterest = {
         ...interest,
-        writer: [...interest.writer, writerId] // Merge the new writerId with existing writerIds
+        writer: [...interest.writer, writerName] // Merge the new writerName with existing writerNames
       };
 
       const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/users-interest/${email}`, {
@@ -83,27 +83,24 @@ const updateUserInterest = useCallback(async (email, writerId) => {
       }
       console.log('User interest updated successfully');
     } else {
-      console.log('writer already exists in user interest');
+      console.log('Writer already exists in user interest');
     }
   } catch (error) {
     console.log(error);
   }
 }, [interest]);
 
+
 useEffect(() => {
   if (user) {
-    console.log("writer:", param?.writerId);
+    console.log("writer:",writer?.writer_name);
 
     // Update user interest in the database
-    updateUserInterest(user.email, param?.writerId);
+    updateUserInterest(user.email, writer?.writer_name);
   }
-}, [user, param?.writerId, updateUserInterest]);
+}, [user, writer?.writer_name, updateUserInterest]);
 
-useEffect(() => {
-  if (user) {
-    console.log("writer:", param?.writerId);
-  }
-}, [user, param?.writerId]);
+
 
 if (loading) {
   return <div className='bg-50-50'><PageLoading /></div>;
