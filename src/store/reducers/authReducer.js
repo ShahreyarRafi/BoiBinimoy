@@ -1,11 +1,42 @@
+import { REGISTER_FAIL, REGISTER_SUCCESS } from "../type/authType";
+import deCodeToken from "jwt-decode";
 const authState = {
   loading: true,
-  auhtenicate: false,
+  authenticate: false,
   error: "",
   successMessage: "",
+  myInfo: "",
 };
 
-export const suthReduceer = (state = authState, action) => {
+const tokenDecode = (token) => {
+  const tokenDecoded = deCodeToken(token);
+  const expTime = new Date(tokenDecoded.exp * 1000);
+  if (new Date() > expTime) {
+    return null;
+  }
+  return tokenDecoded;
+};
+
+export const authReducer = (state = authState, action) => {
   const { payload, type } = action;
+  if (type === REGISTER_FAIL) {
+    return {
+      ...state,
+      error: payload.error,
+      authenticate: false,
+      myInfo: "",
+      loading: true,
+    };
+  }
+  if (type === REGISTER_SUCCESS) {
+    const myInfo = tokenDecode(payload.token);
+    return {
+      ...state,
+      myInfo: myInfo,
+      successMessage: payload.successMessage,
+      error: "",
+      authenticate: false,
+    };
+  }
   return state;
 };

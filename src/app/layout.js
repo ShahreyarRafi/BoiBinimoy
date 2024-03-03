@@ -1,4 +1,5 @@
-"use client";
+"use client"
+
 import AuthProvider from "@/providers/AuthProvider";
 import {
   Source_Serif_4,

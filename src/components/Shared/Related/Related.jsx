@@ -84,7 +84,7 @@ const Related = () => {
 
   return (
     <>
-      <div className="min-w-full gap-3 my-36">
+      <div className="min-w-full gap-3 mt-36 mb-20">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl md:text-3xl text-[#016961] font-bold text-nowrap">
             Related Books

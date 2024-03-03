@@ -1,4 +1,4 @@
-"use client"
+
 
 import Categories from "@/components/Categories/Categories";
 import Footer from "@/components/Shared/Footer/Footer";

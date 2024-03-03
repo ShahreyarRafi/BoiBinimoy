@@ -8,35 +8,34 @@ import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeartCirclePlus } from "react-icons/fa6";
 import ReviewCard from "@/components/Shared/ReviewCard";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "@/providers/AuthProvider";
-import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import useOneUser from "@/Hooks/Users/useOneUser";
 import useReviews from "@/Hooks/Reviews/useReviews";
 import useGetOneBuyBook from "@/Hooks/buyBooks/useGetOneBuyBook";
+import useAuth from "@/Hooks/auth/useAuth";
+import { useCallback, useEffect } from "react";
+import SuggestedBooks from "../suggested books/SuggestedBooks";
+import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
 
 const BuyBookDetails = () => {
+  const { user } = useAuth();
+  const { interest } = useOneUser()
   const param = useParams();
-  const book_id = param.buyId
-  const { user } = useContext(AuthContext);
-  const axiosPublic = useAxiosPublic();
+  const book_id = param.buyId;
   const axiosSecure = useAxiosSecure();
   const { currentUser } = useOneUser();
   const { reviews, isPending, refetch }  = useReviews(book_id)
-  const { getOneBuyBook : book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
-
-  console.log(book_id);
+  const { book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
+  const { refetch: cartRefetch } = useGetMyCarts()
 
   if (bookLoading || isPending) {
     return (
       <PageLoading />
     )
   }
+  console.log("book: ", book_id, book);
 
-  console.log(book);
 
 
   // Handle comment form
@@ -57,13 +56,13 @@ const BuyBookDetails = () => {
       user_image,
       rating,
       comment,
-      book_id
-    }
+      book_id,
+    };
 
     axiosSecure
       .post("/api/v1/reviews", newComment)
       .then((response) => {
-        refetch()
+        refetch();
         console.log("Response:", response.data);
         Swal.fire({
           position: "top-end",
@@ -77,11 +76,10 @@ const BuyBookDetails = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }
+  };
 
   // Handle add to cart
   const handleCart = () => {
-
     const user_name = currentUser?.name;
     const user_email = currentUser?.email;
     const book_id = book?._id;
@@ -91,9 +89,11 @@ const BuyBookDetails = () => {
     const addCart = {
       user_name,
       user_email,
+      owner_email: book?.owner_email,
       book_id,
       price,
-      quantity
+      quantity,
+      isDeliverd: false
     }
 
     axiosSecure
@@ -104,8 +104,9 @@ const BuyBookDetails = () => {
           icon: "success",
           title: "Add book in the cart.",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
+        cartRefetch()
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -133,7 +134,7 @@ const BuyBookDetails = () => {
         <div className="text-center px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
             <h2 className="mb-6 text-3xl font-bold text-white sm:text-5xl">
-              Detail of &quot;{book?.title}&quot;
+              Detail of &quot; {book?.title}&quot;
             </h2>
           </div>
         </div>
@@ -177,7 +178,7 @@ const BuyBookDetails = () => {
                 Published Year: {book?.published_year}
               </p>
               <p className="text-xs border rounded-md px-2 py-1 font-bold">
-                Publisher: {book?.publisher}
+                book: {book?.book}
               </p>
               <p className="text-xs border rounded-md px-2 py-1 font-bold">
                 Edition: {book?.edition}
@@ -219,13 +220,16 @@ const BuyBookDetails = () => {
 
             {/* User action */}
             <div className="flex items-center gap-3">
-              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-sm rounded-full ">
+              <button className="mt-6 text-center text-lg cursor-pointer bg-white text-[#016961] font-semibold py-2 px-4 rounded-full ">
                 Buy Now
               </button>
-              <button onClick={handleCart} className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
+              <button
+                onClick={handleCart}
+                className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2.5 text-2xl rounded-full "
+              >
                 <FaCartPlus />
               </button>
-              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
+              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2.5 text-2xl rounded-full ">
                 <FaHeartCirclePlus />
               </button>
             </div>
@@ -233,13 +237,21 @@ const BuyBookDetails = () => {
         </div>
 
         {/* Related section */}
-        <Related />
+        {/* <Related /> */}
+
+
+        <div>
+          <SuggestedBooks CurrentlyViewing={book._id}></SuggestedBooks>
+        </div>
 
         {/* review section */}
         <div className="w-full p-8 border-2 rounded-lg">
           <div className="max-w-5xl mx-auto">
             {/* send review */}
-            <form onSubmit={handleSubmit} className="flex items-center gap-3 pb-5">
+            <form
+              onSubmit={handleSubmit}
+              className="flex items-center gap-3 pb-5"
+            >
               <input
                 type="text"
                 name="comment"
@@ -252,10 +264,17 @@ const BuyBookDetails = () => {
               </button>
             </form>
 
+
+
             {/* all review */}
             <div className="p-2 space-y-4">
-              {reviews && reviews?.map(commenter => <ReviewCard key={commenter?.user_email} review={commenter}></ReviewCard>)
-              }
+              {reviews &&
+                reviews?.map((commenter) => (
+                  <ReviewCard
+                    key={commenter?.user_email}
+                    review={commenter}
+                  ></ReviewCard>
+                ))}
             </div>
           </div>
         </div>

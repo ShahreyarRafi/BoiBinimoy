@@ -1,4 +1,3 @@
-"use client"
 
 import Users from '@/components/UserDashboard/users/Users';
 import React from 'react';

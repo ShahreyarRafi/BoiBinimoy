@@ -1,12 +1,10 @@
-"use client";
-
-import AllBlog from "@/components/Blog/AllBlog/AllBlog";
+import MyBlogs from "@/components/Blog/MyBlogs/MyBlogs";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <AllBlog></AllBlog>
+      <MyBlogs />
     </div>
   );
 };

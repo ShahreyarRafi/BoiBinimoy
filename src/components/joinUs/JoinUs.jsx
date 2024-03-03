@@ -90,37 +90,7 @@ const JoinUs = () => {
     });
   };
 
-  // handle google sign in function
 
-  // const handleSocialLogin = (user) => {
-  //     user()
-  //         .then(res => {
-  //             console.log(res.user);
-  //             if (res.user) {
-  //                 Swal.fire('User logged in successfully');
-  //                 setTimeout(() => {
-  //                     const userInfo = {
-  //                         email: res.user?.email,
-  //                         name: res.user?.displayName,
-  //                     };
-
-  //                     axiosPublic.post("/api/v1/users", userInfo)
-  //                         .then(res => {
-  //                             console.log(res.data);
-  //                             router.push('/');
-  //                         })
-  //                         .catch(error => {
-  //                             console.error("Error in Axios POST request:", error);
-  //                             Swal.fire('An error occurred while processing your request.');
-  //                         });
-  //                 }, 1000);
-  //             }
-  //         })
-  //         .catch(error => {
-  //             console.error("Error in social login:", error);
-  //             Swal.fire('An error occurred while logging in.');
-  //         });
-  // };
 
   const handleSocialLogin = (user) => {
     user()

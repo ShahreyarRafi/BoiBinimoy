@@ -1,4 +1,3 @@
-"use client"
 
 
 import AllExchangeBooks from '@/components/Exchange/ExchangeAllBooks/AllExchangeBooks';

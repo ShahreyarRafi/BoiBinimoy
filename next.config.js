@@ -20,7 +20,8 @@ const nextConfig = {
       "pbs.twimg.com",
       "thumbor.forbes.com",
       "example.com",
-      "graph.facebook.com"
+      "graph.facebook.com",
+      "localhost",
     ],
   },
 };

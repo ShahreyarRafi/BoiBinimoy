@@ -1,5 +1,5 @@
-// Import necessary dependencies
-import React, { useState, useEffect } from 'react';
+"use client"
+
 import Swal from "sweetalert2";
 import useSpecificUserBook from "@/Hooks/api/useSpecificUserBook";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
@@ -19,6 +19,7 @@ const MyBooks = () => {
     // Fetch specific user books from the backend
     const [specificBooks, refetch, isLoading] = useSpecificUserBook();
     const axiosSecure = useAxiosSecure();
+    
 
     // Handle book deletion
     const handleBookDelete = (id, title) => {

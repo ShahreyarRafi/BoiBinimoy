@@ -39,7 +39,7 @@ export default function BuyNow() {
     fetchData();
   }, []);
 
-  console.log(books);
+  // console.log(books);
 
   const handleNextButtonClick = () => {
     if (swiper) {
@@ -66,8 +66,8 @@ export default function BuyNow() {
 
   if (loading) {
     return (
-      <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-        {Array.from(Array(8).keys()).map((index) => (
+      <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        {Array.from(Array(6).keys()).map((index) => (
           <BookCardSkeleton key={index} />
         ))}
       </div>

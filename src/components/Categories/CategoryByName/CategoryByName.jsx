@@ -1,14 +1,20 @@
 "use client"
 
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import BookCard from "../../Shared/BookCard";
+import { AuthContext } from "@/providers/AuthProvider";
+import PageLoading from "@/components/Shared/loadingPageBook/PageLoading";
+import useOneUser from "@/Hooks/Users/useOneUser";
 
 const CategoryByName = () => {
 
+    const { user } = useContext(AuthContext);
+    const { interest } = useOneUser()
     const param = useParams();
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,6 +34,51 @@ const CategoryByName = () => {
 
         fetchData();
     }, [param?.categoryName]);
+
+
+    const updateUserInterest = useCallback(async (email, category) => {
+        try {
+            // Check if the category already exists in user's interest
+            if (!interest.category.includes(category)) {
+                const updatedInterest = {
+                    ...interest,
+                    category: [...interest.category, category] // Merge the new category with existing categories
+                };
+
+                const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/users-interest/${email}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ interest: updatedInterest })
+                });
+                console.log(response);
+                if (!response.ok) {
+                    throw new Error('Failed to update user interest');
+                }
+                console.log('User interest updated successfully');
+            } else {
+                console.log('Category already exists in user interest');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }, [interest]);
+
+    useEffect(() => {
+        if (user) {
+            const formattedCategoryName = decodeURIComponent(param?.categoryName).replace("%20", " ");
+            console.log("category:", formattedCategoryName);
+            
+            // Update user interest in the database
+            updateUserInterest(user.email, formattedCategoryName);
+        }
+    }, [user, param?.categoryName, updateUserInterest]);
+
+    if (loading) {
+        return <div className='bg-50-50'><PageLoading /></div>;
+    }
+
 
     return (
         <div className="min-h-screen container mx-auto px-3">

@@ -1,11 +1,10 @@
-"use client"
+import Writers from "@/components/UserDashboard/Writers/Writers";
 
-import Writer from '@/components/UserDashboard/Writer/Writer';
 
 const page = () => {
     return (
         <div>
-            <Writer></Writer>
+            <Writers></Writers>
         </div>
     );
 };
