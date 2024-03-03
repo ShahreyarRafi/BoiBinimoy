@@ -21,7 +21,7 @@ const Blog = () => {
   // const sides = [blogs[5], blogs[1], blogs[6], blogs[3]];
   return (
     <div className="max-w-6xl mx-auto mt-8 mb-36">
-      <div className="">
+      <div className="flex gap-5">
         {/* All blog */}
         <div className="w-full">
           {blogs?.map((blog) => (
@@ -46,7 +46,7 @@ const Blog = () => {
               <hr className="my-2" />
 
               <p className=" mt-2 text-xs sm:text-sm md:text-base text-justify">
-                {blog?.body[0]?.slice(0, 500) + "..."}
+                {blog?.body?.slice(0, 500) + "..."}
                 <Link href={`/blogs/${blog?._id}`} className="text-blue-400">
                   Read more
                 </Link>

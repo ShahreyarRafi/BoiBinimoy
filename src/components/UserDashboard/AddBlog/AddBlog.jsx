@@ -39,13 +39,13 @@ const AddBlog = () => {
   // blogs submitting function
   const handleBlogSubmit = async (data) => {
     console.log("cliked");
-    const { form, title, body, category } = data;
+    const { form, title, description, category } = data;
     const uploadedImageUrl = await uploadImage();
 
     const newBlog = {
       form,
       title,
-      body,
+      description,
       cover_image: uploadedImageUrl,
       user_name: "admin",
       user_email: user?.email,
