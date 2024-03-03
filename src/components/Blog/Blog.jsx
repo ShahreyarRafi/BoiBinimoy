@@ -6,6 +6,7 @@ import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import BlogSideCard from "../Shared/Blogs/BlogSideCard";
 // import BlogLatestCard from "../Shared/Blogs/BlogLatestCard";
 import Link from "next/link";
+import PageLoading from "../Shared/loadingPageBook/PageLoading";
 
 const Blog = () => {
   const axiosPublic = useAxiosPublic();
@@ -17,6 +18,20 @@ const Blog = () => {
       return res.data;
     },
   });
+
+  if (isLoading) {
+    return <PageLoading />;
+  }
+
+  if (blogs.length === 0) {
+    return (
+      <div>
+        <h1 className="text-center justify-center font-semibold md:text-3xl lg:text-4xl">
+          Blogs Not Found.
+        </h1>
+      </div>
+    );
+  }
 
   // const sides = [blogs[5], blogs[1], blogs[6], blogs[3]];
   return (
@@ -43,7 +58,7 @@ const Blog = () => {
                 </h1>
               </Link>
 
-              <hr className="my-2" />
+              {/* <hr className="my-2" /> */}
 
               <p className=" mt-2 text-xs sm:text-sm md:text-base text-justify">
                 {blog?.body?.slice(0, 500) + "..."}

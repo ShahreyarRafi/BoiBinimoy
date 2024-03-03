@@ -11,7 +11,7 @@ import useImageURL from "@/Hooks/ImageURL/useImageURL";
 import { useForm } from "react-hook-form";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
-const AllBlogCard = ({ item, refetch }) => {
+const MyBlogCard = ({ item, refetch }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const { imageUrl, uploadImage } = useImageURL(selectedFile);
@@ -294,4 +294,4 @@ const AllBlogCard = ({ item, refetch }) => {
   );
 };
 
-export default AllBlogCard;
+export default MyBlogCard;
