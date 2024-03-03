@@ -9,11 +9,12 @@ import Image from "next/image";
 import Link from "next/link";
 import useOneUser from "@/Hooks/Users/useOneUser";
 import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
+import PageLoading from "../../loadingPageBook/PageLoading";
 
 const Navend = () => {
   const { user, logOut } = useContext(AuthContext);
   const { currentUser } = useOneUser();
-  let { myCarts, price, quantity, isPending, refetch } = useGetMyCarts();
+  let { myCarts, price, isPending, refetch } = useGetMyCarts();
   const totalCart = myCarts?.length;
 
   if (myCarts?.length > 3) {
@@ -35,7 +36,7 @@ const Navend = () => {
         />
         <div className="drawer-content">
           {/* Page content here */}
-          {totalCart && (
+          {totalCart > 0 && (
             <span className="indicator-item badge badge-secondary">
               {totalCart}
             </span>
@@ -52,7 +53,7 @@ const Navend = () => {
           ></label>
           <ul className="menu w-1/3 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            {myCarts?.map((cart) => (
+            {/* {myCarts && myCarts?.map((cart) => (
               <li key={cart?.cart._id}>
                 <div className="flex items-center justify-between rounded-lg p-2">
                   <div className="flex gap-5 items-center">
@@ -81,7 +82,7 @@ const Navend = () => {
                 </div>
                 <hr />
               </li>
-            ))}
+            ))} */}
             <li className="mx-auto">
               <h3 className="text-xl font-bold">Total: {price}</h3>
             </li>

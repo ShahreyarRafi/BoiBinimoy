@@ -19,7 +19,7 @@ const Cart = () => {
   }
 
    
-  console.log(myCarts);
+  console.log("my carts: ", myCarts);
   const handleCheckout = async () => {
     const email = await user?.email;
   
@@ -48,7 +48,7 @@ const Cart = () => {
         </div>
         <div className="flex-1 sm:flex-none grid grid-cols-1 gap-5 lg:gap-0">
           {myCarts?.map((cart) => (
-          <CartsDetails key={cart.cart._id} cart = {cart} refetch = {refetch}></CartsDetails>
+          <CartsDetails key={cart._id} cart = {cart} refetch = {refetch}></CartsDetails>
           ))}
           <div className=" flex  items-center justify-center gap-4 mb-3">
             <p >Total price: {price}</p>

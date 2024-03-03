@@ -74,8 +74,7 @@ const BuyBookDetails = () => {
   }
 
   // Handle add to cart
-  const handleCart = () => {
-
+  const handleAddToCart = () => {
     const user_name = currentUser?.name;
     const user_email = currentUser?.email;
     const book_id = book?._id;
@@ -87,9 +86,13 @@ const BuyBookDetails = () => {
       user_email,
       owner_email: book?.owner_email,
       book_id,
-      price,
+      unit_price: price,
+      total_price: price,
       quantity,
-      isDeliverd: false
+      isDeliverd: false,
+      cover_image: book?.cover_image,
+      title: book?.title,
+      stock_limit: book?.stock_limit
     }
 
     axiosSecure
@@ -219,7 +222,7 @@ const BuyBookDetails = () => {
               <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-sm rounded-full ">
                 Buy Now
               </button>
-              <button onClick={handleCart} className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
+              <button onClick={handleAddToCart} className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
                 <FaCartPlus />
               </button>
               <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2 text-lg rounded-full ">
