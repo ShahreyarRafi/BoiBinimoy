@@ -42,55 +42,53 @@ const Blog = () => {
         {/* All blog */}
         <div className="w-full">
           {blogs?.map((blog) => (
-            <div key={blog?._id} className="mb-10 px-5">
-              <Image
-                src={blog?.cover_image}
-                priority
-                width={500}
-                height={500}
-                alt="Main blog"
-                className="w-full h-96 object-cover rounded-lg"
-              />
-              <p className="text-[#016961] text-sm font-bold mt-4">
-                {blog?.category}
-              </p>
-              <Link href={`/blogs/${blog?._id}`}>
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my- leading-tight">
-                  {blog?.title}
-                </h1>
-              </Link>
+            <div
+              key={blog?._id}
+              className="mb-10 px-5 cursor-pointer"
+              onClick={() =>
+                setExpandedBlogs((prev) => ({
+                  ...prev,
+                  [blog?._id]: !prev[blog?._id],
+                }))
+              }
+            >
+              <div key={blog?._id} className="mb-10 px-5">
+                <Image
+                  src={blog?.cover_image}
+                  priority
+                  width={500}
+                  height={500}
+                  alt="Main blog"
+                  className="w-full h-96 object-cover rounded-lg"
+                />
+                <p className="text-[#016961] text-sm font-bold mt-4">
+                  {blog?.category}
+                </p>
+                <Link href={`/blogs/${blog?._id}`}>
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my- leading-tight">
+                    {blog?.title}
+                  </h1>
+                </Link>
 
-              {/* <hr className="my-2" /> */}
+                {/* <hr className="my-2" /> */}
 
-              <div className="mt-2 text-xs sm:text-sm md:text-base text-justify">
-                {expandedBlogs[blog?._id]
-                  ? blog?.body?.split("\n").map((paragraph, index) => (
-                      <p key={index}>
-                        {paragraph} <br />
-                      </p>
-                    ))
-                  : blog?.body
-                      ?.split("\n")
-                      .map((paragraph, index) => (
-                        <React.Fragment key={index}>
-                          {index < 2 ? <p>{paragraph}</p> : null}
-                        </React.Fragment>
-                      ))}
+                <div className="mt-2 text-xs sm:text-sm md:text-base text-justify">
+                  {expandedBlogs[blog?._id]
+                    ? blog?.body?.split("\n").map((paragraph, index) => (
+                        <p key={index}>
+                          {paragraph} <br />
+                        </p>
+                      ))
+                    : blog?.body
+                        ?.slice(0, 500)
+                        .split("\n")
+                        .map((paragraph, index) => (
+                          <p key={index}>
+                            {paragraph} <br />
+                          </p>
+                        ))}
+                </div>
               </div>
-
-              {blog?.body?.length > 500 && (
-                <span
-                  className="text-gray-400 font-light cursor-pointer"
-                  onClick={() =>
-                    setExpandedBlogs((prev) => ({
-                      ...prev,
-                      [blog?._id]: !prev[blog?._id],
-                    }))
-                  }
-                >
-                  {expandedBlogs[blog?._id] ? " Show Less" : " Read More"}
-                </span>
-              )}
             </div>
           ))}
         </div>
