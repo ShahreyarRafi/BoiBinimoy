@@ -6,7 +6,7 @@ import { BsUpload } from "react-icons/bs";
 import Swal from "sweetalert2";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import useImageURL from "@/Hooks/ImageURL/useImageURL";
 import { useForm } from "react-hook-form";
 
@@ -16,6 +16,7 @@ const MyBlogCard = ({ item, refetch }) => {
   const { imageUrl, uploadImage } = useImageURL(selectedFile);
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
+  const modalRef = useRef(null);
 
   // create a preview as a side effect, whenever selected file is changed
   const onSelectFile = (e) => {
@@ -76,15 +77,12 @@ const MyBlogCard = ({ item, refetch }) => {
   };
 
   const handleUpdate = () => {
-    const modal = document.getElementById("update_blog_modal");
-
-    console.log(item._id);
-    modal.showModal();
+    modalRef.current.showModal();
   };
 
   const handleUpdateBlog = async (data) => {
     console.log(data);
-    const { title, description: body, category, tags } = data;
+    const { title, body, category, tags } = data;
     const url = await uploadImage();
     console.log(item?._id);
 
@@ -104,7 +102,7 @@ const MyBlogCard = ({ item, refetch }) => {
     console.log(res?.data);
     if (res?.data) {
       refetch();
-      document.getElementById("update_blog_modal").close();
+      modalRef.current.close();
       setSelectedFile(null);
       setPreview(null);
     }
@@ -145,7 +143,7 @@ const MyBlogCard = ({ item, refetch }) => {
           </div>
         </div>
       </div>
-      <dialog id="update_blog_modal" className="modal">
+      <dialog ref={modalRef} className="modal">
         <div className="modal-box w-11/12 max-w-4xl">
           <h1 className="text-3xl text-center font-bold py-2">Update Blog</h1>
           {/* basic information div */}
@@ -164,16 +162,16 @@ const MyBlogCard = ({ item, refetch }) => {
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-3 gap-3">
-            {/* book description div */}
+            {/* book body div */}
             <div className="border-2 col-span-1 lg:col-span-2 border-[#016961] rounded-lg h-full w-full px-2 pb-1">
               {/* title */}
-              <h3 className="text-sm font-light py-2">Blog Description:</h3>
-              {/* blog description div name:description*/}
+              <h3 className="text-sm font-light py-2">Blog body:</h3>
+              {/* blog body div name:body*/}
               <div>
                 <textarea
                   className="w-full p-2 text-xs bg-transparent border-2 border-[#016961] rounded-lg focus:outline-none"
-                  {...register("description")}
-                  id="description"
+                  {...register("body")}
+                  id="body"
                   defaultValue={item?.body}
                   cols="30"
                   rows="10"
