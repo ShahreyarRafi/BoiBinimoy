@@ -16,13 +16,16 @@ import SocialLogin from './SocialLogin';
 
 
 const JoinUs = () => {
-    const { register, handleSubmit, reset } = useForm();
-    // const { createUser, signin, googleLogin } = useAuth();
-    const { createUser, signin, googleLogin, updateUserProfiole } = useContext(AuthContext);
+
+
+  const { register, handleSubmit, reset } = useForm();
+  // const { createUser, signin, googleLogin } = useAuth();
+  const { createUser, signin, googleLogin, updateUserProfiole } = useContext(AuthContext);
 
   const router = useRouter();
   const axiosPublic = useAxiosPublic();
   const [componentsMounted, setComponentMounted] = useState(false);
+
 
   const isUser = true;
 
@@ -67,9 +70,12 @@ const JoinUs = () => {
         console.log(res.data);
         Swal.fire("Sign up successfull");
         router.push("/");
+
       }
     });
   };
+
+
 
   // user login function
   const logIn = (data) => {

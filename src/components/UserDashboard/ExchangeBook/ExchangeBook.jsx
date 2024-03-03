@@ -53,7 +53,7 @@ const ExchangeBook = () => {
 
   if (isLoading) {
     return (
-        <div className="text-center items-center justify-center flex  ">
+        <div className="text-center items-center justify-center flex flex-col min-h-screen ">
             <span className="loading loading-ball loading-lg"></span>
         </div>
     );
@@ -62,7 +62,7 @@ const ExchangeBook = () => {
 if (exchangeBooks.length === 0) {
     return (
         <div>
-            <h1 className="text-center justify-center font-semibold md:text-3xl  lg:text-4xl  "> Books  Not Found....</h1>
+            <h1  className="text-center flex flex-col justify-center font-semibold md:text-3xl lg:text-4xl min-h-screen"> Books  Not Found....</h1>
         </div>
     );
 }
