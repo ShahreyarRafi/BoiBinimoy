@@ -1,3 +1,6 @@
+"use client";
+
+import useGetOneBuyBook from "@/Hooks/buyBooks/useGetOneBuyBook";
 import Image from "next/image";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
@@ -10,24 +13,23 @@ const CartsDetails = ({ cart, refetch }) => {
   const [error, setError] = useState("");
   const [quantity, setQuantity] = useState(cart?.cart?.quantity);
   const [lastFetchedBookId, setLastFetchedBookId] = useState(null);
-
+ 
   console.log(cart?.cart.quantity);
 
   if (lastFetchedBookId !== cart.book_id) {
+    // The book_id has changed, set a loading state
     setLastFetchedBookId(cart.book_id);
     return <PageLoading />;
   }
 
+
   const handleIncrement = async (id) => {
     if (quantity < cart?.book?.stock_limit) {
       setQuantity((prevQuantity) => prevQuantity + 1);
-      const price = quantity * cart?.book?.price;
-      const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {
-        quantity,
-        price,
-      });
+      const price = quantity*cart?.book?.price;
+      const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {quantity, price});
       console.log(res?.data);
-      if (res?.data) {
+      if(res?.data){
         refetch();
       }
     } else {
@@ -35,26 +37,30 @@ const CartsDetails = ({ cart, refetch }) => {
     }
   };
 
+  console.log(quantity);
   const handleDecrement = async (id) => {
     if (quantity > 1) {
       setError("");
       setQuantity((prevQuantity) => prevQuantity - 1);
-      const price = quantity * cart?.book?.price;
-      const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {
-        quantity,
-        price,
-      });
+      const price = quantity*cart?.book?.price;
+      const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {quantity, price});
       console.log(res.data);
-      if (res.data) {
+      if(res.data){
+     
         refetch();
       }
+      
     }
   };
 
-  const handleDeleteCart = (id, title) => {
+
+//   delete a cart
+const handleDeleteCart = (id, title) => {
+    console.log("id: ", id);
+
     Swal.fire({
-      title: `Delete Book`,
-      text: `Are you sure you want to delete the book "${title}"?`,
+      title: "Delete Book",
+      text: `Are you sure you want to delete the book ${title}?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -62,19 +68,28 @@ const CartsDetails = ({ cart, refetch }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/api/v1/delete-cart/${id}`).then((response) => {
-          console.log(response.data);
-          if (response.data) {
+        axiosSecure
+          .delete(`/api/v1/delete-cart/${id}`)
+          .then((response) => {
+            console.log(response.data);
+            if (response.data) {
+              Swal.fire(
+                "Deleted!",
+                `Your book "${title}" has been deleted.`,
+                "success"
+              );
+
+              refetch();
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting Book:", error);
             Swal.fire(
-              "Deleted!",
-              `Your book "${title}" has been deleted.`,
-              "success"
+              "Error!",
+              "An error occurred while deleting the book.",
+              "error"
             );
-            refetch();
-          }
-        });
-      } else {
-        setError(`Opps this book limit is ${cart?.book?.stock_limit}`);
+          });
       }
     });
   };
@@ -115,31 +130,12 @@ const CartsDetails = ({ cart, refetch }) => {
           <h5>{cart?.cart?.price} BDT</h5>
           <div>
             <button
-              onClick={() =>
-                handleDeleteCart(cart?.cart?._id, cart?.book?.title)
-              }
+              onClick={() => handleDeleteCart(cart?.cart?._id, cart?.book?.title)}
               className=" bg-red-500 rounded-full text-white p-3"
             >
               <RxCross2 className="mx-auto"></RxCross2>
             </button>
-            <h3>{quantity}</h3>
-            <button
-              onClick={() => handleIncrement(cart?.cart._id)}
-              className="bg-base-300 p-3"
-            >
-              <FaPlus className="mx-auto"></FaPlus>
-            </button>
-            {error && <p className="text-red-500">{error}</p>}
           </div>
-        </div>
-        <h5>{quantity * cart?.book.price} BDT</h5>
-        <div>
-          <button
-            onClick={() => handleDeleteCart(cart?.cart?._id, cart?.book?.title)}
-            className=" bg-red-500 rounded-full text-white p-3"
-          >
-            <RxCross2 className="mx-auto"></RxCross2>
-          </button>
         </div>
       </div>
     </div>

@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from "react";
 import "./style.css";
 import Link from "next/link";
 import { AuthContext } from "@/providers/AuthProvider";
-import axios from "axios";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FaCheck } from "react-icons/fa6";
@@ -255,7 +254,7 @@ const Dashboard = ({ children }) => {
                 <span className="text">Message</span>
               </Link>
             </li>
-            <li className={pathname == "/dashboard/message" ? "active" : ""}>
+            <li className={pathname == "/dashboard/notification" ? "active" : ""}>
               <Link href="/dashboard/notification">
                 <i className="bx bxs-message-dots"></i>
                 <span className="text">Notification</span>
@@ -263,8 +262,20 @@ const Dashboard = ({ children }) => {
             </li>
             <li className={pathname == "/dashboard/categories" ? "active" : ""}>
               <Link href="/dashboard/categories">
-                <i className="bx bxs-message-dots"></i>
+                <i class='bx bxs-category'></i>
                 <span className="text">Categories</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/writers" ? "active" : ""}>
+              <Link href="/dashboard/writers">
+                <i class='bx bxs-credit-card-front'></i>
+                <span className="text">Writers</span>
+              </Link>
+            </li>
+            <li className={pathname == "/dashboard/publishers" ? "active" : ""}>
+              <Link href="/dashboard/publishers">
+                <i class='bx bxs-store'></i>
+                <span className="text">Publisher</span>
               </Link>
             </li>
           </ul>

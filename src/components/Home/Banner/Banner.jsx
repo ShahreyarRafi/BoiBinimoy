@@ -17,27 +17,16 @@ const sourceSerif = Libre_Baskerville({
 });
 
 export default function BannerNew() {
+
     const axiosPublic = useAxiosPublic();
 
     const { data: bannerData = [], isLoading } = useQuery({
         queryKey: ["banner"],
         queryFn: async () => {
-            const cachedData = localStorage.getItem('bannerData');
-            if (cachedData) {
-                return JSON.parse(cachedData);
-            } else {
-                const res = await axiosPublic.get(`api/v1/banner`);
-                const newData = res.data;
-                localStorage.setItem('bannerData', JSON.stringify(newData));
-                // Set a timestamp for when the data was cached
-                localStorage.setItem('bannerDataCachedAt', Date.now());
-                return newData;
-            }
+            const res = await axiosPublic.get(`api/v1/banner`);
+            return res.data;
         },
-        // Cache data for 10 minutes (600,000 milliseconds)
-        staleTime: 600000,
     });
-
 
     useEffect(() => {
         if (!isLoading && bannerData.length > 0) {
@@ -101,12 +90,13 @@ export default function BannerNew() {
             }, timeAutoNext);
         }
     }
-    if (isLoading) {
-        return <div className='bg-50-50'><PageLoading /></div>
+
+    if (isLoading || bannerData.length === 0) {
+        return <div className='bg-50-50'><PageLoading /></div>;
     }
 
     return (
-        <div className='carousel-container banner-slider '>
+        <div className='carousel-container banner-slider bg-50-50'>
             <div className="carousel">
                 <div className="list">
                     {Array.isArray(bannerData) && bannerData.map((item, index) => (

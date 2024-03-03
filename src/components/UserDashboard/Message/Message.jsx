@@ -13,6 +13,7 @@ export default function Message() {
       setUsers(data);
     };
   }, []);
+
   return (
     <div className="max-w-[1800px] mx-3 bg text-white rounded-lg p-5 h-[86vh] mb-10">
       <div className="grid grid-cols-12">
@@ -30,12 +31,13 @@ export default function Message() {
           </div>
 
           <div>
-            {users.map((item) => (
-              <div>
+            {users.map((item, index) => ( 
+              <div key={index}> 
                 <img src={item.profile} alt="" />
               </div>
             ))}
           </div>
+
         </div>
 
         <div></div>

@@ -7,50 +7,36 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
 import Image from "next/image";
 import Link from "next/link";
-import axios from "axios";
-import PageLoading from "../../loadingPageBook/PageLoading";
 import useOneUser from "@/Hooks/Users/useOneUser";
-
-const profilePlaceholder = "/userPicPlaceholder.png";
+import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
+import { AiOutlineHeart } from "react-icons/ai";
+import useWishListBook from "@/Hooks/wishList/useWishListBook";
 
 const Navend = () => {
+  const [wishListBook] = useWishListBook();
   const { user, logOut } = useContext(AuthContext);
-  // Current user data from database
   const { currentUser } = useOneUser();
-  const [cart, setCart] = useState(null);
-  const [books, setBooks] = useState(null);
-  const [loading, setLoading] = useState(true);
-  let totalPrice = 0;
-  let cartId = null;
+  let { myCarts, price, quantity, isPending, refetch } = useGetMyCarts();
+  const totalCart = myCarts?.length;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://boi-binimoy-server.vercel.app/api/v1/my-carts/${user?.email}`
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
-        setCart(result);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [user?.email, totalPrice]);
-
-  cart?.books?.map(
-    (book) => (totalPrice = parseFloat(totalPrice) + parseFloat(book.price))
-  );
+  if (myCarts?.length > 3) {
+    myCarts = myCarts.slice(0, 3);
+  }
 
   return (
-    <div className="flex items-center gap-2">
-      <MdFavoriteBorder />
+    <div className="flex items-center gap-5 ">
+      <Link href="/wishList">
+        <div className="indicator text-3xl ">
+          <span className="indicator-item badge badge-secondary">
+            {" "}
+            {wishListBook.length}{" "}
+          </span>
+          <button className="">
+            {" "}
+            <AiOutlineHeart></AiOutlineHeart>{" "}
+          </button>
+        </div>
+      </Link>
 
       {/* Drawer cart */}
       <div className="drawer drawer-end">
@@ -59,8 +45,17 @@ const Navend = () => {
           type="checkbox"
           className="drawer-toggle overflow-hidden"
         />
-        <div className="drawer-content">
+        <div className="drawer-content -mt-7">
           {/* Page content here */}
+          <div className="-mb-2">
+            {totalCart ? (
+              <div className="indicator-item badge badge-secondary ">
+                {totalCart}
+              </div>
+            ) : (
+              <div className="indicator-item badge badge-secondary ">0</div>
+            )}
+          </div>
           <label htmlFor="cart-drawer" className="drawer-button">
             <MdOutlineShoppingCart />
           </label>
@@ -115,11 +110,8 @@ const Navend = () => {
                   href="/cart"
                   className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1"
                 >
-                  View cart
+                  View carts
                 </Link>
-                <button className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1">
-                  Checkout
-                </button>
               </div>
             </li>
           </ul>
@@ -142,6 +134,7 @@ const Navend = () => {
                     priority
                     width={300}
                     height={300}
+                    className="avatar online"
                   />
                 </div>
               </div>
@@ -158,7 +151,6 @@ const Navend = () => {
                   </Link>
                 </li>
                 <li>
-                  {" "}
                   <button
                     onClick={logOut}
                     className="cursor-pointer text-red-500 px-4 py-2 hover:bg-base-300 rounded-lg"
