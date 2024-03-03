@@ -14,7 +14,7 @@ import useWishListBook from "@/Hooks/wishList/useWishListBook";
 
 const Navend = () => {
 
-  const [wishListBook ] = useWishListBook()
+  const [wishListBook] = useWishListBook()
   const { user, logOut } = useContext(AuthContext);
   const { currentUser } = useOneUser();
   let { myCarts, price, quantity, isPending, refetch } = useGetMyCarts();
@@ -25,14 +25,12 @@ const Navend = () => {
   }
 
   return (
-    <div className="flex items-center gap-4 ">
-
+    <div className="flex items-center gap-5 ">
       <Link href="/wishList">
-        <div className="indicator text-3xl ">
+        <div className="">
           <span className="indicator-item badge badge-secondary"> {wishListBook.length} </span>
-          <button className=""> <AiOutlineHeart></AiOutlineHeart> </button>
+          <AiOutlineHeart></AiOutlineHeart>
         </div>
-
       </Link>
 
       {/* Drawer cart */}
@@ -44,11 +42,14 @@ const Navend = () => {
         />
         <div className="drawer-content">
           {/* Page content here */}
-          {totalCart && (
+          {totalCart ?
             <span className="indicator-item badge badge-secondary">
               {totalCart}
+            </span> :
+            <span className="indicator-item badge badge-secondary">
+              {0}
             </span>
-          )}
+          }
           <label htmlFor="cart-drawer" className="drawer-button">
             <MdOutlineShoppingCart />
           </label>
