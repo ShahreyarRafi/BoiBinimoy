@@ -49,9 +49,8 @@ const AddBlog = () => {
       tags,
       body,
       cover_image: uploadedImageUrl,
-      user_name: user?.displayName,
+      user_name: "Admin",
       user_email: user?.email,
-      user_photoURL: user?.photoURL,
       publish_date: submittingDateTime.toLocaleDateString(),
       publish_time: submittingDateTime.toLocaleTimeString(),
     };

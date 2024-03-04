@@ -21,6 +21,8 @@ const Blog = () => {
     },
   });
 
+  console.log(blogs);
+
   if (isLoading) {
     return <PageLoading />;
   }
@@ -37,10 +39,10 @@ const Blog = () => {
 
   // const sides = [blogs[5], blogs[1], blogs[6], blogs[3]];
   return (
-    <div className="max-w-6xl mx-auto mt-8 mb-36">
-      <div className="flex gap-5">
+    <div className="max-w-7xl mx-auto mt-8 mb-36 px-3">
+      <div className="flex gap-3">
         {/* All blog */}
-        <div className="w-full">
+        <div className="w-2/3">
           {blogs?.map((blog) => (
             <div
               key={blog?._id}
@@ -95,15 +97,41 @@ const Blog = () => {
           ))}
         </div>
 
-        {/* Populer blog */}
-        {/* <div className="w-full px-4">
+        {/* Recently Added blog */}
+        <div className="w-1/3">
           <h1 className="text-3xl font-semibold text-[#016961] pb-5">
-            Populer
+            Recently Added
           </h1>
-          {sides?.map((blog) => (
-            <BlogSideCard key={blog?._id} item={blog}></BlogSideCard>
+          {blogs?.slice(-5).map((blog) => (
+            // <BlogSideCard key={blog?._id} item={blog}></BlogSideCard>
+            <div key={blog?._id}>
+              <div className="rounded-md w-full flex flex-col md:flex-row mb-3 gap-5">
+                <div className=" w-[210px] h-[120px]">
+                  <Image
+                    src={blog?.cover_image}
+                    width={500}
+                    height={500}
+                    priority
+                    alt="side"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+                <div className="pt-2 w-2/3">
+                  <Link title={blog?.title} href={`/blogs/${blog?._id}`}>
+                    <span className="text-gray-600 hover:text-gray-800 text-justify font-semibold mb-2">
+                      {blog?.title.length < 65
+                        ? blog?.title
+                        : `${blog?.title.slice(0, 65) + ".."}`}
+                    </span>
+                  </Link>
+                  <p className="w-fit px-2 py-1 bg-[#016961]/90 rounded-md text-white text-xs font-semibold mt-2">
+                    {blog?.category}
+                  </p>
+                </div>
+              </div>
+            </div>
           ))}
-        </div> */}
+        </div>
       </div>
     </div>
   );
