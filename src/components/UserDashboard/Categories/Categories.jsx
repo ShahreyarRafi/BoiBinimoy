@@ -27,22 +27,28 @@ const Categories = () => {
         },
     });
 
-    // create a preview as a side effect, whenever selected file is changed
-    const onSelectFile = () => {
-
+    const addOnSelectFile = () => {
         const file = document.getElementById('imageFile').files[0];
-
-        console.log(file);
 
         if (!file) {
             setSelectFile(undefined);
             setPreview(undefined);
             return;
         }
-
         setSelectFile(file);
         setPreview(URL.createObjectURL(file));
-        console.log(preview);
+    };
+
+    const updateOnSelectFile = () => {
+        const file = document.getElementById('updateImageFile').files[0];
+
+        if (!file) {
+            setSelectFile(undefined);
+            setPreview(undefined);
+            return;
+        }
+        setSelectFile(file);
+        setPreview(URL.createObjectURL(file));
     };
 
     // Add functionality checked
@@ -55,11 +61,8 @@ const Categories = () => {
             category_image: uploadedImageUrl,
         }
 
-        console.log(uploadedImageUrl);
-
         axiosSecure.post("api/v1/category", newCategory)
             .then(res => {
-                console.log(res);
                 if (res.data._id) {
                     Swal.fire({
                         icon: "success",
@@ -76,6 +79,8 @@ const Categories = () => {
                         title: "Oops...",
                         text: "Failed to added category",
                     });
+                    document.getElementById("addCategory").value = '';
+                    setSelectFile(undefined);
                     document.getElementById("add_modal").close();
                 }
 
@@ -86,6 +91,8 @@ const Categories = () => {
                     title: "Oops...",
                     text: "Failed to added category",
                 });
+                document.getElementById("addCategory").value = '';
+                setSelectFile(undefined);
                 document.getElementById("add_modal").close();
             })
     }
@@ -137,16 +144,17 @@ const Categories = () => {
         const modal = document.getElementById('update_modal');
         modal.showModal();
         document.getElementById('updateCategory').value = name;
+        setPreview(image);
     }
 
     // Update functionality checked
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
 
-        const categoryName = document.getElementById('updateCategory').value;
+        const category_name = document.getElementById('updateCategory').value;
+        const category_image = await uploadImage();
 
-        axiosSecure.put(`api/v1/category/${current?.id}`, { category_name: categoryName })
+        axiosSecure.put(`api/v1/category/${current?.id}`, { category_name, category_image })
             .then(res => {
-                console.log(res);
                 if (res.status === 200) {
                     Swal.fire({
                         icon: 'success',
@@ -154,6 +162,7 @@ const Categories = () => {
                         text: 'Category updated successfully',
                     });
                     refetch();
+                    setSelectFile(undefined);
                     document.getElementById('update_modal').close();
                 } else {
                     Swal.fire({
@@ -161,6 +170,7 @@ const Categories = () => {
                         title: 'Oops...',
                         text: 'Failed to update category',
                     });
+                    setSelectFile(undefined);
                     document.getElementById('update_modal').close();
                 }
             })
@@ -171,6 +181,7 @@ const Categories = () => {
                     title: 'Oops...',
                     text: 'Failed to update category',
                 });
+                setSelectFile(undefined);
                 document.getElementById('update_modal').close();
             });
     };
@@ -288,27 +299,28 @@ const Categories = () => {
                                 <input
                                     type="file"
                                     id="imageFile"
-                                    onChange={onSelectFile}
+                                    onChange={addOnSelectFile}
                                     required
                                     hidden
                                 />
                             </label>
-
                         </div>
                         {/* image div end */}
                     </div>
                     <div className="modal-action">
                         <form method="dialog">
                             <button onClick={handleAdd} className="btn">Submit</button>
-                            <button onClick={() => document.getElementById("addCategory").value = ""} className="btn">Close</button>
+                            <button className="btn">Close</button>
                         </form>
                     </div>
                 </div>
             </dialog>
+
+
             <dialog id="update_modal" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <div className="border-2 border-gray-300 rounded-lg px-3 pb-3">
-                        <h3 className="text-sm font-light py-2">Update Category</h3>
+                    <div className="border-2 border-gray-300 rounded-lg px-3 pb-3 flex flex-col gap-2">
+                        <h3 className="text-sm font-light pt-2 text-center">Update Category</h3>
                         <input
                             className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                             name="updateCategory"
@@ -316,6 +328,36 @@ const Categories = () => {
                             type="text"
                             required
                         />
+                        <div
+                            for="imageFile"
+                            className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg shadow-md"
+                        >
+                            <Image
+                                src={preview}
+                                width={300}
+                                height={300}
+                                id="updateImage"
+                                alt="Image Preview"
+                                style={{
+                                    width: '100%',
+                                    height: '200px',
+                                }}
+                                className="rounded-lg"
+                            />
+                        </div>
+                        <label
+                            for="updateImageFile"
+                            className="border border-[#016961] bg-teal-50/40 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-xs md:text-sm  cursor-pointer"
+                        >
+                            <BsUpload /> <span> Upload Here</span>
+                            <input
+                                type="file"
+                                id="updateImageFile"
+                                onChange={updateOnSelectFile}
+                                required
+                                hidden
+                            />
+                        </label>
                     </div>
                     <div className="modal-action gap-5">
                         <form method="dialog">
