@@ -14,6 +14,15 @@ const Blog = () => {
   const [expandedBlogs, setExpandedBlogs] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const blogsPerPage = 3;
+
+  const calculateReadingTime = (content) => {
+    const wordsPerMinute = 200;
+    const words = content.split(/\s+/).length;
+    const minutes = Math.ceil(words / wordsPerMinute);
+    return minutes;
+  };
 
   const { data: blogs = [], isLoading } = useQuery({
     queryKey: ["blogs"],
@@ -22,6 +31,8 @@ const Blog = () => {
       return res.data;
     },
   });
+
+  const totalPages = Math.ceil(blogs.length / blogsPerPage);
 
   console.log(blogs);
 
@@ -42,21 +53,21 @@ const Blog = () => {
   // const sides = [blogs[5], blogs[1], blogs[6], blogs[3]];
   return (
     <div className="max-w-7xl mx-auto mt-8 mb-36 px-3">
-      <div>
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-3 px-3 mb-8">
         {/* Search input */}
         <input
           type="text"
           placeholder="Search blogs"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full p-2 mb-4 border border-gray-300 rounded-md"
+          className="w-full p-2 mb-4 border border-gray-300 bg-teal-50/40 shadow-md rounded-md"
         />
 
         {/* Category filter */}
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="w-full p-2 mb-4 border border-gray-300 rounded-md"
+          className="w-full lg:w-fit p-2 mb-4 border border-gray-300 bg-teal-50/40 shadow-md rounded-md"
         >
           <option value="">All Categories</option>
           {/* Add options dynamically based on available categories */}
@@ -80,6 +91,7 @@ const Blog = () => {
             .filter(
               (blog) => !selectedCategory || blog.category === selectedCategory
             )
+            .slice((currentPage - 1) * blogsPerPage, currentPage * blogsPerPage)
             .map((blog) => (
               <div
                 key={blog?._id}
@@ -129,9 +141,31 @@ const Blog = () => {
                       </>
                     )}
                   </div>
+
+                  {/* Display reading time */}
+                  <p className="text-xs text-gray-500 mt-1">
+                    Reading Time: {calculateReadingTime(blog.body)} min
+                  </p>
                 </div>
               </div>
             ))}
+
+          {/* Pagination controls */}
+          <div className="flex justify-center mt-4">
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`mx-2 px-3 py-1 rounded-md ${
+                  currentPage === index + 1
+                    ? "bg-[#016961] text-white"
+                    : "bg-gray-200"
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Recently Added blog */}
