@@ -10,12 +10,10 @@ const useWishListBook = () => {
 
   const fetchData = async () => {
     try {
-      if (user?.email) {
-        const res = await axiosSecure.get(`https://boi-binimoy-server.vercel.app/api/v1/wishlist/${user.email}`);
+        const email = localStorage.getItem("email");
+        const res = await axiosSecure.get(`https://boi-binimoy-server.vercel.app/api/v1/wishlist/${email}`);
         return res.data;
-      } else {
-        return [];
-      }
+     
     } catch (error) {
       console.error("Error fetching wishlist:", error);
       return [];

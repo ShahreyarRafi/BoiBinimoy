@@ -5,7 +5,6 @@ import Image from "next/image";
 import Swal from "sweetalert2";
 
 const Order = ({order}) => {
-  const {cart, book } = order;
   const axiosSecure = useAxiosSecure();
 
   console.log(order);
@@ -51,7 +50,7 @@ const Order = ({order}) => {
   return (
     <div className="grid grid-cols-11 items-center text-center font-semibold border border-gray-100 p-5">
       <Image
-            src={book?.cover_image}
+            src={order?.cover_image}
             width={150}
             height={200}
             alt="book"
@@ -59,12 +58,12 @@ const Order = ({order}) => {
             style={{ width: "50%", height: "100%" }}
             className="mx-auto col-span-1"
           />
-      <h5 className=" col-span-2">{book?.title}</h5>
-      <h5 className=" col-span-1"> {cart?.quantity} </h5>
-      <h5 className=" col-span-1"> {book?.price} BDT</h5>
-      <h5 className=" col-span-1"> {cart?.price} BDT</h5>
-      <h5 className=" col-span-1"> {cart?.user_name}</h5>
-      <h5 className=" col-span-3"> {cart?.user_email}</h5>
+      <h5 className=" col-span-2">{order?.title}</h5>
+      <h5 className=" col-span-1"> {order?.quantity} </h5>
+      <h5 className=" col-span-1"> {order?.unit_price} BDT</h5>
+      <h5 className=" col-span-1"> {order?.total_price} BDT</h5>
+      <h5 className=" col-span-1"> {order?.user_name}</h5>
+      <h5 className=" col-span-3"> {order?.user_email}</h5>
       <h5 className=" col-span-1">
         <button className="btn btn-sm">Pending</button>
       </h5>

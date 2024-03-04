@@ -34,7 +34,8 @@ const ExchangeRequest = () => {
     }, [])
 
     useEffect(() => {
-        axios.get(`https://boi-binimoy-server.vercel.app/api/v1/exchange-books-individual/${user?.email}`)
+        const email = localStorage.getItem("email")
+        axios.get(`https://boi-binimoy-server.vercel.app/api/v1/exchange-books-individual/${email}`)
             .then(function (response) {
                 // handle success
                 setBookByEmail(response.data)
