@@ -13,7 +13,8 @@ import { AiOutlineHeart } from "react-icons/ai";
 import useWishListBook from "@/Hooks/wishList/useWishListBook";
 
 const Navend = () => {
-  const [wishListBook] = useWishListBook();
+
+  const [wishListBook] = useWishListBook()
   const { user, logOut } = useContext(AuthContext);
   const { currentUser } = useOneUser();
   let { myCarts, price, quantity, isPending, refetch } = useGetMyCarts();
@@ -25,16 +26,11 @@ const Navend = () => {
 
   return (
     <div className="flex items-center gap-5 ">
+
       <Link href="/wishList">
         <div className="indicator text-3xl ">
-          <span className="indicator-item badge badge-secondary">
-            {" "}
-            {wishListBook.length}{" "}
-          </span>
-          <button className="">
-            {" "}
-            <AiOutlineHeart></AiOutlineHeart>{" "}
-          </button>
+          <span className="indicator-item badge badge-secondary"> {wishListBook.length} </span>
+          <button className=""> <AiOutlineHeart></AiOutlineHeart> </button>
         </div>
       </Link>
 
@@ -53,7 +49,9 @@ const Navend = () => {
                 {totalCart}
               </div>
             ) : (
-              <div className="indicator-item badge badge-secondary ">0</div>
+              <div className="indicator-item badge badge-secondary ">
+                0
+              </div>
             )}
           </div>
           <label htmlFor="cart-drawer" className="drawer-button">
@@ -122,11 +120,7 @@ const Navend = () => {
         {user ? (
           <div>
             <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
+              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <Image
                     src={currentUser.image}
@@ -138,15 +132,9 @@ const Navend = () => {
                   />
                 </div>
               </div>
-              <ul
-                tabIndex={0}
-                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-              >
+              <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                 <li>
-                  <Link
-                    href="/dashboard"
-                    className="px-4 py-2 hover:bg-base-300 rounded-lg text-black"
-                  >
+                  <Link href="/dashboard" className="px-4 py-2 hover:bg-base-300 rounded-lg text-black">
                     Dashboard
                   </Link>
                 </li>
