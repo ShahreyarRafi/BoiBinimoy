@@ -12,6 +12,8 @@ import React, { useState } from "react";
 const Blog = () => {
   const axiosPublic = useAxiosPublic();
   const [expandedBlogs, setExpandedBlogs] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const { data: blogs = [], isLoading } = useQuery({
     queryKey: ["blogs"],
@@ -40,61 +42,96 @@ const Blog = () => {
   // const sides = [blogs[5], blogs[1], blogs[6], blogs[3]];
   return (
     <div className="max-w-7xl mx-auto mt-8 mb-36 px-3">
+      <div>
+        {/* Search input */}
+        <input
+          type="text"
+          placeholder="Search blogs"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full p-2 mb-4 border border-gray-300 rounded-md"
+        />
+
+        {/* Category filter */}
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="w-full p-2 mb-4 border border-gray-300 rounded-md"
+        >
+          <option value="">All Categories</option>
+          {/* Add options dynamically based on available categories */}
+          {Array.from(new Set(blogs.map((blog) => blog.category))).map(
+            (category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            )
+          )}
+        </select>
+      </div>
+
       <div className="flex gap-3">
-        {/* All blog */}
         <div className="w-2/3">
-          {blogs?.map((blog) => (
-            <div
-              key={blog?._id}
-              className="mb-10 px-5 cursor-pointer"
-              onClick={() =>
-                setExpandedBlogs((prev) => ({
-                  ...prev,
-                  [blog?._id]: !prev[blog?._id],
-                }))
-              }
-            >
-              <div key={blog?._id} className="mb-10 px-5">
-                <Image
-                  src={blog?.cover_image}
-                  priority
-                  width={500}
-                  height={500}
-                  alt="Main blog"
-                  className="w-full h-96 object-cover rounded-lg"
-                />
-                <p className="text-[#016961] text-sm font-bold mt-4">
-                  {blog?.category}
-                </p>
+          {/* Blogs display */}
+          {blogs
+            .filter((blog) =>
+              blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .filter(
+              (blog) => !selectedCategory || blog.category === selectedCategory
+            )
+            .map((blog) => (
+              <div
+                key={blog?._id}
+                className="mb-10 px-5 cursor-pointer"
+                onClick={() =>
+                  setExpandedBlogs((prev) => ({
+                    ...prev,
+                    [blog?._id]: !prev[blog?._id],
+                  }))
+                }
+              >
+                <div key={blog?._id} className="mb-10 px-5">
+                  <Image
+                    src={blog?.cover_image}
+                    priority
+                    width={500}
+                    height={500}
+                    alt="Main blog"
+                    className="w-full h-96 object-cover rounded-lg"
+                  />
+                  <p className="text-[#016961] text-sm font-bold mt-4">
+                    {blog?.category}
+                  </p>
 
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my- leading-tight">
-                  {blog?.title}
-                </h1>
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my- leading-tight">
+                    {blog?.title}
+                  </h1>
 
-                <div className="mt-2 text-xs sm:text-sm md:text-base text-justify">
-                  {expandedBlogs[blog?._id] ? (
-                    blog?.body?.split("\n").map((paragraph, index) => (
-                      <p key={index}>
-                        {paragraph} <br />
-                      </p>
-                    ))
-                  ) : (
-                    <>
-                      {blog?.body
-                        ?.slice(0, 300)
-                        .split("\n")
-                        .map((paragraph, index) => (
-                          <p key={index}>
-                            {paragraph} <br />
-                          </p>
-                        ))}
-                      {blog?.body?.length > 300 && " ..."}
-                    </>
-                  )}
+                  <div className="mt-2 text-xs sm:text-sm md:text-base text-justify">
+                    {expandedBlogs[blog?._id] ? (
+                      blog?.body?.split("\n").map((paragraph, index) => (
+                        <p key={index}>
+                          {paragraph} <br />
+                        </p>
+                      ))
+                    ) : (
+                      <>
+                        {blog?.body
+                          ?.slice(0, 300)
+                          .split("\n")
+                          .map((paragraph, index) => (
+                            <p key={index}>
+                              {paragraph} <br />
+                            </p>
+                          ))}
+                        {blog?.body?.length > 300 && " ..."}
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
 
         {/* Recently Added blog */}
