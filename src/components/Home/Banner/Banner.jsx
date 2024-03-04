@@ -95,6 +95,9 @@ export default function BannerNew() {
         return <div className='bg-50-50'><PageLoading /></div>;
     }
 
+    // height={4100} width={2310} 
+    // height={1500} width={1000}
+
     return (
         <div className='carousel-container banner-slider bg-50-50'>
             <div className="carousel">
@@ -120,7 +123,7 @@ export default function BannerNew() {
                     <div className="thumbnail">
                         {Array.isArray(bannerData) && bannerData.map((item, index) => (
                             <div className="item" key={index}>
-                                <Image src={item?.thumbnail_img} height={1500} width={1000} alt="alt" />
+                                <img src={item?.thumbnail_img} alt="alt" />
                                 <div className="content">
                                     <div className="title">{item?.thumbnail_title}</div>
                                     <div className="description">{item?.thumbnail_description}</div>
