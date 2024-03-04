@@ -152,42 +152,10 @@ const JoinUs = () => {
               </div>
               <input type="submit" value="Login" className="btn solid" />
               <p className="social-text">Or Sign in with social platforms</p>
-              {/* <div className="social-media">
-                            <a href="#" className="social-icon">
-                                <i><FaFacebookF /></i>
-                            </a>
-                            <a href="#" className="social-icon">
-                                <i><FaTwitter /></i>
-                            </a>
-                           
-                            <button className='social-icon' onClick={() => handleSocialLogin(googleLogin)} >
-                                <FaGoogle /> 
-                                
-                                </button>
-                           
-                            <a href="#" className="social-icon">
-                                <i><FaLinkedinIn /></i>
-                            </a>
-                        </div> */}
+            
             </form>
 
-            {/* <div className="social-media">
-                            <a href="#" className="social-icon">
-                                <i><FaFacebookF /></i>
-                            </a>
-                            <a href="#" className="social-icon">
-                                <i><FaTwitter /></i>
-                            </a>
-                           
-                            <button className='social-icon' onClick={() => handleSocialLogin(googleLogin)} >
-                                <FaGoogle /> 
-                                
-                                </button>
-                           
-                            <a href="#" className="social-icon">
-                                <i><FaLinkedinIn /></i>
-                            </a>
-                        </div> */}
+        
 
             <SocialLogin></SocialLogin>
 
@@ -226,29 +194,7 @@ const JoinUs = () => {
               </div>
               <input type="submit" className="btn" value="Sign up" />
               <p className="social-text">Or Sign up with social platforms</p>
-              <div className="social-media">
-                <a href="#" className="social-icon">
-                  <i>
-                    <FaFacebookF />
-                  </i>
-                </a>
-                <a href="#" className="social-icon">
-                  <i>
-                    <FaTwitter />
-                  </i>
-                </a>
-                <button
-                  className="social-icon"
-                  onClick={() => handleSocialLogin(googleLogin)}
-                >
-                  <FaGoogle />
-                </button>
-                <a href="#" className="social-icon">
-                  <i>
-                    <FaLinkedinIn />
-                  </i>
-                </a>
-              </div>
+            
             </form>
           </div>
         </div>

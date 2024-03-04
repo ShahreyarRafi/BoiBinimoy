@@ -1,6 +1,7 @@
 "use client"
 
 import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
+import useOneUser from '@/Hooks/Users/useOneUser';
 import useWishListBook from '@/Hooks/wishList/useWishListBook';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,9 +11,9 @@ import Swal from 'sweetalert2';
 
 const WishLIst = () => {
 
-
     const [wishListBook, refetch, isLoading] = useWishListBook()
     const axiosSecure = useAxiosSecure();
+    const { currentUser } = useOneUser();
     console.log("wish list data ", wishListBook);
 
 
@@ -59,6 +60,44 @@ const WishLIst = () => {
 
 
 
+    const handleCart = () => {
+        const user_name = currentUser?.name;
+        const user_email = currentUser?.email;
+        const book_id = book?._id;
+        const price = book?.price;
+        const quantity = 1;
+
+        const addCart = {
+            user_name,
+            user_email,
+            owner_email: book?.owner_email,
+            book_id,
+            price,
+            quantity,
+            isDeliverd: false
+        }
+
+        axiosSecure
+            .post("/api/v1/carts", addCart)
+            .then((response) => {
+                console.log("data add to cart");
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Add book in the cart.",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                refetch();
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    }
+
+
+
+
     if (isLoading) {
         return (
             <div className="text-center items-center justify-center flex flex-col min-h-screen">
@@ -71,14 +110,14 @@ const WishLIst = () => {
     if (wishListBook.length === 0) {
         return (
             <div>
-                <h1  className="text-center flex flex-col justify-center font-semibold md:text-3xl lg:text-4xl min-h-screen"> Books Not Found....</h1>
+                <h1 className="text-center flex flex-col justify-center font-semibold md:text-3xl lg:text-4xl min-h-screen"> Books Not Found....</h1>
             </div>
         );
     }
 
 
     return (
-        <div className='lg:py-6 py-3 lg:px-6  px-3 w-full lg:w-11/12 mx-auto rounded-xl bg-gray-100 '> 
+        <div className='lg:py-6 py-3 lg:px-6  px-3 w-full lg:w-11/12 mx-auto rounded-xl bg-gray-100 '>
             <div className=" grid grid-cols-1 md:grid-cols-2 gap-6  ">
 
                 {
@@ -88,7 +127,7 @@ const WishLIst = () => {
                             <div className=" flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
 
                                 <Image
-                                    src={book?.cover}
+                                    src={book?.cover_image}
                                     priority width={150} height={100}
                                     alt="Profile"
                                     className=" w-full  "
@@ -115,7 +154,7 @@ const WishLIst = () => {
 
                                     </div>
 
-                                    <p className="text-gray-900 font-bold text-xl mb-2">  Price : ${book?.price} </p>
+                                    <p className="text-gray-900 font-bold text-xl mb-2">  Price : ${book?.unit_price} </p>
 
                                     <div className=' w-full mx-auto px-4 flex lg:gap-6  gap-2 lg:pt-10 pt-4 md:pt-6 '>
                                         <button
@@ -133,19 +172,19 @@ const WishLIst = () => {
                                         </button>
 
                                         {/* buy now button */}
-                                        <Link href={`/buyBooks/${book?._id}`}>
-                                            <button
-                                                type="button"
-                                                class="inline-block rounded bg-success  lg:px-6 px-2 pb-1 pt-1 lg:pt-2.5 lg:pb-2  text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]">
-                                                Add to cart
-                                            </button>
-                                        </Link>
+                                        <button
+                                            onClick={handleCart}
+                                            type="button"
+                                            class="inline-block rounded bg-success  lg:px-6 px-2 pb-1 pt-1 lg:pt-2.5 lg:pb-2  text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]">
+                                            Add to cart
+                                        </button>
+
 
                                     </div>
                                 </div>
                                 <div className="flex items-center">
                                     {/* user image */}
-                                   
+
                                 </div>
                             </div>
                         </div>

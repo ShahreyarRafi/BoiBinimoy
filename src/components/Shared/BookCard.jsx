@@ -11,6 +11,7 @@ import useWishListBook from "@/Hooks/wishList/useWishListBook";
 import Swal from "sweetalert2";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
+import useOneUser from "@/Hooks/Users/useOneUser";
 
 // bg-[#f2fdf9]
 // text-[#2f8880]
@@ -20,9 +21,12 @@ export default function ExchangeCard({ item, }) {
 
   const axiosSecure = useAxiosSecure()
   const { user } = useContext(AuthContext)
-  const userEmail = user?.email
+  const user_email = user?.email
+  const { currentUser } = useOneUser();
 
-  const { _id, title, cover_image, price, writer } = item || {}
+
+
+  const { _id, title, cover_image, price, writer , owner_email  } = item || {}
   // console.log(title, cover_image, item);
   const [wishListBook, refetch] = useWishListBook()
 
@@ -32,14 +36,24 @@ export default function ExchangeCard({ item, }) {
 
 
   const handleAddToWishlist = () => {
+
+    const user_name = currentUser?.name;
+    // const user_email = currentUser?.email;
+    const quantity = 1;
+
     const wishlistData = {
-      userEmail,
+      user_name,
+      user_email,
+      owner_email,
       book_id: _id,
       title,
-      cover: cover_image,
+      cover_image,
       writer,
-      price,
-      
+      unit_price: price,
+      total_price: price,
+      quantity,
+      isDeliverd: false
+
     };
 
     console.log(wishlistData);

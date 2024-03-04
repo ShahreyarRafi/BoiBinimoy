@@ -7,7 +7,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import { Libre_Baskerville } from "next/font/google";
 import PageLoading from '@/components/Shared/loadingPageBook/PageLoading';
-import JoinUs from '@/components/joinUs/JoinUs';
 
 
 const sourceSerif = Libre_Baskerville({
