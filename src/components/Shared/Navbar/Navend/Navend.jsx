@@ -25,11 +25,11 @@ const Navend = () => {
   }
 
   return (
-    <div className="flex items-center gap-5 ">
+    <div className="flex items-center justify-center gap-2 ">
       <Link href="/wishList">
-        <div className="">
+        <div className="px-2">
           <span className="indicator-item badge badge-secondary"> {wishListBook.length} </span>
-          <AiOutlineHeart></AiOutlineHeart>
+          <AiOutlineHeart className="mx-auto" />
         </div>
       </Link>
 
@@ -40,7 +40,7 @@ const Navend = () => {
           type="checkbox"
           className="drawer-toggle overflow-hidden"
         />
-        <div className="drawer-content">
+        <div className="drawer-content px-2">
           {/* Page content here */}
           {totalCart ?
             <span className="indicator-item badge badge-secondary">
@@ -51,7 +51,7 @@ const Navend = () => {
             </span>
           }
           <label htmlFor="cart-drawer" className="drawer-button">
-            <MdOutlineShoppingCart />
+            <MdOutlineShoppingCart className="mx-auto" />
           </label>
         </div>
         <div className="drawer-side overflow-hidden z-[2]">

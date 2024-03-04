@@ -5,13 +5,18 @@ import Image from "next/image";
 import { GrDocumentUpdate } from "react-icons/gr";
 import { MdDeleteOutline } from "react-icons/md";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
-import Swal from "sweetalert2";
 import { useState } from "react";
+import { BsUpload } from "react-icons/bs";
+import useImageURL from "@/Hooks/ImageURL/useImageURL";
+import Swal from "sweetalert2";
 
 const Categories = () => {
 
     const axiosSecure = useAxiosSecure();
     const [current, setCurrent] = useState([]);
+    const [selectFile, setSelectFile] = useState();
+    const [preview, setPreview] = useState();
+    const { imageUrl, uploadImage } = useImageURL(selectFile);
     let count = 0;
 
     const { data: categories = [], isPending, refetch } = useQuery({
@@ -22,15 +27,35 @@ const Categories = () => {
         },
     });
 
+    // create a preview as a side effect, whenever selected file is changed
+    const onSelectFile = () => {
+
+        const file = document.getElementById('imageFile').files[0];
+
+        console.log(file);
+
+        if (!file) {
+            setSelectFile(undefined);
+            setPreview(undefined);
+            return;
+        }
+
+        setSelectFile(file);
+        setPreview(URL.createObjectURL(file));
+        console.log(preview);
+    };
+
     // Add functionality checked
-    const handleAdd = (e) => {
+    const handleAdd = async (e) => {
         e.preventDefault();
         const category_name = document.getElementById('addCategory').value;
-        const category_image = "https://i.ibb.co/xDgy8MJ/fantasy.png"
+        const uploadedImageUrl = await uploadImage();
         const newCategory = {
             category_name,
-            category_image
+            category_image: uploadedImageUrl,
         }
+
+        console.log(uploadedImageUrl);
 
         axiosSecure.post("api/v1/category", newCategory)
             .then(res => {
@@ -43,6 +68,7 @@ const Categories = () => {
                     });
                     refetch();
                     document.getElementById("addCategory").value = '';
+                    setSelectFile(undefined);
                     document.getElementById("add_modal").close();
                 } else {
                     Swal.fire({
@@ -211,15 +237,65 @@ const Categories = () => {
 
             <dialog id="add_modal" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <div className="border-2 border-gray-300 rounded-lg px-3 pb-3">
-                        <h3 className="text-sm font-light py-2">Add Category</h3>
+                    <div className="border-2 border-gray-300 rounded-lg px-3 pb-3 flex flex-col gap-3">
+                        <h3 className="font-light text-center pt-2 text-[#016961]">Add Category</h3>
                         <input
-                            className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
+                            className="border border-[#016961] bg-teal-50/40 h-10 w-full px-2 text-xs rounded-lg focus:outline-none"
                             placeholder="Category name"
                             id="addCategory"
                             type="text"
                             required
                         />
+                        {/* image div start*/}
+                        <div
+                            for="imageFile"
+                            className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg shadow-md"
+                        >
+                            {!selectFile ? (
+                                <input
+                                    type="text"
+                                    readOnly
+                                    placeholder="No Image selected"
+                                    alt="Image Preview"
+                                    style={{
+                                        height: '200px',
+                                        width: '100%'
+                                    }}
+                                    className="text-center bg-teal-50/40"
+                                />
+
+                            ) : (
+                                <Image
+                                    src={preview}
+                                    width={300}
+                                    height={300}
+                                    alt="Image Preview"
+                                    style={{
+                                        width: '100%',
+                                        height: '200px',
+                                    }}
+                                    className="rounded-lg"
+                                />
+                            )}
+
+                        </div>
+                        <div>
+                            <label
+                                for="imageFile"
+                                className="border border-[#016961] bg-teal-50/40 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-xs md:text-sm  cursor-pointer"
+                            >
+                                <BsUpload /> <span> Upload Here</span>
+                                <input
+                                    type="file"
+                                    id="imageFile"
+                                    onChange={onSelectFile}
+                                    required
+                                    hidden
+                                />
+                            </label>
+
+                        </div>
+                        {/* image div end */}
                     </div>
                     <div className="modal-action">
                         <form method="dialog">
