@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 const AllBlogCard = ({ item, refetch }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  const { imageUrl, uploadImage} = useImageURL(selectedFile);
+  const { imageUrl, uploadImage } = useImageURL(selectedFile);
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
 
@@ -78,12 +78,12 @@ const AllBlogCard = ({ item, refetch }) => {
 
   const handleUpdate = () => {
     const modal = document.getElementById("update_blog_modal");
-  
+
     console.log(item._id);
     modal.showModal();
   };
 
-  const handleUpdateBlog = async(data) => {
+  const handleUpdateBlog = async (data) => {
     console.log(data);
     const { title, description: body, category, tags } = data;
     const url = await uploadImage();
@@ -94,13 +94,13 @@ const AllBlogCard = ({ item, refetch }) => {
       body,
       category,
       tags,
-      cover_image: url ,
+      cover_image: url,
     };
 
     const res = await axiosSecure.patch(`api/v1/blogs/${item?._id}`, updateBlogInfo);
-    
+
     console.log(res?.data);
-    if(res?.data){
+    if (res?.data) {
       refetch()
       document.getElementById("update_blog_modal").close();
       setSelectedFile(null)
@@ -148,8 +148,8 @@ const AllBlogCard = ({ item, refetch }) => {
           <h1 className="text-3xl text-center font-bold py-2">Update Blog</h1>
           {/* basic information div */}
           <div className=" border-2 border-[#016961] rounded-lg px-3 pb-3">
-              {/* id */}
-       
+            {/* id */}
+
             {/* title */}
             <h3 className="text-sm font-light py-2">Blog Title:</h3>
             <input
@@ -187,13 +187,10 @@ const AllBlogCard = ({ item, refetch }) => {
                 Upload blog cover image:
               </h3>
               {/* image */}
-              <div
-                for="imageFile"
-                className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg"
+              <div className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg"
               >
                 {!selectedFile ? (
-                  <label
-                    for="imageFile"
+                  <label htmlFor="imageFile"
                     className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
                   >
                     <BsUpload /> <span> Upload Here</span>
@@ -210,7 +207,7 @@ const AllBlogCard = ({ item, refetch }) => {
                   id="imageFile"
                   type="file"
                   onChange={onSelectFile}
-                  name = "cover_image"
+                  name="cover_image"
                   hidden
                 />
               </div>

@@ -55,8 +55,7 @@ const Navend = () => {
           </label>
         </div>
         <div className="drawer-side overflow-hidden z-[2]">
-          <label
-            htmlFor="cart-drawer"
+          <label htmlFor="cart-drawer"
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>

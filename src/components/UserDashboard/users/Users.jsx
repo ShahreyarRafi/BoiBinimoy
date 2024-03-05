@@ -191,7 +191,7 @@ const Users = () => {
 
       <dialog id="role_modal" className="modal">
         <div className="modal-box">
-         
+
 
 
 
@@ -205,16 +205,16 @@ const Users = () => {
 
             <div className="sm:flex sm:justify-between sm:gap-4">
               <div>
-                <h3 class="text-lg font-bold text-gray-900 sm:text-xl">
-                {data?.name}
+                <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
+                  {data?.name}
                 </h3>
 
                 <p className="pt-3"> Location: {data?.location?.street ? data.location.street : "Not Found"} </p>
 
-                <p className="mt-1 text-md font-medium text-gray-600"> Gender  : {data?.gender ? data?.gender :"Not Found"}  </p>
+                <p className="mt-1 text-md font-medium text-gray-600"> Gender  : {data?.gender ? data?.gender : "Not Found"}  </p>
               </div>
 
-              <div class="hidden sm:block sm:shrink-0">
+              <div className="hidden sm:block sm:shrink-0">
                 <Image
                   alt=""
                   src={data?.image}
@@ -224,57 +224,57 @@ const Users = () => {
               </div>
             </div>
 
-          
+
 
             <dl className="mt-6 flex gap-4 sm:gap-6">
 
-            <div className=" flex items-center gap-6 cursor-pointer">
-            {data?.isModerator ? (
-              <button
-                onClick={() => removeUserRole(data._id, "isModerator")}
-                className="font-bold text-lg"
-              >
-                Remove Moderator
-              </button>
-            ) : (
-              <button
-                onClick={() => hendleUserRole(data._id, "isModerator")}
-                className="font-bold text-lg"
-              >
-                Add Moderator
-              </button>
-            )}
-            {data?.isPublisher ? (
-              <button
-                onClick={() => removeUserRole(data._id, "isPublisher")}
-                className="font-bold text-lg"
-              >
-                Remove Publisher
-              </button>
-            ) : (
-              <button
-                onClick={() => hendleUserRole(data._id, "isPublisher")}
-                className="font-bold text-lg"
-              >
-                Add Publisher
-              </button>
-            )}
-            {data?.isSeller ? (
-              <button
-                onClick={() => removeUserRole(data._id, "isSeller")}
-                className="font-bold text-lg"
-              >
-                Remove Seller
-              </button>
-            ) : (
-              <button
-                onClick={() => hendleUserRole(data._id, "isSeller")}
-                className="font-bold text-lg"
-              >
-                Add Seller
-              </button>
-            )}
-          </div>
+              <div className=" flex items-center gap-6 cursor-pointer">
+                {data?.isModerator ? (
+                  <button
+                    onClick={() => removeUserRole(data._id, "isModerator")}
+                    className="font-bold text-lg"
+                  >
+                    Remove Moderator
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => hendleUserRole(data._id, "isModerator")}
+                    className="font-bold text-lg"
+                  >
+                    Add Moderator
+                  </button>
+                )}
+                {data?.isPublisher ? (
+                  <button
+                    onClick={() => removeUserRole(data._id, "isPublisher")}
+                    className="font-bold text-lg"
+                  >
+                    Remove Publisher
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => hendleUserRole(data._id, "isPublisher")}
+                    className="font-bold text-lg"
+                  >
+                    Add Publisher
+                  </button>
+                )}
+                {data?.isSeller ? (
+                  <button
+                    onClick={() => removeUserRole(data._id, "isSeller")}
+                    className="font-bold text-lg"
+                  >
+                    Remove Seller
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => hendleUserRole(data._id, "isSeller")}
+                    className="font-bold text-lg"
+                  >
+                    Add Seller
+                  </button>
+                )}
+              </div>
 
             </dl>
           </a>

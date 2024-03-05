@@ -161,8 +161,7 @@ const AddBanner = () => {
                 </div>
                 <div className="w-full lg:w-2/5 border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md">
                   {!selectedFile ? (
-                    <label
-                      for="cover_image"
+                    <label htmlFor="cover_image"
                       className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm cursor-pointer"
                     >
                       <BsUpload /> <span> Upload Here</span>
@@ -213,8 +212,7 @@ const AddBanner = () => {
                 </div>
                 <div className="w-full lg:w-2/5 border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md">
                   {!selectedFile2 ? (
-                    <label
-                      for="thumbnailImageFile"
+                    <label htmlFor="thumbnailImageFile"
                       className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm cursor-pointer"
                     >
                       <BsUpload /> <span> Upload Here</span>

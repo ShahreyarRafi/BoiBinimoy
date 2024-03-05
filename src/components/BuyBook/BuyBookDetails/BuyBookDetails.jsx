@@ -25,7 +25,7 @@ const BuyBookDetails = () => {
   const book_id = param.buyId;
   const axiosSecure = useAxiosSecure();
   const { currentUser } = useOneUser();
-  const { reviews, isPending, refetch }  = useReviews(book_id)
+  const { reviews, isPending, refetch } = useReviews(book_id)
   const { book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
   const { refetch: cartRefetch } = useGetMyCarts()
 
@@ -149,7 +149,7 @@ const BuyBookDetails = () => {
               src={book?.cover_image}
               width={1000}
               height={1500}
-              alt=""
+              alt="book"
               className="absolute bottom-5 ring-0 w-2/5 border-none rounded-md shadow-xl transition-transform duration-300 hover:scale-105"
             />
           </div>

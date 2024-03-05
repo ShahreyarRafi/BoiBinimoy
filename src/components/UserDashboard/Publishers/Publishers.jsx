@@ -13,7 +13,7 @@ const Publishers = () => {
     const axiosSecure = useAxiosSecure();
     const [current, setCurrent] = useState([]);
     const [selectFile, setSelectFile] = useState();
-    const [preview, setPreview] = useState();
+    const [preview, setPreview] = useState(undefined);
     const { imageUrl, uploadImage } = useImageURL(selectFile);
 
     const { data: publishers = [], isPending, refetch } = useQuery({
@@ -236,16 +236,14 @@ const Publishers = () => {
                     <form onSubmit={handleAdd}>
                         <div className="border-2 border-gray-300 rounded-lg px-3 py-3">
                             {/* image div start*/}
-                            <div
-                                for="imageFile"
-                                className="w-[200px] h-[200px] mx-auto border border-[#016961] rounded-full flex justify-center items-center "
+                            <div className="w-[200px] h-[200px] mx-auto border border-[#016961] rounded-full flex justify-center items-center "
                             >
                                 {!selectFile ? (
                                     <input
                                         type="text"
                                         readOnly
                                         placeholder="No Image selected"
-                                        alt="Image Preview"
+                                        alt="Preview"
                                         className="w-[200px] h-[200px] text-center bg-teal-50/40 border border-[#016961] rounded-full"
                                     />
 
@@ -265,8 +263,7 @@ const Publishers = () => {
 
                             </div>
                             <div className="mt-3 w-1/2 mx-auto">
-                                <label
-                                    for="imageFile"
+                                <label htmlFor="imageFile"
                                     className="bg-[#016961] text-white py-2 flex justify-center items-center gap-3 rounded-lg text-center text-xs md:text-sm  cursor-pointer"
                                 >
                                     <BsUpload /> <span> Upload Here</span>
@@ -312,26 +309,24 @@ const Publishers = () => {
             <dialog id="update_modal" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <div className="border-2 border-gray-300 rounded-lg px-3 py-3">
-                        <div
-                            for="imageFile"
-                            className="mx-auto w-[200px] h-[200px] border flex justify-center items-center border-[#016961] rounded-full shadow-md"
+                        <div className="mx-auto w-[200px] h-[200px] border flex justify-center items-center border-[#016961] rounded-full shadow-md"
                         >
-                            <Image
-                                src={preview}
-                                width={300}
-                                height={300}
-                                id="updateImage"
-                                alt="Image Preview"
-                                style={{
-                                    width: '200px',
-                                    height: '200px',
-                                }}
-                                className="rounded-full"
-                            />
+                            {preview &&
+                                <Image
+                                    src={preview}
+                                    width={300}
+                                    height={300}
+                                    id="updateImage"
+                                    alt="Image Preview"
+                                    style={{
+                                        width: '200px',
+                                        height: '200px',
+                                    }}
+                                    className="rounded-full"
+                                />}
                         </div>
                         <div className="mt-3 w-1/2 mx-auto">
-                            <label
-                                for="updateImageFile"
+                            <label htmlFor="updateImageFile"
                                 className="bg-[#016961] text-white py-2 flex justify-center items-center gap-3 rounded-lg text-center text-xs md:text-sm  cursor-pointer"
                             >
                                 <BsUpload /> <span> Upload Here</span>

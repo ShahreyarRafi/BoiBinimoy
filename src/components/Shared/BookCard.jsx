@@ -9,7 +9,7 @@ import { FaCartPlus, FaExchangeAlt, FaRegHeart } from "react-icons/fa";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import useWishListBook from "@/Hooks/wishList/useWishListBook";
 import Swal from "sweetalert2";
-import {MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlineShoppingCart } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
 
 // bg-[#f2fdf9]
@@ -27,9 +27,6 @@ export default function ExchangeCard({ item, }) {
   const [wishListBook, refetch] = useWishListBook()
 
   const filteredData = wishListBook.filter(book => book.book_id === _id);
-
-  console.log(filteredData);
-
 
   const handleAddToWishlist = () => {
     const wishlistData = {
@@ -83,13 +80,13 @@ export default function ExchangeCard({ item, }) {
           <div className="grid grid-cols-1 items-end justify-end gap-2 card__action">
             <Link href={`/buyBooks/${item?._id}`}>
               <button className=" text-white text-center text-xl border mb-2 border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
-              <MdOutlineShoppingCart />
+                <MdOutlineShoppingCart />
               </button>
             </Link>
 
             <div>
               {filteredData.length > 0 ? (
-               
+
                 <button onClick={handleBookDelete} className="  text-red-700 text-center text-xl border mb-6 border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
                   <FaHeart />
                 </button>
@@ -100,11 +97,11 @@ export default function ExchangeCard({ item, }) {
                   <button onClick={handleAddToWishlist} className=" text-white text-center text-xl border mb-6 border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
                     <FaRegHeart />
                   </button>
-                
+
                 </div>
               ) : (
                 <button onClick={handleAddToWishlist} className="text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
-                  
+
                 </button>
               )}
             </div>

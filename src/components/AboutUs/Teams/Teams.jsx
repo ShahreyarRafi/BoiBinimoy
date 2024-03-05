@@ -53,7 +53,7 @@ const Teams = () => {
             <div key={key} className="flex flex-col items-center">
               <Image
                 className="object-cover w-20 h-20 mb-2 rounded-full shadow"
-                src={team.img}
+                src={team?.img}
                 width={100}
                 height={100}
                 priority

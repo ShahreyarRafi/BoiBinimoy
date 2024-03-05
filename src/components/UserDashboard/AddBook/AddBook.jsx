@@ -320,13 +320,10 @@ const AddBook = () => {
             {/* image section start */}
             <div>
               <h3 className="pb-2">Uploade book cover Image:</h3>
-              <div
-                for="imageFile"
-                className="w-full h-[100px] border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
+              <div className="w-full h-[100px] border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
               >
                 {!selectedFile ? (
-                  <label
-                    htmlFor="imageFile"
+                  <label htmlFor="imageFile"
                     className="w-full h-full flex justify-center items-center gap-3 text-center text-xs md:text-sm cursor-pointer rounded-lg"
                   >
                     <BsUpload /> <span> Upload</span>

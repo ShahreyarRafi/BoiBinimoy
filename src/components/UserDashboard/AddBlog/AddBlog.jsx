@@ -130,13 +130,10 @@ const AddBlog = () => {
 
                 {/* image div start*/}
                 <div className="flex flex-col h-full w-full pb-3">
-                  <div
-                    for="imageFile"
-                    className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
+                  <div className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
                   >
                     {!selectedFile ? (
-                      <label
-                        for="imageFile"
+                      <label htmlFor="imageFile"
                         className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-xs md:text-sm  cursor-pointer"
                       >
                         <BsUpload /> <span> Upload Here</span>
