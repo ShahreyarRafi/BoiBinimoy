@@ -11,6 +11,7 @@ import useOneUser from "@/Hooks/Users/useOneUser";
 import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
 import { AiOutlineHeart } from "react-icons/ai";
 import useWishListBook from "@/Hooks/wishList/useWishListBook";
+import palesholderImage from "../../../../../public/placeholder.png"
 
 const Navend = () => {
 
@@ -165,7 +166,16 @@ const Navend = () => {
             </div>
           ) : (
             <Link href="/joinUs" className="text-lg">
-              <LuUser2 />
+              <div className="w-10 rounded-full">
+                <Image
+                  src={palesholderImage}
+                  alt="user"
+                  priority
+                  width={300}
+                  height={300}
+                  className="avatar online"
+                />
+              </div>
             </Link>
           )}
         </div>

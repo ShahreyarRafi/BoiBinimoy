@@ -140,10 +140,6 @@ const WishLIst = () => {
                                         <h1>
                                             {book?.title}
                                         </h1>
-                                        <h1>
-                                            {book?.quantity}
-                                        </h1>
-
                                         <h1> Writer : {book?.writer} </h1>
 
                                     </div>
