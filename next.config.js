@@ -21,9 +21,9 @@ const nextConfig = {
       "thumbor.forbes.com",
       "example.com",
       "graph.facebook.com",
-      "",
     ],
   },
 };
 
 module.exports = nextConfig;
+
