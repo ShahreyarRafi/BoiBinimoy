@@ -9,7 +9,7 @@ export default function CategoryCard({ category }) {
   return (
     <Link href={`/categories/${category?.category_name}`}>
       <div className="p-6 border rounded-full w-36 h-36 mx-auto ">
-        <Image
+        <img
           className="mx-auto mt-6 -z-20"
           src={category?.category_image}
           alt="category image"

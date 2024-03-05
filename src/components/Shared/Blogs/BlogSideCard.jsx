@@ -5,7 +5,7 @@ import Link from "next/link";
 const BlogSideCard = ({ item }) => {
   return (
     <div className="rounded-md w-full flex flex-col md:flex-row mb-8 gap-5">
-      <Image
+      <img
         src={item?.cover_image}
         width={500}
         height={500}

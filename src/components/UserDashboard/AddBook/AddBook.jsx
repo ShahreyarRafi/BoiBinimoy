@@ -332,7 +332,7 @@ const AddBook = () => {
                     <BsUpload /> <span> Upload</span>
                   </label>
                 ) : (
-                  <Image
+                  <img
                     src={preview}
                     width={500}
                     height={500}

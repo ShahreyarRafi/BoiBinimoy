@@ -123,7 +123,7 @@ export default function BannerNew() {
                     <div className="thumbnail">
                         {Array.isArray(bannerData) && bannerData.map((item, index) => (
                             <div className="item" key={index}>
-                                <img src={item?.thumbnail_img} alt="alt" />
+                                <img src={item?.thumbnail_img}  height={4100} width={2310}  alt="alt" />
                                 <div className="content">
                                     <div className="title">{item?.thumbnail_title}</div>
                                     <div className="description">{item?.thumbnail_description}</div>

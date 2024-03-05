@@ -87,7 +87,7 @@ const WishLIst = () => {
 
                             <div className=" flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
 
-                                <Image
+                                <img
                                     src={book?.cover}
                                     priority width={250} height={50}
                                     alt="Profile"

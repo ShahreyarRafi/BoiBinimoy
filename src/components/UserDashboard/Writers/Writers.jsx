@@ -191,7 +191,7 @@ const Writers = () => {
                     allWriters.map(writer =>
                         <div key={writer?._id} className="border-2 border-black rounded-lg p-5 flex flex-col justify-between">
                             <div>
-                                <Image
+                                <img
                                     src={writer?.profile}
                                     alt="writer"
                                     priority

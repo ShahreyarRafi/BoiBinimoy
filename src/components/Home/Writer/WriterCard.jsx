@@ -7,7 +7,7 @@ export default function WriterCard({ item }) {
   return (
     <Link href={`/writers/${item?._id}`}>
       <div className="space-y-3">
-        <Image
+        <img
           src={item?.profile}
           width={100}
           height={100}

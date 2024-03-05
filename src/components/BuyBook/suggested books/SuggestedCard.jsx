@@ -15,7 +15,7 @@ const SuggestedCard = ({ cardInfo, index }) => {
             >
                 {/* Book Image */}
                 <div className="flex-shrink-0 w-44">
-                    <Image
+                    <img
                         src={cardInfo?.cover_image}
                         priority
                         width={1000}

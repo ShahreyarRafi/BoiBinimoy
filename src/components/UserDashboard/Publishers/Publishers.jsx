@@ -171,7 +171,7 @@ const Publishers = () => {
                         <div key={publisher?._id} className="border-2 border-black rounded-lg p-5 flex flex-col justify-between">
                             <div className="flex flex-col md:flex-row items-center gap-5">
                                 <div className="w-32">
-                                    <Image
+                                    <img
                                         src={publisher?.logo}
                                         alt="writer"
                                         priority

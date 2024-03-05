@@ -45,7 +45,7 @@ const TestExchange = () => {
       <div className="grid grid-cols-1 md:grid-cols-8 gap-4">
         <div className="col-span-2 hidden lg:block pt-[20px]">
           <div className="rounded-lg object-cover w-full h-full">
-            <Image
+            <img
               className="rounded-lg object-cover md:w-full h-full border border-dashed border-[#016961]"
               src={transparentBanner}
               alt="alt"
