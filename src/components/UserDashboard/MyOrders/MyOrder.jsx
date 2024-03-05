@@ -8,7 +8,7 @@ const MyOrder = ({cart}) => {
     return (
      
              <div className="grid grid-cols-9 items-center justify-between text-center font-semibold border border-gray-100 p-5">
-              <Image
+              <img
                   src={cart?.book?.cover_image}
                   width={150}
                   height={200}

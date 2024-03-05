@@ -284,7 +284,7 @@ const ExchangeAdd = () => {
                         <BsUpload /> <span> Upload Here</span>
                       </label>
                     ) : (
-                      <Image
+                      <img
                         src={preview}
                         width={200}
                         height={200}

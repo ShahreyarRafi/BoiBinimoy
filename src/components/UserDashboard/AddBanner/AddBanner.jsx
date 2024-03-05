@@ -168,7 +168,7 @@ const AddBanner = () => {
                       <BsUpload /> <span> Upload Here</span>
                     </label>
                   ) : (
-                    <Image
+                    <img
                       src={preview1}
                       width={500}
                       height={500}
@@ -220,7 +220,7 @@ const AddBanner = () => {
                       <BsUpload /> <span> Upload Here</span>
                     </label>
                   ) : (
-                    <Image
+                    <img
                       src={preview2}
                       width={500}
                       height={500}

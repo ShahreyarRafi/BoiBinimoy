@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function PublisherCard({ item }) {
   return (
     <Link href={`/publisher/${item?._id}`} className="space-y-3">
-      <Image
+      <img
         src={item?.logo}
         width={200}
         height={200}

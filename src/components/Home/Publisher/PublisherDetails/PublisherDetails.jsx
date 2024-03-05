@@ -110,7 +110,7 @@ const PublisherDetails = () => {
         {/* publisher profile start */}
         <div className="w-1/3 h-full bg-50-50 p-5 border border-[#016961] rounded-lg">
           <div className="flex justify-center">
-            <Image
+            <img
               src={publisher?.logo}
               width={200}
               height={200}
