@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import './BannerStyles.css';
-import Image from 'next/image';
+import Image from 'next/image'
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import { Libre_Baskerville } from "next/font/google";
@@ -104,7 +104,7 @@ export default function BannerNew() {
                 <div className="list">
                     {Array.isArray(bannerData) && bannerData.map((item, index) => (
                         <div className="item" key={index}>
-                            <Image src={item?.cover_image} height={4100} width={2310} alt="cover_image" layout="responsive" />
+                            <Image src={item?.cover_image} alt="alt" width={2310} height={4100} />
                             <div className="content">
                                 <div className="author">{item?.author}</div>
                                 <div className={`${sourceSerif.className} title font-outline`}>{item?.title}</div>
@@ -123,7 +123,7 @@ export default function BannerNew() {
                     <div className="thumbnail">
                         {Array.isArray(bannerData) && bannerData.map((item, index) => (
                             <div className="item" key={index}>
-                                <Image src={`${item?.thumbnail_img}?${new Date().getTime()}`} height={1500} width={1000} alt="alt" />
+                                <Image src={item?.thumbnail_img} height={1500} width={1000} alt="thumbnail_img" layout="responsive" />
                                 <div className="content">
                                     <div className="title">{item?.thumbnail_title}</div>
                                     <div className="description">{item?.thumbnail_description}</div>
