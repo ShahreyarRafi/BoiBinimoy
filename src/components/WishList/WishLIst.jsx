@@ -59,12 +59,11 @@ const WishLIst = () => {
 
 
 
-
-    const handleCart = () => {
+    const handleCart = (book) => {
         const user_name = currentUser?.name;
         const user_email = currentUser?.email;
-        const book_id = book?._id;
-        const price = book?.price;
+        const book_id = book._id;
+        const price = book.unit_price;
         const quantity = 1;
 
         const addCart = {
@@ -77,24 +76,16 @@ const WishLIst = () => {
             isDeliverd: false
         }
 
-        axiosSecure
-            .post("/api/v1/carts", addCart)
-            .then((response) => {
-                console.log("data add to cart");
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Add book in the cart.",
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-                refetch();
+        console.log(" add cart data", addCart);
+        axiosSecure.post("/api/v1/carts", addCart)
+            .then(response => {
+                console.log('Wishlist item added:', response.data);
+                refetch()
             })
-            .catch((error) => {
-                console.error("Error:", error);
-            });
+            .catch(error => {
+                console.error('Error adding to wishlist:', error);
+            })
     }
-
 
 
 
@@ -149,6 +140,9 @@ const WishLIst = () => {
                                         <h1>
                                             {book?.title}
                                         </h1>
+                                        <h1>
+                                            {book?.quantity}
+                                        </h1>
 
                                         <h1> Writer : {book?.writer} </h1>
 
@@ -172,8 +166,9 @@ const WishLIst = () => {
                                         </button>
 
                                         {/* buy now button */}
+
                                         <button
-                                            onClick={handleCart}
+                                            onClick={() => handleCart(book)}
                                             type="button"
                                             class="inline-block rounded bg-success  lg:px-6 px-2 pb-1 pt-1 lg:pt-2.5 lg:pb-2  text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]">
                                             Add to cart
