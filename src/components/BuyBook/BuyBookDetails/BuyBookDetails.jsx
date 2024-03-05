@@ -145,7 +145,7 @@ const BuyBookDetails = () => {
         <div className="relative flex justify-center p-5 bg-[#016961] rounded-lg w-full mt-60">
           {/* Book Image */}
           <div className="flex-shrink-0 w-2/5">
-            <img
+            <Image 
               src={book?.cover_image}
               width={1000}
               height={1500}

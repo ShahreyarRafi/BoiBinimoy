@@ -7,7 +7,7 @@ const AllWriterCard = ({ item }) => {
       <Link href={`/writers/${item?._id}`}>
         <div className="flex items-center border-4 border-teal-200 py-1 px-2 mx-auto shadow-xl rounded-full hover:bg-teal-200 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
           <div className="w-1/3">
-            <img
+            <Image 
               src={item?.profile}
               width={100}
               height={100}

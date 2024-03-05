@@ -138,13 +138,13 @@ const ProfileEdit = () => {
 
                             </div>
                           {
-                            !selectedFile ?   <img
+                            !selectedFile ?   <Image 
                             src={palesholderImage}
                             className="object-cover w-40 h-40 mb-2 rounded-full shadow"
                             alt=""
                             width={500}
                             height={500}
-                        /> : <img
+                        /> : <Image 
                         src={preview}
                         className="object-cover w-40 h-40 mb-2 rounded-full shadow"
                         alt=""
