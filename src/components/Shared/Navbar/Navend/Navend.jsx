@@ -70,7 +70,7 @@ const Navend = () => {
               <li key={cart?.cart._id}>
                 <div className="flex items-center justify-between rounded-lg p-2">
                   <div className="flex gap-5 items-center">
-                    <img
+                    <Image 
                       src={cart?.book?.cover_image}
                       width={70}
                       height={100}
@@ -122,7 +122,7 @@ const Navend = () => {
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img
+                  <Image 
                     src={currentUser.image}
                     alt="user"
                     priority

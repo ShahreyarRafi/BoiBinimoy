@@ -9,7 +9,7 @@ const RelatedCard = ({ cardInfo }) => {
             >
                 {/* Book Image */}
                 <div className="flex-shrink-0 w-44">
-                    <img
+                    <Image 
                         src={cardInfo?.img}
                         priority
                         width={1000}

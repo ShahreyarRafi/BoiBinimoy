@@ -7,7 +7,7 @@ const ReviewCard = ({ review }) => {
         <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
             {/* user image */}
             <div>
-                <img
+                <Image 
                     className="object-cover w-12 h-12 mb-2 rounded-full shadow"
                     src={review?.user_image}
                     priority

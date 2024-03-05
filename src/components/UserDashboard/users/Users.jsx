@@ -136,7 +136,7 @@ const Users = () => {
                   >
                     <div className="flex flex-col lg:flex-row items-center justify-start lg:justify-between gap-1  rounded-3xl lg:rounded-none px-6 lg:px-10 py-5 mx-auto duration-300">
                       <div className="min-w-[40px] mr-2">
-                        <img
+                        <Image 
                           src={user?.image}
                           alt="profile"
                           priority
@@ -215,7 +215,7 @@ const Users = () => {
               </div>
 
               <div class="hidden sm:block sm:shrink-0">
-                <img
+                <Image 
                   alt=""
                   src={data?.image}
                   priority width={100} height={100}

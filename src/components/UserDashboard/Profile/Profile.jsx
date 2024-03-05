@@ -64,14 +64,14 @@ const Profile = () => {
 
               <div className="mb-4">
                 {currentUser?.image ? (
-                  <img
+                  <Image 
                     src={currentUser?.image}
                     priority width={100} height={100}
                     alt="Profile"
                     className="h-40 w-40 rounded-full mx-auto"
                   />
                 ) : (
-                  <img
+                  <Image 
                     src={palesholderImage}
                     priority width={100} height={100}
                     alt="Placeholder"
@@ -81,7 +81,7 @@ const Profile = () => {
               </div>
 
 
-              {/* <img
+              {/* <Image 
                 src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
                 className="object-cover w-40 h-40 mb-2 rounded-full shadow"
                 alt=""

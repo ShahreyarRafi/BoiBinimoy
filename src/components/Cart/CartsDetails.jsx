@@ -98,7 +98,7 @@ const handleDeleteCart = (id, title) => {
     <div>
       <div className="bg-white rounded-3xl lg:rounded-none shadow-sm hover:bg-[#19a49113] lg:shadow-inherit border border-gray-100">
         <div className="grid grid-cols-6 items-center text-center font-semibold border border-gray-100 p-5">
-          <img
+          <Image 
             src={cart?.book?.cover_image}
             width={150}
             height={200}

@@ -48,7 +48,7 @@ const BlogDetails = ({}) => {
         <div>
           {/* book img section */}
           <div className="w-full">
-            <img
+            <Image 
               src={blog?.cover_image}
               alt="book"
               width={500}

@@ -53,7 +53,7 @@ const Blog = () => {
               }
             >
               <div key={blog?._id} className="mb-10 px-5">
-                <img
+                <Image 
                   src={blog?.cover_image}
                   priority
                   width={500}

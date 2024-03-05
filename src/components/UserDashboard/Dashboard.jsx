@@ -336,7 +336,7 @@ const Dashboard = ({ children }) => {
                       <div className="flex justify-center gap-3 hover:bg-teal-100 p-2 rounded-lg cursor-pointer">
                         {/* image */}
                         <div className="w-16 flex justify-center">
-                          <img
+                          <Image 
                             className="w-6 h-6 rounded-full"
                             src={cardInfo.img}
                             width={500}
@@ -380,7 +380,7 @@ const Dashboard = ({ children }) => {
             {/* notification end */}
             <a href="#" className="profile">
               {currentUser.image ? (
-                <img
+                <Image 
                   src={currentUser.image}
                   alt="user"
                   priority
@@ -388,7 +388,7 @@ const Dashboard = ({ children }) => {
                   height={36}
                 />
               ) : (
-                <img
+                <Image 
                   src={profilePlaceholder}
                   alt="placeholder"
                   priority
