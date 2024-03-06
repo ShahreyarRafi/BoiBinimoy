@@ -18,10 +18,8 @@ const AddBlog = () => {
   const [preview, setPreview] = useState();
   const { imageUrl, uploadImage } = useImageURL(selectedFile);
   const axiosSecure = useAxiosSecure();
-
   const submittingDateTime = new Date();
 
-  // create a preview as a side effect, whenever selected file is changed
   const onSelectFile = (e) => {
     const files = e.target.files;
 
@@ -40,19 +38,19 @@ const AddBlog = () => {
 
   // blogs submitting function
   const handleBlogSubmit = async (data) => {
-    console.log("cliked");
+    console.log("clicked");
     const { form, title, tags, body, category } = data;
     const uploadedImageUrl = await uploadImage();
 
     const newBlog = {
       form,
       title,
+      category,
       tags,
       body,
       cover_image: uploadedImageUrl,
-      user_name: "admin",
+      user_name: "Admin",
       user_email: user?.email,
-      category,
       publish_date: submittingDateTime.toLocaleDateString(),
       publish_time: submittingDateTime.toLocaleTimeString(),
     };
@@ -72,6 +70,7 @@ const AddBlog = () => {
           timer: 1500,
         });
         reset();
+        setSelectedFile(undefined);
       })
       .catch((error) => {
         // Handle errors
@@ -100,14 +99,50 @@ const AddBlog = () => {
               </div>
 
               <div className="flex flex-col md:flex-row gap-3 py-3">
-                {/* blog category name:category*/}
-                <input
+                {/* blog category name:category */}
+                <select
                   className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                   {...register("category")}
-                  placeholder="Blog Category"
-                  type="text"
                   required
-                />
+                >
+                  <option value="" disabled selected hidden>
+                    Select a Category
+                  </option>
+                  <option value="Reviews">Reviews</option>
+                  <option value="Author Spotlight">Author Spotlight</option>
+                  <option value="Recommendations">Recommendations</option>
+                  <option value="Literary News">Literary News</option>
+                  <option value="Genres">Genres</option>
+                  <option value="Book-to-Film">Book-to-Film</option>
+                  <option value="Classics">Classics</option>
+                  <option value="New Releases">New Releases</option>
+                  <option value="Book Club">Book Club</option>
+                  <option value="Events">Events</option>
+                  <option value="DIY Crafts">DIY Crafts</option>
+                  <option value="Travel Reads">Travel Reads</option>
+                  <option value="Children's Corner">
+                    Children&apos;s Corner
+                  </option>
+                  <option value="Cover Design">Cover Design</option>
+                  <option value="Quotes">Quotes</option>
+                  <option value="Author Interviews">Author Interviews</option>
+                  <option value="Gifts">Gifts</option>
+                  <option value="Challenges">Challenges</option>
+                  <option value="Historical Fiction">Historical Fiction</option>
+                  <option value="Indie Spotlight">Indie Spotlight</option>
+                  <option value="Bookstores">Bookstores</option>
+                  <option value="Digital vs. Physical">
+                    Digital vs. Physical
+                  </option>
+                  <option value="Festivals">Festivals</option>
+                  <option value="Podcast Picks">Podcast Picks</option>
+                  <option value="Subscription Boxes">Subscription Boxes</option>
+                  <option value="Book Art">Book Art</option>
+                  <option value="Analysis">Analysis</option>
+                  <option value="Multilingual Picks">Multilingual Picks</option>
+                  <option value="Organization Tips">Organization Tips</option>
+                  <option value="Book Trading">Book Trading</option>
+                </select>
 
                 {/* blog Tags name:tags*/}
                 <input
@@ -115,10 +150,11 @@ const AddBlog = () => {
                   {...register("tags")}
                   placeholder="Blog Tags"
                   type="text"
+                  required
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
                 {/*description div start*/}
                 <div className="col-span-1 lg:col-span-2 h-full w-full pb-1">
                   <div>
@@ -136,9 +172,7 @@ const AddBlog = () => {
 
                 {/* image div start*/}
                 <div className="flex flex-col h-full w-full pb-3">
-                  <div
-                    for="imageFile"
-                    className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
+                  <div className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
                   >
                     {!selectedFile ? (
                       <label
@@ -159,9 +193,12 @@ const AddBlog = () => {
                     <input
                       type="file"
                       id="imageFile"
-                      {...register("cover_image")}
+                      {...register("cover_image", {
+                        required: "Cover Image is required",
+                      })}
                       onChange={onSelectFile}
                       hidden
+                      required
                     />
                   </div>
                 </div>
@@ -171,20 +208,20 @@ const AddBlog = () => {
             {/* Input end */}
 
             {/* go to home and submit buttons div start */}
-            <div className="flex justify-center md:justify-end text-xs items-center my-4 gap-3">
-              <Link href="/dashboard">
-                <button className="px-3 py-2 border border-[#016961] rounded-lg bg-teal-50/40 uppercase shadow-md hover:shadow-none">
-                  <span className="flex items-center gap-1">
-                    <SlArrowLeft /> <span>Go to Dashboard</span>
+            <div className="flex flex-col md:flex-row justify-center md:justify-end text-xs items-center my-4 gap-3">
+              <Link href="/dashboard" className="w-full md:w-fit">
+                <button className="px-3 py-2 w-full md:w-fit border border-[#016961] rounded-lg bg-teal-50/40 uppercase shadow-md hover:shadow-none">
+                  <span className="flex justify-center items-center gap-1">
+                    <SlArrowLeft /> <span>Go To Dashboard</span>
                   </span>
                 </button>
               </Link>
 
               <button
                 type="submit"
-                className="px-3 py-2 border border-[#016961] rounded-lg bg-teal-50/40 uppercase shadow-md hover:shadow-none"
+                className="px-3 py-2 w-full md:w-fit border border-[#016961] rounded-lg bg-teal-50/40 uppercase shadow-md hover:shadow-none"
               >
-                <span className="flex items-center gap-1">
+                <span className="flex justify-center items-center gap-1">
                   <span>Submit</span> <SlArrowRight />
                 </span>
               </button>

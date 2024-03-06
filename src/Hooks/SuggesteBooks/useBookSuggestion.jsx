@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useOneUser from '../Users/useOneUser';
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from '../Axios/useAxiosPublic';
@@ -111,10 +111,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
 
 
-    // ---------Individual books------------
+    // ---------Interested books------------
 
-    const [bookSuggestion, setBookSuggestion] = useState([]);
-
+    const [interestedBooks, setInterestedBooks] = useState([]);
 
     const { data: bookDetails = [], isLoading: booksLaoding } = useQuery({
         queryKey: ["bookDetails", interest?.book],
@@ -139,15 +138,128 @@ const useBookSuggestion = (CurrentlyViewing) => {
     useEffect(() => {
         if (!booksLaoding) {
             const filteredBooks = bookDetails.filter(book => book._id !== CurrentlyViewing);
-            setBookSuggestion(filteredBooks);
+            setInterestedBooks(filteredBooks);
         }
     }, [bookDetails, CurrentlyViewing, booksLaoding]);
 
-    console.log("Individual books", bookDetails);
+    console.log("Interested Books", bookDetails);
 
 
 
-    // ---------Top Tear Suggestions-----------
+    // ----------------Related books-----------------
+
+    // ---------Fetch related books function-----------
+
+    const fetchRelatedBooks = useCallback(async (writer, publisher, category) => {
+        try {
+            const writerResponse = await axiosPublic.get(`/api/v1/writer/${writer}`);
+            const publisherResponse = await axiosPublic.get(`/api/v1/publisher/${publisher}`);
+            const categoryResponse = await axiosPublic.get(`/api/v1/category/${category}`);
+
+            const writerBooks = writerResponse.data || [];
+            const publisherBooks = publisherResponse.data || [];
+            const categoryBooks = categoryResponse.data || [];
+
+            const relatedBooksData = [...writerBooks, ...publisherBooks, ...categoryBooks];
+
+            // Remove duplicates
+            const uniqueRelatedBooks = Array.from(new Set(relatedBooksData.map(book => book._id))).map(_id => {
+                return relatedBooksData.find(book => book._id === _id);
+            });
+
+            return uniqueRelatedBooks;
+        } catch (error) {
+            console.error("Error fetching related books:", error);
+            return [];
+        }
+    }, [axiosPublic]);
+
+
+
+    // ---------- Related books of Interested books -----------
+
+    const [interestedBooksRelatedBooks, setInterestedBooksRelatedBooks] = useState([]);
+    const [interestedBooksRelatedBooksLoading, setInterestedBooksRelatedBooksLoading] = useState(true);
+
+    // Effect to fetch related books for each interested book
+    useEffect(() => {
+        const fetchRelatedBooksForAllBooks = async () => {
+            try {
+                setInterestedBooksRelatedBooksLoading(true);
+                const relatedBooksForAll = [];
+                for (const book of interestedBooks) {
+                    const { writer, publisher, category } = book;
+                    const relatedBooksForBook = await fetchRelatedBooks(writer, publisher, category);
+                    relatedBooksForAll.push(...relatedBooksForBook);
+                }
+                setInterestedBooksRelatedBooks(relatedBooksForAll);
+            } catch (error) {
+                console.error("Error fetching related books:", error);
+            } finally {
+                setInterestedBooksRelatedBooksLoading(false);
+            }
+        };
+
+        fetchRelatedBooksForAllBooks();
+    }, [interestedBooks, fetchRelatedBooks]);
+
+    if (interestedBooksRelatedBooksLoading === false) {
+        console.log("Related Books", interestedBooksRelatedBooks);
+    }
+
+    console.log("Related Books Loading", interestedBooksRelatedBooksLoading);
+
+
+
+    // --------- Related Books of Currently Viewing -----------
+
+    const [currentlyViewingRelatedBooks, setCurrentlyViewingRelatedBooks] = useState([]);
+
+    const { data: currentlyViewingBookDetails = [], isLoading: currentlyViewingBookLoading } = useQuery({
+        queryKey: ["currentlyViewingBookDetails"],
+        queryFn: async () => {
+            try {
+                const response = await axiosPublic.get(`/api/v1/buy-books/${CurrentlyViewing}`);
+                if (response.status !== 200) {
+                    throw new Error('Failed to fetch book details');
+                }
+                return response.data;
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
+        },
+    });
+
+    useEffect(() => {
+        if (currentlyViewingBookLoading) {
+            return;
+        }
+
+        if (currentlyViewingBookDetails) {
+            const { writer, publisher, category } = currentlyViewingBookDetails;
+            const fetchRelatedBooksForCurrentlyViewing = async () => {
+                try {
+                    const relatedBooksForCurrentlyViewing = await fetchRelatedBooks(writer, publisher, category);
+                    setCurrentlyViewingRelatedBooks(relatedBooksForCurrentlyViewing);
+                } catch (error) {
+                    console.error("Error fetching related books for currently viewing book:", error);
+                    setCurrentlyViewingRelatedBooks([]);
+                }
+            };
+
+            fetchRelatedBooksForCurrentlyViewing();
+        }
+    }, [currentlyViewingBookDetails, currentlyViewingBookLoading, fetchRelatedBooks])
+
+
+    console.log("Currently Viewing Book Id", CurrentlyViewing);
+    console.log("Currently Viewing Book Details", currentlyViewingBookDetails);
+    console.log("Currently Viewing Related Books", currentlyViewingRelatedBooks);
+
+
+
+    // ---------Top Tear Suggestions------------
 
     const [topTearSuggestions, setTopTearSuggestions] = useState([]);
 
@@ -184,7 +296,17 @@ const useBookSuggestion = (CurrentlyViewing) => {
             }
         });
 
-        bookSuggestion.forEach(book => {
+        interestedBooks.forEach(book => {
+            if (
+                interest.writer.includes(book.writer) ||
+                interest.publisher.includes(book.publisher) ||
+                interest.category.includes(book.category)
+            ) {
+                filteredBooks.push(book);
+            }
+        });
+
+        interestedBooksRelatedBooks.forEach(book => {
             if (
                 interest.writer.includes(book.writer) ||
                 interest.publisher.includes(book.publisher) ||
@@ -200,7 +322,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
         });
 
         setTopTearSuggestions(uniqueBooks);
-    }, [booksFromCategory, booksFromWriters, booksFromPublishers, bookSuggestion, interest]);
+    }, [booksFromCategory, booksFromWriters, booksFromPublishers, interestedBooks, interestedBooksRelatedBooks, interest]);
 
     console.log("Top Tier Suggestions", topTearSuggestions);
 
@@ -218,97 +340,10 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
 
 
-    return { bookSuggestion, booksFromCategory, booksFromWriters, booksFromPublishers, topTearSuggestions, suggetionsLoading };
+    return { topTearSuggestions, currentlyViewingRelatedBooks, interestedBooks, booksFromCategory, booksFromWriters, booksFromPublishers, suggetionsLoading };
 };
 
 export default useBookSuggestion;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { useEffect, useState } from 'react';
-// import useOneUser from '../Users/useOneUser';
-
-// const useBookSuggestion = (CurrentlyViewing) => {
-//     const { interest } = useOneUser();
-//     const [bookSuggestion, setBookSuggestion] = useState([]);
-//     const [loading, setLoading] = useState(true);
-
-//     useEffect(() => {
-//         const fetchBookDetails = async () => {
-//             try {
-//                 const bookDetailsPromises = interest?.book?.map(async (_id) => {
-//                     const response = await fetch(`https://boi-binimoy-server.vercel.app/api/v1/buy-books/${_id}`);
-//                     if (!response.ok) {
-//                         throw new Error('Failed to fetch book details');
-//                     }
-//                     const bookData = await response.json();
-//                     return bookData;
-//                 });
-//                 const books = await Promise.all(bookDetailsPromises);
-
-//                 console.log(books);
-
-//                 const filteredBooks = books.filter(book => book._id !== CurrentlyViewing);
-
-//                 setBookSuggestion(filteredBooks);
-//             } catch (error) {
-//                 console.error(error);
-//             } finally {
-//                 setLoading(false);
-//             }
-//         };
-
-//         fetchBookDetails();
-//     }, [interest, CurrentlyViewing]);
-// ;
-
-//     return { bookSuggestion, loading };
-// };
-
-// export default useBookSuggestion;
 
 
 

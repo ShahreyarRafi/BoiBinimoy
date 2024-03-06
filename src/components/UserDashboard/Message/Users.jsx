@@ -1,7 +1,9 @@
 import React from "react";
 import moment from "moment";
+import Image from 'next/image'
 import { HiOutlineCheckCircle } from "react-icons/hi";
 import { RiCheckboxCircleFill } from "react-icons/ri";
+
 
 const Friends = (props) => {
   const { fndInfo, msgInfo } = props.friend;
@@ -11,10 +13,10 @@ const Friends = (props) => {
     <div className="friend">
       <div className="friend-image">
         <div className="image">
-          <img src={`./image/${fndInfo.image}`} alt="" />
+          <Image src={`./image/${fndInfo.image}`} alt="" width={200} height={200} />
           {activeUser &&
-          activeUser.length > 0 &&
-          activeUser.some((u) => u.userId === fndInfo._id) ? (
+            activeUser.length > 0 &&
+            activeUser.some((u) => u.userId === fndInfo._id) ? (
             <div className="active_icon"></div>
           ) : (
             ""
@@ -26,8 +28,8 @@ const Friends = (props) => {
           <h4
             className={
               msgInfo?.senderId !== myId &&
-              msgInfo?.status !== undefined &&
-              msgInfo?.status !== "seen"
+                msgInfo?.status !== undefined &&
+                msgInfo?.status !== "seen"
                 ? "unseen_message Fd_name"
                 : "Fd_name"
             }
@@ -41,8 +43,8 @@ const Friends = (props) => {
               <span
                 className={
                   msgInfo?.senderId !== myId &&
-                  msgInfo?.status !== undefined &&
-                  msgInfo?.status !== "seen"
+                    msgInfo?.status !== undefined &&
+                    msgInfo?.status !== "seen"
                     ? "unseen_message"
                     : ""
                 }
@@ -54,8 +56,8 @@ const Friends = (props) => {
               <span
                 className={
                   msgInfo?.senderId !== myId &&
-                  msgInfo?.status !== undefined &&
-                  msgInfo?.status !== "seen"
+                    msgInfo?.status !== undefined &&
+                    msgInfo?.status !== "seen"
                     ? "unseen_message"
                     : ""
                 }
@@ -77,7 +79,7 @@ const Friends = (props) => {
         {myId === msgInfo?.senderId ? (
           <div className="seen-unseen-icon">
             {msgInfo.status === "seen" ? (
-              <img src={`./image/${fndInfo.image}`} alt="" />
+              <Image src={`./image/${fndInfo.image}`} alt="" width={200} height={200} />
             ) : msgInfo.status === "delivared" ? (
               <div className="delivared">
                 <RiCheckboxCircleFill />

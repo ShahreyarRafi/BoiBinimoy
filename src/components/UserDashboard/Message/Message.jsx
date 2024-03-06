@@ -1,8 +1,9 @@
 "use client";
 
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoSearch, IoSearchCircle } from "react-icons/io5";
+import Image from 'next/image'
+
 
 export default function Message() {
   const [users, setUsers] = useState([]);
@@ -31,16 +32,13 @@ export default function Message() {
           </div>
 
           <div>
-            {users.map((item, index) => ( 
-              <div key={index}> 
-                <img src={item.profile} alt="" />
+            {users.map((item, index) => (
+              <div key={index}>
+                <Image src={item.profile} alt="profile" width={200} height={200} />
               </div>
             ))}
           </div>
-
         </div>
-
-        <div></div>
       </div>
     </div>
   );

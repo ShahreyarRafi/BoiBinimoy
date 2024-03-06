@@ -48,7 +48,7 @@ const BlogDetails = ({}) => {
         <div>
           {/* book img section */}
           <div className="w-full">
-            <Image
+            <Image 
               src={blog?.cover_image}
               alt="book"
               width={500}
@@ -67,7 +67,11 @@ const BlogDetails = ({}) => {
               {blog?.title}
             </h2>
             <p className="text-xs sm:text-sm md:text-base lg:text-lg text-justify">
-              {blog?.body}
+              {blog?.body?.split("\n").map((paragraph, index) => (
+                <p key={index}>
+                  {paragraph} <br />
+                </p>
+              ))}
             </p>
           </div>
         </div>

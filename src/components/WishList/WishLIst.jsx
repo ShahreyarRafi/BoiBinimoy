@@ -1,20 +1,26 @@
-"use client"
+"use client";
 
-import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
-import useOneUser from '@/Hooks/Users/useOneUser';
-import useWishListBook from '@/Hooks/wishList/useWishListBook';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useParams } from 'next/navigation';
-import React from 'react';
-import Swal from 'sweetalert2';
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
+import useWishListBook from "@/Hooks/wishList/useWishListBook";
+import Image from "next/image";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import React from "react";
+import { IoCartOutline } from "react-icons/io5";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import Swal from "sweetalert2";
+import PageLoading from "../Shared/loadingPageBook/PageLoading";
+import useOneUser from "@/Hooks/Users/useOneUser";
+import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
 
 const WishLIst = () => {
-
-    const [wishListBook, refetch, isLoading] = useWishListBook()
+    const [wishListBook, refetch, isLoading] = useWishListBook();
     const axiosSecure = useAxiosSecure();
     const { currentUser } = useOneUser();
+    const {refetch : cartRefetch} = useGetMyCarts()
+
     console.log("wish list data ", wishListBook);
+
 
 
     const handleBookDelete = (id, title) => {
@@ -59,40 +65,55 @@ const WishLIst = () => {
 
 
 
+
     const handleCart = (book) => {
         const user_name = currentUser?.name;
         const user_email = currentUser?.email;
-        const book_id = book._id;
-        const price = book.unit_price;
+        const book_id = book.book_id; // Corrected
+        const price = book.price; // Assuming 'price' is a property of 'book'
         const quantity = 1;
-
+        
         const addCart = {
             user_name,
             user_email,
-            owner_email: book?.owner_email,
+            owner_email: book.owner_email,
             book_id,
-            price,
+            unit_price: book.unit_price,
+            total_price: book.total_price,
             quantity,
-            isDeliverd: false
-        }
+            isDeliverd: false,
+            cover_image: book.cover_image,
+            title: book.title,
+            stock_limit: book.stock_limit
+        };
 
-        console.log(" add cart data", addCart);
-        axiosSecure.post("/api/v1/carts", addCart)
-            .then(response => {
-                console.log('Wishlist item added:', response.data);
-                refetch()
+        console.log(addCart);
+
+        axiosSecure
+            .post("/api/v1/carts", addCart)
+            .then((response) => {
+                console.log("data added database", response);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Add book to the cart.",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                cartRefetch();
             })
-            .catch(error => {
-                console.error('Error adding to wishlist:', error);
-            })
-    }
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    };
+
 
 
 
     if (isLoading) {
         return (
-            <div className="text-center items-center justify-center flex flex-col min-h-screen">
-                <span className="loading loading-ball loading-lg"></span>
+            <div>
+                <PageLoading />
             </div>
         );
     }
@@ -100,94 +121,78 @@ const WishLIst = () => {
     // Render message if specific books are not found
     if (wishListBook.length === 0) {
         return (
-            <div>
-                <h1 className="text-center flex flex-col justify-center font-semibold md:text-3xl lg:text-4xl min-h-screen"> Books Not Found....</h1>
+            <div className="text-center my-20">
+                <p className=" my-10">Your Wishlist is empty.</p>
+                <Link
+                    href={`/buyBooks`}
+                    className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white"
+                >
+                    Add to wishlist
+                </Link>
             </div>
         );
     }
 
-
     return (
-        <div className='lg:py-6 py-3 lg:px-6  px-3 w-full lg:w-11/12 mx-auto rounded-xl bg-gray-100 '>
-            <div className=" grid grid-cols-1 md:grid-cols-2 gap-6  ">
-
-                {
-                    wishListBook.map(book => <div key={book._id}>
-                        <div className=" w-full lg:w-full h-[300px] lg:flex">
-
-                            <div className=" flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
-
-                                <Image
-                                    src={book?.cover_image}
-                                    priority width={150} height={100}
-                                    alt="Profile"
-                                    className=" w-full  "
-                                />
-
-
+        <div className="max-w-6xl mx-auto px-3 my-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                {wishListBook.map((book) => (
+                    <div
+                        key={book._id}
+                        className="w-full bg-50 flex justify-between gap-3 border-2 rounded-xl border-teal-800"
+                    >
+                        <div className="w-full py-2 px-5 my-2">
+                            <div className="text-teal-800">
+                                <h1 className="text-2xl font-bold">
+                                    {book?.title.length < 30
+                                        ? book.title
+                                        : `${book.title.slice(0, 30)}..`}
+                                </h1>
+                                <p className="text-xs font-bold">
+                                    <span className="font-light">by</span> {book?.writer}
+                                </p>
                             </div>
 
-                            <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                                <div className="mb-8">
-                                    <p className="text-sm text-gray-600 flex items-center">
-                                        <svg className="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                            <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-                                        </svg>
-                                        Members only
-                                    </p>
-                                    {/* book title */}
-                                    <div className="text-gray-900 font-bold text-xl mb-2 leading-10 ">
-                                        <h1>
-                                            {book?.title}
-                                        </h1>
-                                        <h1> Writer : {book?.writer} </h1>
-
-                                    </div>
-
-                                    <p className="text-gray-900 font-bold text-xl mb-2">  Price : ${book?.unit_price} </p>
-
-                                    <div className=' w-full mx-auto px-4 flex lg:gap-6  gap-2 lg:pt-10 pt-4 md:pt-6 '>
-                                        <button
-                                            type="button"
-                                            class="inline-block rounded bg-info lg:px-6 px-2 pb-1 pt-1 lg:pt-2.5 lg:pb-2  text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(84,180,211,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.2),0_4px_18px_0_rgba(84,180,211,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.2),0_4px_18px_0_rgba(84,180,211,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.2),0_4px_18px_0_rgba(84,180,211,0.1)]">
-                                            Details
+                            <div className="flex items-center justify-between">
+                                <h6 className="text-3xl font-bold text-teal-800">
+                                    {book?.total_price}
+                                    <span className="text-xs font-light">$</span>
+                                </h6>
+                                <div>
+                                    {/* remove button */}
+                                    <button onClick={() => handleBookDelete(book._id, book.title)} className="px-2 text-xl text-teal-800 border-r-2 border-teal-800">
+                                        <RiDeleteBin6Line />
+                                    </button>
+                                    {/* buy now button */}
+                                    {/* <Link href={`/buyBooks/${book?._id}`}>
+                                        <button className="px-2 text-xl text-teal-800">
+                                            <IoCartOutline />
                                         </button>
-
-                                        {/* remove button */}
-                                        <button
-                                            onClick={() => handleBookDelete(book._id, book.title)}
-                                            type="button"
-                                            class="inline-block rounded bg-[#DC4C64]  lg:px-6 px-2 pb-1 pt-1 lg:pt-2.5 lg:pb-2  text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]">
-                                            Remove
-                                        </button>
-
-                                        {/* buy now button */}
-
-                                        <button
-                                            onClick={() => handleCart(book)}
-                                            type="button"
-                                            class="inline-block rounded bg-success  lg:px-6 px-2 pb-1 pt-1 lg:pt-2.5 lg:pb-2  text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]">
-                                            Add to cart
-                                        </button>
+                                    </Link> */}
 
 
-                                    </div>
-                                </div>
-                                <div className="flex items-center">
-                                    {/* user image */}
+                                    <button onClick={() => handleCart(book)} className="px-2 text-xl text-teal-800">
+                                        <IoCartOutline />
+                                    </button>
 
                                 </div>
                             </div>
                         </div>
-                    </div>)
-                }
 
-
-
-
+                        <div className="w-28">
+                            <Image
+                                src={book?.cover_image}
+                                priority
+                                width={250}
+                                height={50}
+                                alt=""
+                                className="w-28 h-32 rounded-r-xl object-cover"
+                            />
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
-
     );
 };
 

@@ -32,9 +32,6 @@ export default function ExchangeCard({ item, }) {
 
   const filteredData = wishListBook.filter(book => book.book_id === _id);
 
-  console.log(filteredData);
-
-
   const handleAddToWishlist = () => {
 
     const user_name = currentUser?.name;

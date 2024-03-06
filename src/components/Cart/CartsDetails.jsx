@@ -11,10 +11,9 @@ import { axiosSecure } from "@/Hooks/Axios/useAxiosSecure";
 
 const CartsDetails = ({ cart, refetch }) => {
   const [error, setError] = useState("");
-  const [quantity, setQuantity] = useState(cart?.cart?.quantity);
+  const [quantity, setQuantity] = useState(cart?.quantity);
   const [lastFetchedBookId, setLastFetchedBookId] = useState(null);
  
-  console.log(cart?.cart.quantity);
 
   if (lastFetchedBookId !== cart.book_id) {
     // The book_id has changed, set a loading state
@@ -24,27 +23,25 @@ const CartsDetails = ({ cart, refetch }) => {
 
 
   const handleIncrement = async (id) => {
-    if (quantity < cart?.book?.stock_limit) {
+    if (quantity < cart?.stock_limit) {
       setQuantity((prevQuantity) => prevQuantity + 1);
-      const price = quantity*cart?.book?.price;
-      const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {quantity, price});
-      console.log(res?.data);
+      const total_price = quantity*cart?.unit_price;
+      const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {quantity, total_price});
       if(res?.data){
         refetch();
       }
     } else {
-      setError(`Opps this book limit is ${cart?.book?.stock_limit}`);
+      setError(`Opps this book limit is ${cart?.stock_limit}`);
     }
   };
 
-  console.log(quantity);
+  
   const handleDecrement = async (id) => {
     if (quantity > 1) {
       setError("");
       setQuantity((prevQuantity) => prevQuantity - 1);
-      const price = quantity*cart?.book?.price;
-      const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {quantity, price});
-      console.log(res.data);
+      const total_price = quantity*cart?.unit_price;
+      const res = await axiosSecure.patch(`/api/v1/carts/${id}`, {quantity, total_price});
       if(res.data){
      
         refetch();
@@ -71,7 +68,6 @@ const handleDeleteCart = (id, title) => {
         axiosSecure
           .delete(`/api/v1/delete-cart/${id}`)
           .then((response) => {
-            console.log(response.data);
             if (response.data) {
               Swal.fire(
                 "Deleted!",
@@ -99,7 +95,7 @@ const handleDeleteCart = (id, title) => {
       <div className="bg-white rounded-3xl lg:rounded-none shadow-sm hover:bg-[#19a49113] lg:shadow-inherit border border-gray-100">
         <div className="grid grid-cols-6 items-center text-center font-semibold border border-gray-100 p-5">
           <Image
-            src={cart?.book?.cover_image}
+            src={cart?.cover_image}
             width={150}
             height={200}
             alt="book"
@@ -107,19 +103,19 @@ const handleDeleteCart = (id, title) => {
             style={{ width: "50%", height: "100%" }}
             className="mx-auto"
           />
-          <h5>{cart?.book?.title}</h5>
-          <h5>{cart?.book?.price} BDT</h5>
+          <h5>{cart?.title}</h5>
+          <h5>{cart?.unit_price} BDT</h5>
           <h5>
             <div className="flex items-center gap-2">
               <button
-                onClick={() => handleDecrement(cart?.cart._id)}
+                onClick={() => handleDecrement(cart?._id)}
                 className="bg-base-300 p-3"
               >
                 <FaMinus className="mx-auto"></FaMinus>
               </button>
-              <h3>{cart?.cart?.quantity}</h3>
+              <h3>{cart?.quantity}</h3>
               <button
-                onClick={() => handleIncrement(cart?.cart._id)}
+                onClick={() => handleIncrement(cart?._id)}
                 className="bg-base-300 p-3"
               >
                 <FaPlus className="mx-auto"></FaPlus>
@@ -127,10 +123,10 @@ const handleDeleteCart = (id, title) => {
               {error && <p className="text-red-500">{error}</p>}
             </div>
           </h5>
-          <h5>{cart?.cart?.price} BDT</h5>
+          <h5>{cart?.total_price} BDT</h5>
           <div>
             <button
-              onClick={() => handleDeleteCart(cart?.cart?._id, cart?.book?.title)}
+              onClick={() => handleDeleteCart(cart?._id, cart?.title)}
               className=" bg-red-500 rounded-full text-white p-3"
             >
               <RxCross2 className="mx-auto"></RxCross2>

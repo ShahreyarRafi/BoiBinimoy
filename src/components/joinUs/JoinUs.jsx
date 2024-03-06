@@ -60,7 +60,7 @@ const JoinUs = () => {
     const email = data.email;
     const password = data.password;
 
-    const userInfo = { name, email, password , isFirstLogin: true };
+    const userInfo = { name, email, password, isFirstLogin: true };
 
 
 
@@ -152,10 +152,10 @@ const JoinUs = () => {
               </div>
               <input type="submit" value="Login" className="btn solid" />
               <p className="social-text">Or Sign in with social platforms</p>
-            
+
             </form>
 
-        
+
 
             <SocialLogin></SocialLogin>
 
@@ -194,7 +194,7 @@ const JoinUs = () => {
               </div>
               <input type="submit" className="btn" value="Sign up" />
               <p className="social-text">Or Sign up with social platforms</p>
-            
+
             </form>
           </div>
         </div>
@@ -257,8 +257,34 @@ const JoinUs = () => {
               </Link>
             </form>
           </div>
+          <Image
+            src={logImg}
+            className="image"
+            alt=""
+            height={1000}
+            width={1000}
+          />
         </div>
-      </dialog>
+        <div className="panel right-panel">
+          <div className="content">
+            <h3>One of us ?</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+              laboriosam ad deleniti.
+            </p>
+            <button className="btn transparent" id="sign-in-btn">
+              Sign in
+            </button>
+          </div>
+          <Image
+            src={regImg}
+            className="image"
+            alt=""
+            height={1000}
+            width={1000}
+          />
+        </div>
+      </dialog >
     </>
   );
 };
