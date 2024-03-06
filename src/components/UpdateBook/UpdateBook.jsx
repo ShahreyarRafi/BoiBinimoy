@@ -295,12 +295,9 @@ const UpdateBook = () => {
                   Uploade book cover Image:
                 </h3>
                 {/* iamge */}
-                <div
-                  for="imageFile"
-                  className="w-full h-32 border flex justify-center items-center border-gray-300 rounded-lg"
+                <div className="w-full h-32 border flex justify-center items-center border-gray-300 rounded-lg"
                 >
-                  <label
-                    for="imageFile"
+                  <label htmlFor="imageFile"
                     className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
                   >
                     <BsUpload /> <span> Upload Here</span>
@@ -317,12 +314,9 @@ const UpdateBook = () => {
                 {/* 3 image uploade feilds */}
                 <div className="grid grid-cols-3 gap-3 mt-2">
                   {/* 1 */}
-                  <div
-                    for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
+                  <div className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
                   >
-                    <label
-                      for="imageFile"
+                    <label htmlFor="imageFile"
                       className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
                     >
                       <BsUpload />
@@ -336,12 +330,9 @@ const UpdateBook = () => {
                     />
                   </div>
                   {/* 2 */}
-                  <div
-                    for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
+                  <div className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
                   >
-                    <label
-                      for="imageFile"
+                    <label htmlFor="imageFile"
                       className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
                     >
                       <BsUpload />
@@ -355,12 +346,9 @@ const UpdateBook = () => {
                     />
                   </div>
                   {/* 3 */}
-                  <div
-                    for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
+                  <div className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
                   >
-                    <label
-                      for="imageFile"
+                    <label htmlFor="imageFile"
                       className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
                     >
                       <BsUpload />

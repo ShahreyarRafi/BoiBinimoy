@@ -277,8 +277,7 @@ const ExchangeAdd = () => {
                   {/* image */}
                   <div className="w-full h-[85%] border flex justify-center items-center border-gray-300 rounded-lg">
                     {!selectedFile ? (
-                      <label
-                        htmlFor="imageFile1"
+                      <label htmlFor="imageFile1"
                         className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
                       >
                         <BsUpload /> <span> Upload Here</span>
