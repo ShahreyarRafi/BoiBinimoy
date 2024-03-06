@@ -184,7 +184,7 @@ const AddBlog = () => {
                         <BsUpload /> <span> Upload Here</span>
                       </label>
                     ) : (
-                      <Image
+                      <Image 
                         src={preview}
                         width={500}
                         height={500}

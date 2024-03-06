@@ -93,7 +93,7 @@ const MyBlogCard = ({ item, refetch }) => {
     <div>
       <div className="rounded shadow-lg w-full h-full flex flex-col justify-between">
         <div>
-          <Image
+          <Image 
             src={item?.cover_image}
             className="rounded h-[200px]"
             width={500}

@@ -8,7 +8,7 @@ const AllPublisherCard = ({ item }) => {
       <Link href={`/publisher/${item?._id}`}>
         <div className="flex items-center border-4 border-teal-200 py-1 px-2 mx-auto shadow-xl rounded-full hover:bg-teal-200 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
           <div className="w-1/3">
-            <Image
+            <Image 
               src={item?.logo}
               width={100}
               height={100}
