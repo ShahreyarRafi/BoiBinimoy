@@ -6,16 +6,9 @@ import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import Link from "next/link";
 import PageLoading from "../Shared/loadingPageBook/PageLoading";
 import React, { useState } from "react";
-import { PiChatCircleDuotone } from "react-icons/pi";
-import { MdBookmarkAdd, MdBookmarkRemove } from "react-icons/md";
-import { CiHeart } from "react-icons/ci";
-import { FaHeart } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 
 const Blog = () => {
-  const [likes, setLikes] = useState({});
-  const [comments, setComments] = useState({});
-  const [bookmarks, setBookmarks] = useState({});
   const axiosPublic = useAxiosPublic();
   const [expandedBlogs, setExpandedBlogs] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
@@ -28,32 +21,6 @@ const Blog = () => {
     const words = content.split(/\s+/).length;
     const minutes = Math.ceil(words / wordsPerMinute);
     return minutes;
-  };
-
-  const handleLike = (blogId) => {
-    // Simulating a backend request to toggle like status
-    setLikes((prevLikes) => {
-      const updatedLikes = { ...prevLikes };
-      updatedLikes[blogId] = !prevLikes[blogId];
-
-      // send a request to the backend here to update like status
-
-      return updatedLikes;
-    });
-  };
-
-  const handleComment = (blogId, comment) => {
-    // Send a request to the backend to handle the comment functionality
-    // Update the comments state accordingly
-  };
-
-  const handleBookmark = (blogId) => {
-    setBookmarks((prevBookmarks) => {
-      const updatedBookmarks = { ...prevBookmarks };
-      updatedBookmarks[blogId] = !prevBookmarks[blogId];
-      // send a request to the backend here to update bookmark status
-      return updatedBookmarks;
-    });
   };
 
   const { data: blogs = [], isLoading } = useQuery({
@@ -135,9 +102,20 @@ const Blog = () => {
                     alt="Main blog"
                     className="w-full h-96 object-cover rounded-lg"
                   />
-                  <p className="text-[#016961] text-sm font-bold mt-4">
-                    {blog?.category}
-                  </p>
+                  <div className="flex justify-between items-center my-3 px-3">
+                    <div className="text-xs text-gray-500">
+                      <p>
+                        Published on: {blog?.publish_date} at{" "}
+                        {blog?.publish_time}
+                      </p>
+                      <p>Reading Time: {calculateReadingTime(blog.body)} min</p>
+                    </div>
+                    <div>
+                      <p className="bg-[#016961] px-2 py-1 rounded-md text-xs text-white">
+                        {blog?.category}
+                      </p>
+                    </div>
+                  </div>
 
                   <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my- leading-tight">
                     {blog?.title}
@@ -172,50 +150,6 @@ const Blog = () => {
                       </>
                     )}
                   </div>
-
-                  {/* Display reading time */}
-                  <p className="text-xs text-gray-500 mt-1">
-                    Reading Time: {calculateReadingTime(blog.body)} min
-                  </p>
-                </div>
-
-                {/* Like, Comment, Bookmark buttons */}
-                <div className="flex items-center mt-2 space-x-3">
-                  <button
-                    onClick={() => handleLike(blog._id)}
-                    className="flex items-center space-x-1 cursor-pointer text-gray-500"
-                  >
-                    {likes[blog._id] ? (
-                      <FaHeart className="h-4 w-4 text-[#016961]" />
-                    ) : (
-                      <CiHeart className="h-4 w-4" />
-                    )}
-                    {likes[blog._id] && (
-                      <span className="text-[#016961] ml-1">Liked</span>
-                    )}
-                  </button>
-
-                  <button
-                    onClick={() => handleComment(blog._id)}
-                    className="flex items-center space-x-1 cursor-pointer text-gray-500"
-                  >
-                    <PiChatCircleDuotone className="h-4 w-4" />
-                    <span>Comment</span>
-                  </button>
-
-                  <button
-                    onClick={() => handleBookmark(blog._id)}
-                    className="flex items-center space-x-1 cursor-pointer text-gray-500"
-                  >
-                    {bookmarks[blog._id] ? (
-                      <MdBookmarkRemove className="h-4 w-4 text-[#016961]" />
-                    ) : (
-                      <MdBookmarkAdd className="h-4 w-4" />
-                    )}
-                    {bookmarks[blog._id] && (
-                      <span className="text-[#016961] ml-1">Bookmarked</span>
-                    )}
-                  </button>
                 </div>
               </div>
             ))}
