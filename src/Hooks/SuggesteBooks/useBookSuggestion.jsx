@@ -268,9 +268,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
         const filteredBooks = [];
         booksFromCategory.forEach(book => {
             if (
-                interest.writer.includes(book.writer) ||
-                interest.publisher.includes(book.publisher) ||
-                interest.book.includes(book._id)
+                interest?.writer?.includes(book.writer) ||
+                interest?.publisher?.includes(book.publisher) ||
+                interest?.book?.includes(book._id)
             ) {
                 filteredBooks.push(book);
             }
@@ -278,9 +278,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
         booksFromWriters.forEach(book => {
             if (
-                interest.publisher.includes(book.publisher) ||
-                interest.category.includes(book.category) ||
-                interest.book.includes(book._id)
+                interest?.publisher?.includes(book.publisher) ||
+                interest?.category?.includes(book.category) ||
+                interest?.book?.includes(book._id)
             ) {
                 filteredBooks.push(book);
             }
@@ -288,9 +288,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
         booksFromPublishers.forEach(book => {
             if (
-                interest.writer.includes(book.writer) ||
-                interest.category.includes(book.category) ||
-                interest.book.includes(book._id)
+                interest?.writer?.includes(book.writer) ||
+                interest?.category?.includes(book.category) ||
+                interest?.book?.includes(book._id)
             ) {
                 filteredBooks.push(book);
             }
@@ -298,9 +298,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
         interestedBooks.forEach(book => {
             if (
-                interest.writer.includes(book.writer) ||
-                interest.publisher.includes(book.publisher) ||
-                interest.category.includes(book.category)
+                interest?.writer?.includes(book.writer) ||
+                interest?.publisher?.includes(book.publisher) ||
+                interest?.category?.includes(book.category)
             ) {
                 filteredBooks.push(book);
             }
@@ -308,9 +308,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
         interestedBooksRelatedBooks.forEach(book => {
             if (
-                interest.writer.includes(book.writer) ||
-                interest.publisher.includes(book.publisher) ||
-                interest.category.includes(book.category)
+                interest?.writer?.includes(book.writer) ||
+                interest?.publisher?.includes(book.publisher) ||
+                interest?.category?.includes(book.category)
             ) {
                 filteredBooks.push(book);
             }
