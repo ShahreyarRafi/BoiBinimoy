@@ -99,8 +99,7 @@ const Navend = () => {
             </li>
             <li className="mx-auto">
               <div className="flex gap-5 items-center">
-                <Link
-                  href="/cart"
+                <Link href="/cart"
                   className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1"
                 >
                   View carts

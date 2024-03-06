@@ -20,7 +20,6 @@ const Dashboard = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [isAdmin] = useAdmin();
-  console.log("admin ", isAdmin);
 
   const toggleNotification = () => {
     setIsOpen(!isOpen);

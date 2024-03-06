@@ -14,7 +14,7 @@ import Writer from "@/components/Home/Writer/Writer";
 const HomePage = () => {
   return (
     <div className="bg-teal-50">
-      <div className="">
+      <div>
         <div className="parallax hidden md:block">
           <Banner />
         </div>
