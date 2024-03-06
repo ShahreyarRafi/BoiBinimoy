@@ -7,7 +7,7 @@ const Navlinks = () => {
   const currentPath = usePathname();
 
   const navlinks = (
-    <div className="md:flex items-center justify-around gap-10 ">
+    <div className="md:flex items-center justify-around md:gap-8 lg:gap-10">
       <Link className={currentPath === "/" && "active-link"} href="/">
         <li>Home</li>
       </Link>
@@ -45,7 +45,7 @@ const Navlinks = () => {
         <li>Dashboard</li>
       </Link>
       <Link
-        className="border-2 border-white rounded-full py-2 px-3"
+        className="border-2 border-white rounded-full p-2"
         href="/joinUs"
       >
         <li>Join Now</li>

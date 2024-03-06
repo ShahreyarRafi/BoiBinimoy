@@ -40,7 +40,7 @@ const AddBlog = () => {
 
   // blogs submitting function
   const handleBlogSubmit = async (data) => {
-    console.log("cliked");
+    console.log("clicked");
     const { form, title, tags, body, category } = data;
     const uploadedImageUrl = await uploadImage();
 
@@ -137,9 +137,7 @@ const AddBlog = () => {
 
                 {/* image div start*/}
                 <div className="flex flex-col h-full w-full pb-3">
-                  <div
-                    for="imageFile"
-                    className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
+                  <div className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
                   >
                     {!selectedFile ? (
                       <label
@@ -149,7 +147,7 @@ const AddBlog = () => {
                         <BsUpload /> <span> Upload Here</span>
                       </label>
                     ) : (
-                      <Image 
+                      <Image
                         src={preview}
                         width={500}
                         height={500}

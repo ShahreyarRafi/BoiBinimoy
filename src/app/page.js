@@ -15,7 +15,7 @@ import ForYou from "@/components/Home/ForYou/ForYou";
 const HomePage = () => {
   return (
     <div className="bg-teal-50">
-      <div className="">
+      <div>
         <div className="parallax hidden md:block">
           <Banner />
         </div>
