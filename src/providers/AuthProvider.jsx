@@ -66,9 +66,8 @@ const AuthProvider = ({ children }) => {
   //   logOut account
   const logOut = async () => {
     Cookies.remove("token", { path: "/", secure: false, sameSite: "Strict" });
-
     console.log("token removed");
-
+    localStorage.removeItem("email")
     return signOut(auth);
   };
 
@@ -77,7 +76,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubcribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-
+      localStorage.setItem("email", user?.email);
       if (user?.email) {
         const userEmail = { email: user?.email };
         axiosPublic

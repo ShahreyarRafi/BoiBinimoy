@@ -275,6 +275,14 @@ const Blog = () => {
                   </p>
                 </div>
               </div>
+              <hr className="my-2" />
+
+              <p className=" mt-2 text-xs sm:text-sm md:text-base text-justify">
+                {blog?.body?.slice(0, 500) + "..."}
+                <Link href={`/blogs/${blog?._id}`} className="text-blue-400">
+                  Read more
+                </Link>
+              </p>
             </div>
           ))}
         </div>
