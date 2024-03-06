@@ -21,23 +21,23 @@ import RelatedBooks from "../RelatedBooks/RelatedBooks";
 
 const BuyBookDetails = () => {
   const { user } = useAuth();
-  const { interest } = useOneUser()
+  const { interest } = useOneUser();
   const param = useParams();
   const book_id = param.buyId;
   const axiosSecure = useAxiosSecure();
   const { currentUser } = useOneUser();
-  const { reviews, isPending, refetch } = useReviews(book_id)
-  const { book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
-  const { refetch: cartRefetch } = useGetMyCarts()
+  const { reviews, isPending, refetch } = useReviews(book_id);
+  const {
+    book,
+    isLoading: bookLoading,
+    refetch: bookRefetch,
+  } = useGetOneBuyBook(book_id);
+  const { refetch: cartRefetch } = useGetMyCarts();
 
   if (bookLoading || isPending) {
-    return (
-      <PageLoading />
-    )
+    return <PageLoading />;
   }
   console.log("book: ", book_id, book);
-
-
 
   // Handle comment form
   const handleSubmit = (e) => {
@@ -98,8 +98,8 @@ const BuyBookDetails = () => {
       isDeliverd: false,
       cover_image: book?.cover_image,
       title: book?.title,
-      stock_limit: book?.stock_limit
-    }
+      stock_limit: book?.stock_limit,
+    };
 
     axiosSecure
       .post("/api/v1/carts", addCart)
@@ -111,13 +111,12 @@ const BuyBookDetails = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        cartRefetch()
+        cartRefetch();
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-  }
-
+  };
 
   return (
     <div className="w-full bg-teal-50">
@@ -243,9 +242,7 @@ const BuyBookDetails = () => {
           <RelatedBooks CurrentlyViewing={book._id}> </RelatedBooks>
         </div>
 
-
-
-        <div>
+        <div className="max-w-6xl mx-auto">
           <SuggestedBooks CurrentlyViewing={book._id}></SuggestedBooks>
         </div>
 
@@ -268,8 +265,6 @@ const BuyBookDetails = () => {
                 <IoIosSend />
               </button>
             </form>
-
-
 
             {/* all review */}
             <div className="p-2 space-y-4">
