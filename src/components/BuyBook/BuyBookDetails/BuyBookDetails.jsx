@@ -92,9 +92,13 @@ const BuyBookDetails = () => {
       user_email,
       owner_email: book?.owner_email,
       book_id,
-      price,
+      unit_price: price,
+      total_price: price,
       quantity,
-      isDeliverd: false
+      isDeliverd: false,
+      cover_image: book?.cover_image,
+      title: book?.title,
+      stock_limit: book?.stock_limit
     }
 
     axiosSecure

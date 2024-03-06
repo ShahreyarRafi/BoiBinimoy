@@ -12,7 +12,7 @@ const useOneUser = () => {
   const { data: currentUser = [], isPending: isLoading } = useQuery({
     queryKey: ["currentUser", user?.email],
     queryFn: async () => {
-      const email = await user.email;
+      const email = localStorage.getItem("email")
       const res = await axiosPublic.get(`api/v1/users/${email}`);
       return res.data;
     },
