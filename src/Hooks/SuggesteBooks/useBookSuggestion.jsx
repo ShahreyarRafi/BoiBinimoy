@@ -148,10 +148,14 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
     // ----------------Related books-----------------
 
-    // ---------Fetch related books function-----------
+    // ---------Fetch related books function-------
+    
+    const [relatedBooksLoading, setRelatedBooksLoading] = useState(false);
+
 
     const fetchRelatedBooks = useCallback(async (writer, publisher, category) => {
         try {
+            setRelatedBooksLoading(true); // Set loading state to true
             const writerResponse = await axiosPublic.get(`/api/v1/writer/${writer}`);
             const publisherResponse = await axiosPublic.get(`/api/v1/publisher/${publisher}`);
             const categoryResponse = await axiosPublic.get(`/api/v1/category/${category}`);
@@ -167,9 +171,11 @@ const useBookSuggestion = (CurrentlyViewing) => {
                 return relatedBooksData.find(book => book._id === _id);
             });
 
+            setRelatedBooksLoading(false); // Set loading state to false after data fetching
             return uniqueRelatedBooks;
         } catch (error) {
             console.error("Error fetching related books:", error);
+            setRelatedBooksLoading(false); // Set loading state to false in case of error
             return [];
         }
     }, [axiosPublic]);
@@ -333,10 +339,17 @@ const useBookSuggestion = (CurrentlyViewing) => {
     const [suggetionsLoading, setSuggetionsLoading] = useState(true);
 
     useEffect(() => {
-        if (!booksLaoding && !categoryDetailsLoading && !writersBooksLoading && !publisherBooksLoading) {
+        if (
+            !booksLaoding && 
+            !categoryDetailsLoading && 
+            !writersBooksLoading && 
+            !publisherBooksLoading &&
+            !relatedBooksLoading &&
+            !currentlyViewingBookLoading) {
+                
             setSuggetionsLoading(false);
         }
-    }, [bookDetails, booksLaoding, categoryDetailsLoading, writersBooksLoading, publisherBooksLoading]);
+    }, [bookDetails, booksLaoding, categoryDetailsLoading, writersBooksLoading, publisherBooksLoading, relatedBooksLoading, currentlyViewingBookLoading]);
 
 
 
