@@ -68,7 +68,7 @@ const ContactUs = () => {
               className={`max-w-md mx-auto mt-8 p-6 rounded-lg shadow-md `}
             >
               <div className="mb-3">
-                <label className="block ">Name</label>
+                <label htmlFor="user_name" className="block ">Name</label>
 
                 <input
                   type="text"
@@ -80,7 +80,7 @@ const ContactUs = () => {
               </div>
 
               <div className="mb-3">
-                <label className="block ">Email</label>
+                <label htmlFor="user_email" className="block ">Email</label>
 
                 <input
                   type="email"
@@ -93,7 +93,7 @@ const ContactUs = () => {
                 />
               </div>
               <div className="mb-3">
-                <label className="block ">Subject</label>
+                <label htmlFor="subject" className="block ">Subject</label>
 
                 <input
                   type="text"
@@ -106,7 +106,7 @@ const ContactUs = () => {
               </div>
 
               <div className="mb-3">
-                <label className="block ">Message</label>
+                <label htmlFor="message" className="block ">Message</label>
 
                 <textarea
                   placeholder="Type your message"

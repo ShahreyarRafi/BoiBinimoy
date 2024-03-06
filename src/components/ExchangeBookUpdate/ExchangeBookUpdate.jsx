@@ -16,13 +16,13 @@ const ExchangeBookUpdate = () => {
   const axiosSecure = useAxiosSecure();
   const router = useRouter();
 
-  const {exchange_update_book_id } = useParams()
+  const { exchange_update_book_id } = useParams()
 
 
   const { getOneExchangeBook, isLoading } = useGetOneExchangeBook(exchange_update_book_id)
   console.log(getOneExchangeBook);
 
- 
+
 
 
   if (isLoading) {
@@ -31,8 +31,8 @@ const ExchangeBookUpdate = () => {
 
   const { _id, description, title,
     edition, bookType,
-    
-condition,
+
+    condition,
     pages, price, whatYouWant, owner,
     publisher, writer, bookCategory, language, publication_year, } = getOneExchangeBook || {};
   console.log(exchange_update_book_id);
@@ -52,9 +52,9 @@ condition,
     const bookCategory = form.bookCategory.value;
     const edition = form.edition.value;
     const pages = form.pages.value;
-    const 
-    condition = form.
-    condition.value;
+    const
+      condition = form.
+        condition.value;
     const price = form.price.value;
     const description = form.description.value;
 
@@ -63,7 +63,7 @@ condition,
       title,
       uploadTime: currentDate,
       description,
-      edition, bookType,condition,
+      edition, bookType, condition,
       pages, price, whatYouWant, owner,
       publisher, writer, bookCategory, language, publication_year,
 
@@ -292,13 +292,10 @@ condition,
                 <h3 className="text-sm font-light py-2">
                   Uploade book cover Image:
                 </h3>
-                {/* iamge */}
-                <div
-                  for="imageFile"
-                  className="w-full h-32 border flex justify-center items-center border-gray-300 rounded-lg"
+                {/* image */}
+                <div className="w-full h-32 border flex justify-center items-center border-gray-300 rounded-lg"
                 >
-                  <label
-                    for="imageFile"
+                  <label htmlFor="imageFile"
                     className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
                   >
                     <BsUpload /> <span> Upload Here</span>
@@ -315,12 +312,9 @@ condition,
                 {/* 3 image uploade feilds */}
                 <div className="grid grid-cols-3 gap-3 mt-2">
                   {/* 1 */}
-                  <div
-                    for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
+                  <div className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
                   >
-                    <label
-                      for="imageFile"
+                    <label htmlFor="imageFile"
                       className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
                     >
                       <BsUpload />
@@ -334,12 +328,9 @@ condition,
                     />
                   </div>
                   {/* 2 */}
-                  <div
-                    for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
+                  <div className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
                   >
-                    <label
-                      for="imageFile"
+                    <label htmlFor="imageFile"
                       className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
                     >
                       <BsUpload />
@@ -353,12 +344,9 @@ condition,
                     />
                   </div>
                   {/* 3 */}
-                  <div
-                    for="imageFile"
-                    className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
+                  <div className="w-full h-16 border flex justify-center items-center border-gray-300 rounded-lg"
                   >
-                    <label
-                      for="imageFile"
+                    <label htmlFor="imageFile"
                       className="border px-3 py-1 gap-3 rounded-lg text-center text-sm  cursor-pointer"
                     >
                       <BsUpload />

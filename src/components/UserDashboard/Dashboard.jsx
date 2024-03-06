@@ -20,7 +20,6 @@ const Dashboard = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [isAdmin] = useAdmin();
-  console.log("admin ", isAdmin);
 
   const toggleNotification = () => {
     setIsOpen(!isOpen);
@@ -196,7 +195,7 @@ const Dashboard = ({ children }) => {
             </li>
             <li className={pathname == "/dashboard/add-banner" ? "active" : ""}>
               <Link href="/dashboard/add-banner">
-                <i class="bx bxs-image-add"></i>
+                <i className="bx bxs-image-add"></i>
                 <span className="text">Add Banner</span>
               </Link>
             </li>
@@ -262,19 +261,19 @@ const Dashboard = ({ children }) => {
             </li>
             <li className={pathname == "/dashboard/categories" ? "active" : ""}>
               <Link href="/dashboard/categories">
-                <i class='bx bxs-category'></i>
+                <i className='bx bxs-category'></i>
                 <span className="text">Categories</span>
               </Link>
             </li>
             <li className={pathname == "/dashboard/writers" ? "active" : ""}>
               <Link href="/dashboard/writers">
-                <i class='bx bxs-credit-card-front'></i>
+                <i className='bx bxs-credit-card-front'></i>
                 <span className="text">Writers</span>
               </Link>
             </li>
             <li className={pathname == "/dashboard/publishers" ? "active" : ""}>
               <Link href="/dashboard/publishers">
-                <i class='bx bxs-store'></i>
+                <i className='bx bxs-store'></i>
                 <span className="text">Publisher</span>
               </Link>
             </li>
@@ -351,7 +350,7 @@ const Dashboard = ({ children }) => {
                             <span className="font-semibold">
                               {cardInfo.auther}
                             </span>{" "}
-                            want to exachange{" "}
+                            want to exchange{" "}
                             <span className="font-semibold">
                               {cardInfo.title}
                             </span>{" "}
@@ -362,7 +361,7 @@ const Dashboard = ({ children }) => {
                             {/* button 1 */}
                             <button className="py-1 bg-green-200 text-green-600 text-xs rounded-md w-full flex justify-center hover:bg-green-300">
                               <FaCheck />
-                              {/* boutton 2 */}
+                              {/* button 2 */}
                             </button>
                             <button className="py-1 bg-red-200 text-red-600 text-xs rounded-md w-full flex justify-center hover:bg-red-300">
                               <RxCross2 />
@@ -386,6 +385,10 @@ const Dashboard = ({ children }) => {
                   priority
                   width={36}
                   height={36}
+                  style={{
+                    width: '36px',
+                    height: '36px'
+                  }}
                 />
               ) : (
                 <Image 
@@ -394,6 +397,10 @@ const Dashboard = ({ children }) => {
                   priority
                   width={36}
                   height={36}
+                  style={{
+                    width: '36px',
+                    height: '36px'
+                  }}
                 />
               )}
             </a>
@@ -402,7 +409,7 @@ const Dashboard = ({ children }) => {
         {/*  NAVBAR */}
 
         {/* CONTENT */}
-        <div class="content-wrapper">{children}</div>
+        <div className="content-wrapper">{children}</div>
         {/* CONTENT */}
       </section>
     </div>

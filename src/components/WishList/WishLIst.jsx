@@ -9,6 +9,7 @@ import React from "react";
 import { IoCartOutline } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
+import PageLoading from "../Shared/loadingPageBook/PageLoading";
 
 const WishLIst = () => {
   const [wishListBook, refetch, isLoading] = useWishListBook();
@@ -57,8 +58,8 @@ const WishLIst = () => {
 
   if (isLoading) {
     return (
-      <div className="text-center items-center justify-center flex">
-        <span className="loading loading-ball loading-lg"></span>
+      <div>
+        <PageLoading />
       </div>
     );
   }
@@ -66,10 +67,14 @@ const WishLIst = () => {
   // Render message if specific books are not found
   if (wishListBook.length === 0) {
     return (
-      <div>
-        <h1 className="text-center justify-center font-semibold md:text-3xl lg:text-4xl">
-          Books Not Found....
-        </h1>
+      <div className="text-center my-20">
+        <p className=" my-10">Your Wishlist is empty.</p>
+        <Link
+          href={`/buyBooks`}
+          className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white"
+        >
+          Add to wishlist
+        </Link>
       </div>
     );
   }
