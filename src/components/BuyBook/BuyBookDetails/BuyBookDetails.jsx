@@ -17,6 +17,7 @@ import useAuth from "@/Hooks/auth/useAuth";
 import { useCallback, useEffect } from "react";
 import SuggestedBooks from "../suggested books/SuggestedBooks";
 import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
+import RelatedBooks from "../RelatedBooks/RelatedBooks";
 
 const BuyBookDetails = () => {
   const { user } = useAuth();
@@ -25,7 +26,7 @@ const BuyBookDetails = () => {
   const book_id = param.buyId;
   const axiosSecure = useAxiosSecure();
   const { currentUser } = useOneUser();
-  const { reviews, isPending, refetch }  = useReviews(book_id)
+  const { reviews, isPending, refetch } = useReviews(book_id)
   const { book, isLoading: bookLoading, refetch: bookRefetch } = useGetOneBuyBook(book_id)
   const { refetch: cartRefetch } = useGetMyCarts()
 
@@ -140,104 +141,107 @@ const BuyBookDetails = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto py-10 px-2">
+      <div className="container mx-auto py-10 px-2">
         {/* book img and information section */}
-        <div className="relative flex justify-center p-5 bg-[#016961] rounded-lg w-full mt-60">
-          {/* Book Image */}
-          <div className="flex-shrink-0 w-2/5">
-            <Image 
-              src={book?.cover_image}
-              width={1000}
-              height={1500}
-              alt=""
-              className="absolute bottom-5 ring-0 w-2/5 border-none rounded-md shadow-xl transition-transform duration-300 hover:scale-105"
-            />
-          </div>
-
-          {/* Book Information */}
-          <div className="px-10 text-white">
-            <h2 className="text-4xl">{book?.title}</h2>
-            <p className="text-xs">
-              by <span className="font-bold text-sm">{book?.writer}</span>
-            </p>
-            <p className="text-3xl pt-3 pb-5">
-              {book?.price} <span className="text-xs font-bold">$</span>
-            </p>
-
-            <div className="flex flex-wrap gap-3 pb-1">
-              <p className="text-xs border rounded-md px-2 py-1 font-bold">
-                Category: Fiction
-              </p>
-              <p className="text-xs border rounded-md px-2 py-1 font-bold">
-                Language: {book?.language}
-              </p>
-              <p className="text-xs border rounded-md px-2 py-1 font-bold">
-                {book?.pages} page
-              </p>
-              <p className="text-xs border rounded-md px-2 py-1 font-bold">
-                Published Year: {book?.published_year}
-              </p>
-              <p className="text-xs border rounded-md px-2 py-1 font-bold">
-                book: {book?.book}
-              </p>
-              <p className="text-xs border rounded-md px-2 py-1 font-bold">
-                Edition: {book?.edition}
-              </p>
+        <div className="flex items-start mt-32 gap-x-7">
+          <div className="relative flex justify-center p-5 bg-[#016961] rounded-lg w-full">
+            {/* Book Image */}
+            <div className="flex-shrink-0 w-1/5">
+              <Image
+                src={book?.cover_image}
+                width={1000}
+                height={1500}
+                alt=""
+                className="absolute bottom-5 ring-0 w-1/5 border-none rounded-md shadow-xl transition-transform duration-300 hover:scale-105"
+              />
             </div>
 
-            {/* Rating */}
-            <div className="flex items-center mt-1">
-              {/* Rating */}
-              <div className="flex items-center text-white text-xl mr-2">
-                <span className="mr-1">&#9733;</span>
-                <span className="mr-1">&#9733;</span>
-                <span className="mr-1">&#9733;</span>
-                <span className="mr-1">&#9733;</span>
-                <span className="mr-1">&#9733;</span>
+            {/* Book Information */}
+            <div className="px-10 text-white">
+              <h2 className="text-4xl">{book?.title}</h2>
+              <p className="text-xs">
+                by <span className="font-bold text-sm">{book?.writer}</span>
+              </p>
+              <p className="text-3xl pt-3 pb-5">
+                {book?.price} <span className="text-xs font-bold">$</span>
+              </p>
+
+              <div className="flex flex-wrap gap-3 pb-1">
+                <p className="text-xs border rounded-md px-2 py-1 font-bold">
+                  Category: Fiction
+                </p>
+                <p className="text-xs border rounded-md px-2 py-1 font-bold">
+                  Language: {book?.language}
+                </p>
+                <p className="text-xs border rounded-md px-2 py-1 font-bold">
+                  {book?.pages} page
+                </p>
+                <p className="text-xs border rounded-md px-2 py-1 font-bold">
+                  Published Year: {book?.published_year}
+                </p>
+                <p className="text-xs border rounded-md px-2 py-1 font-bold">
+                  book: {book?.book}
+                </p>
+                <p className="text-xs border rounded-md px-2 py-1 font-bold">
+                  Edition: {book?.edition}
+                </p>
               </div>
-              {/* Vote */}
-              <span className="text-sm">(4.5/5)</span>
-            </div>
-            {/* Book Description */}
-            <p className="text-xs text-justify">
-              <span className="text-sm font-bold">Description: </span>
-              {book?.description} lor sit amet consectetur adipisicing elit.
-              Impedit ducimus dolores exercitationem distinctio rerum
-              praesentium facere hic reiciendis totam eveniet tempore, vitae,
-              natus maiores aliquam nulla architecto, perferendis repudiandae
-              praesentium facere hic reiciendis totam eveniet tempore, vitae,
-              natus maiores aliquam nulla architecto, perferendis repudiandae
-              praesentium facere hic reiciendis totam eveniet tempore, vitae,
-              natus maiores aliquam nulla architecto, perferendis repudiandae
-              praesentium facere hic reiciendis totam eveniet tempore, vitae,
-              natus maiores aliquam nulla architecto, perferendis repudiandae
-              praesentium facere hic reiciendis totam eveniet tempore, vitae,
-              natus maiores aliquam nulla architecto, perferendis repudiandae
-              praesentium facere hic reiciendis totam eveniet tempore, vitae,
-              natus maiores aliquam nulla architecto, perferendis repudiandae
-              praesentium facere hic reiciendis totam. {book?.description}
-            </p>
 
-            {/* User action */}
-            <div className="flex items-center gap-3">
-              <button className="mt-6 text-center text-lg cursor-pointer bg-white text-[#016961] font-semibold py-2 px-4 rounded-full ">
-                Buy Now
-              </button>
-              <button
-                onClick={handleCart}
-                className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2.5 text-2xl rounded-full "
-              >
-                <FaCartPlus />
-              </button>
-              <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2.5 text-2xl rounded-full ">
-                <FaHeartCirclePlus />
-              </button>
+              {/* Rating */}
+              <div className="flex items-center mt-1">
+                {/* Rating */}
+                <div className="flex items-center text-white text-xl mr-2">
+                  <span className="mr-1">&#9733;</span>
+                  <span className="mr-1">&#9733;</span>
+                  <span className="mr-1">&#9733;</span>
+                  <span className="mr-1">&#9733;</span>
+                  <span className="mr-1">&#9733;</span>
+                </div>
+                {/* Vote */}
+                <span className="text-sm">(4.5/5)</span>
+              </div>
+              {/* Book Description */}
+              <p className="text-xs text-justify">
+                <span className="text-sm font-bold">Description: </span>
+                {book?.description} lor sit amet consectetur adipisicing elit.
+                Impedit ducimus dolores exercitationem distinctio rerum
+                praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                natus maiores aliquam nulla architecto, perferendis repudiandae
+                praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                natus maiores aliquam nulla architecto, perferendis repudiandae
+                praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                natus maiores aliquam nulla architecto, perferendis repudiandae
+                praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                natus maiores aliquam nulla architecto, perferendis repudiandae
+                praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                natus maiores aliquam nulla architecto, perferendis repudiandae
+                praesentium facere hic reiciendis totam eveniet tempore, vitae,
+                natus maiores aliquam nulla architecto, perferendis repudiandae
+                praesentium facere hic reiciendis totam. {book?.description}
+              </p>
+
+              {/* User action */}
+              <div className="flex items-center gap-3">
+                <button className="mt-6 text-center text-lg cursor-pointer bg-white text-[#016961] font-semibold py-2 px-4 rounded-full ">
+                  Buy Now
+                </button>
+                <button
+                  onClick={handleCart}
+                  className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2.5 text-2xl rounded-full "
+                >
+                  <FaCartPlus />
+                </button>
+                <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2.5 text-2xl rounded-full ">
+                  <FaHeartCirclePlus />
+                </button>
+              </div>
             </div>
           </div>
+
+          {/* Related section */}
+          <RelatedBooks CurrentlyViewing={book._id}> </RelatedBooks>
         </div>
 
-        {/* Related section */}
-        {/* <Related /> */}
 
 
         <div>

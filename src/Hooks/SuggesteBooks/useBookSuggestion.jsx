@@ -306,13 +306,23 @@ const useBookSuggestion = (CurrentlyViewing) => {
             }
         });
 
+        interestedBooksRelatedBooks.forEach(book => {
+            if (
+                interest.writer.includes(book.writer) ||
+                interest.publisher.includes(book.publisher) ||
+                interest.category.includes(book.category)
+            ) {
+                filteredBooks.push(book);
+            }
+        });
+
         // Remove duplicate books
         const uniqueBooks = Array.from(new Set(filteredBooks.map(book => book._id))).map(_id => {
             return filteredBooks.find(book => book._id === _id);
         });
 
         setTopTearSuggestions(uniqueBooks);
-    }, [booksFromCategory, booksFromWriters, booksFromPublishers, interestedBooks, interest]);
+    }, [booksFromCategory, booksFromWriters, booksFromPublishers, interestedBooks, interestedBooksRelatedBooks, interest]);
 
     console.log("Top Tier Suggestions", topTearSuggestions);
 
@@ -330,7 +340,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
 
 
-    return { interestedBooks, booksFromCategory, booksFromWriters, booksFromPublishers, topTearSuggestions, suggetionsLoading };
+    return { topTearSuggestions, currentlyViewingRelatedBooks, interestedBooks, booksFromCategory, booksFromWriters, booksFromPublishers, suggetionsLoading };
 };
 
 export default useBookSuggestion;
