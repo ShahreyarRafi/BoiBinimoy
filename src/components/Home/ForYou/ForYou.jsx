@@ -42,6 +42,10 @@ export default function ForYou() {
         }
     }, [swiper]);
 
+    if( suggetionsLoading ) {
+        <div><ComponentLoading/></div>
+    }
+
 
     return (
         <div className="container mt-12 md:mt-16 mx-auto px-5">

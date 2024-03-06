@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import Image from "next/image";
 import { AuthContext } from "@/providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
+import useImageURL from "@/Hooks/ImageURL/useImageURL";
 
 // const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=7365e777963cf7664292cb83647a9d98`;
@@ -19,9 +20,11 @@ const AddBook = () => {
   const axiosSecure = useAxiosSecure();
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
+  const { imageUrl, uploadImage } = useImageURL(selectedFile);
   const { user } = useContext(AuthContext);
   const owner_email = user?.email;
   console.log(owner_email);
+
 
   const { data: categories = [], isPending, refetch } = useQuery({
     queryKey: ["category"],
@@ -48,6 +51,7 @@ const AddBook = () => {
     const objectUrl = URL.createObjectURL(selectedImage);
     setPreview(objectUrl);
   };
+  
 
   const onSubmit = async (data) => {
     const {
@@ -63,15 +67,13 @@ const AddBook = () => {
       edition,
       stock_limit,
     } = data;
-    const imageFile = { image: data.image[0] };
+    
 
-    const url = await axios.post(image_hosting_api, imageFile, {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    });
-    const cover_image = url?.data?.data?.display_url || "";
 
+    const cover_image = await uploadImage();
+
+
+  
     const newBook = {
       title,
       description,
@@ -89,14 +91,15 @@ const AddBook = () => {
       avg_rating: 4.2,
       cover_image,
     };
-
+  
     const res = await axiosSecure.post("/api/v1/buy-books", newBook);
-
+  
     if (res?.data) {
       reset();
       Swal.fire("Book upload successful");
     }
   };
+  
 
   return (
     <div className="container mx-auto pb-10">
@@ -243,7 +246,7 @@ const AddBook = () => {
                 <h3 className="mb-3">Upload book cover Image:</h3>
                 <div className="w-full min-h-[200px] border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md">
                   {!selectedFile ? (
-                    <label htmlFor="image"
+                    <label htmlFor="book_Image"
                       className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm cursor-pointer"
                     >
                       <BsUpload /> <span> Upload Here</span>
@@ -258,8 +261,8 @@ const AddBook = () => {
                   )}
                   <input
                     type="file"
-                    id="image"
-                    {...register("image")}
+                    id="book_Image"
+                    {...register("book_Image")}
                     onChange={onSelectFile}
                     hidden
                   />

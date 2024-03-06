@@ -5,18 +5,16 @@ import useAxiosPublic from '../Axios/useAxiosPublic';
 
 const useBookSuggestion = (CurrentlyViewing) => {
     const { interest } = useOneUser();
+    const { currentUser } = useOneUser();
     const axiosPublic = useAxiosPublic();
 
-
-
     // ---------Category Books----------
-
-    const [booksFromCategory, setBooksFromCategory] = useState([])
-
+    const [booksFromCategory, setBooksFromCategory] = useState([]);
     const { data: categoryDetails = [], isLoading: categoryDetailsLoading } = useQuery({
         queryKey: ['categoryDetails', interest?.category],
         queryFn: async () => {
-            const categoryDetailsPromises = interest?.category?.map(async (categoryName) => {
+            // Check if currentUser and interest exist
+            const categoryDetailsPromises = interest.category.map(async (categoryName) => {
                 try {
                     const response = await axiosPublic.get(`/api/v1/category/${categoryName}`);
                     if (response.status !== 200) {
@@ -30,6 +28,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
             });
             const categories = await Promise.all(categoryDetailsPromises);
             return categories.filter(category => category !== null).flatMap(category => category);
+
         },
     });
 
@@ -149,7 +148,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
     // ----------------Related books-----------------
 
     // ---------Fetch related books function-------
-    
+
     const [relatedBooksLoading, setRelatedBooksLoading] = useState(false);
 
 
@@ -220,6 +219,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
     // --------- Related Books of Currently Viewing -----------
 
     const [currentlyViewingRelatedBooks, setCurrentlyViewingRelatedBooks] = useState([]);
+    const [currentlyViewingRelatedLoading, setCurrentlyViewingRelatedLoading] = useState(true);
 
     const { data: currentlyViewingBookDetails = [], isLoading: currentlyViewingBookLoading } = useQuery({
         queryKey: ["currentlyViewingBookDetails"],
@@ -239,10 +239,12 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
     useEffect(() => {
         if (currentlyViewingBookLoading) {
+            setCurrentlyViewingRelatedLoading(true)
             return;
         }
 
         if (currentlyViewingBookDetails) {
+            setCurrentlyViewingRelatedLoading(true)
             const { writer, publisher, category } = currentlyViewingBookDetails;
             const fetchRelatedBooksForCurrentlyViewing = async () => {
                 try {
@@ -251,6 +253,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
                 } catch (error) {
                     console.error("Error fetching related books for currently viewing book:", error);
                     setCurrentlyViewingRelatedBooks([]);
+                } finally {
+                    // Set topTearSuggestionsLoading to false after fetching data
+                    setCurrentlyViewingRelatedLoading(false);
                 }
             };
 
@@ -268,6 +273,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
     // ---------Top Tear Suggestions------------
 
     const [topTearSuggestions, setTopTearSuggestions] = useState([]);
+    const [topTearSuggestionsLoading, setTopTearSuggestionsLoading] = useState(true);
 
     useEffect(() => {
         // Filter books based on user interests
@@ -327,6 +333,13 @@ const useBookSuggestion = (CurrentlyViewing) => {
             return filteredBooks.find(book => book._id === _id);
         });
 
+        // Shuffle the array using Fisher-Yates shuffle algorithm
+        for (let i = uniqueBooks.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [uniqueBooks[i], uniqueBooks[j]] = [uniqueBooks[j], uniqueBooks[i]];
+            setTopTearSuggestionsLoading(false)
+        }
+
         setTopTearSuggestions(uniqueBooks);
     }, [booksFromCategory, booksFromWriters, booksFromPublishers, interestedBooks, interestedBooksRelatedBooks, interest]);
 
@@ -334,26 +347,106 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
 
 
-    // ----------Loading------------
+    // ---------If Top Tear Suggestions has no data------------
+    useEffect(() => {
+        if (
+            !booksLaoding &&
+            !categoryDetailsLoading &&
+            !writersBooksLoading &&
+            !publisherBooksLoading &&
+            !relatedBooksLoading &&
+            !currentlyViewingBookLoading
+        ) {
+            if (topTearSuggestions.length === 0) {
+                // Set topTearSuggestionsLoading to true when fetching data
+                setTopTearSuggestionsLoading(true);
+                // Fetch books from the `buy-books` endpoint
+                const fetchBuyBooks = async () => {
+                    try {
+                        const response = await axiosPublic.get(`/api/v1/buy-books`);
+                        if (response.status !== 200) {
+                            throw new Error('Failed to fetch buy books');
+                        }
+                        let buyBooksData = response.data.buyBooks || [];
+
+                        // Fisher-Yates shuffle algorithm
+                        for (let i = buyBooksData.length - 1; i > 0; i--) {
+                            const j = Math.floor(Math.random() * (i + 1));
+                            [buyBooksData[i], buyBooksData[j]] = [buyBooksData[j], buyBooksData[i]];
+                        }
+
+                        // Update state with shuffled buy books data
+                        console.log("buyBook", buyBooksData);
+                        setTopTearSuggestions(buyBooksData);
+                    } catch (error) {
+                        console.error("Error fetching buy books:", error);
+                    } finally {
+                        // Set topTearSuggestionsLoading to false after fetching data
+                        setTopTearSuggestionsLoading(false);
+                    }
+                };
+                fetchBuyBooks();
+            }
+        }
+    }, [booksLaoding,
+        categoryDetailsLoading,
+        writersBooksLoading,
+        publisherBooksLoading,
+        relatedBooksLoading,
+        currentlyViewingBookLoading,
+        axiosPublic,
+        topTearSuggestions.length]);
+
+
+
+
+
+    // ----------Suggetions Loading------------
 
     const [suggetionsLoading, setSuggetionsLoading] = useState(true);
 
     useEffect(() => {
         if (
-            !booksLaoding && 
-            !categoryDetailsLoading && 
-            !writersBooksLoading && 
+            !booksLaoding &&
+            !categoryDetailsLoading &&
+            !writersBooksLoading &&
             !publisherBooksLoading &&
             !relatedBooksLoading &&
+            !topTearSuggestionsLoading &&
+            !currentlyViewingRelatedLoading &&
             !currentlyViewingBookLoading) {
-                
+
             setSuggetionsLoading(false);
         }
-    }, [bookDetails, booksLaoding, categoryDetailsLoading, writersBooksLoading, publisherBooksLoading, relatedBooksLoading, currentlyViewingBookLoading]);
+    }, [bookDetails,
+        booksLaoding,
+        categoryDetailsLoading,
+        writersBooksLoading,
+        publisherBooksLoading,
+        topTearSuggestionsLoading,
+        relatedBooksLoading,
+        currentlyViewingRelatedLoading,
+        currentlyViewingBookLoading]);
+
+    // ----------Related Loading------------
+
+    const [relatedLoading, setRelatedLoading] = useState(true);
+
+    useEffect(() => {
+        if (
+            !relatedBooksLoading &&
+            !currentlyViewingRelatedLoading &&
+            !currentlyViewingBookLoading) {
+
+            setRelatedLoading(false);
+        }
+    }, [relatedBooksLoading,
+        currentlyViewingRelatedLoading,
+        currentlyViewingBookLoading]);
 
 
 
-    return { topTearSuggestions, currentlyViewingRelatedBooks, interestedBooks, booksFromCategory, booksFromWriters, booksFromPublishers, suggetionsLoading };
+    return { topTearSuggestions, currentlyViewingRelatedBooks, interestedBooks, booksFromCategory, booksFromWriters, booksFromPublishers, suggetionsLoading, relatedLoading };
 };
 
 export default useBookSuggestion;
