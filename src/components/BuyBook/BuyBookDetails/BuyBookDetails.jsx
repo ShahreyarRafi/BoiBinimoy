@@ -147,9 +147,9 @@ const BuyBookDetails = () => {
       <div className="container mx-auto py-10 px-2">
         {/* book img and information section */}
         <div className="flex items-start mt-32 gap-x-7">
-          <div className="relative flex justify-center p-5 bg-[#016961] rounded-lg w-full">
+          <div className="relative flex flex-col lg:flex-row justify-center p-5 bg-[#016961] rounded-lg w-full">
             {/* Book Image */}
-            <div className="flex-shrink-0 w-1/5">
+            <div className="flex-shrink-0 w-1/5 hidden lg:flex">
               <Image
                 src={book?.cover_image}
                 width={1000}
@@ -160,7 +160,7 @@ const BuyBookDetails = () => {
             </div>
 
             {/* Book Information */}
-            <div className="px-10 text-white">
+            <div className="lg:px-10 text-white">
               <h2 className="text-4xl">{book?.title}</h2>
               <p className="text-xs">
                 by <span className="font-bold text-sm">{book?.writer}</span>
@@ -206,32 +206,18 @@ const BuyBookDetails = () => {
               {/* Book Description */}
               <p className="text-xs text-justify">
                 <span className="text-sm font-bold">Description: </span>
-                {book?.description} lor sit amet consectetur adipisicing elit.
-                Impedit ducimus dolores exercitationem distinctio rerum
-                praesentium facere hic reiciendis totam eveniet tempore, vitae,
-                natus maiores aliquam nulla architecto, perferendis repudiandae
-                praesentium facere hic reiciendis totam eveniet tempore, vitae,
-                natus maiores aliquam nulla architecto, perferendis repudiandae
-                praesentium facere hic reiciendis totam eveniet tempore, vitae,
-                natus maiores aliquam nulla architecto, perferendis repudiandae
-                praesentium facere hic reiciendis totam eveniet tempore, vitae,
-                natus maiores aliquam nulla architecto, perferendis repudiandae
-                praesentium facere hic reiciendis totam eveniet tempore, vitae,
-                natus maiores aliquam nulla architecto, perferendis repudiandae
-                praesentium facere hic reiciendis totam eveniet tempore, vitae,
-                natus maiores aliquam nulla architecto, perferendis repudiandae
-                praesentium facere hic reiciendis totam. {book?.description}
+                {book?.description}
               </p>
 
               {/* User action */}
               <div className="flex items-center gap-3">
                 <button
                   onClick={handleCart}
-                  className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2.5 text-2xl rounded-full "
+                  className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-1 md:p-2 lg:p-2.5 text-lg md:text-xl lg:text-2xl rounded-full"
                 >
                   <FaCartPlus />
                 </button>
-                <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-2.5 text-2xl rounded-full ">
+                <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-1 md:p-2 lg:p-2.5 text-lg md:text-xl lg:text-2xl rounded-full">
                   <FaHeartCirclePlus />
                 </button>
               </div>
@@ -242,6 +228,7 @@ const BuyBookDetails = () => {
           <RelatedBooks CurrentlyViewing={book._id}> </RelatedBooks>
         </div>
 
+        {/* You might like section */}
         <div className="max-w-6xl mx-auto">
           <SuggestedBooks CurrentlyViewing={book._id}></SuggestedBooks>
         </div>

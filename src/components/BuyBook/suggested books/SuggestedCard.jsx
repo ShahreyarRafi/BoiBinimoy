@@ -13,7 +13,7 @@ const SuggestedCard = ({ cardInfo, index }) => {
         className="relative flex flex-col md:flex-row justify-center p-5 rounded-lg w-full mb-8 md:mb-24"
       >
         {/* Book Image */}
-        <div className="flex-shrink-0 w-full md:w-44 hidden lg:flex">
+        <div className="flex-shrink-0 w-44 hidden lg:flex">
           <Image
             src={cardInfo?.cover_image}
             priority
