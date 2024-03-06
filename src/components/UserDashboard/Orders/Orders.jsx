@@ -30,7 +30,7 @@ const Orders = () => {
         <div className="flex-1 sm:flex-none grid grid-cols-1 gap-5 lg:gap-0">
           <div className="bg-white rounded-3xl lg:rounded-none shadow-sm hover:bg-[#19a49113] lg:shadow-inherit border border-gray-100">
            {
-            sellerOrders?.map((order) => <Order key={order?.cart?._id} order = {order}></Order>)
+            sellerOrders?.map((order) => <Order key={order?.cart?._id} order = {order} refetch={refetch}></Order>)
            }
           </div>
         </div>
