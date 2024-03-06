@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useContext, useEffect, useState } from "react";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
@@ -8,6 +9,7 @@ import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import Swal from "sweetalert2";
 import Image from "next/image";
 import { AuthContext } from "@/providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
 
 // const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=7365e777963cf7664292cb83647a9d98`;
@@ -20,6 +22,14 @@ const AddBook = () => {
   const { user } = useContext(AuthContext);
   const owner_email = user?.email;
   console.log(owner_email);
+
+  const { data: categories = [], isPending, refetch } = useQuery({
+    queryKey: ["category"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/api/v1/category`);
+      return res.data;
+    },
+  });
 
   // create a preview as a side effect, whenever selected file is changed
   const onSelectFile = (e) => {
@@ -96,7 +106,7 @@ const AddBook = () => {
 
     if (res?.data) {
       reset();
-      Swal.fire("Book upload successfull");
+      Swal.fire("Book upload successful");
     }
   };
 
@@ -159,28 +169,12 @@ const AddBook = () => {
                 className="h-11 w-full text-xs md:text-sm text-gray-400 px-2 bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                 {...register("bookCategory")}
               >
-                <option selected value="category">
+                <option selected hidden value="category">
                   Book Category
                 </option>
-                <option value="self-help">Self-Help</option>
-                <option value="biography/memoir">Biography/Memoir</option>
-                <option value="history">History</option>
-                <option value="science">Science</option>
-                <option value="trueCrime">True Crime</option>
-                <option value="travel">Travel</option>
-                <option value="food&cooking">Food & Cooking</option>
-                <option value="health&wellness">Health & Wellness</option>
-                <option value="business&economics">Business & Economics</option>
-                <option value="humor">Humor</option>
-                <option value="crimeFiction">Crime Fiction</option>
-                <option value="graphicNovels">Graphic Novels</option>
-                <option value="literaryFiction">Literary Fiction</option>
-                <option value="horror">Horror</option>
-                <option value="historicalFiction">Historical Fiction</option>
-                <option value="youngAdult(YA)">Young Adult (YA)</option>
-                <option value="scienceFiction">Science Fiction</option>
-                <option value="fantasy">Fantasy</option>
-                <option value="mystery/thriller">Mystery/Thriller</option>
+                {
+                  categories?.map(category => <option key={category?._id} value={category?.category_name}>{category?.category_name}</option>)
+                }
               </select>
             </div>
           </div>
