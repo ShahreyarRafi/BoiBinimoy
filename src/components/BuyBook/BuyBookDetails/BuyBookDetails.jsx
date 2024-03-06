@@ -247,7 +247,7 @@ const BuyBookDetails = () => {
         </div>
 
         {/* review section */}
-        <div className="w-full p-8 border-2 rounded-lg">
+        <div className="max-w-6xl mx-auto p-8 border border-teal-800 rounded-lg">
           <div className="max-w-5xl mx-auto">
             {/* send review */}
             <form
@@ -259,7 +259,7 @@ const BuyBookDetails = () => {
                 name="comment"
                 id="comment"
                 placeholder="comment"
-                className="w-full h-8 px-2 bg-transparent border-b focus:outline-none focus:border-black"
+                className="w-full h-8 px-2 bg-transparent border-b focus:outline-none focus:border-teal-800"
               />
               <button type="submit" className="text-2xl text-[#016961]">
                 <IoIosSend />
