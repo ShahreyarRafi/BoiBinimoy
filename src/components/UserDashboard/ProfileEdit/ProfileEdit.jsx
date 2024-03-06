@@ -51,7 +51,7 @@ const ProfileEdit = () => {
         const { name, phone_number, date_of_birth, gender, profession, street, upozela, district, division, country, zip_code } = data
 
         const updateUserInformation = {
-            name, image: uploadedImageUrl, phone_number, date_of_birth, gender, profession,
+            name, image: uploadedImageUrl, phone_number, date_of_birth, gender, profession, isFirstLogin: false,
             location: {
                 street, upozela, district, division, country, zip_code
             }
@@ -59,13 +59,16 @@ const ProfileEdit = () => {
 
 
         axiosSecure.patch(`api/v1/users/${currentUser._id}`, updateUserInformation)
-        .then(res => {
+            .then(res => {
                 console.log("update data ", res.data);
                 // Assuming your API returns the updated user document
                 const updatedUser = res.data;
                 if (updatedUser) {
                     Swal.fire(' Profile Update successfully');
                     router.push('/dashboard/profile')
+
+
+
                 } else {
                     console.error("Update failed: User not found or update unsuccessful");
                     Swal.fire('Update failed. Please try again.');

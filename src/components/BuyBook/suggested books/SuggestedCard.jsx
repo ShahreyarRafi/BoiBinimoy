@@ -31,7 +31,7 @@ const SuggestedCard = ({ cardInfo, index }) => {
                     <div className="font-semibold text-lg">{cardInfo?.title}</div>
                     {/* Author Name */}
                     <div className="book-author text-sm">
-                        by {cardInfo?.auther}
+                        by {cardInfo?.writer}
                     </div>
                     {/* Rating and Vote */}
                     <div className="flex items-center mt-1">
