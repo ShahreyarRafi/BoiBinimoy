@@ -12,15 +12,24 @@ const useOneUser = () => {
   const { data: currentUser = [], isPending: isLoading } = useQuery({
     queryKey: ["currentUser", user?.email],
     queryFn: async () => {
-      const email = localStorage.getItem("email")
+      const email = localStorage.getItem("email");
       const res = await axiosPublic.get(`api/v1/users/${email}`);
       return res.data;
     },
   });
 
-    const { isAdmin, isModerator, isPublisher, isSeller } = currentUser;
-    const interest = currentUser.interest
-    return {currentUser, isLoading, isAdmin, isModerator, isPublisher, isSeller, interest }
+  const { isAdmin, isModerator, isPublisher, isSeller, isUser } = currentUser;
+  const interest = currentUser.interest;
+  return {
+    currentUser,
+    isLoading,
+    isAdmin,
+    isUser,
+    isModerator,
+    isPublisher,
+    isSeller,
+    interest,
+  };
 };
 
 export default useOneUser;
