@@ -3,12 +3,9 @@
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
-import BlogSideCard from "../Shared/Blogs/BlogSideCard";
-// import BlogLatestCard from "../Shared/Blogs/BlogLatestCard";
 import Link from "next/link";
 import PageLoading from "../Shared/loadingPageBook/PageLoading";
 import React, { useState } from "react";
-import { IoHeartCircleOutline } from "react-icons/io5";
 import { PiChatCircleDuotone } from "react-icons/pi";
 import { MdBookmarkAdd, MdBookmarkRemove } from "react-icons/md";
 import { CiHeart } from "react-icons/ci";
@@ -24,7 +21,7 @@ const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const blogsPerPage = 3;
+  const blogsPerPage = 5;
 
   const calculateReadingTime = (content) => {
     const wordsPerMinute = 200;
@@ -68,8 +65,6 @@ const Blog = () => {
   });
 
   const totalPages = Math.ceil(blogs.length / blogsPerPage);
-
-  console.log(blogs);
 
   if (isLoading) {
     return <PageLoading />;
@@ -118,7 +113,7 @@ const Blog = () => {
         </select>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-3">
+      <div className="flex flex-col lg:flex-row gap-5">
         <div className="w-full lg:w-2/3">
           {/* Blogs display */}
           {blogs
@@ -275,14 +270,6 @@ const Blog = () => {
                   </p>
                 </div>
               </div>
-              <hr className="my-2" />
-
-              <p className=" mt-2 text-xs sm:text-sm md:text-base text-justify">
-                {blog?.body?.slice(0, 500) + "..."}
-                <Link href={`/blogs/${blog?._id}`} className="text-blue-400">
-                  Read more
-                </Link>
-              </p>
             </div>
           ))}
         </div>
