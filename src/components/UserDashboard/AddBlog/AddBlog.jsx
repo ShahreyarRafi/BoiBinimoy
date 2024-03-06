@@ -172,13 +172,7 @@ const AddBlog = () => {
 
                 {/* image div start*/}
                 <div className="flex flex-col h-full w-full pb-3">
-<<<<<<< HEAD
-                  <div
-                    for="imageFile"
-                    className="w-full min-h-20 h-full border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
-=======
                   <div className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
->>>>>>> 99e4601a5344f9e654e2c6b2656cbd29f5afc986
                   >
                     {!selectedFile ? (
                       <label
