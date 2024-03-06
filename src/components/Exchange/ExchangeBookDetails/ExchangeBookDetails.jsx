@@ -39,7 +39,7 @@ const ExchangeBookDetails = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {/* book img section */}
                     <div className="w-full">
-                        <Image
+                        <Image 
                             src={book?.cover_image}
                             alt="book"
                             width={500}
@@ -126,7 +126,7 @@ const ExchangeBookDetails = () => {
                             <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
                                 {/* user image */}
                                 <div className="">
-                                    <Image
+                                    <Image 
                                         className="object-cover w-12 h-12 mb-2 rounded-full shadow"
                                         src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
                                         width={500}
@@ -149,7 +149,7 @@ const ExchangeBookDetails = () => {
                             <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
                                 {/* user image */}
                                 <div className="">
-                                    <Image
+                                    <Image 
                                         className="object-cover w-12 h-12 mb-2 rounded-full shadow"
                                         src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
                                         width={500}

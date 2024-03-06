@@ -26,11 +26,11 @@ const Navend = () => {
   }
 
   return (
-    <div className="flex items-center gap-5 ">
+    <div className="flex items-center gap-1">
       <Link href="/wishList">
-        <div className="indicator text-3xl ">
+        <div className="px-2">
           <span className="indicator-item badge badge-secondary"> {wishListBook.length} </span>
-          <button className=""> <AiOutlineHeart></AiOutlineHeart> </button>
+          <AiOutlineHeart className="mx-auto" />
         </div>
       </Link>
 
@@ -41,26 +41,22 @@ const Navend = () => {
           type="checkbox"
           className="drawer-toggle overflow-hidden"
         />
-        <div className="drawer-content -mt-7">
+        <div className="drawer-content px-2">
           {/* Page content here */}
-          <div className="-mb-2">
-            {totalCart > 0 ? (
-              <div className="indicator-item badge badge-secondary ">
-                {totalCart}
-              </div>
-            ) : (
-              <div className="indicator-item badge badge-secondary ">
-                0
-              </div>
-            )}
-          </div>
+          {totalCart ?
+            <span className="indicator-item badge badge-secondary">
+              {totalCart}
+            </span> :
+            <span className="indicator-item badge badge-secondary">
+              {0}
+            </span>
+          }
           <label htmlFor="cart-drawer" className="drawer-button">
-            <MdOutlineShoppingCart />
+            <MdOutlineShoppingCart className="mx-auto" />
           </label>
         </div>
         <div className="drawer-side overflow-hidden z-[2]">
-          <label
-            htmlFor="cart-drawer"
+          <label htmlFor="cart-drawer"
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
@@ -104,8 +100,7 @@ const Navend = () => {
             </li>
             <li className="mx-auto">
               <div className="flex gap-5 items-center">
-                <Link
-                  href="/cart"
+                <Link href="/cart"
                   className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1"
                 >
                   View carts

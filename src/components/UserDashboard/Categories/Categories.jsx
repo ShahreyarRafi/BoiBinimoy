@@ -5,13 +5,18 @@ import Image from "next/image";
 import { GrDocumentUpdate } from "react-icons/gr";
 import { MdDeleteOutline } from "react-icons/md";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
-import Swal from "sweetalert2";
 import { useState } from "react";
+import { BsUpload } from "react-icons/bs";
+import useImageURL from "@/Hooks/ImageURL/useImageURL";
+import Swal from "sweetalert2";
 
 const Categories = () => {
 
     const axiosSecure = useAxiosSecure();
     const [current, setCurrent] = useState([]);
+    const [selectFile, setSelectFile] = useState();
+    const [preview, setPreview] = useState(undefined);
+    const { imageUrl, uploadImage } = useImageURL(selectFile);
     let count = 0;
 
     const { data: categories = [], isPending, refetch } = useQuery({
@@ -22,19 +27,44 @@ const Categories = () => {
         },
     });
 
+    console.log(categories);
+
+    const addOnSelectFile = () => {
+        const file = document.getElementById('imageFile').files[0];
+
+        if (!file) {
+            setSelectFile(undefined);
+            setPreview(undefined);
+            return;
+        }
+        setSelectFile(file);
+        setPreview(URL.createObjectURL(file));
+    };
+
+    const updateOnSelectFile = () => {
+        const file = document.getElementById('updateImageFile').files[0];
+
+        if (!file) {
+            setSelectFile(undefined);
+            setPreview(undefined);
+            return;
+        }
+        setSelectFile(file);
+        setPreview(URL.createObjectURL(file));
+    };
+
     // Add functionality checked
-    const handleAdd = (e) => {
+    const handleAdd = async (e) => {
         e.preventDefault();
         const category_name = document.getElementById('addCategory').value;
-        const category_image = "https://i.ibb.co/xDgy8MJ/fantasy.png"
+        const category_image = await uploadImage();
         const newCategory = {
             category_name,
-            category_image
+            category_image,
         }
 
         axiosSecure.post("api/v1/category", newCategory)
             .then(res => {
-                console.log(res);
                 if (res.data._id) {
                     Swal.fire({
                         icon: "success",
@@ -43,6 +73,7 @@ const Categories = () => {
                     });
                     refetch();
                     document.getElementById("addCategory").value = '';
+                    setSelectFile(undefined);
                     document.getElementById("add_modal").close();
                 } else {
                     Swal.fire({
@@ -50,6 +81,8 @@ const Categories = () => {
                         title: "Oops...",
                         text: "Failed to added category",
                     });
+                    document.getElementById("addCategory").value = '';
+                    setSelectFile(undefined);
                     document.getElementById("add_modal").close();
                 }
 
@@ -60,6 +93,8 @@ const Categories = () => {
                     title: "Oops...",
                     text: "Failed to added category",
                 });
+                document.getElementById("addCategory").value = '';
+                setSelectFile(undefined);
                 document.getElementById("add_modal").close();
             })
     }
@@ -111,16 +146,22 @@ const Categories = () => {
         const modal = document.getElementById('update_modal');
         modal.showModal();
         document.getElementById('updateCategory').value = name;
+        setPreview(image);
     }
 
     // Update functionality checked
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
 
-        const categoryName = document.getElementById('updateCategory').value;
+        const category_name = document.getElementById('updateCategory').value;
+        const category_image = await uploadImage();
 
-        axiosSecure.put(`api/v1/category/${current?.id}`, { category_name: categoryName })
+        const updateCategory = {
+            category_name,
+            category_image
+        }
+
+        axiosSecure.put(`api/v1/category/${current?.id}`, updateCategory)
             .then(res => {
-                console.log(res);
                 if (res.status === 200) {
                     Swal.fire({
                         icon: 'success',
@@ -154,7 +195,6 @@ const Categories = () => {
             <div className="text-center">
                 <button className="btn bg-[#016961] text-white" onClick={() => document.getElementById('add_modal').showModal()}>Add Category</button>
             </div>
-
             <div className="grid grid-cols-1 gap-5">
                 <div className="flex items-center justify-center">
                     <div className="container duration-300">
@@ -178,7 +218,7 @@ const Categories = () => {
                                                 {count + 1}
                                             </h5>
                                             <div className="w-full text-lg font-semibold text-center lg:text-start line-clamp-1 truncate">
-                                                <Image
+                                                <Image 
                                                     src={category?.category_image}
                                                     alt="category"
                                                     priority
@@ -211,31 +251,111 @@ const Categories = () => {
 
             <dialog id="add_modal" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <div className="border-2 border-gray-300 rounded-lg px-3 pb-3">
-                        <h3 className="text-sm font-light py-2">Add Category</h3>
-                        <input
-                            className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                            placeholder="Category name"
-                            id="addCategory"
-                            type="text"
-                            required
-                        />
-                    </div>
-                    <div className="modal-action">
-                        <form method="dialog">
-                            <button onClick={handleAdd} className="btn">Submit</button>
-                            <button onClick={() => document.getElementById("addCategory").value = ""} className="btn">Close</button>
-                        </form>
-                    </div>
+                    <form onSubmit={handleAdd}>
+                        <div className="border-2 border-gray-300 rounded-lg px-3 pb-3 flex flex-col gap-3">
+                            {/* image div start*/}
+                            <div className="w-[150px] h-[150px] mx-auto border flex justify-center items-center border-[#016961] rounded-full mt-3 shadow-md"
+                            >
+                                {!selectFile ? (
+                                    <input
+                                        type="text"
+                                        readOnly
+                                        placeholder="No Image selected"
+                                        alt="Preview"
+                                        className="w-[150px] h-[150px] rounded-full text-center bg-teal-50/40"
+                                    />
+
+                                ) : (
+                                    <Image
+                                        src={preview}
+                                        width={150}
+                                        height={150}
+                                        alt="Image Preview"
+                                        style={{
+                                            width: '150px',
+                                            height: '150px',
+                                            borderRadius: '100%'
+                                        }}
+                                    />
+                                )}
+
+                            </div>
+                            <div className="mt-3 w-1/2 mx-auto">
+                                <label htmlFor="imageFile"
+                                    className="bg-[#016961] text-white py-2 flex justify-center items-center gap-3 rounded-lg text-center text-xs md:text-sm  cursor-pointer"
+                                >
+                                    <BsUpload /> <span> Upload Here</span>
+                                    <input
+                                        type="file"
+                                        id="imageFile"
+                                        onChange={addOnSelectFile}
+                                        hidden
+                                    />
+                                </label>
+                            </div>
+                            {/* image div end */}
+
+                            <h3 className="text-sm font-light">Category Name</h3>
+                            <input
+                                className="border border-[#016961] bg-teal-50/40 h-10 w-full px-2 text-xs rounded-lg focus:outline-none"
+                                placeholder="Category name"
+                                id="addCategory"
+                                type="text"
+                                required
+                            />
+                        </div>
+                        <div className="modal-action">
+                            <button type="submit" className="btn btn-sm bg-[#016961] text-white">Submit</button>
+                            <button className="btn btn-sm bg-[#016961] text-white" onClick={() => {
+                                document.getElementById("addCategory").value = "";
+                                setSelectFile(undefined);
+                                document.getElementById("add_modal").close();
+                            }
+                            }>Close</button>
+                        </div>
+                    </form>
                 </div>
             </dialog>
+
+
             <dialog id="update_modal" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <div className="border-2 border-gray-300 rounded-lg px-3 pb-3">
-                        <h3 className="text-sm font-light py-2">Update Category</h3>
+                    <div className="border-2 border-gray-300 rounded-lg px-3 py-3 flex flex-col gap-2">
+                        <div className="w-[150px] h-[150px] mx-auto border border-[#016961] rounded-full flex justify-center items-center shadow-md"
+                        >
+                            {preview &&
+                                <Image
+                                    src={preview}
+                                    width={150}
+                                    height={150}
+                                    id="updateImage"
+                                    alt="Image Preview"
+                                    style={{
+                                        width: '150px',
+                                        height: '150px',
+                                        borderRadius: '100%'
+                                    }}
+                                />}
+                        </div>
+                        <div className="mt-3 w-1/2 mx-auto">
+                            <label htmlFor="updateImageFile"
+                                className="bg-[#016961] text-white py-1 flex justify-center items-center gap-3 rounded-lg text-center text-xs md:text-sm  cursor-pointer"
+                            >
+                                <BsUpload /> <span> Upload Here</span>
+                                <input
+                                    type="file"
+                                    id="updateImageFile"
+                                    onChange={updateOnSelectFile}
+                                    required
+                                    hidden
+                                />
+                            </label>
+                        </div>
+                        <h3 className="text-sm font-light pt-2">Update Category</h3>
                         <input
                             className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
                             name="updateCategory"
+                            placeholder="Category Name"
                             id="updateCategory"
                             type="text"
                             required
@@ -243,8 +363,8 @@ const Categories = () => {
                     </div>
                     <div className="modal-action gap-5">
                         <form method="dialog">
-                            <button onClick={handleSubmit} className="btn">Submit</button>
-                            <button className="btn">Close</button>
+                            <button onClick={handleSubmit} className="btn btn-sm bg-[#016961] text-white">Submit</button>
+                            <button className="btn btn-sm bg-[#016961] text-white">Close</button>
                         </form>
                     </div>
                 </div>

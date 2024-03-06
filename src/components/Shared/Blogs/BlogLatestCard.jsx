@@ -5,7 +5,7 @@ import Link from "next/link";
 const BlogLatestCard = ({ item }) => {
     return (
         <div className="rounded w-full">
-            <Image
+            <Image 
                 src={item?.cover_image}
                 className="rounded"
                 width={500}

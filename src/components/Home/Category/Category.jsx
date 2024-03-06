@@ -78,7 +78,7 @@ export default function Category() {
           href={"/categories"}
           className="absolute right-5 bg-teal-50 rounded-full top-[40%] cursor-pointer"
         >
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-800 opacity-75"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-800 opacity-75"></span>
           <span className="text-4xl text-[#016961]">
             <CgArrowTopRightO />
           </span>

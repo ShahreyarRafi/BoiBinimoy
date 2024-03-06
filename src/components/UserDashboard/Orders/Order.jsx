@@ -9,7 +9,7 @@ const Order = ({order, refetch}) => {
 
   console.log(order);
 
-  const handleDelivary = async(id, title) =>{  
+  const handleDelivary = async (id, title) => {
     Swal.fire({
       title: `Delivery Book`,
       text: `Are you sure is delivered the book "${title}"?`,
@@ -41,21 +41,21 @@ const Order = ({order, refetch}) => {
         }
       }
     });
-  } 
+  }
 
-  
+
 
   return (
     <div className="grid grid-cols-11 items-center text-center font-semibold border border-gray-100 p-5">
       <Image
-            src={order?.cover_image}
-            width={150}
-            height={200}
-            alt="book"
-            priority
-            style={{ width: "50%", height: "100%" }}
-            className="mx-auto col-span-1"
-          />
+        src={order?.cover_image}
+        width={150}
+        height={200}
+        alt="book"
+        priority
+        style={{ width: "50%", height: "100%" }}
+        className="mx-auto col-span-1"
+      />
       <h5 className=" col-span-2">{order?.title}</h5>
       <h5 className=" col-span-1"> {order?.quantity} </h5>
       <h5 className=" col-span-1"> {order?.unit_price} BDT</h5>
