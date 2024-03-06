@@ -145,7 +145,7 @@ const WishLIst = () => {
                                 </div>
                                 <div className="flex items-center">
                                     {/* user image */}
-                                    <Image className="w-10 h-10 rounded-full mr-4" src="/ben.png" alt="Avatar of Writer" />
+                                    <Image className="w-10 h-10 rounded-full mr-4" src="/ben.png" alt="Avatar of Writer" width={200} height={200} />
                                     <div className="text-sm">
                                         <p className="text-gray-900 leading-none">John Smith</p>
                                         <p className="text-gray-600">Aug 18</p>

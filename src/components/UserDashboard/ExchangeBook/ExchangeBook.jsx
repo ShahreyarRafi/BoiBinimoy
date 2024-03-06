@@ -50,22 +50,23 @@ const ExchangeBook = () => {
     });
   };
 
-
   if (isLoading) {
     return (
-        <div className="text-center items-center justify-center flex  ">
-            <span className="loading loading-ball loading-lg"></span>
-        </div>
+      <div className="text-center items-center justify-center flex">
+        <span className="loading loading-ball loading-lg"></span>
+      </div>
     );
-}
- 
-if (exchangeBooks.length === 0) {
+  }
+
+  if (exchangeBooks.length === 0) {
     return (
-        <div>
-            <h1 className="text-center justify-center font-semibold md:text-3xl  lg:text-4xl  "> Books  Not Found....</h1>
-        </div>
+      <div>
+        <h1 className="text-center justify-center font-semibold md:text-3xl lg:text-4xl">
+          Books Not Found....
+        </h1>
+      </div>
     );
-}
+  }
 
   return (
     <>
@@ -103,7 +104,9 @@ if (exchangeBooks.length === 0) {
                         {book.cover_type}
                       </h5>
                       <div className="w-full flex justify-center lg:justify-start gap-3">
-                        <Link href={`/dashboard/updateExchangeBook/${book._id}`}>
+                        <Link
+                          href={`/dashboard/updateExchangeBook/${book._id}`}
+                        >
                           <button className="p-2 text-2xl bg-green-200 text-green-700 rounded-md hover:bg-green-300 hover:text-green-800">
                             <GrDocumentUpdate />
                           </button>

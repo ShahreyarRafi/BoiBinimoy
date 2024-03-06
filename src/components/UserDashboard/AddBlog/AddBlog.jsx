@@ -19,6 +19,8 @@ const AddBlog = () => {
   const { imageUrl, uploadImage } = useImageURL(selectedFile);
   const axiosSecure = useAxiosSecure();
 
+  const submittingDateTime = new Date();
+
   // create a preview as a side effect, whenever selected file is changed
   const onSelectFile = (e) => {
     const files = e.target.files;
@@ -39,17 +41,20 @@ const AddBlog = () => {
   // blogs submitting function
   const handleBlogSubmit = async (data) => {
     console.log("clicked");
-    const { form, title, body, category } = data;
+    const { form, title, tags, body, category } = data;
     const uploadedImageUrl = await uploadImage();
 
     const newBlog = {
       form,
       title,
+      tags,
       body,
       cover_image: uploadedImageUrl,
       user_name: "admin",
       user_email: user?.email,
       category,
+      publish_date: submittingDateTime.toLocaleDateString(),
+      publish_time: submittingDateTime.toLocaleTimeString(),
     };
 
     console.log(newBlog);
@@ -66,6 +71,8 @@ const AddBlog = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        reset();
+        setSelectedFile(undefined);
       })
       .catch((error) => {
         // Handle errors
@@ -94,7 +101,7 @@ const AddBlog = () => {
               </div>
 
               <div className="flex flex-col md:flex-row gap-3 py-3">
-                {/* blog Tags name:tags*/}
+                {/* blog category name:category*/}
                 <input
                   className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                   {...register("category")}
@@ -118,10 +125,10 @@ const AddBlog = () => {
                   <div>
                     <textarea
                       className="w-full p-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                      {...register("description")}
+                      {...register("body")}
                       placeholder="Blog Description"
                       cols="30"
-                      rows="10"
+                      rows="20"
                       required
                     ></textarea>
                   </div>
@@ -133,8 +140,9 @@ const AddBlog = () => {
                   <div className="w-full h-full border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
                   >
                     {!selectedFile ? (
-                      <label htmlFor="imageFile"
-                        className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-xs md:text-sm  cursor-pointer"
+                      <label
+                        for="imageFile"
+                        className="w-full h-full flex justify-center items-center gap-3 rounded-lg text-center text-xs md:text-sm cursor-pointer"
                       >
                         <BsUpload /> <span> Upload Here</span>
                       </label>
@@ -144,6 +152,7 @@ const AddBlog = () => {
                         width={500}
                         height={500}
                         alt="Image Preview"
+                        className="object-cover h-fit w-full"
                       />
                     )}
                     <input

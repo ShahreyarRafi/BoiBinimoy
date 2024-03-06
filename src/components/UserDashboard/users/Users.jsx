@@ -214,7 +214,7 @@ const Users = () => {
                 <p className="mt-1 text-md font-medium text-gray-600"> Gender  : {data?.gender ? data?.gender : "Not Found"}  </p>
               </div>
 
-              <div className="hidden sm:block sm:shrink-0">
+              <div class="hidden sm:block sm:shrink-0">
                 <Image
                   alt=""
                   src={data?.image}

@@ -11,13 +11,14 @@ import useOneUser from "@/Hooks/Users/useOneUser";
 import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
 import { AiOutlineHeart } from "react-icons/ai";
 import useWishListBook from "@/Hooks/wishList/useWishListBook";
+import PageLoading from "../../loadingPageBook/PageLoading";
 
 const Navend = () => {
 
   const [wishListBook] = useWishListBook()
   const { user, logOut } = useContext(AuthContext);
   const { currentUser } = useOneUser();
-  let { myCarts, price, quantity, isPending, refetch } = useGetMyCarts();
+  let { myCarts, price, isPending, refetch } = useGetMyCarts();
   const totalCart = myCarts?.length;
 
   if (myCarts?.length > 3) {
@@ -25,7 +26,7 @@ const Navend = () => {
   }
 
   return (
-    <div className="flex items-center justify-center gap-2 ">
+    <div className="flex items-center gap-1">
       <Link href="/wishList">
         <div className="px-2">
           <span className="indicator-item badge badge-secondary"> {wishListBook.length} </span>
@@ -61,12 +62,12 @@ const Navend = () => {
           ></label>
           <ul className="menu w-1/3 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            {myCarts?.map((cart) => (
-              <li key={cart?.cart._id}>
+            {myCarts && myCarts?.map((cart) => (
+              <li key={cart?._id}>
                 <div className="flex items-center justify-between rounded-lg p-2">
                   <div className="flex gap-5 items-center">
                     <Image
-                      src={cart?.book?.cover_image}
+                      src={cart?.cover_image}
                       width={70}
                       height={100}
                       alt="book"
@@ -75,14 +76,14 @@ const Navend = () => {
                       className="rounded-md"
                     />
                     <div>
-                      <h2 className="font-bold text-lg">{cart?.book?.title}</h2>
+                      <h2 className="font-bold text-lg">{cart?.title}</h2>
                       <h2 className="text-orange-700 font-bold text-lg">
-                        {cart?.book?.price} BDT
+                        {cart?.unit_price} BDT
                       </h2>
                     </div>
                   </div>
                   <button
-                    onClick={() => handleDelete(cart?.book?._id)}
+                    onClick={() => handleDelete(cart?._id)}
                     className="mt-5 button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1"
                   >
                     <RxCross2></RxCross2>

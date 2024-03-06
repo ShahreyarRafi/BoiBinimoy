@@ -253,7 +253,7 @@ const JoinUs = () => {
               Sign up
             </button>
           </div>
-          <Image
+          <Image 
             src={logImg}
             className="image"
             alt=""
@@ -272,7 +272,7 @@ const JoinUs = () => {
               Sign in
             </button>
           </div>
-          <Image
+          <Image 
             src={regImg}
             className="image"
             alt=""
