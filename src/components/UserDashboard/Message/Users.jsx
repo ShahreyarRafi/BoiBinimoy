@@ -2,6 +2,8 @@ import React from "react";
 import moment from "moment";
 import { HiOutlineCheckCircle } from "react-icons/hi";
 import { RiCheckboxCircleFill } from "react-icons/ri";
+import Image from 'next/image'
+
 
 const Friends = (props) => {
   const { fndInfo, msgInfo } = props.friend;
@@ -11,7 +13,7 @@ const Friends = (props) => {
     <div className="friend">
       <div className="friend-image">
         <div className="image">
-          <img src={`./image/${fndInfo.image}`} alt="" />
+          <Image  src={`./image/${fndInfo.image}`} alt="" width={200} height={200}/>
           {activeUser &&
           activeUser.length > 0 &&
           activeUser.some((u) => u.userId === fndInfo._id) ? (
@@ -77,7 +79,7 @@ const Friends = (props) => {
         {myId === msgInfo?.senderId ? (
           <div className="seen-unseen-icon">
             {msgInfo.status === "seen" ? (
-              <img src={`./image/${fndInfo.image}`} alt="" />
+              <Image  src={`./image/${fndInfo.image}`} alt="" width={200} height={200}/>
             ) : msgInfo.status === "delivared" ? (
               <div className="delivared">
                 <RiCheckboxCircleFill />

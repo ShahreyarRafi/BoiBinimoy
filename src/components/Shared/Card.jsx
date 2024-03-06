@@ -3,7 +3,7 @@ import Image from 'next/image';
 const Card = ({ source, title, author, rating, price }) => {
     return (
         <div className="flex flex-col border-x-[1px] border-gray-200">
-            <Image src={source} alt="card" priority width={500} height={500} style={{
+            <Image  src={source} alt="card" priority width={500} height={500} style={{
                 width: 'auto',
                 height: '400px',
             }} className='rounded-2xl p-3' />

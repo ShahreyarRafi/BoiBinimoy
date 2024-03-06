@@ -53,7 +53,7 @@ const Blog = () => {
               }
             >
               <div key={blog?._id} className="mb-10 px-5">
-                <Image
+                <Image 
                   src={blog?.cover_image}
                   priority
                   width={500}
@@ -64,29 +64,31 @@ const Blog = () => {
                 <p className="text-[#016961] text-sm font-bold mt-4">
                   {blog?.category}
                 </p>
-                <Link href={`/blogs/${blog?._id}`}>
-                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my- leading-tight">
-                    {blog?.title}
-                  </h1>
-                </Link>
 
-                {/* <hr className="my-2" /> */}
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my- leading-tight">
+                  {blog?.title}
+                </h1>
 
                 <div className="mt-2 text-xs sm:text-sm md:text-base text-justify">
-                  {expandedBlogs[blog?._id]
-                    ? blog?.body?.split("\n").map((paragraph, index) => (
-                        <p key={index}>
-                          {paragraph} <br />
-                        </p>
-                      ))
-                    : blog?.body
-                        ?.slice(0, 500)
+                  {expandedBlogs[blog?._id] ? (
+                    blog?.body?.split("\n").map((paragraph, index) => (
+                      <p key={index}>
+                        {paragraph} <br />
+                      </p>
+                    ))
+                  ) : (
+                    <>
+                      {blog?.body
+                        ?.slice(0, 300)
                         .split("\n")
                         .map((paragraph, index) => (
                           <p key={index}>
                             {paragraph} <br />
                           </p>
                         ))}
+                      {blog?.body?.length > 300 && " ..."}
+                    </>
+                  )}
                 </div>
               </div>
               <hr className="my-2" />

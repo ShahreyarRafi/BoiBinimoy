@@ -178,7 +178,7 @@ const Categories = () => {
                                                 {count + 1}
                                             </h5>
                                             <div className="w-full text-lg font-semibold text-center lg:text-start line-clamp-1 truncate">
-                                                <Image
+                                                <Image 
                                                     src={category?.category_image}
                                                     alt="category"
                                                     priority

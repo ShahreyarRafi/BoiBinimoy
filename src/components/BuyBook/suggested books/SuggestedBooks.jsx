@@ -10,11 +10,10 @@ import { FiArrowUpRight } from "react-icons/fi";
 import ComponentLoading from "@/components/Shared/loadingPageBook/ComponentLoading";
 import useBookSuggestion from '@/Hooks/SuggesteBooks/useBookSuggestion';
 
-
 const SuggestedBooks = ({ CurrentlyViewing }) => {
     const [swiperInitialized, setSwiperInitialized] = useState(false);
     const [swiper, setSwiper] = useState(null);
-    const {bookSuggestion, suggetionsLoading} = useBookSuggestion(CurrentlyViewing)
+    const {interestedBooks, topTearSuggestions, suggetionsLoading} = useBookSuggestion(CurrentlyViewing)
 
 
     const handleNextButtonClick = () => {
@@ -108,10 +107,10 @@ const SuggestedBooks = ({ CurrentlyViewing }) => {
             spaceBetween={13}
             onSwiper={handleSwiperInit}
             controller={{ control: (swiper) => (window.swiper = swiper) }}
-            slidesPerView={2} // Set a default value
+            slidesPerView={3}
           >
             {swiperInitialized ? (
-              bookSuggestion.map((cardInfo, index) => (
+              topTearSuggestions.map((cardInfo, index) => (
                 <SwiperSlide key={cardInfo.id}>
                   <SuggestedCard cardInfo={cardInfo} index={index}></SuggestedCard>
                 </SwiperSlide>
