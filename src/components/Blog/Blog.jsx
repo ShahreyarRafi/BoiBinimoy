@@ -49,39 +49,39 @@ const Blog = () => {
 
   return (
     <div className="max-w-7xl mx-auto mt-8 mb-10 lg:mb-36 px-3">
-      <div className="flex flex-col lg:flex-row items-center gap-3 mb-8">
-        {/* Search input */}
-        <div className="flex items-center gap-3 w-full p-2 mb-4 border border-teal-800 bg-teal-50/40 shadow-md rounded-md">
-          <FiSearch className="text-xl text-teal-800" />
-          <input
-            type="text"
-            placeholder="Search blogs"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-transparent focus:outline-none"
-          />
-        </div>
-
-        {/* Category filter */}
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="w-full lg:w-fit p-2 mb-4 border border-teal-800 bg-teal-50/40 shadow-md rounded-md focus:outline-none"
-        >
-          <option value="">All Categories</option>
-          {/* Add options dynamically based on available categories */}
-          {Array.from(new Set(blogs.map((blog) => blog.category))).map(
-            (category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            )
-          )}
-        </select>
-      </div>
-
       <div className="flex flex-col lg:flex-row gap-5">
         <div className="w-full lg:w-2/3">
+          <div className="flex flex-col lg:flex-row items-center gap-3 mb-5">
+            {/* Search input */}
+            <div className="flex items-center gap-3 w-full p-2 mb-4 border border-teal-800 bg-teal-50/40 shadow-md rounded-md">
+              <FiSearch className="text-xl text-teal-800" />
+              <input
+                type="text"
+                placeholder="Search blogs"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-transparent focus:outline-none"
+              />
+            </div>
+
+            {/* Category filter */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="w-full lg:w-fit p-2 mb-4 border border-teal-800 bg-teal-50/40 shadow-md rounded-md focus:outline-none"
+            >
+              <option value="">All Categories</option>
+              {/* Add options dynamically based on available categories */}
+              {Array.from(new Set(blogs.map((blog) => blog.category))).map(
+                (category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+
           {/* Blogs display */}
           {blogs
             .filter((blog) =>
@@ -102,7 +102,7 @@ const Blog = () => {
                     alt="Main blog"
                     className="w-full h-96 object-cover rounded-lg"
                   />
-                  <div className="flex justify-between items-center my-3 px-3">
+                  <div className="flex justify-between items-center my-3 lg:px-2">
                     <div className="text-xs text-gray-500">
                       <p>
                         Published on: {blog?.publish_date} at{" "}
@@ -146,7 +146,9 @@ const Blog = () => {
                               {paragraph} <br />
                             </p>
                           ))}
-                        {blog?.body?.length > 300 && " ..."}
+                        {blog?.body?.length > 300 && (
+                          <p className="text-sm text-gray-500">... read more</p>
+                        )}
                       </>
                     )}
                   </div>
