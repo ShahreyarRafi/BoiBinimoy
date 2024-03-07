@@ -61,7 +61,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
                 }
             });
             const writers = await Promise.all(writersBooksPromises);
-            return writers.filter(writer => writer !== null).flatMap(writer => writer);
+            return writers?.filter(writer => writer !== null).flatMap(writer => writer);
         },
     });
 
@@ -95,7 +95,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
                 }
             });
             const publishers = await Promise.all(publisherBooksPromises);
-            return publishers.filter(publisher => publisher !== null).flatMap(publisher => publisher);
+            return publishers?.filter(publisher => publisher !== null).flatMap(publisher => publisher);
         },
     });
 
@@ -129,7 +129,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
                 }
             });
             const books = await Promise.all(bookDetailsPromises);
-            return books.filter(book => book !== null);
+            return books?.filter(book => book !== null);
         },
     });
 
@@ -158,15 +158,15 @@ const useBookSuggestion = (CurrentlyViewing) => {
             const publisherResponse = await axiosPublic.get(`/api/v1/publisher/${publisher}`);
             const categoryResponse = await axiosPublic.get(`/api/v1/category/${category}`);
 
-            const writerBooks = writerResponse.data || [];
-            const publisherBooks = publisherResponse.data || [];
-            const categoryBooks = categoryResponse.data || [];
+            const writerBooks = writerResponse?.data || [];
+            const publisherBooks = publisherResponse?.data || [];
+            const categoryBooks = categoryResponse?.data || [];
 
             const relatedBooksData = [...writerBooks, ...publisherBooks, ...categoryBooks];
 
             // Remove duplicates
-            const uniqueRelatedBooks = Array.from(new Set(relatedBooksData.map(book => book._id))).map(_id => {
-                return relatedBooksData.find(book => book._id === _id);
+            const uniqueRelatedBooks = Array?.from(new Set(relatedBooksData?.map(book => book?._id))).map(_id => {
+                return relatedBooksData?.find(book => book?._id === _id);
             });
 
             setRelatedBooksLoading(false); // Set loading state to false after data fetching
@@ -228,7 +228,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
                 if (response.status !== 200) {
                     throw new Error('Failed to fetch book details');
                 }
-                return response.data;
+                return response?.data;
             } catch (error) {
                 console.error(error);
                 return null;
@@ -277,63 +277,63 @@ const useBookSuggestion = (CurrentlyViewing) => {
     useEffect(() => {
         // Filter books based on user interests
         const filteredBooks = [];
-        booksFromCategory.forEach(book => {
+        booksFromCategory?.forEach(book => {
             if (
-                interest?.writer?.includes(book.writer) ||
-                interest?.publisher?.includes(book.publisher) ||
-                interest?.book?.includes(book._id)
+                interest?.writer?.includes(book?.writer) ||
+                interest?.publisher?.includes(book?.publisher) ||
+                interest?.book?.includes(book?._id)
             ) {
                 filteredBooks.push(book);
             }
         });
 
-        booksFromWriters.forEach(book => {
+        booksFromWriters?.forEach(book => {
             if (
-                interest?.publisher?.includes(book.publisher) ||
-                interest?.category?.includes(book.category) ||
-                interest?.book?.includes(book._id)
+                interest?.publisher?.includes(book?.publisher) ||
+                interest?.category?.includes(book?.category) ||
+                interest?.book?.includes(book?._id)
             ) {
                 filteredBooks.push(book);
             }
         });
 
-        booksFromPublishers.forEach(book => {
+        booksFromPublishers?.forEach(book => {
             if (
-                interest?.writer?.includes(book.writer) ||
-                interest?.category?.includes(book.category) ||
-                interest?.book?.includes(book._id)
+                interest?.writer?.includes(book?.writer) ||
+                interest?.category?.includes(book?.category) ||
+                interest?.book?.includes(book?._id)
             ) {
                 filteredBooks.push(book);
             }
         });
 
-        interestedBooks.forEach(book => {
+        interestedBooks?.forEach(book => {
             if (
-                interest?.writer?.includes(book.writer) ||
-                interest?.publisher?.includes(book.publisher) ||
-                interest?.category?.includes(book.category)
+                interest?.writer?.includes(book?.writer) ||
+                interest?.publisher?.includes(book?.publisher) ||
+                interest?.category?.includes(book?.category)
             ) {
                 filteredBooks.push(book);
             }
         });
 
-        interestedBooksRelatedBooks.forEach(book => {
+        interestedBooksRelatedBooks?.forEach(book => {
             if (
-                interest?.writer?.includes(book.writer) ||
-                interest?.publisher?.includes(book.publisher) ||
-                interest?.category?.includes(book.category)
+                interest?.writer?.includes(book?.writer) ||
+                interest?.publisher?.includes(book?.publisher) ||
+                interest?.category?.includes(book?.category)
             ) {
                 filteredBooks.push(book);
             }
         });
 
         // Remove duplicate books
-        const uniqueBooks = Array.from(new Set(filteredBooks.map(book => book._id))).map(_id => {
-            return filteredBooks.find(book => book._id === _id);
+        const uniqueBooks = Array.from(new Set(filteredBooks?.map(book => book?._id))).map(_id => {
+            return filteredBooks?.find(book => book?._id === _id);
         });
 
         // Shuffle the array using Fisher-Yates shuffle algorithm
-        for (let i = uniqueBooks.length - 1; i > 0; i--) {
+        for (let i = uniqueBooks?.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [uniqueBooks[i], uniqueBooks[j]] = [uniqueBooks[j], uniqueBooks[i]];
             setTopTearSuggestionsLoading(false)
@@ -363,13 +363,13 @@ const useBookSuggestion = (CurrentlyViewing) => {
                 const fetchBuyBooks = async () => {
                     try {
                         const response = await axiosPublic.get(`/api/v1/buy-books`);
-                        if (response.status !== 200) {
+                        if (response?.status !== 200) {
                             throw new Error('Failed to fetch buy books');
                         }
-                        let buyBooksData = response.data.buyBooks || [];
+                        let buyBooksData = response?.data?.buyBooks || [];
 
                         // Fisher-Yates shuffle algorithm
-                        for (let i = buyBooksData.length - 1; i > 0; i--) {
+                        for (let i = buyBooksData?.length - 1; i > 0; i--) {
                             const j = Math.floor(Math.random() * (i + 1));
                             [buyBooksData[i], buyBooksData[j]] = [buyBooksData[j], buyBooksData[i]];
                         }
