@@ -64,10 +64,8 @@ const MyBlogCard = ({ item, refetch }) => {
   };
 
   const handleUpdateBlog = async (data) => {
-    console.log(data);
     const { title, body, category, tags } = data;
     const url = await uploadImage();
-    console.log(item?._id);
 
     const updateBlogInfo = {
       title,
@@ -82,7 +80,6 @@ const MyBlogCard = ({ item, refetch }) => {
       updateBlogInfo
     );
 
-    console.log(res?.data);
     if (res?.data) {
       modalRef.current.close();
       refetch();

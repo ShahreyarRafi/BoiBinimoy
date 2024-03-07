@@ -143,7 +143,6 @@ const Writers = () => {
 
         axiosSecure.patch(`api/v1/writers/${current?.id}`, updateWriter)
             .then(res => {
-                console.log(res);
                 if (res.status === 200) {
                     Swal.fire({
                         icon: 'success',

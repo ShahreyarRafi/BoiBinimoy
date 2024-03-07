@@ -4,10 +4,8 @@ import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import Image from "next/image";
 import Swal from "sweetalert2";
 
-const Order = ({ order }) => {
+const Order = ({order, refetch}) => {
   const axiosSecure = useAxiosSecure();
-
-  console.log(order);
 
   const handleDelivary = async (id, title) => {
     Swal.fire({
@@ -18,29 +16,27 @@ const Order = ({ order }) => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delivered!",
-    }).then((result) => {
+    }).then( async(result) => {
       if (result.isConfirmed) {
-        axiosSecure
-          .patch(`/api/v1/seller-orders/${id}`)
-          .then((response) => {
-            if (response.data) {
-              Swal.fire(
-                "Deleted!",
-                `Your book "${title}" has been delivered.`,
-                "success"
-              );
 
-              refetch();
-            }
-          })
-          .catch((error) => {
-            console.error("Error delivery Book:", error);
+        try{ 
+          const res = await  axiosSecure.patch(`/api/v1/seller-orders/${id}`);
+          if(res.data){
             Swal.fire(
-              "Error!",
-              "An error occurred while delivery the book.",
-              "error"
+              "Done",
+              `Your book "${title}" has been delivered.`,
+              "success"
             );
-          });
+            refetch();
+          }
+        } catch (error){
+          console.log(error)
+          Swal.fire(
+            "Error!",
+            "An error occurred while delivery the book.",
+            "error"
+          );
+        }
       }
     });
   }
@@ -65,7 +61,13 @@ const Order = ({ order }) => {
       <h5 className=" col-span-1"> {order?.user_name}</h5>
       <h5 className=" col-span-3"> {order?.user_email}</h5>
       <h5 className=" col-span-1">
-        <button className="btn btn-sm">Pending</button>
+        {
+           !order?.isDeliverd ? <button onClick={() => handleDelivary(order?.book_id, order?.title)} className="btn btn-sm">Pending</button>
+
+           :
+           <button className="btn btn-sm">Done</button>
+
+        }
       </h5>
     </div>
   );

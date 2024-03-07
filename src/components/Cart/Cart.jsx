@@ -20,7 +20,6 @@ const Cart = () => {
     const email = await user?.email;
 
     const res = await axiosSecure.post("/api/v1/order", { email: email });
-    console.log(res.data);
     if (res?.data?.url) {
       const url = await res.data.url;
       window.open(url, "_blank");
@@ -33,10 +32,11 @@ const Cart = () => {
       {myCarts.length === 0 ? (
         <div className="text-center my-20">
           <p className=" my-10">Your cart is empty.</p>
-          <Link href={`/buyBooks`} 
+          <Link
+            href={`/buyBooks`}
             className="button-color px-4 py-2 rounded-full text-sm md:text-base text-white"
           >
-            Buy Book
+            Add to Cart
           </Link>
         </div>
       ) : (

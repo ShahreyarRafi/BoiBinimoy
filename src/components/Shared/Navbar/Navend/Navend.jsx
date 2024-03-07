@@ -12,9 +12,11 @@ import useGetMyCarts from "@/Hooks/Carts/useGetMyCarts";
 import { AiOutlineHeart } from "react-icons/ai";
 import useWishListBook from "@/Hooks/wishList/useWishListBook";
 import PageLoading from "../../loadingPageBook/PageLoading";
+import Swal from "sweetalert2";
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 
 const Navend = () => {
-
+  const axiosSecure = useAxiosSecure();
   const [wishListBook] = useWishListBook()
   const { user, logOut } = useContext(AuthContext);
   const { currentUser } = useOneUser();
@@ -24,6 +26,47 @@ const Navend = () => {
   if (myCarts?.length > 3) {
     myCarts = myCarts.slice(0, 3);
   }
+
+
+  //  delte cart
+  const handleDeleteCart = (id, title) => {
+    Swal.fire({
+      title: "Delete Book",
+      text: `Are you sure you want to delete the book ${title}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/api/v1/delete-cart/${id}`)
+          .then((response) => {
+            if (response.data) {
+              Swal.fire(
+                "Deleted!",
+                `Your book "${title}" has been deleted.`,
+                "success"
+              );
+
+              refetch();
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting Book:", error);
+            Swal.fire(
+              "Error!",
+              "An error occurred while deleting the book.",
+              "error"
+            );
+          });
+      }
+    });
+  };
+
+
+
 
   return (
     <div className="flex items-center gap-1">
@@ -83,7 +126,7 @@ const Navend = () => {
                     </div>
                   </div>
                   <button
-                    onClick={() => handleDelete(cart?._id)}
+                    onClick={() => handleDeleteCart(cart?._id, cart.title)}
                     className="mt-5 button-color px-4 py-2 rounded-full text-sm md:text-base text-white flex items-center gap-1"
                   >
                     <RxCross2></RxCross2>

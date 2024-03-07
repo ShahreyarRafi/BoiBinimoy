@@ -1,5 +1,3 @@
-
-
 import Blog from "@/components/Blog/Blog";
 import Footer from "@/components/Shared/Footer/Footer";
 import Navbar from "@/components/Shared/Navbar/Navbar";

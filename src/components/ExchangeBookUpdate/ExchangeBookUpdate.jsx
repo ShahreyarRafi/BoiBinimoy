@@ -20,22 +20,28 @@ const ExchangeBookUpdate = () => {
 
 
   const { getOneExchangeBook, isLoading } = useGetOneExchangeBook(exchange_update_book_id)
-  console.log(getOneExchangeBook);
-
-
 
 
   if (isLoading) {
     return <PageLoading></PageLoading>
   }
 
-  const { _id, description, title,
-    edition, bookType,
-
+  const { _id,
+    description,
+    title,
+    edition,
+    bookType,
     condition,
-    pages, price, whatYouWant, owner,
-    publisher, writer, bookCategory, language, publication_year, } = getOneExchangeBook || {};
-  console.log(exchange_update_book_id);
+    pages,
+    price,
+    whatYouWant,
+    owner,
+    publisher,
+    writer,
+    bookCategory,
+    language,
+    publication_year, } = getOneExchangeBook || {};
+
 
 
   const handleSubmit = (e) => {
@@ -68,19 +74,17 @@ const ExchangeBookUpdate = () => {
       publisher, writer, bookCategory, language, publication_year,
 
     };
-    console.log(updateExchangeBook);
+
 
 
 
     axiosSecure.put(`/api/v1/exchange-books/${_id}`, updateExchangeBook)
       .then(res => {
-        console.log("update data ", res.data);
         const updatedBook = res.data;
         if (updatedBook) {
           Swal.fire(' Book Update successfully');
           router.push('/dashboard/exchange-books')
         } else {
-          console.error("Update failed: Book not found or update unsuccessful");
           Swal.fire('Update failed. Please try again.');
         }
       })

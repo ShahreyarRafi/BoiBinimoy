@@ -62,7 +62,6 @@ const Publishers = () => {
 
         axiosSecure.post("api/v1/publishers", newPublisher)
             .then(res => {
-                console.log(res);
                 if (res.data._id) {
                     Swal.fire({
                         icon: "success",

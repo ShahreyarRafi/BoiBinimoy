@@ -10,7 +10,6 @@ import Swal from "sweetalert2";
 
 const ExchangeBook = () => {
   const [exchangeBooks, refetch, isLoading] = useExchangeBooks();
-  console.log(exchangeBooks);
   const axiosSecure = useAxiosSecure();
 
   // delete operation
@@ -28,7 +27,6 @@ const ExchangeBook = () => {
         axiosSecure
           .delete(`/api/v1/exchange-books/${id}`)
           .then((response) => {
-            console.log(response.data);
             if (response.data) {
               Swal.fire(
                 "Deleted!",
@@ -52,19 +50,17 @@ const ExchangeBook = () => {
 
   if (isLoading) {
     return (
-      <div className="text-center items-center justify-center flex">
-        <span className="loading loading-ball loading-lg"></span>
-      </div>
+        <div className="text-center items-center justify-center flex flex-col min-h-screen ">
+            <span className="loading loading-ball loading-lg"></span>
+        </div>
     );
   }
 
   if (exchangeBooks.length === 0) {
     return (
-      <div>
-        <h1 className="text-center justify-center font-semibold md:text-3xl lg:text-4xl">
-          Books Not Found....
-        </h1>
-      </div>
+        <div>
+            <h1  className="text-center flex flex-col justify-center font-semibold md:text-3xl lg:text-4xl min-h-screen"> Books  Not Found....</h1>
+        </div>
     );
   }
 

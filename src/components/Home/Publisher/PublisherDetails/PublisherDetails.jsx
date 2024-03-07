@@ -76,13 +76,9 @@ const PublisherDetails = () => {
           },
           body: JSON.stringify({ interest: updatedInterest })
         });
-        console.log(response);
         if (!response.ok) {
           throw new Error('Failed to update user interest');
         }
-        console.log('User interest updated successfully');
-      } else {
-        console.log('publisher already exists in user interest');
       }
     } catch (error) {
       console.log(error);
@@ -91,8 +87,6 @@ const PublisherDetails = () => {
 
   useEffect(() => {
     if (user) {
-      console.log("publisher:", publisher?.publisher);
-
       // Update user interest in the database
       updateUserInterest(user.email, publisher?.publisher);
     }

@@ -78,16 +78,12 @@ const AllBlogCard = ({ item, refetch }) => {
 
   const handleUpdate = () => {
     const modal = document.getElementById("update_blog_modal");
-
-    console.log(item._id);
     modal.showModal();
   };
 
   const handleUpdateBlog = async (data) => {
-    console.log(data);
     const { title, description: body, category, tags } = data;
     const url = await uploadImage();
-    console.log(item?._id);
 
     const updateBlogInfo = {
       title,
@@ -99,7 +95,6 @@ const AllBlogCard = ({ item, refetch }) => {
 
     const res = await axiosSecure.patch(`api/v1/blogs/${item?._id}`, updateBlogInfo);
 
-    console.log(res?.data);
     if (res?.data) {
       refetch()
       document.getElementById("update_blog_modal").close();

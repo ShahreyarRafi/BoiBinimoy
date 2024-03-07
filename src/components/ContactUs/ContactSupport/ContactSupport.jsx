@@ -11,11 +11,6 @@ const ContactSupport = () => {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      // Here you can add your logic to handle form submission, like sending an email or storing data
-      console.log('Email:', email);
-      console.log('Selected Issue:', selectedIssue);
-      console.log('Message:', message);
-      console.log('Image:', image);
       // Reset form fields
       setEmail('');
       setMessage('');

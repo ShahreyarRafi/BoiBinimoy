@@ -2,13 +2,12 @@ import { createStore, compose, combineReducers, applyMiddleware } from "redux";
 
 import thunkMiddleware from "redux-thunk";
 import { messengerReducer } from "./reducers/messangerReducer";
+import { authReducer } from "./reducers/authReducer";
 
-// import { authReducer } from "./reducers/authReducer";
-
-// const rootReducer = combineReducers({
-//   // auth: authReducer,
-//   messenger: messengerReducer,
-// });
+const rootReducer = combineReducers({
+  auht: authReducer,
+  messenger: messengerReducer,
+});
 
 let middleware = [thunkMiddleware];
 

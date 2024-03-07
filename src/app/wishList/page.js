@@ -6,7 +6,7 @@ import React from 'react';
 
 const page = () => {
     return (
-        <div>
+        <div className="bg-teal-50">
             <Navbar />
             <SectionTitle heading={"Wish List Page "}></SectionTitle>
             <WishLIst></WishLIst>

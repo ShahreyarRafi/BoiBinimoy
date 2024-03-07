@@ -19,8 +19,7 @@ const Notification = () => {
                 try {
                     const response = await axios.get(
                         `https://boi-binimoy-server.vercel.app/api/v1/request-books`
-                    );
-                    console.log(response.data);
+                    );;
                     setIncoming(response.data.filter(data => data.owner_email = user?.email));
                 } catch (error) {
                     console.error("Error:", error);
@@ -29,11 +28,8 @@ const Notification = () => {
 
             fetchData();
         }
-    }, [user?.email]);
+    }, [user?.email, fetchData]);
 
-
-    console.log(incoming);
-    // console.log(user);
 
     const handleAccept = (id) => {
         axiosSecure.patch(`/api/v1/request-books/${id}`, { status: 'Accept' })

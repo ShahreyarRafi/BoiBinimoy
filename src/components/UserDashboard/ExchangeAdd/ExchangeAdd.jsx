@@ -84,7 +84,6 @@ const ExchangeAdd = () => {
     )
       .then((response) => {
         // Handle the success response
-        console.log("Response:", response.data);
         Swal.fire({
           position: "top-end",
           icon: "success",
