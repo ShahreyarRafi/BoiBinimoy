@@ -7,7 +7,6 @@ import { AuthContext } from "@/providers/AuthProvider";
 
 const useSpecificUserBook = () => {
   const { user } = useContext(AuthContext);
-  console.log(" user ", user?.email);
 
   const axiosSecure = useAxiosSecure();
 

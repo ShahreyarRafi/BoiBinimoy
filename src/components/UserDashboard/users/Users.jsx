@@ -110,7 +110,6 @@ const Users = () => {
       });
   };
 
-  console.log(allUser);
 
   return (
     <>

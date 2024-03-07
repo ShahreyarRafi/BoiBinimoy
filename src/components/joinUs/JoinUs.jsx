@@ -68,11 +68,9 @@ const JoinUs = () => {
 
     createUser(email, password).then(async (res) => {
       const updateName = await updateUserProfiole(name);
-      console.log("user name : ", updateName);
       if (res.user) {
         reset();
         const res = await axiosPublic.post("/api/v1/users", userInfo);
-        console.log(res.data);
         Swal.fire("Sign up successfull");
         router.push("/");
 
@@ -92,7 +90,6 @@ const JoinUs = () => {
     signin(email, password).then((res) => {
       reset();
       router.push("/");
-      console.log(res);
       Swal.fire("Login successfull");
     });
   };
@@ -102,7 +99,6 @@ const JoinUs = () => {
   const handleSocialLogin = (user) => {
     user()
       .then((res) => {
-        console.log(res.user);
         if (res.user) {
           toast.success("User logged in successfully", {
             position: "top-center",
@@ -115,7 +111,6 @@ const JoinUs = () => {
         };
 
         axiosPublic.post("/users", userInfo).then((res) => {
-          console.log(res.data);
           router.push("/");
         });
       })

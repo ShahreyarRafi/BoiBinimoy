@@ -10,7 +10,6 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    // console.log(form.current);
     emailjs
       .sendForm(
         "service_uzkvpvg",
@@ -20,7 +19,6 @@ const Contact = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
           form.current.reset();
           Swal.fire({
             icon: "success",

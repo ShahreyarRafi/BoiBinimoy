@@ -37,7 +37,6 @@ const BuyBookDetails = () => {
   if (bookLoading || isPending) {
     return <PageLoading />;
   }
-  console.log("book: ", book_id, book);
 
   // Handle comment form
   const handleSubmit = (e) => {
@@ -64,7 +63,6 @@ const BuyBookDetails = () => {
       .post("/api/v1/reviews", newComment)
       .then((response) => {
         refetch();
-        console.log("Response:", response.data);
         Swal.fire({
           position: "top-end",
           icon: "success",

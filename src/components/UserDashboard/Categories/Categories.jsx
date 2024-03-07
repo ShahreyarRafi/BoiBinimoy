@@ -27,8 +27,6 @@ const Categories = () => {
         },
     });
 
-    console.log(categories);
-
     const addOnSelectFile = () => {
         const file = document.getElementById('imageFile').files[0];
 

@@ -12,7 +12,7 @@ const MyOrders = () => {
     return <PageLoading />;
   }
 
-  console.log("my orders", myOrders);
+
   return (
     <div className="container duration-300">
       {myOrders?.length === 0 ? (

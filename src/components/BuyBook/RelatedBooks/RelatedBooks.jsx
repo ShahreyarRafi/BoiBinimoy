@@ -6,7 +6,7 @@ const RelatedBooks = ({ CurrentlyViewing }) => {
   const { currentlyViewingRelatedBooks, relatedLoading } =
     useBookSuggestion(CurrentlyViewing);
 
-  console.log(relatedLoading);
+
 
   // Slice the currentlyViewingRelatedBooks array to display only the first 6 items
   const slicedRelatedBooks = currentlyViewingRelatedBooks?.slice(0, 2);

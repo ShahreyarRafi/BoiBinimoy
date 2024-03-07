@@ -53,7 +53,6 @@ const CartsDetails = ({ cart, refetch }) => {
 
 //   delete a cart
 const handleDeleteCart = (id, title) => {
-    console.log("id: ", id);
 
     Swal.fire({
       title: "Delete Book",
