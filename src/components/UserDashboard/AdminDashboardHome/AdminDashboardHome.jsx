@@ -1,15 +1,14 @@
 "use client";
 
-import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import TopSellingBooksCard from "./TopSellingBooksCard";
 import TopBuyingCustomerCard from "./TopBuyingCustomerCard";
 import RecentOrderBookCard from "./RecentOrderBookCard";
+import LowStockBooksCard from "./LowStockBooksCard";
 
 export default function AdminDashboardHome() {
   const axiosSecure = useAxiosSecure();
-  const axiosPublic = useAxiosPublic();
 
   const {
     data: totalSales = [],
@@ -54,7 +53,7 @@ export default function AdminDashboardHome() {
   } = useQuery({
     queryKey: ["topSellingBooks"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/api/v1/top-selling-books`);
+      const res = await axiosSecure.get(`/api/v1/top-selling-books`);
       return res.data;
     },
   });
@@ -66,7 +65,7 @@ export default function AdminDashboardHome() {
   } = useQuery({
     queryKey: ["topBuyingCustomers"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/api/v1/top-buying-customers`);
+      const res = await axiosSecure.get(`/api/v1/top-buying-customers`);
       return res.data;
     },
   });
@@ -78,7 +77,19 @@ export default function AdminDashboardHome() {
   } = useQuery({
     queryKey: ["recentOrderedBooks"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/api/v1/recent-ordered-books`);
+      const res = await axiosSecure.get(`/api/v1/recent-ordered-books`);
+      return res.data;
+    },
+  });
+
+  const {
+    data: lowStockBooks = [],
+    isPending: lowStockBooksPending,
+    refetch: lowStockBooksRefetch,
+  } = useQuery({
+    queryKey: ["lowStockBooks"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/api/v1/low-stock-books`);
       return res.data;
     },
   });
@@ -141,6 +152,23 @@ export default function AdminDashboardHome() {
             {topBuyingCustomers &&
               topBuyingCustomers.topBuyingCustomers?.map((item) => (
                 <TopBuyingCustomerCard item={item} />
+              ))}
+          </div>
+        </div>
+
+        <div className="border p-5 rounded-lg shadow-sm space-y-3">
+          <h3 className="text-xl font-semibold flex justify-between items-center gap-5">
+            Low Stock Books
+            <span>
+              {lowStockBooks && lowStockBooks.lowStockBooks
+                ? lowStockBooks.lowStockBooks.length
+                : 0}
+            </span>
+          </h3>
+          <div>
+            {lowStockBooks &&
+              lowStockBooks.lowStockBooks?.map((item) => (
+                <LowStockBooksCard item={item} />
               ))}
           </div>
         </div>

@@ -1,4 +1,5 @@
-"use cliet"
+"use cliet";
+import Image from "next/image";
 import React, { Component } from "react";
 
 export default class Avatar extends Component {
@@ -9,7 +10,7 @@ export default class Avatar extends Component {
     return (
       <div className="avatar">
         <div className="avatar-img">
-          <img src={this.props.image} alt="#" />
+          <Image width={200} height={200} alt="" src={this.props.image} />
         </div>
         <span className={`isOnline ${this.props.isOnline}`}></span>
       </div>

@@ -6,20 +6,24 @@ const RelatedBooks = ({ CurrentlyViewing }) => {
   const { currentlyViewingRelatedBooks, relatedLoading } =
     useBookSuggestion(CurrentlyViewing);
 
+  console.log(relatedLoading);
+
   // Slice the currentlyViewingRelatedBooks array to display only the first 6 items
   const slicedRelatedBooks = currentlyViewingRelatedBooks?.slice(0, 2);
 
+  if (relatedLoading) {
+    <ComponentLoading />
+  }
+
   return (
     <div className="max-w-[200px] mx-auto">
-      {relatedLoading ? (
-        <ComponentLoading />
-      ) : (
+      {
         slicedRelatedBooks?.map((item) => (
           <div key={item?._id}>
             <BookCard item={item} />
           </div>
         ))
-      )}
+      }
     </div>
   );
 };

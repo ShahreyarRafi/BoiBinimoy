@@ -18,8 +18,7 @@ const Dashboard = ({ children }) => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
-  const [isAdmin] = useAdmin();
-  console.log("admin ", isAdmin);
+  const { isAdmin, isModerator, isSeller, isPublisher, isUser } = useOneUser();
 
   const toggleNotification = () => {
     setIsOpen(!isOpen);
@@ -253,7 +252,9 @@ const Dashboard = ({ children }) => {
                 <span className="text">Message</span>
               </Link>
             </li>
-            <li className={pathname == "/dashboard/notification" ? "active" : ""}>
+            <li
+              className={pathname == "/dashboard/notification" ? "active" : ""}
+            >
               <Link href="/dashboard/notification">
                 <i className="bx bxs-message-dots"></i>
                 <span className="text">Notification</span>
@@ -261,19 +262,19 @@ const Dashboard = ({ children }) => {
             </li>
             <li className={pathname == "/dashboard/categories" ? "active" : ""}>
               <Link href="/dashboard/categories">
-                <i class='bx bxs-category'></i>
+                <i className="bx bxs-category"></i>
                 <span className="text">Categories</span>
               </Link>
             </li>
             <li className={pathname == "/dashboard/writers" ? "active" : ""}>
               <Link href="/dashboard/writers">
-                <i class='bx bxs-credit-card-front'></i>
+                <i className="bx bxs-credit-card-front"></i>
                 <span className="text">Writers</span>
               </Link>
             </li>
             <li className={pathname == "/dashboard/publishers" ? "active" : ""}>
               <Link href="/dashboard/publishers">
-                <i class='bx bxs-store'></i>
+                <i className="bx bxs-store"></i>
                 <span className="text">Publisher</span>
               </Link>
             </li>
@@ -522,7 +523,7 @@ const Dashboard = ({ children }) => {
                       <div className="flex justify-center gap-3 hover:bg-teal-100 p-2 rounded-lg cursor-pointer">
                         {/* image */}
                         <div className="w-16 flex justify-center">
-                          <Image 
+                          <Image
                             className="w-6 h-6 rounded-full"
                             src={cardInfo.img}
                             width={500}
@@ -566,27 +567,27 @@ const Dashboard = ({ children }) => {
             {/* notification end */}
             <a href="#" className="profile">
               {currentUser.image ? (
-                <Image 
+                <Image
                   src={currentUser.image}
                   alt="user"
                   priority
                   width={36}
                   height={36}
                   style={{
-                    width: '36px',
-                    height: '36px'
+                    width: "36px",
+                    height: "36px",
                   }}
                 />
               ) : (
-                <Image 
+                <Image
                   src={profilePlaceholder}
                   alt="placeholder"
                   priority
                   width={36}
                   height={36}
                   style={{
-                    width: '36px',
-                    height: '36px'
+                    width: "36px",
+                    height: "36px",
                   }}
                 />
               )}
