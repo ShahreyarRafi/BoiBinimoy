@@ -11,7 +11,7 @@ const PrivateRoute = ({ children }) => {
     if (!user) {
       router.push("/joinUs");
     }
-  }, [user]);
+  }, [user, router]);
 
 //   if (loading) {
 //     return <div>Loading...</div>;
