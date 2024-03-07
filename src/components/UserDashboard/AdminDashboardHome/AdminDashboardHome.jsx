@@ -6,6 +6,8 @@ import TopSellingBooksCard from "./TopSellingBooksCard";
 import TopBuyingCustomerCard from "./TopBuyingCustomerCard";
 import RecentOrderBookCard from "./RecentOrderBookCard";
 import LowStockBooksCard from "./LowStockBooksCard";
+import SalesAnalytics from "./SalesAnalytics";
+import TopSellingBookPieChart from "./TopSellingBookPieChart";
 
 export default function AdminDashboardHome() {
   const axiosSecure = useAxiosSecure();
@@ -119,6 +121,17 @@ export default function AdminDashboardHome() {
               : 0}
           </h2>
         </div>
+      </div>
+
+      {/* sales anilities  */}
+      <div className="border p-5 rounded-lg shadow-sm space-y-3 mt-6">
+        <div>
+          <SalesAnalytics />
+        </div>
+      </div>
+
+      <div className="border p-5 rounded-lg shadow-sm space-y-3 mt-6">
+        <TopSellingBookPieChart />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
