@@ -81,6 +81,7 @@ const Search = () => {
                       height={40}
                       alt=""
                       src={book?.cover_image}
+                      className="hidden md:flex"
                     />
                   </div>
                   <div className="w-full">
@@ -89,7 +90,7 @@ const Search = () => {
                     </h1>
                     <p className="text-xs text-gray-400">{book?.writer}</p>
                   </div>
-                  <div className="flex items-center font-light gap-2 min-w-fit">
+                  <div className="items-center font-light gap-2 min-w-fit hidden md:flex">
                     <p className="text-sm text-green-600">In stock</p>
                     <p className="text-sm text-red-600">({book?.stock_limit})</p>
                     <h3 className="font-semibold text-teal-800">&#2547;{book?.price}</h3>

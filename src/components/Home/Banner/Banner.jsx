@@ -121,7 +121,6 @@ export default function BannerNew() {
                                 <div className="buttons">
                                     {Array.isArray(item?.buttons) && item?.buttons.map((button, buttonIndex) => (
                                         <button
-                                            className='px-4 py-2'
                                             key={buttonIndex}
                                             onClick={() => handleClick(button.link)}
                                         >
