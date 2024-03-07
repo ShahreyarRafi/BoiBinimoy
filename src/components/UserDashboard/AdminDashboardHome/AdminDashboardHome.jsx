@@ -10,7 +10,6 @@ import LowStockBooksCard from "./LowStockBooksCard";
 
 export default function AdminDashboardHome() {
   const axiosSecure = useAxiosSecure();
-  const axiosPublic = useAxiosPublic();
 
   const {
     data: totalSales = [],
@@ -55,7 +54,7 @@ export default function AdminDashboardHome() {
   } = useQuery({
     queryKey: ["topSellingBooks"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/api/v1/top-selling-books`);
+      const res = await axiosSecure.get(`/api/v1/top-selling-books`);
       return res.data;
     },
   });
@@ -67,7 +66,7 @@ export default function AdminDashboardHome() {
   } = useQuery({
     queryKey: ["topBuyingCustomers"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/api/v1/top-buying-customers`);
+      const res = await axiosSecure.get(`/api/v1/top-buying-customers`);
       return res.data;
     },
   });
@@ -79,7 +78,7 @@ export default function AdminDashboardHome() {
   } = useQuery({
     queryKey: ["recentOrderedBooks"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/api/v1/recent-ordered-books`);
+      const res = await axiosSecure.get(`/api/v1/recent-ordered-books`);
       return res.data;
     },
   });
@@ -91,7 +90,7 @@ export default function AdminDashboardHome() {
   } = useQuery({
     queryKey: ["lowStockBooks"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/api/v1/low-stock-books`);
+      const res = await axiosSecure.get(`/api/v1/low-stock-books`);
       return res.data;
     },
   });
