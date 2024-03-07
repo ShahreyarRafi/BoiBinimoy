@@ -133,8 +133,8 @@ export default function AdminDashboardHome() {
           </h3>
           <div>
             {topSellingBooks &&
-              topSellingBooks.topSellingBooks?.map((item) => (
-                <TopSellingBooksCard item={item} />
+              topSellingBooks.topSellingBooks?.map((item, index) => (
+                <TopSellingBooksCard key={item.id || index} item={item} />
               ))}
           </div>
         </div>
@@ -150,41 +150,23 @@ export default function AdminDashboardHome() {
           </h3>
           <div>
             {topBuyingCustomers &&
-              topBuyingCustomers.topBuyingCustomers?.map((item) => (
-                <TopBuyingCustomerCard item={item} />
+              topBuyingCustomers.topBuyingCustomers?.map((item, index) => (
+                <TopBuyingCustomerCard key={item.id || index} item={item} />
               ))}
           </div>
         </div>
 
-        <div className="border p-5 rounded-lg shadow-sm space-y-3">
-          <h3 className="text-xl font-semibold flex justify-between items-center gap-5">
-            Low Stock Books
-            <span>
-              {lowStockBooks && lowStockBooks.lowStockBooks
-                ? lowStockBooks.lowStockBooks.length
-                : 0}
-            </span>
-          </h3>
-          <div>
-            {lowStockBooks &&
-              lowStockBooks.lowStockBooks?.map((item) => (
-                <LowStockBooksCard item={item} />
-              ))}
+        <div className="mt-5">
+          <div className="border p-5 rounded-lg shadow-sm space-y-3">
+            <h3 className="text-xl font-semibold">Recent Orders</h3>
+            <div>
+              {recentOrderedBooks &&
+                recentOrderedBooks.recentOrders?.map((item) => (
+                  <RecentOrderBookCard item={item} />
+                ))}
+            </div>
           </div>
         </div>
       </div>
-
-      <div className="mt-5">
-        <div className="border p-5 rounded-lg shadow-sm space-y-3">
-          <h3 className="text-xl font-semibold">Recent Orders</h3>
-          <div>
-            {recentOrderedBooks &&
-              recentOrderedBooks.recentOrders?.map((item) => (
-                <RecentOrderBookCard item={item} />
-              ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+      );
 }
