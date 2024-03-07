@@ -12,7 +12,6 @@ import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import Swal from "sweetalert2";
 import { AuthContext } from "@/providers/AuthProvider";
 import SocialLogin from "./SocialLogin";
-import { userRegister } from "@/store/actions/authAction";
 import Link from "next/link";
 // import SocialLogin from './SocialLogin/SocialLogin';
 

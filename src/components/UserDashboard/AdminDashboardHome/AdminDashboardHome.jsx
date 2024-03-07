@@ -123,17 +123,6 @@ export default function AdminDashboardHome() {
         </div>
       </div>
 
-      {/* sales anilities  */}
-      <div className="border p-5 rounded-lg shadow-sm space-y-3 mt-6">
-        <div>
-          <SalesAnalytics />
-        </div>
-      </div>
-
-      <div className="border p-5 rounded-lg shadow-sm space-y-3 mt-6">
-        <TopSellingBookPieChart />
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
         <div className="border p-5 rounded-lg shadow-sm space-y-3">
           <h3 className="text-xl font-semibold flex items-center justify-between">
@@ -145,27 +134,83 @@ export default function AdminDashboardHome() {
             </span>
           </h3>
           <div>
-            {topSellingBooks &&
-              topSellingBooks.topSellingBooks?.map((item) => (
-                <TopSellingBooksCard key={item.bookId} item={item} />
-              ))}
+            <table className="table">
+              <thead>
+                <tr className="bg-base-200 rounded-lg">
+                  <th>Cover Image</th>
+                  <th>Title</th>
+                  <th>Sales</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {topSellingBooks &&
+                  topSellingBooks.topSellingBooks?.map((item) => (
+                    <tr
+                      key={item.bookId}
+                      item={item}
+                      className="space-x-2 border"
+                    >
+                      <td>
+                        <img
+                          src={item.bookDetails.cover_image}
+                          className="w-12"
+                          alt=""
+                        />
+                      </td>
+                      <td>{item.bookDetails.title}</td>
+                      <td>{item.totalQuantity}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
         <div className="border p-5 rounded-lg shadow-sm space-y-3">
-          <h3 className="text-xl font-semibold flex justify-between items-center gap-5">
-            Top Buying Customers
-            <span>
-              {topBuyingCustomers && topBuyingCustomers.topBuyingCustomers
-                ? topBuyingCustomers.topBuyingCustomers.length
-                : 0}
-            </span>
-          </h3>
-          <div>
-            {topBuyingCustomers &&
-              topBuyingCustomers.topBuyingCustomers?.map((item) => (
-                <TopBuyingCustomerCard key={item.email} item={item} />
-              ))}
+          <div className="">
+            <div className="flex items-center justify-between">
+              <h3 className="mb-5 font-semibold text-xxl">
+                Top Buying Customers
+              </h3>
+              <h3>
+                {topBuyingCustomers &&
+                  topBuyingCustomers.topBuyingCustomers.length}
+              </h3>
+            </div>
+            
+            <table className="table">
+              <thead>
+                <tr className="bg-base-200 rounded-lg">
+                  <th>Profile</th>
+                  <th>Name & Email</th>
+                  <th>Buy</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {topBuyingCustomers &&
+                  topBuyingCustomers.topBuyingCustomers?.map((item) => (
+                    <tr
+                      key={item.email}
+                      item={item}
+                      className="space-x-2 border"
+                    >
+                      <td>
+                        <img
+                          src={item.image}
+                          className="w-12 h-12 rounded-full"
+                          alt=""
+                        />
+                      </td>
+                      <td>
+                        {item.name} <br /> {item.email}
+                      </td>
+                      <td>{item.totalPurchases}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
