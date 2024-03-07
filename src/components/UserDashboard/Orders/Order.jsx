@@ -42,8 +42,6 @@ const Order = ({order, refetch}) => {
     });
   }
 
-
-
   return (
     <div className="grid grid-cols-11 items-center text-center font-semibold border border-gray-100 p-5">
       <Image
