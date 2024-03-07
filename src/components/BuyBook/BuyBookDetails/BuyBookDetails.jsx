@@ -146,8 +146,13 @@ const BuyBookDetails = () => {
 
       <div className="max-w-7xl mx-auto py-10 px-2">
         {/* book img and information section */}
-        <div className="flex flex-col lg:flex-row items-start lg:mt-36 gap-3 lg:gap-7">
-          <div className="relative flex flex-col lg:flex-row justify-center p-5 bg-[#016961] rounded-lg w-full">
+        <div className="flex flex-col-reverse lg:flex-row items-start lg:mt-40 gap-3 lg:gap-7">
+          {/* Related section */}
+          <div className="w-full bg-50-50 mx-auto lg:w-fit h-[400px] px-3 overflow-y-scroll border border-teal-800 rounded-lg">
+            <RelatedBooks CurrentlyViewing={book._id}> </RelatedBooks>
+          </div>
+
+          <div className="relative flex flex-col lg:flex-row-reverse justify-center p-5 bg-[#016961] rounded-lg w-full">
             {/* Book Image */}
             <div className="w-full lg:w-2/5 mb-4 lg:mb-0">
               <Image
@@ -155,8 +160,7 @@ const BuyBookDetails = () => {
                 width={1000}
                 height={1500}
                 alt=""
-                className="w-full h-auto rounded-md shadow-xl transition-transform duration-300 hover:scale-105"
-                style={{ objectFit: 'cover', objectPosition: 'center' }}
+                className="w-full lg:w-2/5 lg:absolute lg:bottom-5 lg:right-5 ring-0 border-none rounded-md shadow-xl transition-transform duration-300 hover:scale-105"
               />
             </div>
 
@@ -211,23 +215,18 @@ const BuyBookDetails = () => {
               </p>
 
               {/* User action */}
-              <div className="flex items-center gap-3 mt-6">
+              <div className="flex items-center gap-3">
                 <button
                   onClick={handleCart}
-                  className="text-center cursor-pointer bg-white text-[#016961] font-semibold p-1 md:p-2 lg:p-2.5 text-lg md:text-xl lg:text-2xl rounded-full"
+                  className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-1 md:p-2 lg:p-2.5 text-lg md:text-xl lg:text-2xl rounded-full"
                 >
                   <FaCartPlus />
                 </button>
-                <button className="text-center cursor-pointer bg-white text-[#016961] font-semibold p-1 md:p-2 lg:p-2.5 text-lg md:text-xl lg:text-2xl rounded-full">
+                <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-1 md:p-2 lg:p-2.5 text-lg md:text-xl lg:text-2xl rounded-full">
                   <FaHeartCirclePlus />
                 </button>
               </div>
             </div>
-          </div>
-
-          {/* Related section */}
-          <div className="w-full mx-auto lg:w-fit h-[400px] px-3 overflow-y-scroll border border-teal-800 rounded-lg">
-            <RelatedBooks CurrentlyViewing={book._id}> </RelatedBooks>
           </div>
         </div>
 

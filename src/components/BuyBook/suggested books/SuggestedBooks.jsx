@@ -48,14 +48,16 @@ const SuggestedBooks = ({ CurrentlyViewing }) => {
     <>
       <div className="min-w-full gap-3 mt-16 lg:mt-36">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl md:text-3xl text-[#016961] font-bold text-nowrap">
+          <h2 className="text-2xl md:text-3xl text-[#016961] font-bold">
             You Might Like
           </h2>
-          <hr className="hr " />
-          <div className="flex items-center justify-end gap-3 text-nowrap">
+          <hr className="hr" />
+          <div className="flex items-center justify-end gap-3">
+            {/* Previous Button */}
             <button
               className="button-color p-1.5 md:p-2 rounded-full text-teal-50 flex items-center gap-1"
               onClick={handlePrevButtonClick}
+              aria-label="Previous Slide"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -76,6 +78,7 @@ const SuggestedBooks = ({ CurrentlyViewing }) => {
             <button
               className="button-color p-1.5 md:p-2 rounded-full text-teal-50 flex items-center gap-1"
               onClick={handleNextButtonClick}
+              aria-label="Next Slide"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -94,6 +97,7 @@ const SuggestedBooks = ({ CurrentlyViewing }) => {
             </button>
           </div>
         </div>
+        {/* Swiper Component */}
         <Swiper
           direction="horizontal"
           spaceBetween={13}
@@ -108,10 +112,7 @@ const SuggestedBooks = ({ CurrentlyViewing }) => {
           {swiperInitialized ? (
             topTearSuggestions.map((cardInfo, index) => (
               <SwiperSlide key={cardInfo.id}>
-                <SuggestedCard
-                  cardInfo={cardInfo}
-                  index={index}
-                ></SuggestedCard>
+                <SuggestedCard cardInfo={cardInfo} index={index} />
               </SwiperSlide>
             ))
           ) : (

@@ -291,9 +291,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
         const filteredBooks = [];
         booksFromCategory.forEach(book => {
             if (
-                interest.writer.includes(book.writer) ||
-                interest.publisher.includes(book.publisher) ||
-                interest.book.includes(book._id)
+                interest?.writer.includes(book.writer) ||
+                interest?.publisher.includes(book.publisher) ||
+                interest?.book.includes(book._id)
             ) {
                 filteredBooks.push(book);
             }

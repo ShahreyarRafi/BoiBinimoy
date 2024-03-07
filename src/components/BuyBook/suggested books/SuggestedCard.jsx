@@ -27,9 +27,13 @@ const SuggestedCard = ({ cardInfo, index }) => {
         {/* Book Information */}
         <div className="px-4 md:px-10 text-white">
           {/* Book title */}
-          <div className="font-semibold text-lg">{cardInfo?.title}</div>
+          <div title={cardInfo?.title} className="font-semibold text-lg cursor-pointer">
+            {cardInfo?.title.length < 27
+              ? cardInfo?.title
+              : `${cardInfo?.title.slice(0, 27)}..`}
+          </div>
           {/* Author Name */}
-          <div className="book-author text-sm">by {cardInfo?.auther}</div>
+          <div className="book-author text-sm">by {cardInfo?.writer}</div>
           {/* Rating and Vote */}
           <div className="flex items-center mt-1">
             {/* Rating */}
