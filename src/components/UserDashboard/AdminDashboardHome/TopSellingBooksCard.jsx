@@ -1,31 +1,18 @@
 "use client";
-import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
+
 import React from "react";
 
 export default function TopSellingBooksCard({ item }) {
-  const { _id, totalQuantity } = item;
+  console.log(item);
 
-  const {
-    data: topSellingBook = [],
-    isPending: topSellingBookPending,
-    refetch: topSellingBookRefetch,
-  } = useQuery({
-    queryKey: ["topSellingBook"],
-    queryFn: async () => {
-      const res = await useAxiosPublic.get(`/api/v1/buy-books/${item._id}`);
-      return res.data;
-    },
-  });
-  console.log("topSellingBook", topSellingBook.topSellingBooks);
+  const { totalQuantity, bookDetails } = item;
+  const { title, cover_image } = bookDetails;
+
   return (
     <div>
-      <h3>{_id}</h3>
-      <img src={topSellingBook.cover_image} alt="" />
+      <img className="w-12" src={cover_image} alt="" />
+      <h2>{title}</h2>
       <p>{totalQuantity}</p>
-      <div>
-        {topSellingBook.topSellingBooks.map(item=> <>{item.title}</>)}
-      </div>
     </div>
   );
 }

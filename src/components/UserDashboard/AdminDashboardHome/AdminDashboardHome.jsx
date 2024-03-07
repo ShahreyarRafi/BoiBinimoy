@@ -52,12 +52,14 @@ export default function AdminDashboardHome() {
     isPending: topSellingBooksPending,
     refetch: refetchTopSellingBooks,
   } = useQuery({
-    queryKey: ["topSellingBook"],
+    queryKey: ["topSellingBooks"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/api/v1/top-selling-books`);
       return res.data;
     },
   });
+
+  //   console.log("top seling books", topSellingBooks.topSellingBooks);
 
   const {
     data: topBuyingCustomers = [],
