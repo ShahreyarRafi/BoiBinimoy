@@ -23,7 +23,6 @@ const AddBook = () => {
   const { imageUrl, uploadImage } = useImageURL(selectedFile);
   const { user } = useContext(AuthContext);
   const owner_email = user?.email;
-  console.log(owner_email);
 
 
   const { data: categories = [], isPending, refetch } = useQuery({
@@ -44,7 +43,6 @@ const AddBook = () => {
       return;
     }
 
-    console.log("image file: ", files);
     const selectedImage = files[0];
     setSelectedFile(selectedImage);
 

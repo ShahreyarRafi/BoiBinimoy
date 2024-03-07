@@ -15,18 +15,8 @@ const UpdateBook = () => {
 
   const axiosSecure = useAxiosSecure();
   const router = useRouter();
-
   const { update_book_id } = useParams()
-
-
-
-
   const { book, isLoading } = useGetOneBuyBook(update_book_id)
-
-  console.log(book);
-
-
-
 
   if (isLoading) {
     return <PageLoading></PageLoading>
@@ -37,8 +27,6 @@ const UpdateBook = () => {
     bookCondition,
     pages, price, whatYouWant, owner,
     publisher, writer, bookCategory, language, publication_year, } = book || {};
-
-  console.log(book);
 
 
   const handleSubmit = (e) => {
@@ -71,13 +59,11 @@ const UpdateBook = () => {
       publisher, writer, bookCategory, language, publication_year,
 
     };
-    console.log(updateBuyBook);
 
 
 
     axiosSecure.patch(`/api/v1/buy-books/${_id}`, updateBuyBook)
       .then(res => {
-        console.log("update data ", res.data);
         // Assuming your API returns the updated user document
         const updatedBook = res.data;
         if (updatedBook) {

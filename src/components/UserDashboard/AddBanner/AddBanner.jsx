@@ -36,7 +36,6 @@ const AddBanner = () => {
   // create a preview1 as a side effect, whenever selected file is changed
   const onSelectFile2 = (e) => {
     const files = e.target.files;
-    console.log("files", files);
     if (!files || files.length === 0) {
       setSelectedFile2(undefined);
       setPreview2(undefined);
@@ -50,8 +49,6 @@ const AddBanner = () => {
 
   // post banner data
   const onSubmit = async (data) => {
-    console.log(data);
-
     const cover_image = await uploadImage();
     const thumbnail_img = await thumbnel_image();
 
@@ -80,7 +77,6 @@ const AddBanner = () => {
       .post("/api/v1/banner", blogInfo)
       .then((response) => {
         // Handle the success response
-        console.log("Response:", response.data);
         Swal.fire({
           position: "top-end",
           icon: "success",

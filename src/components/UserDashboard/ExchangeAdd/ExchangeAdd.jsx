@@ -14,7 +14,6 @@ import { AuthContext } from "@/providers/AuthProvider";
 const ExchangeAdd = () => {
   const { user } = useContext(AuthContext)
   const owner_email = user?.email
-  console.log(owner_email);
   const { register, handleSubmit, reset } = useForm();
   const axios = require("axios").default;
   const [selectedFile, setSelectedFile] = useState(null);
@@ -22,11 +21,8 @@ const ExchangeAdd = () => {
   const { imageUrl, uploadImage } = useImageURL(selectedFile);
   const axiosSecure = useAxiosSecure();
 
-  console.log("preview image: ", preview);
-
   const onSelectFile = (e) => {
     const files = e.target.files;
-    console.log("image file: ", files);
     if (!files || files.length === 0) {
       setSelectedFile(null);
       setPreview(null);
@@ -85,7 +81,6 @@ const ExchangeAdd = () => {
       )
       .then((response) => {
         // Handle the success response
-        console.log("Response:", response.data);
         Swal.fire({
           position: "top-end",
           icon: "success",

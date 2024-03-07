@@ -3,39 +3,28 @@
 import { AuthContext } from "@/providers/AuthProvider";
 import "./Card.css";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
-import { FaCartPlus, FaExchangeAlt, FaRegHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import useWishListBook from "@/Hooks/wishList/useWishListBook";
-import Swal from "sweetalert2";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
 import useOneUser from "@/Hooks/Users/useOneUser";
 
-// bg-[#f2fdf9]
-// text-[#2f8880]
-
-
-export default function ExchangeCard({ item, }) {
-
-  const axiosSecure = useAxiosSecure()
-  const { user } = useContext(AuthContext)
-  const user_email = user?.email
+export default function ExchangeCard({ item }) {
+  const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+  const user_email = user?.email;
   const { currentUser } = useOneUser();
 
+  const { _id, title, cover_image, price, writer, owner_email } = item || {};
+  const [wishListBook, refetch] = useWishListBook();
 
-
-  const { _id, title, cover_image, price, writer , owner_email  } = item || {}
-  // console.log(title, cover_image, item);
-  const [wishListBook, refetch] = useWishListBook()
-
-  const filteredData = wishListBook.filter(book => book.book_id === _id);
+  const filteredData = wishListBook.filter((book) => book.book_id === _id);
 
   const handleAddToWishlist = () => {
-
     const user_name = currentUser?.name;
-    // const user_email = currentUser?.email;
     const quantity = 1;
 
     const wishlistData = {
@@ -49,40 +38,33 @@ export default function ExchangeCard({ item, }) {
       unit_price: price,
       total_price: price,
       quantity,
-      isDeliverd: false
-
+      isDeliverd: false,
     };
 
-    console.log(wishlistData);
     // add operation
-    axiosSecure.post('/api/v1/wishlist', wishlistData)
-      .then(response => {
-        console.log('Wishlist item added:', response.data);
-        refetch()
-      })
-      .catch(error => {
-        console.error('Error adding to wishlist:', error);
-      })
-  };
-
-
-
-  // delete operation
-  const handleBookDelete = () => {
-    console.log(filteredData[0]._id);
-    axiosSecure.delete(`/api/v1/wishlist/remove/${filteredData[0]._id}`)
-      .then(response => {
-        console.log('Wishlist item removed:', response.data);
+    axiosSecure
+      .post("/api/v1/wishlist", wishlistData)
+      .then((response) => {
         refetch();
       })
-      .catch(error => {
-        console.error('Error removing item from wishlist:', error);
+      .catch((error) => {
+        console.error("Error adding to wishlist:", error);
       });
   };
 
+  // delete operation
+  const handleBookDelete = () => {
+    axiosSecure
+      .delete(`/api/v1/wishlist/remove/${filteredData[0]._id}`)
+      .then((response) => {
+        refetch();
+      })
+      .catch((error) => {
+        console.error("Error removing item from wishlist:", error);
+      });
+  };
 
   return (
-
     <div className="l-container md:p-1">
       <div className="b-game-card ">
         <div
@@ -98,30 +80,32 @@ export default function ExchangeCard({ item, }) {
 
             <div>
               {filteredData.length > 0 ? (
-
-                <button onClick={handleBookDelete} className="  text-red-700 text-center text-xl border mb-6 border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
+                <button
+                  onClick={handleBookDelete}
+                  className="  text-red-700 text-center text-xl border mb-6 border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full"
+                >
                   <FaHeart />
                 </button>
-
               ) : filteredData.length === 0 ? (
-                <div >
-
-                  <button onClick={handleAddToWishlist} className=" text-white text-center text-xl border mb-6 border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
+                <div>
+                  <button
+                    onClick={handleAddToWishlist}
+                    className=" text-white text-center text-xl border mb-6 border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full"
+                  >
                     <FaRegHeart />
                   </button>
-
                 </div>
               ) : (
-                <button onClick={handleAddToWishlist} className="text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full">
-
-                </button>
+                <button
+                  onClick={handleAddToWishlist}
+                  className="text-white text-center text-xl border border-gray-600 border-opacity-30 backdrop-blur-md p-3 bg-black/30 rounded-full"
+                ></button>
               )}
             </div>
-
           </div>
 
           <span className="price-tag">
-            <span className="text-lg">{item?.price}</span>
+            <span className="text-lg">&#2547; {item?.price}</span>
           </span>
         </div>
       </div>
@@ -174,6 +158,5 @@ export default function ExchangeCard({ item, }) {
         </div>
       </div>
     </div>
-
   );
 }

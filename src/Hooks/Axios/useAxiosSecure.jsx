@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 export const axiosSecure = axios.create({
   baseURL: "https://boi-binimoy-server.vercel.app",
-  // baseURL: 'http://localhost:5000',
+  // baseURL: "http://localhost:5000",
   withCredentials: true,
 });
 
@@ -25,7 +25,6 @@ const useAxiosSecure = () => {
       (error) => {
         console.log("error tracked in the interceptor", error);
         if (error.response.status === 401 || error.response.status === 403) {
-          console.log("logout the user");
           logOut()
             .then(() => {
               navigate.push("/joinUs");

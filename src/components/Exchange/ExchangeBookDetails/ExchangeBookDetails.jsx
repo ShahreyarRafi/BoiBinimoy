@@ -18,7 +18,6 @@ const ExchangeBookDetails = () => {
         axios.get(`https://boi-binimoy-server.vercel.app/api/v1/exchange-books/${param?.exchangeId}`)
             .then(function (response) {
                 // handle success
-                console.log(response);
                 setBook(response.data);
             })
             .catch(function (error) {

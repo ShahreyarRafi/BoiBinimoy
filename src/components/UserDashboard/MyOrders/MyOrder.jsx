@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 const MyOrder = ({ cart }) => {
-  console.log("image url: ", cart?.cover_image);
+
   return (
     <div className="grid grid-cols-9 items-center justify-between text-center font-semibold border border-gray-100 p-5">
       <Image
@@ -22,11 +22,7 @@ const MyOrder = ({ cart }) => {
       <h5 className=" col-span-1">{cart?.total_price} BDT</h5>
       <h5 className=" col-span-2">{cart?.owner_email}</h5>
       <h5 className=" col-span-1">
-        {cart?.isDeliverd ? (
-          <button>Done</button>
-        ) : (
-          <button>Pending</button>
-        )}
+        {cart?.isDeliverd ? <button>Done</button> : <button>Pending</button>}
       </h5>
     </div>
   );

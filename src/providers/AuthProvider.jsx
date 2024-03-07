@@ -16,9 +16,11 @@ import {
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 
+
 export const AuthContext = createContext("");
 
 const AuthProvider = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to hold authentication status
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
@@ -66,7 +68,6 @@ const AuthProvider = ({ children }) => {
   //   logOut account
   const logOut = async () => {
     Cookies.remove("token", { path: "/", secure: false, sameSite: "Strict" });
-    console.log("token removed");
     localStorage.removeItem("email")
     return signOut(auth);
   };
@@ -83,21 +84,21 @@ const AuthProvider = ({ children }) => {
           .post("/jwt", userEmail, {
             withCredentials: true,
           })
-          .then((res) => {
-            console.log("totken data: ", res.data);
-          });
       }
-
-      // console.log("token: ",res.data)
     });
     return () => {
       unSubcribe();
     };
   }, [axiosPublic]);
 
-  // console.log(user);
 
-  console.log("current user --> : ", user);
+
+
+  // Function to check if user is logged in
+  useEffect(() => {
+    setIsLoggedIn(!!user); // Set isLoggedIn to true if user exists
+  }, [user]);
+
 
   const authentication = {
     googleLogin,
@@ -109,6 +110,7 @@ const AuthProvider = ({ children }) => {
     loading,
     handleUpdateProfile,
     updateUserProfiole,
+    isLoggedIn
   };
 
   return (
