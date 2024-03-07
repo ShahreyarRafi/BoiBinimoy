@@ -122,7 +122,7 @@ const Users = () => {
                   <h5 className="w-[40px] lg:mr-10"></h5>
                   <h5 className="w-full lg:mr-10">User</h5>
                   <h5 className="w-full lg:mr-10">Email</h5>
-                  <h5 className="w-full lg:mr-10">Register Date</h5>
+                  {/* <h5 className="w-full lg:mr-10">Register Date</h5> */}
                   <h5 className="w-full lg:mr-10">Roles</h5>
                   <h5 className="w-full lg:mr-10">View Profile</h5>
                 </div>

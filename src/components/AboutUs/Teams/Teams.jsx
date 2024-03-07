@@ -5,9 +5,9 @@ import Image from "next/image";
 const Teams = () => {
   const teams = [
     {
-      img: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260",
-      name: "Oliver Aguilerra",
-      title: "Product Manager",
+      img: "https://i.ibb.co/28RvMyT/about1.jpg",
+      name: "SIYAM AHMED",
+      title: "Front-End Web Developer",
     },
     {
       img: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
