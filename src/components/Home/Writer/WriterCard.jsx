@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function WriterCard({ item }) {
+
   return (
     <Link href={`/writers/${item?._id}`}>
       <div className="space-y-3">

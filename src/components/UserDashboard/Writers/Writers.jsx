@@ -223,7 +223,7 @@ const Writers = () => {
                     allWriters.map(writer =>
                         <div key={writer?._id} className="border-2 border-black rounded-lg p-5 flex flex-col justify-between">
                             <div>
-                                <Image 
+                                <Image
                                     src={writer?.profile}
                                     alt="writer"
                                     priority
@@ -235,7 +235,7 @@ const Writers = () => {
                                 <h5 className="w-full text-md font-semibold">Date of Birth: <span className="font-normal">{writer?.birth}</span></h5>
                                 <h5 className="w-full text-md font-semibold">Death: <span className="font-normal">{writer?.death === "" ? "N/A" : writer?.death}</span></h5>
                                 <h5 className="w-full text-md font-semibold">Followers: <span className="font-normal">{writer?.follower}</span></h5>
-                                <h5 className="w-full text-md font-semibold">Bio: <span className="font-normal">{writer?.bio}</span> </h5>
+                                <h5 className="w-full text-md font-semibold">Bio: <span className="font-normal">{writer?.bio.slice(0, 150)}...</span> </h5>
                             </div>
                             <div className="flex w-full gap-5 pt-3">
                                 <button onClick={() => handleUpdate(writer?._id, writer?.writer_name, writer?.profile, writer?.birth, writer?.death, writer?.follower, writer?.bio)} className="btn flex-1 bg-[#016961] text-white">Update</button>

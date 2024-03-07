@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
+import { SlArrowRight } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -49,7 +49,7 @@ const AddBook = () => {
     const objectUrl = URL.createObjectURL(selectedImage);
     setPreview(objectUrl);
   };
-  
+
 
   const onSubmit = async (data) => {
     const {
@@ -65,13 +65,13 @@ const AddBook = () => {
       edition,
       stock_limit,
     } = data;
-    
+
 
 
     const cover_image = await uploadImage();
 
 
-  
+
     const newBook = {
       title,
       description,
@@ -89,15 +89,15 @@ const AddBook = () => {
       avg_rating: 4.2,
       cover_image,
     };
-  
+
     const res = await axiosSecure.post("/api/v1/buy-books", newBook);
-  
+
     if (res?.data) {
       reset();
       Swal.fire("Book upload successful");
     }
   };
-  
+
 
   return (
     <div className="container mx-auto pb-10">

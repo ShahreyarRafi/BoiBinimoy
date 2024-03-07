@@ -9,6 +9,7 @@ import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import useOneUser from "@/Hooks/Users/useOneUser";
 import useAdmin from "@/Hooks/useAdmin";
+import { Helmet } from "react-helmet";
 
 const profilePlaceholder = "/userPicPlaceholder.png";
 
@@ -146,6 +147,11 @@ const Dashboard = ({ children }) => {
 
   return (
     <div className="bg-teal-50">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Dashboard || Boi Binimoy</title>
+        <link rel="canonical" href="/dashboard" />
+      </Helmet>
       <section id="sidebar" className="">
         <Link href="/" className="brand">
           <i className="bx bxs-smile"></i>

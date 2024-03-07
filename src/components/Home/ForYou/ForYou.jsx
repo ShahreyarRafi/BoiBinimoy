@@ -15,8 +15,7 @@ export default function ForYou() {
     const [swiperInitialized, setSwiperInitialized] = useState(false);
     const [swiper, setSwiper] = useState(null);
     const {topTearSuggestions, suggetionsLoading} = useBookSuggestion()
-
-
+    
     const handleNextButtonClick = () => {
         if (swiper) {
             swiper.slideNext();
@@ -80,7 +79,7 @@ export default function ForYou() {
             >
                 {swiperInitialized ? (
                     topTearSuggestions.map(item => (
-                        <SwiperSlide key={item.id}>
+                        <SwiperSlide key={item._id}>
                             <BookCard item={item} />
                         </SwiperSlide>
                     ))

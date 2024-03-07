@@ -10,35 +10,58 @@ import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "@/providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
 
 const ExchangeAdd = () => {
-  const { user } = useContext(AuthContext)
-  const owner_email = user?.email
+  const { user } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
-  const axios = require("axios").default;
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [preview, setPreview] = useState(null);
-  const { imageUrl, uploadImage } = useImageURL(selectedFile);
+  const [selectFile, setSelectFile] = useState();
+  const [preview, setPreview] = useState(undefined);
+  const { imageUrl, uploadImage } = useImageURL(selectFile);
   const axiosSecure = useAxiosSecure();
 
-  const onSelectFile = (e) => {
-    const files = e.target.files;
-    if (!files || files.length === 0) {
-      setSelectedFile(null);
-      setPreview(null);
+  const { data: categories = [], isPending, refetch } = useQuery({
+    queryKey: ["category"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/api/v1/category`);
+      return res.data;
+    },
+  });
+
+  const addOnSelectFile = () => {
+    const file = document.getElementById('imageFile').files[0];
+
+    if (!file) {
+      setSelectFile(undefined);
+      setPreview(undefined);
       return;
     }
-
-    const selectedImage = files[0];
-    setSelectedFile(selectedImage);
-
-    const objectUrl = URL.createObjectURL(selectedImage);
-    setPreview(objectUrl);
+    setSelectFile(file);
+    setPreview(URL.createObjectURL(file));
   };
 
   const handleExchangeBook = async (data) => {
     const {
       cover_type,
+      condition,
+      format,
+      category,
+      title,
+      writer,
+      language,
+      pages,
+      cover_image = await uploadImage(),
+      publisher,
+      publication_year,
+      edition,
+      tags,
+      description,
+    } = data;
+
+    // const newBook
+    const newBook = {
+      cover_type,
+      owner_email: user?.email,
       condition,
       format,
       category,
@@ -52,46 +75,30 @@ const ExchangeAdd = () => {
       edition,
       tags,
       description,
-    } = data;
-
-    // const newBook
-    const newBook = {
-      cover_type,
-      owner_email,
-      condition,
-      format,
-      category,
-      title,
-      writer,
-      language,
-      pages,
-      // cover_image,
-      publisher,
-      publication_year,
-      edition,
-      tags,
-      description,
       exchange_status: "available",
     };
 
-    axios
-      .post(
-        "https://boi-binimoy-server.vercel.app/api/v1/exchange-books",
-        newBook
-      )
+    axiosSecure.post(
+      "https://boi-binimoy-server.vercel.app/api/v1/exchange-books",
+      newBook
+    )
       .then((response) => {
         // Handle the success response
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Your work has been saved",
+          title: "Add book successfully.",
           showConfirmButton: false,
           timer: 1500,
         });
       })
       .catch((error) => {
-        // Handle errors
         console.error("Error:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Failed to added writer",
+        });
       });
   };
 
@@ -152,25 +159,9 @@ const ExchangeAdd = () => {
                   {...register("category")} required
                 >
                   <option hidden selected value="">Book Category</option>
-                  <option value="self-help">Self-Help</option>
-                  <option value="biography/memoir">Biography/Memoir</option>
-                  <option value="history">History</option>
-                  <option value="science">Science</option>
-                  <option value="trueCrime">True Crime</option>
-                  <option value="travel">Travel</option>
-                  <option value="food&cooking">Food & Cooking</option>
-                  <option value="health&wellness">Health & Wellness</option>
-                  <option value="business&economics">Business & Economics</option>
-                  <option value="humor">Humor</option>
-                  <option value="crimeFiction">Crime Fiction</option>
-                  <option value="graphicNovels">Graphic Novels</option>
-                  <option value="literaryFiction">Literary Fiction</option>
-                  <option value="horror">Horror</option>
-                  <option value="historicalFiction">Historical Fiction</option>
-                  <option value="youngAdult(YA)">Young Adult (YA)</option>
-                  <option value="scienceFiction">Science Fiction</option>
-                  <option value="fantasy">Fantasy</option>
-                  <option value="mystery/thriller">Mystery/Thriller</option>
+                  {
+                    categories?.map(category => <option key={category?._id} value={category?.category_name}>{category?.category_name}</option>)
+                  }
                 </select>
               </div>
             </div>
@@ -270,49 +261,51 @@ const ExchangeAdd = () => {
                     Upload book cover Image:
                   </h3>
                   {/* image */}
-                  <div className="w-full h-[85%] border flex justify-center items-center border-gray-300 rounded-lg">
-                    {!selectedFile ? (
-                      <label htmlFor="imageFile1"
-                        className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm  cursor-pointer"
-                      >
-                        <BsUpload /> <span> Upload Here</span>
-                      </label>
-                    ) : (
-                      <Image 
-                        src={preview}
-                        width={200}
-                        height={200}
+                  {/* image div start*/}
+                  <div className="w-full h-[80%] border flex justify-center items-center border-[#016961] rounded-lg shadow-md"
+                  >
+                    {!selectFile ? (
+                      <input
+                        type="text"
+                        readOnly
+                        placeholder="No Image selected"
                         alt="Preview"
-                        className="w-full h-full object-cover rounded-lg"
+                        style={{
+                          height: 'full',
+                          width: 'full'
+                        }}
+                        className="text-center bg-teal-50/40"
+                      />
+
+                    ) : (
+                      <Image
+                        src={preview}
+                        width={350}
+                        height={300}
+                        alt="Image Preview"
+                        style={{
+                          height: '350px',
+                          width: '100%',
+                          borderRadius: '5px'
+                        }}
                       />
                     )}
-                    <input
-                      className="h-5 w-full"
-                      id="imageFile1"
-                      type="file"
-                      onChange={onSelectFile}
-                      {...register("cover_image")}
-                      hidden
-                    />
-                  </div>
-                </div>
-                {/* optional information */}
-                <div className="flex-1 border-2 border-gray-300 rounded-lg h-full w-full px-2 pb-3">
-                  {/* title */}
-                  <h3 className="text-sm font-light py-2">
-                    Optional Information:
-                  </h3>
 
-                  {/* information */}
-                  <div className="grid grid-cols-1 gap-3">
-                    {/* book Tags name:tags*/}
-                    <input
-                      className="h-10 w-full px-2 text-xs bg-transparent border rounded-lg focus:outline-none"
-                      {...register("tags")}
-                      placeholder="Book Tags"
-                      type="text"
-                    />
                   </div>
+                  <div className="mt-2">
+                    <label htmlFor="imageFile"
+                      className="bg-[#016961] text-white py-2 flex justify-center items-center gap-3 rounded-lg text-center text-xs md:text-sm  cursor-pointer"
+                    >
+                      <BsUpload /> <span> Upload Here</span>
+                      <input
+                        type="file"
+                        id="imageFile"
+                        onChange={addOnSelectFile}
+                        hidden
+                      />
+                    </label>
+                  </div>
+                  {/* image div end */}
                 </div>
               </div>
             </div>

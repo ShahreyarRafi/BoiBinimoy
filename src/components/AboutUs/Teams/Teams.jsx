@@ -6,33 +6,38 @@ const Teams = () => {
   const teams = [
     {
       img: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260",
-      name: "Oliver Aguilerra",
-      title: "Product Manager",
+      name: "Shahriar Rafi",
+      title: "Web Developer",
     },
     {
-      img: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
-      name: "Anthony Geek",
-      title: "CTO, Lorem Inc.",
+      img: "https://i.ibb.co/28RvMyT/about1.jpg",
+      name: "SIYAM AHMED",
+      title: "Front-End Web Developer",
     },
     {
-      img: "https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500",
-      name: "Martin Garix",
-      title: "Bad boy",
+      img: "https://i.ibb.co/brgTnQr/muammad-minhajul-alam.png",
+      name: "Mohammad Minhajul Alam",
+      title: "Web Developer",
     },
     {
-      img: "https://images.pexels.com/photos/3931603/pexels-photo-3931603.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
-      name: "Andrew Larkin",
-      title: "Backend Developer",
+      img: "https://i.ibb.co/jhR7438/Atik.jpg",
+      name: "Atik Shahriar",
+      title: "Web Developer",
     },
     {
-      img: "https://images.pexels.com/photos/3931553/pexels-photo-3931553.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
-      name: "Benedict Caro",
-      title: "Frontend Developer",
+      img: "https://i.ibb.co/DgNPrbV/429453143-733783798531919-7206945882981816927-n.png",
+      name: "MD Parvej",
+      title: "Web Developer",
+    },
+    {
+      img: "https://i.ibb.co/28RvMyT/about1.jpg",
+      name: "MD Siyam Ahmed",
+      title: "Web Developer",
     },
     {
       img: "https://i.ibb.co/sH9rW6p/Apon-02.jpg",
       name: "Md Taiatul Islam Apon",
-      title: "Frontend Developer",
+      title: "Web Developer",
     },
   ];
 
@@ -43,15 +48,12 @@ const Teams = () => {
           <h2 className="mb-2 text-2xl md:text-3xl lg:text-4xl text-center font-bold">
             Meet Our Teams
           </h2>
-          <p className="mb-5 opacity-80 text-xl font-light text-center">
-            Sed ut perspiciatis unde omnis iste natus error
-          </p>
         </div>
 
         <div className="grid gap-10 mx-auto lg:max-w-screen-lg sm:grid-cols-2 lg:grid-cols-3">
           {teams.map((team, key) => (
             <div key={key} className="flex flex-col items-center">
-              <Image 
+              <Image
                 className="object-cover w-20 h-20 mb-2 rounded-full shadow"
                 src={team?.img}
                 width={100}
