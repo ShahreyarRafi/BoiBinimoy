@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 const MyOrder = ({ cart }) => {
-  console.log("image url: ", cart?.cover_image);
+
   return (
     <div className="grid grid-cols-9 items-center justify-between text-center font-semibold border border-gray-100 p-5">
       <Image

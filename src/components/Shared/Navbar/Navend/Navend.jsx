@@ -30,8 +30,6 @@ const Navend = () => {
 
   //  delte cart
   const handleDeleteCart = (id, title) => {
-    console.log("id: ", id);
-
     Swal.fire({
       title: "Delete Book",
       text: `Are you sure you want to delete the book ${title}?`,

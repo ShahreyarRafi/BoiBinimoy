@@ -19,12 +19,8 @@ const WishLIst = () => {
     const { currentUser } = useOneUser();
     const { refetch: cartRefetch } = useGetMyCarts()
 
-    console.log("wish list data ", wishListBook);
-
-
 
     const handleBookDelete = (id, title) => {
-        console.log("Delete Book function called.");
         Swal.fire({
             title: `Delete Book`,
             text: `Are you sure you want to delete the book "${title}"?`,
@@ -34,17 +30,13 @@ const WishLIst = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
-            console.log("Confirmation result:", result);
             if (result.isConfirmed) {
-                console.log("User confirmed deletion.");
                 axiosSecure
                     .delete(`/api/v1/wishlist/remove/${id}`)
                 axiosSecure
                     .delete(`/api/v1/wishlist/remove/${id}`)
                     .then((response) => {
-                        if (response.status === 204) {
-                            console.log("Delete request successful. Response:", response);
-                            console.log("success");
+                        if (response.status === 204) {;
                             Swal.fire(
                                 "Deleted!",
                                 `Your book "${title}" has been deleted.`,
@@ -52,7 +44,6 @@ const WishLIst = () => {
                             );
                             refetch();
                         } else {
-                            console.log("Unexpected response status:", response.status);
                             Swal.fire(
                                 "Error!",
                                 "An error occurred while deleting the book.",
@@ -96,8 +87,6 @@ const WishLIst = () => {
             stock_limit: book.stock_limit
         };
 
-        console.log(addCart);
-
         axiosSecure
             .post("/api/v1/carts", addCart)
             .then((response) => {
@@ -115,7 +104,6 @@ const WishLIst = () => {
                             if (response.status === 204) {
                                 refetch();
                             } else {
-                                console.log("Unexpected response status:", response.status);
                                 Swal.fire(
                                     "Error!",
                                     `An error occurred while deleting the book "${title}".`,

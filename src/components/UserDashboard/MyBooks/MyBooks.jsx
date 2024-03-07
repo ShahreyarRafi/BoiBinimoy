@@ -36,7 +36,6 @@ const MyBooks = () => {
                 axiosSecure
                     .delete(`/api/v1/buy-books/${id}`)
                     .then((response) => {
-                        console.log(response.data);
                         if (response.data) {
                             Swal.fire(
                                 "Deleted!",

@@ -48,8 +48,6 @@ export default function BuyNow() {
   }, []);
 
 
-  // console.log(books);
-
   const handleNextButtonClick = () => {
     if (swiper) {
       swiper.slideNext();

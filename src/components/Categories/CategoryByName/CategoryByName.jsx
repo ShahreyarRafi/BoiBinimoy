@@ -52,14 +52,10 @@ const CategoryByName = () => {
                     },
                     body: JSON.stringify({ interest: updatedInterest })
                 });
-                console.log(response);
                 if (!response.ok) {
                     throw new Error('Failed to update user interest');
                 }
-                console.log('User interest updated successfully');
-            } else {
-                console.log('Category already exists in user interest');
-            }
+            } 
         } catch (error) {
             console.log(error);
         }
@@ -68,8 +64,7 @@ const CategoryByName = () => {
     useEffect(() => {
         if (user) {
             const formattedCategoryName = decodeURIComponent(param?.categoryName).replace("%20", " ");
-            console.log("category:", formattedCategoryName);
-            
+
             // Update user interest in the database
             updateUserInterest(user.email, formattedCategoryName);
         }

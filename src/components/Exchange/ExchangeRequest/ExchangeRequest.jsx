@@ -31,7 +31,7 @@ const ExchangeRequest = () => {
             .finally(function () {
                 // always executed
             });
-    }, [])
+    }, [param?.exchangeId])
 
     useEffect(() => {
         const email = localStorage.getItem("email")
@@ -48,8 +48,6 @@ const ExchangeRequest = () => {
                 // always executed
             });
     }, [user?.email])
-
-    console.log();
 
     const handleRequest = () => {
 
@@ -69,7 +67,6 @@ const ExchangeRequest = () => {
         axiosSecure.post("api/v1/request-books", request)
             .then((response) => {
                 // Handle the success response
-                console.log("Response:", response.data);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",

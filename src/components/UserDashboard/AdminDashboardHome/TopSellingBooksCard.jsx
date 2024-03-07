@@ -3,7 +3,6 @@
 import React from "react";
 
 export default function TopSellingBooksCard({ item }) {
-  console.log(item);
 
   const { totalQuantity, bookDetails } = item;
   const { title, cover_image } = bookDetails;

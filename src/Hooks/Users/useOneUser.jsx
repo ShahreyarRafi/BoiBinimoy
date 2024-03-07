@@ -20,8 +20,6 @@ const useOneUser = () => {
 
   const { isAdmin, isModerator, isPublisher, isSeller } = currentUser;
   const interest = currentUser.interest;
-  console.log(currentUser);
-  console.log(interest);
   return {
     currentUser,
     isLoading,

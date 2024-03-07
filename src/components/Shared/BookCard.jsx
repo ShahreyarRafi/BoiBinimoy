@@ -41,12 +41,10 @@ export default function ExchangeCard({ item }) {
       isDeliverd: false,
     };
 
-    console.log(wishlistData);
     // add operation
     axiosSecure
       .post("/api/v1/wishlist", wishlistData)
       .then((response) => {
-        console.log("Wishlist item added:", response.data);
         refetch();
       })
       .catch((error) => {
@@ -56,11 +54,9 @@ export default function ExchangeCard({ item }) {
 
   // delete operation
   const handleBookDelete = () => {
-    console.log(filteredData[0]._id);
     axiosSecure
       .delete(`/api/v1/wishlist/remove/${filteredData[0]._id}`)
       .then((response) => {
-        console.log("Wishlist item removed:", response.data);
         refetch();
       })
       .catch((error) => {

@@ -66,7 +66,6 @@ const AuthProvider = ({ children }) => {
   //   logOut account
   const logOut = async () => {
     Cookies.remove("token", { path: "/", secure: false, sameSite: "Strict" });
-    console.log("token removed");
     localStorage.removeItem("email")
     return signOut(auth);
   };
@@ -83,21 +82,13 @@ const AuthProvider = ({ children }) => {
           .post("/jwt", userEmail, {
             withCredentials: true,
           })
-          .then((res) => {
-            console.log("totken data: ", res.data);
-          });
       }
-
-      // console.log("token: ",res.data)
     });
     return () => {
       unSubcribe();
     };
   }, [axiosPublic]);
 
-  // console.log(user);
-
-  console.log("current user --> : ", user);
 
   const authentication = {
     googleLogin,

@@ -25,7 +25,6 @@ const useAxiosSecure = () => {
       (error) => {
         console.log("error tracked in the interceptor", error);
         if (error.response.status === 401 || error.response.status === 403) {
-          console.log("logout the user");
           logOut()
             .then(() => {
               navigate.push("/joinUs");
