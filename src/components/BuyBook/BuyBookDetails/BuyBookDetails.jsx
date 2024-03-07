@@ -138,29 +138,30 @@ const BuyBookDetails = () => {
         <div className="text-center px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
             <h2 className="mb-6 text-3xl font-bold text-white sm:text-5xl">
-              Detail of &quot; {book?.title}&quot;
+              Detail of &quot;{book?.title}&quot;
             </h2>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto py-10 px-2">
+      <div className="max-w-7xl mx-auto py-10 px-2">
         {/* book img and information section */}
-        <div className="flex items-start mt-32 gap-x-7">
+        <div className="flex flex-col lg:flex-row items-start lg:mt-36 gap-3 lg:gap-7">
           <div className="relative flex flex-col lg:flex-row justify-center p-5 bg-[#016961] rounded-lg w-full">
             {/* Book Image */}
-            <div className="flex-shrink-0 w-1/5 hidden lg:flex">
+            <div className="w-full lg:w-2/5 mb-4 lg:mb-0">
               <Image
                 src={book?.cover_image}
                 width={1000}
                 height={1500}
                 alt=""
-                className="absolute bottom-5 ring-0 w-1/5 border-none rounded-md shadow-xl transition-transform duration-300 hover:scale-105"
+                className="w-full h-auto rounded-md shadow-xl transition-transform duration-300 hover:scale-105"
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
             </div>
 
             {/* Book Information */}
-            <div className="lg:px-10 text-white">
+            <div className="lg:px-10 bg text-white w-full lg:w-3/5">
               <h2 className="text-4xl">{book?.title}</h2>
               <p className="text-xs">
                 by <span className="font-bold text-sm">{book?.writer}</span>
@@ -210,14 +211,14 @@ const BuyBookDetails = () => {
               </p>
 
               {/* User action */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mt-6">
                 <button
                   onClick={handleCart}
-                  className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-1 md:p-2 lg:p-2.5 text-lg md:text-xl lg:text-2xl rounded-full"
+                  className="text-center cursor-pointer bg-white text-[#016961] font-semibold p-1 md:p-2 lg:p-2.5 text-lg md:text-xl lg:text-2xl rounded-full"
                 >
                   <FaCartPlus />
                 </button>
-                <button className="mt-6 text-center cursor-pointer bg-white text-[#016961] font-semibold p-1 md:p-2 lg:p-2.5 text-lg md:text-xl lg:text-2xl rounded-full">
+                <button className="text-center cursor-pointer bg-white text-[#016961] font-semibold p-1 md:p-2 lg:p-2.5 text-lg md:text-xl lg:text-2xl rounded-full">
                   <FaHeartCirclePlus />
                 </button>
               </div>
@@ -225,7 +226,9 @@ const BuyBookDetails = () => {
           </div>
 
           {/* Related section */}
-          <RelatedBooks CurrentlyViewing={book._id}> </RelatedBooks>
+          <div className="w-full mx-auto lg:w-fit h-[400px] px-3 overflow-y-scroll border border-teal-800 rounded-lg">
+            <RelatedBooks CurrentlyViewing={book._id}> </RelatedBooks>
+          </div>
         </div>
 
         {/* You might like section */}

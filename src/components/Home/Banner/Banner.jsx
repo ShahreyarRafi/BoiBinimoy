@@ -104,7 +104,7 @@ export default function BannerNew() {
                 <div className="list">
                     {Array.isArray(bannerData) && bannerData.map((item, index) => (
                         <div className="item" key={index}>
-                            <Image src={item?.cover_image} width={2310} height={4100} alt="alt"/>
+                            <Image src={item?.cover_image} width={2310} height={4100} alt="alt" />
                             <div className="content">
                                 <div className="author">{item?.author}</div>
                                 <div className={`${sourceSerif.className} title font-outline`}>{item?.title}</div>

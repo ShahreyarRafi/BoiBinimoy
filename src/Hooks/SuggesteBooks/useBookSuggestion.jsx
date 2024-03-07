@@ -4,38 +4,33 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../Axios/useAxiosPublic";
 
 const useBookSuggestion = (CurrentlyViewing) => {
-  const { interest } = useOneUser();
-  const axiosPublic = useAxiosPublic();
+    const { interest } = useOneUser();
+    const axiosPublic = useAxiosPublic();
 
-  // ---------Category Books----------
 
-  const [booksFromCategory, setBooksFromCategory] = useState([]);
 
-  const { data: categoryDetails = [], isLoading: categoryDetailsLoading } =
-    useQuery({
-      queryKey: ["categoryDetails", interest?.category],
-      queryFn: async () => {
-        const categoryDetailsPromises = interest?.category?.map(
-          async (categoryName) => {
-            try {
-              const response = await axiosPublic.get(
-                `/api/v1/category/${categoryName}`
-              );
-              if (response.status !== 200) {
-                throw new Error("Failed to fetch category details");
-              }
-              return response.data;
-            } catch (error) {
-              console.error(error);
-              return null;
-            }
-          }
-        );
-        const categories = await Promise.all(categoryDetailsPromises);
-        return categories
-          .filter((category) => category !== null)
-          .flatMap((category) => category);
-      },
+    // ---------Category Books----------
+
+    const [booksFromCategory, setBooksFromCategory] = useState([])
+
+    const { data: categoryDetails = [], isLoading: categoryDetailsLoading } = useQuery({
+        queryKey: ['categoryDetails', interest?.category],
+        queryFn: async () => {
+            const categoryDetailsPromises = interest?.category?.map(async (categoryName) => {
+                try {
+                    const response = await axiosPublic.get(`/api/v1/category/${categoryName}`);
+                    if (response.status !== 200) {
+                        throw new Error('Failed to fetch category details');
+                    }
+                    return response.data;
+                } catch (error) {
+                    console.error(error);
+                    return null;
+                }
+            });
+            const categories = await Promise.all(categoryDetailsPromises);
+            return categories.filter(category => category !== null).flatMap(category => category);
+        },
     });
 
   useEffect(() => {
@@ -158,20 +153,13 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
   // ----------------Related books-----------------
 
-  // ---------Fetch related books function-----------
+    // ---------Fetch related books function-----------
 
-  const fetchRelatedBooks = useCallback(
-    async (writer, publisher, category) => {
-      try {
-        const writerResponse = await axiosPublic.get(
-          `/api/v1/writer/${writer}`
-        );
-        const publisherResponse = await axiosPublic.get(
-          `/api/v1/publisher/${publisher}`
-        );
-        const categoryResponse = await axiosPublic.get(
-          `/api/v1/category/${category}`
-        );
+    const fetchRelatedBooks = useCallback(async (writer, publisher, category) => {
+        try {
+            const writerResponse = await axiosPublic.get(`/api/v1/writer/${writer}`);
+            const publisherResponse = await axiosPublic.get(`/api/v1/publisher/${publisher}`);
+            const categoryResponse = await axiosPublic.get(`/api/v1/category/${category}`);
 
         const writerBooks = writerResponse.data || [];
         const publisherBooks = publisherResponse.data || [];
@@ -190,14 +178,14 @@ const useBookSuggestion = (CurrentlyViewing) => {
           return relatedBooksData.find((book) => book._id === _id);
         });
 
-        return uniqueRelatedBooks;
-      } catch (error) {
-        console.error("Error fetching related books:", error);
-        return [];
-      }
-    },
-    [axiosPublic]
-  );
+            return uniqueRelatedBooks;
+        } catch (error) {
+            console.error("Error fetching related books:", error);
+            return [];
+        }
+    }, [axiosPublic]);
+
+
 
   // ---------- Related books of Interested books -----------
 
@@ -242,8 +230,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
   // --------- Related Books of Currently Viewing -----------
 
-  const [currentlyViewingRelatedBooks, setCurrentlyViewingRelatedBooks] =
-    useState([]);
+    const [currentlyViewingRelatedBooks, setCurrentlyViewingRelatedBooks] = useState([]);
 
   const {
     data: currentlyViewingBookDetails = [],
@@ -266,29 +253,22 @@ const useBookSuggestion = (CurrentlyViewing) => {
     },
   });
 
-  useEffect(() => {
-    if (currentlyViewingBookLoading) {
-      return;
-    }
-
-    if (currentlyViewingBookDetails) {
-      const { writer, publisher, category } = currentlyViewingBookDetails;
-      const fetchRelatedBooksForCurrentlyViewing = async () => {
-        try {
-          const relatedBooksForCurrentlyViewing = await fetchRelatedBooks(
-            writer,
-            publisher,
-            category
-          );
-          setCurrentlyViewingRelatedBooks(relatedBooksForCurrentlyViewing);
-        } catch (error) {
-          console.error(
-            "Error fetching related books for currently viewing book:",
-            error
-          );
-          setCurrentlyViewingRelatedBooks([]);
+    useEffect(() => {
+        if (currentlyViewingBookLoading) {
+            return;
         }
-      };
+
+        if (currentlyViewingBookDetails) {
+            const { writer, publisher, category } = currentlyViewingBookDetails;
+            const fetchRelatedBooksForCurrentlyViewing = async () => {
+                try {
+                    const relatedBooksForCurrentlyViewing = await fetchRelatedBooks(writer, publisher, category);
+                    setCurrentlyViewingRelatedBooks(relatedBooksForCurrentlyViewing);
+                } catch (error) {
+                    console.error("Error fetching related books for currently viewing book:", error);
+                    setCurrentlyViewingRelatedBooks([]);
+                }
+            };
 
       fetchRelatedBooksForCurrentlyViewing();
     }
@@ -304,67 +284,65 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
   // ---------Top Tear Suggestions------------
 
-  const [topTearSuggestions, setTopTearSuggestions] = useState([]);
+    const [topTearSuggestions, setTopTearSuggestions] = useState([]);
 
-  useEffect(() => {
-    // Filter books based on user interests
-    const filteredBooks = [];
-    booksFromCategory.forEach((book) => {
-      if (
-        interest?.writer.includes(book.writer) ||
-        interest?.publisher.includes(book.publisher) ||
-        interest?.book.includes(book._id)
-      ) {
-        filteredBooks.push(book);
-      }
-    });
+    useEffect(() => {
+        // Filter books based on user interests
+        const filteredBooks = [];
+        booksFromCategory.forEach(book => {
+            if (
+                interest.writer.includes(book.writer) ||
+                interest.publisher.includes(book.publisher) ||
+                interest.book.includes(book._id)
+            ) {
+                filteredBooks.push(book);
+            }
+        });
 
-    booksFromWriters.forEach((book) => {
-      if (
-        interest?.publisher.includes(book.publisher) ||
-        interest?.category.includes(book.category) ||
-        interest?.book.includes(book._id)
-      ) {
-        filteredBooks.push(book);
-      }
-    });
+        booksFromWriters.forEach(book => {
+            if (
+                interest.publisher.includes(book.publisher) ||
+                interest.category.includes(book.category) ||
+                interest.book.includes(book._id)
+            ) {
+                filteredBooks.push(book);
+            }
+        });
 
-    booksFromPublishers.forEach((book) => {
-      if (
-        interest?.writer.includes(book.writer) ||
-        interest?.category.includes(book.category) ||
-        interest?.book.includes(book._id)
-      ) {
-        filteredBooks.push(book);
-      }
-    });
+        booksFromPublishers.forEach(book => {
+            if (
+                interest.writer.includes(book.writer) ||
+                interest.category.includes(book.category) ||
+                interest.book.includes(book._id)
+            ) {
+                filteredBooks.push(book);
+            }
+        });
 
-    interestedBooks.forEach((book) => {
-      if (
-        interest?.writer.includes(book.writer) ||
-        interest?.publisher.includes(book.publisher) ||
-        interest?.category.includes(book.category)
-      ) {
-        filteredBooks.push(book);
-      }
-    });
+        interestedBooks.forEach(book => {
+            if (
+                interest.writer.includes(book.writer) ||
+                interest.publisher.includes(book.publisher) ||
+                interest.category.includes(book.category)
+            ) {
+                filteredBooks.push(book);
+            }
+        });
 
-    interestedBooksRelatedBooks.forEach((book) => {
-      if (
-        interest?.writer.includes(book.writer) ||
-        interest?.publisher.includes(book.publisher) ||
-        interest?.category.includes(book.category)
-      ) {
-        filteredBooks.push(book);
-      }
-    });
+        interestedBooksRelatedBooks.forEach(book => {
+            if (
+                interest.writer.includes(book.writer) ||
+                interest.publisher.includes(book.publisher) ||
+                interest.category.includes(book.category)
+            ) {
+                filteredBooks.push(book);
+            }
+        });
 
-    // Remove duplicate books
-    const uniqueBooks = Array.from(
-      new Set(filteredBooks.map((book) => book._id))
-    ).map((_id) => {
-      return filteredBooks.find((book) => book._id === _id);
-    });
+        // Remove duplicate books
+        const uniqueBooks = Array.from(new Set(filteredBooks.map(book => book._id))).map(_id => {
+            return filteredBooks.find(book => book._id === _id);
+        });
 
     setTopTearSuggestions(uniqueBooks);
   }, [
@@ -378,36 +356,19 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
   console.log("Top Tier Suggestions", topTearSuggestions);
 
-  // ----------Loading------------
+    // ----------Loading------------
 
   const [suggetionsLoading, setSuggetionsLoading] = useState(true);
 
-  useEffect(() => {
-    if (
-      !booksLaoding &&
-      !categoryDetailsLoading &&
-      !writersBooksLoading &&
-      !publisherBooksLoading
-    ) {
-      setSuggetionsLoading(false);
-    }
-  }, [
-    bookDetails,
-    booksLaoding,
-    categoryDetailsLoading,
-    writersBooksLoading,
-    publisherBooksLoading,
-  ]);
+    useEffect(() => {
+        if (!booksLaoding && !categoryDetailsLoading && !writersBooksLoading && !publisherBooksLoading) {
+            setSuggetionsLoading(false);
+        }
+    }, [bookDetails, booksLaoding, categoryDetailsLoading, writersBooksLoading, publisherBooksLoading]);
 
-  return {
-    topTearSuggestions,
-    currentlyViewingRelatedBooks,
-    interestedBooks,
-    booksFromCategory,
-    booksFromWriters,
-    booksFromPublishers,
-    suggetionsLoading,
-  };
+
+
+    return { topTearSuggestions, currentlyViewingRelatedBooks, interestedBooks, booksFromCategory, booksFromWriters, booksFromPublishers, suggetionsLoading };
 };
 
 export default useBookSuggestion;

@@ -29,7 +29,7 @@ export default function BuyNow() {
           throw new Error("Network response was not ok");
         }
         const result = await response.json();
-        setBooks(result.buyBooks.slice(0, 6));
+        setBooks(result.buyBooks.slice(0, 12));
       } catch (error) {
         console.log(error);
       } finally {
