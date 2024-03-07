@@ -21,6 +21,7 @@ const nextConfig = {
       "thumbor.forbes.com",
       "example.com",
       "graph.facebook.com",
+      "localhost",
     ],
   },
 };
