@@ -12,14 +12,11 @@ import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import Swal from "sweetalert2";
 import { AuthContext } from "@/providers/AuthProvider";
 import SocialLogin from "./SocialLogin";
-import { useDispatch } from "react-redux";
 import { userRegister } from "@/store/actions/authAction";
 import Link from "next/link";
 // import SocialLogin from './SocialLogin/SocialLogin';
 
 const JoinUs = () => {
-  const dispatch = useDispatch();
-
   const { register, handleSubmit, reset } = useForm();
   // const { createUser, signin, googleLogin } = useAuth();
   const { createUser, signin, googleLogin, updateUserProfiole } =
@@ -28,7 +25,6 @@ const JoinUs = () => {
   const router = useRouter();
   const axiosPublic = useAxiosPublic();
   const [componentsMounted, setComponentMounted] = useState(false);
-
 
   const isUser = true;
 
@@ -64,8 +60,6 @@ const JoinUs = () => {
 
     const userInfo = { name, email, password, isFirstLogin: true };
 
-
-
     createUser(email, password).then(async (res) => {
       const updateName = await updateUserProfiole(name);
       if (res.user) {
@@ -73,15 +67,9 @@ const JoinUs = () => {
         const res = await axiosPublic.post("/api/v1/users", userInfo);
         Swal.fire("Sign up successfull");
         router.push("/");
-
       }
     });
-
-    // form redux
-    dispatch(userRegister(userInfo));
   };
-
-
 
   // user login function
   const logIn = (data) => {
@@ -93,8 +81,6 @@ const JoinUs = () => {
       Swal.fire("Login successfull");
     });
   };
-
-
 
   const handleSocialLogin = (user) => {
     user()
@@ -120,9 +106,7 @@ const JoinUs = () => {
   };
 
   return (
-
     <>
-
       <div className="container w-full flex justify-between">
         <div className="forms-container">
           <div className="signin-signup">
@@ -152,10 +136,7 @@ const JoinUs = () => {
               </div>
               <input type="submit" value="Login" className="btn solid" />
               <p className="social-text">Or Sign in with social platforms</p>
-
             </form>
-
-
 
             <SocialLogin></SocialLogin>
 
@@ -194,7 +175,6 @@ const JoinUs = () => {
               </div>
               <input type="submit" className="btn" value="Sign up" />
               <p className="social-text">Or Sign up with social platforms</p>
-
             </form>
           </div>
         </div>
@@ -204,8 +184,8 @@ const JoinUs = () => {
             <div className="content">
               <h3>New here ?</h3>
               <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-                ex ratione. Aliquid!
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Debitis, ex ratione. Aliquid!
               </p>
               <button className="btn transparent" id="sign-up-btn">
                 Sign up
@@ -241,19 +221,19 @@ const JoinUs = () => {
         </div>
       </div>
 
-
-
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       {/* <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>open modal</button> */}
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">Press ESC key or click the button below to close</p>
+          <p className="py-4">
+            Press ESC key or click the button below to close
+          </p>
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
               <Link href="/">
-                <button className="btn"> Update  </button>
+                <button className="btn"> Update </button>
               </Link>
             </form>
           </div>
@@ -284,7 +264,7 @@ const JoinUs = () => {
             width={1000}
           />
         </div>
-      </dialog >
+      </dialog>
     </>
   );
 };

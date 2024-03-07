@@ -147,7 +147,7 @@ export default function AdminDashboardHome() {
           <div>
             {topSellingBooks &&
               topSellingBooks.topSellingBooks?.map((item) => (
-                <TopSellingBooksCard item={item} />
+                <TopSellingBooksCard key={item.bookId} item={item} />
               ))}
           </div>
         </div>
@@ -164,7 +164,7 @@ export default function AdminDashboardHome() {
           <div>
             {topBuyingCustomers &&
               topBuyingCustomers.topBuyingCustomers?.map((item) => (
-                <TopBuyingCustomerCard item={item} />
+                <TopBuyingCustomerCard key={item.email} item={item} />
               ))}
           </div>
         </div>
@@ -180,8 +180,8 @@ export default function AdminDashboardHome() {
           </h3>
           <div>
             {lowStockBooks &&
-              lowStockBooks.lowStockBooks?.map((item) => (
-                <LowStockBooksCard item={item} />
+              lowStockBooks.lowStockBooks?.map((item, i) => (
+                <LowStockBooksCard key={item._id} item={item} />
               ))}
           </div>
         </div>
