@@ -1,11 +1,16 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import useOneUser from '../Users/useOneUser';
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from '../Axios/useAxiosPublic';
+import { AuthContext } from '@/providers/AuthProvider';
 
 const useBookSuggestion = (CurrentlyViewing) => {
+    const { isLoggedIn } = useContext(AuthContext);
     const { interest } = useOneUser();
     const axiosPublic = useAxiosPublic();
+
+    console.log(isLoggedIn);
+
 
     // ---------Category Books----------
     const [booksFromCategory, setBooksFromCategory] = useState([]);
@@ -13,7 +18,8 @@ const useBookSuggestion = (CurrentlyViewing) => {
         queryKey: ['categoryDetails', interest?.category],
         queryFn: async () => {
             // Check if currentUser and interest exist
-            const categoryDetailsPromises = interest.category.map(async (categoryName) => {
+            const categoryDetailsPromises = interest?.category?.map(async (categoryName) => {
+                console.log("category");
                 try {
                     const response = await axiosPublic.get(`/api/v1/category/${categoryName}`);
                     if (response.status !== 200) {
@@ -30,6 +36,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
         },
     });
+
 
     useEffect(() => {
         if (!categoryDetailsLoading) {
@@ -275,72 +282,78 @@ const useBookSuggestion = (CurrentlyViewing) => {
     const [topTearSuggestionsLoading, setTopTearSuggestionsLoading] = useState(true);
 
     useEffect(() => {
-        // Filter books based on user interests
-        const filteredBooks = [];
-        booksFromCategory?.forEach(book => {
-            if (
-                interest?.writer?.includes(book?.writer) ||
-                interest?.publisher?.includes(book?.publisher) ||
-                interest?.book?.includes(book?._id)
-            ) {
-                filteredBooks.push(book);
+        if (isLoggedIn === true) {
+            // Filter books based on user interests
+            const filteredBooks = [];
+
+            booksFromCategory?.forEach(book => {
+                if (
+                    interest?.writer?.includes(book?.writer) ||
+                    interest?.publisher?.includes(book?.publisher) ||
+                    interest?.book?.includes(book?._id)
+                ) {
+                    filteredBooks.push(book);
+                }
+            });
+
+            booksFromWriters?.forEach(book => {
+                if (
+                    interest?.publisher?.includes(book?.publisher) ||
+                    interest?.category?.includes(book?.category) ||
+                    interest?.book?.includes(book?._id)
+                ) {
+                    filteredBooks.push(book);
+                }
+            });
+
+            booksFromPublishers?.forEach(book => {
+                if (
+                    interest?.writer?.includes(book?.writer) ||
+                    interest?.category?.includes(book?.category) ||
+                    interest?.book?.includes(book?._id)
+                ) {
+                    filteredBooks.push(book);
+                }
+            });
+
+            interestedBooks?.forEach(book => {
+                if (
+                    interest?.writer?.includes(book?.writer) ||
+                    interest?.publisher?.includes(book?.publisher) ||
+                    interest?.category?.includes(book?.category)
+                ) {
+                    filteredBooks.push(book);
+                }
+            });
+
+            interestedBooksRelatedBooks?.forEach(book => {
+                if (
+                    interest?.writer?.includes(book?.writer) ||
+                    interest?.publisher?.includes(book?.publisher) ||
+                    interest?.category?.includes(book?.category)
+                ) {
+                    filteredBooks.push(book);
+                }
+            });
+
+            // Remove duplicate books
+            const uniqueBooks = Array.from(new Set(filteredBooks?.map(book => book?._id))).map(_id => {
+                return filteredBooks?.find(book => book?._id === _id);
+            });
+
+            // Shuffle the array using Fisher-Yates shuffle algorithm
+            const shuffledBooks = uniqueBooks.slice();
+            for (let i = shuffledBooks.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledBooks[i], shuffledBooks[j]] = [shuffledBooks[j], shuffledBooks[i]];
             }
-        });
 
-        booksFromWriters?.forEach(book => {
-            if (
-                interest?.publisher?.includes(book?.publisher) ||
-                interest?.category?.includes(book?.category) ||
-                interest?.book?.includes(book?._id)
-            ) {
-                filteredBooks.push(book);
-            }
-        });
+            setTopTearSuggestionsLoading(false); // Moved outside the loop
+            setTopTearSuggestions(shuffledBooks);
 
-        booksFromPublishers?.forEach(book => {
-            if (
-                interest?.writer?.includes(book?.writer) ||
-                interest?.category?.includes(book?.category) ||
-                interest?.book?.includes(book?._id)
-            ) {
-                filteredBooks.push(book);
-            }
-        });
-
-        interestedBooks?.forEach(book => {
-            if (
-                interest?.writer?.includes(book?.writer) ||
-                interest?.publisher?.includes(book?.publisher) ||
-                interest?.category?.includes(book?.category)
-            ) {
-                filteredBooks.push(book);
-            }
-        });
-
-        interestedBooksRelatedBooks?.forEach(book => {
-            if (
-                interest?.writer?.includes(book?.writer) ||
-                interest?.publisher?.includes(book?.publisher) ||
-                interest?.category?.includes(book?.category)
-            ) {
-                filteredBooks.push(book);
-            }
-        });
-
-        // Remove duplicate books
-        const uniqueBooks = Array.from(new Set(filteredBooks?.map(book => book?._id))).map(_id => {
-            return filteredBooks?.find(book => book?._id === _id);
-        });
-
-        // Shuffle the array using Fisher-Yates shuffle algorithm
-        for (let i = uniqueBooks?.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [uniqueBooks[i], uniqueBooks[j]] = [uniqueBooks[j], uniqueBooks[i]];
-            setTopTearSuggestionsLoading(false)
         }
+    }, [isLoggedIn, booksFromCategory, booksFromWriters, booksFromPublishers, interestedBooks, interestedBooksRelatedBooks, interest]);
 
-        setTopTearSuggestions(uniqueBooks);
-    }, [booksFromCategory, booksFromWriters, booksFromPublishers, interestedBooks, interestedBooksRelatedBooks, interest]);
 
     console.log("Top Tier Suggestions", topTearSuggestions);
 
@@ -352,9 +365,10 @@ const useBookSuggestion = (CurrentlyViewing) => {
             booksLaoding === false &&
             categoryDetailsLoading === false &&
             writersBooksLoading === false &&
-            publisherBooksLoading === false&&
+            publisherBooksLoading === false &&
             relatedBooksLoading === false &&
-            currentlyViewingBookLoading === false
+            currentlyViewingBookLoading === false &&
+            isLoggedIn === true
         ) {
             if (topTearSuggestions.length === 0 && topTearSuggestionsLoading === false) {
                 // Set topTearSuggestionsLoading to true when fetching data
@@ -387,7 +401,8 @@ const useBookSuggestion = (CurrentlyViewing) => {
                 fetchBuyBooks();
             }
         }
-    }, [booksLaoding,
+    }, [isLoggedIn,
+        booksLaoding,
         categoryDetailsLoading,
         writersBooksLoading,
         publisherBooksLoading,
@@ -396,6 +411,42 @@ const useBookSuggestion = (CurrentlyViewing) => {
         axiosPublic,
         topTearSuggestionsLoading,
         topTearSuggestions.length]);
+
+    // ---------If Top Tear Suggestions has no data------------
+    useEffect(() => {
+        if (isLoggedIn === false) {
+            console.log("no user")
+            // Set topTearSuggestionsLoading to true when fetching data
+            setTopTearSuggestionsLoading(true);
+            // Fetch books from the `buy-books` endpoint
+            const fetchBuyBooks = async () => {
+                try {
+                    const response = await axiosPublic.get(`/api/v1/buy-books`);
+                    if (response?.status !== 200) {
+                        throw new Error('Failed to fetch buy books');
+                    }
+                    let buyBooksData = response?.data?.buyBooks || [];
+
+                    // Fisher-Yates shuffle algorithm
+                    for (let i = buyBooksData?.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [buyBooksData[i], buyBooksData[j]] = [buyBooksData[j], buyBooksData[i]];
+                    }
+
+                    // Update state with shuffled buy books data
+                    console.log("buyBook", buyBooksData);
+                    setTopTearSuggestions(buyBooksData);
+                } catch (error) {
+                    console.error("Error fetching buy books:", error);
+                } finally {
+                    // Set topTearSuggestionsLoading to false after fetching data
+                    setTopTearSuggestionsLoading(false);
+                }
+            };
+            fetchBuyBooks();
+
+        }
+    }, [isLoggedIn, axiosPublic]);
 
 
 

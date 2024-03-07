@@ -16,9 +16,11 @@ import {
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 
+
 export const AuthContext = createContext("");
 
 const AuthProvider = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to hold authentication status
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
@@ -90,6 +92,14 @@ const AuthProvider = ({ children }) => {
   }, [axiosPublic]);
 
 
+
+
+  // Function to check if user is logged in
+  useEffect(() => {
+    setIsLoggedIn(!!user); // Set isLoggedIn to true if user exists
+  }, [user]);
+
+
   const authentication = {
     googleLogin,
     githubLogin,
@@ -100,6 +110,7 @@ const AuthProvider = ({ children }) => {
     loading,
     handleUpdateProfile,
     updateUserProfiole,
+    isLoggedIn
   };
 
   return (
