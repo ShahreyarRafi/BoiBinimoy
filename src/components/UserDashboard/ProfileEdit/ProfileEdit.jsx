@@ -67,8 +67,6 @@ const ProfileEdit = () => {
                     Swal.fire(' Profile Update successfully');
                     router.push('/dashboard/profile')
 
-
-
                 } else {
                     console.error("Update failed: User not found or update unsuccessful");
                     Swal.fire('Update failed. Please try again.');
