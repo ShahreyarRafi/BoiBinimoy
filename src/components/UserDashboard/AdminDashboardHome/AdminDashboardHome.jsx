@@ -2,11 +2,8 @@
 
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import TopSellingBooksCard from "./TopSellingBooksCard";
-import TopBuyingCustomerCard from "./TopBuyingCustomerCard";
 import RecentOrderBookCard from "./RecentOrderBookCard";
 import LowStockBooksCard from "./LowStockBooksCard";
-
 export default function AdminDashboardHome() {
   const axiosSecure = useAxiosSecure();
 
@@ -70,8 +67,6 @@ export default function AdminDashboardHome() {
     },
   });
 
-
-
   const {
     data: recentOrderedBooks = [],
     isPending: recentOrderedBooksPending,
@@ -84,9 +79,6 @@ export default function AdminDashboardHome() {
     },
   });
 
-
-
-
   const {
     data: lowStockBooks = [],
     isPending: lowStockBooksPending,
@@ -98,8 +90,6 @@ export default function AdminDashboardHome() {
       return res.data;
     },
   });
-
-
 
   return (
     <div>
@@ -139,40 +129,112 @@ export default function AdminDashboardHome() {
             </span>
           </h3>
           <div>
-            {topSellingBooks &&
-              topSellingBooks.topSellingBooks?.map((item, index) => (
-                <TopSellingBooksCard key={item.id || index} item={item} />
-              ))}
+            <table className="table">
+              <thead>
+                <tr className="bg-base-200 rounded-lg">
+                  <th>Cover Image</th>
+                  <th>Title</th>
+                  <th>Sales</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {topSellingBooks &&
+                  topSellingBooks.topSellingBooks?.map((item) => (
+                    <tr
+                      key={item.bookId}
+                      item={item}
+                      className="space-x-2 border"
+                    >
+                      <td>
+                        <img
+                          src={item.bookDetails.cover_image}
+                          className="w-12"
+                          alt=""
+                        />
+                      </td>
+                      <td>{item.bookDetails.title}</td>
+                      <td>{item.totalQuantity}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="border p-5 rounded-lg shadow-sm space-y-3">
+          <div className="">
+            <div className="flex items-center justify-between">
+              <h3 className="mb-5 font-semibold text-xxl">
+                Top Buying Customers
+              </h3>
+              <h3>
+                {topBuyingCustomers &&
+                  topBuyingCustomers.topBuyingCustomers.length}
+              </h3>
+            </div>
+
+            <table className="table">
+              <thead>
+                <tr className="bg-base-200 rounded-lg">
+                  <th>Profile</th>
+                  <th>Name & Email</th>
+                  <th>Buy</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {topBuyingCustomers &&
+                  topBuyingCustomers.topBuyingCustomers?.map((item) => (
+                    <tr
+                      key={item.email}
+                      item={item}
+                      className="space-x-2 border"
+                    >
+                      <td>
+                        <img
+                          src={item.image}
+                          className="w-12 h-12 rounded-full"
+                          alt=""
+                        />
+                      </td>
+                      <td>
+                        {item.name} <br /> {item.email}
+                      </td>
+                      <td>{item.totalPurchases}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
         <div className="border p-5 rounded-lg shadow-sm space-y-3">
           <h3 className="text-xl font-semibold flex justify-between items-center gap-5">
-            Top Buying Customers
+            Low Stock Books
             <span>
-              {topBuyingCustomers && topBuyingCustomers.topBuyingCustomers
-                ? topBuyingCustomers.topBuyingCustomers.length
+              {lowStockBooks && lowStockBooks.lowStockBooks
+                ? lowStockBooks.lowStockBooks.length
                 : 0}
             </span>
           </h3>
           <div>
-            {topBuyingCustomers &&
-              topBuyingCustomers.topBuyingCustomers?.map((item, index) => (
-                <TopBuyingCustomerCard key={item.id || index} item={item} />
+            {lowStockBooks &&
+              lowStockBooks.lowStockBooks?.map((item, i) => (
+                <LowStockBooksCard key={item._id} item={item} />
               ))}
           </div>
         </div>
+      </div>
 
-        <div className="mt-5">
-          <div className="border p-5 rounded-lg shadow-sm space-y-3">
-            <h3 className="text-xl font-semibold">Recent Orders</h3>
-            <div>
-              {recentOrderedBooks &&
-                recentOrderedBooks.recentOrders?.map((item, index) => (
-                  <RecentOrderBookCard key={item.id || index} item={item} />
-                ))}
-            </div>
-
+      <div className="mt-5">
+        <div className="border p-5 rounded-lg shadow-sm space-y-3">
+          <h3 className="text-xl font-semibold">Recent Orders</h3>
+          <div>
+            {recentOrderedBooks &&
+              recentOrderedBooks.recentOrders?.map((item) => (
+                <RecentOrderBookCard item={item} />
+              ))}
           </div>
         </div>
       </div>
