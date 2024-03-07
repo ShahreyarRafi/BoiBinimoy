@@ -42,7 +42,7 @@ const Search = () => {
 
         {showSuggestions && (
           <div className="absolute bg-50 border border-teal-800 rounded-lg w-full mt-1">
-            <div className="flex items-center gap-3 bg-teal-100/30  hover:bg-teal-100/60 py-2 px-5 rounded-lg border-b">
+            <div className="flex items-center gap-3 bg-teal-100/30  hover:bg-teal-100/60 py-2 px-5 rounded-lg border-b transition-all duration-300 ease-in-out">
               <div>
                 <Image
                   width={40}
