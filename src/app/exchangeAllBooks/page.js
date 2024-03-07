@@ -1,17 +1,10 @@
 
-
-import AllExchangeBooks from '@/components/Exchange/ExchangeAllBooks/AllExchangeBooks';
-import Footer from '@/components/Shared/Footer/Footer';
-import Navbar from '@/components/Shared/Navbar/Navbar';
-import SectionTitle from '@/components/Shared/SectionTitle/SectionTitle';
+import ExchangeBooks from '@/components/Exchange/ExchangeBooks';
 
 const page = () => {
     return (
         <div>
-            <Navbar />
-            <SectionTitle heading={"Exchange Books"}></SectionTitle>
-            <AllExchangeBooks />
-            <Footer />
+            <ExchangeBooks></ExchangeBooks>
         </div>
     );
 };
