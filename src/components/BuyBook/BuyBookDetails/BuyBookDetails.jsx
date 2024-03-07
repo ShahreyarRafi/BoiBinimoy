@@ -148,7 +148,7 @@ const BuyBookDetails = () => {
         {/* book img and information section */}
         <div className="flex flex-col-reverse lg:flex-row items-start lg:mt-40 gap-3 lg:gap-7">
           {/* Related section */}
-          <div className="w-full bg-50-50 mx-auto lg:w-fit h-[400px] px-3 overflow-y-scroll border border-teal-800 rounded-lg">
+          <div className="w-full bg-50-50 mx-auto lg:w-fit h-[500px] px-3 overflow-y-scroll border border-teal-800 rounded-lg">
             <RelatedBooks CurrentlyViewing={book._id}> </RelatedBooks>
           </div>
 

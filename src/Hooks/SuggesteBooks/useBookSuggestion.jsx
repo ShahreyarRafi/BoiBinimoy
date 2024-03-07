@@ -1,22 +1,19 @@
-import { useCallback, useEffect, useState } from "react";
-import useOneUser from "../Users/useOneUser";
+import { useCallback, useEffect, useState } from 'react';
+import useOneUser from '../Users/useOneUser';
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../Axios/useAxiosPublic";
+import useAxiosPublic from '../Axios/useAxiosPublic';
 
 const useBookSuggestion = (CurrentlyViewing) => {
     const { interest } = useOneUser();
     const axiosPublic = useAxiosPublic();
 
-
-
     // ---------Category Books----------
-
-    const [booksFromCategory, setBooksFromCategory] = useState([])
-
+    const [booksFromCategory, setBooksFromCategory] = useState([]);
     const { data: categoryDetails = [], isLoading: categoryDetailsLoading } = useQuery({
         queryKey: ['categoryDetails', interest?.category],
         queryFn: async () => {
-            const categoryDetailsPromises = interest?.category?.map(async (categoryName) => {
+            // Check if currentUser and interest exist
+            const categoryDetailsPromises = interest.category.map(async (categoryName) => {
                 try {
                     const response = await axiosPublic.get(`/api/v1/category/${categoryName}`);
                     if (response.status !== 200) {
@@ -30,235 +27,223 @@ const useBookSuggestion = (CurrentlyViewing) => {
             });
             const categories = await Promise.all(categoryDetailsPromises);
             return categories.filter(category => category !== null).flatMap(category => category);
+
         },
     });
 
-  useEffect(() => {
-    if (!categoryDetailsLoading) {
-      setBooksFromCategory(categoryDetails);
-    }
-  }, [categoryDetails, categoryDetailsLoading]);
-
-  console.log("Books From Category", booksFromCategory);
-
-  // ---------Writers Books----------
-
-  const [booksFromWriters, setBooksFromWriters] = useState([]);
-
-  const { data: writersBooks = [], isLoading: writersBooksLoading } = useQuery({
-    queryKey: ["writersBooks", interest?.writer],
-    queryFn: async () => {
-      const writersBooksPromises = interest?.writer?.map(async (writerName) => {
-        try {
-          const response = await axiosPublic.get(
-            `/api/v1/writer/${writerName}`
-          );
-          if (response.status !== 200) {
-            throw new Error("Failed to fetch writer details");
-          }
-          return response.data;
-        } catch (error) {
-          console.error(error);
-          return null;
+    useEffect(() => {
+        if (!categoryDetailsLoading) {
+            setBooksFromCategory(categoryDetails);
         }
-      });
-      const writers = await Promise.all(writersBooksPromises);
-      return writers
-        .filter((writer) => writer !== null)
-        .flatMap((writer) => writer);
-    },
-  });
+    }, [categoryDetails, categoryDetailsLoading]);
 
-  useEffect(() => {
-    if (!writersBooksLoading) {
-      setBooksFromWriters(writersBooks);
-    }
-  }, [writersBooks, writersBooksLoading]);
+    console.log("Books From Category", booksFromCategory);
 
-  console.log("Books From Writers", booksFromWriters);
 
-  // ---------Publishers Books----------
 
-  const [booksFromPublishers, setBooksFromPublishers] = useState([]);
+    // ---------Writers Books----------
 
-  const { data: publisherBooks = [], isLoading: publisherBooksLoading } =
-    useQuery({
-      queryKey: ["publisherBooks", interest?.publisher],
-      queryFn: async () => {
-        const publisherBooksPromises = interest?.publisher?.map(
-          async (publisherName) => {
-            try {
-              const response = await axiosPublic.get(
-                `/api/v1/publisher/${publisherName}`
-              );
-              if (response.status !== 200) {
-                throw new Error("Failed to fetch publisher details");
-              }
-              return response.data;
-            } catch (error) {
-              console.error(error);
-              return null;
-            }
-          }
-        );
-        const publishers = await Promise.all(publisherBooksPromises);
-        return publishers
-          .filter((publisher) => publisher !== null)
-          .flatMap((publisher) => publisher);
-      },
+    const [booksFromWriters, setBooksFromWriters] = useState([]);
+
+    const { data: writersBooks = [], isLoading: writersBooksLoading } = useQuery({
+        queryKey: ['writersBooks', interest?.writer],
+        queryFn: async () => {
+            const writersBooksPromises = interest?.writer?.map(async (writerName) => {
+                try {
+                    const response = await axiosPublic.get(`/api/v1/writer/${writerName}`);
+                    if (response.status !== 200) {
+                        throw new Error('Failed to fetch writer details');
+                    }
+                    return response.data;
+                } catch (error) {
+                    console.error(error);
+                    return null;
+                }
+            });
+            const writers = await Promise.all(writersBooksPromises);
+            return writers.filter(writer => writer !== null).flatMap(writer => writer);
+        },
     });
 
-  useEffect(() => {
-    if (!publisherBooksLoading) {
-      setBooksFromPublishers(publisherBooks);
-    }
-  }, [publisherBooks, publisherBooksLoading]);
-
-  console.log("Books From Publishers", booksFromPublishers);
-
-  // ---------Interested books------------
-
-  const [interestedBooks, setInterestedBooks] = useState([]);
-
-  const { data: bookDetails = [], isLoading: booksLaoding } = useQuery({
-    queryKey: ["bookDetails", interest?.book],
-    queryFn: async () => {
-      const bookDetailsPromises = interest?.book?.map(async (_id) => {
-        try {
-          const response = await axiosPublic.get(`/api/v1/buy-books/${_id}`);
-          if (response.status !== 200) {
-            throw new Error("Failed to fetch book details");
-          }
-          return response.data;
-        } catch (error) {
-          console.error(error);
-          return null;
+    useEffect(() => {
+        if (!writersBooksLoading) {
+            setBooksFromWriters(writersBooks);
         }
-      });
-      const books = await Promise.all(bookDetailsPromises);
-      return books.filter((book) => book !== null);
-    },
-  });
+    }, [writersBooks, writersBooksLoading]);
 
-  useEffect(() => {
-    if (!booksLaoding) {
-      const filteredBooks = bookDetails.filter(
-        (book) => book._id !== CurrentlyViewing
-      );
-      setInterestedBooks(filteredBooks);
-    }
-  }, [bookDetails, CurrentlyViewing, booksLaoding]);
+    console.log("Books From Writers", booksFromWriters);
 
-  console.log("Interested Books", bookDetails);
 
-  // ----------------Related books-----------------
 
-    // ---------Fetch related books function-----------
+    // ---------Publishers Books----------
+
+    const [booksFromPublishers, setBooksFromPublishers] = useState([]);
+
+    const { data: publisherBooks = [], isLoading: publisherBooksLoading } = useQuery({
+        queryKey: ['publisherBooks', interest?.publisher],
+        queryFn: async () => {
+            const publisherBooksPromises = interest?.publisher?.map(async (publisherName) => {
+                try {
+                    const response = await axiosPublic.get(`/api/v1/publisher/${publisherName}`);
+                    if (response.status !== 200) {
+                        throw new Error('Failed to fetch publisher details');
+                    }
+                    return response.data;
+                } catch (error) {
+                    console.error(error);
+                    return null;
+                }
+            });
+            const publishers = await Promise.all(publisherBooksPromises);
+            return publishers.filter(publisher => publisher !== null).flatMap(publisher => publisher);
+        },
+    });
+
+    useEffect(() => {
+        if (!publisherBooksLoading) {
+            setBooksFromPublishers(publisherBooks);
+        }
+    }, [publisherBooks, publisherBooksLoading]);
+
+    console.log("Books From Publishers", booksFromPublishers);
+
+
+
+    // ---------Interested books------------
+
+    const [interestedBooks, setInterestedBooks] = useState([]);
+
+    const { data: bookDetails = [], isLoading: booksLaoding } = useQuery({
+        queryKey: ["bookDetails", interest?.book],
+        queryFn: async () => {
+            const bookDetailsPromises = interest?.book?.map(async (_id) => {
+                try {
+                    const response = await axiosPublic.get(`/api/v1/buy-books/${_id}`);
+                    if (response.status !== 200) {
+                        throw new Error('Failed to fetch book details');
+                    }
+                    return response.data;
+                } catch (error) {
+                    console.error(error);
+                    return null;
+                }
+            });
+            const books = await Promise.all(bookDetailsPromises);
+            return books.filter(book => book !== null);
+        },
+    });
+
+    useEffect(() => {
+        if (!booksLaoding) {
+            const filteredBooks = bookDetails.filter(book => book._id !== CurrentlyViewing);
+            setInterestedBooks(filteredBooks);
+        }
+    }, [bookDetails, CurrentlyViewing, booksLaoding]);
+
+    console.log("Interested Books", bookDetails);
+
+
+
+    // ----------------Related books-----------------
+
+    // ---------Fetch related books function-------
+
+    const [relatedBooksLoading, setRelatedBooksLoading] = useState(false);
+
 
     const fetchRelatedBooks = useCallback(async (writer, publisher, category) => {
         try {
+            setRelatedBooksLoading(true); // Set loading state to true
             const writerResponse = await axiosPublic.get(`/api/v1/writer/${writer}`);
             const publisherResponse = await axiosPublic.get(`/api/v1/publisher/${publisher}`);
             const categoryResponse = await axiosPublic.get(`/api/v1/category/${category}`);
 
-        const writerBooks = writerResponse.data || [];
-        const publisherBooks = publisherResponse.data || [];
-        const categoryBooks = categoryResponse.data || [];
+            const writerBooks = writerResponse.data || [];
+            const publisherBooks = publisherResponse.data || [];
+            const categoryBooks = categoryResponse.data || [];
 
-        const relatedBooksData = [
-          ...writerBooks,
-          ...publisherBooks,
-          ...categoryBooks,
-        ];
+            const relatedBooksData = [...writerBooks, ...publisherBooks, ...categoryBooks];
 
-        // Remove duplicates
-        const uniqueRelatedBooks = Array.from(
-          new Set(relatedBooksData.map((book) => book._id))
-        ).map((_id) => {
-          return relatedBooksData.find((book) => book._id === _id);
-        });
+            // Remove duplicates
+            const uniqueRelatedBooks = Array.from(new Set(relatedBooksData.map(book => book._id))).map(_id => {
+                return relatedBooksData.find(book => book._id === _id);
+            });
 
+            setRelatedBooksLoading(false); // Set loading state to false after data fetching
             return uniqueRelatedBooks;
         } catch (error) {
             console.error("Error fetching related books:", error);
+            setRelatedBooksLoading(false); // Set loading state to false in case of error
             return [];
         }
     }, [axiosPublic]);
 
 
 
-  // ---------- Related books of Interested books -----------
+    // ---------- Related books of Interested books -----------
 
-  const [interestedBooksRelatedBooks, setInterestedBooksRelatedBooks] =
-    useState([]);
-  const [
-    interestedBooksRelatedBooksLoading,
-    setInterestedBooksRelatedBooksLoading,
-  ] = useState(true);
+    const [interestedBooksRelatedBooks, setInterestedBooksRelatedBooks] = useState([]);
+    const [interestedBooksRelatedBooksLoading, setInterestedBooksRelatedBooksLoading] = useState(true);
 
-  // Effect to fetch related books for each interested book
-  useEffect(() => {
-    const fetchRelatedBooksForAllBooks = async () => {
-      try {
-        setInterestedBooksRelatedBooksLoading(true);
-        const relatedBooksForAll = [];
-        for (const book of interestedBooks) {
-          const { writer, publisher, category } = book;
-          const relatedBooksForBook = await fetchRelatedBooks(
-            writer,
-            publisher,
-            category
-          );
-          relatedBooksForAll.push(...relatedBooksForBook);
-        }
-        setInterestedBooksRelatedBooks(relatedBooksForAll);
-      } catch (error) {
-        console.error("Error fetching related books:", error);
-      } finally {
-        setInterestedBooksRelatedBooksLoading(false);
-      }
-    };
+    // Effect to fetch related books for each interested book
+    useEffect(() => {
+        const fetchRelatedBooksForAllBooks = async () => {
+            try {
+                setInterestedBooksRelatedBooksLoading(true);
+                const relatedBooksForAll = [];
+                for (const book of interestedBooks) {
+                    const { writer, publisher, category } = book;
+                    const relatedBooksForBook = await fetchRelatedBooks(writer, publisher, category);
+                    relatedBooksForAll.push(...relatedBooksForBook);
+                }
+                setInterestedBooksRelatedBooks(relatedBooksForAll);
+            } catch (error) {
+                console.error("Error fetching related books:", error);
+            } finally {
+                setInterestedBooksRelatedBooksLoading(false);
+            }
+        };
 
-    fetchRelatedBooksForAllBooks();
-  }, [interestedBooks, fetchRelatedBooks]);
+        fetchRelatedBooksForAllBooks();
+    }, [interestedBooks, fetchRelatedBooks]);
 
-  if (interestedBooksRelatedBooksLoading === false) {
-    console.log("Related Books", interestedBooksRelatedBooks);
-  }
+    if (interestedBooksRelatedBooksLoading === false) {
+        console.log("Related Books", interestedBooksRelatedBooks);
+    }
 
-  console.log("Related Books Loading", interestedBooksRelatedBooksLoading);
+    console.log("Related Books Loading", interestedBooksRelatedBooksLoading);
 
-  // --------- Related Books of Currently Viewing -----------
+
+
+    // --------- Related Books of Currently Viewing -----------
 
     const [currentlyViewingRelatedBooks, setCurrentlyViewingRelatedBooks] = useState([]);
+    const [currentlyViewingRelatedLoading, setCurrentlyViewingRelatedLoading] = useState(true);
 
-  const {
-    data: currentlyViewingBookDetails = [],
-    isLoading: currentlyViewingBookLoading,
-  } = useQuery({
-    queryKey: ["currentlyViewingBookDetails"],
-    queryFn: async () => {
-      try {
-        const response = await axiosPublic.get(
-          `/api/v1/buy-books/${CurrentlyViewing}`
-        );
-        if (response.status !== 200) {
-          throw new Error("Failed to fetch book details");
-        }
-        return response.data;
-      } catch (error) {
-        console.error(error);
-        return null;
-      }
-    },
-  });
+    const { data: currentlyViewingBookDetails = [], isLoading: currentlyViewingBookLoading } = useQuery({
+        queryKey: ["currentlyViewingBookDetails"],
+        queryFn: async () => {
+            try {
+                const response = await axiosPublic.get(`/api/v1/buy-books/${CurrentlyViewing}`);
+                if (response.status !== 200) {
+                    throw new Error('Failed to fetch book details');
+                }
+                return response.data;
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
+        },
+    });
 
     useEffect(() => {
         if (currentlyViewingBookLoading) {
+            setCurrentlyViewingRelatedLoading(true)
             return;
         }
 
         if (currentlyViewingBookDetails) {
+            setCurrentlyViewingRelatedLoading(true)
             const { writer, publisher, category } = currentlyViewingBookDetails;
             const fetchRelatedBooksForCurrentlyViewing = async () => {
                 try {
@@ -267,33 +252,36 @@ const useBookSuggestion = (CurrentlyViewing) => {
                 } catch (error) {
                     console.error("Error fetching related books for currently viewing book:", error);
                     setCurrentlyViewingRelatedBooks([]);
+                } finally {
+                    // Set topTearSuggestionsLoading to false after fetching data
+                    setCurrentlyViewingRelatedLoading(false);
                 }
             };
 
-      fetchRelatedBooksForCurrentlyViewing();
-    }
-  }, [
-    currentlyViewingBookDetails,
-    currentlyViewingBookLoading,
-    fetchRelatedBooks,
-  ]);
+            fetchRelatedBooksForCurrentlyViewing();
+        }
+    }, [currentlyViewingBookDetails, currentlyViewingBookLoading, fetchRelatedBooks])
 
-  console.log("Currently Viewing Book Id", CurrentlyViewing);
-  console.log("Currently Viewing Book Details", currentlyViewingBookDetails);
-  console.log("Currently Viewing Related Books", currentlyViewingRelatedBooks);
 
-  // ---------Top Tear Suggestions------------
+    console.log("Currently Viewing Book Id", CurrentlyViewing);
+    console.log("Currently Viewing Book Details", currentlyViewingBookDetails);
+    console.log("Currently Viewing Related Books", currentlyViewingRelatedBooks);
+
+
+
+    // ---------Top Tear Suggestions------------
 
     const [topTearSuggestions, setTopTearSuggestions] = useState([]);
+    const [topTearSuggestionsLoading, setTopTearSuggestionsLoading] = useState(true);
 
     useEffect(() => {
         // Filter books based on user interests
         const filteredBooks = [];
         booksFromCategory.forEach(book => {
             if (
-                interest?.writer.includes(book.writer) ||
-                interest?.publisher.includes(book.publisher) ||
-                interest?.book.includes(book._id)
+                interest?.writer?.includes(book.writer) ||
+                interest?.publisher?.includes(book.publisher) ||
+                interest?.book?.includes(book._id)
             ) {
                 filteredBooks.push(book);
             }
@@ -301,9 +289,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
         booksFromWriters.forEach(book => {
             if (
-                interest.publisher.includes(book.publisher) ||
-                interest.category.includes(book.category) ||
-                interest.book.includes(book._id)
+                interest?.publisher?.includes(book.publisher) ||
+                interest?.category?.includes(book.category) ||
+                interest?.book?.includes(book._id)
             ) {
                 filteredBooks.push(book);
             }
@@ -311,9 +299,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
         booksFromPublishers.forEach(book => {
             if (
-                interest.writer.includes(book.writer) ||
-                interest.category.includes(book.category) ||
-                interest.book.includes(book._id)
+                interest?.writer?.includes(book.writer) ||
+                interest?.category?.includes(book.category) ||
+                interest?.book?.includes(book._id)
             ) {
                 filteredBooks.push(book);
             }
@@ -321,9 +309,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
         interestedBooks.forEach(book => {
             if (
-                interest.writer.includes(book.writer) ||
-                interest.publisher.includes(book.publisher) ||
-                interest.category.includes(book.category)
+                interest?.writer?.includes(book.writer) ||
+                interest?.publisher?.includes(book.publisher) ||
+                interest?.category?.includes(book.category)
             ) {
                 filteredBooks.push(book);
             }
@@ -331,9 +319,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
         interestedBooksRelatedBooks.forEach(book => {
             if (
-                interest.writer.includes(book.writer) ||
-                interest.publisher.includes(book.publisher) ||
-                interest.category.includes(book.category)
+                interest?.writer?.includes(book.writer) ||
+                interest?.publisher?.includes(book.publisher) ||
+                interest?.category?.includes(book.category)
             ) {
                 filteredBooks.push(book);
             }
@@ -344,31 +332,123 @@ const useBookSuggestion = (CurrentlyViewing) => {
             return filteredBooks.find(book => book._id === _id);
         });
 
-    setTopTearSuggestions(uniqueBooks);
-  }, [
-    booksFromCategory,
-    booksFromWriters,
-    booksFromPublishers,
-    interestedBooks,
-    interestedBooksRelatedBooks,
-    interest,
-  ]);
+        // Shuffle the array using Fisher-Yates shuffle algorithm
+        for (let i = uniqueBooks.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [uniqueBooks[i], uniqueBooks[j]] = [uniqueBooks[j], uniqueBooks[i]];
+            setTopTearSuggestionsLoading(false)
+        }
 
-  console.log("Top Tier Suggestions", topTearSuggestions);
+        setTopTearSuggestions(uniqueBooks);
+    }, [booksFromCategory, booksFromWriters, booksFromPublishers, interestedBooks, interestedBooksRelatedBooks, interest]);
 
-    // ----------Loading------------
+    console.log("Top Tier Suggestions", topTearSuggestions);
 
-  const [suggetionsLoading, setSuggetionsLoading] = useState(true);
+
+
+    // ---------If Top Tear Suggestions has no data------------
+    useEffect(() => {
+        if (
+            booksLaoding === false &&
+            categoryDetailsLoading === false &&
+            writersBooksLoading === false &&
+            publisherBooksLoading === false&&
+            relatedBooksLoading === false &&
+            currentlyViewingBookLoading === false
+        ) {
+            if (topTearSuggestions.length === 0 && topTearSuggestionsLoading === false) {
+                // Set topTearSuggestionsLoading to true when fetching data
+                setTopTearSuggestionsLoading(true);
+                // Fetch books from the `buy-books` endpoint
+                const fetchBuyBooks = async () => {
+                    try {
+                        const response = await axiosPublic.get(`/api/v1/buy-books`);
+                        if (response.status !== 200) {
+                            throw new Error('Failed to fetch buy books');
+                        }
+                        let buyBooksData = response.data.buyBooks || [];
+
+                        // Fisher-Yates shuffle algorithm
+                        for (let i = buyBooksData.length - 1; i > 0; i--) {
+                            const j = Math.floor(Math.random() * (i + 1));
+                            [buyBooksData[i], buyBooksData[j]] = [buyBooksData[j], buyBooksData[i]];
+                        }
+
+                        // Update state with shuffled buy books data
+                        console.log("buyBook", buyBooksData);
+                        setTopTearSuggestions(buyBooksData);
+                    } catch (error) {
+                        console.error("Error fetching buy books:", error);
+                    } finally {
+                        // Set topTearSuggestionsLoading to false after fetching data
+                        setTopTearSuggestionsLoading(false);
+                    }
+                };
+                fetchBuyBooks();
+            }
+        }
+    }, [booksLaoding,
+        categoryDetailsLoading,
+        writersBooksLoading,
+        publisherBooksLoading,
+        relatedBooksLoading,
+        currentlyViewingBookLoading,
+        axiosPublic,
+        topTearSuggestionsLoading,
+        topTearSuggestions.length]);
+
+
+
+
+
+    // ----------Suggetions Loading------------
+
+    const [suggetionsLoading, setSuggetionsLoading] = useState(true);
 
     useEffect(() => {
-        if (!booksLaoding && !categoryDetailsLoading && !writersBooksLoading && !publisherBooksLoading) {
+        if (
+            booksLaoding === false &&
+            categoryDetailsLoading === false &&
+            writersBooksLoading === false &&
+            publisherBooksLoading === false &&
+            relatedBooksLoading === false &&
+            topTearSuggestionsLoading === false &&
+            currentlyViewingRelatedLoading === false &&
+            currentlyViewingBookLoading === false) {
+
             setSuggetionsLoading(false);
         }
-    }, [bookDetails, booksLaoding, categoryDetailsLoading, writersBooksLoading, publisherBooksLoading]);
+    }, [bookDetails,
+        booksLaoding,
+        categoryDetailsLoading,
+        writersBooksLoading,
+        publisherBooksLoading,
+        topTearSuggestionsLoading,
+        relatedBooksLoading,
+        currentlyViewingRelatedLoading,
+        currentlyViewingBookLoading]);
+
+    // ----------Related Loading------------
+
+    const [relatedLoading, setRelatedLoading] = useState(true);
+
+    useEffect(() => {
+        if (
+            relatedBooksLoading === false &&
+            currentlyViewingRelatedLoading === false &&
+            currentlyViewingBookLoading === false) {
+
+            setRelatedLoading(false);
+        }
+    }, [relatedBooksLoading,
+        currentlyViewingRelatedLoading,
+        currentlyViewingBookLoading]);
 
 
 
-    return { topTearSuggestions, currentlyViewingRelatedBooks, interestedBooks, booksFromCategory, booksFromWriters, booksFromPublishers, suggetionsLoading };
+    return { topTearSuggestions, currentlyViewingRelatedBooks, interestedBooks, booksFromCategory, booksFromWriters, booksFromPublishers, suggetionsLoading, relatedLoading };
 };
 
 export default useBookSuggestion;
+
+
