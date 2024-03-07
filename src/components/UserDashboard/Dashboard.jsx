@@ -1,5 +1,4 @@
 "use client";
-
 import { useContext, useEffect, useState } from "react";
 import "./style.css";
 import Link from "next/link";
@@ -19,7 +18,7 @@ const Dashboard = ({ children }) => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
-  const [isAdmin] = useAdmin();
+  const { isAdmin, isModerator, isSeller, isPublisher, isUser } = useOneUser();
 
   const toggleNotification = () => {
     setIsOpen(!isOpen);
@@ -253,7 +252,9 @@ const Dashboard = ({ children }) => {
                 <span className="text">Message</span>
               </Link>
             </li>
-            <li className={pathname == "/dashboard/notification" ? "active" : ""}>
+            <li
+              className={pathname == "/dashboard/notification" ? "active" : ""}
+            >
               <Link href="/dashboard/notification">
                 <i className="bx bxs-message-dots"></i>
                 <span className="text">Notification</span>
@@ -261,24 +262,211 @@ const Dashboard = ({ children }) => {
             </li>
             <li className={pathname == "/dashboard/categories" ? "active" : ""}>
               <Link href="/dashboard/categories">
-                <i className='bx bxs-category'></i>
+                <i className="bx bxs-category"></i>
                 <span className="text">Categories</span>
               </Link>
             </li>
             <li className={pathname == "/dashboard/writers" ? "active" : ""}>
               <Link href="/dashboard/writers">
-                <i className='bx bxs-credit-card-front'></i>
+                <i className="bx bxs-credit-card-front"></i>
                 <span className="text">Writers</span>
               </Link>
             </li>
             <li className={pathname == "/dashboard/publishers" ? "active" : ""}>
               <Link href="/dashboard/publishers">
-                <i className='bx bxs-store'></i>
+                <i className="bx bxs-store"></i>
                 <span className="text">Publisher</span>
               </Link>
             </li>
           </ul>
         </>
+
+        {isUser && (
+          <>
+            <ul className="side-menu top">
+              <li className={pathname == "/dashboard" ? "active" : ""}>
+                <Link href="/dashboard">
+                  <i className="bx bxs-dashboard"></i>
+                  <span className="text">Dashboard</span>
+                </Link>
+              </li>
+
+              <li className={pathname == "/dashboard/orders" ? "active" : ""}>
+                <Link href="/dashboard/orders">
+                  <i className="bx bxs-book-add"></i>
+                  <span className="text">Orders</span>
+                </Link>
+              </li>
+              <li
+                className={pathname == "/dashboard/track-order" ? "active" : ""}
+              >
+                <Link href="/dashboard/track-order">
+                  <i className="bx bxs-book-add"></i>
+                  <span className="text">Track Orders</span>
+                </Link>
+              </li>
+              <li
+                className={pathname == "/dashboard/my-orders" ? "active" : ""}
+              >
+                <Link href="/dashboard/my-orders">
+                  <i className="bx bxs-book-add"></i>
+                  <span className="text">My Orders</span>
+                </Link>
+              </li>
+
+              <li
+                className={
+                  pathname == "/dashboard/list-exchange" ? "active" : ""
+                }
+              >
+                <Link href="/dashboard/list-exchange">
+                  <i className="bx bxs-book-add"></i>
+                  <span className="text">List Book</span>
+                </Link>
+              </li>
+              <li
+                className={pathname == "/dashboard/all-books" ? "active" : ""}
+              >
+                <Link href="/dashboard/all-books">
+                  <i className="bx bxs-group"></i>
+                  <span className="text"> My Books </span>
+                </Link>
+              </li>
+
+              <li
+                className={
+                  pathname == "/dashboard/exchange-books" ? "active" : ""
+                }
+              >
+                <Link href="/dashboard/exchange-books">
+                  <i className="bx bxs-group"></i>
+                  <span className="text">Exchange Books </span>
+                </Link>
+              </li>
+              <li className={pathname == "/dashboard/profile" ? "active" : ""}>
+                <Link href="/dashboard/profile">
+                  <i className="bx bxs-group"></i>
+                  <span className="text">Profile</span>
+                </Link>
+              </li>
+
+              <li
+                className={pathname == "/dashboard/analytics" ? "active" : ""}
+              >
+                <Link href="#">
+                  <i className="bx bxs-doughnut-chart"></i>
+                  <span className="text">Analytics</span>
+                </Link>
+              </li>
+              <li className={pathname == "/dashboard/message" ? "active" : ""}>
+                <Link href="/dashboard/message">
+                  <i className="bx bxs-message-dots"></i>
+                  <span className="text">Message</span>
+                </Link>
+              </li>
+              <li
+                className={
+                  pathname == "/dashboard/notification" ? "active" : ""
+                }
+              >
+                <Link href="/dashboard/notification">
+                  <i className="bx bxs-message-dots"></i>
+                  <span className="text">Notification</span>
+                </Link>
+              </li>
+            </ul>
+          </>
+        )}
+
+        {isSeller && (
+          <>
+            <ul className="side-menu top">
+              <li className={pathname == "/dashboard" ? "active" : ""}>
+                <Link href="/dashboard">
+                  <i className="bx bxs-dashboard"></i>
+                  <span className="text">Dashboard</span>
+                </Link>
+              </li>
+
+              <li className={pathname == "/dashboard/add-book" ? "active" : ""}>
+                <Link href="/dashboard/add-book">
+                  <i className="bx bxs-book-add"></i>
+                  <span className="text">Add Book</span>
+                </Link>
+              </li>
+
+              <li
+                className={pathname == "/dashboard/add-banner" ? "active" : ""}
+              >
+                <Link href="/dashboard/add-banner">
+                  <i class="bx bxs-image-add"></i>
+                  <span className="text">Add Banner</span>
+                </Link>
+              </li>
+
+              <li
+                className={
+                  pathname == "/dashboard/list-exchange" ? "active" : ""
+                }
+              >
+                <Link href="/dashboard/list-exchange">
+                  <i className="bx bxs-book-add"></i>
+                  <span className="text">List Book</span>
+                </Link>
+              </li>
+              <li
+                className={pathname == "/dashboard/all-books" ? "active" : ""}
+              >
+                <Link href="/dashboard/all-books">
+                  <i className="bx bxs-group"></i>
+                  <span className="text"> My Books </span>
+                </Link>
+              </li>
+
+              <li
+                className={
+                  pathname == "/dashboard/exchange-books" ? "active" : ""
+                }
+              >
+                <Link href="/dashboard/exchange-books">
+                  <i className="bx bxs-group"></i>
+                  <span className="text">Exchange Books </span>
+                </Link>
+              </li>
+              <li className={pathname == "/dashboard/profile" ? "active" : ""}>
+                <Link href="/dashboard/profile">
+                  <i className="bx bxs-group"></i>
+                  <span className="text">Profile</span>
+                </Link>
+              </li>
+
+              <li
+                className={pathname == "/dashboard/analytics" ? "active" : ""}
+              >
+                <Link href="#">
+                  <i className="bx bxs-doughnut-chart"></i>
+                  <span className="text">Analytics</span>
+                </Link>
+              </li>
+              <li className={pathname == "/dashboard/message" ? "active" : ""}>
+                <Link href="/dashboard/message">
+                  <i className="bx bxs-message-dots"></i>
+                  <span className="text">Message</span>
+                </Link>
+              </li>
+              <li
+                className={
+                  pathname == "/dashboard/notification" ? "active" : ""
+                }
+              >
+                <Link href="/dashboard/notification">
+                  <i className="bx bxs-message-dots"></i>
+                  <span className="text">Notification</span>
+                </Link>
+              </li>
+            </ul>
+          </>
+        )}
 
         <ul className="side-menu">
           <li>
@@ -335,7 +523,7 @@ const Dashboard = ({ children }) => {
                       <div className="flex justify-center gap-3 hover:bg-teal-100 p-2 rounded-lg cursor-pointer">
                         {/* image */}
                         <div className="w-16 flex justify-center">
-                          <Image 
+                          <Image
                             className="w-6 h-6 rounded-full"
                             src={cardInfo.img}
                             width={500}
@@ -379,27 +567,27 @@ const Dashboard = ({ children }) => {
             {/* notification end */}
             <a href="#" className="profile">
               {currentUser.image ? (
-                <Image 
+                <Image
                   src={currentUser.image}
                   alt="user"
                   priority
                   width={36}
                   height={36}
                   style={{
-                    width: '36px',
-                    height: '36px'
+                    width: "36px",
+                    height: "36px",
                   }}
                 />
               ) : (
-                <Image 
+                <Image
                   src={profilePlaceholder}
                   alt="placeholder"
                   priority
                   width={36}
                   height={36}
                   style={{
-                    width: '36px',
-                    height: '36px'
+                    width: "36px",
+                    height: "36px",
                   }}
                 />
               )}

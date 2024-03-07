@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 export const axiosSecure = axios.create({
   baseURL: "https://boi-binimoy-server.vercel.app",
-  // baseURL: 'http://localhost:5000',
+  // baseURL: "http://localhost:5000",
   withCredentials: true,
 });
 
