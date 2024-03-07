@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useContext, useEffect, useState } from "react";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
@@ -8,6 +9,8 @@ import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import Swal from "sweetalert2";
 import Image from "next/image";
 import { AuthContext } from "@/providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import useImageURL from "@/Hooks/ImageURL/useImageURL";
 
 // const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=7365e777963cf7664292cb83647a9d98`;
@@ -17,9 +20,19 @@ const AddBook = () => {
   const axiosSecure = useAxiosSecure();
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
+  const { imageUrl, uploadImage } = useImageURL(selectedFile);
   const { user } = useContext(AuthContext);
   const owner_email = user?.email;
   console.log(owner_email);
+
+
+  const { data: categories = [], isPending, refetch } = useQuery({
+    queryKey: ["category"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/api/v1/category`);
+      return res.data;
+    },
+  });
 
   // create a preview as a side effect, whenever selected file is changed
   const onSelectFile = (e) => {
@@ -38,67 +51,55 @@ const AddBook = () => {
     const objectUrl = URL.createObjectURL(selectedImage);
     setPreview(objectUrl);
   };
+  
 
   const onSubmit = async (data) => {
     const {
-      bookType,
-      bookCondition,
-      whatYouWant,
-      bookCategory,
       title,
+      description,
       writer,
+      category,
       language,
       pages,
-      publisher,
-      publicationYear,
-      edition,
       price,
-      owner,
-      location,
-      stockLimit,
-      tags,
-      awards,
-      description,
+      publisher,
+      published_year,
+      edition,
+      stock_limit,
     } = data;
-    const imageFile = { image: data.image1[0] };
+    
 
-    const url = await axios.post(image_hosting_api, imageFile, {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    });
-    const image = url?.data?.data?.display_url || "";
 
+    const cover_image = await uploadImage();
+
+
+  
     const newBook = {
-      bookType,
-      owner_email,
-      bookCondition,
-      whatYouWant,
-      bookCategory,
       title,
+      description,
       writer,
+      category,
       language,
       pages,
-      publisher,
-      publicationYear,
-      edition,
       price,
-      cover_image: image,
-      owner,
-      location,
-      stockLimit,
-      tags,
-      awards,
-      description,
+      publisher,
+      published_year,
+      edition,
+      owner_email,
+      stock_limit,
+      upload_time: new Date().toISOString(),
+      avg_rating: 4.2,
+      cover_image,
     };
-
+  
     const res = await axiosSecure.post("/api/v1/buy-books", newBook);
-
+  
     if (res?.data) {
       reset();
-      Swal.fire("Book upload successfull");
+      Swal.fire("Book upload successful");
     }
   };
+  
 
   return (
     <div className="container mx-auto pb-10">
@@ -107,90 +108,12 @@ const AddBook = () => {
           Add Your Book
         </h1>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+        <form onSubmit={handleSubmit(onSubmit)}>
           {/* basic information start */}
-          <div>
-            <h3 className="pb-2">Basic Information:</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-              {/* product type name:bookType*/}
-              <select
-                className="h-11 w-full px-2 text-xs md:text-sm text-gray-400 bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                {...register("bookType")}
-              >
-                <option selected value="bookType">
-                  Book type
-                </option>
-                <option value="newPhysicalBook">New Physical Book</option>
-                <option value="oldPhysicalBook">Old Physical Book</option>
-                <option value="pdfFormatBook">PDF Format Book</option>
-                <option value="audioFormatBook">Audio Format Book</option>
-              </select>
-
-              {/* product conditions name:bookCondition*/}
-              <select
-                className="h-11 w-full px-2 text-xs md:text-sm text-gray-400 bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                {...register("bookCondition")}
-              >
-                <option selected value="bookCondition">
-                  Book Condition
-                </option>
-                <option value="good">Good</option>
-                <option value="veryGood">Very Good</option>
-                <option value="notSoGoodorBad">Not So Good or Bad</option>
-                <option value="bad">Bad</option>
-                <option value="veryBad">Very Bad</option>
-              </select>
-
-              {/* what you wants name:whatYouWant*/}
-              <select
-                className="h-11 w-full px-2 text-xs md:text-sm text-gray-400 bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                {...register("whatYouWant")}
-              >
-                <option selected value="want">
-                  What you want?
-                </option>
-                <option value="exchange">Exchange</option>
-                <option value="sale">Sale</option>
-                <option value="exchangeOrSale">Exchange or Sale</option>
-              </select>
-
-              {/* book category name:bookCategory*/}
-              <select
-                className="h-11 w-full text-xs md:text-sm text-gray-400 px-2 bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                {...register("bookCategory")}
-              >
-                <option selected value="category">
-                  Book Category
-                </option>
-                <option value="self-help">Self-Help</option>
-                <option value="biography/memoir">Biography/Memoir</option>
-                <option value="history">History</option>
-                <option value="science">Science</option>
-                <option value="trueCrime">True Crime</option>
-                <option value="travel">Travel</option>
-                <option value="food&cooking">Food & Cooking</option>
-                <option value="health&wellness">Health & Wellness</option>
-                <option value="business&economics">Business & Economics</option>
-                <option value="humor">Humor</option>
-                <option value="crimeFiction">Crime Fiction</option>
-                <option value="graphicNovels">Graphic Novels</option>
-                <option value="literaryFiction">Literary Fiction</option>
-                <option value="horror">Horror</option>
-                <option value="historicalFiction">Historical Fiction</option>
-                <option value="youngAdult(YA)">Young Adult (YA)</option>
-                <option value="scienceFiction">Science Fiction</option>
-                <option value="fantasy">Fantasy</option>
-                <option value="mystery/thriller">Mystery/Thriller</option>
-              </select>
-            </div>
-          </div>
-          {/* basic information end */}
-
-          {/* book information start */}
-          <div>
-            <h3 className="pb-2">Book Information:</h3>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-              {/* book title  name:title*/}
+          <h3 className="mb-3">Basic Information:</h3>
+          <div className="space-y-5 mb-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 ">
+              {/* book title */}
               <input
                 className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                 {...register("title")}
@@ -199,7 +122,7 @@ const AddBook = () => {
                 required
               />
 
-              {/* book author  name:writer*/}
+              {/* book writer */}
               <input
                 className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                 {...register("writer")}
@@ -208,7 +131,21 @@ const AddBook = () => {
                 required
               />
 
-              {/* book language  name:language*/}
+              {/* book category */}
+              <select
+                className="h-11 w-full text-xs md:text-sm text-gray-400 px-2 bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
+                {...register("category")}
+              >
+                <option selected hidden value="">
+                  Book Category
+                </option>
+                {categories?.map((category) => (
+                  <option key={category?._id} value={category?.category_name}>
+                    {category?.category_name}
+                  </option>
+                ))}
+              </select>
+              {/* book language */}
               <select
                 className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] text-gray-400 rounded-lg focus:outline-none shadow-md"
                 {...register("language")}
@@ -220,8 +157,16 @@ const AddBook = () => {
                 <option value="bangla">Bangla</option>
                 <option value="arabic">Arabic</option>
               </select>
+            </div>
+          </div>
+          {/* basic information end */}
 
-              {/* book page count  name:pages*/}
+
+          {/* book information start */}
+          <h3 className="mb-3">Basic Information:</h3>
+          <div className="space-y-5 mb-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              {/* book page count */}
               <input
                 className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                 {...register("pages")}
@@ -230,7 +175,7 @@ const AddBook = () => {
                 required
               />
 
-              {/* book publisher name:publisher*/}
+              {/* book publisher */}
               <input
                 className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                 {...register("publisher")}
@@ -239,16 +184,16 @@ const AddBook = () => {
                 required
               />
 
-              {/* book publication year name:publicationYear*/}
+              {/* book publication year */}
               <input
                 className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                {...register("publicationYear")}
+                {...register("published_year")}
                 placeholder="Book Publication Year"
                 type="number"
                 required
               />
 
-              {/* book edition name:edition*/}
+              {/* book edition */}
               <input
                 className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                 {...register("edition")}
@@ -257,7 +202,7 @@ const AddBook = () => {
                 required
               />
 
-              {/* book price name:price*/}
+              {/* book price */}
               <input
                 className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                 {...register("price")}
@@ -265,105 +210,69 @@ const AddBook = () => {
                 type="number"
                 required
               />
+
+              {/* book Stock Limit */}
+              <input
+                className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
+                {...register("stock_limit")}
+                placeholder="Book Stock"
+                type="number"
+                required
+              />
             </div>
-          </div>
-          {/* book information end */}
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-            {/* other information start */}
-            <div>
-              <h3 className="pb-2">Other Information:</h3>
-              <div className="grid grid-cols-1 gap-3">
-                {/* book Stock Limit name:stockLimit*/}
-                <input
-                  className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                  {...register("stockLimit")}
-                  placeholder="Book Stock"
-                  type="number"
-                  required
-                />
-                {/* book Stock Limit name:stockLimit*/}
-                <input
-                  className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                  {...register("stockLimit")}
-                  placeholder="Book Stock"
-                  type="number"
-                  required
-                />
-              </div>
+
+            {/* book information end */}
+
+            <div className="grid grid-cols-1 gap-3">
+
+              {/* other information end */}
+
+
+              {/* book description */}
+              <textarea
+                className="w-full p-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
+                {...register("description")}
+                placeholder="Book Description"
+                cols="30"
+                rows="10"
+                required
+              ></textarea>
             </div>
-            {/* other information end */}
 
-            {/* optional information start */}
-            <div>
-              <h3 className="pb-2">Optional Information:</h3>
-              <div className="grid grid-cols-1 gap-3">
-                {/* book Tags name:tags*/}
-                <input
-                  className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                  {...register("tags")}
-                  placeholder="Book Tags"
-                  type="text"
-                />
-
-                {/* book awards name:awards*/}
-                <input
-                  className="h-11 w-full px-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-                  {...register("awards")}
-                  placeholder="Book Awards"
-                  type="text"
-                />
-              </div>
-            </div>
-            {/* optional information end */}
-
-            {/* image section start */}
-            <div>
-              <h3 className="pb-2">Uploade book cover Image:</h3>
-              <div
-                for="imageFile"
-                className="w-full h-[100px] border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md"
-              >
-                {!selectedFile ? (
-                  <label
-                    htmlFor="imageFile"
-                    className="w-full h-full flex justify-center items-center gap-3 text-center text-xs md:text-sm cursor-pointer rounded-lg"
-                  >
-                    <BsUpload /> <span> Upload</span>
-                  </label>
-                ) : (
-                  <Image
-                    src={preview}
-                    width={500}
-                    height={500}
-                    alt="Image Preview"
+            <div className="grid grid-cols-1 gap-3">
+              {/* image section start */}
+              <div>
+                <h3 className="mb-3">Upload book cover Image:</h3>
+                <div className="w-full min-h-[200px] border flex justify-center items-center border-[#016961] rounded-lg bg-teal-50/40 shadow-md">
+                  {!selectedFile ? (
+                    <label htmlFor="book_Image"
+                      className="border px-3 py-1 flex justify-center items-center gap-3 rounded-lg text-center text-sm cursor-pointer"
+                    >
+                      <BsUpload /> <span> Upload Here</span>
+                    </label>
+                  ) : (
+                    <Image
+                      src={preview}
+                      width={500}
+                      height={500}
+                      alt="Image Preview"
+                    />
+                  )}
+                  <input
+                    type="file"
+                    id="book_Image"
+                    {...register("book_Image")}
+                    onChange={onSelectFile}
+                    hidden
                   />
-                )}
-                <input
-                  className="h-5 w-full"
-                  type="file"
-                  id="imageFile"
-                  onChange={onSelectFile}
-                  {...register("image1")}
-                  hidden
-                />
+                </div>
               </div>
-            </div>
-            {/* image section end */}
-          </div>
+              {/* image section end */}
 
-          {/* book description section start */}
-          <div>
-            <textarea
-              className="w-full p-2 text-xs md:text-sm bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
-              {...register("description")}
-              placeholder="Book Description"
-              cols="30"
-              rows="10"
-              required
-            ></textarea>
+            </div>
+
           </div>
-          {/* book description section end */}
 
           {/* button section start*/}
           <div className="flex justify-end md:justify-end items-center gap-3 pb-5">
@@ -384,3 +293,4 @@ const AddBook = () => {
 };
 
 export default AddBook;
+

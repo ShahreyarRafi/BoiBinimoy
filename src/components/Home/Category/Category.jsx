@@ -63,6 +63,7 @@ export default function Category() {
 
   return (
     <div className="container mx-auto my-10 relative px-10">
+      <h3 className=" text-center my-5 text-3xl font-medium text-[#016961]">Book Categories</h3>
       <Slider ref={sliderRef} {...settings}>
         {isLoading
           ? Array.from(Array(8).keys()).map((index) => (
@@ -78,7 +79,7 @@ export default function Category() {
           href={"/categories"}
           className="absolute right-5 bg-teal-50 rounded-full top-[40%] cursor-pointer"
         >
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-800 opacity-75"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-800 opacity-75"></span>
           <span className="text-4xl text-[#016961]">
             <CgArrowTopRightO />
           </span>

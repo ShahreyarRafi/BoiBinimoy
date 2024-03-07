@@ -18,13 +18,14 @@ const useOneUser = () => {
     },
   });
 
-  const { isAdmin, isModerator, isPublisher, isSeller, isUser } = currentUser;
+  const { isAdmin, isModerator, isPublisher, isSeller } = currentUser;
   const interest = currentUser.interest;
+  console.log(currentUser);
+  console.log(interest);
   return {
     currentUser,
     isLoading,
     isAdmin,
-    isUser,
     isModerator,
     isPublisher,
     isSeller,
@@ -33,5 +34,3 @@ const useOneUser = () => {
 };
 
 export default useOneUser;
-
-// update this

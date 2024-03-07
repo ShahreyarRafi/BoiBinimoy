@@ -81,8 +81,7 @@ export const Footer = () => {
                   {links.map((link, key) => (
                     <li key={key} className="font-normal">
                       {link.url ? (
-                        <Link
-                          href={link.url}
+                        <Link href={link.url}
                           className="inline-block cursor-pointer text-white transition-transform hover:scale-105"
                         >
                           {link.label}

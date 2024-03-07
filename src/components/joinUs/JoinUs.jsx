@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./joinUs.css";
 import Image from "next/image";
 import { FaFacebookF, FaGoogle, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+<<<<<<< HEAD
 import logImg from "./img/log.svg";
 import regImg from "./img/register.svg";
 import { useForm } from "react-hook-form";
@@ -14,19 +15,39 @@ import { AuthContext } from "@/providers/AuthProvider";
 import SocialLogin from "./SocialLogin";
 import { useDispatch } from "react-redux";
 import { userRegister } from "@/store/actions/authAction";
+=======
+import logImg from './img/log.svg'
+import regImg from './img/register.svg'
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import useAxiosPublic from '@/Hooks/Axios/useAxiosPublic';
+import Swal from 'sweetalert2';
+import { AuthContext } from '@/providers/AuthProvider';
+import SocialLogin from './SocialLogin';
+import Link from "next/link";
+>>>>>>> 3a66d8fa1c4a8769f4e237368453c05b8787ce7f
 // import SocialLogin from './SocialLogin/SocialLogin';
 
 const JoinUs = () => {
+<<<<<<< HEAD
   const dispatch = useDispatch();
 
   const { register, handleSubmit, reset } = useForm();
   // const { createUser, signin, googleLogin } = useAuth();
   const { createUser, signin, googleLogin, updateUserProfiole } =
     useContext(AuthContext);
+=======
+
+
+  const { register, handleSubmit, reset } = useForm();
+  // const { createUser, signin, googleLogin } = useAuth();
+  const { createUser, signin, googleLogin, updateUserProfiole } = useContext(AuthContext);
+>>>>>>> 3a66d8fa1c4a8769f4e237368453c05b8787ce7f
 
   const router = useRouter();
   const axiosPublic = useAxiosPublic();
   const [componentsMounted, setComponentMounted] = useState(false);
+
 
   const isUser = true;
 
@@ -60,7 +81,9 @@ const JoinUs = () => {
     const email = data.email;
     const password = data.password;
 
-    const userInfo = { name, email, password };
+    const userInfo = { name, email, password, isFirstLogin: true };
+
+
 
     createUser(email, password).then(async (res) => {
       const updateName = await updateUserProfiole(name);
@@ -71,12 +94,15 @@ const JoinUs = () => {
         console.log(res.data);
         Swal.fire("Sign up successfull");
         router.push("/");
+
       }
     });
 
     // form redux
     dispatch(userRegister(userInfo));
   };
+
+
 
   // user login function
   const logIn = (data) => {
@@ -118,147 +144,142 @@ const JoinUs = () => {
   };
 
   return (
-    <div className="container w-full flex justify-between">
-      <div className="forms-container">
-        <div className="signin-signup">
-          <form
-            onSubmit={handleSubmit(logIn)}
-            action="#"
-            className="sign-in-form"
-          >
-            <h2 className="title">Sign in</h2>
-            <div className="input-field">
-              <i className="fas fa-user"></i>
-              <input
-                type="email"
-                {...register("loginEmail")}
-                placeholder="Email"
-                required
-              />
-            </div>
-            <div className="input-field">
-              <i className="fas fa-lock"></i>
-              <input
-                type="password"
-                {...register("loginPassword")}
-                placeholder="Password"
-                required
-              />
-            </div>
-            <input type="submit" value="Login" className="btn solid" />
-            <p className="social-text">Or Sign in with social platforms</p>
-            {/* <div className="social-media">
-                            <a href="#" className="social-icon">
-                                <i><FaFacebookF /></i>
-                            </a>
-                            <a href="#" className="social-icon">
-                                <i><FaTwitter /></i>
-                            </a>
-                           
-                            <button className='social-icon' onClick={() => handleSocialLogin(googleLogin)} >
-                                <FaGoogle /> 
-                                
-                                </button>
-                           
-                            <a href="#" className="social-icon">
-                                <i><FaLinkedinIn /></i>
-                            </a>
-                        </div> */}
-          </form>
 
-          {/* <div className="social-media">
-                            <a href="#" className="social-icon">
-                                <i><FaFacebookF /></i>
-                            </a>
-                            <a href="#" className="social-icon">
-                                <i><FaTwitter /></i>
-                            </a>
-                           
-                            <button className='social-icon' onClick={() => handleSocialLogin(googleLogin)} >
-                                <FaGoogle /> 
-                                
-                                </button>
-                           
-                            <a href="#" className="social-icon">
-                                <i><FaLinkedinIn /></i>
-                            </a>
-                        </div> */}
+    <>
 
-          <SocialLogin></SocialLogin>
+      <div className="container w-full flex justify-between">
+        <div className="forms-container">
+          <div className="signin-signup">
+            <form
+              onSubmit={handleSubmit(logIn)}
+              action="#"
+              className="sign-in-form"
+            >
+              <h2 className="title">Sign in</h2>
+              <div className="input-field">
+                <i className="fas fa-user"></i>
+                <input
+                  type="email"
+                  {...register("loginEmail")}
+                  placeholder="Email"
+                  required
+                />
+              </div>
+              <div className="input-field">
+                <i className="fas fa-lock"></i>
+                <input
+                  type="password"
+                  {...register("loginPassword")}
+                  placeholder="Password"
+                  required
+                />
+              </div>
+              <input type="submit" value="Login" className="btn solid" />
+              <p className="social-text">Or Sign in with social platforms</p>
 
-          <form
-            onSubmit={handleSubmit(signUp)}
-            action="#"
-            className="sign-up-form"
-          >
-            <h2 className="title">Sign up</h2>
-            <div className="input-field">
-              <i className="fas fa-user"></i>
-              <input
-                type="text"
-                {...register("userName")}
-                placeholder="Username"
-                required
-              />
-            </div>
-            <div className="input-field">
-              <i className="fas fa-envelope"></i>
-              <input
-                type="email"
-                {...register("email")}
-                placeholder="Email"
-                required
-              />
-            </div>
-            <div className="input-field">
-              <i className="fas fa-lock"></i>
-              <input
-                type="password"
-                {...register("password")}
-                placeholder="Password"
-                required
-              />
-            </div>
-            <input type="submit" className="btn" value="Sign up" />
-            <p className="social-text">Or Sign up with social platforms</p>
-            <div className="social-media">
-              <a href="#" className="social-icon">
-                <i>
-                  <FaFacebookF />
-                </i>
-              </a>
-              <a href="#" className="social-icon">
-                <i>
-                  <FaTwitter />
-                </i>
-              </a>
-              <button
-                className="social-icon"
-                onClick={() => handleSocialLogin(googleLogin)}
-              >
-                <FaGoogle />
+            </form>
+
+
+
+            <SocialLogin></SocialLogin>
+
+            <form
+              onSubmit={handleSubmit(signUp)}
+              action="#"
+              className="sign-up-form"
+            >
+              <h2 className="title">Sign up</h2>
+              <div className="input-field">
+                <i className="fas fa-user"></i>
+                <input
+                  type="text"
+                  {...register("userName")}
+                  placeholder="Username"
+                  required
+                />
+              </div>
+              <div className="input-field">
+                <i className="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  {...register("email")}
+                  placeholder="Email"
+                  required
+                />
+              </div>
+              <div className="input-field">
+                <i className="fas fa-lock"></i>
+                <input
+                  type="password"
+                  {...register("password")}
+                  placeholder="Password"
+                  required
+                />
+              </div>
+              <input type="submit" className="btn" value="Sign up" />
+              <p className="social-text">Or Sign up with social platforms</p>
+
+            </form>
+          </div>
+        </div>
+
+        <div className="panels-container">
+          <div className="panel left-panel">
+            <div className="content">
+              <h3>New here ?</h3>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+                ex ratione. Aliquid!
+              </p>
+              <button className="btn transparent" id="sign-up-btn">
+                Sign up
               </button>
-              <a href="#" className="social-icon">
-                <i>
-                  <FaLinkedinIn />
-                </i>
-              </a>
             </div>
-          </form>
+            <Image
+              src={logImg}
+              className="image"
+              alt=""
+              height={1000}
+              width={1000}
+            />
+          </div>
+          <div className="panel right-panel">
+            <div className="content">
+              <h3>One of us ?</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+                laboriosam ad deleniti.
+              </p>
+              <button className="btn transparent" id="sign-in-btn">
+                Sign in
+              </button>
+            </div>
+            <Image
+              src={regImg}
+              className="image"
+              alt=""
+              height={1000}
+              width={1000}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="panels-container">
-        <div className="panel left-panel">
-          <div className="content">
-            <h3>New here ?</h3>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-              ex ratione. Aliquid!
-            </p>
-            <button className="btn transparent" id="sign-up-btn">
-              Sign up
-            </button>
+
+
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+      {/* <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>open modal</button> */}
+      <dialog id="my_modal_1" className="modal">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Hello!</h3>
+          <p className="py-4">Press ESC key or click the button below to close</p>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <Link href="/">
+                <button className="btn"> Update  </button>
+              </Link>
+            </form>
           </div>
           <Image
             src={logImg}
@@ -287,8 +308,8 @@ const JoinUs = () => {
             width={1000}
           />
         </div>
-      </div>
-    </div>
+      </dialog >
+    </>
   );
 };
 
