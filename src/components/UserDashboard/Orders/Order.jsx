@@ -6,9 +6,8 @@ import Swal from "sweetalert2";
 
 const Order = ({order, refetch}) => {
   const axiosSecure = useAxiosSecure();
-
   console.log(order);
-
+  
   const handleDelivary = async (id, title) => {
     Swal.fire({
       title: `Delivery Book`,

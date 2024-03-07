@@ -25,7 +25,7 @@ const MyOrder = ({ cart }) => {
         {cart?.isDeliverd ? (
           <button>Done</button>
         ) : (
-          <button>Pending</button>
+          <button>Pendingd</button>
         )}
       </h5>
     </div>

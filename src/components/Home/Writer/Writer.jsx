@@ -8,6 +8,7 @@ import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
 import WriterCard from "./WriterCard";
 import WriterCardSkeleton from "@/components/Skeleton/WriterCardSkeleton";
+import Stats from "../Stats/Stats";
 
 export default function Writer() {
   const axiosPublic = useAxiosPublic();
@@ -18,6 +19,8 @@ export default function Writer() {
       return res.data;
     },
   });
+
+  console.log(writers);
 
   let settings = {
     dots: false,
@@ -73,14 +76,21 @@ export default function Writer() {
           <Slider {...settings}>
             {isLoading
               ? Array.from(Array(8).keys()).map((index) => (
-                  <WriterCardSkeleton key={index} />
-                ))
+                <WriterCardSkeleton key={index} />
+              ))
               : writers
-                  ?.slice(0, 20)
-                  ?.map((item) => <WriterCard key={item._id} item={item} />)}
+                ?.slice(0, 20)
+                ?.map((item) => <WriterCard key={item._id} item={item} />)}
           </Slider>
         </div>
         {/* slider end */}
+
+
+
+        {/* {writers.length > 0 && <Stats writers={writers}></Stats>} */}
+
+
+
       </div>
     </div>
   );
