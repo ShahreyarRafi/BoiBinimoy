@@ -1,6 +1,5 @@
 "use client";
 
-import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import TopSellingBooksCard from "./TopSellingBooksCard";
