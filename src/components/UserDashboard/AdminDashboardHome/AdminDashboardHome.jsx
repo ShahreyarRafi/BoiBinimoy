@@ -161,12 +161,14 @@ export default function AdminDashboardHome() {
             <h3 className="text-xl font-semibold">Recent Orders</h3>
             <div>
               {recentOrderedBooks &&
-                recentOrderedBooks.recentOrders?.map((item) => (
-                  <RecentOrderBookCard item={item} />
+                recentOrderedBooks.recentOrders?.map((item, index) => (
+                  <RecentOrderBookCard key={item.id || index} item={item} />
                 ))}
             </div>
+
           </div>
         </div>
       </div>
-      );
+    </div>
+  );
 }
