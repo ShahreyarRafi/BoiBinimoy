@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import TopSellingBooksCard from "./TopSellingBooksCard";
 import TopBuyingCustomerCard from "./TopBuyingCustomerCard";
 import RecentOrderBookCard from "./RecentOrderBookCard";
+import LowStockBooksCard from "./LowStockBooksCard";
 
 export default function AdminDashboardHome() {
   const axiosSecure = useAxiosSecure();
@@ -83,6 +84,18 @@ export default function AdminDashboardHome() {
     },
   });
 
+  const {
+    data: lowStockBooks = [],
+    isPending: lowStockBooksPending,
+    refetch: lowStockBooksRefetch,
+  } = useQuery({
+    queryKey: ["lowStockBooks"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/api/v1/low-stock-books`);
+      return res.data;
+    },
+  });
+
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -141,6 +154,23 @@ export default function AdminDashboardHome() {
             {topBuyingCustomers &&
               topBuyingCustomers.topBuyingCustomers?.map((item) => (
                 <TopBuyingCustomerCard item={item} />
+              ))}
+          </div>
+        </div>
+
+        <div className="border p-5 rounded-lg shadow-sm space-y-3">
+          <h3 className="text-xl font-semibold flex justify-between items-center gap-5">
+            Low Stock Books
+            <span>
+              {lowStockBooks && lowStockBooks.lowStockBooks
+                ? lowStockBooks.lowStockBooks.length
+                : 0}
+            </span>
+          </h3>
+          <div>
+            {lowStockBooks &&
+              lowStockBooks.lowStockBooks?.map((item) => (
+                <LowStockBooksCard item={item} />
               ))}
           </div>
         </div>
