@@ -79,7 +79,7 @@ export default function ForYou() {
             >
                 {swiperInitialized ? (
                     topTearSuggestions.map(item => (
-                        <SwiperSlide key={item.id}>
+                        <SwiperSlide key={item._id}>
                             <BookCard item={item} />
                         </SwiperSlide>
                     ))

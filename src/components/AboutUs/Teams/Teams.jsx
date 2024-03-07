@@ -10,6 +10,11 @@ const Teams = () => {
       title: "Web Developer",
     },
     {
+      img: "https://i.ibb.co/28RvMyT/about1.jpg",
+      name: "SIYAM AHMED",
+      title: "Front-End Web Developer",
+    },
+    {
       img: "https://i.ibb.co/brgTnQr/muammad-minhajul-alam.png",
       name: "Mohammad Minhajul Alam",
       title: "Web Developer",

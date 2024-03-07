@@ -114,11 +114,7 @@ const OurStory = () => {
                     Make a good plan and prepare tasks
                   </div>
                   <div className="px-3 pb-6">
-                    Our journey wasn&apos;t always smooth sailing. From late
-                    nights spent coding to heated debates about features, we
-                    navigated uncharted territories, fueled by our shared
-                    passion for stories and the desire to democratize access to
-                    them.
+                    Despite facing challenges, our journey wasn&apos;t always smooth sailing. Late nights were dedicated to coding, and heated debates arose about features. Yet, fueled by our shared passion for stories, we navigated uncharted territories. Our ultimate goal remained steadfast: to democratize access to narratives.
                   </div>
                 </div>
                 <div className="md:w-96 w-full p-5"></div>

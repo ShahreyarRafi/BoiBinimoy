@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import { Libre_Baskerville } from "next/font/google";
 import PageLoading from '@/components/Shared/loadingPageBook/PageLoading';
+import Link from 'next/link';
 
 
 const sourceSerif = Libre_Baskerville({
@@ -140,6 +141,7 @@ export default function BannerNew() {
                                 <div className="content">
                                     <div className="title">{item?.thumbnail_title}</div>
                                     <div className="description">{item?.thumbnail_description}</div>
+
                                 </div>
                             </div>
                         ))}

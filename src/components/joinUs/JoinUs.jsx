@@ -155,8 +155,6 @@ const JoinUs = () => {
 
             </form>
 
-
-
             <SocialLogin></SocialLogin>
 
             <form
@@ -204,8 +202,7 @@ const JoinUs = () => {
             <div className="content">
               <h3>New here ?</h3>
               <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-                ex ratione. Aliquid!
+                WellCome To Our Book Exchange Web site Please sing Up Now
               </p>
               <button className="btn transparent" id="sign-up-btn">
                 Sign up
@@ -223,8 +220,7 @@ const JoinUs = () => {
             <div className="content">
               <h3>One of us ?</h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-                laboriosam ad deleniti.
+                WellCome To Our Book Exchange Web site Please sing In Now
               </p>
               <button className="btn transparent" id="sign-in-btn">
                 Sign in
@@ -269,8 +265,7 @@ const JoinUs = () => {
           <div className="content">
             <h3>One of us ?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
+              WellCome To Our Book Exchange Web site . And Enjoy Now
             </p>
             <button className="btn transparent" id="sign-in-btn">
               Sign in

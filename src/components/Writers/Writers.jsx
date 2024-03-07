@@ -19,6 +19,7 @@ export default function WritersComponent() {
     },
   });
 
+
   const filteredWriters = allWriters.filter((writer) =>
     writer.writer_name.toLowerCase().includes(searchQuery.toLowerCase())
   );
