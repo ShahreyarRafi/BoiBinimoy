@@ -1,6 +1,14 @@
 "use client";
 import React from "react";
 
+
+
+function convertToLocalTime(utcTimeString) {
+  const utcTime = new Date(utcTimeString);
+  const localTime = new Date(utcTime.getTime() - (utcTime.getTimezoneOffset() * 60));
+  return localTime.toLocaleString();
+}
+
 export default function RecentOrderBookCard({ item }) {
   const {
     carts,
@@ -18,7 +26,7 @@ export default function RecentOrderBookCard({ item }) {
         ))}
       </div>
       <p>{clientEmail}</p>
-      <p>{orderDate}</p>
+      <p> {convertToLocalTime(orderDate)}</p>
     </div>
   );
 }

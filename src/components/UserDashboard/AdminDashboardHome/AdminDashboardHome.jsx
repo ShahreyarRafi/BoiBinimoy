@@ -70,6 +70,8 @@ export default function AdminDashboardHome() {
     },
   });
 
+
+
   const {
     data: recentOrderedBooks = [],
     isPending: recentOrderedBooksPending,
@@ -82,6 +84,9 @@ export default function AdminDashboardHome() {
     },
   });
 
+
+
+
   const {
     data: lowStockBooks = [],
     isPending: lowStockBooksPending,
@@ -93,6 +98,8 @@ export default function AdminDashboardHome() {
       return res.data;
     },
   });
+
+
 
   return (
     <div>

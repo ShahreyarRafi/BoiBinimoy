@@ -112,11 +112,8 @@ const ProfileEdit = () => {
 
                         {/* User profile and profile information */}
 
-
                         <div className="flex flex-col md:flex-row justify-center items-center gap-5 mt-5 relative">
                             {/* user profile */}
-
-
                             <div className='absolute mr-[70px]  text-3xl '>
                                 <input
                                     type="file"
@@ -137,21 +134,21 @@ const ProfileEdit = () => {
 
 
                             </div>
-                          {
-                            !selectedFile ?   <Image 
-                            src={palesholderImage}
-                            className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                            alt=""
-                            width={500}
-                            height={500}
-                        /> : <Image 
-                        src={preview}
-                        className="object-cover w-40 h-40 mb-2 rounded-full shadow"
-                        alt=""
-                        width={500}
-                        height={500}
-                    /> 
-                          }
+                            {
+                                !selectedFile ? <Image
+                                    src={palesholderImage}
+                                    className="object-cover w-40 h-40 mb-2 rounded-full shadow"
+                                    alt=""
+                                    width={500}
+                                    height={500}
+                                /> : <Image
+                                    src={preview}
+                                    className="object-cover w-40 h-40 mb-2 rounded-full shadow"
+                                    alt=""
+                                    width={500}
+                                    height={500}
+                                />
+                            }
 
 
                             {/* profile information */}
@@ -193,6 +190,7 @@ const ProfileEdit = () => {
                                         {...register("name")}
                                         placeholder="Full Name"
                                         type="text"
+                                        defaultValue={currentUser.name}
                                         required
 
                                     />
@@ -207,6 +205,7 @@ const ProfileEdit = () => {
                                         {...register("phone_number")}
                                         placeholder="Phone Number"
                                         type="number"
+                                        defaultValue={currentUser.phone_number}
                                         required
                                     />
                                 </div>
@@ -221,6 +220,7 @@ const ProfileEdit = () => {
                                         {...register("date_of_birth")}
                                         placeholder=" Date Of Birth "
                                         type="date"
+                                        defaultValue={currentUser.date_of_birth}
                                         required
                                     />
                                 </div>
@@ -235,6 +235,7 @@ const ProfileEdit = () => {
                                     <select
                                         className="h-10 w-full px-2  text-xs lg:text-sm bg-transparent border border-[#016961] text-gray-400 rounded-lg focus:outline-none"
                                         {...register("gender")}
+                                        defaultValue={currentUser.gender}
                                     >
                                         <option selected value="gender">
                                             Gender
@@ -255,6 +256,7 @@ const ProfileEdit = () => {
                                         {...register("profession")}
                                         placeholder="Profession"
                                         type="text"
+                                        defaultValue={currentUser.profession}
                                         required
                                     />
 
@@ -288,6 +290,7 @@ const ProfileEdit = () => {
                                         {...register("street")}
                                         placeholder="Street"
                                         type="text"
+                                        defaultValue={currentUser?.location?.street}
                                         required
                                     />
                                 </div>
@@ -300,6 +303,7 @@ const ProfileEdit = () => {
                                         {...register("zip_code")}
                                         placeholder="Zip Code"
                                         type="number"
+                                        defaultValue={currentUser?.location?.zip_code}
                                         required
                                     />
                                 </div>
@@ -314,6 +318,7 @@ const ProfileEdit = () => {
                                         {...register("upozela")}
                                         placeholder=" Upozela / Thana "
                                         type="text"
+                                        defaultValue={currentUser?.location?.upozela}
                                         required
                                     />
                                 </div>
@@ -328,6 +333,7 @@ const ProfileEdit = () => {
                                         {...register("district")}
                                         placeholder="District"
                                         type="text"
+                                        defaultValue={currentUser?.location?.district}
                                         required
                                     />
                                 </div>
@@ -340,6 +346,7 @@ const ProfileEdit = () => {
                                         {...register("division")}
                                         placeholder="Division"
                                         type="text"
+                                        defaultValue={currentUser?.location?.division}
                                         required
                                     />
                                 </div>
@@ -352,6 +359,7 @@ const ProfileEdit = () => {
                                         {...register("country")}
                                         placeholder="Country"
                                         type="text"
+                                        defaultValue={currentUser?.location?.country}
                                         required
                                     />
                                 </div>
