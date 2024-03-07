@@ -4,6 +4,7 @@ import BookCard from "../../Shared/BookCard";
 import PageLoading from "../../Shared/loadingPageBook/PageLoading";
 import useBuyBooks from "@/Hooks/buyBooks/useBuyBooks";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const BuyAllBooks = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -43,6 +44,11 @@ const BuyAllBooks = () => {
 
   return (
     <div className="min-h-screen container mx-auto px-3">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Buy Books</title>
+        <link rel="canonical" href="/buyBooks" />
+      </Helmet>
       <div className="py-12">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
           {books?.map((book) => (
