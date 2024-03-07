@@ -5,7 +5,6 @@ import useAxiosPublic from '../Axios/useAxiosPublic';
 
 const useBookSuggestion = (CurrentlyViewing) => {
     const { interest } = useOneUser();
-    const { currentUser } = useOneUser();
     const axiosPublic = useAxiosPublic();
 
     // ---------Category Books----------
@@ -350,14 +349,14 @@ const useBookSuggestion = (CurrentlyViewing) => {
     // ---------If Top Tear Suggestions has no data------------
     useEffect(() => {
         if (
-            !booksLaoding &&
-            !categoryDetailsLoading &&
-            !writersBooksLoading &&
-            !publisherBooksLoading &&
-            !relatedBooksLoading &&
-            !currentlyViewingBookLoading
+            booksLaoding === false &&
+            categoryDetailsLoading === false &&
+            writersBooksLoading === false &&
+            publisherBooksLoading === false&&
+            relatedBooksLoading === false &&
+            currentlyViewingBookLoading === false
         ) {
-            if (topTearSuggestions.length === 0) {
+            if (topTearSuggestions.length === 0 && topTearSuggestionsLoading === false) {
                 // Set topTearSuggestionsLoading to true when fetching data
                 setTopTearSuggestionsLoading(true);
                 // Fetch books from the `buy-books` endpoint
@@ -395,6 +394,7 @@ const useBookSuggestion = (CurrentlyViewing) => {
         relatedBooksLoading,
         currentlyViewingBookLoading,
         axiosPublic,
+        topTearSuggestionsLoading,
         topTearSuggestions.length]);
 
 
@@ -407,14 +407,14 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
     useEffect(() => {
         if (
-            !booksLaoding &&
-            !categoryDetailsLoading &&
-            !writersBooksLoading &&
-            !publisherBooksLoading &&
-            !relatedBooksLoading &&
-            !topTearSuggestionsLoading &&
-            !currentlyViewingRelatedLoading &&
-            !currentlyViewingBookLoading) {
+            booksLaoding === false &&
+            categoryDetailsLoading === false &&
+            writersBooksLoading === false &&
+            publisherBooksLoading === false &&
+            relatedBooksLoading === false &&
+            topTearSuggestionsLoading === false &&
+            currentlyViewingRelatedLoading === false &&
+            currentlyViewingBookLoading === false) {
 
             setSuggetionsLoading(false);
         }
@@ -434,9 +434,9 @@ const useBookSuggestion = (CurrentlyViewing) => {
 
     useEffect(() => {
         if (
-            !relatedBooksLoading &&
-            !currentlyViewingRelatedLoading &&
-            !currentlyViewingBookLoading) {
+            relatedBooksLoading === false &&
+            currentlyViewingRelatedLoading === false &&
+            currentlyViewingBookLoading === false) {
 
             setRelatedLoading(false);
         }
@@ -450,6 +450,5 @@ const useBookSuggestion = (CurrentlyViewing) => {
 };
 
 export default useBookSuggestion;
-
 
 

@@ -29,7 +29,15 @@ export default function BuyNow() {
           throw new Error("Network response was not ok");
         }
         const result = await response.json();
-        setBooks(result.buyBooks.slice(0, 12));
+
+        // Fisher-Yates Shuffle Algorithm
+        const shuffledBooks = result.buyBooks.slice();
+        for (let i = shuffledBooks.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffledBooks[i], shuffledBooks[j]] = [shuffledBooks[j], shuffledBooks[i]];
+        }
+
+        setBooks(shuffledBooks.slice(0, 12));
       } catch (error) {
         console.log(error);
       } finally {
@@ -38,6 +46,7 @@ export default function BuyNow() {
     };
     fetchData();
   }, []);
+
 
   // console.log(books);
 
