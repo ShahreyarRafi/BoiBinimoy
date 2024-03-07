@@ -170,7 +170,7 @@ export default function AdminDashboardHome() {
               </h3>
               <h3>
                 {topBuyingCustomers &&
-                  topBuyingCustomers.topBuyingCustomers.length}
+                  topBuyingCustomers.topBuyingCustomers?.length}
               </h3>
             </div>
 
