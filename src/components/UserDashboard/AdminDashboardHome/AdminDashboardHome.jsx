@@ -233,9 +233,10 @@ export default function AdminDashboardHome() {
           <div>
             {recentOrderedBooks &&
               recentOrderedBooks.recentOrders?.map((item) => (
-                <RecentOrderBookCard item={item} />
+                <RecentOrderBookCard key={item.id} item={item} />
               ))}
           </div>
+
         </div>
       </div>
     </div>
