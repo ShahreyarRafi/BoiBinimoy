@@ -15,8 +15,7 @@ export default function ForYou() {
     const [swiperInitialized, setSwiperInitialized] = useState(false);
     const [swiper, setSwiper] = useState(null);
     const {topTearSuggestions, suggetionsLoading} = useBookSuggestion()
-
-
+    
     const handleNextButtonClick = () => {
         if (swiper) {
             swiper.slideNext();
