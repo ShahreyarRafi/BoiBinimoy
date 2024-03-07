@@ -26,7 +26,7 @@ const HomePage = () => {
           <Stats />
           <Exchange />
           <Writer />
-          <ForYou />
+          {/* <ForYou /> */}
           <Publisher />
           <BuyNow />
           <Footer />

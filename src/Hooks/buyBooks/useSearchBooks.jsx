@@ -7,7 +7,7 @@ const useSearchBooks = (bookName) => {
     const { data: searchBooks, isPending, refetch } = useQuery({
         queryKey: ["searchBook"],
         queryFn: async() => {
-            const res = await axiosPublic.get(`/api/v1/books/${bookName}`);
+            const res = await axiosPublic.get(`/api/v1/books?bookName=${bookName}`);
             return res.data
         }
     })
