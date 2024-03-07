@@ -4,8 +4,6 @@ import useAuth from "../auth/useAuth";
 import useAxiosPublic from "../Axios/useAxiosPublic";
 
 const useGetMyCarts = () => {
-  console.log("cart api calling ");
-  const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const {
     data: cartsData = [],

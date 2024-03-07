@@ -28,6 +28,7 @@ const Navend = () => {
     myCarts = myCarts.slice(0, 3);
   }
 
+  console.log(currentUser);
 
   const { isFirstLogin } = currentUser
   console.log(isFirstLogin);
@@ -67,8 +68,6 @@ const Navend = () => {
 
   //  delte cart
   const handleDeleteCart = (id, title) => {
-    console.log("id: ", id);
-
     Swal.fire({
       title: "Delete Book",
       text: `Are you sure you want to delete the book ${title}?`,

@@ -10,7 +10,6 @@ import Swal from "sweetalert2";
 
 const ExchangeBook = () => {
   const [exchangeBooks, refetch, isLoading] = useExchangeBooks();
-  console.log(exchangeBooks);
   const axiosSecure = useAxiosSecure();
 
   // delete operation
@@ -28,7 +27,6 @@ const ExchangeBook = () => {
         axiosSecure
           .delete(`/api/v1/exchange-books/${id}`)
           .then((response) => {
-            console.log(response.data);
             if (response.data) {
               Swal.fire(
                 "Deleted!",

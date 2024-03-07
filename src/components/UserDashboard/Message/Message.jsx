@@ -1,9 +1,13 @@
 "use client";
 
+import React, { Component } from "react";
+import "./Message.css";
+import ChatList from "./ChatList/ChatList";
+import ChatContent from "./ChatContent/ChatContent";
+import UserProfile from "../userProfile/UserProfile";
 import { useEffect, useState } from "react";
 import { IoSearch, IoSearchCircle } from "react-icons/io5";
-import Image from 'next/image'
-
+import Image from "next/image";
 
 export default function Message() {
   const [users, setUsers] = useState([]);
@@ -34,7 +38,12 @@ export default function Message() {
           <div>
             {users.map((item, index) => (
               <div key={index}>
-                <Image src={item.profile} alt="profile" width={200} height={200} />
+                <Image
+                  src={item.profile}
+                  alt="profile"
+                  width={200}
+                  height={200}
+                />
               </div>
             ))}
           </div>

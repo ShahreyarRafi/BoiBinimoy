@@ -14,7 +14,6 @@ const SocialLogin = () => {
   const handleSocialLogin = async (user) => {
     try {
       const res = await user();
-      console.log("Google login response:", res.user);
 
       if (res.user) {
         Swal.fire("User logged in successfully");
@@ -26,11 +25,7 @@ const SocialLogin = () => {
         image: res.user?.photoURL,
       };
 
-
-      console.log(" information", userInfo);
-
       const response = await axiosPublic.post("/api/v1/users", userInfo);
-      console.log(response.data)
       Swal.fire('Sign up successfull')
       router.push('/')
     } catch (error) {

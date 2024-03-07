@@ -41,12 +41,10 @@ export default function ExchangeCard({ item }) {
       isDeliverd: false,
     };
 
-    console.log(wishlistData);
     // add operation
     axiosSecure
       .post("/api/v1/wishlist", wishlistData)
       .then((response) => {
-        console.log("Wishlist item added:", response.data);
         refetch();
       })
       .catch((error) => {
@@ -56,11 +54,9 @@ export default function ExchangeCard({ item }) {
 
   // delete operation
   const handleBookDelete = () => {
-    console.log(filteredData[0]._id);
     axiosSecure
       .delete(`/api/v1/wishlist/remove/${filteredData[0]._id}`)
       .then((response) => {
-        console.log("Wishlist item removed:", response.data);
         refetch();
       })
       .catch((error) => {
@@ -109,7 +105,7 @@ export default function ExchangeCard({ item }) {
           </div>
 
           <span className="price-tag">
-            <span className="text-lg">{item?.price}</span>
+            <span className="text-lg">&#2547; {item?.price}</span>
           </span>
         </div>
       </div>
@@ -128,20 +124,20 @@ export default function ExchangeCard({ item }) {
         <div className="flex items-center truncate mt-1 text-[#62807b] text-sm">
           <div className="flex gap-[1px] -mt-[2px] mr-1.5">
             {Array.from(
-              { length: Math.min(Math.floor(3.5), 5) },
+              { length: Math.min(Math.floor(item?.avg_rating), 5) },
               (_, index) => (
                 <span key={index} className="text-yellow-400">
                   <BsStarFill />
                 </span>
               )
             )}
-            {3.5 % 1 !== 0 && (
+            {item?.avg_rating % 1 !== 0 && (
               <span className="text-yellow-400">
                 <BsStarHalf />{" "}
               </span>
             )}
             {Array.from(
-              { length: Math.max(5 - Math.ceil(3.5), 0) },
+              { length: Math.max(5 - Math.ceil(item?.avg_rating), 0) },
               (_, index) => (
                 <span key={index} className="text-gray-400">
                   <BsStar />
@@ -150,7 +146,7 @@ export default function ExchangeCard({ item }) {
             )}
           </div>
           <p>
-            {Math.min(3.5, 5)} {Math.min(3.5, 5) > 1 ? "Ratings" : "Rating"}
+            {Math.min(item?.avg_rating, 5)} {Math.min(item?.avg_rating, 5) > 1 ? "Ratings" : "Rating"}
           </p>
         </div>
 
