@@ -20,7 +20,6 @@ const useOneUser = () => {
 
   const { isAdmin, isModerator, isPublisher, isSeller } = currentUser;
   const interest = currentUser.interest;
-
   return {
     currentUser,
     isLoading,
@@ -33,5 +32,3 @@ const useOneUser = () => {
 };
 
 export default useOneUser;
-
-// update this

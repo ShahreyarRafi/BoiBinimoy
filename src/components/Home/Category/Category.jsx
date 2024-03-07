@@ -63,7 +63,7 @@ export default function Category() {
 
   return (
     <div className="container mx-auto my-10 relative px-10">
-      <h3 className=" text-center my-5 text-3xl">Filter by book category</h3>
+      {/* <h3 className=" text-center my-5 text-3xl font-medium text-[#016961]">Categories</h3> */}
       <Slider ref={sliderRef} {...settings}>
         {isLoading
           ? Array.from(Array(8).keys()).map((index) => (

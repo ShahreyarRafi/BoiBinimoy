@@ -1,11 +1,11 @@
-
+import AdminDashboardHome from "@/components/UserDashboard/AdminDashboardHome/AdminDashboardHome";
 
 const page = () => {
-    return (
-        <div>
-            <h1 className="flex justify-center items-center min-h-[100vh]">Dashboard Home Content Here</h1>
-        </div>
-    );
+  return (
+    <div>
+      <AdminDashboardHome />
+    </div>
+  );
 };
 
 export default page;

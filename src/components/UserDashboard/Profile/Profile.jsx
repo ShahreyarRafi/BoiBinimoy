@@ -12,12 +12,8 @@ import palesholderImage from "../../../../public/placeholder.png"
 
 
 const Profile = () => {
-  const { user } = useContext(AuthContext);
-  // console.log(user?.email);
-
   const { currentUser } = useOneUser();
 
-  console.log(currentUser);
 
   return (
     <section>
