@@ -59,8 +59,6 @@ export default function AdminDashboardHome() {
     },
   });
 
-  //   console.log("top seling books", topSellingBooks.topSellingBooks);
-
   const {
     data: topBuyingCustomers = [],
     isPending: topBuyingCustomersPending,
