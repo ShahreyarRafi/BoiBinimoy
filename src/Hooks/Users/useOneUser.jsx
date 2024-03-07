@@ -19,16 +19,24 @@ const useOneUser = () => {
   });
 
   const { isAdmin, isModerator, isPublisher, isSeller } = currentUser;
-  const interest = currentUser.interest;
-  return {
-    currentUser,
-    isLoading,
-    isAdmin,
-    isModerator,
-    isPublisher,
-    isSeller,
-    interest,
-  };
-};
 
-export default useOneUser;
+  const interest = currentUser.interest || {
+    interest: {
+      category: [],
+      writer: [],
+      publisher: [],
+      book: []
+    }
+  }
+    return {
+      currentUser,
+      isLoading,
+      isAdmin,
+      isModerator,
+      isPublisher,
+      isSeller,
+      interest,
+    };
+  };
+
+  export default useOneUser;
