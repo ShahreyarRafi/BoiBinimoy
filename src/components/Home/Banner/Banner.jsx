@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "@/Hooks/Axios/useAxiosPublic";
 import { Libre_Baskerville } from "next/font/google";
 import PageLoading from '@/components/Shared/loadingPageBook/PageLoading';
+import Link from 'next/link';
 
 
 const sourceSerif = Libre_Baskerville({
@@ -112,7 +113,9 @@ export default function BannerNew() {
                                 <div className="des">{item?.description}</div>
                                 <div className="buttons">
                                     {Array.isArray(item?.buttons) && item?.buttons.map((button, buttonIndex) => (
+
                                         <button key={buttonIndex} href={button?.link}>{button?.label}</button>
+
                                     ))}
                                 </div>
                             </div>
@@ -127,6 +130,7 @@ export default function BannerNew() {
                                 <div className="content">
                                     <div className="title">{item?.thumbnail_title}</div>
                                     <div className="description">{item?.thumbnail_description}</div>
+
                                 </div>
                             </div>
                         ))}
