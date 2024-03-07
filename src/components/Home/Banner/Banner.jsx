@@ -1,5 +1,7 @@
 'use client'
 
+import { useRouter } from 'next/navigation';
+
 import { useEffect, useState } from 'react';
 import './BannerStyles.css';
 import Image from 'next/image'
@@ -17,6 +19,7 @@ const sourceSerif = Libre_Baskerville({
 });
 
 export default function BannerNew() {
+    const router = useRouter();
 
     const axiosPublic = useAxiosPublic();
 
@@ -91,12 +94,17 @@ export default function BannerNew() {
         }
     }
 
+    const handleClick = (link) => {
+        // Call your function here
+        console.log("Button clicked!");
+
+        // Redirect to the intended page
+        router.push(link);
+    };
+
     if (isLoading || bannerData.length === 0) {
         return <div className='bg-50-50'><PageLoading /></div>;
     }
-
-    // height={4100} width={2310} 
-    // height={1500} width={1000}
 
     return (
         <div className='carousel-container banner-slider bg-50-50'>
@@ -112,7 +120,13 @@ export default function BannerNew() {
                                 <div className="des">{item?.description}</div>
                                 <div className="buttons">
                                     {Array.isArray(item?.buttons) && item?.buttons.map((button, buttonIndex) => (
-                                        <button key={buttonIndex} href={button?.link}>{button?.label}</button>
+                                        <button
+                                            className='px-4 py-2'
+                                            key={buttonIndex}
+                                            onClick={() => handleClick(button.link)}
+                                        >
+                                            {button.label}
+                                        </button>
                                     ))}
                                 </div>
                             </div>
