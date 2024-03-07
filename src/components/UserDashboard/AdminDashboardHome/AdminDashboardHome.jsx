@@ -2,13 +2,8 @@
 
 import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import TopSellingBooksCard from "./TopSellingBooksCard";
-import TopBuyingCustomerCard from "./TopBuyingCustomerCard";
 import RecentOrderBookCard from "./RecentOrderBookCard";
 import LowStockBooksCard from "./LowStockBooksCard";
-import SalesAnalytics from "./SalesAnalytics";
-import TopSellingBookPieChart from "./TopSellingBookPieChart";
-
 export default function AdminDashboardHome() {
   const axiosSecure = useAxiosSecure();
 
@@ -178,7 +173,7 @@ export default function AdminDashboardHome() {
                   topBuyingCustomers.topBuyingCustomers.length}
               </h3>
             </div>
-            
+
             <table className="table">
               <thead>
                 <tr className="bg-base-200 rounded-lg">
