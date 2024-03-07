@@ -27,6 +27,7 @@ const Navend = () => {
     myCarts = myCarts.slice(0, 3);
   }
 
+  console.log(currentUser);
 
   //  delte cart
   const handleDeleteCart = (id, title) => {
