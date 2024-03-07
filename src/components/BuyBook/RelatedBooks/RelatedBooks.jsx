@@ -3,14 +3,14 @@ import BookCard from "../../Shared/BookCard";
 import useBookSuggestion from '@/Hooks/SuggesteBooks/useBookSuggestion';
 
 const RelatedBooks = ({ CurrentlyViewing }) => {
-    const { currentlyViewingRelatedBooks, suggetionsLoading } = useBookSuggestion(CurrentlyViewing);
+    const { currentlyViewingRelatedBooks, relatedLoading } = useBookSuggestion(CurrentlyViewing);
 
     // Slice the currentlyViewingRelatedBooks array to display only the first 6 items
     const slicedRelatedBooks = currentlyViewingRelatedBooks?.slice(0, 2);
 
     return (
         <div className="max-w-[200px]">
-            {suggetionsLoading ? (
+            {relatedLoading ? (
                 <ComponentLoading/>
             ) : (
                 slicedRelatedBooks?.map((item) => (

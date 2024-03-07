@@ -110,7 +110,7 @@ const SuggestedBooks = ({ CurrentlyViewing }) => {
             slidesPerView={3}
           >
             {swiperInitialized ? (
-              topTearSuggestions.map((cardInfo, index) => (
+              topTearSuggestions?.map((cardInfo, index) => (
                 <SwiperSlide key={cardInfo.id}>
                   <SuggestedCard cardInfo={cardInfo} index={index}></SuggestedCard>
                 </SwiperSlide>

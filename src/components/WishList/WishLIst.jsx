@@ -17,7 +17,7 @@ const WishLIst = () => {
     const [wishListBook, refetch, isLoading] = useWishListBook();
     const axiosSecure = useAxiosSecure();
     const { currentUser } = useOneUser();
-    const {refetch : cartRefetch} = useGetMyCarts()
+    const { refetch: cartRefetch } = useGetMyCarts()
 
     console.log("wish list data ", wishListBook);
 
@@ -39,9 +39,11 @@ const WishLIst = () => {
                 console.log("User confirmed deletion.");
                 axiosSecure
                     .delete(`/api/v1/wishlist/remove/${id}`)
+                axiosSecure
+                    .delete(`/api/v1/wishlist/remove/${id}`)
                     .then((response) => {
-                        console.log("Delete request successful. Response:", response.data);
-                        if (response) {
+                        if (response.status === 204) {
+                            console.log("Delete request successful. Response:", response);
                             console.log("success");
                             Swal.fire(
                                 "Deleted!",
@@ -49,6 +51,13 @@ const WishLIst = () => {
                                 "success"
                             );
                             refetch();
+                        } else {
+                            console.log("Unexpected response status:", response.status);
+                            Swal.fire(
+                                "Error!",
+                                "An error occurred while deleting the book.",
+                                "error"
+                            );
                         }
                     })
                     .catch((error) => {
@@ -66,13 +75,13 @@ const WishLIst = () => {
 
 
 
-    const handleCart = (book) => {
+    const handleCart = (book, id, title) => {
         const user_name = currentUser?.name;
         const user_email = currentUser?.email;
-        const book_id = book.book_id; // Corrected
+        const book_id = book.book_id;
         const price = book.price; // Assuming 'price' is a property of 'book'
         const quantity = 1;
-        
+
         const addCart = {
             user_name,
             user_email,
@@ -92,15 +101,39 @@ const WishLIst = () => {
         axiosSecure
             .post("/api/v1/carts", addCart)
             .then((response) => {
-                console.log("data added database", response);
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Add book to the cart.",
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-                cartRefetch();
+                if (response.status === 200) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Add book to the cart.",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    axiosSecure
+                        .delete(`/api/v1/wishlist/remove/${id}`)
+                        .then((response) => {
+                            if (response.status === 204) {
+                                refetch();
+                            } else {
+                                console.log("Unexpected response status:", response.status);
+                                Swal.fire(
+                                    "Error!",
+                                    `An error occurred while deleting the book "${title}".`,
+                                    "error"
+                                );
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("Error deleting Book:", error);
+                            Swal.fire(
+                                "Error!",
+                                `An error occurred while deleting the book "${title}".`,
+                                "error"
+                            );
+                        });
+                    cartRefetch();
+                }
+
             })
             .catch((error) => {
                 console.error("Error:", error);
@@ -171,7 +204,7 @@ const WishLIst = () => {
                                     </Link> */}
 
 
-                                    <button onClick={() => handleCart(book)} className="px-2 text-xl text-teal-800">
+                                    <button onClick={() => handleCart(book, book._id, book.title)} className="px-2 text-xl text-teal-800">
                                         <IoCartOutline />
                                     </button>
 
