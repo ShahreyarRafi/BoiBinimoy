@@ -9,6 +9,8 @@ const BuyAllBooks = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const { buyBooksData, isLoading } = useBuyBooks(currentPage, 14)
 
+  console.log(buyBooksData);
+
   if (isLoading) {
     return <PageLoading />;
   }

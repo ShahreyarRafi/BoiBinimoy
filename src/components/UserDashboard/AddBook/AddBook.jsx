@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
+import { SlArrowRight } from "react-icons/sl";
 import { BsUpload } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -156,7 +156,7 @@ const AddBook = () => {
                 className="h-11 w-full px-2 text-xs md:text-sm text-gray-400 bg-teal-50/40 border border-[#016961] rounded-lg focus:outline-none shadow-md"
                 {...register("whatYouWant")}
               >
-                <option selected value="want">
+                <option selected hidden value="want">
                   What you want?
                 </option>
                 <option value="exchange">Exchange</option>
@@ -323,7 +323,7 @@ const AddBook = () => {
                     <BsUpload /> <span> Upload</span>
                   </label>
                 ) : (
-                  <Image 
+                  <Image
                     src={preview}
                     width={500}
                     height={500}
