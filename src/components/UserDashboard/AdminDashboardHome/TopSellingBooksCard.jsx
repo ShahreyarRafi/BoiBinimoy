@@ -9,7 +9,7 @@ export default function TopSellingBooksCard({ item }) {
   const { title, cover_image } = bookDetails;
 
   return (
-    <div>
+    <div className="flex justify-between items-center gap-4 mb-5 border p-3 rounded-lg">
       <img className="w-12" src={cover_image} alt="" />
       <h2>{title}</h2>
       <p>{totalQuantity}</p>

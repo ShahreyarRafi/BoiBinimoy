@@ -110,7 +110,7 @@ export default function AdminDashboardHome() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
         <div className="border p-5 rounded-lg shadow-sm space-y-3">
           <h3 className="text-xl font-semibold flex items-center justify-between">
             Top selling Books{" "}
@@ -127,6 +127,7 @@ export default function AdminDashboardHome() {
               ))}
           </div>
         </div>
+
         <div className="border p-5 rounded-lg shadow-sm space-y-3">
           <h3 className="text-xl font-semibold flex justify-between items-center gap-5">
             Top Buying Customers
@@ -145,7 +146,7 @@ export default function AdminDashboardHome() {
         </div>
       </div>
 
-      <div>
+      <div className="mt-5">
         <div className="border p-5 rounded-lg shadow-sm space-y-3">
           <h3 className="text-xl font-semibold">Recent Orders</h3>
           <div>
