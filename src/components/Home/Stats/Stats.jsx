@@ -90,7 +90,7 @@ const Stats = () => {
               {isVisible && <CountUp end={writers?.length} duration={2} />}
             </h6>
             <p className="text-sm font-medium tracking-widest text-gray-100 uppercase lg:text-base">
-              Writer
+              Writers
             </p>
           </div>
         </div>
