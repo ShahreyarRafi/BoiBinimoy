@@ -37,11 +37,6 @@ import React from 'react';
 
 
 const NavLink = ({ children, activeClassName, href, ...props}) => {
-
-    console.log(href);
-
-    console.log(usePathname);
-
     const isCurrentPath = usePathname === href 
     const childElements = React.Children.map(children, child => {
         if (React.isValidElement(child)) {
@@ -51,8 +46,6 @@ const NavLink = ({ children, activeClassName, href, ...props}) => {
         }
         return child;
     });
-
-    console.log(isCurrentPath);
 
 
     return (

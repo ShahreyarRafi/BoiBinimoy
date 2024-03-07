@@ -7,8 +7,6 @@ import { AuthContext } from "@/providers/AuthProvider";
 
 const useExchangeBooks = () => {
     const { user } = useContext(AuthContext);
-    console.log(" user ", user?.email);
-
     const axiosSecure = useAxiosSecure();
 
     const fetchData = async () => {

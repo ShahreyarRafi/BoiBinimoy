@@ -31,7 +31,7 @@ const ExchangeRequest = () => {
             .finally(function () {
                 // always executed
             });
-    }, [])
+    }, [param?.exchangeId])
 
     useEffect(() => {
         const email = localStorage.getItem("email")
@@ -48,8 +48,6 @@ const ExchangeRequest = () => {
                 // always executed
             });
     }, [user?.email])
-
-    console.log();
 
     const handleRequest = () => {
 
@@ -69,7 +67,6 @@ const ExchangeRequest = () => {
         axiosSecure.post("api/v1/request-books", request)
             .then((response) => {
                 // Handle the success response
-                console.log("Response:", response.data);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -170,75 +167,6 @@ const ExchangeRequest = () => {
                             </div>
                         </div>
                     }
-                </div>
-
-                {/* Related section */}
-                <Related />
-
-                {/* review section */}
-                <div className="w-full p-8 border-2 rounded-lg">
-                    <div className="max-w-5xl mx-auto">
-                        {/* send review */}
-                        <form className="flex items-center gap-3 pb-5">
-                            <input
-                                type="text"
-                                name="Comment"
-                                placeholder="Comment"
-                                id=""
-                                className="w-full h-8 px-2 bg-transparent border-b focus:outline-none focus:border-black"
-                            />
-                            <button type="submit" className="text-2xl text-[#016961]">
-                                <IoIosSend />
-                            </button>
-                        </form>
-
-                        {/* all review */}
-                        <div className="p-2 space-y-4">
-                            {/* review 1 */}
-                            <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
-                                {/* user image */}
-                                <div className="">
-                                    <Image 
-                                        className="object-cover w-12 h-12 mb-2 rounded-full shadow"
-                                        src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
-                                        width={500}
-                                        height={500}
-                                        alt="Person"
-                                    />
-                                </div>
-                                {/* user name, review */}
-                                <div>
-                                    <h5 className="text-md font-bold">Mr. jhon</h5>
-                                    <p className="text-xs">
-                                        Dolor sit amet, consectetur adipisicing elit.r adipisicing
-                                        elitr adipisicing elit
-                                    </p>
-                                </div>
-                                <hr />
-                            </div>
-
-                            {/* review 2 */}
-                            <div className="flex items-center gap-3 px-3 py-1 shadow-sm rounded-lg">
-                                {/* user image */}
-                                <div className="">
-                                    <Image 
-                                        className="object-cover w-12 h-12 mb-2 rounded-full shadow"
-                                        src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
-                                        width={500}
-                                        height={500}
-                                        alt="Person"
-                                    />
-                                </div>
-                                {/* user name, review */}
-                                <div>
-                                    <h5 className="text-md font-bold">Mr. jhon</h5>
-                                    <p className="text-xs">
-                                        Dolor sit amet, consectetur adipisicing elit.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div >

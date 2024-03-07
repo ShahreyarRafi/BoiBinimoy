@@ -40,7 +40,6 @@ const AddBlog = () => {
 
   // blogs submitting function
   const handleBlogSubmit = async (data) => {
-    console.log("clicked");
     const { form, title, tags, body, category } = data;
     const uploadedImageUrl = await uploadImage();
 
@@ -57,13 +56,9 @@ const AddBlog = () => {
       publish_time: submittingDateTime.toLocaleTimeString(),
     };
 
-    console.log(newBlog);
-
     axiosSecure
       .post("/api/v1/blogs", newBlog)
       .then((response) => {
-        // Handle the success response
-        console.log("Response:", response.data);
         Swal.fire({
           position: "top-end",
           icon: "success",

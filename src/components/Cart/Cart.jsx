@@ -20,7 +20,6 @@ const Cart = () => {
     const email = await user?.email;
 
     const res = await axiosSecure.post("/api/v1/order", { email: email });
-    console.log(res.data);
     if (res?.data?.url) {
       const url = await res.data.url;
       window.open(url, "_blank");
