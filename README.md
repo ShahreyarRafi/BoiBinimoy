@@ -4,7 +4,7 @@
 
 ## Project Name: Boi Binimoy
 ## Type: Book Exchange Platform
-## Tech Stack: MERN (MongoDB, Express.js, React.js, Node.js) with Next.js
+## Tech Stack: MERN (MongoDB, Express.js, React.js, Node.js) with Next.js and Mongoose
 
 ---
 
