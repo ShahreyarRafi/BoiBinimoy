@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import useSearchBooks from "@/Hooks/buyBooks/useSearchBooks";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,8 +24,8 @@ const Search = () => {
     setShowSuggestions(true);
   };
 
-  console.log("searchBooks: ", searchBooks);
 
+ 
   return (
     <>
       <div className="relative">
@@ -54,31 +55,32 @@ const Search = () => {
             {searchBooks?.map((book) => (
               <div key={book?._id}>
                 <Link href={`/buyBooks/${book?._id}`}>
-                  <div className="flex items-center gap-3 bg-teal-100/30  hover:bg-teal-100/60 py-2 px-5 rounded-lg border-b">
-                    <div>
-                      <Image
-                        width={40}
-                        height={40}
-                        alt=""
-                        src={book?.cover_image}
-                      />
+
+                    <div className="flex items-center gap-3 bg-teal-100/30  hover:bg-teal-100/60 py-2 px-5 rounded-lg border-b">
+                      <div>
+                        <Image
+                          width={40}
+                          height={40}
+                          alt=""
+                          src={book?.cover_image}
+                        />
+                      </div>
+                      <div className="w-full">
+                        <h1 className="font-semibold text-teal-800">
+                          {book?.title}
+                        </h1>
+                        <p className="text-xs text-gray-400">{book?.writer}</p>
+                      </div>
+                      <div className="flex items-center font-light gap-2 min-w-fit">
+                        <p className="text-sm text-green-600">In stok</p>
+                        <p className="text-sm text-red-600">
+                          ({book?.stock_limit})
+                        </p>
+                        <h3 className="font-semibold text-teal-800">
+                          &#2547;{book?.price}
+                        </h3>
+                      </div>
                     </div>
-                    <div className="w-full">
-                      <h1 className="font-semibold text-teal-800">
-                        {book?.title}
-                      </h1>
-                      <p className="text-xs text-gray-400">{book?.writer}</p>
-                    </div>
-                    <div className="flex items-center font-light gap-2 min-w-fit">
-                      <p className="text-sm text-green-600">In stok</p>
-                      <p className="text-sm text-red-600">
-                        ({book?.stock_limit})
-                      </p>
-                      <h3 className="font-semibold text-teal-800">
-                        &#2547;{book?.price}
-                      </h3>
-                    </div>
-                  </div>
                 </Link>
               </div>
             ))}
