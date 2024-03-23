@@ -14,11 +14,6 @@ const SocialLogin = () => {
   const handleSocialLogin = async (user) => {
     try {
       const res = await user();
-
-      if (res.user) {
-        Swal.fire("User logged in successfully");
-      }
-
       const userInfo = {
         email: res?.user?.email,
         name: res.user?.displayName,
