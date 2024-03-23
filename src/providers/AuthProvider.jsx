@@ -39,12 +39,16 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, githubProvider);
   };
 
+ 
+
   const handleUpdateProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
     });
   };
+
+
 
   //   create User
   const createUser = (email, password) => {
